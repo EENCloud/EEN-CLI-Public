@@ -56,7 +56,11 @@ een auth login --username <username> --password <password> [--apikey <api key>]
 
 Note: Password should be given in quotes, as the shell might have converting issues.
 
+Example:
+
+```
 een auth login --username abc@een.com --password \***\*\*\*\*\***
+```
 
 To obtain the API_KEY, please see [here](#environment-variables)
 
@@ -66,7 +70,11 @@ To obtain the API_KEY, please see [here](#environment-variables)
 een auth status --username <username> --password <password> [--apikey <api key>]
 ```
 
+Example
+
+```
 een auth status --username abc@een.com --password \***\*\*\*\*\***
+```
 
 #### List bridges
 
@@ -122,7 +130,11 @@ Fields in user csv: First Name, Last Name, Email, Last Login, Permissions
 een camera list --tag <tag_name>
 ```
 
+Example:
+
+```
 een camera list --tag lobby
+```
 
 #### List bridges based on specific location
 
@@ -130,7 +142,11 @@ een camera list --tag lobby
 een bridge list --location <location_name>
 ```
 
+Example:
+
+```
 een bridge list --location austin
+```
 
 #### List cameras based on specific location
 
@@ -138,7 +154,11 @@ een bridge list --location austin
 een camera list --location <location_name>
 ```
 
+Example:
+
+```
 een camera list --location austin
+```
 
 #### List bridges based on specific tag
 
@@ -146,7 +166,11 @@ een camera list --location austin
 een bridge list --tag <tag_name>
 ```
 
+Example:
+
+```
 een bridge list --tag lobby
+```
 
 #### List cameras based on specific status
 
@@ -154,7 +178,11 @@ een bridge list --tag lobby
 een camera list --status <status>
 ```
 
+Example:
+
+```
 een camera list --status "Camera on"
+```
 
 #### List bridges based on specific status
 
@@ -162,7 +190,11 @@ een camera list --status "Camera on"
 een bridge list --status <status>
 ```
 
+Example:
+
+```
 een bridge list --status "Camera on"
+```
 
 #### List available cameras
 
@@ -218,7 +250,11 @@ een camera status --csv [-f/--filename <filename>] [--noprompt]
 een download list --esn <esn> --start_time <start_time> --end_time <end_time>
 ```
 
+Example:
+
+```
 een download list --esn 1kj6eo83 --start_time 20220826084300.000 --end_time 20220826084330.000
+```
 
 #### Get camera video download
 
@@ -232,7 +268,11 @@ Note:
 - The timestamp option is only supported for mp4 format
 - Video download is done by batches of 5 videos at a time.
 
+Example:
+
+```
 een download video --esn 1kj6eo83 --start_time 20220826084300.000 --end_time 20220826084330.000 --format mp4 --timestamp "US/Central" --output "foldername" --overwrite
+```
 
 #### Get LPR Events
 
@@ -240,7 +280,11 @@ een download video --esn 1kj6eo83 --start_time 20220826084300.000 --end_time 202
 een lpr events --start_time <start_time> --end_time <end_time> --lp <license plate> --esn <esn>
 ```
 
+Example:
+
+```
 een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of
+```
 
 #### Edit camera settings
 
@@ -248,7 +292,11 @@ een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --l
 een camera set <esn> --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> [--noprompt]
 ```
 
+Example:
+
+```
 een camera set 100jhi7 --cloud_retention_days 28 --video_resolution 3MP
+```
 
 #### Edit settings of all cameras
 
@@ -256,7 +304,11 @@ een camera set 100jhi7 --cloud_retention_days 28 --video_resolution 3MP
 een camera set "*" --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> [--noprompt]
 ```
 
+Example:
+
+```
 een camera set "\*" --cloud_retention_days 28 --video_resolution 3MP
+```
 
 Note: \* should be specified in quotes, as the shell might have converting issues.
 
@@ -266,7 +318,11 @@ Note: \* should be specified in quotes, as the shell might have converting issue
 een camera bulk-set --esns <value1,value2> --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> [--noprompt]
 ```
 
+Example:
+
+```
 een camera bulk-set --esns 100ksh9,8991jgd --cloud_retention_days 30 --video_resolution 1080P
+```
 
 #### Edit camera settings based on tags
 
@@ -274,7 +330,11 @@ een camera bulk-set --esns 100ksh9,8991jgd --cloud_retention_days 30 --video_res
 een camera tag-set --tag <tag> --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> [--noprompt]
 ```
 
+Example:
+
+```
 een camera tag-set --tag lobby --cloud_retention_days 28 --video_resolution 1080P
+```
 
 #### Edit multiple camera settings reading esn from csv file
 
@@ -284,7 +344,11 @@ We can execute the command een camera list --short to generate the csv file. Thi
 een camera multi-set --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> -f/--filename <filename> [--noprompt]
 ```
 
+Example:
+
+```
 een camera multi-set --cloud_retention_days 30 --video_resolution 3MP --filename abc.csv
+```
 
 #### Edit multiple camera settings reading esn and camera settings from csv file
 
@@ -294,7 +358,11 @@ We can execute the command een camera settings to generate the csv file. This ou
 een camera detailed-set -f/--filename <filename> [--noprompt]
 ```
 
+Example:
+
+```
 een camera detailed-set -f abc.csv
+```
 
 #### List archives
 
@@ -320,7 +388,11 @@ een archive list --csv
 een archive list --folder <folder>
 ```
 
+Example:
+
+```
 een archive list --folder "snapshots/"
+```
 
 #### List archives in a specific folder detailed
 
@@ -328,7 +400,11 @@ een archive list --folder "snapshots/"
 een archive list --folder <folder> --detailed
 ```
 
+Example:
+
+```
 een archive list --folder "snapshots/" --detailed
+```
 
 #### List archives in a specific folder in CSV format
 
@@ -336,7 +412,11 @@ een archive list --folder "snapshots/" --detailed
 een archive list --folder <folder> --csv
 ```
 
+Example:
+
+```
 een archive list --folder "snapshots/" --csv
+```
 
 #### Archive download
 
@@ -344,7 +424,11 @@ een archive list --folder "snapshots/" --csv
 een archive download <archive> --output <output> [--overwrite]
 ```
 
+Example:
+
+```
 een archive download "snapshots/test-1.jpeg" --output "foldername" --overwrite
+```
 
 #### EEN account Logout
 
@@ -360,7 +444,11 @@ een auth logout
 een account list
 ```
 
+Example:
+
+```
 een account list
+```
 
 #### Switch account to `END_USER`
 
@@ -368,7 +456,11 @@ een account list
 een account switch --subaccount_id <subaccount_id>
 ```
 
+Example:
+
+```
 een account switch --subaccount_id 00001106
+```
 
 #### Switch back to `RESELLER_ACCOUNT`
 
@@ -376,7 +468,11 @@ een account switch --subaccount_id 00001106
 een account switch
 ```
 
+Example:
+
+```
 een account switch
+```
 
 ### Camera settings that can be edited:
 
