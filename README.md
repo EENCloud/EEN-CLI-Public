@@ -1,6 +1,8 @@
-# EEN CLI
+# Introduction
+
 
 ## Environment variables
+
 
 <a name="environment-variables"></a>
 
