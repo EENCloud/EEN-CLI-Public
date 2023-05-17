@@ -1,8 +1,6 @@
 # Introduction
 
-
 ## Environment variables
-
 
 <a name="environment-variables"></a>
 
@@ -125,6 +123,14 @@ een user list --csv [-f/--filename <filename>] [--noprompt]
 ```
 
 Fields in user csv: First Name, Last Name, Email, Last Login, Permissions
+
+#### List locations in CSV format
+
+```
+een location list --csv [-f/--filename <filename>] [--noprompt]
+```
+
+Fields in location csv: Location ID, Location Name
 
 #### List cameras based on specific tag
 
@@ -366,11 +372,53 @@ Example:
 een camera detailed-set -f abc.csv
 ```
 
+#### Add camera to bridge
+
+```
+een camera add <esn> --camera_name <camera_name> --guid <guid> --location [location_id] --cloud_retention_days [cloud_retention_days] --scene [scene] --tags [tags] --username [username] --password [password] [--noprompt]
+```
+
+Example:
+
+```
+een camera add 1000red0 --camera_name "New Camera 5" --cloud_retention_days 30 --guid 5c445010-39f5-443e-8b0b-453119c5e062 --tags test
+```
+
+#### Delete camera from the bridge
+
+```
+een camera delete <esn>
+```
+
+Example:
+
+```
+een camera delete 1010red
+```
+
 #### List archives
 
 ```
 een archive list
 ```
+
+### Camera stream status csv
+
+```
+een camera streamstatus --esn [esn] --stream_type [stream_type] --start_time <start_time> --end_time <end_time> -f/--filename <filename> [--noprompt]
+```
+
+Example:
+
+```
+./een camera streamstatus --esn 1010rbh --start_time 20230509062511.000 --end_time 20230509062611.000 --csv --stream_type preview
+```
+
+Note:
+
+- stream_type can be fullvideo or preview
+- start_time can be "-1h" i.e., one hour before current time
+- end_time can be "now" i.e., current time
 
 #### List archives detailed
 

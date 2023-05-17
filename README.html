@@ -125,6 +125,10 @@
 <pre><code>een user list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
 <p>Fields in user csv: First Name, Last Name, Email, Last Login, Permissions</p>
+<h4>List locations in CSV format</h4>
+<pre><code>een location list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
+</code></pre>
+<p>Fields in location csv: Location ID, Location Name</p>
 <h4>List cameras based on specific tag</h4>
 <pre><code>een camera list --tag &lt;tag_name&gt;
 </code></pre>
@@ -262,9 +266,33 @@
 <p>Example:</p>
 <pre><code>een camera detailed-set -f abc.csv
 </code></pre>
+<h4>Add camera to bridge</h4>
+<pre><code>een camera add &lt;esn&gt; --camera_name &lt;camera_name&gt; --guid &lt;guid&gt; --location [location_id] --cloud_retention_days [cloud_retention_days] --scene [scene] --tags [tags] --username [username] --password [password] [--noprompt]
+</code></pre>
+<p>Example:</p>
+<pre><code>een camera add 1000red0 --camera_name &quot;New Camera 5&quot; --cloud_retention_days 30 --guid 5c445010-39f5-443e-8b0b-453119c5e062 --tags test
+</code></pre>
+<h4>Delete camera from the bridge</h4>
+<pre><code>een camera delete &lt;esn&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code>een camera delete 1010red
+</code></pre>
 <h4>List archives</h4>
 <pre><code>een archive list
 </code></pre>
+<h3>Camera stream status csv</h3>
+<pre><code>een camera streamstatus --esn [esn] --stream_type [stream_type] --start_time &lt;start_time&gt; --end_time &lt;end_time&gt; -f/--filename &lt;filename&gt; [--noprompt]
+</code></pre>
+<p>Example:</p>
+<pre><code>./een camera streamstatus --esn 1010rbh --start_time 20230509062511.000 --end_time 20230509062611.000 --csv --stream_type preview
+</code></pre>
+<p>Note:</p>
+<ul>
+  <li>stream_type can be fullvideo or preview</li>
+  <li>start_time can be &quot;-1h&quot; i.e., one hour before current time</li>
+  <li>end_time can be &quot;now&quot; i.e., current time</li>
+</ul>
 <h4>List archives detailed</h4>
 <pre><code>een archive list --detailed
 </code></pre>
