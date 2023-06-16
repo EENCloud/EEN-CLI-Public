@@ -106,7 +106,7 @@ een user list
 een bridge list --csv [-f/--filename <filename>] [--noprompt]
 ```
 
-Fields in bridge csv: Bridge ID, Name, GUID, IP Address, Timezone, Serial #, Location
+Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial #, Location, GUID
 
 #### List cameras in CSV format
 
@@ -114,7 +114,8 @@ Fields in bridge csv: Bridge ID, Name, GUID, IP Address, Timezone, Serial #, Loc
 een camera list --csv [-f/--filename <filename>] [--noprompt]
 ```
 
-Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, GUID, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address
+Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address
+
 
 #### List users in CSV format
 
@@ -396,12 +397,6 @@ Example:
 een camera delete 1010red
 ```
 
-#### List archives
-
-```
-een archive list
-```
-
 ### Camera stream status csv
 
 ```
@@ -411,7 +406,7 @@ een camera streamstatus --esn [esn] --stream_type [stream_type] --start_time <st
 Example:
 
 ```
-./een camera streamstatus --esn 1010rbh --start_time 20230509062511.000 --end_time 20230509062611.000 --csv --stream_type preview
+een camera streamstatus --esn 1010rbh --start_time 20230509062511.000 --end_time 20230509062611.000 --stream_type preview
 ```
 
 Note:
@@ -419,6 +414,13 @@ Note:
 - stream_type can be fullvideo or preview
 - start_time can be "-1h" i.e., one hour before current time
 - end_time can be "now" i.e., current time
+
+
+#### List archives
+
+```
+een archive list
+```
 
 #### List archives detailed
 
@@ -533,10 +535,14 @@ een account switch
 5. preview_resolution - [Preview resolution]
 6. preview_transmit_mode - [Preview transmit mode]
 7. video_transmit_mode - [Video transmit mode]
-8. video_quality - [Video quality]
+8. video_quality - [Full Video quality]
 9. tags - [Tags]
 10. username - [Camera username]
 11. password - [Camera password]
+12. aspect_ratio- [Preview aspect ratio]
+13. video_capture_mode - [Preview Record when]
+14. preview_interval_ms - [Preview update rate]
+15. preview_quality - [Preview quality]
 
 Note:
 
