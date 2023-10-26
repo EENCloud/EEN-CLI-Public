@@ -316,10 +316,10 @@ een camera set "*" --cloud_retention_days <cloud_retention_days> --video_resolut
 Example:
 
 ```
-een camera set "\*" --cloud_retention_days 28 --video_resolution 3MP
+een camera set "*" --cloud_retention_days 28 --video_resolution 3MP
 ```
 
-Note: \* should be specified in quotes, as the shell might have converting issues.
+Note: * should be specified in quotes, as the shell might have converting issues.
 
 #### Edit multiple camera settings
 
