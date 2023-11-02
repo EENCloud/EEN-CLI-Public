@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="shortcut icon"
+      id="favicon-link"
+      href="https://c000.eagleeyenetworks.com/_images/favicon.ico"
+    />
+    <title>Eagle Eye Networks-user permissions report</title>
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://code.jquery.com/jquery-3.6.4.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css"
+    />
+
+    <script src="https://code.highcharts.com/dashboards/dashboards.js"></script>
+    <script src="https://code.highcharts.com/dashboards/datagrid.js"></script>
+    <script src="https://code.highcharts.com/dashboards/modules/dashboards-plugin.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <style>
+      @import url("https://code.highcharts.com/css/datagrid.css");
+      @import url("https://code.highcharts.com/css/dashboards.css");
+
+      #csv {
+        display: none;
+      }
+
+      #title h1 {
+        text-align: center;
+      }
+
+      input[type="number"] {
+        min-width: 50px;
+      }
+
+      #icon {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="icon">
+      <img
+        src="https://c000.eagleeyenetworks.com/_images/favicon.ico"
+        alt="een logo"
+      />
+      <h3>Eagle Eye Networks</h3>
+    </div>
+
+    <div id="container"></div>
+
+    <table
+      id="sortableTable"
+      class="cell-border compact stripe hover order-column"
+    >
+      <!-- Table data to be filled from CSV data by the Javascript code below -->
+    </table>
+
+    <pre id="csv">{%csvData%}</pre>
+
+    <script type="text/javascript">
+      // Return array of string values, or NULL if CSV string not well formed.
+      function CSVtoArray(text) {
+        var re_valid =
+          /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+        var re_value =
+          /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+        // Return NULL if input string is not well formed CSV string.
+        if (!re_valid.test(text)) return null;
+        var a = []; // Initialize array to receive values.
+        text.replace(
+          re_value, // "Walk" the string using replace with callback.
+          function (m0, m1, m2, m3) {
+            // Remove backslash from \' in single quoted values.
+            if (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+            // Remove backslash from \" in double quoted values.
+            else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+            else if (m3 !== undefined) a.push(m3);
+            return ""; // Return empty string.
+          }
+        );
+        // Handle special case of empty last value.
+        if (/,\s*$/.test(text)) a.push("");
+        return a;
+      }
+
+      $(document).ready(function () {
+        // Extract and parse CSV data from <pre> tag
+        var csvDataStr = $("#csv").text().trim().split("\n");
+        var headers = csvDataStr[0].split(",");
+        var data = [];
+        for (var i = 1; i < csvDataStr.length; i++) {
+          data.push(CSVtoArray(csvDataStr[i]));
+        }
+
+        // Initialize DataTable from parsed data
+        $("#sortableTable").DataTable({
+          data: data,
+          columns: headers.map(function (header) {
+            return { title: header };
+          }),
+          order: [[3, "asc"]],
+          columnDefs: [
+            {
+              targets: 3,
+              className: "dt-body-nowrap",
+            },
+          ],
+        });
+      });
+    </script>
+
+    <table id="table" class="display" style="width: 100%"></table>
+
+    <script>
+      const csvData = document.getElementById("csv").innerText;
+
+      const lines = csvData.trim().split("\n");
+      const users = [];
+      for (let i = 1; i < lines.length; i++) {
+        const element = lines[i].trim().split(", ");
+        users.push(element.join(", "));
+      }
+
+      let administratorCount = 0;
+      let notAdministrator = 0;
+      let createLayout = 0;
+      let editAllCameras = 0;
+      let viewHistoricVideo = 0;
+      let viewArchive = 0;
+      let editUsers = 0;
+      let addOrEditBridgesAndCameras = 0;
+      const createdTime = [];
+      if (users) {
+        for (let index = 0; index < users.length; index++) {
+          const userData = users?.[index].split(", ");
+          if (userData?.[6] === `"true"`) {
+            administratorCount += 1;
+          } else if (userData?.[6] === `"false"`) {
+            notAdministrator += 1;
+          }
+
+          if (userData?.[8] === `"true"`) {
+            createLayout += 1;
+          }
+          if (userData?.[14] === `"true"`) {
+            editAllCameras += 1;
+          }
+          if (userData?.[29] === `"true"`) {
+            viewHistoricVideo += 1;
+          }
+          if (userData?.[19] === `"true"`) {
+            viewArchive += 1;
+          }
+          if (userData?.[26] === `"true"`) {
+            editUsers += 1;
+          }
+          if (userData?.[27] === `"true"`) {
+            addOrEditBridgesAndCameras += 1;
+          }
+
+          createdTime?.push(userData?.[3]);
+        }
+      }
+
+      const adminPermission = administratorCount;
+
+      const userPermissions = [
+        { [Object.keys({ adminPermission })[0]]: adminPermission },
+        { [Object.keys({ createLayout })[0]]: createLayout },
+        { [Object.keys({ editAllCameras })[0]]: editAllCameras },
+        { [Object.keys({ viewHistoricVideo })[0]]: viewHistoricVideo },
+        { [Object.keys({ viewArchive })[0]]: viewArchive },
+        { [Object.keys({ editUsers })[0]]: editUsers },
+        {
+          [Object.keys({ addOrEditBridgesAndCameras })[0]]:
+            addOrEditBridgesAndCameras,
+        },
+      ];
+
+      const colors = [
+        "#7cb5ec",
+        "#434348",
+        "#90ed7d",
+        "#f7a35c",
+        "#8085e9",
+        "#f15c80",
+        "#e4d354",
+      ];
+
+      const barChartData = [];
+      userPermissions.forEach(function (permission) {
+        for (var key in permission) {
+          var count = permission[key];
+          barChartData.push({ name: key, y: count });
+        }
+      });
+
+      const formattedDates = createdTime
+        .map((date) => {
+          if (typeof date === "undefined") {
+            return undefined;
+          }
+
+          const match = date.match(/(\d{4}-\d{2})/);
+          return match ? match[1] : undefined;
+        })
+        .filter((date) => date !== undefined);
+
+      const lastUserLogin = formattedDates;
+      const dateCountMap = {};
+      lastUserLogin.forEach((date) => {
+        dateCountMap[date] = (dateCountMap[date] || 0) + 1;
+      });
+
+      const sortedDates = lastUserLogin.slice().sort();
+      const dataForLineGraph = sortedDates.map((date) => ({
+        name: date,
+        y: dateCountMap[date],
+      }));
+
+      Dashboards.board(
+        "container",
+        {
+          dataPool: {
+            connectors: [
+              {
+                id: "Csv",
+                type: "CSV",
+                options: {
+                  csv: csvData,
+                },
+              },
+            ],
+          },
+          editMode: {
+            enabled: true,
+            contextMenu: {
+              enabled: true,
+              items: ["editMode"],
+            },
+          },
+          gui: {
+            layouts: [
+              {
+                rows: [
+                  {
+                    cells: [
+                      {
+                        id: "title",
+                      },
+                    ],
+                  },
+                  {
+                    cells: [
+                      {
+                        id: "container-pie",
+                      },
+                      {
+                        id: "container-bar",
+                      },
+                      {
+                        id: "container-line-graph",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          components: [
+            {
+              cell: "title",
+              type: "HTML",
+              elements: [
+                {
+                  tagName: "h1",
+                  textContent: "User Permissions Report",
+                },
+              ],
+            },
+          ],
+        },
+        true
+      );
+
+      Highcharts.chart("container-bar", {
+        chart: {
+          type: "column",
+        },
+        title: {
+          text: "User Permissions Summary",
+        },
+        xAxis: {
+          categories: barChartData.map(function (item) {
+            return item.name;
+          }),
+          title: {
+            text: "Count of Users vs Permission Type",
+          },
+        },
+        yAxis: {
+          title: {
+            text: "Count",
+          },
+        },
+        series: [
+          {
+            name: "user permission",
+            data: barChartData.map(function (item) {
+              return item.y;
+            }),
+          },
+        ],
+      });
+
+      Highcharts.chart("container-pie", {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: "pie",
+        },
+        title: {
+          text: "Count of Administrators",
+          align: "center",
+          color: "#17191c",
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: "pointer",
+            dataLabels: {
+              enabled: true,
+              format: "<b>{point.name}</b>: {point.y:1f}",
+            },
+          },
+        },
+        series: [
+          {
+            name: "Count of Administrators",
+            colorByPoint: true,
+            data: [
+              {
+                name: "TRUE",
+                y: administratorCount,
+                sliced: true,
+              },
+              {
+                name: "FALSE",
+                y: notAdministrator,
+              },
+            ],
+          },
+        ],
+      });
+
+      Highcharts.chart("container-line-graph", {
+        chart: {
+          type: "spline",
+        },
+        title: {
+          text: "Last User Login(Month)",
+        },
+        xAxis: {
+          type: "category",
+          categories: sortedDates,
+          labels: {
+            rotation: -45,
+            step: 1,
+            style: {
+              fontSize: "10px",
+            },
+          },
+          title: {
+            text: "Month",
+          },
+        },
+        yAxis: {
+          title: {
+            text: "No Of Users",
+          },
+        },
+        series: [
+          {
+            name: "User Login",
+            data: dataForLineGraph,
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>

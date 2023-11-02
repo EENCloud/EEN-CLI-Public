@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="shortcut icon"
+      id="favicon-link"
+      href="https://c000.eagleeyenetworks.com/_images/favicon.ico"
+    />
+    <title>Eagle Eye Networks-camera list report</title>
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://code.jquery.com/jquery-3.6.4.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css"
+    />
+
+    <script src="https://code.highcharts.com/dashboards/dashboards.js"></script>
+    <script src="https://code.highcharts.com/dashboards/datagrid.js"></script>
+    <script src="https://code.highcharts.com/dashboards/modules/dashboards-plugin.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <style>
+      @import url("https://code.highcharts.com/css/datagrid.css");
+      @import url("https://code.highcharts.com/css/dashboards.css");
+
+      #csv {
+        display: none;
+      }
+
+      #title h1 {
+        text-align: center;
+      }
+
+      input[type="number"] {
+        min-width: 50px;
+      }
+
+      #icon {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="icon">
+      <img
+        src="https://c000.eagleeyenetworks.com/_images/favicon.ico"
+        alt="een logo"
+      />
+      <h3>Eagle Eye Networks</h3>
+    </div>
+
+    <div id="container"></div>
+
+    <table
+      id="sortableTable"
+      class="cell-border compact stripe hover order-column"
+    >
+      <!-- Table data to be filled from CSV data by the Javascript code below -->
+    </table>
+
+    <pre id="csv">{%csvData%}</pre>
+
+    <script type="text/javascript">
+      // Return array of string values, or NULL if CSV string not well formed.
+      function CSVtoArray(text) {
+        var re_valid =
+          /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+        var re_value =
+          /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+        // Return NULL if input string is not well formed CSV string.
+        if (!re_valid.test(text)) return null;
+        var a = []; // Initialize array to receive values.
+        text.replace(
+          re_value, // "Walk" the string using replace with callback.
+          function (m0, m1, m2, m3) {
+            // Remove backslash from \' in single quoted values.
+            if (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+            // Remove backslash from \" in double quoted values.
+            else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+            else if (m3 !== undefined) a.push(m3);
+            return ""; // Return empty string.
+          }
+        );
+        // Handle special case of empty last value.
+        if (/,\s*$/.test(text)) a.push("");
+        return a;
+      }
+
+      $(document).ready(function () {
+        // Extract and parse CSV data from <pre> tag
+        var csvDataStr = $("#csv").text().trim().split("\n");
+        var headers = csvDataStr[0].split(",");
+        var data = [];
+        for (var i = 1; i < csvDataStr.length; i++) {
+          data.push(CSVtoArray(csvDataStr[i]));
+        }
+
+        // Initialize DataTable from parsed data
+        $("#sortableTable").DataTable({
+          data: data,
+          columns: headers.map(function (header) {
+            return { title: header };
+          }),
+          order: [[3, "asc"]],
+          columnDefs: [
+            {
+              targets: 3,
+              className: "dt-body-nowrap",
+            },
+          ],
+        });
+      });
+    </script>
+
+    <table id="table" class="display" style="width: 100%"></table>
+
+    <script>
+      const csvData = document.getElementById("csv").innerText;
+
+      const lines = csvData.trim().split("\n");
+      const cameras = [];
+      for (let i = 1; i < lines.length; i++) {
+        const element = lines[i].trim().split(", ");
+        cameras.push(element.join(", "));
+      }
+
+      let numberOfSharedCameras = 0;
+      let numberOfUnsharedCameras = 0;
+      let resolutionStd = 0;
+      let resolutionHigh = 0;
+      let resolution1080P = 0;
+      let resolution3MP = 0;
+      let resolution4MP = 0;
+      const createdTime = [];
+
+      if (cameras) {
+        for (let index = 0; index < cameras?.length; index++) {
+          const camData = cameras?.[index].split(", ");
+          if (camData?.[12] === '"true"') {
+            numberOfSharedCameras += 1;
+          } else {
+            numberOfUnsharedCameras += 1;
+          }
+
+          if (camData?.[17] === '"std"') {
+            resolutionStd += 1;
+          } else if (camData?.[17] === '"high"') {
+            resolutionHigh += 1;
+          } else if (camData?.[17] === '"1080P"') {
+            resolution1080P += 1;
+          } else if (camData?.[17] === '"3MP"') {
+            resolution3MP += 1;
+          } else if (camData?.[17] === '"4MP"') {
+            resolution4MP += 1;
+          }
+
+          createdTime.push(camData?.[9]);
+        }
+      }
+
+      const cameraList = [];
+      if (cameras) {
+        for (let index = 0; index < cameras?.length; index++) {
+          const camData = cameras?.[index].split(', "');
+
+          if (camData?.[18]) {
+            if (cameraList[camData?.[18]]) {
+              cameraList[camData?.[18]]?.push(camData?.[0]);
+            } else {
+              cameraList[camData?.[18]] = [camData?.[0]];
+            }
+          }
+        }
+      }
+      delete cameraList?.undefined;
+      delete cameraList?.null;
+
+      const camsPerBridge = {};
+      for (const key in cameraList) {
+        camsPerBridge[key] = cameraList[key]?.length;
+      }
+
+      const dataArray = Object.entries(camsPerBridge);
+
+      const formattedDates = createdTime
+        .map((date) => {
+          if (typeof date === "undefined") {
+            return undefined;
+          }
+
+          const match = date.match(/(\d{4}-\d{2})/);
+          return match ? match[1] : undefined;
+        })
+        .filter((date) => date !== undefined);
+
+      const cameraCreatedTime = formattedDates;
+
+      const counts = {};
+      for (let i = 0; i < cameraCreatedTime.length; i++) {
+        const date = cameraCreatedTime[i];
+        counts[date] = (counts[date] || 0) + 1;
+      }
+
+      const seriesData = [];
+      for (const date in counts) {
+        if (counts.hasOwnProperty(date)) {
+          seriesData.push({
+            name: date,
+            y: counts[date],
+          });
+        }
+      }
+
+      Dashboards.board(
+        "container",
+        {
+          dataPool: {
+            connectors: [
+              {
+                id: "Csv",
+                type: "CSV",
+                options: {
+                  csv: csvData,
+                },
+              },
+            ],
+          },
+          editMode: {
+            enabled: true,
+            contextMenu: {
+              enabled: true,
+              items: ["editMode"],
+            },
+          },
+          gui: {
+            layouts: [
+              {
+                rows: [
+                  {
+                    cells: [
+                      {
+                        id: "title",
+                      },
+                    ],
+                  },
+                  {
+                    cells: [
+                      {
+                        id: "container-pie",
+                      },
+                      {
+                        id: "container-pie-resolution",
+                      },
+                    ],
+                  },
+                  {
+                    cells: [
+                      {
+                        id: "container-bar",
+                      },
+                      {
+                        id: "container-created-time",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          components: [
+            {
+              cell: "title",
+              type: "HTML",
+              elements: [
+                {
+                  tagName: "h1",
+                  textContent: "Camera List Report",
+                },
+              ],
+            },
+          ],
+        },
+        true
+      );
+
+      Highcharts.chart("container-pie", {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: "pie",
+        },
+        title: {
+          text: "Shared Cameras",
+          align: "center",
+          color: "#17191c",
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: "pointer",
+            dataLabels: {
+              enabled: true,
+              format: "<b>{point.name}</b>: {point.y:1f}",
+            },
+          },
+        },
+        series: [
+          {
+            name: "Cameras",
+            colorByPoint: true,
+            data: [
+              {
+                name: "Shared Cameras",
+                y: numberOfSharedCameras,
+                sliced: true,
+              },
+              {
+                name: "Unshared Cameras",
+                y: numberOfUnsharedCameras,
+              },
+            ],
+          },
+        ],
+      });
+
+      Highcharts.chart("container-pie-resolution", {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: "pie",
+        },
+        title: {
+          text: "Number of Cameras based on resolution",
+          align: "center",
+          color: "#17191c",
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: "pointer",
+            dataLabels: {
+              enabled: true,
+              format: "<b>{point.name}</b>: {point.y:1f}",
+            },
+          },
+        },
+        series: [
+          {
+            name: "Cameras",
+            colorByPoint: true,
+            data: [
+              {
+                name: "std",
+                y: resolutionStd,
+                sliced: true,
+                selected: true,
+              },
+              {
+                name: "high",
+                y: resolutionHigh,
+              },
+              {
+                name: "1080P",
+                y: resolution1080P,
+              },
+              {
+                name: "3MP",
+                y: resolution3MP,
+              },
+              {
+                name: "4MP",
+                y: resolution4MP,
+              },
+            ],
+          },
+        ],
+      });
+
+      Highcharts.chart("container-bar", {
+        chart: {
+          type: "bar",
+        },
+        title: {
+          text: "Count of Cameras Per Bridge",
+        },
+        xAxis: {
+          categories: dataArray.map((item) => item[0]),
+          type: "Bridges",
+        },
+        yAxis: {
+          title: {
+            text: "No of Cams per Bridge",
+          },
+        },
+        series: [
+          {
+            name: "Cam count per bridge",
+            data: dataArray.map((item) => item[1]),
+          },
+        ],
+      });
+
+      Highcharts.chart("container-created-time", {
+        chart: {
+          type: "column",
+        },
+        title: {
+          text: "Cameras Created Per Month",
+        },
+        xAxis: {
+          categories: seriesData.map(function (item) {
+            return item.name;
+          }),
+        },
+        yAxis: {
+          title: {
+            text: "No Of Cameras",
+          },
+        },
+        series: [
+          {
+            name: "Cameras Created",
+            data: seriesData.map(function (item) {
+              return item.y;
+            }),
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>
