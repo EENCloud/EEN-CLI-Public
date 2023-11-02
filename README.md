@@ -6,10 +6,10 @@
 
 1. `API_KEY`
 
-   - Creation: to get an `API_KEY` you will need an account. You can either use your existing account or create a Developer Account.
+   - Creation: To get an `API_KEY` you will need an account. You can either use your existing account or create a Developer Account.
 
-     - Existing account: you can create the key under your Account Settings.
-     - Developer account: you will have to verify your email address first to create your Developer Account. Expect to get an email with a shortcut to create the `API_KEY`. Click on the shortcut link to create your `API_Key` and get started writing some code.
+     - Existing account: You can create the key under your Account Settings.
+     - Developer account: You will have to verify your email address first to create your Developer Account. Expect to get an email with a shortcut to create the `API_KEY`. Click on the shortcut link to create your `API_Key` and get started writing some code.
 
 ## Using the CLI
 
@@ -17,7 +17,7 @@
 
 - For all commands with `noprompt` option it will skip all user confirmation prompts. This means it will also overwrite any existing files without any confirmation.
 - Open all the CSV file outputs in google sheet or libre office as excel has formatting issues.
-- `verbose mode` : use `--verbose` along with the commands to access the verbose mode.
+- `verbose mode` : Use `--verbose` along with the commands to access the verbose mode.
 - Supported `EEN TIME FORMATS` :
   - 20230125062511.000
   - 2023-01-31
@@ -115,7 +115,6 @@ een camera list --csv [-f/--filename <filename>] [--noprompt]
 ```
 
 Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address
-
 
 #### List users in CSV format
 
@@ -397,7 +396,7 @@ Example:
 een camera delete 1010red
 ```
 
-### Camera stream status csv
+#### Camera stream status csv
 
 ```
 een camera streamstatus --esn [esn] --stream_type [stream_type] --start_time <start_time> --end_time <end_time> -f/--filename <filename> [--noprompt]
@@ -414,7 +413,6 @@ Note:
 - stream_type can be fullvideo or preview
 - start_time can be "-1h" i.e., one hour before current time
 - end_time can be "now" i.e., current time
-
 
 #### List archives
 
@@ -482,6 +480,70 @@ Example:
 een archive download "snapshots/test-1.jpeg" --output "foldername" --overwrite
 ```
 
+### For Generating HTML Reports
+
+#### Bridge list report
+
+```
+een bridge list --html
+```
+
+#### Camera list report
+
+```
+een camera list --html
+```
+
+#### Bridge status report
+
+```
+een bridge status --html
+```
+
+#### Camera status report
+
+```
+een camera status --html
+```
+
+#### User permission report
+
+```
+een user list --html
+```
+
+### For Generating Lists In Google SpreadSheet
+
+#### Bridge list
+
+```
+een bridge list --googleSheet
+```
+
+#### Camera list
+
+```
+een camera list --googleSheet
+```
+
+#### Bridge status list
+
+```
+een bridge status --googleSheet
+```
+
+#### Camera status list
+
+```
+een camera status --googleSheet
+```
+
+#### User permission list
+
+```
+een user list ---googleSheet
+```
+
 #### EEN account Logout
 
 ```
@@ -524,6 +586,18 @@ Example:
 
 ```
 een account switch
+```
+
+### Update Values in the Google Config File
+
+```
+een update-google-config <name> -- <value>
+```
+
+Example:
+
+```
+een update-config "driveFolderID" -- "1giou_ghlihbZyUpwCx"
 ```
 
 ### Camera settings that can be edited:
