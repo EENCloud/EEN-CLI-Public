@@ -2,55 +2,131 @@
 <h2>Environment variables</h2>
 <p>&lt;a name=&quot;environment-variables&quot;&gt;&lt;/a&gt;</p>
 <ol>
-  <li>
-    <p><code>API_KEY</code></p>
-    <ul>
-      <li>
-        <p>
-          Creation: to get an <code>API_KEY</code> you will need an account. You
-          can either use your existing account or create a Developer Account.
-        </p>
-        <ul>
-          <li>
-            Existing account: you can create the key under your Account
-            Settings.
-          </li>
-          <li>
-            Developer account: you will have to verify your email address first
-            to create your Developer Account. Expect to get an email with a
-            shortcut to create the <code>API_KEY</code>. Click on the shortcut
-            link to create your <code>API_Key</code> and get started writing
-            some code.
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+<li>
+<p><code>API_KEY</code></p>
+<ul>
+<li>
+<p>Creation: To get an <code>API_KEY</code> you will need an account. You can either use your existing account or create a Developer Account.</p>
+<ul>
+<li>Existing account: You can create the key under your Account Settings.</li>
+<li>Developer account: You will have to verify your email address first to create your Developer Account. Expect to get an email with a shortcut to create the <code>API_KEY</code>. Click on the shortcut link to create your <code>API_Key</code> and get started writing some code.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
 <h2>Using the CLI</h2>
 <h3>Notes</h3>
 <ul>
-  <li>
-    For all commands with <code>noprompt</code> option it will skip all user
-    confirmation prompts. This means it will also overwrite any existing files
-    without any confirmation.
-  </li>
-  <li>
-    Open all the CSV file outputs in google sheet or libre office as excel has
-    formatting issues.
-  </li>
-  <li>
-    <code>verbose mode</code> : use <code>--verbose</code> along with the
-    commands to access the verbose mode.
-  </li>
-  <li>
-    Supported <code>EEN TIME FORMATS</code> :
-    <ul>
-      <li>20230125062511.000</li>
-      <li>2023-01-31</li>
-      <li>2023-01-31T08:24:32</li>
-    </ul>
-  </li>
+<li>For all commands with <code>noprompt</code> option it will skip all user confirmation prompts. This means it will also overwrite any existing files without any confirmation.</li>
+<li>Open all the CSV file outputs in google sheet or libre office as excel has formatting issues.</li>
+<li><code>verbose mode</code> : Use <code>--verbose</code> along with the commands to access the verbose mode.</li>
+<li>Supported <code>EEN TIME FORMATS</code> :
+<ul>
+<li>20230125062511.000</li>
+<li>2023-01-31</li>
+<li>2023-01-31T08:24:32</li>
+</ul>
+</li>
+</ul>
+<h2>Setting-up of Executable File</h2>
+<ul>
+<li>
+<p>Extraction of file from a compressed file format</p>
+<h4><strong>In Linux:</strong></h4>
+<ul>
+<li>
+<p>There are multiple ways to extract file from a compressed file here are the step by step instruction:</p>
+</li>
+<li>
+<p>First way:</p>
+<ol>
+<li>Point the cursor on the compressed file.</li>
+<li>Right-click on it in-order to trigger context-menu(right-click menu).</li>
+<li>On context menu select <code>Extract Here</code> option to extract the file in same directory or
+Select <code>Extract to</code> option in-order to extract the file in the current directory or directory of your choice.</li>
+</ol>
+</li>
+<li>
+<p>Second way:</p>
+<ol>
+<li>Point the cursor on the compressed file.</li>
+<li>Left-Double-click on it in-order to trigger a window that shows extraction option.</li>
+<li>Select the <code>Extract</code> button in-order to extract the file in desired directory.</li>
+</ol>
+</li>
+<li>
+<p>Third way:</p>
+<ol>
+<li>Open the terminal in the directory where compressed file is stored.</li>
+<li>Type-in terminal command <code>unzip een.zip</code> in-order to extract the file in the current directory.</li>
+</ol>
+<pre><code>unzip een.zip
+</code></pre>
+</li>
+</ul>
+<h4><strong>In Windows:</strong></h4>
+<ul>
+<li>Here are the step by step instruction:
+<ol>
+<li>Point the cursor on the compressed file.</li>
+<li>Right-click on it in-order to trigger context-menu(right-click menu).</li>
+<li>On context menu select <code>Extract All</code>.</li>
+<li>A window is triggered that shows a input-box which is used to inserts the directory path to a choosen directory.</li>
+<li>After choosing a directory click on <code>Extract</code> button, in-order to extract the file to the choosen directory.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>&lt;br/&gt;</p>
+<ul>
+<li>
+<p>Execute this extracted file by mapping up the directory path of the een
+on the terminal</p>
+</li>
+<li>
+<p>Each command should start <code>./</code>.</p>
+<p>Examples:</p>
+<pre><code>./een --version
+</code></pre>
+</li>
+<li>
+<p>To check if the executable works fine</p>
+<ul>
+<li>Run the command:</li>
+</ul>
+<pre><code> ./een
+</code></pre>
+<ul>
+<li>Output:</li>
+</ul>
+<pre><code>v1.2.0 20231102
+Usage: een [command] options
+
+get version
+
+Options:
+  -v, --version                              get current CLI version
+  -h, --help                                 display help for command
+
+Commands:
+  help
+  auth
+  location
+  user
+  account
+  archive
+  lpr
+  bridge
+  camera
+  download
+  update-google-config &lt;optionName&gt; &lt;value&gt;
+
+use een help command for detailed help instructions
+
+</code></pre>
+</li>
 </ul>
 <h3>List of commands supported:</h3>
 <h4>EEN Version</h4>
@@ -59,32 +135,24 @@
 <h4>EEN Help</h4>
 <pre><code>een help
 </code></pre>
-<p>
-  Note: The <code>een help</code> command shows the detailed help instructions
-  and the help option <code>een &lt;object&gt; --help</code> shows the shorter
-  version of help.
-</p>
+<p>Note: The <code>een help</code> command shows the detailed help instructions and
+the help option <code>een &lt;object&gt; --help</code> shows the shorter version of help.</p>
 <p>Examples:</p>
 <ul>
-  <li>een help</li>
-  <li>een --help</li>
-  <li>een -h</li>
-  <li>een auth --help</li>
-  <li>een camera list --help</li>
+<li>een help</li>
+<li>een --help</li>
+<li>een -h</li>
+<li>een auth --help</li>
+<li>een camera list --help</li>
 </ul>
 <h4>EEN account login</h4>
 <pre><code>een auth login --username &lt;username&gt; --password &lt;password&gt; [--apikey &lt;api key&gt;]
 </code></pre>
-<p>
-  Note: Password should be given in quotes, as the shell might have converting
-  issues.
-</p>
+<p>Note: Password should be given in quotes, as the shell might have converting issues.</p>
 <p>Example:</p>
 <pre><code>een auth login --username abc@een.com --password \***\*\*\*\*\***
 </code></pre>
-<p>
-  To obtain the API_KEY, please see <a href="#environment-variables">here</a>
-</p>
+<p>To obtain the API_KEY, please see <a href="#environment-variables">here</a></p>
 <h4>EEN account status</h4>
 <pre><code>een auth status --username &lt;username&gt; --password &lt;password&gt; [--apikey &lt;api key&gt;]
 </code></pre>
@@ -106,21 +174,11 @@
 <h4>List bridges in CSV format</h4>
 <pre><code>een bridge list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
-<p>
-  Fields in bridge csv: Bridge ID, Name, GUID, IP Address, Timezone, Serial #,
-  Location
-</p>
+<p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial #, Location, GUID</p>
 <h4>List cameras in CSV format</h4>
 <pre><code>een camera list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
-<p>
-  Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, GUID, IP
-  Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number,
-  Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP,
-  Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is
-  Hidden, Ignored Inputs, Responder Camera, Discovered State, Camera Model,
-  Cloud Retention, Local Retention Days, Video Resolution, MAC Address
-</p>
+<p>Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address</p>
 <h4>List users in CSV format</h4>
 <pre><code>een user list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
@@ -200,12 +258,9 @@
 </code></pre>
 <p>Note:</p>
 <ul>
-  <li>
-    For video download, we support both mp4 and flv format. We are writing the
-    videos to the given output folder.
-  </li>
-  <li>The timestamp option is only supported for mp4 format</li>
-  <li>Video download is done by batches of 5 videos at a time.</li>
+<li>For video download, we support both mp4 and flv format. We are writing the videos to the given output folder.</li>
+<li>The timestamp option is only supported for mp4 format</li>
+<li>Video download is done by batches of 5 videos at a time.</li>
 </ul>
 <p>Example:</p>
 <pre><code>een download video --esn 1kj6eo83 --start_time 20220826084300.000 --end_time 20220826084330.000 --format mp4 --timestamp &quot;US/Central&quot; --output &quot;foldername&quot; --overwrite
@@ -226,12 +281,9 @@
 <pre><code>een camera set &quot;*&quot; --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; [--noprompt]
 </code></pre>
 <p>Example:</p>
-<pre><code>een camera set &quot;\*&quot; --cloud_retention_days 28 --video_resolution 3MP
+<pre><code>een camera set &quot;*&quot; --cloud_retention_days 28 --video_resolution 3MP
 </code></pre>
-<p>
-  Note: * should be specified in quotes, as the shell might have converting
-  issues.
-</p>
+<p>Note: * Should be specified in quotes, as the shell might have converting issues.</p>
 <h4>Edit multiple camera settings</h4>
 <pre><code>een camera bulk-set --esns &lt;value1,value2&gt; --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; [--noprompt]
 </code></pre>
@@ -245,22 +297,14 @@
 <pre><code>een camera tag-set --tag lobby --cloud_retention_days 28 --video_resolution 1080P
 </code></pre>
 <h4>Edit multiple camera settings reading esn from csv file</h4>
-<p>
-  We can execute the command een camera list --short to generate the csv file.
-  This output csv file will act as the input for the below command.
-</p>
+<p>We can execute the command een camera list --short to generate the csv file. This output csv file will act as the input for the below command.</p>
 <pre><code>een camera multi-set --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; -f/--filename &lt;filename&gt; [--noprompt]
 </code></pre>
 <p>Example:</p>
 <pre><code>een camera multi-set --cloud_retention_days 30 --video_resolution 3MP --filename abc.csv
 </code></pre>
-<h4>
-  Edit multiple camera settings reading esn and camera settings from csv file
-</h4>
-<p>
-  We can execute the command een camera settings to generate the csv file. This
-  output csv file will act as the input for the below command.
-</p>
+<h4>Edit multiple camera settings reading esn and camera settings from csv file</h4>
+<p>We can execute the command een camera settings to generate the csv file. This output csv file will act as the input for the below command.</p>
 <pre><code>een camera detailed-set -f/--filename &lt;filename&gt; [--noprompt]
 </code></pre>
 <p>Example:</p>
@@ -278,21 +322,21 @@
 <p>Example:</p>
 <pre><code>een camera delete 1010red
 </code></pre>
-<h4>List archives</h4>
-<pre><code>een archive list
-</code></pre>
-<h3>Camera stream status csv</h3>
+<h4>Camera stream status csv</h4>
 <pre><code>een camera streamstatus --esn [esn] --stream_type [stream_type] --start_time &lt;start_time&gt; --end_time &lt;end_time&gt; -f/--filename &lt;filename&gt; [--noprompt]
 </code></pre>
 <p>Example:</p>
-<pre><code>./een camera streamstatus --esn 1010rbh --start_time 20230509062511.000 --end_time 20230509062611.000 --csv --stream_type preview
+<pre><code>een camera streamstatus --esn 1010rbh --start_time 20230509062511.000 --end_time 20230509062611.000 --stream_type preview
 </code></pre>
 <p>Note:</p>
 <ul>
-  <li>stream_type can be fullvideo or preview</li>
-  <li>start_time can be &quot;-1h&quot; i.e., one hour before current time</li>
-  <li>end_time can be &quot;now&quot; i.e., current time</li>
+<li>stream_type can be fullvideo or preview</li>
+<li>start_time can be &quot;-1h&quot; i.e., one hour before current time</li>
+<li>end_time can be &quot;now&quot; i.e., current time</li>
 </ul>
+<h4>List archives</h4>
+<pre><code>een archive list
+</code></pre>
 <h4>List archives detailed</h4>
 <pre><code>een archive list --detailed
 </code></pre>
@@ -323,6 +367,38 @@
 <p>Example:</p>
 <pre><code>een archive download &quot;snapshots/test-1.jpeg&quot; --output &quot;foldername&quot; --overwrite
 </code></pre>
+<h3>For Generating HTML Reports</h3>
+<h4>Bridge list report</h4>
+<pre><code>een bridge list --html
+</code></pre>
+<h4>Camera list report</h4>
+<pre><code>een camera list --html
+</code></pre>
+<h4>Bridge status report</h4>
+<pre><code>een bridge status --html
+</code></pre>
+<h4>Camera status report</h4>
+<pre><code>een camera status --html
+</code></pre>
+<h4>User permission report</h4>
+<pre><code>een user list --html
+</code></pre>
+<h3>For Generating Lists In Google SpreadSheet</h3>
+<h4>Bridge list</h4>
+<pre><code>een bridge list --googleSheet
+</code></pre>
+<h4>Camera list</h4>
+<pre><code>een camera list --googleSheet
+</code></pre>
+<h4>Bridge status list</h4>
+<pre><code>een bridge status --googleSheet
+</code></pre>
+<h4>Camera status list</h4>
+<pre><code>een camera status --googleSheet
+</code></pre>
+<h4>User permission list</h4>
+<pre><code>een user list ---googleSheet
+</code></pre>
 <h4>EEN account Logout</h4>
 <pre><code>een auth logout
 </code></pre>
@@ -345,641 +421,753 @@
 <p>Example:</p>
 <pre><code>een account switch
 </code></pre>
+<h3>Update Values in the Google Config File</h3>
+<pre><code>een update-google-config &lt;name&gt; -- &lt;value&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code>een update-config &quot;driveFolderID&quot; -- &quot;1giou_ghlihbZyUpwCx&quot;
+</code></pre>
+<h3>For Google Sheets commands</h3>
+<h4>Generate Credentials for accessing google sheets and google drive</h4>
+<p><a href="https://console.cloud.google.com/">Google Cloud Console</a></p>
+<p>The credentials required depends on the type of data, platform, and access methodology of your app.</p>
+<h4>Create a service account</h4>
+<ol>
+<li>Open the Google Cloud console.</li>
+</ol>
+<p><a href="https://console.cloud.google.com/">Google Cloud Console</a></p>
+<ol start="2">
+<li>At the top-left, click Menu menu &gt; IAM &amp; Admin &gt; Service Accounts.</li>
+<li>Click Create service account.</li>
+<li>Fill in the service account details, then click Create and continue.</li>
+<li>Optional: Assign roles to your service account to grant access to your Google Cloud project's resources.</li>
+<li>Click Continue.</li>
+<li>Optional: Enter users or groups that can manage and perform actions with this service account.</li>
+<li>Click Done.</li>
+</ol>
+<h3>Service account</h3>
+<p>Use this credential to authenticate as a robot service account or to access resources on behalf of Google Workspace or Cloud Identity users through domain-wide delegation.</p>
+<h4>Create credentials for a service account</h4>
+<p>You need to obtain credentials in the form of a public/private key pair. These credentials are used by your code to authorize service account actions within your app.</p>
+<h4>To obtain credentials for your service account:</h4>
+<ol>
+<li>Open the Google Cloud console.</li>
+</ol>
+<p><a href="https://console.cloud.google.com/">Google Cloud Console</a></p>
+<ol start="2">
+<li>At the top-left, click Menu menu &gt; IAM &amp; Admin &gt; Service Accounts.</li>
+<li>Select your service account.</li>
+<li>Click Keys &gt; Add keys &gt; Create new key.</li>
+<li>Select JSON, then click Create.
+Your new public/private key pair is generated and downloaded to your machine as a new file. This file is the only copy of this key.</li>
+<li>Click Close.</li>
+</ol>
+<h4>Drive Folder ID</h4>
+<p>A folder ID can be extracted from its URL. For example, the folder ID in the URL https://drive.google.com/drive/folders/ABCDE12345 is <code>ABCDE12345</code>.</p>
+<h4>Grant Editor permission to access google drive folder</h4>
+<p>Grant permission to your client email in your google drive folder.
+Client email is the email that you get while initializing the project in google cloud console.</p>
+<h3>IMPORTANT:</h3>
+<h4>Enable GoogleSheet API and Google Drive APIs</h4>
+<ol>
+<li>Open APIS and Services page</li>
+</ol>
+<p><a href="https://console.cloud.google.com/apis">APIS and Services</a></p>
+<ol start="2">
+<li>Navigate to API Library</li>
+</ol>
+<p><a href="https://console.cloud.google.com/apis/library">API Library</a></p>
+<ol start="3">
+<li>Search for Google Drive API</li>
+</ol>
+<p><a href="https://console.cloud.google.com/apis/library/drive.googleapis.com">Google Drive API</a></p>
+<ol start="4">
+<li>
+<p>Enable Google Drive API by clicking on the <code>ENABLE</code> button</p>
+</li>
+<li>
+<p>Search for Google Sheets API</p>
+</li>
+</ol>
+<p><a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com">Google Sheets API</a></p>
+<ol start="6">
+<li>Enable Google Sheets API by clicking on the <code>ENABLE</code> button</li>
+</ol>
+<h3>Note:</h3>
+<p>While executing google sheets commands, if you encounter any error messages like:</p>
+<pre><code> errors: [
+    {
+      message: 'Google Sheets API has not been used in project 886039128663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/sheets.googleapis.com/overview?project=886039128663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
+      domain: 'usageLimits',
+      reason: 'accessNotConfigured',
+      extendedHelp: 'https://console.developers.google.com'
+    }
+  ]
+
+</code></pre>
+<p>This error indicates that you are not <code>enabled</code> Google Sheets API for your service account.</p>
+<pre><code>errors: [
+   {
+     message: 'Google Drive API has not been used in project 886039128663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=886039128663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
+     domain: 'usageLimits',
+     reason: 'accessNotConfigured',
+     extendedHelp: 'https://console.developers.google.com'
+   }
+ ]
+
+</code></pre>
+<p>This error indicates that you are not <code>enabled</code> Google Drive API for your service account.</p>
+<p>To fix the same, please follow the steps above for enabling GoogleSheet API and Google Drive API</p>
+<h4>Setting Google Configuration</h4>
+<p>The .een/static_config.json file that gets created while logging in using the CLI has the following values:</p>
+<ul>
+<li>&quot;serviceAccountPrivateKey&quot;: &quot;your private key&quot;</li>
+<li>&quot;serviceAccountClientEmail&quot;: &quot;your client email&quot;</li>
+<li>&quot;driveFolderID&quot;: &quot;google drive folder id&quot;</li>
+</ul>
+<p>The serviceAccountPrivateKey and serviceAccountClientEmail can be found in your downloaded file, you get while doing the step 5 in obtaining the credentials for your service account.</p>
+<p>Replace these values with your credentials, you will be able to get the google sheets commands working.</p>
+<h4>To update the google config values, you can also use the command:</h4>
+<pre><code>een update-google-config &lt;name&gt; -- &lt;value&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code>een update-config &quot;driveFolderID&quot; -- &quot;1giou_ghlihbZyUpwCx&quot;
+</code></pre>
 <h3>Camera settings that can be edited:</h3>
 <ol>
-  <li>cloud_retention_days - [Cloud retention]</li>
-  <li>video_resolution - [Video resolution]</li>
-  <li>bridge_target_days - [Local retention - Min]</li>
-  <li>local_retention_days - [Local retention - Max]</li>
-  <li>preview_resolution - [Preview resolution]</li>
-  <li>preview_transmit_mode - [Preview transmit mode]</li>
-  <li>video_transmit_mode - [Video transmit mode]</li>
-  <li>video_quality - [Video quality]</li>
-  <li>tags - [Tags]</li>
-  <li>username - [Camera username]</li>
-  <li>password - [Camera password]</li>
+<li>cloud_retention_days - [Cloud retention]</li>
+<li>video_resolution - [Video resolution]</li>
+<li>bridge_target_days - [Local retention - Min]</li>
+<li>local_retention_days - [Local retention - Max]</li>
+<li>preview_resolution - [Preview resolution]</li>
+<li>preview_transmit_mode - [Preview transmit mode]</li>
+<li>video_transmit_mode - [Video transmit mode]</li>
+<li>video_quality - [Full Video quality]</li>
+<li>tags - [Tags]</li>
+<li>username - [Camera username]</li>
+<li>password - [Camera password]</li>
+<li>aspect_ratio- [Preview aspect ratio]</li>
+<li>video_capture_mode - [Preview Record when]</li>
+<li>preview_interval_ms - [Preview update rate]</li>
+<li>preview_quality - [Preview quality]</li>
 </ol>
 <p>Note:</p>
 <ul>
-  <li>
-    Expect for <code>cameraID</code>, <code>cameraName</code>and
-    <code>cloudPreviewOnly</code> all other field in camera settings file are
-    editable.
-  </li>
+<li>Expect for <code>cameraID</code>, <code>cameraName</code>and <code>cloudPreviewOnly</code> all other field in camera settings file are editable.</li>
 </ul>
 <h3>Available camera status</h3>
 <ul>
-  <li>&quot;Camera online&quot;</li>
-  <li>&quot;Stream attached&quot;</li>
-  <li>&quot;Camera on&quot;</li>
-  <li>&quot;Camera recording&quot;</li>
-  <li>&quot;Camera sending previews&quot;</li>
-  <li>&quot;Camera located&quot;</li>
-  <li>&quot;Camera not supported&quot;</li>
-  <li>&quot;Camera configuration in process&quot;</li>
-  <li>&quot;Camera needs ONVIF password&quot;</li>
-  <li>&quot;Camera available but not yet attached&quot;</li>
-  <li>&quot;Internal status&quot;</li>
-  <li>&quot;Camera error&quot;</li>
-  <li>&quot;Reserved&quot;</li>
-  <li>&quot;Invalid state&quot;</li>
-  <li>&quot;Camera streaming&quot;</li>
-  <li>&quot;Camera registered&quot;</li>
+<li>&quot;Camera online&quot;</li>
+<li>&quot;Stream attached&quot;</li>
+<li>&quot;Camera on&quot;</li>
+<li>&quot;Camera recording&quot;</li>
+<li>&quot;Camera sending previews&quot;</li>
+<li>&quot;Camera located&quot;</li>
+<li>&quot;Camera not supported&quot;</li>
+<li>&quot;Camera configuration in process&quot;</li>
+<li>&quot;Camera needs ONVIF password&quot;</li>
+<li>&quot;Camera available but not yet attached&quot;</li>
+<li>&quot;Internal status&quot;</li>
+<li>&quot;Camera error&quot;</li>
+<li>&quot;Reserved&quot;</li>
+<li>&quot;Invalid state&quot;</li>
+<li>&quot;Camera streaming&quot;</li>
+<li>&quot;Camera registered&quot;</li>
 </ul>
 <h3>Available timezones</h3>
 <ul>
-  <li>&quot;Africa/Abidjan&quot;</li>
-  <li>&quot;Africa/Accra&quot;</li>
-  <li>&quot;Africa/Addis_Ababa&quot;</li>
-  <li>&quot;Africa/Algiers&quot;</li>
-  <li>&quot;Africa/Asmara&quot;</li>
-  <li>&quot;Africa/Asmera&quot;</li>
-  <li>&quot;Africa/Bamako&quot;</li>
-  <li>&quot;Africa/Bangui&quot;</li>
-  <li>&quot;Africa/Banjul&quot;</li>
-  <li>&quot;Africa/Bissau&quot;</li>
-  <li>&quot;Africa/Blantyre&quot;</li>
-  <li>&quot;Africa/Brazzaville&quot;</li>
-  <li>&quot;Africa/Bujumbura&quot;</li>
-  <li>&quot;Africa/Cairo&quot;</li>
-  <li>&quot;Africa/Casablanca&quot;</li>
-  <li>&quot;Africa/Ceuta&quot;</li>
-  <li>&quot;Africa/Conakry&quot;</li>
-  <li>&quot;Africa/Dakar&quot;</li>
-  <li>&quot;Africa/Dar_es_Salaam&quot;</li>
-  <li>&quot;Africa/Djibouti&quot;</li>
-  <li>&quot;Africa/Douala&quot;</li>
-  <li>&quot;Africa/El_Aaiun&quot;</li>
-  <li>&quot;Africa/Freetown&quot;</li>
-  <li>&quot;Africa/Gaborone&quot;</li>
-  <li>&quot;Africa/Harare&quot;</li>
-  <li>&quot;Africa/Johannesburg&quot;</li>
-  <li>&quot;Africa/Juba&quot;</li>
-  <li>&quot;Africa/Kampala&quot;</li>
-  <li>&quot;Africa/Khartoum&quot;</li>
-  <li>&quot;Africa/Kigali&quot;</li>
-  <li>&quot;Africa/Kinshasa&quot;</li>
-  <li>&quot;Africa/Lagos&quot;</li>
-  <li>&quot;Africa/Libreville&quot;</li>
-  <li>&quot;Africa/Lome&quot;</li>
-  <li>&quot;Africa/Luanda&quot;</li>
-  <li>&quot;Africa/Lubumbashi&quot;</li>
-  <li>&quot;Africa/Lusaka&quot;</li>
-  <li>&quot;Africa/Malabo&quot;</li>
-  <li>&quot;Africa/Maputo&quot;</li>
-  <li>&quot;Africa/Maseru&quot;</li>
-  <li>&quot;Africa/Mbabane&quot;</li>
-  <li>&quot;Africa/Mogadishu&quot;</li>
-  <li>&quot;Africa/Monrovia&quot;</li>
-  <li>&quot;Africa/Nairobi&quot;</li>
-  <li>&quot;Africa/Ndjamena&quot;</li>
-  <li>&quot;Africa/Niamey&quot;</li>
-  <li>&quot;Africa/Nouakchott&quot;</li>
-  <li>&quot;Africa/Ouagadougou&quot;</li>
-  <li>&quot;Africa/Porto-Novo&quot;</li>
-  <li>&quot;Africa/Sao_Tome&quot;</li>
-  <li>&quot;Africa/Timbuktu&quot;</li>
-  <li>&quot;Africa/Tripoli&quot;</li>
-  <li>&quot;Africa/Tunis&quot;</li>
-  <li>&quot;Africa/Windhoek&quot;</li>
-  <li>&quot;America/Adak&quot;</li>
-  <li>&quot;America/Anchorage&quot;</li>
-  <li>&quot;America/Anguilla&quot;</li>
-  <li>&quot;America/Antigua&quot;</li>
-  <li>&quot;America/Araguaina&quot;</li>
-  <li>&quot;America/Argentina/Buenos_Aires&quot;</li>
-  <li>&quot;America/Argentina/Catamarca&quot;</li>
-  <li>&quot;America/Argentina/ComodRivadavia&quot;</li>
-  <li>&quot;America/Argentina/Cordoba&quot;</li>
-  <li>&quot;America/Argentina/Jujuy&quot;</li>
-  <li>&quot;America/Argentina/La_Rioja&quot;</li>
-  <li>&quot;America/Argentina/Mendoza&quot;</li>
-  <li>&quot;America/Argentina/Rio_Gallegos&quot;</li>
-  <li>&quot;America/Argentina/Salta&quot;</li>
-  <li>&quot;America/Argentina/San_Juan&quot;</li>
-  <li>&quot;America/Argentina/San_Luis&quot;</li>
-  <li>&quot;America/Argentina/Tucuman&quot;</li>
-  <li>&quot;America/Argentina/Ushuaia&quot;</li>
-  <li>&quot;America/Aruba&quot;</li>
-  <li>&quot;America/Asuncion&quot;</li>
-  <li>&quot;America/Atikokan&quot;</li>
-  <li>&quot;America/Atka&quot;</li>
-  <li>&quot;America/Bahia&quot;</li>
-  <li>&quot;America/Bahia_Banderas&quot;</li>
-  <li>&quot;America/Barbados&quot;</li>
-  <li>&quot;America/Belem&quot;</li>
-  <li>&quot;America/Belize&quot;</li>
-  <li>&quot;America/Blanc-Sablon&quot;</li>
-  <li>&quot;America/Boa_Vista&quot;</li>
-  <li>&quot;America/Bogota&quot;</li>
-  <li>&quot;America/Boise&quot;</li>
-  <li>&quot;America/Buenos_Aires&quot;</li>
-  <li>&quot;America/Cambridge_Bay&quot;</li>
-  <li>&quot;America/Campo_Grande&quot;</li>
-  <li>&quot;America/Cancun&quot;</li>
-  <li>&quot;America/Caracas&quot;</li>
-  <li>&quot;America/Catamarca&quot;</li>
-  <li>&quot;America/Cayenne&quot;</li>
-  <li>&quot;America/Cayman&quot;</li>
-  <li>&quot;America/Chicago&quot;</li>
-  <li>&quot;America/Chihuahua&quot;</li>
-  <li>&quot;America/Coral_Harbour&quot;</li>
-  <li>&quot;America/Cordoba&quot;</li>
-  <li>&quot;America/Costa_Rica&quot;</li>
-  <li>&quot;America/Creston&quot;</li>
-  <li>&quot;America/Cuiaba&quot;</li>
-  <li>&quot;America/Curacao&quot;</li>
-  <li>&quot;America/Danmarkshavn&quot;</li>
-  <li>&quot;America/Dawson&quot;</li>
-  <li>&quot;America/Dawson_Creek&quot;</li>
-  <li>&quot;America/Denver&quot;</li>
-  <li>&quot;America/Detroit&quot;</li>
-  <li>&quot;America/Dominica&quot;</li>
-  <li>&quot;America/Edmonton&quot;</li>
-  <li>&quot;America/Eirunepe&quot;</li>
-  <li>&quot;America/El_Salvador&quot;</li>
-  <li>&quot;America/Ensenada&quot;</li>
-  <li>&quot;America/Fort_Nelson&quot;</li>
-  <li>&quot;America/Fort_Wayne&quot;</li>
-  <li>&quot;America/Fortaleza&quot;</li>
-  <li>&quot;America/Glace_Bay&quot;</li>
-  <li>&quot;America/Godthab&quot;</li>
-  <li>&quot;America/Goose_Bay&quot;</li>
-  <li>&quot;America/Grand_Turk&quot;</li>
-  <li>&quot;America/Grenada&quot;</li>
-  <li>&quot;America/Guadeloupe&quot;</li>
-  <li>&quot;America/Guatemala&quot;</li>
-  <li>&quot;America/Guayaquil&quot;</li>
-  <li>&quot;America/Guyana&quot;</li>
-  <li>&quot;America/Halifax&quot;</li>
-  <li>&quot;America/Havana&quot;</li>
-  <li>&quot;America/Hermosillo&quot;</li>
-  <li>&quot;America/Indiana/Indianapolis&quot;</li>
-  <li>&quot;America/Indiana/Knox&quot;</li>
-  <li>&quot;America/Indiana/Marengo&quot;</li>
-  <li>&quot;America/Indiana/Petersburg&quot;</li>
-  <li>&quot;America/Indiana/Tell_City&quot;</li>
-  <li>&quot;America/Indiana/Vevay&quot;</li>
-  <li>&quot;America/Indiana/Vincennes&quot;</li>
-  <li>&quot;America/Indiana/Winamac&quot;</li>
-  <li>&quot;America/Indianapolis&quot;</li>
-  <li>&quot;America/Inuvik&quot;</li>
-  <li>&quot;America/Iqaluit&quot;</li>
-  <li>&quot;America/Jamaica&quot;</li>
-  <li>&quot;America/Jujuy&quot;</li>
-  <li>&quot;America/Juneau&quot;</li>
-  <li>&quot;America/Kentucky/Louisville&quot;</li>
-  <li>&quot;America/Kentucky/Monticello&quot;</li>
-  <li>&quot;America/Knox_IN&quot;</li>
-  <li>&quot;America/Kralendijk&quot;</li>
-  <li>&quot;America/La_Paz&quot;</li>
-  <li>&quot;America/Lima&quot;</li>
-  <li>&quot;America/Los_Angeles&quot;</li>
-  <li>&quot;America/Louisville&quot;</li>
-  <li>&quot;America/Lower_Princes&quot;</li>
-  <li>&quot;America/Maceio&quot;</li>
-  <li>&quot;America/Managua&quot;</li>
-  <li>&quot;America/Manaus&quot;</li>
-  <li>&quot;America/Marigot&quot;</li>
-  <li>&quot;America/Martinique&quot;</li>
-  <li>&quot;America/Matamoros&quot;</li>
-  <li>&quot;America/Mazatlan&quot;</li>
-  <li>&quot;America/Mendoza&quot;</li>
-  <li>&quot;America/Menominee&quot;</li>
-  <li>&quot;America/Merida&quot;</li>
-  <li>&quot;America/Metlakatla&quot;</li>
-  <li>&quot;America/Mexico_City&quot;</li>
-  <li>&quot;America/Miquelon&quot;</li>
-  <li>&quot;America/Moncton&quot;</li>
-  <li>&quot;America/Monterrey&quot;</li>
-  <li>&quot;America/Montevideo&quot;</li>
-  <li>&quot;America/Montreal&quot;</li>
-  <li>&quot;America/Montserrat&quot;</li>
-  <li>&quot;America/Nassau&quot;</li>
-  <li>&quot;America/New_York&quot;</li>
-  <li>&quot;America/Nipigon&quot;</li>
-  <li>&quot;America/Nome&quot;</li>
-  <li>&quot;America/Noronha&quot;</li>
-  <li>&quot;America/North_Dakota/Beulah&quot;</li>
-  <li>&quot;America/North_Dakota/Center&quot;</li>
-  <li>&quot;America/North_Dakota/New_Salem&quot;</li>
-  <li>&quot;America/Ojinaga&quot;</li>
-  <li>&quot;America/Panama&quot;</li>
-  <li>&quot;America/Pangnirtung&quot;</li>
-  <li>&quot;America/Paramaribo&quot;</li>
-  <li>&quot;America/Phoenix&quot;</li>
-  <li>&quot;America/Port-au-Prince&quot;</li>
-  <li>&quot;America/Port_of_Spain&quot;</li>
-  <li>&quot;America/Porto_Acre&quot;</li>
-  <li>&quot;America/Porto_Velho&quot;</li>
-  <li>&quot;America/Puerto_Rico&quot;</li>
-  <li>&quot;America/Punta_Arenas&quot;</li>
-  <li>&quot;America/Rainy_River&quot;</li>
-  <li>&quot;America/Rankin_Inlet&quot;</li>
-  <li>&quot;America/Recife&quot;</li>
-  <li>&quot;America/Regina&quot;</li>
-  <li>&quot;America/Resolute&quot;</li>
-  <li>&quot;America/Rio_Branco&quot;</li>
-  <li>&quot;America/Rosario&quot;</li>
-  <li>&quot;America/Santa_Isabel&quot;</li>
-  <li>&quot;America/Santarem&quot;</li>
-  <li>&quot;America/Santiago&quot;</li>
-  <li>&quot;America/Santo_Domingo&quot;</li>
-  <li>&quot;America/Sao_Paulo&quot;</li>
-  <li>&quot;America/Scoresbysund&quot;</li>
-  <li>&quot;America/Shiprock&quot;</li>
-  <li>&quot;America/Sitka&quot;</li>
-  <li>&quot;America/St_Barthelemy&quot;</li>
-  <li>&quot;America/St_Johns&quot;</li>
-  <li>&quot;America/St_Kitts&quot;</li>
-  <li>&quot;America/St_Lucia&quot;</li>
-  <li>&quot;America/St_Thomas&quot;</li>
-  <li>&quot;America/St_Vincent&quot;</li>
-  <li>&quot;America/Swift_Current&quot;</li>
-  <li>&quot;America/Tegucigalpa&quot;</li>
-  <li>&quot;America/Thule&quot;</li>
-  <li>&quot;America/Thunder_Bay&quot;</li>
-  <li>&quot;America/Tijuana&quot;</li>
-  <li>&quot;America/Toronto&quot;</li>
-  <li>&quot;America/Tortola&quot;</li>
-  <li>&quot;America/Vancouver&quot;</li>
-  <li>&quot;America/Virgin&quot;</li>
-  <li>&quot;America/Whitehorse&quot;</li>
-  <li>&quot;America/Winnipeg&quot;</li>
-  <li>&quot;America/Yakutat&quot;</li>
-  <li>&quot;America/Yellowknife&quot;</li>
-  <li>&quot;Antarctica/Casey&quot;</li>
-  <li>&quot;Antarctica/Davis&quot;</li>
-  <li>&quot;Antarctica/DumontDUrville&quot;</li>
-  <li>&quot;Antarctica/Macquarie&quot;</li>
-  <li>&quot;Antarctica/Mawson&quot;</li>
-  <li>&quot;Antarctica/McMurdo&quot;</li>
-  <li>&quot;Antarctica/Palmer&quot;</li>
-  <li>&quot;Antarctica/Rothera&quot;</li>
-  <li>&quot;Antarctica/South_Pole&quot;</li>
-  <li>&quot;Antarctica/Syowa&quot;</li>
-  <li>&quot;Antarctica/Troll&quot;</li>
-  <li>&quot;Antarctica/Vostok&quot;</li>
-  <li>&quot;Arctic/Longyearbyen&quot;</li>
-  <li>&quot;Asia/Aden&quot;</li>
-  <li>&quot;Asia/Almaty&quot;</li>
-  <li>&quot;Asia/Amman&quot;</li>
-  <li>&quot;Asia/Anadyr&quot;</li>
-  <li>&quot;Asia/Aqtau&quot;</li>
-  <li>&quot;Asia/Aqtobe&quot;</li>
-  <li>&quot;Asia/Ashgabat&quot;</li>
-  <li>&quot;Asia/Ashkhabad&quot;</li>
-  <li>&quot;Asia/Atyrau&quot;</li>
-  <li>&quot;Asia/Baghdad&quot;</li>
-  <li>&quot;Asia/Bahrain&quot;</li>
-  <li>&quot;Asia/Baku&quot;</li>
-  <li>&quot;Asia/Bangkok&quot;</li>
-  <li>&quot;Asia/Barnaul&quot;</li>
-  <li>&quot;Asia/Beirut&quot;</li>
-  <li>&quot;Asia/Bishkek&quot;</li>
-  <li>&quot;Asia/Brunei&quot;</li>
-  <li>&quot;Asia/Calcutta&quot;</li>
-  <li>&quot;Asia/Chita&quot;</li>
-  <li>&quot;Asia/Choibalsan&quot;</li>
-  <li>&quot;Asia/Chongqing&quot;</li>
-  <li>&quot;Asia/Chungking&quot;</li>
-  <li>&quot;Asia/Colombo&quot;</li>
-  <li>&quot;Asia/Dacca&quot;</li>
-  <li>&quot;Asia/Damascus&quot;</li>
-  <li>&quot;Asia/Dhaka&quot;</li>
-  <li>&quot;Asia/Dili&quot;</li>
-  <li>&quot;Asia/Dubai&quot;</li>
-  <li>&quot;Asia/Dushanbe&quot;</li>
-  <li>&quot;Asia/Famagusta&quot;</li>
-  <li>&quot;Asia/Gaza&quot;</li>
-  <li>&quot;Asia/Harbin&quot;</li>
-  <li>&quot;Asia/Hebron&quot;</li>
-  <li>&quot;Asia/Ho_Chi_Minh&quot;</li>
-  <li>&quot;Asia/Hong_Kong&quot;</li>
-  <li>&quot;Asia/Hovd&quot;</li>
-  <li>&quot;Asia/Irkutsk&quot;</li>
-  <li>&quot;Asia/Istanbul&quot;</li>
-  <li>&quot;Asia/Jakarta&quot;</li>
-  <li>&quot;Asia/Jayapura&quot;</li>
-  <li>&quot;Asia/Jerusalem&quot;</li>
-  <li>&quot;Asia/Kabul&quot;</li>
-  <li>&quot;Asia/Kamchatka&quot;</li>
-  <li>&quot;Asia/Karachi&quot;</li>
-  <li>&quot;Asia/Kashgar&quot;</li>
-  <li>&quot;Asia/Kathmandu&quot;</li>
-  <li>&quot;Asia/Katmandu&quot;</li>
-  <li>&quot;Asia/Khandyga&quot;</li>
-  <li>&quot;Asia/Kolkata&quot;</li>
-  <li>&quot;Asia/Krasnoyarsk&quot;</li>
-  <li>&quot;Asia/Kuala_Lumpur&quot;</li>
-  <li>&quot;Asia/Kuching&quot;</li>
-  <li>&quot;Asia/Kuwait&quot;</li>
-  <li>&quot;Asia/Macao&quot;</li>
-  <li>&quot;Asia/Macau&quot;</li>
-  <li>&quot;Asia/Magadan&quot;</li>
-  <li>&quot;Asia/Makassar&quot;</li>
-  <li>&quot;Asia/Manila&quot;</li>
-  <li>&quot;Asia/Muscat&quot;</li>
-  <li>&quot;Asia/Nicosia&quot;</li>
-  <li>&quot;Asia/Novokuznetsk&quot;</li>
-  <li>&quot;Asia/Novosibirsk&quot;</li>
-  <li>&quot;Asia/Omsk&quot;</li>
-  <li>&quot;Asia/Oral&quot;</li>
-  <li>&quot;Asia/Phnom_Penh&quot;</li>
-  <li>&quot;Asia/Pontianak&quot;</li>
-  <li>&quot;Asia/Pyongyang&quot;</li>
-  <li>&quot;Asia/Qatar&quot;</li>
-  <li>&quot;Asia/Qostanay&quot;</li>
-  <li>&quot;Asia/Qyzylorda&quot;</li>
-  <li>&quot;Asia/Rangoon&quot;</li>
-  <li>&quot;Asia/Riyadh&quot;</li>
-  <li>&quot;Asia/Saigon&quot;</li>
-  <li>&quot;Asia/Sakhalin&quot;</li>
-  <li>&quot;Asia/Samarkand&quot;</li>
-  <li>&quot;Asia/Seoul&quot;</li>
-  <li>&quot;Asia/Shanghai&quot;</li>
-  <li>&quot;Asia/Singapore&quot;</li>
-  <li>&quot;Asia/Srednekolymsk&quot;</li>
-  <li>&quot;Asia/Taipei&quot;</li>
-  <li>&quot;Asia/Tashkent&quot;</li>
-  <li>&quot;Asia/Tbilisi&quot;</li>
-  <li>&quot;Asia/Tehran&quot;</li>
-  <li>&quot;Asia/Tel_Aviv&quot;</li>
-  <li>&quot;Asia/Thimbu&quot;</li>
-  <li>&quot;Asia/Thimphu&quot;</li>
-  <li>&quot;Asia/Tokyo&quot;</li>
-  <li>&quot;Asia/Tomsk&quot;</li>
-  <li>&quot;Asia/Ujung_Pandang&quot;</li>
-  <li>&quot;Asia/Ulaanbaatar&quot;</li>
-  <li>&quot;Asia/Ulan_Bator&quot;</li>
-  <li>&quot;Asia/Urumqi&quot;</li>
-  <li>&quot;Asia/Ust-Nera&quot;</li>
-  <li>&quot;Asia/Vientiane&quot;</li>
-  <li>&quot;Asia/Vladivostok&quot;</li>
-  <li>&quot;Asia/Yakutsk&quot;</li>
-  <li>&quot;Asia/Yangon&quot;</li>
-  <li>&quot;Asia/Yekaterinburg&quot;</li>
-  <li>&quot;Asia/Yerevan&quot;</li>
-  <li>&quot;Atlantic/Azores&quot;</li>
-  <li>&quot;Atlantic/Bermuda&quot;</li>
-  <li>&quot;Atlantic/Canary&quot;</li>
-  <li>&quot;Atlantic/Cape_Verde&quot;</li>
-  <li>&quot;Atlantic/Faeroe&quot;</li>
-  <li>&quot;Atlantic/Faroe&quot;</li>
-  <li>&quot;Atlantic/Jan_Mayen&quot;</li>
-  <li>&quot;Atlantic/Madeira&quot;</li>
-  <li>&quot;Atlantic/Reykjavik&quot;</li>
-  <li>&quot;Atlantic/South_Georgia&quot;</li>
-  <li>&quot;Atlantic/St_Helena&quot;</li>
-  <li>&quot;Atlantic/Stanley&quot;</li>
-  <li>&quot;Australia/ACT&quot;</li>
-  <li>&quot;Australia/Adelaide&quot;</li>
-  <li>&quot;Australia/Brisbane&quot;</li>
-  <li>&quot;Australia/Broken_Hill&quot;</li>
-  <li>&quot;Australia/Canberra&quot;</li>
-  <li>&quot;Australia/Currie&quot;</li>
-  <li>&quot;Australia/Darwin&quot;</li>
-  <li>&quot;Australia/Eucla&quot;</li>
-  <li>&quot;Australia/Hobart&quot;</li>
-  <li>&quot;Australia/LHI&quot;</li>
-  <li>&quot;Australia/Lindeman&quot;</li>
-  <li>&quot;Australia/Lord_Howe&quot;</li>
-  <li>&quot;Australia/Melbourne&quot;</li>
-  <li>&quot;Australia/NSW&quot;</li>
-  <li>&quot;Australia/North&quot;</li>
-  <li>&quot;Australia/Perth&quot;</li>
-  <li>&quot;Australia/Queensland&quot;</li>
-  <li>&quot;Australia/South&quot;</li>
-  <li>&quot;Australia/Sydney&quot;</li>
-  <li>&quot;Australia/Tasmania&quot;</li>
-  <li>&quot;Australia/Victoria&quot;</li>
-  <li>&quot;Australia/West&quot;</li>
-  <li>&quot;Australia/Yancowinna&quot;</li>
-  <li>&quot;Brazil/Acre&quot;</li>
-  <li>&quot;Brazil/DeNoronha&quot;</li>
-  <li>&quot;Brazil/East&quot;</li>
-  <li>&quot;Brazil/West&quot;</li>
-  <li>&quot;CET&quot;</li>
-  <li>&quot;CST6CDT&quot;</li>
-  <li>&quot;Canada/Atlantic&quot;</li>
-  <li>&quot;Canada/Central&quot;</li>
-  <li>&quot;Canada/Eastern&quot;</li>
-  <li>&quot;Canada/Mountain&quot;</li>
-  <li>&quot;Canada/Newfoundland&quot;</li>
-  <li>&quot;Canada/Pacific&quot;</li>
-  <li>&quot;Canada/Saskatchewan&quot;</li>
-  <li>&quot;Canada/Yukon&quot;</li>
-  <li>&quot;Chile/Continental&quot;</li>
-  <li>&quot;Chile/EasterIsland&quot;</li>
-  <li>&quot;Cuba&quot;</li>
-  <li>&quot;EET&quot;</li>
-  <li>&quot;EST&quot;</li>
-  <li>&quot;EST5EDT&quot;</li>
-  <li>&quot;Egypt&quot;</li>
-  <li>&quot;Eire&quot;</li>
-  <li>&quot;Etc/GMT&quot;</li>
-  <li>&quot;Etc/GMT+0&quot;</li>
-  <li>&quot;Etc/GMT+1&quot;</li>
-  <li>&quot;Etc/GMT+10&quot;</li>
-  <li>&quot;Etc/GMT+11&quot;</li>
-  <li>&quot;Etc/GMT+12&quot;</li>
-  <li>&quot;Etc/GMT+2&quot;</li>
-  <li>&quot;Etc/GMT+3&quot;</li>
-  <li>&quot;Etc/GMT+4&quot;</li>
-  <li>&quot;Etc/GMT+5&quot;</li>
-  <li>&quot;Etc/GMT+6&quot;</li>
-  <li>&quot;Etc/GMT+7&quot;</li>
-  <li>&quot;Etc/GMT+8&quot;</li>
-  <li>&quot;Etc/GMT+9&quot;</li>
-  <li>&quot;Etc/GMT-0&quot;</li>
-  <li>&quot;Etc/GMT-1&quot;</li>
-  <li>&quot;Etc/GMT-10&quot;</li>
-  <li>&quot;Etc/GMT-11&quot;</li>
-  <li>&quot;Etc/GMT-12&quot;</li>
-  <li>&quot;Etc/GMT-13&quot;</li>
-  <li>&quot;Etc/GMT-14&quot;</li>
-  <li>&quot;Etc/GMT-2&quot;</li>
-  <li>&quot;Etc/GMT-3&quot;</li>
-  <li>&quot;Etc/GMT-4&quot;</li>
-  <li>&quot;Etc/GMT-5&quot;</li>
-  <li>&quot;Etc/GMT-6&quot;</li>
-  <li>&quot;Etc/GMT-7&quot;</li>
-  <li>&quot;Etc/GMT-8&quot;</li>
-  <li>&quot;Etc/GMT-9&quot;</li>
-  <li>&quot;Etc/GMT0&quot;</li>
-  <li>&quot;Etc/Greenwich&quot;</li>
-  <li>&quot;Etc/UCT&quot;</li>
-  <li>&quot;Etc/UTC&quot;</li>
-  <li>&quot;Etc/Universal&quot;</li>
-  <li>&quot;Etc/Zulu&quot;</li>
-  <li>&quot;Europe/Amsterdam&quot;</li>
-  <li>&quot;Europe/Andorra&quot;</li>
-  <li>&quot;Europe/Astrakhan&quot;</li>
-  <li>&quot;Europe/Athens&quot;</li>
-  <li>&quot;Europe/Belfast&quot;</li>
-  <li>&quot;Europe/Belgrade&quot;</li>
-  <li>&quot;Europe/Berlin&quot;</li>
-  <li>&quot;Europe/Bratislava&quot;</li>
-  <li>&quot;Europe/Brussels&quot;</li>
-  <li>&quot;Europe/Bucharest&quot;</li>
-  <li>&quot;Europe/Budapest&quot;</li>
-  <li>&quot;Europe/Busingen&quot;</li>
-  <li>&quot;Europe/Chisinau&quot;</li>
-  <li>&quot;Europe/Copenhagen&quot;</li>
-  <li>&quot;Europe/Dublin&quot;</li>
-  <li>&quot;Europe/Gibraltar&quot;</li>
-  <li>&quot;Europe/Guernsey&quot;</li>
-  <li>&quot;Europe/Helsinki&quot;</li>
-  <li>&quot;Europe/Isle_of_Man&quot;</li>
-  <li>&quot;Europe/Istanbul&quot;</li>
-  <li>&quot;Europe/Jersey&quot;</li>
-  <li>&quot;Europe/Kaliningrad&quot;</li>
-  <li>&quot;Europe/Kiev&quot;</li>
-  <li>&quot;Europe/Kirov&quot;</li>
-  <li>&quot;Europe/Lisbon&quot;</li>
-  <li>&quot;Europe/Ljubljana&quot;</li>
-  <li>&quot;Europe/London&quot;</li>
-  <li>&quot;Europe/Luxembourg&quot;</li>
-  <li>&quot;Europe/Madrid&quot;</li>
-  <li>&quot;Europe/Malta&quot;</li>
-  <li>&quot;Europe/Mariehamn&quot;</li>
-  <li>&quot;Europe/Minsk&quot;</li>
-  <li>&quot;Europe/Monaco&quot;</li>
-  <li>&quot;Europe/Moscow&quot;</li>
-  <li>&quot;Europe/Nicosia&quot;</li>
-  <li>&quot;Europe/Oslo&quot;</li>
-  <li>&quot;Europe/Paris&quot;</li>
-  <li>&quot;Europe/Podgorica&quot;</li>
-  <li>&quot;Europe/Prague&quot;</li>
-  <li>&quot;Europe/Riga&quot;</li>
-  <li>&quot;Europe/Rome&quot;</li>
-  <li>&quot;Europe/Samara&quot;</li>
-  <li>&quot;Europe/San_Marino&quot;</li>
-  <li>&quot;Europe/Sarajevo&quot;</li>
-  <li>&quot;Europe/Saratov&quot;</li>
-  <li>&quot;Europe/Simferopol&quot;</li>
-  <li>&quot;Europe/Skopje&quot;</li>
-  <li>&quot;Europe/Sofia&quot;</li>
-  <li>&quot;Europe/Stockholm&quot;</li>
-  <li>&quot;Europe/Tallinn&quot;</li>
-  <li>&quot;Europe/Tirane&quot;</li>
-  <li>&quot;Europe/Tiraspol&quot;</li>
-  <li>&quot;Europe/Ulyanovsk&quot;</li>
-  <li>&quot;Europe/Uzhgorod&quot;</li>
-  <li>&quot;Europe/Vaduz&quot;</li>
-  <li>&quot;Europe/Vatican&quot;</li>
-  <li>&quot;Europe/Vienna&quot;</li>
-  <li>&quot;Europe/Vilnius&quot;</li>
-  <li>&quot;Europe/Volgograd&quot;</li>
-  <li>&quot;Europe/Warsaw&quot;</li>
-  <li>&quot;Europe/Zagreb&quot;</li>
-  <li>&quot;Europe/Zaporozhye&quot;</li>
-  <li>&quot;Europe/Zurich&quot;</li>
-  <li>&quot;Factory&quot;</li>
-  <li>&quot;GB&quot;</li>
-  <li>&quot;GB-Eire&quot;</li>
-  <li>&quot;GMT&quot;</li>
-  <li>&quot;GMT+0&quot;</li>
-  <li>&quot;GMT-0&quot;</li>
-  <li>&quot;GMT0&quot;</li>
-  <li>&quot;Greenwich&quot;</li>
-  <li>&quot;HST&quot;</li>
-  <li>&quot;Hongkong&quot;</li>
-  <li>&quot;Iceland&quot;</li>
-  <li>&quot;Indian/Antananarivo&quot;</li>
-  <li>&quot;Indian/Chagos&quot;</li>
-  <li>&quot;Indian/Christmas&quot;</li>
-  <li>&quot;Indian/Cocos&quot;</li>
-  <li>&quot;Indian/Comoro&quot;</li>
-  <li>&quot;Indian/Kerguelen&quot;</li>
-  <li>&quot;Indian/Mahe&quot;</li>
-  <li>&quot;Indian/Maldives&quot;</li>
-  <li>&quot;Indian/Mauritius&quot;</li>
-  <li>&quot;Indian/Mayotte&quot;</li>
-  <li>&quot;Indian/Reunion&quot;</li>
-  <li>&quot;Iran&quot;</li>
-  <li>&quot;Israel&quot;</li>
-  <li>&quot;Jamaica&quot;</li>
-  <li>&quot;Japan&quot;</li>
-  <li>&quot;Kwajalein&quot;</li>
-  <li>&quot;Libya&quot;</li>
-  <li>&quot;MET&quot;</li>
-  <li>&quot;MST&quot;</li>
-  <li>&quot;MST7MDT&quot;</li>
-  <li>&quot;Mexico/BajaNorte&quot;</li>
-  <li>&quot;Mexico/BajaSur&quot;</li>
-  <li>&quot;Mexico/General&quot;</li>
-  <li>&quot;NZ&quot;</li>
-  <li>&quot;NZ-CHAT&quot;</li>
-  <li>&quot;Navajo&quot;</li>
-  <li>&quot;PRC&quot;</li>
-  <li>&quot;PST8PDT&quot;</li>
-  <li>&quot;Pacific/Apia&quot;</li>
-  <li>&quot;Pacific/Auckland&quot;</li>
-  <li>&quot;Pacific/Bougainville&quot;</li>
-  <li>&quot;Pacific/Chatham&quot;</li>
-  <li>&quot;Pacific/Chuuk&quot;</li>
-  <li>&quot;Pacific/Easter&quot;</li>
-  <li>&quot;Pacific/Efate&quot;</li>
-  <li>&quot;Pacific/Enderbury&quot;</li>
-  <li>&quot;Pacific/Fakaofo&quot;</li>
-  <li>&quot;Pacific/Fiji&quot;</li>
-  <li>&quot;Pacific/Funafuti&quot;</li>
-  <li>&quot;Pacific/Galapagos&quot;</li>
-  <li>&quot;Pacific/Gambier&quot;</li>
-  <li>&quot;Pacific/Guadalcanal&quot;</li>
-  <li>&quot;Pacific/Guam&quot;</li>
-  <li>&quot;Pacific/Honolulu&quot;</li>
-  <li>&quot;Pacific/Johnston&quot;</li>
-  <li>&quot;Pacific/Kiritimati&quot;</li>
-  <li>&quot;Pacific/Kosrae&quot;</li>
-  <li>&quot;Pacific/Kwajalein&quot;</li>
-  <li>&quot;Pacific/Majuro&quot;</li>
-  <li>&quot;Pacific/Marquesas&quot;</li>
-  <li>&quot;Pacific/Midway&quot;</li>
-  <li>&quot;Pacific/Nauru&quot;</li>
-  <li>&quot;Pacific/Niue&quot;</li>
-  <li>&quot;Pacific/Norfolk&quot;</li>
-  <li>&quot;Pacific/Noumea&quot;</li>
-  <li>&quot;Pacific/Pago_Pago&quot;</li>
-  <li>&quot;Pacific/Palau&quot;</li>
-  <li>&quot;Pacific/Pitcairn&quot;</li>
-  <li>&quot;Pacific/Pohnpei&quot;</li>
-  <li>&quot;Pacific/Ponape&quot;</li>
-  <li>&quot;Pacific/Port_Moresby&quot;</li>
-  <li>&quot;Pacific/Rarotonga&quot;</li>
-  <li>&quot;Pacific/Saipan&quot;</li>
-  <li>&quot;Pacific/Samoa&quot;</li>
-  <li>&quot;Pacific/Tahiti&quot;</li>
-  <li>&quot;Pacific/Tarawa&quot;</li>
-  <li>&quot;Pacific/Tongatapu&quot;</li>
-  <li>&quot;Pacific/Truk&quot;</li>
-  <li>&quot;Pacific/Wake&quot;</li>
-  <li>&quot;Pacific/Wallis&quot;</li>
-  <li>&quot;Pacific/Yap&quot;</li>
-  <li>&quot;Poland&quot;</li>
-  <li>&quot;Portugal&quot;</li>
-  <li>&quot;ROC&quot;</li>
-  <li>&quot;ROK&quot;</li>
-  <li>&quot;Singapore&quot;</li>
-  <li>&quot;Turkey&quot;</li>
-  <li>&quot;UCT&quot;</li>
-  <li>&quot;US/Alaska&quot;</li>
-  <li>&quot;US/Aleutian&quot;</li>
-  <li>&quot;US/Arizona&quot;</li>
-  <li>&quot;US/Central&quot;</li>
-  <li>&quot;US/East-Indiana&quot;</li>
-  <li>&quot;US/Eastern&quot;</li>
-  <li>&quot;US/Hawaii&quot;</li>
-  <li>&quot;US/Indiana-Starke&quot;</li>
-  <li>&quot;US/Michigan&quot;</li>
-  <li>&quot;US/Mountain&quot;</li>
-  <li>&quot;US/Pacific&quot;</li>
-  <li>&quot;US/Pacific-New&quot;</li>
-  <li>&quot;US/Samoa&quot;</li>
-  <li>&quot;UTC&quot;</li>
-  <li>&quot;Universal&quot;</li>
-  <li>&quot;W-SU&quot;</li>
-  <li>&quot;WET&quot;</li>
-  <li>&quot;Zulu&quot;</li>
+<li>&quot;Africa/Abidjan&quot;</li>
+<li>&quot;Africa/Accra&quot;</li>
+<li>&quot;Africa/Addis_Ababa&quot;</li>
+<li>&quot;Africa/Algiers&quot;</li>
+<li>&quot;Africa/Asmara&quot;</li>
+<li>&quot;Africa/Asmera&quot;</li>
+<li>&quot;Africa/Bamako&quot;</li>
+<li>&quot;Africa/Bangui&quot;</li>
+<li>&quot;Africa/Banjul&quot;</li>
+<li>&quot;Africa/Bissau&quot;</li>
+<li>&quot;Africa/Blantyre&quot;</li>
+<li>&quot;Africa/Brazzaville&quot;</li>
+<li>&quot;Africa/Bujumbura&quot;</li>
+<li>&quot;Africa/Cairo&quot;</li>
+<li>&quot;Africa/Casablanca&quot;</li>
+<li>&quot;Africa/Ceuta&quot;</li>
+<li>&quot;Africa/Conakry&quot;</li>
+<li>&quot;Africa/Dakar&quot;</li>
+<li>&quot;Africa/Dar_es_Salaam&quot;</li>
+<li>&quot;Africa/Djibouti&quot;</li>
+<li>&quot;Africa/Douala&quot;</li>
+<li>&quot;Africa/El_Aaiun&quot;</li>
+<li>&quot;Africa/Freetown&quot;</li>
+<li>&quot;Africa/Gaborone&quot;</li>
+<li>&quot;Africa/Harare&quot;</li>
+<li>&quot;Africa/Johannesburg&quot;</li>
+<li>&quot;Africa/Juba&quot;</li>
+<li>&quot;Africa/Kampala&quot;</li>
+<li>&quot;Africa/Khartoum&quot;</li>
+<li>&quot;Africa/Kigali&quot;</li>
+<li>&quot;Africa/Kinshasa&quot;</li>
+<li>&quot;Africa/Lagos&quot;</li>
+<li>&quot;Africa/Libreville&quot;</li>
+<li>&quot;Africa/Lome&quot;</li>
+<li>&quot;Africa/Luanda&quot;</li>
+<li>&quot;Africa/Lubumbashi&quot;</li>
+<li>&quot;Africa/Lusaka&quot;</li>
+<li>&quot;Africa/Malabo&quot;</li>
+<li>&quot;Africa/Maputo&quot;</li>
+<li>&quot;Africa/Maseru&quot;</li>
+<li>&quot;Africa/Mbabane&quot;</li>
+<li>&quot;Africa/Mogadishu&quot;</li>
+<li>&quot;Africa/Monrovia&quot;</li>
+<li>&quot;Africa/Nairobi&quot;</li>
+<li>&quot;Africa/Ndjamena&quot;</li>
+<li>&quot;Africa/Niamey&quot;</li>
+<li>&quot;Africa/Nouakchott&quot;</li>
+<li>&quot;Africa/Ouagadougou&quot;</li>
+<li>&quot;Africa/Porto-Novo&quot;</li>
+<li>&quot;Africa/Sao_Tome&quot;</li>
+<li>&quot;Africa/Timbuktu&quot;</li>
+<li>&quot;Africa/Tripoli&quot;</li>
+<li>&quot;Africa/Tunis&quot;</li>
+<li>&quot;Africa/Windhoek&quot;</li>
+<li>&quot;America/Adak&quot;</li>
+<li>&quot;America/Anchorage&quot;</li>
+<li>&quot;America/Anguilla&quot;</li>
+<li>&quot;America/Antigua&quot;</li>
+<li>&quot;America/Araguaina&quot;</li>
+<li>&quot;America/Argentina/Buenos_Aires&quot;</li>
+<li>&quot;America/Argentina/Catamarca&quot;</li>
+<li>&quot;America/Argentina/ComodRivadavia&quot;</li>
+<li>&quot;America/Argentina/Cordoba&quot;</li>
+<li>&quot;America/Argentina/Jujuy&quot;</li>
+<li>&quot;America/Argentina/La_Rioja&quot;</li>
+<li>&quot;America/Argentina/Mendoza&quot;</li>
+<li>&quot;America/Argentina/Rio_Gallegos&quot;</li>
+<li>&quot;America/Argentina/Salta&quot;</li>
+<li>&quot;America/Argentina/San_Juan&quot;</li>
+<li>&quot;America/Argentina/San_Luis&quot;</li>
+<li>&quot;America/Argentina/Tucuman&quot;</li>
+<li>&quot;America/Argentina/Ushuaia&quot;</li>
+<li>&quot;America/Aruba&quot;</li>
+<li>&quot;America/Asuncion&quot;</li>
+<li>&quot;America/Atikokan&quot;</li>
+<li>&quot;America/Atka&quot;</li>
+<li>&quot;America/Bahia&quot;</li>
+<li>&quot;America/Bahia_Banderas&quot;</li>
+<li>&quot;America/Barbados&quot;</li>
+<li>&quot;America/Belem&quot;</li>
+<li>&quot;America/Belize&quot;</li>
+<li>&quot;America/Blanc-Sablon&quot;</li>
+<li>&quot;America/Boa_Vista&quot;</li>
+<li>&quot;America/Bogota&quot;</li>
+<li>&quot;America/Boise&quot;</li>
+<li>&quot;America/Buenos_Aires&quot;</li>
+<li>&quot;America/Cambridge_Bay&quot;</li>
+<li>&quot;America/Campo_Grande&quot;</li>
+<li>&quot;America/Cancun&quot;</li>
+<li>&quot;America/Caracas&quot;</li>
+<li>&quot;America/Catamarca&quot;</li>
+<li>&quot;America/Cayenne&quot;</li>
+<li>&quot;America/Cayman&quot;</li>
+<li>&quot;America/Chicago&quot;</li>
+<li>&quot;America/Chihuahua&quot;</li>
+<li>&quot;America/Coral_Harbour&quot;</li>
+<li>&quot;America/Cordoba&quot;</li>
+<li>&quot;America/Costa_Rica&quot;</li>
+<li>&quot;America/Creston&quot;</li>
+<li>&quot;America/Cuiaba&quot;</li>
+<li>&quot;America/Curacao&quot;</li>
+<li>&quot;America/Danmarkshavn&quot;</li>
+<li>&quot;America/Dawson&quot;</li>
+<li>&quot;America/Dawson_Creek&quot;</li>
+<li>&quot;America/Denver&quot;</li>
+<li>&quot;America/Detroit&quot;</li>
+<li>&quot;America/Dominica&quot;</li>
+<li>&quot;America/Edmonton&quot;</li>
+<li>&quot;America/Eirunepe&quot;</li>
+<li>&quot;America/El_Salvador&quot;</li>
+<li>&quot;America/Ensenada&quot;</li>
+<li>&quot;America/Fort_Nelson&quot;</li>
+<li>&quot;America/Fort_Wayne&quot;</li>
+<li>&quot;America/Fortaleza&quot;</li>
+<li>&quot;America/Glace_Bay&quot;</li>
+<li>&quot;America/Godthab&quot;</li>
+<li>&quot;America/Goose_Bay&quot;</li>
+<li>&quot;America/Grand_Turk&quot;</li>
+<li>&quot;America/Grenada&quot;</li>
+<li>&quot;America/Guadeloupe&quot;</li>
+<li>&quot;America/Guatemala&quot;</li>
+<li>&quot;America/Guayaquil&quot;</li>
+<li>&quot;America/Guyana&quot;</li>
+<li>&quot;America/Halifax&quot;</li>
+<li>&quot;America/Havana&quot;</li>
+<li>&quot;America/Hermosillo&quot;</li>
+<li>&quot;America/Indiana/Indianapolis&quot;</li>
+<li>&quot;America/Indiana/Knox&quot;</li>
+<li>&quot;America/Indiana/Marengo&quot;</li>
+<li>&quot;America/Indiana/Petersburg&quot;</li>
+<li>&quot;America/Indiana/Tell_City&quot;</li>
+<li>&quot;America/Indiana/Vevay&quot;</li>
+<li>&quot;America/Indiana/Vincennes&quot;</li>
+<li>&quot;America/Indiana/Winamac&quot;</li>
+<li>&quot;America/Indianapolis&quot;</li>
+<li>&quot;America/Inuvik&quot;</li>
+<li>&quot;America/Iqaluit&quot;</li>
+<li>&quot;America/Jamaica&quot;</li>
+<li>&quot;America/Jujuy&quot;</li>
+<li>&quot;America/Juneau&quot;</li>
+<li>&quot;America/Kentucky/Louisville&quot;</li>
+<li>&quot;America/Kentucky/Monticello&quot;</li>
+<li>&quot;America/Knox_IN&quot;</li>
+<li>&quot;America/Kralendijk&quot;</li>
+<li>&quot;America/La_Paz&quot;</li>
+<li>&quot;America/Lima&quot;</li>
+<li>&quot;America/Los_Angeles&quot;</li>
+<li>&quot;America/Louisville&quot;</li>
+<li>&quot;America/Lower_Princes&quot;</li>
+<li>&quot;America/Maceio&quot;</li>
+<li>&quot;America/Managua&quot;</li>
+<li>&quot;America/Manaus&quot;</li>
+<li>&quot;America/Marigot&quot;</li>
+<li>&quot;America/Martinique&quot;</li>
+<li>&quot;America/Matamoros&quot;</li>
+<li>&quot;America/Mazatlan&quot;</li>
+<li>&quot;America/Mendoza&quot;</li>
+<li>&quot;America/Menominee&quot;</li>
+<li>&quot;America/Merida&quot;</li>
+<li>&quot;America/Metlakatla&quot;</li>
+<li>&quot;America/Mexico_City&quot;</li>
+<li>&quot;America/Miquelon&quot;</li>
+<li>&quot;America/Moncton&quot;</li>
+<li>&quot;America/Monterrey&quot;</li>
+<li>&quot;America/Montevideo&quot;</li>
+<li>&quot;America/Montreal&quot;</li>
+<li>&quot;America/Montserrat&quot;</li>
+<li>&quot;America/Nassau&quot;</li>
+<li>&quot;America/New_York&quot;</li>
+<li>&quot;America/Nipigon&quot;</li>
+<li>&quot;America/Nome&quot;</li>
+<li>&quot;America/Noronha&quot;</li>
+<li>&quot;America/North_Dakota/Beulah&quot;</li>
+<li>&quot;America/North_Dakota/Center&quot;</li>
+<li>&quot;America/North_Dakota/New_Salem&quot;</li>
+<li>&quot;America/Ojinaga&quot;</li>
+<li>&quot;America/Panama&quot;</li>
+<li>&quot;America/Pangnirtung&quot;</li>
+<li>&quot;America/Paramaribo&quot;</li>
+<li>&quot;America/Phoenix&quot;</li>
+<li>&quot;America/Port-au-Prince&quot;</li>
+<li>&quot;America/Port_of_Spain&quot;</li>
+<li>&quot;America/Porto_Acre&quot;</li>
+<li>&quot;America/Porto_Velho&quot;</li>
+<li>&quot;America/Puerto_Rico&quot;</li>
+<li>&quot;America/Punta_Arenas&quot;</li>
+<li>&quot;America/Rainy_River&quot;</li>
+<li>&quot;America/Rankin_Inlet&quot;</li>
+<li>&quot;America/Recife&quot;</li>
+<li>&quot;America/Regina&quot;</li>
+<li>&quot;America/Resolute&quot;</li>
+<li>&quot;America/Rio_Branco&quot;</li>
+<li>&quot;America/Rosario&quot;</li>
+<li>&quot;America/Santa_Isabel&quot;</li>
+<li>&quot;America/Santarem&quot;</li>
+<li>&quot;America/Santiago&quot;</li>
+<li>&quot;America/Santo_Domingo&quot;</li>
+<li>&quot;America/Sao_Paulo&quot;</li>
+<li>&quot;America/Scoresbysund&quot;</li>
+<li>&quot;America/Shiprock&quot;</li>
+<li>&quot;America/Sitka&quot;</li>
+<li>&quot;America/St_Barthelemy&quot;</li>
+<li>&quot;America/St_Johns&quot;</li>
+<li>&quot;America/St_Kitts&quot;</li>
+<li>&quot;America/St_Lucia&quot;</li>
+<li>&quot;America/St_Thomas&quot;</li>
+<li>&quot;America/St_Vincent&quot;</li>
+<li>&quot;America/Swift_Current&quot;</li>
+<li>&quot;America/Tegucigalpa&quot;</li>
+<li>&quot;America/Thule&quot;</li>
+<li>&quot;America/Thunder_Bay&quot;</li>
+<li>&quot;America/Tijuana&quot;</li>
+<li>&quot;America/Toronto&quot;</li>
+<li>&quot;America/Tortola&quot;</li>
+<li>&quot;America/Vancouver&quot;</li>
+<li>&quot;America/Virgin&quot;</li>
+<li>&quot;America/Whitehorse&quot;</li>
+<li>&quot;America/Winnipeg&quot;</li>
+<li>&quot;America/Yakutat&quot;</li>
+<li>&quot;America/Yellowknife&quot;</li>
+<li>&quot;Antarctica/Casey&quot;</li>
+<li>&quot;Antarctica/Davis&quot;</li>
+<li>&quot;Antarctica/DumontDUrville&quot;</li>
+<li>&quot;Antarctica/Macquarie&quot;</li>
+<li>&quot;Antarctica/Mawson&quot;</li>
+<li>&quot;Antarctica/McMurdo&quot;</li>
+<li>&quot;Antarctica/Palmer&quot;</li>
+<li>&quot;Antarctica/Rothera&quot;</li>
+<li>&quot;Antarctica/South_Pole&quot;</li>
+<li>&quot;Antarctica/Syowa&quot;</li>
+<li>&quot;Antarctica/Troll&quot;</li>
+<li>&quot;Antarctica/Vostok&quot;</li>
+<li>&quot;Arctic/Longyearbyen&quot;</li>
+<li>&quot;Asia/Aden&quot;</li>
+<li>&quot;Asia/Almaty&quot;</li>
+<li>&quot;Asia/Amman&quot;</li>
+<li>&quot;Asia/Anadyr&quot;</li>
+<li>&quot;Asia/Aqtau&quot;</li>
+<li>&quot;Asia/Aqtobe&quot;</li>
+<li>&quot;Asia/Ashgabat&quot;</li>
+<li>&quot;Asia/Ashkhabad&quot;</li>
+<li>&quot;Asia/Atyrau&quot;</li>
+<li>&quot;Asia/Baghdad&quot;</li>
+<li>&quot;Asia/Bahrain&quot;</li>
+<li>&quot;Asia/Baku&quot;</li>
+<li>&quot;Asia/Bangkok&quot;</li>
+<li>&quot;Asia/Barnaul&quot;</li>
+<li>&quot;Asia/Beirut&quot;</li>
+<li>&quot;Asia/Bishkek&quot;</li>
+<li>&quot;Asia/Brunei&quot;</li>
+<li>&quot;Asia/Calcutta&quot;</li>
+<li>&quot;Asia/Chita&quot;</li>
+<li>&quot;Asia/Choibalsan&quot;</li>
+<li>&quot;Asia/Chongqing&quot;</li>
+<li>&quot;Asia/Chungking&quot;</li>
+<li>&quot;Asia/Colombo&quot;</li>
+<li>&quot;Asia/Dacca&quot;</li>
+<li>&quot;Asia/Damascus&quot;</li>
+<li>&quot;Asia/Dhaka&quot;</li>
+<li>&quot;Asia/Dili&quot;</li>
+<li>&quot;Asia/Dubai&quot;</li>
+<li>&quot;Asia/Dushanbe&quot;</li>
+<li>&quot;Asia/Famagusta&quot;</li>
+<li>&quot;Asia/Gaza&quot;</li>
+<li>&quot;Asia/Harbin&quot;</li>
+<li>&quot;Asia/Hebron&quot;</li>
+<li>&quot;Asia/Ho_Chi_Minh&quot;</li>
+<li>&quot;Asia/Hong_Kong&quot;</li>
+<li>&quot;Asia/Hovd&quot;</li>
+<li>&quot;Asia/Irkutsk&quot;</li>
+<li>&quot;Asia/Istanbul&quot;</li>
+<li>&quot;Asia/Jakarta&quot;</li>
+<li>&quot;Asia/Jayapura&quot;</li>
+<li>&quot;Asia/Jerusalem&quot;</li>
+<li>&quot;Asia/Kabul&quot;</li>
+<li>&quot;Asia/Kamchatka&quot;</li>
+<li>&quot;Asia/Karachi&quot;</li>
+<li>&quot;Asia/Kashgar&quot;</li>
+<li>&quot;Asia/Kathmandu&quot;</li>
+<li>&quot;Asia/Katmandu&quot;</li>
+<li>&quot;Asia/Khandyga&quot;</li>
+<li>&quot;Asia/Kolkata&quot;</li>
+<li>&quot;Asia/Krasnoyarsk&quot;</li>
+<li>&quot;Asia/Kuala_Lumpur&quot;</li>
+<li>&quot;Asia/Kuching&quot;</li>
+<li>&quot;Asia/Kuwait&quot;</li>
+<li>&quot;Asia/Macao&quot;</li>
+<li>&quot;Asia/Macau&quot;</li>
+<li>&quot;Asia/Magadan&quot;</li>
+<li>&quot;Asia/Makassar&quot;</li>
+<li>&quot;Asia/Manila&quot;</li>
+<li>&quot;Asia/Muscat&quot;</li>
+<li>&quot;Asia/Nicosia&quot;</li>
+<li>&quot;Asia/Novokuznetsk&quot;</li>
+<li>&quot;Asia/Novosibirsk&quot;</li>
+<li>&quot;Asia/Omsk&quot;</li>
+<li>&quot;Asia/Oral&quot;</li>
+<li>&quot;Asia/Phnom_Penh&quot;</li>
+<li>&quot;Asia/Pontianak&quot;</li>
+<li>&quot;Asia/Pyongyang&quot;</li>
+<li>&quot;Asia/Qatar&quot;</li>
+<li>&quot;Asia/Qostanay&quot;</li>
+<li>&quot;Asia/Qyzylorda&quot;</li>
+<li>&quot;Asia/Rangoon&quot;</li>
+<li>&quot;Asia/Riyadh&quot;</li>
+<li>&quot;Asia/Saigon&quot;</li>
+<li>&quot;Asia/Sakhalin&quot;</li>
+<li>&quot;Asia/Samarkand&quot;</li>
+<li>&quot;Asia/Seoul&quot;</li>
+<li>&quot;Asia/Shanghai&quot;</li>
+<li>&quot;Asia/Singapore&quot;</li>
+<li>&quot;Asia/Srednekolymsk&quot;</li>
+<li>&quot;Asia/Taipei&quot;</li>
+<li>&quot;Asia/Tashkent&quot;</li>
+<li>&quot;Asia/Tbilisi&quot;</li>
+<li>&quot;Asia/Tehran&quot;</li>
+<li>&quot;Asia/Tel_Aviv&quot;</li>
+<li>&quot;Asia/Thimbu&quot;</li>
+<li>&quot;Asia/Thimphu&quot;</li>
+<li>&quot;Asia/Tokyo&quot;</li>
+<li>&quot;Asia/Tomsk&quot;</li>
+<li>&quot;Asia/Ujung_Pandang&quot;</li>
+<li>&quot;Asia/Ulaanbaatar&quot;</li>
+<li>&quot;Asia/Ulan_Bator&quot;</li>
+<li>&quot;Asia/Urumqi&quot;</li>
+<li>&quot;Asia/Ust-Nera&quot;</li>
+<li>&quot;Asia/Vientiane&quot;</li>
+<li>&quot;Asia/Vladivostok&quot;</li>
+<li>&quot;Asia/Yakutsk&quot;</li>
+<li>&quot;Asia/Yangon&quot;</li>
+<li>&quot;Asia/Yekaterinburg&quot;</li>
+<li>&quot;Asia/Yerevan&quot;</li>
+<li>&quot;Atlantic/Azores&quot;</li>
+<li>&quot;Atlantic/Bermuda&quot;</li>
+<li>&quot;Atlantic/Canary&quot;</li>
+<li>&quot;Atlantic/Cape_Verde&quot;</li>
+<li>&quot;Atlantic/Faeroe&quot;</li>
+<li>&quot;Atlantic/Faroe&quot;</li>
+<li>&quot;Atlantic/Jan_Mayen&quot;</li>
+<li>&quot;Atlantic/Madeira&quot;</li>
+<li>&quot;Atlantic/Reykjavik&quot;</li>
+<li>&quot;Atlantic/South_Georgia&quot;</li>
+<li>&quot;Atlantic/St_Helena&quot;</li>
+<li>&quot;Atlantic/Stanley&quot;</li>
+<li>&quot;Australia/ACT&quot;</li>
+<li>&quot;Australia/Adelaide&quot;</li>
+<li>&quot;Australia/Brisbane&quot;</li>
+<li>&quot;Australia/Broken_Hill&quot;</li>
+<li>&quot;Australia/Canberra&quot;</li>
+<li>&quot;Australia/Currie&quot;</li>
+<li>&quot;Australia/Darwin&quot;</li>
+<li>&quot;Australia/Eucla&quot;</li>
+<li>&quot;Australia/Hobart&quot;</li>
+<li>&quot;Australia/LHI&quot;</li>
+<li>&quot;Australia/Lindeman&quot;</li>
+<li>&quot;Australia/Lord_Howe&quot;</li>
+<li>&quot;Australia/Melbourne&quot;</li>
+<li>&quot;Australia/NSW&quot;</li>
+<li>&quot;Australia/North&quot;</li>
+<li>&quot;Australia/Perth&quot;</li>
+<li>&quot;Australia/Queensland&quot;</li>
+<li>&quot;Australia/South&quot;</li>
+<li>&quot;Australia/Sydney&quot;</li>
+<li>&quot;Australia/Tasmania&quot;</li>
+<li>&quot;Australia/Victoria&quot;</li>
+<li>&quot;Australia/West&quot;</li>
+<li>&quot;Australia/Yancowinna&quot;</li>
+<li>&quot;Brazil/Acre&quot;</li>
+<li>&quot;Brazil/DeNoronha&quot;</li>
+<li>&quot;Brazil/East&quot;</li>
+<li>&quot;Brazil/West&quot;</li>
+<li>&quot;CET&quot;</li>
+<li>&quot;CST6CDT&quot;</li>
+<li>&quot;Canada/Atlantic&quot;</li>
+<li>&quot;Canada/Central&quot;</li>
+<li>&quot;Canada/Eastern&quot;</li>
+<li>&quot;Canada/Mountain&quot;</li>
+<li>&quot;Canada/Newfoundland&quot;</li>
+<li>&quot;Canada/Pacific&quot;</li>
+<li>&quot;Canada/Saskatchewan&quot;</li>
+<li>&quot;Canada/Yukon&quot;</li>
+<li>&quot;Chile/Continental&quot;</li>
+<li>&quot;Chile/EasterIsland&quot;</li>
+<li>&quot;Cuba&quot;</li>
+<li>&quot;EET&quot;</li>
+<li>&quot;EST&quot;</li>
+<li>&quot;EST5EDT&quot;</li>
+<li>&quot;Egypt&quot;</li>
+<li>&quot;Eire&quot;</li>
+<li>&quot;Etc/GMT&quot;</li>
+<li>&quot;Etc/GMT+0&quot;</li>
+<li>&quot;Etc/GMT+1&quot;</li>
+<li>&quot;Etc/GMT+10&quot;</li>
+<li>&quot;Etc/GMT+11&quot;</li>
+<li>&quot;Etc/GMT+12&quot;</li>
+<li>&quot;Etc/GMT+2&quot;</li>
+<li>&quot;Etc/GMT+3&quot;</li>
+<li>&quot;Etc/GMT+4&quot;</li>
+<li>&quot;Etc/GMT+5&quot;</li>
+<li>&quot;Etc/GMT+6&quot;</li>
+<li>&quot;Etc/GMT+7&quot;</li>
+<li>&quot;Etc/GMT+8&quot;</li>
+<li>&quot;Etc/GMT+9&quot;</li>
+<li>&quot;Etc/GMT-0&quot;</li>
+<li>&quot;Etc/GMT-1&quot;</li>
+<li>&quot;Etc/GMT-10&quot;</li>
+<li>&quot;Etc/GMT-11&quot;</li>
+<li>&quot;Etc/GMT-12&quot;</li>
+<li>&quot;Etc/GMT-13&quot;</li>
+<li>&quot;Etc/GMT-14&quot;</li>
+<li>&quot;Etc/GMT-2&quot;</li>
+<li>&quot;Etc/GMT-3&quot;</li>
+<li>&quot;Etc/GMT-4&quot;</li>
+<li>&quot;Etc/GMT-5&quot;</li>
+<li>&quot;Etc/GMT-6&quot;</li>
+<li>&quot;Etc/GMT-7&quot;</li>
+<li>&quot;Etc/GMT-8&quot;</li>
+<li>&quot;Etc/GMT-9&quot;</li>
+<li>&quot;Etc/GMT0&quot;</li>
+<li>&quot;Etc/Greenwich&quot;</li>
+<li>&quot;Etc/UCT&quot;</li>
+<li>&quot;Etc/UTC&quot;</li>
+<li>&quot;Etc/Universal&quot;</li>
+<li>&quot;Etc/Zulu&quot;</li>
+<li>&quot;Europe/Amsterdam&quot;</li>
+<li>&quot;Europe/Andorra&quot;</li>
+<li>&quot;Europe/Astrakhan&quot;</li>
+<li>&quot;Europe/Athens&quot;</li>
+<li>&quot;Europe/Belfast&quot;</li>
+<li>&quot;Europe/Belgrade&quot;</li>
+<li>&quot;Europe/Berlin&quot;</li>
+<li>&quot;Europe/Bratislava&quot;</li>
+<li>&quot;Europe/Brussels&quot;</li>
+<li>&quot;Europe/Bucharest&quot;</li>
+<li>&quot;Europe/Budapest&quot;</li>
+<li>&quot;Europe/Busingen&quot;</li>
+<li>&quot;Europe/Chisinau&quot;</li>
+<li>&quot;Europe/Copenhagen&quot;</li>
+<li>&quot;Europe/Dublin&quot;</li>
+<li>&quot;Europe/Gibraltar&quot;</li>
+<li>&quot;Europe/Guernsey&quot;</li>
+<li>&quot;Europe/Helsinki&quot;</li>
+<li>&quot;Europe/Isle_of_Man&quot;</li>
+<li>&quot;Europe/Istanbul&quot;</li>
+<li>&quot;Europe/Jersey&quot;</li>
+<li>&quot;Europe/Kaliningrad&quot;</li>
+<li>&quot;Europe/Kiev&quot;</li>
+<li>&quot;Europe/Kirov&quot;</li>
+<li>&quot;Europe/Lisbon&quot;</li>
+<li>&quot;Europe/Ljubljana&quot;</li>
+<li>&quot;Europe/London&quot;</li>
+<li>&quot;Europe/Luxembourg&quot;</li>
+<li>&quot;Europe/Madrid&quot;</li>
+<li>&quot;Europe/Malta&quot;</li>
+<li>&quot;Europe/Mariehamn&quot;</li>
+<li>&quot;Europe/Minsk&quot;</li>
+<li>&quot;Europe/Monaco&quot;</li>
+<li>&quot;Europe/Moscow&quot;</li>
+<li>&quot;Europe/Nicosia&quot;</li>
+<li>&quot;Europe/Oslo&quot;</li>
+<li>&quot;Europe/Paris&quot;</li>
+<li>&quot;Europe/Podgorica&quot;</li>
+<li>&quot;Europe/Prague&quot;</li>
+<li>&quot;Europe/Riga&quot;</li>
+<li>&quot;Europe/Rome&quot;</li>
+<li>&quot;Europe/Samara&quot;</li>
+<li>&quot;Europe/San_Marino&quot;</li>
+<li>&quot;Europe/Sarajevo&quot;</li>
+<li>&quot;Europe/Saratov&quot;</li>
+<li>&quot;Europe/Simferopol&quot;</li>
+<li>&quot;Europe/Skopje&quot;</li>
+<li>&quot;Europe/Sofia&quot;</li>
+<li>&quot;Europe/Stockholm&quot;</li>
+<li>&quot;Europe/Tallinn&quot;</li>
+<li>&quot;Europe/Tirane&quot;</li>
+<li>&quot;Europe/Tiraspol&quot;</li>
+<li>&quot;Europe/Ulyanovsk&quot;</li>
+<li>&quot;Europe/Uzhgorod&quot;</li>
+<li>&quot;Europe/Vaduz&quot;</li>
+<li>&quot;Europe/Vatican&quot;</li>
+<li>&quot;Europe/Vienna&quot;</li>
+<li>&quot;Europe/Vilnius&quot;</li>
+<li>&quot;Europe/Volgograd&quot;</li>
+<li>&quot;Europe/Warsaw&quot;</li>
+<li>&quot;Europe/Zagreb&quot;</li>
+<li>&quot;Europe/Zaporozhye&quot;</li>
+<li>&quot;Europe/Zurich&quot;</li>
+<li>&quot;Factory&quot;</li>
+<li>&quot;GB&quot;</li>
+<li>&quot;GB-Eire&quot;</li>
+<li>&quot;GMT&quot;</li>
+<li>&quot;GMT+0&quot;</li>
+<li>&quot;GMT-0&quot;</li>
+<li>&quot;GMT0&quot;</li>
+<li>&quot;Greenwich&quot;</li>
+<li>&quot;HST&quot;</li>
+<li>&quot;Hongkong&quot;</li>
+<li>&quot;Iceland&quot;</li>
+<li>&quot;Indian/Antananarivo&quot;</li>
+<li>&quot;Indian/Chagos&quot;</li>
+<li>&quot;Indian/Christmas&quot;</li>
+<li>&quot;Indian/Cocos&quot;</li>
+<li>&quot;Indian/Comoro&quot;</li>
+<li>&quot;Indian/Kerguelen&quot;</li>
+<li>&quot;Indian/Mahe&quot;</li>
+<li>&quot;Indian/Maldives&quot;</li>
+<li>&quot;Indian/Mauritius&quot;</li>
+<li>&quot;Indian/Mayotte&quot;</li>
+<li>&quot;Indian/Reunion&quot;</li>
+<li>&quot;Iran&quot;</li>
+<li>&quot;Israel&quot;</li>
+<li>&quot;Jamaica&quot;</li>
+<li>&quot;Japan&quot;</li>
+<li>&quot;Kwajalein&quot;</li>
+<li>&quot;Libya&quot;</li>
+<li>&quot;MET&quot;</li>
+<li>&quot;MST&quot;</li>
+<li>&quot;MST7MDT&quot;</li>
+<li>&quot;Mexico/BajaNorte&quot;</li>
+<li>&quot;Mexico/BajaSur&quot;</li>
+<li>&quot;Mexico/General&quot;</li>
+<li>&quot;NZ&quot;</li>
+<li>&quot;NZ-CHAT&quot;</li>
+<li>&quot;Navajo&quot;</li>
+<li>&quot;PRC&quot;</li>
+<li>&quot;PST8PDT&quot;</li>
+<li>&quot;Pacific/Apia&quot;</li>
+<li>&quot;Pacific/Auckland&quot;</li>
+<li>&quot;Pacific/Bougainville&quot;</li>
+<li>&quot;Pacific/Chatham&quot;</li>
+<li>&quot;Pacific/Chuuk&quot;</li>
+<li>&quot;Pacific/Easter&quot;</li>
+<li>&quot;Pacific/Efate&quot;</li>
+<li>&quot;Pacific/Enderbury&quot;</li>
+<li>&quot;Pacific/Fakaofo&quot;</li>
+<li>&quot;Pacific/Fiji&quot;</li>
+<li>&quot;Pacific/Funafuti&quot;</li>
+<li>&quot;Pacific/Galapagos&quot;</li>
+<li>&quot;Pacific/Gambier&quot;</li>
+<li>&quot;Pacific/Guadalcanal&quot;</li>
+<li>&quot;Pacific/Guam&quot;</li>
+<li>&quot;Pacific/Honolulu&quot;</li>
+<li>&quot;Pacific/Johnston&quot;</li>
+<li>&quot;Pacific/Kiritimati&quot;</li>
+<li>&quot;Pacific/Kosrae&quot;</li>
+<li>&quot;Pacific/Kwajalein&quot;</li>
+<li>&quot;Pacific/Majuro&quot;</li>
+<li>&quot;Pacific/Marquesas&quot;</li>
+<li>&quot;Pacific/Midway&quot;</li>
+<li>&quot;Pacific/Nauru&quot;</li>
+<li>&quot;Pacific/Niue&quot;</li>
+<li>&quot;Pacific/Norfolk&quot;</li>
+<li>&quot;Pacific/Noumea&quot;</li>
+<li>&quot;Pacific/Pago_Pago&quot;</li>
+<li>&quot;Pacific/Palau&quot;</li>
+<li>&quot;Pacific/Pitcairn&quot;</li>
+<li>&quot;Pacific/Pohnpei&quot;</li>
+<li>&quot;Pacific/Ponape&quot;</li>
+<li>&quot;Pacific/Port_Moresby&quot;</li>
+<li>&quot;Pacific/Rarotonga&quot;</li>
+<li>&quot;Pacific/Saipan&quot;</li>
+<li>&quot;Pacific/Samoa&quot;</li>
+<li>&quot;Pacific/Tahiti&quot;</li>
+<li>&quot;Pacific/Tarawa&quot;</li>
+<li>&quot;Pacific/Tongatapu&quot;</li>
+<li>&quot;Pacific/Truk&quot;</li>
+<li>&quot;Pacific/Wake&quot;</li>
+<li>&quot;Pacific/Wallis&quot;</li>
+<li>&quot;Pacific/Yap&quot;</li>
+<li>&quot;Poland&quot;</li>
+<li>&quot;Portugal&quot;</li>
+<li>&quot;ROC&quot;</li>
+<li>&quot;ROK&quot;</li>
+<li>&quot;Singapore&quot;</li>
+<li>&quot;Turkey&quot;</li>
+<li>&quot;UCT&quot;</li>
+<li>&quot;US/Alaska&quot;</li>
+<li>&quot;US/Aleutian&quot;</li>
+<li>&quot;US/Arizona&quot;</li>
+<li>&quot;US/Central&quot;</li>
+<li>&quot;US/East-Indiana&quot;</li>
+<li>&quot;US/Eastern&quot;</li>
+<li>&quot;US/Hawaii&quot;</li>
+<li>&quot;US/Indiana-Starke&quot;</li>
+<li>&quot;US/Michigan&quot;</li>
+<li>&quot;US/Mountain&quot;</li>
+<li>&quot;US/Pacific&quot;</li>
+<li>&quot;US/Pacific-New&quot;</li>
+<li>&quot;US/Samoa&quot;</li>
+<li>&quot;UTC&quot;</li>
+<li>&quot;Universal&quot;</li>
+<li>&quot;W-SU&quot;</li>
+<li>&quot;WET&quot;</li>
+<li>&quot;Zulu&quot;</li>
 </ul>
