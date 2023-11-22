@@ -23,6 +23,85 @@
   - 2023-01-31
   - 2023-01-31T08:24:32
 
+## Setting-up of Executable File
+
+- Extraction of file from a compressed file format
+  #### **In Linux:**
+
+  -  There are multiple ways to extract file from a compressed file here are the step by step instruction:
+
+    - First way:
+      1. Point the cursor on the compressed file.
+      2. Right-click on it in-order to trigger context-menu(right-click menu).
+      3. On context menu select `Extract Here` option to extract the file in same directory or 
+          Select `Extract to` option in-order to extract the file in the current directory or directory of your choice.
+
+    - Second way:
+      1. Point the cursor on the compressed file.
+      2. Left-Double-click on it in-order to trigger a window that shows extraction option.
+      3. Select the `Extract` button in-order to extract the file in desired directory.
+
+    - Third way:
+      1. Open the terminal in the directory where compressed file is stored.
+      2. Type-in terminal command `unzip een.zip` in-order to extract the file in the current directory.
+        ```
+        unzip een.zip
+        ```
+  #### **In Windows:**
+
+  - Here are the step by step instruction:
+      1. Point the cursor on the compressed file.
+      2. Right-click on it in-order to trigger context-menu(right-click menu).
+      3. On context menu select `Extract All`.
+      4. A window is triggered that shows a input-box which is used to inserts the directory path to a choosen directory.
+      5. After choosing a directory click on `Extract` button, in-order to extract the file to the choosen directory.     
+
+<br/>
+
+- Execute this extracted file by mapping up the directory path of the een
+on the terminal 
+- Each command should start `./`.
+
+  Examples:
+
+  ```
+  ./een --version
+  ```
+- To check if the executable works fine
+   - Run the command:
+
+    ```
+     ./een
+    ```
+   - Output:
+   
+    ```
+    v1.2.0 20231102
+    Usage: een [command] options
+
+    get version
+
+    Options:
+      -v, --version                              get current CLI version
+      -h, --help                                 display help for command
+
+    Commands:
+      help
+      auth
+      location
+      user
+      account
+      archive
+      lpr
+      bridge
+      camera
+      download
+      update-google-config <optionName> <value>
+
+    use een help command for detailed help instructions
+
+    ```
+
 ### List of commands supported:
 
 #### EEN Version
@@ -318,7 +397,7 @@ Example:
 een camera set "*" --cloud_retention_days 28 --video_resolution 3MP
 ```
 
-Note: * should be specified in quotes, as the shell might have converting issues.
+Note: * Should be specified in quotes, as the shell might have converting issues.
 
 #### Edit multiple camera settings
 
@@ -589,6 +668,139 @@ een account switch
 ```
 
 ### Update Values in the Google Config File
+
+```
+een update-google-config <name> -- <value>
+```
+
+Example:
+
+```
+een update-config "driveFolderID" -- "1giou_ghlihbZyUpwCx"
+```
+
+### For Google Sheets commands
+
+#### Generate Credentials for accessing google sheets and google drive
+
+[Google Cloud Console](https://console.cloud.google.com/)
+
+The credentials required depends on the type of data, platform, and access methodology of your app.
+
+#### Create a service account
+
+1. Open the Google Cloud console.
+
+[Google Cloud Console](https://console.cloud.google.com/)
+
+2. At the top-left, click Menu menu > IAM & Admin > Service Accounts.
+3. Click Create service account.
+4. Fill in the service account details, then click Create and continue.
+5. Optional: Assign roles to your service account to grant access to your Google Cloud project's resources.
+6. Click Continue.
+7. Optional: Enter users or groups that can manage and perform actions with this service account.
+8. Click Done.
+
+### Service account
+
+Use this credential to authenticate as a robot service account or to access resources on behalf of Google Workspace or Cloud Identity users through domain-wide delegation.
+
+#### Create credentials for a service account
+
+You need to obtain credentials in the form of a public/private key pair. These credentials are used by your code to authorize service account actions within your app.
+
+#### To obtain credentials for your service account:
+
+1. Open the Google Cloud console.
+
+[Google Cloud Console](https://console.cloud.google.com/)
+
+2. At the top-left, click Menu menu > IAM & Admin > Service Accounts.
+3. Select your service account.
+4. Click Keys > Add keys > Create new key.
+5. Select JSON, then click Create.
+   Your new public/private key pair is generated and downloaded to your machine as a new file. This file is the only copy of this key.
+6. Click Close.
+
+#### Drive Folder ID
+
+A folder ID can be extracted from its URL. For example, the folder ID in the URL https://drive.google.com/drive/folders/ABCDE12345 is `ABCDE12345`.
+
+#### Grant Editor permission to access google drive folder
+
+Grant permission to your client email in your google drive folder.
+Client email is the email that you get while initializing the project in google cloud console.
+
+### IMPORTANT:
+
+#### Enable GoogleSheet API and Google Drive APIs
+
+1. Open APIS and Services page
+
+[APIS and Services](https://console.cloud.google.com/apis)
+
+2. Navigate to API Library
+
+[API Library](https://console.cloud.google.com/apis/library)
+
+3. Search for Google Drive API
+
+[Google Drive API](https://console.cloud.google.com/apis/library/drive.googleapis.com)
+
+4. Enable Google Drive API by clicking on the `ENABLE` button
+
+5. Search for Google Sheets API
+
+[Google Sheets API](https://console.cloud.google.com/apis/library/sheets.googleapis.com)
+
+6. Enable Google Sheets API by clicking on the `ENABLE` button
+
+### Note:
+ While executing google sheets commands, if you encounter any error messages like:
+
+```
+ errors: [
+    {
+      message: 'Google Sheets API has not been used in project 886039128663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/sheets.googleapis.com/overview?project=886039128663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
+      domain: 'usageLimits',
+      reason: 'accessNotConfigured',
+      extendedHelp: 'https://console.developers.google.com'
+    }
+  ]
+
+ ``` 
+
+ This error indicates that you are not `enabled` Google Sheets API for your service account.
+
+ ```
+ errors: [
+    {
+      message: 'Google Drive API has not been used in project 886039128663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=886039128663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
+      domain: 'usageLimits',
+      reason: 'accessNotConfigured',
+      extendedHelp: 'https://console.developers.google.com'
+    }
+  ]
+
+ ```
+ 
+ This error indicates that you are not `enabled` Google Drive API for your service account.
+
+To fix the same, please follow the steps above for enabling GoogleSheet API and Google Drive API
+
+#### Setting Google Configuration
+
+The .een/static_config.json file that gets created while logging in using the CLI has the following values:
+
+- "serviceAccountPrivateKey": "your private key"
+- "serviceAccountClientEmail": "your client email"
+- "driveFolderID": "google drive folder id"
+
+The serviceAccountPrivateKey and serviceAccountClientEmail can be found in your downloaded file, you get while doing the step 5 in obtaining the credentials for your service account.
+
+Replace these values with your credentials, you will be able to get the google sheets commands working.
+
+#### To update the google config values, you can also use the command:
 
 ```
 een update-google-config <name> -- <value>
