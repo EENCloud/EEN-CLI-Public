@@ -623,6 +623,23 @@ een camera status --googleSheet
 een user list ---googleSheet
 ```
 
+#### Get camera purge list
+
+```
+een camera purge-list -start_time [start_time] --end_time [end_time] [-f/--filename <filename>] [--noprompt]
+```
+
+Example:
+
+```
+een camera purge-list --start_time "20231128140000.000" --end_time "20231128141000.000" -f purge-list.csv
+```
+
+```
+een camera purge-list
+```
+Note: If you haven't specify any start_time and end_time it will take last 24 hours as default timestamps.
+
 #### EEN account Logout
 
 ```

@@ -399,6 +399,15 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <h4>User permission list</h4>
 <pre><code>een user list ---googleSheet
 </code></pre>
+<h4>Get camera purge list</h4>
+<pre><code>een camera purge-list -start_time [start_time] --end_time [end_time] [-f/--filename &lt;filename&gt;] [--noprompt]
+</code></pre>
+<p>Example:</p>
+<pre><code>een camera purge-list --start_time &quot;20231128140000.000&quot; --end_time &quot;20231128141000.000&quot; -f purge-list.csv
+</code></pre>
+<pre><code>een camera purge-list
+</code></pre>
+<p>Note: If you haven't specify any start_time and end_time it will take last 24 hours as default timestamps.</p>
 <h4>EEN account Logout</h4>
 <pre><code>een auth logout
 </code></pre>
