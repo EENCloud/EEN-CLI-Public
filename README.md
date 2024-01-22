@@ -1,5 +1,9 @@
 # Introduction
 
+## Latest CLI Version
+
+The latest CLI release version: ![Latest Release](https://img.shields.io/github/v/release/EENCloud/EEN-CLI-Public)
+
 ## Environment variables
 
 <a name="environment-variables"></a>
@@ -185,7 +189,7 @@ een user list
 een bridge list --csv [-f/--filename <filename>] [--noprompt]
 ```
 
-Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial #, Location, GUID
+Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID, Firmware Version
 
 #### List cameras in CSV format
 
@@ -193,7 +197,15 @@ Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial #, Location,
 een camera list --csv [-f/--filename <filename>] [--noprompt]
 ```
 
-Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address
+Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address, Firmware Version
+
+#### List cameras in CSV format with purging
+
+```
+een camera list --csv --purge -start_time [start_time] --end_time [end_time] [-f/--filename <filename>] [--noprompt]
+```
+
+Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, IsPurging, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address, Firmware Version
 
 #### List users in CSV format
 
@@ -603,6 +615,12 @@ een bridge list --googleSheet
 
 ```
 een camera list --googleSheet
+```
+
+#### Camera list with purging
+
+```
+een camera list --googleSheet --purge -start_time [start_time] --end_time [end_time]
 ```
 
 #### Bridge status list
