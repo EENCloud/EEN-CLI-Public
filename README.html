@@ -1,4 +1,6 @@
 <h1>Introduction</h1>
+<h2>Latest CLI Version</h2>
+<p>The latest CLI release version: <img src="https://img.shields.io/github/v/release/EENCloud/EEN-CLI-Public" alt="Latest Release"></p>
 <h2>Environment variables</h2>
 <p>&lt;a name=&quot;environment-variables&quot;&gt;&lt;/a&gt;</p>
 <ol>
@@ -174,11 +176,15 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <h4>List bridges in CSV format</h4>
 <pre><code>een bridge list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
-<p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial #, Location, GUID</p>
+<p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID, Firmware Version</p>
 <h4>List cameras in CSV format</h4>
 <pre><code>een camera list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
-<p>Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address</p>
+<p>Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address, Firmware Version</p>
+<h4>List cameras in CSV format with purging</h4>
+<pre><code>een camera list --csv --purge -start_time [start_time] --end_time [end_time] [-f/--filename &lt;filename&gt;] [--noprompt]
+</code></pre>
+<p>Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, IsPurging, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address, Firmware Version</p>
 <h4>List users in CSV format</h4>
 <pre><code>een user list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
@@ -389,6 +395,9 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 </code></pre>
 <h4>Camera list</h4>
 <pre><code>een camera list --googleSheet
+</code></pre>
+<h4>Camera list with purging</h4>
+<pre><code>een camera list --googleSheet --purge -start_time [start_time] --end_time [end_time]
 </code></pre>
 <h4>Bridge status list</h4>
 <pre><code>een bridge status --googleSheet
