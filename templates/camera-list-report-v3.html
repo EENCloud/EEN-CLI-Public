@@ -6,7 +6,7 @@
       id="favicon-link"
       href="https://c000.eagleeyenetworks.com/_images/favicon.ico"
     />
-    <title>Eagle Eye Networks-camera status report</title>
+    <title>Eagle Eye Networks-camera list report</title>
     <script
       type="text/javascript"
       charset="utf8"
@@ -74,6 +74,7 @@
     </table>
 
     <pre id="csv">{%csvData%}</pre>
+
     <script type="text/javascript">
       // Return array of string values, or NULL if CSV string not well formed.
       function CSVtoArray(text) {
@@ -126,6 +127,8 @@
       });
     </script>
 
+    <table id="table" class="display" style="width: 100%"></table>
+
     <script>
       const csvData = document.getElementById("csv").innerText;
 
@@ -136,49 +139,75 @@
         cameras.push(element.join(", "));
       }
 
-      let camerasOnline = 0;
-      let camerasOffline = 0;
-      const locationList = [];
+      let numberOfSharedCameras = 0;
+      let numberOfUnsharedCameras = 0;
+      const createdTime = [];
+
       if (cameras) {
-        for (let index = 1; index < cameras?.length; index++) {
-          const cameraData = cameras?.[index].split(", ");
-          if (cameraData?.[2] === `"online"`) {
-            camerasOnline += 1;
-          } else if (cameraData?.[2] === `"offline"`) {
-            camerasOffline += 1;
+        for (let index = 0; index < cameras?.length; index++) {
+          const camData = cameras?.[index].split(", ");
+          if (camData?.[12] === '"true"') {
+            numberOfSharedCameras += 1;
+          } else {
+            numberOfUnsharedCameras += 1;
           }
 
-          if (
-            cameraData?.[4] &&
-            (cameraData?.[2] === `"online"` || cameraData?.[2] === `"offline"`)
-          ) {
-            locationList?.push(cameraData?.[4].concat(`--${cameraData?.[2]}`));
-          }
+          createdTime.push(camData?.[9]);
         }
       }
 
-      const camerasPerLocation = {};
-      if (locationList) {
-        for (const item of locationList) {
-          const validString = item?.replace(/"/g, "");
-          const [key, status] = validString?.split("--");
-          if (!camerasPerLocation[key]) {
-            camerasPerLocation[key] = { online: 0, offline: 0 };
+      const cameraList = [];
+      if (cameras) {
+        for (let index = 0; index < cameras?.length; index++) {
+          const camData = cameras?.[index].split(', "');
+
+          if (camData?.[13]) {
+            if (cameraList[camData?.[13]]) {
+              cameraList[camData?.[13]]?.push(camData?.[0]);
+            } else {
+              cameraList[camData?.[13]] = [camData?.[0]];
+            }
           }
-          camerasPerLocation[key][status]++;
         }
       }
-      const locations = Object.keys(camerasPerLocation);
-      const seriesData = [
-        {
-          name: "Online",
-          data: locations.map((key) => camerasPerLocation[key].online),
-        },
-        {
-          name: "Offline",
-          data: locations.map((key) => camerasPerLocation[key].offline),
-        },
-      ];
+      delete cameraList?.undefined;
+      delete cameraList?.null;
+
+      const camsPerBridge = {};
+      for (const key in cameraList) {
+        camsPerBridge[key] = cameraList[key]?.length;
+      }
+
+      const dataArray = Object.entries(camsPerBridge);
+
+      const formattedDates = createdTime
+        .map((date) => {
+          if (typeof date === "undefined") {
+            return undefined;
+          }
+
+          const match = date.match(/(\d{4}-\d{2})/);
+          return match ? match[1] : undefined;
+        })
+        .filter((date) => date !== undefined);
+
+      const cameraCreatedTime = formattedDates;
+
+      const counts = {};
+      for (let i = 0; i < cameraCreatedTime.length; i++) {
+        const date = cameraCreatedTime[i];
+        counts[date] = (counts[date] || 0) + 1;
+      }
+
+      const seriesData = [];
+      for (const date in counts) {
+        if (counts.hasOwnProperty(date)) {
+          seriesData.push({
+            name: date,
+            y: counts[date],
+          });
+        }
+      }
 
       Dashboards.board(
         "container",
@@ -217,8 +246,15 @@
                       {
                         id: "container-pie",
                       },
+                    ],
+                  },
+                  {
+                    cells: [
                       {
                         id: "container-bar",
+                      },
+                      {
+                        id: "container-created-time",
                       },
                     ],
                   },
@@ -233,7 +269,7 @@
               elements: [
                 {
                   tagName: "h1",
-                  textContent: "Camera Status Report",
+                  textContent: "Camera List Report",
                 },
               ],
             },
@@ -250,7 +286,7 @@
           type: "pie",
         },
         title: {
-          text: "Num of Cams Online",
+          text: "Shared Cameras",
           align: "center",
           color: "#17191c",
         },
@@ -266,17 +302,17 @@
         },
         series: [
           {
-            name: "Num of Cams Online",
+            name: "Cameras",
             colorByPoint: true,
             data: [
               {
-                name: "Online",
-                y: camerasOnline,
+                name: "Shared Cameras",
+                y: numberOfSharedCameras,
                 sliced: true,
               },
               {
-                name: "Offline",
-                y: camerasOffline,
+                name: "Unshared Cameras",
+                y: numberOfUnsharedCameras,
               },
             ],
           },
@@ -285,28 +321,53 @@
 
       Highcharts.chart("container-bar", {
         chart: {
-          type: "column",
+          type: "bar",
         },
         title: {
-          text: "Cam Status per Location",
+          text: "Count of Cameras Per Bridge",
         },
         xAxis: {
-          categories: locations,
-          labels: {
-            formatter: function () {
-              return this.value;
-            },
-          },
-          title: {
-            text: "Bridges",
-          },
+          categories: dataArray.map((item) => item[0]),
+          type: "Bridges",
         },
         yAxis: {
           title: {
-            text: "Count",
+            text: "No of Cams per Bridge",
           },
         },
-        series: seriesData,
+        series: [
+          {
+            name: "Cam count per bridge",
+            data: dataArray.map((item) => item[1]),
+          },
+        ],
+      });
+
+      Highcharts.chart("container-created-time", {
+        chart: {
+          type: "column",
+        },
+        title: {
+          text: "Cameras Created Per Month",
+        },
+        xAxis: {
+          categories: seriesData.map(function (item) {
+            return item.name;
+          }),
+        },
+        yAxis: {
+          title: {
+            text: "No Of Cameras",
+          },
+        },
+        series: [
+          {
+            name: "Cameras Created",
+            data: seriesData.map(function (item) {
+              return item.y;
+            }),
+          },
+        ],
       });
     </script>
   </body>
