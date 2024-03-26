@@ -6,7 +6,7 @@
       id="favicon-link"
       href="https://c000.eagleeyenetworks.com/_images/favicon.ico"
     />
-    <title>Eagle Eye Networks-camera status report</title>
+    <title>Eagle Eye Networks-bridge list report</title>
     <script
       type="text/javascript"
       charset="utf8"
@@ -74,6 +74,7 @@
     </table>
 
     <pre id="csv">{%csvData%}</pre>
+
     <script type="text/javascript">
       // Return array of string values, or NULL if CSV string not well formed.
       function CSVtoArray(text) {
@@ -126,59 +127,36 @@
       });
     </script>
 
+    <table id="table" class="display" style="width: 100%"></table>
+
     <script>
       const csvData = document.getElementById("csv").innerText;
 
       const lines = csvData.trim().split("\n");
-      const cameras = [];
+      const bridges = [];
       for (let i = 1; i < lines.length; i++) {
         const element = lines[i].trim().split(", ");
-        cameras.push(element.join(", "));
+        bridges.push(element.join(", "));
       }
 
-      let camerasOnline = 0;
-      let camerasOffline = 0;
-      const locationList = [];
-      if (cameras) {
-        for (let index = 1; index < cameras?.length; index++) {
-          const cameraData = cameras?.[index].split(", ");
-          if (cameraData?.[2] === `"online"`) {
-            camerasOnline += 1;
-          } else if (cameraData?.[2] === `"offline"`) {
-            camerasOffline += 1;
-          }
-
-          if (
-            cameraData?.[4] &&
-            (cameraData?.[2] === `"online"` || cameraData?.[2] === `"offline"`)
-          ) {
-            locationList?.push(cameraData?.[4].concat(`--${cameraData?.[2]}`));
-          }
+      const camsPerBridge = {};
+      if (bridges) {
+        for (let index = 0; index < bridges?.length; index++) {
+          const bridgeData = bridges?.[index].split(", ");
+          camsPerBridge[bridgeData?.[0]] = bridgeData?.[8];
         }
       }
 
-      const camerasPerLocation = {};
-      if (locationList) {
-        for (const item of locationList) {
-          const validString = item?.replace(/"/g, "");
-          const [key, status] = validString?.split("--");
-          if (!camerasPerLocation[key]) {
-            camerasPerLocation[key] = { online: 0, offline: 0 };
-          }
-          camerasPerLocation[key][status]++;
+      const camerasPerBridge = {};
+      for (const key in camsPerBridge) {
+        if (camsPerBridge?.[key] !== undefined) {
+          const newKey = key;
+          const newValue = parseInt(camsPerBridge?.[key].replace(/"/g, ""), 10);
+          camerasPerBridge[newKey] = newValue;
         }
       }
-      const locations = Object.keys(camerasPerLocation);
-      const seriesData = [
-        {
-          name: "Online",
-          data: locations.map((key) => camerasPerLocation[key].online),
-        },
-        {
-          name: "Offline",
-          data: locations.map((key) => camerasPerLocation[key].offline),
-        },
-      ];
+
+      const dataArray = Object.entries(camerasPerBridge);
 
       Dashboards.board(
         "container",
@@ -215,9 +193,6 @@
                   {
                     cells: [
                       {
-                        id: "container-pie",
-                      },
-                      {
                         id: "container-bar",
                       },
                     ],
@@ -233,7 +208,7 @@
               elements: [
                 {
                   tagName: "h1",
-                  textContent: "Camera Status Report",
+                  textContent: "Bridge List Report",
                 },
               ],
             },
@@ -242,71 +217,28 @@
         true
       );
 
-      Highcharts.chart("container-pie", {
-        chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: "pie",
-        },
-        title: {
-          text: "Num of Cams Online",
-          align: "center",
-          color: "#17191c",
-        },
-        plotOptions: {
-          pie: {
-            allowPointSelect: true,
-            cursor: "pointer",
-            dataLabels: {
-              enabled: true,
-              format: "<b>{point.name}</b>: {point.y:1f}",
-            },
-          },
-        },
-        series: [
-          {
-            name: "Num of Cams Online",
-            colorByPoint: true,
-            data: [
-              {
-                name: "Online",
-                y: camerasOnline,
-                sliced: true,
-              },
-              {
-                name: "Offline",
-                y: camerasOffline,
-              },
-            ],
-          },
-        ],
-      });
-
       Highcharts.chart("container-bar", {
         chart: {
           type: "column",
         },
         title: {
-          text: "Cam Status per Location",
+          text: "No of Cameras per Bridge Model",
         },
         xAxis: {
-          categories: locations,
-          labels: {
-            formatter: function () {
-              return this.value;
-            },
-          },
-          title: {
-            text: "Bridges",
-          },
+          categories: dataArray.map((item) => item[0]),
+          type: "category",
         },
         yAxis: {
           title: {
-            text: "Count",
+            text: "Number of Cameras",
           },
         },
-        series: seriesData,
+        series: [
+          {
+            name: "Cam count per bridge",
+            data: dataArray.map((item) => item[1]),
+          },
+        ],
       });
     </script>
   </body>
