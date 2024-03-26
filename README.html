@@ -28,6 +28,7 @@
 <li>20230125062511.000</li>
 <li>2023-01-31</li>
 <li>2023-01-31T08:24:32</li>
+<li>2023-10-02T23:50:06.337+00:00</li>
 </ul>
 </li>
 </ul>
@@ -164,8 +165,14 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <h4>List bridges</h4>
 <pre><code>een bridge list
 </code></pre>
+<h4>List bridges using v3 API</h4>
+<pre><code>een bridge list --v3
+</code></pre>
 <h4>List cameras</h4>
 <pre><code>een camera list
+</code></pre>
+<h4>List cameras using v3 API</h4>
+<pre><code>een camera list --v3
 </code></pre>
 <h4>List locations</h4>
 <pre><code>een location list
@@ -173,10 +180,17 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <h4>List users</h4>
 <pre><code>een user list
 </code></pre>
+<h4>List users using v3 API</h4>
+<pre><code>een user list --v3
+</code></pre>
 <h4>List bridges in CSV format</h4>
 <pre><code>een bridge list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
-<p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID, Firmware Version</p>
+<p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID, Firmware Version,Number of cameras online, Default Transmit Bandwidth Mode,Default Transmit Bandwidth Mode Value (when Fixed),Default Transmit Bandwidth Mode Value Percentage of Available , Cloud Bandwidth Used Last 7 days average,Average Available Bandwidth last 7 days</p>
+<h4>List bridges in CSV format using v3 API</h4>
+<pre><code>een bridge list --csv --v3 [-f/--filename &lt;filename&gt;] [--noprompt]
+</code></pre>
+<p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID</p>
 <h4>List cameras in CSV format</h4>
 <pre><code>een camera list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
@@ -184,11 +198,19 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <h4>List cameras in CSV format with purging</h4>
 <pre><code>een camera list --csv --purge -start_time [start_time] --end_time [end_time] [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
-<p>Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, IsPurging, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address, Firmware Version</p>
+<p>Fields in camera csv: Camera ID, Bridge ID, Associated Bridge Name, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, Camera Model, Cloud Retention, Video Resolution, Minimum On Premise Retention, Maximum On Premise Retention, Cloud Preview Only?, Preview Video Resolution, Preview Transmit Mode, Full Video Transmit Mode, Camera Username, Camera Password, MAC Address, Firmware Version</p>
+<h4>List cameras in CSV format using v3 API</h4>
+<pre><code>een camera list --csv --v3 [-f/--filename &lt;filename&gt;] [--noprompt]
+</code></pre>
+<p>Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Is Shared, Owner Account Name, Location, MAC Address, Camera Model, GUID, Cloud Retention, Video Resolution</p>
 <h4>List users in CSV format</h4>
 <pre><code>een user list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
 <p>Fields in user csv: First Name, Last Name, Email, Last Login, Permissions</p>
+<h4>List users in CSV format using v3 API</h4>
+<pre><code>een user list --csv --v3 [-f/--filename &lt;filename&gt;] [--noprompt]
+</code></pre>
+<p>Fields in user csv: First Name, Last Name, Email, Last Login, permissions_editAccounts, permissions_layoutAdministrator, permissions_administrator, permissions_viewAuditLog, permissions_createLayouts, permissions_exportUsers, permissions_editMotionAreas, permissions_editArchive, permissions_addEditSpeakers, permissions_editSpeakers, permissions_editAllCameraSettings, permissions_controlPTZ, permissions_viewPreviewVideo, permissions_turnCamerasOnOff, permissions_viewLiveVideo, permissions_viewArchive, permissions_downloadVideo, permissions_editSharing, permissions_editNoBillingDeviceSettings, permissions_editMap, permissions_editPTZStations, permissions_talkDown, permissions_editUsers, permissions_addEditBridgesCameras, permissions_upgradeEdition, Permissions_viewHistoricVideo</p>
 <h4>List locations in CSV format</h4>
 <pre><code>een location list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
@@ -199,11 +221,23 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <p>Example:</p>
 <pre><code>een camera list --tag lobby
 </code></pre>
+<h4>List cameras based on specific tag using v3 API</h4>
+<pre><code>een camera list --v3 --tag &lt;tag_name&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code>een camera list --v3 --tag lobby
+</code></pre>
 <h4>List bridges based on specific location</h4>
 <pre><code>een bridge list --location &lt;location_name&gt;
 </code></pre>
 <p>Example:</p>
 <pre><code>een bridge list --location austin
+</code></pre>
+<h4>List bridges based on specific location using v3 API</h4>
+<pre><code>een bridge list --v3 --location &lt;location_name&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code>een bridge list --v3 --location austin
 </code></pre>
 <h4>List cameras based on specific location</h4>
 <pre><code>een camera list --location &lt;location_name&gt;
@@ -211,11 +245,23 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <p>Example:</p>
 <pre><code>een camera list --location austin
 </code></pre>
+<h4>List cameras based on specific location using v3 API</h4>
+<pre><code>een camera list --v3 --location &lt;location_name&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code>een camera list --v3 --location austin
+</code></pre>
 <h4>List bridges based on specific tag</h4>
 <pre><code>een bridge list --tag &lt;tag_name&gt;
 </code></pre>
 <p>Example:</p>
 <pre><code>een bridge list --tag lobby
+</code></pre>
+<h4>List bridges based on specific tag using v3 API</h4>
+<pre><code>een bridge list --v3 --tag &lt;tag_name&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code>een bridge list --v3 --tag lobby
 </code></pre>
 <h4>List cameras based on specific status</h4>
 <pre><code>een camera list --status &lt;status&gt;
@@ -232,14 +278,23 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <h4>List available cameras</h4>
 <pre><code>een camera list --available
 </code></pre>
+<h4>List available cameras using v3 API</h4>
+<pre><code>een camera list --available --v3
+</code></pre>
 <h4>List available bridges</h4>
 <pre><code>een bridge list --available
 </code></pre>
 <h4>Get camera list in tree format</h4>
 <pre><code>een camera list --tree
 </code></pre>
+<h4>Get camera list in tree format using v3 API</h4>
+<pre><code>een camera list --tree --v3
+</code></pre>
 <h4>Get bridge list in tree format</h4>
 <pre><code>een bridge list --tree
+</code></pre>
+<h4>Get bridge list in tree format using v3 API</h4>
+<pre><code>een bridge list --tree --v3
 </code></pre>
 <h4>Write camera list to a csv file</h4>
 <pre><code>een camera list --short -f/--filename &lt;filename&gt; [--noprompt]
@@ -373,12 +428,72 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <p>Example:</p>
 <pre><code>een archive download &quot;snapshots/test-1.jpeg&quot; --output &quot;foldername&quot; --overwrite
 </code></pre>
+<h4>Preview Recording Status</h4>
+<pre><code>een preview recording-status --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt]
+</code></pre>
+<p>Examples:</p>
+<h5>For single esn</h5>
+<pre><code>een preview recording-status --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
+<h5>For multiple esns</h5>
+<pre><code>een preview recording-status --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
+<h5>For all esns</h5>
+<pre><code>een preview recording-status --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
+<h4>Note:</h4>
+<p>The ISO 8601 timestamp format is a standardized format for representing date and time information.</p>
+<p>Example: &quot;2023-10-02T23:50:06.337+00:00&quot;</p>
+<h4>Camera Availability</h4>
+<pre><code>een camera availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt]
+</code></pre>
+<p>Examples:</p>
+<h5>For single esn</h5>
+<pre><code>een camera availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
+<h5>For multiple esns</h5>
+<pre><code>een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
+<h5>For all esns</h5>
+<pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
+<h4>Camera Availability along with Preview Availability</h4>
+<pre><code>een camera availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt] --preview_availability 
+</code></pre>
+<p>Examples:</p>
+<h5>For single esn</h5>
+<pre><code>een camera availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --preview_availability 
+</code></pre>
+<h5>For multiple esns</h5>
+<pre><code>een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --preview_availability 
+</code></pre>
+<h5>For all esns</h5>
+<pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --preview_availability 
+<h4>Bridge Availability</h4>
+<pre><code>een bridge availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt]
+</code></pre>
+<p>Examples:</p>
+<h5>For single esn</h5>
+<pre><code>een bridge availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
+<h5>For multiple esns</h5>
+<pre><code>een bridge availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
+<h5>For all esns</h5>
+<pre><code>een bridge availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
+</code></pre>
 <h3>For Generating HTML Reports</h3>
 <h4>Bridge list report</h4>
 <pre><code>een bridge list --html
 </code></pre>
+<h4>Bridge list report using v3 API</h4>
+<pre><code>een bridge list --html --v3
+</code></pre>
 <h4>Camera list report</h4>
 <pre><code>een camera list --html
+</code></pre>
+<h4>Camera list report using v3 API</h4>
+<pre><code>een camera list --html --v3
 </code></pre>
 <h4>Bridge status report</h4>
 <pre><code>een bridge status --html
@@ -393,8 +508,14 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <h4>Bridge list</h4>
 <pre><code>een bridge list --googleSheet
 </code></pre>
+<h4>Bridge list using v3 API</h4>
+<pre><code>een bridge list --googleSheet --v3
+</code></pre>
 <h4>Camera list</h4>
 <pre><code>een camera list --googleSheet
+</code></pre>
+<h4>Camera list using v3 API</h4>
+<pre><code>een camera list --googleSheet --v3
 </code></pre>
 <h4>Camera list with purging</h4>
 <pre><code>een camera list --googleSheet --purge -start_time [start_time] --end_time [end_time]
@@ -417,6 +538,65 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <pre><code>een camera purge-list
 </code></pre>
 <p>Note: If you haven't specify any start_time and end_time it will take last 24 hours as default timestamps.</p>
+<h4>Preview recording status</h4>
+<pre><code>een preview recording-status --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] --googleSheet
+</code></pre>
+<p>Examples:</p>
+<h5>For single esn</h5>
+<pre><code>een preview recording-status --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
+<h5>For multiple esns</h5>
+<pre><code>een preview recording-status --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
+<h5>For all esns</h5>
+<pre><code>een preview recording-status --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
+<h4>Note:</h4>
+<p>The ISO 8601 timestamp format is a standardized format for representing date and time information.</p>
+<p>Example: &quot;2023-10-02T23:50:06.337+00:00&quot;</p>
+<h4>Camera Availability</h4>
+<pre><code>een camera availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] --googleSheet
+</code></pre>
+<p>Note: This command only support a maximum of 200 devices and seven days of time range.</p>
+<p>Examples:</p>
+<h5>For single esn</h5>
+<pre><code>een camera availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
+<h5>For multiple esns</h5>
+<pre><code>een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
+<h5>For all esns</h5>
+<pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
+<h4>Camera Availability along with Preview Availability</h4>
+<pre><code>een camera availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] --googleSheet --preview_availability 
+</code></pre>
+<p>Examples:</p>
+<h5>For single esn</h5>
+<pre><code>een camera availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet --preview_availability 
+</code></pre>
+<h5>For multiple esns</h5>
+<pre><code>een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet --preview_availability 
+</code></pre>
+<h5>For all esns</h5>
+<pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet --preview_availability 
+</code></pre>
+<h4>Note:</h4>
+<p>The ISO 8601 timestamp format is a standardized format for representing date and time information.</p>
+<p>Example: &quot;2023-10-02T23:50:06.337+00:00&quot;</p>
+<h4>Bridge Availability</h4>
+<pre><code>een bridge availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] --googleSheet
+</code></pre>
+<p>Examples:</p>
+<h5>For single esn</h5>
+<pre><code>een bridge availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
+<h5>For multiple esns</h5>
+<pre><code>een bridge availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
+<h5>For all esns</h5>
+<pre><code>een bridge availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
+</code></pre>
 <h4>EEN account Logout</h4>
 <pre><code>een auth logout
 </code></pre>
