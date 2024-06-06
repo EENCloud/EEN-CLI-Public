@@ -218,6 +218,28 @@ een bridge list --csv --v3 [-f/--filename <filename>] [--noprompt]
 
 Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID
 
+#### Enable bridge local rtsp metrics
+
+```
+een bridge qlstream_metrics --esn [esn] --local_rtsp_metrics [enable/disable] [--noprompt]
+```
+
+#### Pull logs from the archiver/bridge
+
+```
+een bridge qlstream_metrics --esn [esn] --performane/--events --count [count] --start_time [start_time] --end_time [end_time] --summary 
+```
+
+Example:
+
+```
+een bridge qlstream_metrics --esn 657989e --performane --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary 
+```
+
+```
+een bridge qlstream_metrics --esn 657989e --events --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary
+```
+
 #### List cameras in CSV format
 
 ```
@@ -496,6 +518,19 @@ Example:
 ```
 een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of
 ```
+
+#### Get LPR Events using v3 API
+
+```
+een lpr events --start_time <start_time> --end_time <end_time> --lp <license plate> --esn <esn> --v3
+```
+
+Example:
+
+```
+een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of --v3
+```
+
 
 #### Edit camera settings
 
@@ -1232,6 +1267,10 @@ een update-config "driveFolderID" -- "1giou_ghlihbZyUpwCx"
 Note:
 
 - Expect for `cameraID`, `cameraName`and `cloudPreviewOnly` all other field in camera settings file are editable.
+
+### Bridge settings that can be edited:
+
+1.local_rtsp_metrics - [Bridge rtsp metrics]
 
 ### Available camera status
 

@@ -191,6 +191,17 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <pre><code>een bridge list --csv --v3 [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
 <p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID</p>
+<h4>Enable bridge local rtsp metrics</h4>
+<pre><code>een bridge qlstream_metrics --esn [esn] --local_rtsp_metrics [enable/disable] [--noprompt]
+</code></pre>
+<h4>Pull logs from the archiver/bridge</h4>
+<pre><code>een bridge qlstream_metrics --esn [esn] --performane/--events --count [count] --start_time [start_time] --end_time [end_time] --summary 
+</code></pre>
+<p>Example:</p>
+<pre><code>een bridge qlstream_metrics --esn 657989e --performane --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary 
+</code></pre>
+<pre><code>een bridge qlstream_metrics --esn 657989e --events --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary
+</code></pre>
 <h4>List cameras in CSV format</h4>
 <pre><code>een camera list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
 </code></pre>
@@ -332,6 +343,12 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <p>Example:</p>
 <pre><code>een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of
 </code></pre>
+<h4>Get LPR Events using v3 API</h4>
+<pre><code>een lpr events --start_time &lt;start_time&gt; --end_time &lt;end_time&gt; --lp &lt;license plate&gt; --esn &lt;esn&gt; --v3
+</code></pre>
+<p>Example:</p>
+<pre><code>een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of --v3
+</code></pre>
 <h4>Edit camera settings</h4>
 <pre><code>een camera set &lt;esn&gt; --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; [--noprompt]
 </code></pre>
@@ -469,6 +486,7 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 </code></pre>
 <h5>For all esns</h5>
 <pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --preview_availability 
+</code></pre>
 <h4>Bridge Availability</h4>
 <pre><code>een bridge availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt]
 </code></pre>
@@ -753,6 +771,8 @@ Client email is the email that you get while initializing the project in google 
 <ul>
 <li>Expect for <code>cameraID</code>, <code>cameraName</code>and <code>cloudPreviewOnly</code> all other field in camera settings file are editable.</li>
 </ul>
+<h3>Bridge settings that can be edited:</h3>
+<p>1.local_rtsp_metrics - [Bridge rtsp metrics]</p>
 <h3>Available camera status</h3>
 <ul>
 <li>&quot;Camera online&quot;</li>
