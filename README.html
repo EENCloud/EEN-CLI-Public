@@ -195,10 +195,10 @@ the help option <code>een &lt;object&gt; --help</code> shows the shorter version
 <pre><code>een bridge qlstream_metrics --esn [esn] --local_rtsp_metrics [enable/disable] [--noprompt]
 </code></pre>
 <h4>Pull logs from the archiver/bridge</h4>
-<pre><code>een bridge qlstream_metrics --esn [esn] --performane/--events --count [count] --start_time [start_time] --end_time [end_time] --summary 
+<pre><code>een bridge qlstream_metrics --esn [esn] --performance/--events --count [count] --start_time [start_time] --end_time [end_time] --summary 
 </code></pre>
 <p>Example:</p>
-<pre><code>een bridge qlstream_metrics --esn 657989e --performane --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary 
+<pre><code>een bridge qlstream_metrics --esn 657989e --performance --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary 
 </code></pre>
 <pre><code>een bridge qlstream_metrics --esn 657989e --events --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary
 </code></pre>
@@ -766,10 +766,11 @@ Client email is the email that you get while initializing the project in google 
 <li>video_capture_mode - [Preview Record when]</li>
 <li>preview_interval_ms - [Preview update rate]</li>
 <li>preview_quality - [Preview quality]</li>
+<li>preview_only_cloud_retention - [Cloud Preview Only (PR1)]</li>
 </ol>
 <p>Note:</p>
 <ul>
-<li>Expect for <code>cameraID</code>, <code>cameraName</code>and <code>cloudPreviewOnly</code> all other field in camera settings file are editable.</li>
+<li>Except for <code>cameraID</code> and <code>cameraName</code> all other field in camera settings file are editable.</li>
 </ul>
 <h3>Bridge settings that can be edited:</h3>
 <p>1.local_rtsp_metrics - [Bridge rtsp metrics]</p>

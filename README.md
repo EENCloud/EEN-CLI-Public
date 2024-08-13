@@ -227,13 +227,13 @@ een bridge qlstream_metrics --esn [esn] --local_rtsp_metrics [enable/disable] [-
 #### Pull logs from the archiver/bridge
 
 ```
-een bridge qlstream_metrics --esn [esn] --performane/--events --count [count] --start_time [start_time] --end_time [end_time] --summary 
+een bridge qlstream_metrics --esn [esn] --performance/--events --count [count] --start_time [start_time] --end_time [end_time] --summary 
 ```
 
 Example:
 
 ```
-een bridge qlstream_metrics --esn 657989e --performane --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary 
+een bridge qlstream_metrics --esn 657989e --performance --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary 
 ```
 
 ```
@@ -1263,10 +1263,11 @@ een update-config "driveFolderID" -- "1giou_ghlihbZyUpwCx"
 13. video_capture_mode - [Preview Record when]
 14. preview_interval_ms - [Preview update rate]
 15. preview_quality - [Preview quality]
+16. preview_only_cloud_retention - [Cloud Preview Only (PR1)]
 
 Note:
 
-- Expect for `cameraID`, `cameraName`and `cloudPreviewOnly` all other field in camera settings file are editable.
+- Except for `cameraID` and `cameraName` all other field in camera settings file are editable.
 
 ### Bridge settings that can be edited:
 
