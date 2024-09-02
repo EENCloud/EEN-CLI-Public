@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Eagle Eye Networks-pos report</title>
+  <link rel="shortcut icon" id="favicon-link" href="https://c000.eagleeyenetworks.com/_images/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.4.js"></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    #csv,
+    #header-info {
+      display: none;
+    }
+
+    #title h1 {
+      text-align: left;
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+    }
+
+    h3 {
+      padding-left: 20px;
+    }
+
+    input[type='number'] {
+      min-width: 50px;
+    }
+
+    #icon {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    article {
+      padding: 10px 20px;
+    }
+
+    .charts-grid {
+      width: 100%;
+      display: flex;
+      margin: 10px 0;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .charts-grid>div {
+      border-radius: 4px;
+      border: 1px solid #e3e9ef;
+      fill: #f3f7fb;
+    }
+
+    .highcharts-axis-labels text {
+      color: #606e81 !important;
+      fill: #606e81 !important;
+      font-size: 12px !important;
+      font-weight: 400 !important;
+      line-height: 18px !important;
+    }
+
+    .highcharts-root text {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .highcharts-title {
+      color: #252932 !important;
+      fill: #252932 !important;
+      font-size: 14px !important;
+      font-weight: bold !important;
+      line-height: 20px !important;
+    }
+
+    #title {
+      width: 100%;
+      background-color: #f3f7fb;
+      padding: 10px;
+    }
+
+    .highcharts-background {
+      fill: #f3f7fb;
+    }
+
+    .title-card {
+      padding: 0px 10px 10px;
+      background-color: #f3f7fb;
+    }
+
+    .title-card__title {
+      font-size: 24px;
+      color: #252932;
+      font-style: normal;
+      font-weight: bold;
+      letter-spacing: 0;
+      line-height: 32px;
+      text-align: left;
+    }
+
+    .title-card__item {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .title-card__label {
+      padding-right: 5px;
+      font-weight: bold;
+    }
+
+    #sortableTable_wrapper,
+    h2 {
+      padding: 10px 20px;
+    }
+
+    table.dataTable thead th,
+    table.dataTable thead td {
+      padding: 8px;
+      text-align: left;
+      font-size: 14px;
+      color: #606e81;
+    }
+
+    table.dataTable tbody tr td {
+      padding: 8px;
+      color: #252932;
+    }
+
+    table.dataTable tbody tr:nth-child(even) {
+      background-color: #f3f7fb;
+    }
+
+    table.dataTable tbody tr:hover {
+      background-color: #f3f7fb;
+    }
+
+    #headers {
+      background-color: #f3f7fb;
+      border-bottom: 1px solid #e3e9ef !important;
+    }
+
+    table.dataTable {
+      border-collapse: collapse;
+      width: 100% !important;
+      border: 1px solid #e3e9ef;
+    }
+
+    table.dataTable>thead>tr>th {
+      border-bottom: none;
+    }
+
+    #sortableTable {
+      max-width: 1800px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="title">
+    <div id="icon">
+      <img src="https://c000.eagleeyenetworks.com/_images/favicon.ico" alt="een logo" />
+      <h4>Eagle Eye Networks</h4>
+    </div>
+    <div id="report-header-info"></div>
+  </div>
+
+  <div id="container"></div>
+  <h3>POS Events Table</h3>
+
+  <table id="sortableTable">
+    <thead id="headers"></thead>
+  </table>
+
+  <pre id="header-info">{%headerData%}</pre>
+  <pre id="csv">{%csvData%}</pre>
+</body>
+
+<script>
+  const container = document.querySelector('#container');
+  const article = document.createElement('article');
+  const div = document.createElement('div');
+  div.setAttribute('class', 'charts-grid');
+  article.appendChild(div);
+  container.appendChild(article);
+
+  const reportHeader = document.querySelector('#report-header-info');
+
+  $(document).ready(function () {
+    const csvDataStr = $('#csv').text();
+    const headerInfo = $('#header-info').text();
+    const headerdata = csvToArrayOfObjects(headerInfo);
+    const data = csvToArrayOfObjects(csvDataStr);
+    const titleInfo = createTitleCardTemplate(headerdata);
+    reportHeader.innerHTML = titleInfo;
+
+    const headers = Object.keys(data[0]).map(function (key) {
+      return { data: key, title: key };
+    });
+
+    // initialize DataTable with the array of objects
+    $('#sortableTable').DataTable({
+      data: data,
+      columns: headers,
+    });
+
+    // generate graph for transcations per location
+    const locationSeries = getEventSeries(data, 'Location Name', 'column');
+    const locationData = locationSeries.series.filter(
+      ({ name }) => name !== ''
+    );
+
+    if (locationData.length === 0) {
+      // if locations only contains "Unset", do not render the chart
+      console.log(
+        "Location contains only 'Unset'. Chart will not be rendered."
+      );
+    } else {
+      Highcharts.chart({
+        chart: {
+          type: 'column',
+          renderTo: generateElementForChartsGrid(container),
+        },
+        title: {
+          align: 'left',
+          text: 'Transactions by location',
+        },
+        xAxis: {
+          categories: locationSeries.categories,
+          title: {
+            text: 'POS Location',
+          },
+          lineColor: '#e6e6e6',
+        },
+        yAxis: {
+          title: {
+            text: 'Number of transactions',
+          },
+        },
+        plotOptions: {
+          column: {
+            maxPointWidth: 20,
+          },
+        },
+        series: locationData,
+      });
+    }
+
+    // genearte graph for transactions by employees
+    const { series, labels } = getEventsByEmployees(data);
+
+    const posEmployees = series.filter(({ name }) => name !== '');
+    const posLabels = labels.filter((label) => label !== '');
+
+    if (posEmployees.length === 0) {
+      // if series only contains "Unset", do not render the chart
+      console.log(
+        "Employees contains only 'Unset'. Chart will not be rendered."
+      );
+    } else {
+      Highcharts.chart({
+        chart: {
+          type: 'column',
+          renderTo: generateElementForChartsGrid(container),
+        },
+        title: {
+          text: 'Transactions by employees',
+          align: 'left',
+        },
+
+        xAxis: {
+          categories: posLabels,
+          title: {
+            text: 'POS Location',
+          },
+          lineColor: '#e6e6e6',
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: 'Number of transactions',
+          },
+          stackLabels: {
+            enabled: false,
+            style: {
+              fontWeight: 'bold',
+            },
+          },
+        },
+        tooltip: {
+          headerFormat: '<b>{point.x}</b><br/>',
+          pointFormat:
+            '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+        },
+        plotOptions: {
+          column: {
+            stacking: 'normal',
+            dataLabels: {
+              enabled: false,
+            },
+            maxPointWidth: 20,
+          },
+        },
+        series: posEmployees,
+      });
+    }
+
+    // generate graph for flagged transactions
+    const flaggedData = data.filter((item) => item.Flag === 'true');
+
+    const flggedSeries = getEventSeries(
+      flaggedData,
+      'Location Name',
+      'column'
+    );
+    const flagData = flggedSeries.series.filter(({ name }) => name !== '');
+
+    if (flagData.length === 0) {
+      console.log(
+        "No Flagged transactions available'. Chart will not be rendered."
+      );
+    } else {
+      Highcharts.chart({
+        chart: {
+          type: 'column',
+          renderTo: generateElementForChartsGrid(container),
+        },
+        title: {
+          align: 'left',
+          text: 'Flagged transactions',
+        },
+        xAxis: {
+          categories: posLocations,
+          title: {
+            text: 'POS Location',
+          },
+          lineColor: '#e6e6e6',
+        },
+        yAxis: {
+          title: {
+            text: 'Number of transactions',
+          },
+        },
+        plotOptions: {
+          column: {
+            maxPointWidth: 20,
+          },
+        },
+        series: flagData,
+      });
+    }
+  });
+
+  function csvToArrayOfObjects(csv) {
+    // split the CSV string into an array of rows
+    const rows = csv.trim().split('\n');
+
+    // extract the header and create an array of keys
+    const headers = rows[0]
+      .split(',')
+      .map((header) => header.replace(/"/g, '').trim());
+
+    const data = rows.slice(1).map((row) => {
+      const values = row
+        .split(',')
+        .map((value) => value.replace(/"/g, '').trim());
+      const obj = {};
+
+      // assign each value to its corresponding header key
+      headers.forEach((header, index) => {
+        obj[header] = values[index];
+      });
+
+      return obj;
+    });
+
+    return data;
+  }
+
+  //create title information
+  function createTitleCardTemplate(titleInfo) {
+    header = titleInfo[0];
+    let template = `
+    <div class="title-card">
+  `;
+
+    if (header.reportName) {
+      template += createReportTitle(header.reportName);
+    }
+    if (header.accountName && header.accountId) {
+      template += createAccountLine(header.accountName, header.accountId);
+    }
+    if (header.userName) {
+      template += createUserLine(header.userName);
+    }
+    if (header.createTimestamp && header.userTimeZone) {
+      template += createCreateTimestamp(
+        header.createTimestamp,
+        header.userTimeZone
+      );
+    }
+    if (header.reportStartTimestamp && header.reportEndTimestamp) {
+      template += createTimeRange(
+        header.reportStartTimestamp,
+        header.reportEndTimestamp
+      );
+    }
+
+    template += `
+      </div>
+    `;
+
+    return template;
+  }
+
+  function createReportTitle(reportName) {
+    return `<h1 class="title-card__title">${reportName}</h1>`;
+  }
+
+  function createAccountLine(accountName, accountId) {
+    return `<div class="title-card__item">
+      <span class="title-card__label">Account:</span>
+      <div class="title-card__text">${accountName} (${accountId})</div>
+      </div>`;
+  }
+
+  function createUserLine(userName) {
+    return `<div class="title-card__item">
+    <span class="title-card__label">User:</span>
+    <div class="title-card__text">${userName}</div>
+    </div>`;
+  }
+
+  function createCreateTimestamp(createTimestamp, userTimeZone) {
+    return `<div class="title-card__item">
+    <span class="title-card__label">Created:</span>
+    <div class="title-card__text">${createTimestamp} (${userTimeZone})</div>
+    </div>`;
+  }
+
+  function createTimeRange(startTimestamp, endTimestamp) {
+    return `<div class="title-card__item">
+    <span class="title-card__label">Time Range:</span>
+    <div class="title-card__text">${startTimestamp} ~ ${endTimestamp}</div>
+    </div>`;
+  }
+
+  function generateElementForChartsGrid(htmlElement) {
+    const element = document.createElement('div');
+    const chartsGrid = htmlElement.querySelector('.charts-grid');
+    element.classList.add('chart');
+    chartsGrid?.append(element);
+
+    return element;
+  }
+
+  // helper functions to generate graph
+  function getEventSeries(data, args, type) {
+    const series = [];
+    const categories = [];
+    const eventsCount = {};
+
+    data.forEach((item) => {
+      const locationName = item[args];
+
+      // increment the count for the current location and eventsCount
+      if (!eventsCount[locationName]) {
+        eventsCount[locationName] = 1;
+      } else {
+        eventsCount[locationName]++;
+      }
+
+      // add the locationName to the locations if not already added
+      if (categories.indexOf(locationName) === -1) {
+        categories.push(locationName);
+      }
+    });
+
+    Object.entries(eventsCount).forEach(([status, count]) => {
+      const data = categories.map((item) =>
+        eventsCount[item] === count ? eventsCount[item] : 0
+      );
+
+      series.push({
+        showInLegend: false,
+        type,
+        name: status,
+        data,
+      });
+    });
+
+    return { series, categories };
+  }
+
+  function getEventsByEmployees(data) {
+    const eventsCount = {};
+    const labels = [];
+    const employees = [];
+
+    data.forEach((item) => {
+      const locationName = item['Location Name'] || 'Unset';
+
+      if (labels.indexOf(locationName) === -1) {
+        labels.push(locationName);
+      }
+      const employeeName = item['Employee Name'];
+
+      if (!eventsCount[locationName]) {
+        eventsCount[locationName] = {};
+      }
+      if (!eventsCount[locationName][employeeName]) {
+        eventsCount[locationName][employeeName] = 1;
+      } else {
+        eventsCount[locationName][employeeName]++;
+      }
+
+      if (employees.indexOf(employeeName) === -1) {
+        employees.push(employeeName);
+      }
+    });
+
+    const series = employees.map((employee) => ({
+      showInLegend: false,
+      type: 'column',
+      name: employee,
+      data: labels.map((label) => eventsCount[label]?.[employee] || 0),
+    }));
+
+    return { series, labels };
+  }
+</script>
+
+</html>
