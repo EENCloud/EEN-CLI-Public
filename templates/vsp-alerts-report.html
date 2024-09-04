@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Eagle Eye Networks-pos report</title>
+  <title>Eagle Eye Networks-vsp alerts report</title>
   <link rel="shortcut icon" id="favicon-link" href="https://c000.eagleeyenetworks.com/_images/favicon.ico" />
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
@@ -178,13 +178,13 @@
   </div>
 
   <div id="container"></div>
-  <h3>POS Events Table</h3>
+  <h3>VSP Alerts Table</h3>
 
   <table id="sortableTable">
     <thead id="headers"></thead>
   </table>
 
-  <pre id="header-info">{%headerData%}</pre>
+  <pre id="header-info">{%headerData%}<pre id="header-info">
   <pre id="csv">{%csvData%}</pre>
 </body>
 
@@ -216,81 +216,50 @@
       columns: headers,
     });
 
-    // generate graph for transcations per location
-    const locationSeries = getEventSeries(data, 'Location Name', 'column');
-    const locationData = locationSeries.series.filter(
-      ({ name }) => name !== ''
+    //constants
+    const THIRTY_DAYS = 30;
+
+    // generate graph for Alerts per time
+
+    const { series, categories } = getEventsByTime(
+      data,
+      headerdata[0].reportStartTimestamp,
+      headerdata[0].reportEndTimestamp
     );
 
-    if (locationData.length === 0) {
-      // if locations only contains "Unset", do not render the chart
-      console.log(
-        "Location contains only 'Unset'. Chart will not be rendered."
-      );
-    } else {
+    if (categories.length <= THIRTY_DAYS) {
+      const years = categories
+        .map((label) => new Date(label).getFullYear())
+        .filter((year, index, self) => self.indexOf(year) === index);
+
       Highcharts.chart({
         chart: {
           type: 'column',
           renderTo: generateElementForChartsGrid(container),
         },
         title: {
-          align: 'left',
-          text: 'Transactions by location',
-        },
-        xAxis: {
-          categories: locationSeries.categories,
-          title: {
-            text: 'POS Location',
-          },
-          lineColor: '#e6e6e6',
-        },
-        yAxis: {
-          title: {
-            text: 'Number of transactions',
-          },
-        },
-        plotOptions: {
-          column: {
-            maxPointWidth: 20,
-          },
-        },
-        series: locationData,
-      });
-    }
-
-    // genearte graph for transactions by employees
-    const { series, labels } = getEventsByEmployees(data);
-
-    const posEmployees = series.filter(({ name }) => name !== '');
-    const posLabels = labels.filter((label) => label !== '');
-
-    if (posEmployees.length === 0) {
-      // if series only contains "Unset", do not render the chart
-      console.log(
-        "Employees contains only 'Unset'. Chart will not be rendered."
-      );
-    } else {
-      Highcharts.chart({
-        chart: {
-          type: 'column',
-          renderTo: generateElementForChartsGrid(container),
-        },
-        title: {
-          text: 'Transactions by employees',
+          text: `Daily alerts count`,
           align: 'left',
         },
-
         xAxis: {
-          categories: posLabels,
-          title: {
-            text: 'POS Location',
+          type: 'datetime',
+          categories: categories,
+          labels: {
+            formatter: function () {
+              const date = new Date(this.value);
+              const day = date.getDate();
+              const month = date.toLocaleString('default', { month: 'short' });
+              return `${day} ${month}`;
+            },
+            step: 1,
+            rotation: -45,
           },
-          lineColor: '#e6e6e6',
+          lineColor: '#e6e6e6'
         },
         yAxis: {
           min: 0,
           title: {
-            text: 'Number of transactions',
+            text: 'Number of alerts',
           },
           stackLabels: {
             enabled: false,
@@ -301,68 +270,152 @@
         },
         tooltip: {
           headerFormat: '<b>{point.x}</b><br/>',
-          pointFormat:
-            '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+          pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
         },
         plotOptions: {
           column: {
             stacking: 'normal',
+            maxPointWidth: 20,
             dataLabels: {
               enabled: false,
             },
-            maxPointWidth: 20,
           },
         },
-        series: posEmployees,
+        series: series,
       });
-    }
-
-    // generate graph for flagged transactions
-    const flaggedData = data.filter((item) => item.Flag === 'true');
-
-    const flggedSeries = getEventSeries(
-      flaggedData,
-      'Location Name',
-      'column'
-    );
-    const flagData = flggedSeries.series.filter(({ name }) => name !== '');
-
-    if (flagData.length === 0) {
-      console.log(
-        "No Flagged transactions available'. Chart will not be rendered."
-      );
     } else {
+      const { weekCategories, weekSeries } = getEventsByWeek(
+        data,
+        headerdata[0].reportStartTimestamp,
+        headerdata[0].reportEndTimestamp
+      );
+
       Highcharts.chart({
         chart: {
           type: 'column',
           renderTo: generateElementForChartsGrid(container),
         },
         title: {
+          text: `Weekly alerts count`,
           align: 'left',
-          text: 'Flagged transactions',
         },
         xAxis: {
-          categories: posLocations,
+          categories: weekCategories,
           title: {
-            text: 'POS Location',
+            text: 'Weeks',
           },
-          lineColor: '#e6e6e6',
+          lineColor: '#e6e6e6'
         },
         yAxis: {
+          min: 0,
           title: {
-            text: 'Number of transactions',
+            text: 'Number of alerts',
           },
         },
+        legend: {
+          reversed: false,
+        },
         plotOptions: {
+          series: {
+            stacking: 'normal',
+          },
           column: {
             maxPointWidth: 20,
           },
         },
-        series: flagData,
+        series: weekSeries,
       });
     }
-  });
 
+    // generate graph for Alerts per priority
+    const alertsByPriority = getCountSettingOccurrences(
+      data,
+      (item) => item['Priority']
+    );
+
+    if (Object.keys(alertsByPriority).length) {
+      const priorityPercentage = {};
+      delete alertsByPriority.Unset;
+      const alertsTotal = Object.values(alertsByPriority).reduce(
+        (acc, val) => acc + val,
+        0
+      );
+
+      for (const key in alertsByPriority) {
+        const percentage = Number(
+          ((alertsByPriority[key] / alertsTotal) * 100).toFixed(2)
+        );
+
+        priorityPercentage[key] = percentage;
+      }
+
+      const vspAlertsMappedByPriority = Object.keys(alertsByPriority).map(
+        (key) => ({
+          name: key,
+          y: priorityPercentage[key],
+          custom: {
+            totalAlerts: alertsByPriority[key],
+          },
+        })
+      );
+
+      Highcharts.chart({
+        chart: {
+          plotBackgroundColor: undefined,
+          plotBorderWidth: undefined,
+          plotShadow: false,
+          type: 'pie',
+          renderTo: generateElementForChartsGrid(container),
+        },
+        title: {
+          text: `Alerts by priority`,
+          align: 'left',
+        },
+        tooltip: {
+          valueSuffix: '%',
+          pointFormat:
+            'Percentage: <b>{point.percentage:.1f}%</b><br>' +
+            'Alerts: <b>{point.custom.totalAlerts}</b><br>',
+        },
+        plotOptions: {
+          series: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: [
+              {
+                enabled: true,
+                distance: 20,
+              },
+              {
+                enabled: true,
+                distance: -40,
+                format: '{point.percentage:.1f}%',
+                style: {
+                  fontSize: '1em',
+                  textOutline: 'none',
+                  opacity: 0.7,
+                },
+                filter: {
+                  operator: '>',
+                  property: 'percentage',
+                  value: 5,
+                },
+              },
+            ],
+          },
+        },
+        series: [
+          {
+            type: 'pie',
+            name: 'percentage',
+            data: vspAlertsMappedByPriority,
+          },
+        ],
+      });
+    }
+  })
+
+  // helper functions to generate report
   function csvToArrayOfObjects(csv) {
     // split the CSV string into an array of rows
     const rows = csv.trim().split('\n');
@@ -389,7 +442,7 @@
     return data;
   }
 
-  //create title information
+  // create title information
   function createTitleCardTemplate(titleInfo) {
     header = titleInfo[0];
     let template = `
@@ -467,79 +520,149 @@
   }
 
   // helper functions to generate graph
-  function getEventSeries(data, args, type) {
-    const series = [];
-    const categories = [];
+
+  function getEventsByTime(data, reportStartTimestamp, reportEndTimestamp) {
     const eventsCount = {};
+    const cameras = [];
+    let categories = [];
 
-    data.forEach((item) => {
-      const locationName = item[args];
+    data.forEach((entry) => {
+      const timestamp = entry.Timestamp;
+      const dateString = timestamp.split('T');
+      const date = dateString[0];
 
-      // increment the count for the current location and eventsCount
-      if (!eventsCount[locationName]) {
-        eventsCount[locationName] = 1;
+      const cameraName = entry['Camera Name'];
+
+      if (!eventsCount[date]) {
+        eventsCount[date] = {};
+      }
+
+      if (!eventsCount[date][cameraName]) {
+        eventsCount[date][cameraName] = 1;
       } else {
-        eventsCount[locationName]++;
+        eventsCount[date][cameraName]++;
       }
 
-      // add the locationName to the locations if not already added
-      if (categories.indexOf(locationName) === -1) {
-        categories.push(locationName);
+      if (cameras.indexOf(cameraName) === -1) {
+        cameras.push(cameraName);
       }
     });
 
-    Object.entries(eventsCount).forEach(([status, count]) => {
-      const data = categories.map((item) =>
-        eventsCount[item] === count ? eventsCount[item] : 0
-      );
-
-      series.push({
-        showInLegend: false,
-        type,
-        name: status,
-        data,
-      });
-    });
+    categories = getDatesBetweenRange(
+      reportStartTimestamp,
+      reportEndTimestamp
+    );
+    
+    const series = cameras.map((camera) => ({
+      showInLegend: false,
+      type: 'column',
+      name: camera,
+      data: categories.map((date) => eventsCount[date]?.[camera] || 0),
+    }));
 
     return { series, categories };
   }
 
-  function getEventsByEmployees(data) {
-    const eventsCount = {};
-    const labels = [];
-    const employees = [];
+  function getEventsByWeek(data, startDate, endDate) {
+    const dates = [];
+    const groupedData = {};
 
-    data.forEach((item) => {
-      const locationName = item['Location Name'] || 'Unset';
+    // generate all week ranges between startDate and endDate
+    let current = new Date(startDate);
+    const end = new Date(endDate);
+    while (current <= end) {
+      let { weekStart, weekEnd } = getWeeks(current.toString());
+      const weekKey = `${weekStart.toISOString().slice(0, 10)} to ${weekEnd
+        .toISOString()
+        .slice(0, 10)}`;
 
-      if (labels.indexOf(locationName) === -1) {
-        labels.push(locationName);
-      }
-      const employeeName = item['Employee Name'];
-
-      if (!eventsCount[locationName]) {
-        eventsCount[locationName] = {};
-      }
-      if (!eventsCount[locationName][employeeName]) {
-        eventsCount[locationName][employeeName] = 1;
-      } else {
-        eventsCount[locationName][employeeName]++;
+      if (!groupedData[weekKey]) {
+        groupedData[weekKey] = {};
       }
 
-      if (employees.indexOf(employeeName) === -1) {
-        employees.push(employeeName);
-      }
+      // group by weeks and dates
+      data.forEach((item) => {
+        const timestamp = item.Timestamp;
+        const dateString = timestamp.split('T')[0];
+        const date = new Date(dateString).toISOString().slice(0, 10);
+        const eventDate = new Date(date);
+
+        if (eventDate >= weekStart && eventDate <= weekEnd) {
+          if (!groupedData[weekKey][date]) {
+            groupedData[weekKey][date] = 0;
+          }
+
+          groupedData[weekKey][date]++;
+        }
+
+        if (dates.indexOf(date) === -1) {
+          dates.push(date);
+        }
+      });
+
+      current.setDate(current.getDate() + 1);
+    }
+
+    // prepare data for Highcharts
+    const weekCategories = Object.keys(groupedData);
+    const seriesData = {};
+
+    dates.forEach((date) => {
+      seriesData[date] = [];
+      weekCategories.forEach((week) => {
+        const eventCount = groupedData[week][date] || 0;
+        seriesData[date].push(eventCount);
+      });
     });
 
-    const series = employees.map((employee) => ({
+    const weekSeries = Object.keys(seriesData).map((date) => ({
       showInLegend: false,
       type: 'column',
-      name: employee,
-      data: labels.map((label) => eventsCount[label]?.[employee] || 0),
+      name: date,
+      data: seriesData[date],
     }));
 
-    return { series, labels };
+    return { weekCategories, weekSeries };
   }
+
+  const getDatesBetweenRange = (startDate, endDate) => {
+    const dates = [];
+    const nextDate = new Date(startDate);
+
+    // convert startDate and endDate to ISO string format (YYYY-MM-DD)
+    endDate = new Date(endDate).toISOString().slice(0, 10);
+
+    while (nextDate.toISOString().slice(0, 10) <= endDate) {
+      const currentDate = nextDate.toISOString().slice(0, 10);
+      dates.push(currentDate);
+      nextDate.setDate(nextDate.getDate() + 1);
+    }
+
+    return dates;
+  };
+
+  const getWeeks = (current) => {
+    const date = new Date(current);
+    const currentWeekDay = date.getDay();
+    const lessDays = currentWeekDay === 0 ? 6 : currentWeekDay - 1;
+    const weekStart = new Date(date.setDate(date.getDate() - lessDays)); // start of the week Monday
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekStart.getDate() + 6); // end of the week Sunday
+
+    return { weekStart, weekEnd };
+  };
+
+  const getCountSettingOccurrences = (data, getter) => {
+    return data.reduce((accumulator, item) => {
+      const setting = getter(item);
+      if (setting) {
+        accumulator[setting] = Number(accumulator[setting] || 0) + 1;
+      } else {
+        accumulator['Unset'] = (accumulator['Unset'] || 0) + 1;
+      }
+      return accumulator;
+    }, {});
+  };
 </script>
 
 </html>
