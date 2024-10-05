@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Eagle Eye Networks-VSP alerts report</title>
+  <link rel="shortcut icon" id="favicon-link" href="https://c000.eagleeyenetworks.com/_images/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.4.js"></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    #csv,
+    #header-info {
+      display: none;
+    }
+
+    #title h1 {
+      text-align: left;
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+    }
+
+    h3 {
+      padding-left: 20px;
+    }
+
+    input[type='number'] {
+      min-width: 50px;
+    }
+
+    #icon {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    article {
+      padding: 10px 20px;
+    }
+
+    .charts-grid {
+      width: 100%;
+      display: flex;
+      margin: 10px 0;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .charts-grid>div {
+      border-radius: 4px;
+      border: 1px solid #e3e9ef;
+      fill: #f3f7fb;
+    }
+
+    .highcharts-axis-labels text {
+      color: #606e81 !important;
+      fill: #606e81 !important;
+      font-size: 12px !important;
+      font-weight: 400 !important;
+      line-height: 18px !important;
+    }
+
+    .highcharts-root text {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .highcharts-title {
+      color: #252932 !important;
+      fill: #252932 !important;
+      font-size: 14px !important;
+      font-weight: bold !important;
+      line-height: 20px !important;
+    }
+
+    #title {
+      width: 100%;
+      background-color: #f3f7fb;
+      padding: 10px;
+    }
+
+    .highcharts-background {
+      fill: #f3f7fb;
+    }
+
+    .title-card {
+      padding: 0px 10px 10px;
+      background-color: #f3f7fb;
+    }
+
+    .title-card__title {
+      font-size: 24px;
+      color: #252932;
+      font-style: normal;
+      font-weight: bold;
+      letter-spacing: 0;
+      line-height: 32px;
+      text-align: left;
+    }
+
+    .title-card__item {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .title-card__label {
+      padding-right: 5px;
+      font-weight: bold;
+    }
+
+    #sortableTable_wrapper,
+    h2 {
+      padding: 10px 20px;
+    }
+
+    table.dataTable thead th,
+    table.dataTable thead td {
+      padding: 8px;
+      text-align: left;
+      font-size: 14px;
+      color: #606e81;
+    }
+
+    table.dataTable tbody tr td {
+      padding: 8px;
+      color: #252932;
+    }
+
+    table.dataTable tbody tr:nth-child(even) {
+      background-color: #f3f7fb;
+    }
+
+    table.dataTable tbody tr:hover {
+      background-color: #f3f7fb;
+    }
+
+    #headers {
+      background-color: #f3f7fb;
+      border-bottom: 1px solid #e3e9ef !important;
+    }
+
+    table.dataTable {
+      border-collapse: collapse;
+      width: 100% !important;
+      border: 1px solid #e3e9ef;
+    }
+
+    table.dataTable>thead>tr>th {
+      border-bottom: none;
+    }
+
+    #sortableTable {
+      max-width: 1800px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="title">
+    <div id="icon">
+      <img src="https://c000.eagleeyenetworks.com/_images/favicon.ico" alt="een logo" />
+      <h4>Eagle Eye Networks</h4>
+    </div>
+    <div id="report-header-info"></div>
+  </div>
+
+  <div id="container"></div>
+  <h3>VSP Alerts Table</h3>
+
+  <table id="sortableTable">
+    <thead id="headers"></thead>
+  </table>
+
+  <pre id="header-info">{%headerData%}<pre id="header-info">
+  <pre id="csv">{%csvData%}</pre>
+</body>
+
+<script>
+  const container = document.querySelector('#container');
+  const article = document.createElement('article');
+  const div = document.createElement('div');
+  div.setAttribute('class', 'charts-grid');
+  article.appendChild(div);
+  container.appendChild(article);
+
+  const reportHeader = document.querySelector('#report-header-info');
+
+  $(document).ready(function () {
+    const csvDataStr = $('#csv').text();
+    const headerInfo = $('#header-info').text();
+    const headerdata = csvToArrayOfObjects(headerInfo);
+    const data = csvToArrayOfObjects(csvDataStr);
+    const titleInfo = createTitleCardTemplate(headerdata);
+    reportHeader.innerHTML = titleInfo;
+
+    const headers = Object.keys(data[0]).map(function (key) {
+      return { data: key, title: key };
+    });
+
+    // initialize DataTable with the array of objects
+    $('#sortableTable').DataTable({
+      data: data,
+      columns: headers,
+    });
+
+    //constants
+    const THIRTY_DAYS = 30;
+
+    // generate graph for Alerts per time
+
+    const { series, categories } = getEventsByTime(
+      data,
+      headerdata[0].reportStartTimestamp,
+      headerdata[0].reportEndTimestamp
+    );
+
+    if (categories.length <= THIRTY_DAYS) {
+      const years = categories
+        .map((label) => new Date(label).getFullYear())
+        .filter((year, index, self) => self.indexOf(year) === index);
+
+      Highcharts.chart({
+        chart: {
+          type: 'column',
+          renderTo: generateElementForChartsGrid(container),
+        },
+        title: {
+          text: `Daily alerts count`,
+          align: 'left',
+        },
+        xAxis: {
+          type: 'datetime',
+          categories: categories,
+          labels: {
+            formatter: function () {
+              const date = new Date(this.value);
+              const day = date.getDate();
+              const month = date.toLocaleString('default', { month: 'short' });
+              return `${day} ${month}`;
+            },
+            step: 1,
+            rotation: -45,
+          },
+          lineColor: '#e6e6e6'
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: 'Number of alerts',
+          },
+          stackLabels: {
+            enabled: false,
+            style: {
+              fontWeight: 'bold',
+            },
+          },
+        },
+        tooltip: {
+          headerFormat: '<b>{point.x}</b><br/>',
+          pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+        },
+        plotOptions: {
+          column: {
+            stacking: 'normal',
+            maxPointWidth: 20,
+            dataLabels: {
+              enabled: false,
+            },
+          },
+        },
+        series: series,
+      });
+    } else {
+      const { weekCategories, weekSeries } = getEventsByWeek(
+        data,
+        headerdata[0].reportStartTimestamp,
+        headerdata[0].reportEndTimestamp
+      );
+
+      Highcharts.chart({
+        chart: {
+          type: 'column',
+          renderTo: generateElementForChartsGrid(container),
+        },
+        title: {
+          text: `Weekly alerts count`,
+          align: 'left',
+        },
+        xAxis: {
+          categories: weekCategories,
+          title: {
+            text: 'Weeks',
+          },
+          lineColor: '#e6e6e6'
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: 'Number of alerts',
+          },
+        },
+        legend: {
+          reversed: false,
+        },
+        plotOptions: {
+          series: {
+            stacking: 'normal',
+          },
+          column: {
+            maxPointWidth: 20,
+          },
+        },
+        series: weekSeries,
+      });
+    }
+
+    // generate graph for Alerts per priority
+    const alertsByPriority = getCountSettingOccurrences(
+      data,
+      (item) => item['Priority']
+    );
+
+    if (Object.keys(alertsByPriority).length) {
+      const priorityPercentage = {};
+      delete alertsByPriority.Unset;
+      const alertsTotal = Object.values(alertsByPriority).reduce(
+        (acc, val) => acc + val,
+        0
+      );
+
+      for (const key in alertsByPriority) {
+        const percentage = Number(
+          ((alertsByPriority[key] / alertsTotal) * 100).toFixed(2)
+        );
+
+        priorityPercentage[key] = percentage;
+      }
+
+      const vspAlertsMappedByPriority = Object.keys(alertsByPriority).map(
+        (key) => ({
+          name: key,
+          y: priorityPercentage[key],
+          custom: {
+            totalAlerts: alertsByPriority[key],
+          },
+        })
+      );
+
+      Highcharts.chart({
+        chart: {
+          plotBackgroundColor: undefined,
+          plotBorderWidth: undefined,
+          plotShadow: false,
+          type: 'pie',
+          renderTo: generateElementForChartsGrid(container),
+        },
+        title: {
+          text: `Alerts by priority`,
+          align: 'left',
+        },
+        tooltip: {
+          valueSuffix: '%',
+          pointFormat:
+            'Percentage: <b>{point.percentage:.1f}%</b><br>' +
+            'Alerts: <b>{point.custom.totalAlerts}</b><br>',
+        },
+        plotOptions: {
+          series: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: [
+              {
+                enabled: true,
+                distance: 20,
+              },
+              {
+                enabled: true,
+                distance: -40,
+                format: '{point.percentage:.1f}%',
+                style: {
+                  fontSize: '1em',
+                  textOutline: 'none',
+                  opacity: 0.7,
+                },
+                filter: {
+                  operator: '>',
+                  property: 'percentage',
+                  value: 5,
+                },
+              },
+            ],
+          },
+        },
+        series: [
+          {
+            type: 'pie',
+            name: 'percentage',
+            data: vspAlertsMappedByPriority,
+          },
+        ],
+      });
+    }
+  })
+
+  // helper functions to generate report
+  function csvToArrayOfObjects(csv) {
+    // split the CSV string into an array of rows
+    const rows = csv.trim().split('\n');
+
+    // extract the header and create an array of keys
+    const headers = rows[0]
+      .split(',')
+      .map((header) => header.replace(/"/g, '').trim());
+
+    const data = rows.slice(1).map((row) => {
+      const values = row
+        .split(',')
+        .map((value) => value.replace(/"/g, '').trim());
+      const obj = {};
+
+      // assign each value to its corresponding header key
+      headers.forEach((header, index) => {
+        obj[header] = values[index];
+      });
+
+      return obj;
+    });
+
+    return data;
+  }
+
+  // create title information
+  function createTitleCardTemplate(titleInfo) {
+    header = titleInfo[0];
+    let template = `
+    <div class="title-card">
+  `;
+
+    if (header.reportName) {
+      template += createReportTitle(header.reportName);
+    }
+    if (header.accountName && header.accountId) {
+      template += createAccountLine(header.accountName, header.accountId);
+    }
+    if (header.userName) {
+      template += createUserLine(header.userName);
+    }
+    if (header.createTimestamp && header.userTimeZone) {
+      template += createCreateTimestamp(
+        header.createTimestamp,
+        header.userTimeZone
+      );
+    }
+    if (header.reportStartTimestamp && header.reportEndTimestamp) {
+      template += createTimeRange(
+        header.reportStartTimestamp,
+        header.reportEndTimestamp
+      );
+    }
+
+    template += `
+      </div>
+    `;
+
+    return template;
+  }
+
+  function createReportTitle(reportName) {
+    return `<h1 class="title-card__title">${reportName}</h1>`;
+  }
+
+  function createAccountLine(accountName, accountId) {
+    return `<div class="title-card__item">
+      <span class="title-card__label">Account:</span>
+      <div class="title-card__text">${accountName} (${accountId})</div>
+      </div>`;
+  }
+
+  function createUserLine(userName) {
+    return `<div class="title-card__item">
+    <span class="title-card__label">User:</span>
+    <div class="title-card__text">${userName}</div>
+    </div>`;
+  }
+
+  function createCreateTimestamp(createTimestamp, userTimeZone) {
+    return `<div class="title-card__item">
+    <span class="title-card__label">Created:</span>
+    <div class="title-card__text">${createTimestamp} (${userTimeZone})</div>
+    </div>`;
+  }
+
+  function createTimeRange(startTimestamp, endTimestamp) {
+    return `<div class="title-card__item">
+    <span class="title-card__label">Time Range:</span>
+    <div class="title-card__text">${startTimestamp} ~ ${endTimestamp}</div>
+    </div>`;
+  }
+
+  function generateElementForChartsGrid(htmlElement) {
+    const element = document.createElement('div');
+    const chartsGrid = htmlElement.querySelector('.charts-grid');
+    element.classList.add('chart');
+    chartsGrid?.append(element);
+
+    return element;
+  }
+
+  // helper functions to generate graph
+
+  function getEventsByTime(data, reportStartTimestamp, reportEndTimestamp) {
+    const eventsCount = {};
+    const cameras = [];
+    let categories = [];
+
+    data.forEach((entry) => {
+      const timestamp = entry.Timestamp;
+      const dateString = timestamp.split('T');
+      const date = dateString[0];
+
+      const cameraName = entry['Camera Name'];
+
+      if (!eventsCount[date]) {
+        eventsCount[date] = {};
+      }
+
+      if (!eventsCount[date][cameraName]) {
+        eventsCount[date][cameraName] = 1;
+      } else {
+        eventsCount[date][cameraName]++;
+      }
+
+      if (cameras.indexOf(cameraName) === -1) {
+        cameras.push(cameraName);
+      }
+    });
+
+    categories = getDatesBetweenRange(
+      reportStartTimestamp,
+      reportEndTimestamp
+    );
+    
+    const series = cameras.map((camera) => ({
+      showInLegend: false,
+      type: 'column',
+      name: camera,
+      data: categories.map((date) => eventsCount[date]?.[camera] || 0),
+    }));
+
+    return { series, categories };
+  }
+
+  function getEventsByWeek(data, startDate, endDate) {
+    const dates = [];
+    const groupedData = {};
+
+    // generate all week ranges between startDate and endDate
+    let current = new Date(startDate);
+    const end = new Date(endDate);
+    while (current <= end) {
+      let { weekStart, weekEnd } = getWeeks(current.toString());
+      const weekKey = `${weekStart.toISOString().slice(0, 10)} to ${weekEnd
+        .toISOString()
+        .slice(0, 10)}`;
+
+      if (!groupedData[weekKey]) {
+        groupedData[weekKey] = {};
+      }
+
+      // group by weeks and dates
+      data.forEach((item) => {
+        const timestamp = item.Timestamp;
+        const dateString = timestamp.split('T')[0];
+        const date = new Date(dateString).toISOString().slice(0, 10);
+        const eventDate = new Date(date);
+
+        if (eventDate >= weekStart && eventDate <= weekEnd) {
+          if (!groupedData[weekKey][date]) {
+            groupedData[weekKey][date] = 0;
+          }
+
+          groupedData[weekKey][date]++;
+        }
+
+        if (dates.indexOf(date) === -1) {
+          dates.push(date);
+        }
+      });
+
+      current.setDate(current.getDate() + 1);
+    }
+
+    // prepare data for Highcharts
+    const weekCategories = Object.keys(groupedData);
+    const seriesData = {};
+
+    dates.forEach((date) => {
+      seriesData[date] = [];
+      weekCategories.forEach((week) => {
+        const eventCount = groupedData[week][date] || 0;
+        seriesData[date].push(eventCount);
+      });
+    });
+
+    const weekSeries = Object.keys(seriesData).map((date) => ({
+      showInLegend: false,
+      type: 'column',
+      name: date,
+      data: seriesData[date],
+    }));
+
+    return { weekCategories, weekSeries };
+  }
+
+  const getDatesBetweenRange = (startDate, endDate) => {
+    const dates = [];
+    const nextDate = new Date(startDate);
+
+    // convert startDate and endDate to ISO string format (YYYY-MM-DD)
+    endDate = new Date(endDate).toISOString().slice(0, 10);
+
+    while (nextDate.toISOString().slice(0, 10) <= endDate) {
+      const currentDate = nextDate.toISOString().slice(0, 10);
+      dates.push(currentDate);
+      nextDate.setDate(nextDate.getDate() + 1);
+    }
+
+    return dates;
+  };
+
+  const getWeeks = (current) => {
+    const date = new Date(current);
+    const currentWeekDay = date.getDay();
+    const lessDays = currentWeekDay === 0 ? 6 : currentWeekDay - 1;
+    const weekStart = new Date(date.setDate(date.getDate() - lessDays)); // start of the week Monday
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekStart.getDate() + 6); // end of the week Sunday
+
+    return { weekStart, weekEnd };
+  };
+
+  const getCountSettingOccurrences = (data, getter) => {
+    return data.reduce((accumulator, item) => {
+      const setting = getter(item);
+      if (setting) {
+        accumulator[setting] = Number(accumulator[setting] || 0) + 1;
+      } else {
+        accumulator['Unset'] = (accumulator['Unset'] || 0) + 1;
+      }
+      return accumulator;
+    }, {});
+  };
+</script>
+
+</html>
