@@ -13,58 +13,63 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
    - Creation: To get an `API_KEY` you will need an account. You can either use your existing account or create a Developer Account.
 
      - Existing account: You can create the key under your Account Settings.
-     - Developer account: You will have to verify your email address first to create your Developer Account. Expect to get an email with a shortcut to create the `API_KEY`. Click on the shortcut link to create your `API_Key` and get started writing some code.
+     - Developer account: You will have to verify your email address first to create your Developer Account. Expect to get an email with a shortcut to create the `API_KEY`. Click on the shortcut link to create your `API_KEY` and get started writing some code.
 
 ## Using the CLI
 
-### Notes
+## Setting-up of Executable File
 
-- For all commands with `noprompt` option it will skip all user confirmation prompts. This means it will also overwrite any existing files without any confirmation.
+- Extraction of file from a compressed file format
+
+  #### **In Linux:**
+
+  - There are multiple ways to extract file from a compressed file here are the step by step instruction:
+
+  - First way:
+
+    1. Point the cursor on the compressed file.
+    2. Right-click on it in-order to trigger context-menu(right-click menu).
+    3. On context menu select `Extract Here` option to extract the file in same directory or
+       Select `Extract to` option in-order to extract the file in the current directory or directory of your choice.
+
+  - Second way:
+
+    1. Point the cursor on the compressed file.
+    2. Left-Double-click on it in-order to trigger a window that shows extraction option.
+    3. Select the `Extract` button in-order to extract the file in desired directory.
+
+  - Third way:
+    1. Open the terminal in the directory where compressed file is stored.
+    2. Type-in terminal command `unzip een.zip` in-order to extract the file in the current directory.
+    ```
+    unzip een.zip
+    ```
+
+  #### **In Windows:**
+
+  - Here are the step by step instruction:
+    1. Point the cursor on the compressed file.
+    2. Right-click on it in-order to trigger context-menu(right-click menu).
+    3. On context menu select `Extract All`.
+    4. A window is triggered that shows a input-box which is used to inserts the directory path to a choosen directory.
+    5. After choosing a directory click on `Extract` button, in-order to extract the file to the choosen directory.
+
+<br/>
+
+#### Notes:
+
+- For all commands with `--no-prompt` option it will skip all user confirmation prompts. This means it will also overwrite any existing files without any confirmation.
 - Open all the CSV file outputs in google sheet or libre office as excel has formatting issues.
 - `verbose mode` : Use `--verbose` along with the commands to access the verbose mode.
 - Supported `EEN TIME FORMATS` :
+
   - 20230125062511.000
   - 2023-01-31
   - 2023-01-31T08:24:32
   - 2023-10-02T23:50:06.337+00:00
 
-## Setting-up of Executable File
-
-- Extraction of file from a compressed file format
-  #### **In Linux:**
-
-  -  There are multiple ways to extract file from a compressed file here are the step by step instruction:
-
-    - First way:
-      1. Point the cursor on the compressed file.
-      2. Right-click on it in-order to trigger context-menu(right-click menu).
-      3. On context menu select `Extract Here` option to extract the file in same directory or 
-          Select `Extract to` option in-order to extract the file in the current directory or directory of your choice.
-
-    - Second way:
-      1. Point the cursor on the compressed file.
-      2. Left-Double-click on it in-order to trigger a window that shows extraction option.
-      3. Select the `Extract` button in-order to extract the file in desired directory.
-
-    - Third way:
-      1. Open the terminal in the directory where compressed file is stored.
-      2. Type-in terminal command `unzip een.zip` in-order to extract the file in the current directory.
-        ```
-        unzip een.zip
-        ```
-  #### **In Windows:**
-
-  - Here are the step by step instruction:
-      1. Point the cursor on the compressed file.
-      2. Right-click on it in-order to trigger context-menu(right-click menu).
-      3. On context menu select `Extract All`.
-      4. A window is triggered that shows a input-box which is used to inserts the directory path to a choosen directory.
-      5. After choosing a directory click on `Extract` button, in-order to extract the file to the choosen directory.     
-
-<br/>
-
 - Execute this extracted file by mapping up the directory path of the een
-on the terminal 
+  on the terminal
 - Each command should start `./`.
 
   Examples:
@@ -72,1048 +77,1552 @@ on the terminal
   ```
   ./een --version
   ```
+
 - To check if the executable works fine
-   - Run the command:
 
-    ```
-     ./een
-    ```
-   - Output:
-   
-    ```
-    v1.2.0 20231102
-    Usage: een [command] options
+  - Run the command:
 
-    get version
+  ```
+   ./een
+  ```
 
-    Options:
-      -v, --version                              get current CLI version
-      -h, --help                                 display help for command
+  - Output:
 
-    Commands:
-      help
-      auth
-      location
-      user
-      account
-      archive
-      lpr
-      bridge
-      camera
-      download
-      update-google-config <optionName> <value>
+  ```
+  v<version number>
 
-    use een help command for detailed help instructions
+    usage: een [-v | --version] [-h | --help] <object> <command> [<args>]
 
-    ```
+    These are common een commands used in various situations:
 
-### List of commands supported:
+    auth login              login to the account
+    auth logout             logout of the account
 
-#### EEN Version
+    camera list             list all cameras
+    camera status           list status of all cameras
+
+    bridge list             list all bridges
+    bridge availability     get bridge availability
+
+    'een help' lists all the commands and options
+    'een <command> help' lists the usage with opitions and descriptions
+  ```
+
+# EEN Command Line Interface Manual
+
+## NAME
+
+`een` - A command-line tool for managing and retrieving information related to cameras, bridges, users, and more in a cloud-based environment.
+
+## SYNOPSIS
+
+```
+een [OPTIONS] <object> <command> [ARGS]
+```
+
+## DESCRIPTION
+
+The **een** CLI provides various commands to interact with cameras, bridges, users, locations, and other resources. It offers multiple options for fetching information in different formats (CSV, tree structure, etc.) and supports both standard and v3 APIs.
+
+#### Options:
+
+- **--help, -h**  
+  Displays the help information for the een command or a specific object.
+
+- **--version**  
+  Displays the current version of the een CLI.
+
+## COMMANDS
+
+### Version
 
 ```
 een --version
 ```
 
-#### EEN Help
+Displays the version of the een tool.
+
+### Help
 
 ```
 een help
 ```
 
-Note: The `een help` command shows the detailed help instructions and
-the help option `een <object> --help` shows the shorter version of help.
-
-Examples:
-
-- een help
-- een --help
-- een -h
-- een auth --help
-- een camera list --help
-
-#### EEN account login
+Shows detailed help instructions. For shorter help on a specific object, use:
 
 ```
-een auth login --username <username> --password <password> [--apikey <api key>]
+een <object> --help
 ```
 
-Note: Password should be given in quotes, as the shell might have converting issues.
-
-Example:
+## EXAMPLES
 
 ```
-een auth login --username abc@een.com --password \***\*\*\*\*\***
+een help
+een --help
+een -h
+een auth --help
+een camera list --help
 ```
 
-To obtain the API_KEY, please see [here](#environment-variables)
+# auth - Manage EEN auth
 
-#### EEN account status
+## NAME
 
-```
-een auth status --username <username> --password <password> [--apikey <api key>]
-```
+`auth` – EEN authentication commands
 
-Example
+## SYNOPSIS
 
 ```
-een auth status --username abc@een.com --password \***\*\*\*\*\***
+een auth [COMMAND] [options]
 ```
 
-#### List bridges
+## DESCRIPTION
+
+The **een auth** command provides utilities for logging in and logging out of the EEN (Eagle Eye Networks).
+
+## COMMANDS
+
+### login
+
+Log in to EEN using the provided credentials.
+
+#### Required options:
+
+- `--user-name [user name]`  
+  The username used for login.
+- `--password [password]`  
+  The password used for login.
+
+#### Optional options:
+
+- `--api-key [api key]`  
+  API key used for login.
+- `--verbose`  
+  Enable verbose output.
+
+#### Notes:
+
+- Password should be given in quotes, as the shell might have converting issues.
+
+---
+
+### logout
+
+Log out from EEN.
+
+#### Options:
+
+- `--verbose`  
+  Enable verbose output.
+
+## EXAMPLES
+
+- To login
+
+```bash
+een auth login --user-name johndoe --password secret --verbose
+```
+
+- To logout
+
+```bash
+een auth logout --verbose
+```
+
+# user - Manage Users
+
+## NAME
+
+`user` - manage and interact with users.
+
+## SYNOPSIS
 
 ```
-een bridge list
+een user [COMMAND] [OPTIONS]
 ```
 
-#### List bridges using v3 API
+## DESCRIPTION
 
-```
-een bridge list --v3
-```
+The `user` command allows you to manage users, list user permissions, and export user data in various formats.
 
-#### List cameras
+## COMMANDS
 
-```
-een camera list
-```
+### list
 
-#### List cameras using v3 API
+List users.
 
-```
-een camera list --v3
-```
+#### Options:
 
-#### List locations
+- `--csv`  
+  List all users in CSV format.
+- `--google-sheet`  
+  List users in CSV format in Google Sheets.
+- `--v3`  
+  Use v3 APIs.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--html`  
+  Generate chart in HTML file.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
 
-```
-een location list
-```
+#### Actions:
 
-#### List users
+- If `--html` is specified, generate user permission report.
+- If `--csv` and `--v3` are specified, list users in CSV format using v3.
+- If `--csv` is specified, list users in CSV format.
+- If `--google-sheet` is specified, list user permissions in Google Sheets.
+- If `--v3` is specified, list users using v3 APIs.
 
-```
+## EXAMPLES
+
+- To list all users:
+
+```bash
 een user list
 ```
 
-#### List users using v3 API
+- To list users in CSV format:
 
+```bash
+een user list --csv -f users.csv
 ```
-een user list --v3
-```
-
-#### List bridges in CSV format
-
-```
-een bridge list --csv [-f/--filename <filename>] [--noprompt]
-```
-
-Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID, Firmware Version,Number of cameras online, Default Transmit Bandwidth Mode,Default Transmit Bandwidth Mode Value (when Fixed),Default Transmit Bandwidth Mode Value Percentage of Available , Cloud Bandwidth Used Last 7 days average,Average Available Bandwidth last 7 days
-
-#### List bridges in CSV format using v3 API
-
-```
-een bridge list --csv --v3 [-f/--filename <filename>] [--noprompt]
-```
-
-Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID
-
-#### Enable bridge local rtsp metrics
-
-```
-een bridge qlstream_metrics --esn [esn] --local_rtsp_metrics [enable/disable] [--noprompt]
-```
-
-#### Pull logs from the archiver/bridge
-
-```
-een bridge qlstream_metrics --esn [esn] --performance/--events --count [count] --start_time [start_time] --end_time [end_time] --summary 
-```
-
-Example:
-
-```
-een bridge qlstream_metrics --esn 657989e --performance --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary 
-```
-
-```
-een bridge qlstream_metrics --esn 657989e --events --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary
-```
-
-#### List cameras in CSV format
-
-```
-een camera list --csv [-f/--filename <filename>] [--noprompt]
-```
-
-Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address, Firmware Version
-
-#### List cameras in CSV format with purging
-
-```
-een camera list --csv --purge -start_time [start_time] --end_time [end_time] [-f/--filename <filename>] [--noprompt]
-```
-
-Fields in camera csv: Camera ID, Bridge ID, Associated Bridge Name, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, Camera Model, Cloud Retention, Video Resolution, Minimum On Premise Retention, Maximum On Premise Retention, Cloud Preview Only?, Preview Video Resolution, Preview Transmit Mode, Full Video Transmit Mode, Camera Username, Camera Password, MAC Address, Firmware Version
-
-#### List cameras in CSV format using v3 API
-
-```
-een camera list --csv --v3 [-f/--filename <filename>] [--noprompt]
-```
-
-Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Is Shared, Owner Account Name, Location, MAC Address, Camera Model, GUID, Cloud Retention, Video Resolution
-
-
-#### List users in CSV format
-
-```
-een user list --csv [-f/--filename <filename>] [--noprompt]
-```
-
-Fields in user csv: First Name, Last Name, Email, Last Login, Permissions
-
-#### List users in CSV format using v3 API
-
-```
-een user list --csv --v3 [-f/--filename <filename>] [--noprompt]
-```
-
-Fields in user csv: First Name, Last Name, Email, Last Login, permissions_editAccounts, permissions_layoutAdministrator, permissions_administrator, permissions_viewAuditLog, permissions_createLayouts, permissions_exportUsers, permissions_editMotionAreas, permissions_editArchive, permissions_addEditSpeakers, permissions_editSpeakers, permissions_editAllCameraSettings, permissions_controlPTZ, permissions_viewPreviewVideo, permissions_turnCamerasOnOff, permissions_viewLiveVideo, permissions_viewArchive, permissions_downloadVideo, permissions_editSharing, permissions_editNoBillingDeviceSettings, permissions_editMap, permissions_editPTZStations, permissions_talkDown, permissions_editUsers, permissions_addEditBridgesCameras, permissions_upgradeEdition, Permissions_viewHistoricVideo
-
-
-#### List locations in CSV format
-
-```
-een location list --csv [-f/--filename <filename>] [--noprompt]
-```
-
-Fields in location csv: Location ID, Location Name
-
-#### List cameras based on specific tag
-
-```
-een camera list --tag <tag_name>
-```
-
-Example:
-
-```
-een camera list --tag lobby
-```
-
-#### List cameras based on specific tag using v3 API
-
-```
-een camera list --v3 --tag <tag_name>
-```
-
-Example:
-
-```
-een camera list --v3 --tag lobby
-```
-
-#### List bridges based on specific location
-
-```
-een bridge list --location <location_name>
-```
-
-Example:
-
-```
-een bridge list --location austin
-```
-
-#### List bridges based on specific location using v3 API
-
-```
-een bridge list --v3 --location <location_name>
-```
-
-Example:
-
-```
-een bridge list --v3 --location austin
-```
-
-#### List cameras based on specific location
-
-```
-een camera list --location <location_name>
-```
-
-Example:
-
-```
-een camera list --location austin
-```
-
-#### List cameras based on specific location using v3 API
-
-```
-een camera list --v3 --location <location_name>
-```
-
-Example:
-
-```
-een camera list --v3 --location austin
-```
-
-#### List bridges based on specific tag
-
-```
-een bridge list --tag <tag_name>
-```
-
-Example:
-
-```
-een bridge list --tag lobby
-```
-
-#### List bridges based on specific tag using v3 API
-
-```
-een bridge list --v3 --tag <tag_name>
-```
-
-Example:
-
-```
-een bridge list --v3 --tag lobby
-```
-
-#### List cameras based on specific status
-
-```
-een camera list --status <status>
-```
-
-Example:
-
-```
-een camera list --status "Camera on"
-```
-
-#### List bridges based on specific status
-
-```
-een bridge list --status <status>
-```
-
-Example:
-
-```
-een bridge list --status "Camera on"
-```
-
-#### List available cameras
-
-```
-een camera list --available
-```
-
-#### List available cameras using v3 API
-
-```
-een camera list --available --v3
-```
-
-#### List available bridges
-
-```
-een bridge list --available
-```
-
-#### Get camera list in tree format
-
-```
-een camera list --tree
-```
-
-#### Get camera list in tree format using v3 API
-
-```
-een camera list --tree --v3
-```
-
-
-#### Get bridge list in tree format
-
-```
-een bridge list --tree
-```
-
-#### Get bridge list in tree format using v3 API
-
-```
-een bridge list --tree --v3
-```
-
-#### Write camera list to a csv file
-
-```
-een camera list --short -f/--filename <filename> [--noprompt]
-```
-
-#### Write camera settings to a csv file
-
-```
-een camera settings --csv [-f/--filename] [filename] [--noprompt]
-```
-
-#### Get camera status
-
-```
-een camera status
-```
-
-#### Get camera status in CSV format
-
-```
-een camera status --csv [-f/--filename <filename>] [--noprompt]
-```
-
-#### Get camera video list
-
-```
-een download list --esn <esn> --start_time <start_time> --end_time <end_time>
-```
-
-Example:
-
-```
-een download list --esn 1kj6eo83 --start_time 20220826084300.000 --end_time 20220826084330.000
-```
-
-#### Get camera video download
-
-```
-een download video --esn <esn> --start_time <start_time> --end_time <end_time> --format <format> --timestamp [timezone] --output <output> [--overwrite]
-```
-
-Note:
-
-- For video download, we support both mp4 and flv format. We are writing the videos to the given output folder.
-- The timestamp option is only supported for mp4 format
-- Video download is done by batches of 5 videos at a time.
-
-Example:
-
-```
-een download video --esn 1kj6eo83 --start_time 20220826084300.000 --end_time 20220826084330.000 --format mp4 --timestamp "US/Central" --output "foldername" --overwrite
-```
-
-#### Get LPR Events
-
-```
-een lpr events --start_time <start_time> --end_time <end_time> --lp <license plate> --esn <esn>
-```
-
-Example:
-
-```
-een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of
-```
-
-#### Get LPR Events using v3 API
-
-```
-een lpr events --start_time <start_time> --end_time <end_time> --lp <license plate> --esn <esn> --v3
-```
-
-Example:
-
-```
-een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of --v3
-```
-
 
-#### Edit camera settings
+- To generate an HTML report of user permissions:
 
-```
-een camera set <esn> --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> [--noprompt]
-```
-
-Example:
-
-```
-een camera set 100jhi7 --cloud_retention_days 28 --video_resolution 3MP
-```
-
-#### Edit settings of all cameras
-
-```
-een camera set "*" --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> [--noprompt]
-```
-
-Example:
-
-```
-een camera set "*" --cloud_retention_days 28 --video_resolution 3MP
-```
-
-Note: * Should be specified in quotes, as the shell might have converting issues.
-
-#### Edit multiple camera settings
-
-```
-een camera bulk-set --esns <value1,value2> --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> [--noprompt]
-```
-
-Example:
-
-```
-een camera bulk-set --esns 100ksh9,8991jgd --cloud_retention_days 30 --video_resolution 1080P
-```
-
-#### Edit camera settings based on tags
-
-```
-een camera tag-set --tag <tag> --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> [--noprompt]
-```
-
-Example:
-
-```
-een camera tag-set --tag lobby --cloud_retention_days 28 --video_resolution 1080P
-```
-
-#### Edit multiple camera settings reading esn from csv file
-
-We can execute the command een camera list --short to generate the csv file. This output csv file will act as the input for the below command.
-
-```
-een camera multi-set --cloud_retention_days <cloud_retention_days> --video_resolution <video_resolution> -f/--filename <filename> [--noprompt]
-```
-
-Example:
-
-```
-een camera multi-set --cloud_retention_days 30 --video_resolution 3MP --filename abc.csv
-```
-
-#### Edit multiple camera settings reading esn and camera settings from csv file
-
-We can execute the command een camera settings to generate the csv file. This output csv file will act as the input for the below command.
-
-```
-een camera detailed-set -f/--filename <filename> [--noprompt]
-```
-
-Example:
-
-```
-een camera detailed-set -f abc.csv
-```
-
-#### Add camera to bridge
-
-```
-een camera add <esn> --camera_name <camera_name> --guid <guid> --location [location_id] --cloud_retention_days [cloud_retention_days] --scene [scene] --tags [tags] --username [username] --password [password] [--noprompt]
-```
-
-Example:
-
-```
-een camera add 1000red0 --camera_name "New Camera 5" --cloud_retention_days 30 --guid 5c445010-39f5-443e-8b0b-453119c5e062 --tags test
-```
-
-#### Delete camera from the bridge
-
-```
-een camera delete <esn>
-```
-
-Example:
-
-```
-een camera delete 1010red
-```
-
-#### Camera stream status csv
-
-```
-een camera streamstatus --esn [esn] --stream_type [stream_type] --start_time <start_time> --end_time <end_time> -f/--filename <filename> [--noprompt]
-```
-
-Example:
-
-```
-een camera streamstatus --esn 1010rbh --start_time 20230509062511.000 --end_time 20230509062611.000 --stream_type preview
-```
-
-Note:
-
-- stream_type can be fullvideo or preview
-- start_time can be "-1h" i.e., one hour before current time
-- end_time can be "now" i.e., current time
-
-#### List archives
-
-```
-een archive list
-```
-
-#### List archives detailed
-
-```
-een archive list --detailed
-```
-
-#### List archives in CSV format
-
-```
-een archive list --csv
-```
-
-#### List archives in a specific folder
-
-```
-een archive list --folder <folder>
-```
-
-Example:
-
-```
-een archive list --folder "snapshots/"
-```
-
-#### List archives in a specific folder detailed
-
-```
-een archive list --folder <folder> --detailed
-```
-
-Example:
-
-```
-een archive list --folder "snapshots/" --detailed
-```
-
-#### List archives in a specific folder in CSV format
-
-```
-een archive list --folder <folder> --csv
-```
-
-Example:
-
-```
-een archive list --folder "snapshots/" --csv
-```
-
-#### Archive download
-
-```
-een archive download <archive> --output <output> [--overwrite]
-```
-
-Example:
-
-```
-een archive download "snapshots/test-1.jpeg" --output "foldername" --overwrite
-```
-
-#### Preview Recording Status
-
-```
-een preview recording-status --esns <esns> --start_time <start_time> --end_time [end_time] -f/--filename <filename> [--noprompt]
-```
-
-Examples:
-
-##### For single esn
-
-```
-een preview recording-status --esns 100u4d85 --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-##### For multiple esns
-
-```
-een preview recording-status --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-##### For all esns
-
-```
-een preview recording-status --esns "*" --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-#### Note:
-
-The ISO 8601 timestamp format is a standardized format for representing date and time information.
-
-Example: "2023-10-02T23:50:06.337+00:00"
-
-#### Camera Availability
-
-```
-een camera availability --esns <esns> --start_time <start_time> --end_time [end_time] -f/--filename <filename> [--noprompt]
-```
-
-Examples:
-
-##### For single esn
-
-```
-een camera availability --esns 100u4d85 --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-##### For multiple esns
-
-```
-een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-##### For all esns
-
-```
-een camera availability --esns "*" --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-#### Camera Availability along with Preview Availability
-
-```
-een camera availability --esns <esns> --start_time <start_time> --end_time [end_time] -f/--filename <filename> [--noprompt] --preview_availability 
-```
-
-Examples:
-
-##### For single esn
-
-```
-een camera availability --esns 100u4d85 --start_time "2023-10-02T23:50:06.337+00:00" --preview_availability 
-```
-
-##### For multiple esns
-
-```
-een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time "2023-10-02T23:50:06.337+00:00" --preview_availability 
-```
-
-##### For all esns
-
-```
-een camera availability --esns "*" --start_time "2023-10-02T23:50:06.337+00:00" --preview_availability 
-```
-
-#### Bridge Availability
-
-```
-een bridge availability --esns <esns> --start_time <start_time> --end_time [end_time] -f/--filename <filename> [--noprompt]
-```
-
-Examples:
-
-##### For single esn
-
-```
-een bridge availability --esns 100u4d85 --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-##### For multiple esns
-
-```
-een bridge availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-##### For all esns
-
-```
-een bridge availability --esns "*" --start_time "2023-10-02T23:50:06.337+00:00"
-```
-
-### For Generating HTML Reports
-
-#### Bridge list report
-
-```
-een bridge list --html
-```
-
-#### Bridge list report using v3 API
-
-```
-een bridge list --html --v3
-```
-
-#### Camera list report
-
-```
-een camera list --html
-```
-
-#### Camera list report using v3 API
-
-```
-een camera list --html --v3
-```
-
-#### Bridge status report
-
-```
-een bridge status --html
-```
-
-#### Camera status report
-
-```
-een camera status --html
-```
-
-#### User permission report
-
-```
+```bash
 een user list --html
 ```
 
-### For Generating Lists In Google SpreadSheet
+# account - Manage User Accounts
 
-#### Bridge list
+## NAME
 
-```
-een bridge list --googleSheet
-```
+`account` - manage and interact with user accounts.
 
-#### Bridge list using v3 API
+## SYNOPSIS
 
 ```
-een bridge list --googleSheet --v3
+een account [COMMAND] [OPTIONS]
 ```
 
-#### Camera list
+## DESCRIPTION
 
-```
-een camera list --googleSheet
-```
+The `account` command allows you to manage reseller accounts, including listing all accounts and switching between sub-accounts.
 
-#### Camera list using v3 API
+## COMMANDS
 
-```
-een camera list --googleSheet --v3
-```
+### list
 
-#### Camera list with purging
+List all accounts of the reseller account.
 
-```
-een camera list --googleSheet --purge -start_time [start_time] --end_time [end_time]
-```
+#### Options:
 
-#### Bridge status list
+- `--verbose`  
+  Enable verbose output.
 
-```
-een bridge status --googleSheet
-```
+---
 
-#### Camera status list
+### switch
 
-```
-een camera status --googleSheet
-```
+Switch to a sub-account.
 
-#### User permission list
+#### Options:
 
-```
-een user list ---googleSheet
-```
+- `--sub-account-id [sub-account id]`  
+  Account ID to which we need to switch (required).
+- `--verbose`  
+  Enable verbose output.
 
-#### Get camera purge list
+## EXAMPLES
 
-```
-een camera purge-list -start_time [start_time] --end_time [end_time] [-f/--filename <filename>] [--noprompt]
+- To list all accounts of the reseller:
+
+```bash
+een account list --verbose
 ```
 
-Example:
+- To switch to a specific sub-account:
 
+```bash
+een account switch --sub-account-id <sub-account id> --verbose
 ```
-een camera purge-list --start_time "20231128140000.000" --end_time "20231128141000.000" -f purge-list.csv
-```
 
-```
-een camera purge-list
-```
-Note: If you haven't specify any start_time and end_time it will take last 24 hours as default timestamps.
+# archive - Manage Archives
+
+## NAME
 
-#### Preview recording status
+`archive` - manage and interact with archives.
 
+## SYNOPSIS
+
 ```
-een preview recording-status --esns <esns> --start_time <start_time> --end_time [end_time] --googleSheet
+een archive [COMMAND] [OPTIONS]
 ```
 
-Examples:
+## DESCRIPTION
 
-##### For single esn
+The `archive` command allows you to manage archives, including listing archives and downloading specific archives.
 
-```
-een preview recording-status --esns 100u4d85 --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
-```
+## COMMANDS
 
-##### For multiple esns
+### list
 
-```
-een preview recording-status --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
-```
+Get the list of available archives.
 
-##### For all esns
+#### Options:
 
-```
-een preview recording-status --esns "*" --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
-```
+- `--detailed`  
+  Get a detailed archive list.
+- `--csv`  
+  List all archives in CSV format.
+- `--target-directory [target directory]`  
+  Specify the name of the directory where the output will be saved.
 
-#### Note:
+- `--verbose`  
+  Enable verbose output.
 
-The ISO 8601 timestamp format is a standardized format for representing date and time information.
+---
 
-Example: "2023-10-02T23:50:06.337+00:00"
+### download
 
-#### Camera Availability
+Download a specific archive.
 
-```
-een camera availability --esns <esns> --start_time <start_time> --end_time [end_time] --googleSheet
-```
-Note: This command only support a maximum of 200 devices and seven days of time range.
+#### Arguments:
 
-Examples:
+- `<archive>`  
+  The name of the archive to download (required).
 
-##### For single esn
+#### Required options:
 
-```
-een camera availability --esns 100u4d85 --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
-```
+- `--target-directory [target-directory]`  
+  Specify the name of the directory where the output will be saved.
 
-##### For multiple esns
+#### Optional options:
 
-```
-een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
-```
+- `--overwrite`  
+  Overwrite already downloaded archive.
+- `--verbose`  
+  Enable verbose output.
 
-##### For all esns
+## EXAMPLES
 
+- To list available archives:
+
+```bash
+een archive list --detailed --csv --target-directory /path/to/output
 ```
-een camera availability --esns "*" --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
+
+- To download a specific archive:
+
+```bash
+een archive download <archive> --target-directory /path/to/save --overwrite --verbose
 ```
 
-#### Camera Availability along with Preview Availability
+# camera - Manage Cameras
 
+## NAME
+
+`camera` - Manage camera settings and operations
+
+## SYNOPSIS
+
 ```
-een camera availability --esns <esns> --start_time <start_time> --end_time [end_time] --googleSheet --preview_availability 
+een camera [COMMAND] [OPTIONS]
 ```
 
-Examples:
+## COMMANDS
 
-##### For single esn
+### list
 
-```
-een camera availability --esns 100u4d85 --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet --preview_availability 
+List cameras.
+
+#### Options:
+
+- `--csv`  
+  List cameras in CSV format.
+- `--tree`  
+  List cameras and associated bridges in tree format.
+- `--tags [tags]`  
+  List cameras based on the given tag.
+- `--available`  
+  List available cameras.
+- `--locations [locations]`  
+  List cameras in a given location.
+- `--status [status]`  
+  List cameras with a specific status.
+- `--short`  
+  List camera name and ESN in CSV format to the given file.
+- `--html`  
+  Generate chart in HTML file.
+- `--google-sheet`  
+  List bridges in CSV format in Google Sheet.
+- `--purge`  
+  The `--purge` option only exists with either `--csv` or `--google-sheet`.
+- `--start-time [start time]`  
+  Video start time.
+- `--end-time [end time]`  
+  Video end time.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
+- `--v3`  
+  Use v3 APIs.
+
+---
+
+### status
+
+List status of all cameras.
+
+#### Options:
+
+- `--csv`  
+  List camera status in CSV format.
+- `--html`  
+  Generate chart in HTML file.
+- `--google-sheet`  
+  List camera status in CSV format in Google Sheet.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
+
+---
+
+### settings
+
+Get all the camera settings.
+
+#### Required options:
+
+- `--csv`  
+  List camera settings in CSV format.
+
+#### Optional options:
+
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
+
+---
+
+### set
+
+Edit a single camera's settings.
+
+#### Arguments:
+
+- `<esn>`  
+  Camera ESN.
+
+#### Options:
+
+- `--cloud-retention-days [cloud retention days]`  
+  Cloud retention days.
+- `--video-resolution [video resolution]`  
+  Video resolution.
+- `--bridge-target-days [bridge target days]`  
+  Bridge target days.
+- `--local-retention-days [local retention days]`  
+  Local retention days.
+- `--preview-resolution [preview resolution]`  
+  Preview resolution.
+- `--preview-transmit-mode [preview transmit mode]`  
+  Preview transmit mode.
+- `--video-transmit-mode [video transmit mode]`  
+  Video transmit mode.
+- `--video-quality [video quality]`  
+  Video quality.
+- `--tags [tags]`  
+  Tags.
+- `--user-name [user name]`  
+  Username.
+- `--password [password]`  
+  Password.
+- `--aspect-ratio [aspect ratio]`  
+  Preview aspect ratio.
+- `--video-capture-mode [video capture mode]`  
+  When to record video.
+- `--preview-interval-ms [preview interval ms]`  
+  Preview interval rate in milliseconds.
+- `--preview-quality [preview quality]`  
+  Preview quality.
+- `--preview-only-cloud-retention [preview only cloud retention]`  
+  Preview only cloud retention.
+- `--audio-enable`  
+  Enable audio.
+- `--audio-disable`  
+  Disable audio.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
+
+---
+
+### bulkset
+
+Edit multiple camera settings.
+
+#### Required options:
+
+- `--esns [esns]`  
+  camera esns which is camera ID
+
+#### Optional options:
+
+- `--cloud-retention-days [cloud retention days]`  
+  cloud retention days
+- `--video-resolution [video resolution]`  
+  video resolution
+- `--bridge-target-days [bridge target days]`  
+  bridge target days
+- `--local-retention-days [local retention days]`  
+  local retention days
+- `--preview-resolution [preview resolution]`  
+  preview resolution
+- `--preview-transmit-mode [preview transmit mode]`  
+  preview transmit mode
+- `--video-transmit-mode [video transmit mode]`  
+  video transmit mode
+- `--video-quality [video quality]`  
+  video quality
+- `--tags [tags]`  
+  tags
+- `--user-name [user name]`  
+  username
+- `--password [password]`  
+  password
+- `--aspect-ratio [aspect ratio]`  
+  preview aspect ratio
+- `--video-capture-mode [video capture mode]`  
+  when to record video
+- `--preview-interval-ms [preview interval ms]`  
+  preview interval rate in milliseconds
+- `--preview-quality [preview quality]`  
+  preview quality
+- `--preview-only-cloud-retention [preview only cloud retention]`  
+  preview only cloud retention
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+- `--audio-enable`  
+  audio enable
+- `--audio-disable`  
+  audio disable
+
+---
+
+### tagset
+
+Edit camera settings based on a specific tag.
+
+#### Required options:
+
+- `--tag [tag]`  
+  camera tag
+
+#### Optional options:
+
+- `--cloud-retention-days [cloud retention days]`  
+  cloud retention days
+- `--video-resolution [video resolution]`  
+  video resolution
+- `--bridge-target-days [bridge target days]`  
+  bridge target days
+- `--local-retention-days [local retention days]`  
+  local retention days
+- `--preview-resolution [preview resolution]`  
+  preview resolution
+- `--preview-transmit-mode [preview transmit mode]`  
+  preview transmit mode
+- `--video-transmit-mode [video transmit mode]`  
+  video transmit mode
+- `--video-quality [video quality]`  
+  video quality
+- `--tags [tags]`  
+  tags
+- `--user-name [user name]`  
+  username
+- `--password [password]`  
+  password
+- `--aspect-ratio [aspect ratio]`  
+  preview aspect ratio
+- `--video-capture-mode [video capture mode]`  
+  when to record video
+- `--preview-interval-ms [preview interval ms]`  
+  preview interval rate in milliseconds
+- `--preview-quality [preview quality]`  
+  preview quality
+- `--preview-only-cloud-retention [preview only cloud retention]`  
+  preview only cloud retention
+- `--audio-enable`  
+  audio enable
+- `--audio-disable`  
+  audio disable
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+
+---
+
+### multiset
+
+Edit all camera settings.
+
+#### Options:
+
+- `--cloud-retention-days [cloud retention days]`  
+  cloud retention days
+- `--video-resolution [video resolution]`  
+  video resolution
+- `--bridge-target-days [bridge target days]`  
+  bridge target days
+- `--local-retention-days [local retention days]`  
+  local retention days
+- `--preview-resolution [preview resolution]`  
+  preview resolution
+- `--preview-transmit-mode [preview transmit mode]`  
+  preview transmit mode
+- `--video-transmit-mode [video transmit mode]`  
+  video transmit mode
+- `--video-quality [video quality]`  
+  video quality
+- `--tags [tags]`  
+  tags
+- `--user-name [user name]`  
+  username
+- `--password [password]`  
+  password
+- `--aspect-ratio [aspect ratio]`  
+  preview aspect ratio
+- `--video-capture-mode [video capture mode]`  
+  when to record video
+- `--preview-interval-ms [preview interval ms]`  
+  preview interval rate in milliseconds
+- `--preview-quality [preview quality]`  
+  preview quality
+- `--preview-only-cloud-retention [preview only cloud retention]`  
+  preview only cloud retention
+- `--audio-enable`  
+  audio enable
+- `--audio-disable`  
+  audio disable
+- `-f, --file-name [file name]`  
+  specify the name of the file where the output will be saved (required)
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+
+---
+
+### detailedset
+
+Edit camera settings taking values from a CSV file.
+
+#### Required options:
+
+- `-f, --file-name [file name]`  
+  specify the name of the CSV file
+
+#### Optional options:
+
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+
+---
+
+### delete
+
+Delete a camera from the bridge.
+
+#### Argument:
+
+- `<esn>`  
+  esn of the camera (required)
+
+#### Options:
+
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+
+---
+
+### add
+
+Add camera to bridge.
+
+#### Argument:
+
+- `<esn>`  
+  esn of the bridge to which the camera is added
+
+#### Required options:
+
+- `--camera-name [camera name]`  
+  name of the camera
+- `--guid [guid]`  
+  guid of the camera
+
+#### Optional options:
+
+- `--cloud-retention-days [cloud retention days]`  
+  cloud retention days
+- `--scene [scene]`  
+  scene
+- `--tags [tags]`  
+  tags
+- `--user-name [user name]`  
+  username
+- `--password [password]`  
+  password
+- `--location [location]`  
+  location id
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+
+---
+
+### streamstatus
+
+Get camera stream status.
+
+#### Arguments:
+
+- `<esns>`  
+  esns of the camera
+
+#### Required options:
+
+- `--start-time [start time]`  
+  camera stream start time
+- `--end-time [end time]`  
+  camera stream end time
+
+#### Optional options:
+
+- `--stream-type [stream type]`  
+  stream type of the camera
+- `-f, --file-name [file name]`  
+  specify the name of the file where the output will be saved
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+
+#### Notes:
+
+- stream-type can be **"fullvideo"** or **"preview"**
+- start-time can be **"-1h"** i.e., one hour before current time
+- end-time can be **"now"** i.e., current time
+
+---
+
+### purgelist
+
+Get camera purging and duty cycle.
+
+#### Options:
+
+- `--start-time [start time]`  
+  purge start time
+- `--end-time [end time]`  
+  purge end time
+- `-f, --file-name [file name]`  
+  specify the name of the file where the output will be saved
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+
+#### Notes:
+
+- If you haven't specified any start-time and end-time it will take the last 24 hours as default timestamps.
+
+---
+
+### availability
+
+Get camera availability.
+
+#### Required options:
+
+- `--esns [esns]`  
+  esns of the camera
+
+#### Optional options:
+
+- `--start-time [start time]`  
+  video start time
+- `--end-time [end time]`  
+  video end time
+- `-f, --file-name [file name]`  
+  specify the name of the file where the output will be saved
+- `--google-sheet`  
+  list camera availability in CSV format in Google Sheets
+- `--preview-availability`  
+  get preview recording status along with camera availability
+- `--no-prompt`  
+  skip all user confirmation prompts
+- `--verbose`  
+  enable verbose output
+
+#### Notes:
+
+- This command only supports a maximum of 200 devices and seven days of time range.
+
+# bridge - Manage Bridges
+
+## NAME
+
+`bridge` - manage and interact with bridges and associated cameras.
+
+## SYNOPSIS
+
+```
+een bridge [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `bridge` command allows you to manage bridges, list their status, check availability, pull logs, and update camera settings.
+
+## COMMANDS
+
+### list
+
+List all bridges.
+
+#### Options:
+
+- `--csv`  
+  List all bridges in CSV format.
+- `--tree`  
+  List bridges and associated cameras in tree format.
+- `--available`  
+  List discovered cameras that are not yet attached.
+- `--locations [locations]`  
+  List bridges in a given location.
+- `--tags [tags]`  
+  List bridges based on the given tag.
+- `--status [status]`  
+  List bridges with a specific status.
+- `--html`  
+  Generate chart in HTML file.
+- `--google-sheet`  
+  List bridges in CSV format in Google Sheet.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
+- `--v3`  
+  Use v3 APIs.
+
+#### Actions:
+
+- If `--html` is specified and `--v3`, generate bridge list report using v3.
+- If `--csv` is specified and `--v3`, list bridges in CSV format using v3.
+- Handle other combinations of options to perform various listing and reporting tasks.
+
+---
+
+### status
+
+List bridge status.
+
+#### Options:
+
+- `--html`  
+  Generate chart in HTML file.
+- `--google-sheet`  
+  List bridges in CSV format in Google Sheet.
+- `--verbose`  
+  Enable verbose output.
+
+---
+
+### availability
+
+Get bridge availability.
+
+#### Required options:
+
+- `--esns [esns]`  
+  ESN of the bridge.
+
+#### Options:
+
+- `--start-time [start time]`  
+  Video start time.
+- `--end-time [end time]`  
+  Video end time.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--google-sheet`  
+  List bridge availability in CSV format in Google Sheet.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
+
+---
+
+### qlstreammetrics
+
+Pull logs from the archiver/bridge.
+
+#### Required options:
+
+- `--esns [esns]`  
+  ESNs of the bridge (required).
+
+#### Optional options:
+
+- `--performance`  
+  Performance of the bridge.
+- `--events`  
+  Events of the bridge.
+- `--count [count]`  
+  Number of annotations to return.
+- `--start-time [start time]`  
+  Start time.
+- `--end-time [end time]`  
+  End time.
+- `--summary`  
+  Get summarized data.
+- `--local-rtsp-metrics [enable/disable]`  
+  Enable or disable metric set.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
+
+---
+
+### updatecameras
+
+Update all cameras under the bridge(s).
+
+#### Required options:
+
+- `--esns [esns]`  
+  ESN of the bridge (required).
+
+#### Optional options:
+
+- `--cloud-retention-days [cloud retention days]`  
+  Cloud retention days.
+- `--video-resolution [video resolution]`  
+  Video resolution.
+- `--bridge-target-days [bridge target days]`  
+  Bridge target days.
+- `--local-retention-days [local retention days]`  
+  Local retention days.
+- `--preview-resolution [preview resolution]`  
+  Preview resolution.
+- `--preview-transmit-mode [preview transmit mode]`  
+  Preview transmit mode.
+- `--video-transmit-mode [video transmit mode]`  
+  Video transmit mode.
+- `--video-quality [video quality]`  
+  Video quality.
+- `--tags [tags]`  
+  Tags.
+- `--user-name [user name]`  
+  Username.
+- `--password [password]`  
+  Password.
+- `--aspect-ratio [aspect ratio]`  
+  Preview aspect ratio.
+- `--video-capture-mode [video capture mode]`  
+  When to record video.
+- `--preview-interval-ms [preview interval ms]`  
+  Preview interval rate in milliseconds.
+- `--preview-quality [preview quality]`  
+  Preview quality.
+- `--preview-only-cloud-retention [preview only cloud retention]`  
+  Preview only cloud retention.
+- `--audio-enable`  
+  Audio enable.
+- `--audio-disable`  
+  Audio disable.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
+
+## EXAMPLES
+
+- To list all bridges:
+
+```bash
+een bridge list
 ```
 
-##### For multiple esns
+- To check the status of a specific bridge:
 
+```bash
+een bridge status --html
 ```
-een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet --preview_availability 
+
+- To get availability information for a bridge:
+
+```bash
+een bridge availability --esns [esns] --start-time [start time] --end-time [end time]
 ```
+
+# location - Manage Locations
+
+## NAME
+
+`location` - manage and interact with locations.
 
-##### For all esns
+## SYNOPSIS
 
 ```
-een camera availability --esns "*" --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet --preview_availability 
+een location [COMMAND] [OPTIONS]
 ```
 
-#### Note:
+## DESCRIPTION
 
-The ISO 8601 timestamp format is a standardized format for representing date and time information.
+The `location` command allows you to manage locations, including listing all available locations.
 
-Example: "2023-10-02T23:50:06.337+00:00"
+## COMMANDS
 
+### list
 
-#### Bridge Availability
+List all locations.
 
-```
-een bridge availability --esns <esns> --start_time <start_time> --end_time [end_time] --googleSheet
-```
+#### Options:
+
+- `--csv`  
+  List all locations in CSV format.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--verbose`  
+  Enable verbose output.
 
-Examples:
+#### Actions:
 
-##### For single esn
+- List locations with options for CSV format, file output, skipping prompts, and verbose output as specified.
 
+## EXAMPLES
+
+- To list all locations in CSV format:
+
+```bash
+een location list --csv --file-name locations.csv
 ```
-een bridge availability --esns 100u4d85 --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
+
+- To list locations without prompting for confirmation:
+
+```bash
+een location list --no-prompt --verbose
 ```
+
+# video - Manage Camera Videos
+
+## NAME
 
-##### For multiple esns
+`video` - manage and interact with videos from cameras.
 
+## SYNOPSIS
+
 ```
-een bridge availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
+een video [COMMAND] [OPTIONS]
 ```
+
+## DESCRIPTION
+
+The `video` command allows you to download videos from cameras, list available videos, and check the status of preview recordings.
+
+## COMMANDS
+
+### download
+
+Download video from the camera.
+
+#### Required options:
+
+- `--esn [esn]`  
+  ESN of the camera.
+- `--start-time [start time]`  
+  Video start time.
+- `--end-time [end time]`  
+  Video end time.
+- `--format [format]`  
+  Video format.
+- `--target-directory [target-directory]`  
+  Specify the name of the directory where the output will be saved.
+
+#### Optional options:
+
+- `--timezone [timezone]`  
+  Timezone.
+- `--overwrite`  
+  Overwrite already downloaded video.
+- `--verbose`  
+  Enable verbose output.
+
+#### Notes:
+
+- For video download, support both mp4 and FLV format.
+- The timezone option is only supported for mp4 format.
+- Video download is done by batches of 5 videos at a time.
+
+#### Actions:
+
+- Downloads the video from the specified camera if all required options are provided.
+
+---
+
+### list
+
+Get camera video list.
+
+#### Required options:
 
-##### For all esns
+- `--esn [esn]`  
+  ESN of the camera.
+- `--start-time [start time]`  
+  Video start time.
+- `--end-time [end time]`  
+  Video end time.
 
+#### Optional options:
+
+- `--verbose`  
+  Enable verbose output.
+
+#### Actions:
+
+- Lists videos available from the specified camera within the given time frame.
+
+---
+
+### previewrecordingstatus
+
+Get the status of preview recording.
+
+#### Required options:
+
+- `--esns [esns]`  
+  ESNs of the camera.
+- `--start-time [start time]`  
+  Video start time.
+
+#### Optional options:
+
+- `--end-time [end time]`  
+  Video end time.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+- `--google-sheet`  
+  List bridges in CSV format in Google Sheets.
+- `--verbose`  
+  Enable verbose output.
+
+#### Notes:
+
+- The ISO 8601 timestamp format is a standardized format for representing data and time information (Example: "2023-10-02T23:50:06.337+00:00")
+
+#### Actions:
+
+- If ESNs and start time are provided, it checks the preview recording status. If the `--google-sheet` option is provided, the status will be listed in Google Sheets.
+
+## EXAMPLES
+
+- To download a video from a camera:
+
+```bash
+een video download --esn 123456 --start-time "2024-10-01T00:00:00Z" --end-time "2024-10-01T01:00:00Z" --format mp4 --target-directory /path/to/save
 ```
-een bridge availability --esns "*" --start_time "2023-10-02T23:50:06.337+00:00" --googleSheet
-``` 
 
-#### EEN account Logout
+- To list videos from a camera:
 
+```bash
+een video list --esn 123456 --start-time "2024-10-01T00:00:00Z" --end-time "2024-10-01T01:00:00Z" --verbose
 ```
-een auth logout
+
+- To check the status of a preview recording:
+
+```bash
+een video previewrecordingstatus --esns 123456 --start-time "2024-10-01T00:00:00Z" --end-time "2024-10-01T01:00:00Z" --verbose
 ```
+
+# lpr - Manage License Plate Recognition (LPR) Events
+
+## NAME
 
-### For Reseller Account
+`lpr` - manage and retrieve License Plate Recognition events.
 
-#### List accounts
+## SYNOPSIS
 
 ```
-een account list
+een lpr events [OPTIONS]
 ```
+
+## DESCRIPTION
+
+The `lpr events` command allows you to retrieve LPR events within a specified time frame. It supports filtering by license plate number and camera ID.
+
+## COMMANDS
+
+### events
+
+Get License Plate Recognition events.
+
+#### Required options:
+
+- `--start-time [start time]`  
+  Specify the start time for the events retrieval.
 
-Example:
+- `--end-time [end time]`  
+  Specify the end time for the events retrieval.
 
+#### Optional options:
+
+- `--lp [license plate]`  
+  Filter events by license plate number.
+
+- `--esn [esn]`  
+  Specify the camera ESN (Electronic Serial Number), which is the camera ID.
+
+- `--verbose`  
+  Enable verbose output.
+
+- `--v3`  
+  Use version 3 of the API for retrieving events.
+
+#### Actions:
+
+- If `--v3` is specified along with both `--start-time` and `--end-time`, it retrieves LPR events using version 3 of the API.
+- If only the start and end times are specified, it retrieves LPR events using the default API.
+
+## EXAMPLES
+
+- To get LPR events for a specific time frame:
+
+```bash
+een lpr events --start-time "2024-10-01T00:00:00Z" --end-time "2024-10-01T23:59:59Z"
 ```
-een account list
+
+- To get LPR events for a specific license plate:
+
+```bash
+een lpr events --start-time "2024-10-01T00:00:00Z" --end-time "2024-10-01T23:59:59Z" --lp "ABC123"
 ```
+
+# vsp - Manage Vehicle Surveillance Package (VSP) Events and Alerts
+
+## NAME
 
-#### Switch account to `END_USER`
+`vsp` - manage and retrieve Vehicle Surveillance Processing events and alerts.
 
+## SYNOPSIS
+
 ```
-een account switch --subaccount_id <subaccount_id>
+een vsp [COMMAND] [OPTIONS]
 ```
+
+## DESCRIPTION
+
+The `vsp` command allows you to manage and retrieve VSP events and alerts based on various parameters such as time, vehicle characteristics, and alert types.
+
+## COMMANDS
+
+### listevents
+
+Get VSP events.
+
+#### Options
+
+- `--start-time [start time]`  
+  Specify the start time for the events retrieval.
+
+- `--end-time [end time]`  
+  Specify the end time for the events retrieval.
+
+- `--lp [lp]`  
+  Filter events by license plate number.
+
+- `--esns [esns]`  
+  Specify camera ESNs (Electronic Serial Numbers).
+
+- `--makes [makes]`  
+  Filter by vehicle makes.
+
+- `--locations [locations]`  
+  Filter by location name.
+
+- `--colors [colors]`  
+  Filter by vehicle colors.
+
+- `--body-types [types]`  
+  Filter by vehicle body types.
+
+- `--directions [directions]`  
+  Specify the direction of the vehicle.
+
+- `--access-type [access type]`  
+  Specify the type of access.
+
+- `--html`  
+  Generate a chart in an HTML file.
+
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+
+- `--verbose`  
+  Enable verbose output.
+
+#### Notes:
+
+- If you haven't specified any start-time and end-time it will take last 24 hours as default timestamps.
+
+#### Actions:
+
+- If `--html` is specified, it generates a report of VSP events.
+- If not, it retrieves VSP events and saves them according to the specified options.
+
+---
+
+### listalerts
+
+Get VSP alerts.
+
+#### Options
+
+- `--start-time [start time]`  
+  Specify the start time for the alerts retrieval.
+
+- `--end-time [end time]`  
+  Specify the end time for the alerts retrieval.
+
+- `--esns [esns]`  
+  Specify the camera ESN (Electronic Serial Number).
+
+- `--locations [locations]`  
+  Specify the name of the location.
+
+- `--allowed-vehicle`  
+  Alert type: allowed vehicle.
+
+- `--denied-vehicle`  
+  Alert type: denied vehicle.
+
+- `--count-of-license-plate`  
+  Alert type: count of license plate.
+
+- `--hotlist`  
+  Alert type: hotlist.
+
+- `--unregistered-vehicle`  
+  Alert type: unregistered vehicle.
+
+- `--watch-vehicle`  
+  Alert type: watch vehicle.
+
+- `--html`  
+  Generate a chart in an HTML file.
+
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+
+- `--no-prompt`  
+  Skip all user confirmation prompts.
 
-Example:
+- `--verbose`  
+  Enable verbose output.
 
+#### Notes:
+
+- If you haven't specified any start-time and end-time it will take last 24 hours as default timestamps.
+
+#### Actions:
+
+- If `--html` is specified, it generates a report of VSP alerts.
+- If not, it retrieves VSP alerts and saves them according to the specified options.
+
+## EXAMPLES
+
+- To get VSP events for a specific time frame:
+
+```bash
+een vsp listevents --start-time "2024-10-01T00:00:00Z" --end-time "2024-10-01T23:59:59Z"
 ```
-een account switch --subaccount_id 00001106
+
+- To get VSP alerts for allowed vehicles:
+
+```bash
+een vsp listalerts --start-time "2024-10-01T00:00:00Z" --end-time "2024-10-01T23:59:59Z" --allowed-vehicle
 ```
+
+# pos - Manage Point of Sale (POS) Events
 
-#### Switch back to `RESELLER_ACCOUNT`
+## NAME
 
+`pos` - manage and retrieve Point of Sale events.
+
+## SYNOPSIS
+
 ```
-een account switch
+een pos listevents [OPTIONS]
 ```
+
+## DESCRIPTION
+
+The `pos` command allows you to manage and retrieve POS events based on various parameters such as time, transaction details, and location.
+
+## COMMANDS
+
+### listevents
+
+Get POS events.
+
+#### Options
+
+- `--start-time [start time]`  
+  Specify the start time for events retrieval.
+
+- `--end-time [end time]`  
+  Specify the end time for events retrieval.
+
+- `--locations [locations]`  
+  Specify the name of the location.
+
+- `--transaction-type [transaction type]`  
+  Specify the type of the transaction.
+
+- `--net-amount-min [net amount min]`  
+  Specify the minimum net amount.
+
+- `--net-amount-max [net amount max]`  
+  Specify the maximum net amount.
+
+- `--employee-id [employee id]`  
+  Specify the ID of the employee.
+
+- `--discount-min [discount min]`  
+  Specify the minimum discount in percentage.
+
+- `--discount-max [discount max]`  
+  Specify the maximum discount in percentage.
+
+- `--bill-number [bill number]`  
+  Specify the bill number.
 
-Example:
+- `--flagged`  
+  Retrieve flagged transactions.
 
+- `--html`  
+  Generate a chart in an HTML file.
+
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+
+- `--no-prompt`  
+  Skip all user confirmation prompts.
+
+- `--verbose`  
+  Enable verbose output.
+
+#### Notes:
+
+- If you haven't specified any start-time and end-time it will take last 24 hours as default timestamps.
+
+#### Actions:
+
+- If `--html` is specified, it generates a report of POS events.
+- If not, it retrieves POS events and saves them according to the specified options.
+
+## EXAMPLES
+
+- To get POS events for a specific time frame:
+
+```bash
+een pos listevents --start-time "2024-10-01T00:00:00Z" --end-time "2024-10-01T23:59:59Z"
 ```
-een account switch
+
+- To get flagged POS transactions:
+
+```bash
+een pos listevents --flagged
 ```
+
+# googleconfig - Update Google Configuration Options
+
+## NAME
 
-### Update Values in the Google Config File
+`googleconfig` - update configuration options for Google settings.
 
+## SYNOPSIS
+
 ```
-een update-google-config <name> -- <value>
+een googleconfig update <option name> <value>
 ```
 
-Example:
+## DESCRIPTION
 
-```
-een update-config "driveFolderID" -- "1giou_ghlihbZyUpwCx"
+The `googleconfig` command allows you to update specific configuration options related to Google settings.
+
+## COMMANDS
+
+### update
+
+Update google config option values
+
+#### Arguments:
+
+- `<option name>`
+  The name of the configuration option that needs to be updated.
+
+- `<value>`
+
+The new value for the specified option. This value is parsed as a JSON string.
+
+#### Action:
+
+The action processes the provided option name and value, parsing the value as JSON and updating the Google configuration file accordingly.
+
+## EXAMPLES
+
+To update a Google configuration option:
+
+```bash
+een googleconfig update "api_key" "your_api_key_value"
 ```
 
-### For Google Sheets commands
+# For Google Sheets commands
 
 #### Generate Credentials for accessing google sheets and google drive
 
@@ -1190,7 +1699,8 @@ Client email is the email that you get while initializing the project in google 
 6. Enable Google Sheets API by clicking on the `ENABLE` button
 
 ### Note:
- While executing google sheets commands, if you encounter any error messages like:
+
+While executing google sheets commands, if you encounter any error messages like:
 
 ```
  errors: [
@@ -1202,23 +1712,23 @@ Client email is the email that you get while initializing the project in google 
     }
   ]
 
- ``` 
+```
 
- This error indicates that you are not `enabled` Google Sheets API for your service account.
+This error indicates that you are not `enabled` Google Sheets API for your service account.
 
- ```
- errors: [
-    {
-      message: 'Google Drive API has not been used in project 886039128663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=886039128663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
-      domain: 'usageLimits',
-      reason: 'accessNotConfigured',
-      extendedHelp: 'https://console.developers.google.com'
-    }
-  ]
+```
+errors: [
+   {
+     message: 'Google Drive API has not been used in project 886039128663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=886039128663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
+     domain: 'usageLimits',
+     reason: 'accessNotConfigured',
+     extendedHelp: 'https://console.developers.google.com'
+   }
+ ]
 
- ```
- 
- This error indicates that you are not `enabled` Google Drive API for your service account.
+```
+
+This error indicates that you are not `enabled` Google Drive API for your service account.
 
 To fix the same, please follow the steps above for enabling GoogleSheet API and Google Drive API
 
@@ -1237,33 +1747,35 @@ Replace these values with your credentials, you will be able to get the google s
 #### To update the google config values, you can also use the command:
 
 ```
-een update-google-config <name> -- <value>
+een googleconfig update <name> -- <value>
 ```
 
 Example:
 
 ```
-een update-config "driveFolderID" -- "1giou_ghlihbZyUpwCx"
+een googleconfig update "driveFolderID" -- "1giou_ghlihbZyUpwCx"
 ```
 
 ### Camera settings that can be edited:
 
-1. cloud_retention_days - [Cloud retention]
-2. video_resolution - [Video resolution]
-3. bridge_target_days - [Local retention - Min]
-4. local_retention_days - [Local retention - Max]
-5. preview_resolution - [Preview resolution]
-6. preview_transmit_mode - [Preview transmit mode]
-7. video_transmit_mode - [Video transmit mode]
-8. video_quality - [Full Video quality]
+1. cloud-retention-days - [Cloud retention]
+2. video-resolution - [Video resolution]
+3. bridge-target-days - [Local retention - Min]
+4. local-retention-days - [Local retention - Max]
+5. preview-resolution - [Preview resolution]
+6. preview-transmit-mode - [Preview transmit mode]
+7. video-transmit-mode - [Video transmit mode]
+8. video-quality - [Full Video quality]
 9. tags - [Tags]
-10. username - [Camera username]
+10. user-name - [Camera username]
 11. password - [Camera password]
-12. aspect_ratio- [Preview aspect ratio]
-13. video_capture_mode - [Preview Record when]
-14. preview_interval_ms - [Preview update rate]
-15. preview_quality - [Preview quality]
-16. preview_only_cloud_retention - [Cloud Preview Only (PR1)]
+12. aspect-ratio- [Preview aspect ratio]
+13. video-capture-mode - [Preview Record when]
+14. preview-interval-ms - [Preview update rate]
+15. preview-quality - [Preview quality]
+16. preview-only-cloud-retention - [Cloud Preview Only (PR1)]
+17. audio-enable - [Enable audio if available]
+18. audio-disable - [Disable audio if available]
 
 Note:
 
@@ -1271,7 +1783,7 @@ Note:
 
 ### Bridge settings that can be edited:
 
-1.local_rtsp_metrics - [Bridge rtsp metrics]
+1.local-rtsp-metrics - [Bridge rtsp metrics]
 
 ### Available camera status
 

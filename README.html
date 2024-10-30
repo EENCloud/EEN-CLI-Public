@@ -1,716 +1,2366 @@
 <h1>Introduction</h1>
 <h2>Latest CLI Version</h2>
-<p>The latest CLI release version: <img src="https://img.shields.io/github/v/release/EENCloud/EEN-CLI-Public" alt="Latest Release"></p>
+<p>
+  The latest CLI release version:
+  <img
+    src="https://img.shields.io/github/v/release/EENCloud/EEN-CLI-Public"
+    alt="Latest Release"
+  />
+</p>
 <h2>Environment variables</h2>
 <p>&lt;a name=&quot;environment-variables&quot;&gt;&lt;/a&gt;</p>
 <ol>
-<li>
-<p><code>API_KEY</code></p>
-<ul>
-<li>
-<p>Creation: To get an <code>API_KEY</code> you will need an account. You can either use your existing account or create a Developer Account.</p>
-<ul>
-<li>Existing account: You can create the key under your Account Settings.</li>
-<li>Developer account: You will have to verify your email address first to create your Developer Account. Expect to get an email with a shortcut to create the <code>API_KEY</code>. Click on the shortcut link to create your <code>API_Key</code> and get started writing some code.</li>
-</ul>
-</li>
-</ul>
-</li>
+  <li>
+    <p><code>API_KEY</code></p>
+    <ul>
+      <li>
+        <p>
+          Creation: To get an <code>API_KEY</code> you will need an account. You
+          can either use your existing account or create a Developer Account.
+        </p>
+        <ul>
+          <li>
+            Existing account: You can create the key under your Account
+            Settings.
+          </li>
+          <li>
+            Developer account: You will have to verify your email address first
+            to create your Developer Account. Expect to get an email with a
+            shortcut to create the <code>API_KEY</code>. Click on the shortcut
+            link to create your <code>API_KEY</code> and get started writing
+            some code.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ol>
 <h2>Using the CLI</h2>
-<h3>Notes</h3>
-<ul>
-<li>For all commands with <code>noprompt</code> option it will skip all user confirmation prompts. This means it will also overwrite any existing files without any confirmation.</li>
-<li>Open all the CSV file outputs in google sheet or libre office as excel has formatting issues.</li>
-<li><code>verbose mode</code> : Use <code>--verbose</code> along with the commands to access the verbose mode.</li>
-<li>Supported <code>EEN TIME FORMATS</code> :
-<ul>
-<li>20230125062511.000</li>
-<li>2023-01-31</li>
-<li>2023-01-31T08:24:32</li>
-<li>2023-10-02T23:50:06.337+00:00</li>
-</ul>
-</li>
-</ul>
 <h2>Setting-up of Executable File</h2>
 <ul>
-<li>
-<p>Extraction of file from a compressed file format</p>
-<h4><strong>In Linux:</strong></h4>
-<ul>
-<li>
-<p>There are multiple ways to extract file from a compressed file here are the step by step instruction:</p>
-</li>
-<li>
-<p>First way:</p>
-<ol>
-<li>Point the cursor on the compressed file.</li>
-<li>Right-click on it in-order to trigger context-menu(right-click menu).</li>
-<li>On context menu select <code>Extract Here</code> option to extract the file in same directory or
-Select <code>Extract to</code> option in-order to extract the file in the current directory or directory of your choice.</li>
-</ol>
-</li>
-<li>
-<p>Second way:</p>
-<ol>
-<li>Point the cursor on the compressed file.</li>
-<li>Left-Double-click on it in-order to trigger a window that shows extraction option.</li>
-<li>Select the <code>Extract</code> button in-order to extract the file in desired directory.</li>
-</ol>
-</li>
-<li>
-<p>Third way:</p>
-<ol>
-<li>Open the terminal in the directory where compressed file is stored.</li>
-<li>Type-in terminal command <code>unzip een.zip</code> in-order to extract the file in the current directory.</li>
-</ol>
-<pre><code>unzip een.zip
+  <li>
+    <p>Extraction of file from a compressed file format</p>
+    <h4><strong>In Linux:</strong></h4>
+    <ul>
+      <li>
+        <p>
+          There are multiple ways to extract file from a compressed file here
+          are the step by step instruction:
+        </p>
+      </li>
+      <li>
+        <p>First way:</p>
+        <ol>
+          <li>Point the cursor on the compressed file.</li>
+          <li>
+            Right-click on it in-order to trigger context-menu(right-click
+            menu).
+          </li>
+          <li>
+            On context menu select <code>Extract Here</code> option to extract
+            the file in same directory or Select <code>Extract to</code> option
+            in-order to extract the file in the current directory or directory
+            of your choice.
+          </li>
+        </ol>
+      </li>
+      <li>
+        <p>Second way:</p>
+        <ol>
+          <li>Point the cursor on the compressed file.</li>
+          <li>
+            Left-Double-click on it in-order to trigger a window that shows
+            extraction option.
+          </li>
+          <li>
+            Select the <code>Extract</code> button in-order to extract the file
+            in desired directory.
+          </li>
+        </ol>
+      </li>
+      <li>
+        <p>Third way:</p>
+        <ol>
+          <li>
+            Open the terminal in the directory where compressed file is stored.
+          </li>
+          <li>
+            Type-in terminal command <code>unzip een.zip</code> in-order to
+            extract the file in the current directory.
+          </li>
+        </ol>
+        <pre><code>unzip een.zip
 </code></pre>
-</li>
-</ul>
-<h4><strong>In Windows:</strong></h4>
-<ul>
-<li>Here are the step by step instruction:
-<ol>
-<li>Point the cursor on the compressed file.</li>
-<li>Right-click on it in-order to trigger context-menu(right-click menu).</li>
-<li>On context menu select <code>Extract All</code>.</li>
-<li>A window is triggered that shows a input-box which is used to inserts the directory path to a choosen directory.</li>
-<li>After choosing a directory click on <code>Extract</code> button, in-order to extract the file to the choosen directory.</li>
-</ol>
-</li>
-</ul>
-</li>
+      </li>
+    </ul>
+    <h4><strong>In Windows:</strong></h4>
+    <ul>
+      <li>
+        Here are the step by step instruction:
+        <ol>
+          <li>Point the cursor on the compressed file.</li>
+          <li>
+            Right-click on it in-order to trigger context-menu(right-click
+            menu).
+          </li>
+          <li>On context menu select <code>Extract All</code>.</li>
+          <li>
+            A window is triggered that shows a input-box which is used to
+            inserts the directory path to a choosen directory.
+          </li>
+          <li>
+            After choosing a directory click on <code>Extract</code> button,
+            in-order to extract the file to the choosen directory.
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
 </ul>
 <p>&lt;br/&gt;</p>
+<h4>Notes:</h4>
 <ul>
-<li>
-<p>Execute this extracted file by mapping up the directory path of the een
-on the terminal</p>
-</li>
-<li>
-<p>Each command should start <code>./</code>.</p>
-<p>Examples:</p>
-<pre><code>./een --version
+  <li>
+    <p>
+      For all commands with <code>--no-prompt</code> option it will skip all
+      user confirmation prompts. This means it will also overwrite any existing
+      files without any confirmation.
+    </p>
+  </li>
+  <li>
+    <p>
+      Open all the CSV file outputs in google sheet or libre office as excel has
+      formatting issues.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>verbose mode</code> : Use <code>--verbose</code> along with the
+      commands to access the verbose mode.
+    </p>
+  </li>
+  <li>
+    <p>Supported <code>EEN TIME FORMATS</code> :</p>
+    <ul>
+      <li>20230125062511.000</li>
+      <li>2023-01-31</li>
+      <li>2023-01-31T08:24:32</li>
+      <li>2023-10-02T23:50:06.337+00:00</li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Execute this extracted file by mapping up the directory path of the een on
+      the terminal
+    </p>
+  </li>
+  <li>
+    <p>Each command should start <code>./</code>.</p>
+    <p>Examples:</p>
+    <pre><code>./een --version
 </code></pre>
-</li>
-<li>
-<p>To check if the executable works fine</p>
+  </li>
+  <li>
+    <p>To check if the executable works fine</p>
+    <ul>
+      <li>Run the command:</li>
+    </ul>
+    <pre><code> ./een
+</code></pre>
+    <ul>
+      <li>Output:</li>
+    </ul>
+    <pre><code>v&lt;version number&gt;
+
+  usage: een [-v | --version] [-h | --help] &lt;object&gt; &lt;command&gt; [&lt;args&gt;]
+
+  These are common een commands used in various situations:
+
+  auth login              login to the account
+  auth logout             logout of the account
+
+  camera list             list all cameras
+  camera status           list status of all cameras
+
+  bridge list             list all bridges
+  bridge availability     get bridge availability
+
+  'een help' lists all the commands and options
+  'een &lt;command&gt; help' lists the usage with opitions and descriptions
+</code></pre>
+  </li>
+</ul>
+<h1>EEN Command Line Interface Manual</h1>
+<h2>NAME</h2>
+<p>
+  <code>een</code> - A command-line tool for managing and retrieving information
+  related to cameras, bridges, users, and more in a cloud-based environment.
+</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een [OPTIONS] &lt;object&gt; &lt;command&gt; [ARGS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <strong>een</strong> CLI provides various commands to interact with
+  cameras, bridges, users, locations, and other resources. It offers multiple
+  options for fetching information in different formats (CSV, tree structure,
+  etc.) and supports both standard and v3 APIs.
+</p>
+<h4>Options:</h4>
 <ul>
-<li>Run the command:</li>
+  <li>
+    <p>
+      <strong>--help, -h</strong><br />
+      Displays the help information for the een command or a specific object.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>--version</strong><br />
+      Displays the current version of the een CLI.
+    </p>
+  </li>
 </ul>
-<pre><code> ./een
-</code></pre>
-<ul>
-<li>Output:</li>
-</ul>
-<pre><code>v1.2.0 20231102
-Usage: een [command] options
-
-get version
-
-Options:
-  -v, --version                              get current CLI version
-  -h, --help                                 display help for command
-
-Commands:
-  help
-  auth
-  location
-  user
-  account
-  archive
-  lpr
-  bridge
-  camera
-  download
-  update-google-config &lt;optionName&gt; &lt;value&gt;
-
-use een help command for detailed help instructions
-
-</code></pre>
-</li>
-</ul>
-<h3>List of commands supported:</h3>
-<h4>EEN Version</h4>
+<h2>COMMANDS</h2>
+<h3>Version</h3>
 <pre><code>een --version
 </code></pre>
-<h4>EEN Help</h4>
+<p>Displays the version of the een tool.</p>
+<h3>Help</h3>
 <pre><code>een help
 </code></pre>
-<p>Note: The <code>een help</code> command shows the detailed help instructions and
-the help option <code>een &lt;object&gt; --help</code> shows the shorter version of help.</p>
-<p>Examples:</p>
+<p>
+  Shows detailed help instructions. For shorter help on a specific object, use:
+</p>
+<pre><code>een &lt;object&gt; --help
+</code></pre>
+<h2>EXAMPLES</h2>
+<pre><code>een help
+een --help
+een -h
+een auth --help
+een camera list --help
+</code></pre>
+<h1>auth - Manage EEN auth</h1>
+<h2>NAME</h2>
+<p><code>auth</code> – EEN authentication commands</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een auth [COMMAND] [options]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <strong>een auth</strong> command provides utilities for logging in and
+  logging out of the EEN (Eagle Eye Networks).
+</p>
+<h2>COMMANDS</h2>
+<h3>login</h3>
+<p>Log in to EEN using the provided credentials.</p>
+<h4>Required options:</h4>
 <ul>
-<li>een help</li>
-<li>een --help</li>
-<li>een -h</li>
-<li>een auth --help</li>
-<li>een camera list --help</li>
+  <li>
+    <code>--user-name [user name]</code><br />
+    The username used for login.
+  </li>
+  <li>
+    <code>--password [password]</code><br />
+    The password used for login.
+  </li>
 </ul>
-<h4>EEN account login</h4>
-<pre><code>een auth login --username &lt;username&gt; --password &lt;password&gt; [--apikey &lt;api key&gt;]
-</code></pre>
-<p>Note: Password should be given in quotes, as the shell might have converting issues.</p>
-<p>Example:</p>
-<pre><code>een auth login --username abc@een.com --password \***\*\*\*\*\***
-</code></pre>
-<p>To obtain the API_KEY, please see <a href="#environment-variables">here</a></p>
-<h4>EEN account status</h4>
-<pre><code>een auth status --username &lt;username&gt; --password &lt;password&gt; [--apikey &lt;api key&gt;]
-</code></pre>
-<p>Example</p>
-<pre><code>een auth status --username abc@een.com --password \***\*\*\*\*\***
-</code></pre>
-<h4>List bridges</h4>
-<pre><code>een bridge list
-</code></pre>
-<h4>List bridges using v3 API</h4>
-<pre><code>een bridge list --v3
-</code></pre>
-<h4>List cameras</h4>
-<pre><code>een camera list
-</code></pre>
-<h4>List cameras using v3 API</h4>
-<pre><code>een camera list --v3
-</code></pre>
-<h4>List locations</h4>
-<pre><code>een location list
-</code></pre>
-<h4>List users</h4>
-<pre><code>een user list
-</code></pre>
-<h4>List users using v3 API</h4>
-<pre><code>een user list --v3
-</code></pre>
-<h4>List bridges in CSV format</h4>
-<pre><code>een bridge list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID, Firmware Version,Number of cameras online, Default Transmit Bandwidth Mode,Default Transmit Bandwidth Mode Value (when Fixed),Default Transmit Bandwidth Mode Value Percentage of Available , Cloud Bandwidth Used Last 7 days average,Average Available Bandwidth last 7 days</p>
-<h4>List bridges in CSV format using v3 API</h4>
-<pre><code>een bridge list --csv --v3 [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Fields in bridge csv: Bridge ID, Name, IP Address, Timezone, Serial Number, Location, GUID</p>
-<h4>Enable bridge local rtsp metrics</h4>
-<pre><code>een bridge qlstream_metrics --esn [esn] --local_rtsp_metrics [enable/disable] [--noprompt]
-</code></pre>
-<h4>Pull logs from the archiver/bridge</h4>
-<pre><code>een bridge qlstream_metrics --esn [esn] --performance/--events --count [count] --start_time [start_time] --end_time [end_time] --summary 
-</code></pre>
-<p>Example:</p>
-<pre><code>een bridge qlstream_metrics --esn 657989e --performance --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary 
-</code></pre>
-<pre><code>een bridge qlstream_metrics --esn 657989e --events --count 10 --start_time 20240602010000.000 --end_time 20240603010000.000 --summary
-</code></pre>
-<h4>List cameras in CSV format</h4>
-<pre><code>een camera list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, Camera Model, Cloud Retention, Local Retention Days, Video Resolution, MAC Address, Firmware Version</p>
-<h4>List cameras in CSV format with purging</h4>
-<pre><code>een camera list --csv --purge -start_time [start_time] --end_time [end_time] [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Fields in camera csv: Camera ID, Bridge ID, Associated Bridge Name, Account ID, Name, IP Address, Timezone, Tags, Type, Service Status, Permissions, Serial Number, Timezone UTC Offset, Is Unsupported, Is Shared, Owner Account Name, Is UPNP, Video Input, Video Status, Location, Parent Camera ID, Child Camera View, Is Hidden, Ignored Inputs, Responder Camera, Discovered State, GUID, Duty Cycle, Camera Model, Cloud Retention, Video Resolution, Minimum On Premise Retention, Maximum On Premise Retention, Cloud Preview Only?, Preview Video Resolution, Preview Transmit Mode, Full Video Transmit Mode, Camera Username, Camera Password, MAC Address, Firmware Version</p>
-<h4>List cameras in CSV format using v3 API</h4>
-<pre><code>een camera list --csv --v3 [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Fields in camera csv: Camera ID, Bridge ID, Account ID, Name, IP Address, Timezone, Tags, Is Shared, Owner Account Name, Location, MAC Address, Camera Model, GUID, Cloud Retention, Video Resolution</p>
-<h4>List users in CSV format</h4>
-<pre><code>een user list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Fields in user csv: First Name, Last Name, Email, Last Login, Permissions</p>
-<h4>List users in CSV format using v3 API</h4>
-<pre><code>een user list --csv --v3 [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Fields in user csv: First Name, Last Name, Email, Last Login, permissions_editAccounts, permissions_layoutAdministrator, permissions_administrator, permissions_viewAuditLog, permissions_createLayouts, permissions_exportUsers, permissions_editMotionAreas, permissions_editArchive, permissions_addEditSpeakers, permissions_editSpeakers, permissions_editAllCameraSettings, permissions_controlPTZ, permissions_viewPreviewVideo, permissions_turnCamerasOnOff, permissions_viewLiveVideo, permissions_viewArchive, permissions_downloadVideo, permissions_editSharing, permissions_editNoBillingDeviceSettings, permissions_editMap, permissions_editPTZStations, permissions_talkDown, permissions_editUsers, permissions_addEditBridgesCameras, permissions_upgradeEdition, Permissions_viewHistoricVideo</p>
-<h4>List locations in CSV format</h4>
-<pre><code>een location list --csv [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Fields in location csv: Location ID, Location Name</p>
-<h4>List cameras based on specific tag</h4>
-<pre><code>een camera list --tag &lt;tag_name&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera list --tag lobby
-</code></pre>
-<h4>List cameras based on specific tag using v3 API</h4>
-<pre><code>een camera list --v3 --tag &lt;tag_name&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera list --v3 --tag lobby
-</code></pre>
-<h4>List bridges based on specific location</h4>
-<pre><code>een bridge list --location &lt;location_name&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een bridge list --location austin
-</code></pre>
-<h4>List bridges based on specific location using v3 API</h4>
-<pre><code>een bridge list --v3 --location &lt;location_name&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een bridge list --v3 --location austin
-</code></pre>
-<h4>List cameras based on specific location</h4>
-<pre><code>een camera list --location &lt;location_name&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera list --location austin
-</code></pre>
-<h4>List cameras based on specific location using v3 API</h4>
-<pre><code>een camera list --v3 --location &lt;location_name&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera list --v3 --location austin
-</code></pre>
-<h4>List bridges based on specific tag</h4>
-<pre><code>een bridge list --tag &lt;tag_name&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een bridge list --tag lobby
-</code></pre>
-<h4>List bridges based on specific tag using v3 API</h4>
-<pre><code>een bridge list --v3 --tag &lt;tag_name&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een bridge list --v3 --tag lobby
-</code></pre>
-<h4>List cameras based on specific status</h4>
-<pre><code>een camera list --status &lt;status&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera list --status &quot;Camera on&quot;
-</code></pre>
-<h4>List bridges based on specific status</h4>
-<pre><code>een bridge list --status &lt;status&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een bridge list --status &quot;Camera on&quot;
-</code></pre>
-<h4>List available cameras</h4>
-<pre><code>een camera list --available
-</code></pre>
-<h4>List available cameras using v3 API</h4>
-<pre><code>een camera list --available --v3
-</code></pre>
-<h4>List available bridges</h4>
-<pre><code>een bridge list --available
-</code></pre>
-<h4>Get camera list in tree format</h4>
-<pre><code>een camera list --tree
-</code></pre>
-<h4>Get camera list in tree format using v3 API</h4>
-<pre><code>een camera list --tree --v3
-</code></pre>
-<h4>Get bridge list in tree format</h4>
-<pre><code>een bridge list --tree
-</code></pre>
-<h4>Get bridge list in tree format using v3 API</h4>
-<pre><code>een bridge list --tree --v3
-</code></pre>
-<h4>Write camera list to a csv file</h4>
-<pre><code>een camera list --short -f/--filename &lt;filename&gt; [--noprompt]
-</code></pre>
-<h4>Write camera settings to a csv file</h4>
-<pre><code>een camera settings --csv [-f/--filename] [filename] [--noprompt]
-</code></pre>
-<h4>Get camera status</h4>
-<pre><code>een camera status
-</code></pre>
-<h4>Get camera status in CSV format</h4>
-<pre><code>een camera status --csv [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<h4>Get camera video list</h4>
-<pre><code>een download list --esn &lt;esn&gt; --start_time &lt;start_time&gt; --end_time &lt;end_time&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een download list --esn 1kj6eo83 --start_time 20220826084300.000 --end_time 20220826084330.000
-</code></pre>
-<h4>Get camera video download</h4>
-<pre><code>een download video --esn &lt;esn&gt; --start_time &lt;start_time&gt; --end_time &lt;end_time&gt; --format &lt;format&gt; --timestamp [timezone] --output &lt;output&gt; [--overwrite]
-</code></pre>
-<p>Note:</p>
+<h4>Optional options:</h4>
 <ul>
-<li>For video download, we support both mp4 and flv format. We are writing the videos to the given output folder.</li>
-<li>The timestamp option is only supported for mp4 format</li>
-<li>Video download is done by batches of 5 videos at a time.</li>
+  <li>
+    <code>--api-key [api key]</code><br />
+    API key used for login.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
 </ul>
-<p>Example:</p>
-<pre><code>een download video --esn 1kj6eo83 --start_time 20220826084300.000 --end_time 20220826084330.000 --format mp4 --timestamp &quot;US/Central&quot; --output &quot;foldername&quot; --overwrite
-</code></pre>
-<h4>Get LPR Events</h4>
-<pre><code>een lpr events --start_time &lt;start_time&gt; --end_time &lt;end_time&gt; --lp &lt;license plate&gt; --esn &lt;esn&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of
-</code></pre>
-<h4>Get LPR Events using v3 API</h4>
-<pre><code>een lpr events --start_time &lt;start_time&gt; --end_time &lt;end_time&gt; --lp &lt;license plate&gt; --esn &lt;esn&gt; --v3
-</code></pre>
-<p>Example:</p>
-<pre><code>een lpr events --start_time 20221003183000.000 --end_time 20221004182959.000 --lp RJC9839 --esn 100d4of --v3
-</code></pre>
-<h4>Edit camera settings</h4>
-<pre><code>een camera set &lt;esn&gt; --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera set 100jhi7 --cloud_retention_days 28 --video_resolution 3MP
-</code></pre>
-<h4>Edit settings of all cameras</h4>
-<pre><code>een camera set &quot;*&quot; --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera set &quot;*&quot; --cloud_retention_days 28 --video_resolution 3MP
-</code></pre>
-<p>Note: * Should be specified in quotes, as the shell might have converting issues.</p>
-<h4>Edit multiple camera settings</h4>
-<pre><code>een camera bulk-set --esns &lt;value1,value2&gt; --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera bulk-set --esns 100ksh9,8991jgd --cloud_retention_days 30 --video_resolution 1080P
-</code></pre>
-<h4>Edit camera settings based on tags</h4>
-<pre><code>een camera tag-set --tag &lt;tag&gt; --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera tag-set --tag lobby --cloud_retention_days 28 --video_resolution 1080P
-</code></pre>
-<h4>Edit multiple camera settings reading esn from csv file</h4>
-<p>We can execute the command een camera list --short to generate the csv file. This output csv file will act as the input for the below command.</p>
-<pre><code>een camera multi-set --cloud_retention_days &lt;cloud_retention_days&gt; --video_resolution &lt;video_resolution&gt; -f/--filename &lt;filename&gt; [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera multi-set --cloud_retention_days 30 --video_resolution 3MP --filename abc.csv
-</code></pre>
-<h4>Edit multiple camera settings reading esn and camera settings from csv file</h4>
-<p>We can execute the command een camera settings to generate the csv file. This output csv file will act as the input for the below command.</p>
-<pre><code>een camera detailed-set -f/--filename &lt;filename&gt; [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera detailed-set -f abc.csv
-</code></pre>
-<h4>Add camera to bridge</h4>
-<pre><code>een camera add &lt;esn&gt; --camera_name &lt;camera_name&gt; --guid &lt;guid&gt; --location [location_id] --cloud_retention_days [cloud_retention_days] --scene [scene] --tags [tags] --username [username] --password [password] [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera add 1000red0 --camera_name &quot;New Camera 5&quot; --cloud_retention_days 30 --guid 5c445010-39f5-443e-8b0b-453119c5e062 --tags test
-</code></pre>
-<h4>Delete camera from the bridge</h4>
-<pre><code>een camera delete &lt;esn&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera delete 1010red
-</code></pre>
-<h4>Camera stream status csv</h4>
-<pre><code>een camera streamstatus --esn [esn] --stream_type [stream_type] --start_time &lt;start_time&gt; --end_time &lt;end_time&gt; -f/--filename &lt;filename&gt; [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera streamstatus --esn 1010rbh --start_time 20230509062511.000 --end_time 20230509062611.000 --stream_type preview
-</code></pre>
-<p>Note:</p>
+<h4>Notes:</h4>
 <ul>
-<li>stream_type can be fullvideo or preview</li>
-<li>start_time can be &quot;-1h&quot; i.e., one hour before current time</li>
-<li>end_time can be &quot;now&quot; i.e., current time</li>
+  <li>
+    Password should be given in quotes, as the shell might have converting
+    issues.
+  </li>
 </ul>
-<h4>List archives</h4>
-<pre><code>een archive list
-</code></pre>
-<h4>List archives detailed</h4>
-<pre><code>een archive list --detailed
-</code></pre>
-<h4>List archives in CSV format</h4>
-<pre><code>een archive list --csv
-</code></pre>
-<h4>List archives in a specific folder</h4>
-<pre><code>een archive list --folder &lt;folder&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een archive list --folder &quot;snapshots/&quot;
-</code></pre>
-<h4>List archives in a specific folder detailed</h4>
-<pre><code>een archive list --folder &lt;folder&gt; --detailed
-</code></pre>
-<p>Example:</p>
-<pre><code>een archive list --folder &quot;snapshots/&quot; --detailed
-</code></pre>
-<h4>List archives in a specific folder in CSV format</h4>
-<pre><code>een archive list --folder &lt;folder&gt; --csv
-</code></pre>
-<p>Example:</p>
-<pre><code>een archive list --folder &quot;snapshots/&quot; --csv
-</code></pre>
-<h4>Archive download</h4>
-<pre><code>een archive download &lt;archive&gt; --output &lt;output&gt; [--overwrite]
-</code></pre>
-<p>Example:</p>
-<pre><code>een archive download &quot;snapshots/test-1.jpeg&quot; --output &quot;foldername&quot; --overwrite
-</code></pre>
-<h4>Preview Recording Status</h4>
-<pre><code>een preview recording-status --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt]
-</code></pre>
-<p>Examples:</p>
-<h5>For single esn</h5>
-<pre><code>een preview recording-status --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h5>For multiple esns</h5>
-<pre><code>een preview recording-status --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h5>For all esns</h5>
-<pre><code>een preview recording-status --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h4>Note:</h4>
-<p>The ISO 8601 timestamp format is a standardized format for representing date and time information.</p>
-<p>Example: &quot;2023-10-02T23:50:06.337+00:00&quot;</p>
-<h4>Camera Availability</h4>
-<pre><code>een camera availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt]
-</code></pre>
-<p>Examples:</p>
-<h5>For single esn</h5>
-<pre><code>een camera availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h5>For multiple esns</h5>
-<pre><code>een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h5>For all esns</h5>
-<pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h4>Camera Availability along with Preview Availability</h4>
-<pre><code>een camera availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt] --preview_availability 
-</code></pre>
-<p>Examples:</p>
-<h5>For single esn</h5>
-<pre><code>een camera availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --preview_availability 
-</code></pre>
-<h5>For multiple esns</h5>
-<pre><code>een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --preview_availability 
-</code></pre>
-<h5>For all esns</h5>
-<pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --preview_availability 
-</code></pre>
-<h4>Bridge Availability</h4>
-<pre><code>een bridge availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] -f/--filename &lt;filename&gt; [--noprompt]
-</code></pre>
-<p>Examples:</p>
-<h5>For single esn</h5>
-<pre><code>een bridge availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h5>For multiple esns</h5>
-<pre><code>een bridge availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h5>For all esns</h5>
-<pre><code>een bridge availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot;
-</code></pre>
-<h3>For Generating HTML Reports</h3>
-<h4>Bridge list report</h4>
-<pre><code>een bridge list --html
-</code></pre>
-<h4>Bridge list report using v3 API</h4>
-<pre><code>een bridge list --html --v3
-</code></pre>
-<h4>Camera list report</h4>
-<pre><code>een camera list --html
-</code></pre>
-<h4>Camera list report using v3 API</h4>
-<pre><code>een camera list --html --v3
-</code></pre>
-<h4>Bridge status report</h4>
-<pre><code>een bridge status --html
-</code></pre>
-<h4>Camera status report</h4>
-<pre><code>een camera status --html
-</code></pre>
-<h4>User permission report</h4>
-<pre><code>een user list --html
-</code></pre>
-<h3>For Generating Lists In Google SpreadSheet</h3>
-<h4>Bridge list</h4>
-<pre><code>een bridge list --googleSheet
-</code></pre>
-<h4>Bridge list using v3 API</h4>
-<pre><code>een bridge list --googleSheet --v3
-</code></pre>
-<h4>Camera list</h4>
-<pre><code>een camera list --googleSheet
-</code></pre>
-<h4>Camera list using v3 API</h4>
-<pre><code>een camera list --googleSheet --v3
-</code></pre>
-<h4>Camera list with purging</h4>
-<pre><code>een camera list --googleSheet --purge -start_time [start_time] --end_time [end_time]
-</code></pre>
-<h4>Bridge status list</h4>
-<pre><code>een bridge status --googleSheet
-</code></pre>
-<h4>Camera status list</h4>
-<pre><code>een camera status --googleSheet
-</code></pre>
-<h4>User permission list</h4>
-<pre><code>een user list ---googleSheet
-</code></pre>
-<h4>Get camera purge list</h4>
-<pre><code>een camera purge-list -start_time [start_time] --end_time [end_time] [-f/--filename &lt;filename&gt;] [--noprompt]
-</code></pre>
-<p>Example:</p>
-<pre><code>een camera purge-list --start_time &quot;20231128140000.000&quot; --end_time &quot;20231128141000.000&quot; -f purge-list.csv
-</code></pre>
-<pre><code>een camera purge-list
-</code></pre>
-<p>Note: If you haven't specify any start_time and end_time it will take last 24 hours as default timestamps.</p>
-<h4>Preview recording status</h4>
-<pre><code>een preview recording-status --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] --googleSheet
-</code></pre>
-<p>Examples:</p>
-<h5>For single esn</h5>
-<pre><code>een preview recording-status --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h5>For multiple esns</h5>
-<pre><code>een preview recording-status --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h5>For all esns</h5>
-<pre><code>een preview recording-status --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h4>Note:</h4>
-<p>The ISO 8601 timestamp format is a standardized format for representing date and time information.</p>
-<p>Example: &quot;2023-10-02T23:50:06.337+00:00&quot;</p>
-<h4>Camera Availability</h4>
-<pre><code>een camera availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] --googleSheet
-</code></pre>
-<p>Note: This command only support a maximum of 200 devices and seven days of time range.</p>
-<p>Examples:</p>
-<h5>For single esn</h5>
-<pre><code>een camera availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h5>For multiple esns</h5>
-<pre><code>een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h5>For all esns</h5>
-<pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h4>Camera Availability along with Preview Availability</h4>
-<pre><code>een camera availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] --googleSheet --preview_availability 
-</code></pre>
-<p>Examples:</p>
-<h5>For single esn</h5>
-<pre><code>een camera availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet --preview_availability 
-</code></pre>
-<h5>For multiple esns</h5>
-<pre><code>een camera availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet --preview_availability 
-</code></pre>
-<h5>For all esns</h5>
-<pre><code>een camera availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet --preview_availability 
-</code></pre>
-<h4>Note:</h4>
-<p>The ISO 8601 timestamp format is a standardized format for representing date and time information.</p>
-<p>Example: &quot;2023-10-02T23:50:06.337+00:00&quot;</p>
-<h4>Bridge Availability</h4>
-<pre><code>een bridge availability --esns &lt;esns&gt; --start_time &lt;start_time&gt; --end_time [end_time] --googleSheet
-</code></pre>
-<p>Examples:</p>
-<h5>For single esn</h5>
-<pre><code>een bridge availability --esns 100u4d85 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h5>For multiple esns</h5>
-<pre><code>een bridge availability --esns 100u4d85,105f4d85,100u9d85,10034d85,100u4dy5 --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h5>For all esns</h5>
-<pre><code>een bridge availability --esns &quot;*&quot; --start_time &quot;2023-10-02T23:50:06.337+00:00&quot; --googleSheet
-</code></pre>
-<h4>EEN account Logout</h4>
-<pre><code>een auth logout
-</code></pre>
-<h3>For Reseller Account</h3>
-<h4>List accounts</h4>
-<pre><code>een account list
-</code></pre>
-<p>Example:</p>
-<pre><code>een account list
-</code></pre>
-<h4>Switch account to <code>END_USER</code></h4>
-<pre><code>een account switch --subaccount_id &lt;subaccount_id&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een account switch --subaccount_id 00001106
-</code></pre>
-<h4>Switch back to <code>RESELLER_ACCOUNT</code></h4>
-<pre><code>een account switch
-</code></pre>
-<p>Example:</p>
-<pre><code>een account switch
-</code></pre>
-<h3>Update Values in the Google Config File</h3>
-<pre><code>een update-google-config &lt;name&gt; -- &lt;value&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code>een update-config &quot;driveFolderID&quot; -- &quot;1giou_ghlihbZyUpwCx&quot;
-</code></pre>
-<h3>For Google Sheets commands</h3>
+<hr />
+<h3>logout</h3>
+<p>Log out from EEN.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To login</li>
+</ul>
+<pre><code class="language-bash">een auth login --user-name johndoe --password secret --verbose
+</code></pre>
+<ul>
+  <li>To logout</li>
+</ul>
+<pre><code class="language-bash">een auth logout --verbose
+</code></pre>
+<h1>user - Manage Users</h1>
+<h2>NAME</h2>
+<p><code>user</code> - manage and interact with users.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een user [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>user</code> command allows you to manage users, list user
+  permissions, and export user data in various formats.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List users.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--csv</code><br />
+    List all users in CSV format.
+  </li>
+  <li>
+    <code>--google-sheet</code><br />
+    List users in CSV format in Google Sheets.
+  </li>
+  <li>
+    <code>--v3</code><br />
+    Use v3 APIs.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
+  </li>
+  <li>
+    <code>--html</code><br />
+    Generate chart in HTML file.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>If <code>--html</code> is specified, generate user permission report.</li>
+  <li>
+    If <code>--csv</code> and <code>--v3</code> are specified, list users in CSV
+    format using v3.
+  </li>
+  <li>If <code>--csv</code> is specified, list users in CSV format.</li>
+  <li>
+    If <code>--google-sheet</code> is specified, list user permissions in Google
+    Sheets.
+  </li>
+  <li>If <code>--v3</code> is specified, list users using v3 APIs.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all users:</li>
+</ul>
+<pre><code class="language-bash">een user list
+</code></pre>
+<ul>
+  <li>To list users in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een user list --csv -f users.csv
+</code></pre>
+<ul>
+  <li>To generate an HTML report of user permissions:</li>
+</ul>
+<pre><code class="language-bash">een user list --html
+</code></pre>
+<h1>account - Manage User Accounts</h1>
+<h2>NAME</h2>
+<p><code>account</code> - manage and interact with user accounts.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een account [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>account</code> command allows you to manage reseller accounts,
+  including listing all accounts and switching between sub-accounts.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List all accounts of the reseller account.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<hr />
+<h3>switch</h3>
+<p>Switch to a sub-account.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--sub-account-id [sub-account id]</code><br />
+    Account ID to which we need to switch (required).
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all accounts of the reseller:</li>
+</ul>
+<pre><code class="language-bash">een account list --verbose
+</code></pre>
+<ul>
+  <li>To switch to a specific sub-account:</li>
+</ul>
+<pre><code class="language-bash">een account switch --sub-account-id &lt;sub-account id&gt; --verbose
+</code></pre>
+<h1>archive - Manage Archives</h1>
+<h2>NAME</h2>
+<p><code>archive</code> - manage and interact with archives.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een archive [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>archive</code> command allows you to manage archives, including
+  listing archives and downloading specific archives.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>Get the list of available archives.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <p>
+      <code>--detailed</code><br />
+      Get a detailed archive list.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--csv</code><br />
+      List all archives in CSV format.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--target-directory [target directory]</code><br />
+      Specify the name of the directory where the output will be saved.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--verbose</code><br />
+      Enable verbose output.
+    </p>
+  </li>
+</ul>
+<hr />
+<h3>download</h3>
+<p>Download a specific archive.</p>
+<h4>Arguments:</h4>
+<ul>
+  <li>
+    <code>&lt;archive&gt;</code><br />
+    The name of the archive to download (required).
+  </li>
+</ul>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--target-directory [target-directory]</code><br />
+    Specify the name of the directory where the output will be saved.
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--overwrite</code><br />
+    Overwrite already downloaded archive.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list available archives:</li>
+</ul>
+<pre><code class="language-bash">een archive list --detailed --csv --target-directory /path/to/output
+</code></pre>
+<ul>
+  <li>To download a specific archive:</li>
+</ul>
+<pre><code class="language-bash">een archive download &lt;archive&gt; --target-directory /path/to/save --overwrite --verbose
+</code></pre>
+<h1>camera - Manage Cameras</h1>
+<h2>NAME</h2>
+<p><code>camera</code> - Manage camera settings and operations</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een camera [COMMAND] [OPTIONS]
+</code></pre>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List cameras.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--csv</code><br />
+    List cameras in CSV format.
+  </li>
+  <li>
+    <code>--tree</code><br />
+    List cameras and associated bridges in tree format.
+  </li>
+  <li>
+    <code>--tags [tags]</code><br />
+    List cameras based on the given tag.
+  </li>
+  <li>
+    <code>--available</code><br />
+    List available cameras.
+  </li>
+  <li>
+    <code>--locations [locations]</code><br />
+    List cameras in a given location.
+  </li>
+  <li>
+    <code>--status [status]</code><br />
+    List cameras with a specific status.
+  </li>
+  <li>
+    <code>--short</code><br />
+    List camera name and ESN in CSV format to the given file.
+  </li>
+  <li>
+    <code>--html</code><br />
+    Generate chart in HTML file.
+  </li>
+  <li>
+    <code>--google-sheet</code><br />
+    List bridges in CSV format in Google Sheet.
+  </li>
+  <li>
+    <code>--purge</code><br />
+    The <code>--purge</code> option only exists with either
+    <code>--csv</code> or <code>--google-sheet</code>.
+  </li>
+  <li>
+    <code>--start-time [start time]</code><br />
+    Video start time.
+  </li>
+  <li>
+    <code>--end-time [end time]</code><br />
+    Video end time.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+  <li>
+    <code>--v3</code><br />
+    Use v3 APIs.
+  </li>
+</ul>
+<hr />
+<h3>status</h3>
+<p>List status of all cameras.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--csv</code><br />
+    List camera status in CSV format.
+  </li>
+  <li>
+    <code>--html</code><br />
+    Generate chart in HTML file.
+  </li>
+  <li>
+    <code>--google-sheet</code><br />
+    List camera status in CSV format in Google Sheet.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<hr />
+<h3>settings</h3>
+<p>Get all the camera settings.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--csv</code><br />
+    List camera settings in CSV format.
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<hr />
+<h3>set</h3>
+<p>Edit a single camera's settings.</p>
+<h4>Arguments:</h4>
+<ul>
+  <li>
+    <code>&lt;esn&gt;</code><br />
+    Camera ESN.
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--cloud-retention-days [cloud retention days]</code><br />
+    Cloud retention days.
+  </li>
+  <li>
+    <code>--video-resolution [video resolution]</code><br />
+    Video resolution.
+  </li>
+  <li>
+    <code>--bridge-target-days [bridge target days]</code><br />
+    Bridge target days.
+  </li>
+  <li>
+    <code>--local-retention-days [local retention days]</code><br />
+    Local retention days.
+  </li>
+  <li>
+    <code>--preview-resolution [preview resolution]</code><br />
+    Preview resolution.
+  </li>
+  <li>
+    <code>--preview-transmit-mode [preview transmit mode]</code><br />
+    Preview transmit mode.
+  </li>
+  <li>
+    <code>--video-transmit-mode [video transmit mode]</code><br />
+    Video transmit mode.
+  </li>
+  <li>
+    <code>--video-quality [video quality]</code><br />
+    Video quality.
+  </li>
+  <li>
+    <code>--tags [tags]</code><br />
+    Tags.
+  </li>
+  <li>
+    <code>--user-name [user name]</code><br />
+    Username.
+  </li>
+  <li>
+    <code>--password [password]</code><br />
+    Password.
+  </li>
+  <li>
+    <code>--aspect-ratio [aspect ratio]</code><br />
+    Preview aspect ratio.
+  </li>
+  <li>
+    <code>--video-capture-mode [video capture mode]</code><br />
+    When to record video.
+  </li>
+  <li>
+    <code>--preview-interval-ms [preview interval ms]</code><br />
+    Preview interval rate in milliseconds.
+  </li>
+  <li>
+    <code>--preview-quality [preview quality]</code><br />
+    Preview quality.
+  </li>
+  <li>
+    <code>--preview-only-cloud-retention [preview only cloud retention]</code
+    ><br />
+    Preview only cloud retention.
+  </li>
+  <li>
+    <code>--audio-enable</code><br />
+    Enable audio.
+  </li>
+  <li>
+    <code>--audio-disable</code><br />
+    Disable audio.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<hr />
+<h3>bulkset</h3>
+<p>Edit multiple camera settings.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--esns [esns]</code><br />
+    camera esns which is camera ID
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--cloud-retention-days [cloud retention days]</code><br />
+    cloud retention days
+  </li>
+  <li>
+    <code>--video-resolution [video resolution]</code><br />
+    video resolution
+  </li>
+  <li>
+    <code>--bridge-target-days [bridge target days]</code><br />
+    bridge target days
+  </li>
+  <li>
+    <code>--local-retention-days [local retention days]</code><br />
+    local retention days
+  </li>
+  <li>
+    <code>--preview-resolution [preview resolution]</code><br />
+    preview resolution
+  </li>
+  <li>
+    <code>--preview-transmit-mode [preview transmit mode]</code><br />
+    preview transmit mode
+  </li>
+  <li>
+    <code>--video-transmit-mode [video transmit mode]</code><br />
+    video transmit mode
+  </li>
+  <li>
+    <code>--video-quality [video quality]</code><br />
+    video quality
+  </li>
+  <li>
+    <code>--tags [tags]</code><br />
+    tags
+  </li>
+  <li>
+    <code>--user-name [user name]</code><br />
+    username
+  </li>
+  <li>
+    <code>--password [password]</code><br />
+    password
+  </li>
+  <li>
+    <code>--aspect-ratio [aspect ratio]</code><br />
+    preview aspect ratio
+  </li>
+  <li>
+    <code>--video-capture-mode [video capture mode]</code><br />
+    when to record video
+  </li>
+  <li>
+    <code>--preview-interval-ms [preview interval ms]</code><br />
+    preview interval rate in milliseconds
+  </li>
+  <li>
+    <code>--preview-quality [preview quality]</code><br />
+    preview quality
+  </li>
+  <li>
+    <code>--preview-only-cloud-retention [preview only cloud retention]</code
+    ><br />
+    preview only cloud retention
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+  <li>
+    <code>--audio-enable</code><br />
+    audio enable
+  </li>
+  <li>
+    <code>--audio-disable</code><br />
+    audio disable
+  </li>
+</ul>
+<hr />
+<h3>tagset</h3>
+<p>Edit camera settings based on a specific tag.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--tag [tag]</code><br />
+    camera tag
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--cloud-retention-days [cloud retention days]</code><br />
+    cloud retention days
+  </li>
+  <li>
+    <code>--video-resolution [video resolution]</code><br />
+    video resolution
+  </li>
+  <li>
+    <code>--bridge-target-days [bridge target days]</code><br />
+    bridge target days
+  </li>
+  <li>
+    <code>--local-retention-days [local retention days]</code><br />
+    local retention days
+  </li>
+  <li>
+    <code>--preview-resolution [preview resolution]</code><br />
+    preview resolution
+  </li>
+  <li>
+    <code>--preview-transmit-mode [preview transmit mode]</code><br />
+    preview transmit mode
+  </li>
+  <li>
+    <code>--video-transmit-mode [video transmit mode]</code><br />
+    video transmit mode
+  </li>
+  <li>
+    <code>--video-quality [video quality]</code><br />
+    video quality
+  </li>
+  <li>
+    <code>--tags [tags]</code><br />
+    tags
+  </li>
+  <li>
+    <code>--user-name [user name]</code><br />
+    username
+  </li>
+  <li>
+    <code>--password [password]</code><br />
+    password
+  </li>
+  <li>
+    <code>--aspect-ratio [aspect ratio]</code><br />
+    preview aspect ratio
+  </li>
+  <li>
+    <code>--video-capture-mode [video capture mode]</code><br />
+    when to record video
+  </li>
+  <li>
+    <code>--preview-interval-ms [preview interval ms]</code><br />
+    preview interval rate in milliseconds
+  </li>
+  <li>
+    <code>--preview-quality [preview quality]</code><br />
+    preview quality
+  </li>
+  <li>
+    <code>--preview-only-cloud-retention [preview only cloud retention]</code
+    ><br />
+    preview only cloud retention
+  </li>
+  <li>
+    <code>--audio-enable</code><br />
+    audio enable
+  </li>
+  <li>
+    <code>--audio-disable</code><br />
+    audio disable
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+</ul>
+<hr />
+<h3>multiset</h3>
+<p>Edit all camera settings.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--cloud-retention-days [cloud retention days]</code><br />
+    cloud retention days
+  </li>
+  <li>
+    <code>--video-resolution [video resolution]</code><br />
+    video resolution
+  </li>
+  <li>
+    <code>--bridge-target-days [bridge target days]</code><br />
+    bridge target days
+  </li>
+  <li>
+    <code>--local-retention-days [local retention days]</code><br />
+    local retention days
+  </li>
+  <li>
+    <code>--preview-resolution [preview resolution]</code><br />
+    preview resolution
+  </li>
+  <li>
+    <code>--preview-transmit-mode [preview transmit mode]</code><br />
+    preview transmit mode
+  </li>
+  <li>
+    <code>--video-transmit-mode [video transmit mode]</code><br />
+    video transmit mode
+  </li>
+  <li>
+    <code>--video-quality [video quality]</code><br />
+    video quality
+  </li>
+  <li>
+    <code>--tags [tags]</code><br />
+    tags
+  </li>
+  <li>
+    <code>--user-name [user name]</code><br />
+    username
+  </li>
+  <li>
+    <code>--password [password]</code><br />
+    password
+  </li>
+  <li>
+    <code>--aspect-ratio [aspect ratio]</code><br />
+    preview aspect ratio
+  </li>
+  <li>
+    <code>--video-capture-mode [video capture mode]</code><br />
+    when to record video
+  </li>
+  <li>
+    <code>--preview-interval-ms [preview interval ms]</code><br />
+    preview interval rate in milliseconds
+  </li>
+  <li>
+    <code>--preview-quality [preview quality]</code><br />
+    preview quality
+  </li>
+  <li>
+    <code>--preview-only-cloud-retention [preview only cloud retention]</code
+    ><br />
+    preview only cloud retention
+  </li>
+  <li>
+    <code>--audio-enable</code><br />
+    audio enable
+  </li>
+  <li>
+    <code>--audio-disable</code><br />
+    audio disable
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    specify the name of the file where the output will be saved (required)
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+</ul>
+<hr />
+<h3>detailedset</h3>
+<p>Edit camera settings taking values from a CSV file.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    specify the name of the CSV file
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+</ul>
+<hr />
+<h3>delete</h3>
+<p>Delete a camera from the bridge.</p>
+<h4>Argument:</h4>
+<ul>
+  <li>
+    <code>&lt;esn&gt;</code><br />
+    esn of the camera (required)
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+</ul>
+<hr />
+<h3>add</h3>
+<p>Add camera to bridge.</p>
+<h4>Argument:</h4>
+<ul>
+  <li>
+    <code>&lt;esn&gt;</code><br />
+    esn of the bridge to which the camera is added
+  </li>
+</ul>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--camera-name [camera name]</code><br />
+    name of the camera
+  </li>
+  <li>
+    <code>--guid [guid]</code><br />
+    guid of the camera
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--cloud-retention-days [cloud retention days]</code><br />
+    cloud retention days
+  </li>
+  <li>
+    <code>--scene [scene]</code><br />
+    scene
+  </li>
+  <li>
+    <code>--tags [tags]</code><br />
+    tags
+  </li>
+  <li>
+    <code>--user-name [user name]</code><br />
+    username
+  </li>
+  <li>
+    <code>--password [password]</code><br />
+    password
+  </li>
+  <li>
+    <code>--location [location]</code><br />
+    location id
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+</ul>
+<hr />
+<h3>streamstatus</h3>
+<p>Get camera stream status.</p>
+<h4>Arguments:</h4>
+<ul>
+  <li>
+    <code>&lt;esns&gt;</code><br />
+    esns of the camera
+  </li>
+</ul>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--start-time [start time]</code><br />
+    camera stream start time
+  </li>
+  <li>
+    <code>--end-time [end time]</code><br />
+    camera stream end time
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--stream-type [stream type]</code><br />
+    stream type of the camera
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    specify the name of the file where the output will be saved
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    stream-type can be <strong>&quot;fullvideo&quot;</strong> or
+    <strong>&quot;preview&quot;</strong>
+  </li>
+  <li>
+    start-time can be <strong>&quot;-1h&quot;</strong> i.e., one hour before
+    current time
+  </li>
+  <li>end-time can be <strong>&quot;now&quot;</strong> i.e., current time</li>
+</ul>
+<hr />
+<h3>purgelist</h3>
+<p>Get camera purging and duty cycle.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--start-time [start time]</code><br />
+    purge start time
+  </li>
+  <li>
+    <code>--end-time [end time]</code><br />
+    purge end time
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    specify the name of the file where the output will be saved
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    If you haven't specified any start-time and end-time it will take the last
+    24 hours as default timestamps.
+  </li>
+</ul>
+<hr />
+<h3>availability</h3>
+<p>Get camera availability.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--esns [esns]</code><br />
+    esns of the camera
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--start-time [start time]</code><br />
+    video start time
+  </li>
+  <li>
+    <code>--end-time [end time]</code><br />
+    video end time
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    specify the name of the file where the output will be saved
+  </li>
+  <li>
+    <code>--google-sheet</code><br />
+    list camera availability in CSV format in Google Sheets
+  </li>
+  <li>
+    <code>--preview-availability</code><br />
+    get preview recording status along with camera availability
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    skip all user confirmation prompts
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    enable verbose output
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    This command only supports a maximum of 200 devices and seven days of time
+    range.
+  </li>
+</ul>
+<h1>bridge - Manage Bridges</h1>
+<h2>NAME</h2>
+<p>
+  <code>bridge</code> - manage and interact with bridges and associated cameras.
+</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een bridge [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>bridge</code> command allows you to manage bridges, list their
+  status, check availability, pull logs, and update camera settings.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List all bridges.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--csv</code><br />
+    List all bridges in CSV format.
+  </li>
+  <li>
+    <code>--tree</code><br />
+    List bridges and associated cameras in tree format.
+  </li>
+  <li>
+    <code>--available</code><br />
+    List discovered cameras that are not yet attached.
+  </li>
+  <li>
+    <code>--locations [locations]</code><br />
+    List bridges in a given location.
+  </li>
+  <li>
+    <code>--tags [tags]</code><br />
+    List bridges based on the given tag.
+  </li>
+  <li>
+    <code>--status [status]</code><br />
+    List bridges with a specific status.
+  </li>
+  <li>
+    <code>--html</code><br />
+    Generate chart in HTML file.
+  </li>
+  <li>
+    <code>--google-sheet</code><br />
+    List bridges in CSV format in Google Sheet.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+  <li>
+    <code>--v3</code><br />
+    Use v3 APIs.
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    If <code>--html</code> is specified and <code>--v3</code>, generate bridge
+    list report using v3.
+  </li>
+  <li>
+    If <code>--csv</code> is specified and <code>--v3</code>, list bridges in
+    CSV format using v3.
+  </li>
+  <li>
+    Handle other combinations of options to perform various listing and
+    reporting tasks.
+  </li>
+</ul>
+<hr />
+<h3>status</h3>
+<p>List bridge status.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--html</code><br />
+    Generate chart in HTML file.
+  </li>
+  <li>
+    <code>--google-sheet</code><br />
+    List bridges in CSV format in Google Sheet.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<hr />
+<h3>availability</h3>
+<p>Get bridge availability.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--esns [esns]</code><br />
+    ESN of the bridge.
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--start-time [start time]</code><br />
+    Video start time.
+  </li>
+  <li>
+    <code>--end-time [end time]</code><br />
+    Video end time.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
+  </li>
+  <li>
+    <code>--google-sheet</code><br />
+    List bridge availability in CSV format in Google Sheet.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<hr />
+<h3>qlstreammetrics</h3>
+<p>Pull logs from the archiver/bridge.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--esns [esns]</code><br />
+    ESNs of the bridge (required).
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--performance</code><br />
+    Performance of the bridge.
+  </li>
+  <li>
+    <code>--events</code><br />
+    Events of the bridge.
+  </li>
+  <li>
+    <code>--count [count]</code><br />
+    Number of annotations to return.
+  </li>
+  <li>
+    <code>--start-time [start time]</code><br />
+    Start time.
+  </li>
+  <li>
+    <code>--end-time [end time]</code><br />
+    End time.
+  </li>
+  <li>
+    <code>--summary</code><br />
+    Get summarized data.
+  </li>
+  <li>
+    <code>--local-rtsp-metrics [enable/disable]</code><br />
+    Enable or disable metric set.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<hr />
+<h3>updatecameras</h3>
+<p>Update all cameras under the bridge(s).</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--esns [esns]</code><br />
+    ESN of the bridge (required).
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--cloud-retention-days [cloud retention days]</code><br />
+    Cloud retention days.
+  </li>
+  <li>
+    <code>--video-resolution [video resolution]</code><br />
+    Video resolution.
+  </li>
+  <li>
+    <code>--bridge-target-days [bridge target days]</code><br />
+    Bridge target days.
+  </li>
+  <li>
+    <code>--local-retention-days [local retention days]</code><br />
+    Local retention days.
+  </li>
+  <li>
+    <code>--preview-resolution [preview resolution]</code><br />
+    Preview resolution.
+  </li>
+  <li>
+    <code>--preview-transmit-mode [preview transmit mode]</code><br />
+    Preview transmit mode.
+  </li>
+  <li>
+    <code>--video-transmit-mode [video transmit mode]</code><br />
+    Video transmit mode.
+  </li>
+  <li>
+    <code>--video-quality [video quality]</code><br />
+    Video quality.
+  </li>
+  <li>
+    <code>--tags [tags]</code><br />
+    Tags.
+  </li>
+  <li>
+    <code>--user-name [user name]</code><br />
+    Username.
+  </li>
+  <li>
+    <code>--password [password]</code><br />
+    Password.
+  </li>
+  <li>
+    <code>--aspect-ratio [aspect ratio]</code><br />
+    Preview aspect ratio.
+  </li>
+  <li>
+    <code>--video-capture-mode [video capture mode]</code><br />
+    When to record video.
+  </li>
+  <li>
+    <code>--preview-interval-ms [preview interval ms]</code><br />
+    Preview interval rate in milliseconds.
+  </li>
+  <li>
+    <code>--preview-quality [preview quality]</code><br />
+    Preview quality.
+  </li>
+  <li>
+    <code>--preview-only-cloud-retention [preview only cloud retention]</code
+    ><br />
+    Preview only cloud retention.
+  </li>
+  <li>
+    <code>--audio-enable</code><br />
+    Audio enable.
+  </li>
+  <li>
+    <code>--audio-disable</code><br />
+    Audio disable.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all bridges:</li>
+</ul>
+<pre><code class="language-bash">een bridge list
+</code></pre>
+<ul>
+  <li>To check the status of a specific bridge:</li>
+</ul>
+<pre><code class="language-bash">een bridge status --html
+</code></pre>
+<ul>
+  <li>To get availability information for a bridge:</li>
+</ul>
+<pre><code class="language-bash">een bridge availability --esns [esns] --start-time [start time] --end-time [end time]
+</code></pre>
+<h1>location - Manage Locations</h1>
+<h2>NAME</h2>
+<p><code>location</code> - manage and interact with locations.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een location [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>location</code> command allows you to manage locations, including
+  listing all available locations.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List all locations.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--csv</code><br />
+    List all locations in CSV format.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    List locations with options for CSV format, file output, skipping prompts,
+    and verbose output as specified.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all locations in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een location list --csv --file-name locations.csv
+</code></pre>
+<ul>
+  <li>To list locations without prompting for confirmation:</li>
+</ul>
+<pre><code class="language-bash">een location list --no-prompt --verbose
+</code></pre>
+<h1>video - Manage Camera Videos</h1>
+<h2>NAME</h2>
+<p><code>video</code> - manage and interact with videos from cameras.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een video [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>video</code> command allows you to download videos from cameras,
+  list available videos, and check the status of preview recordings.
+</p>
+<h2>COMMANDS</h2>
+<h3>download</h3>
+<p>Download video from the camera.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--esn [esn]</code><br />
+    ESN of the camera.
+  </li>
+  <li>
+    <code>--start-time [start time]</code><br />
+    Video start time.
+  </li>
+  <li>
+    <code>--end-time [end time]</code><br />
+    Video end time.
+  </li>
+  <li>
+    <code>--format [format]</code><br />
+    Video format.
+  </li>
+  <li>
+    <code>--target-directory [target-directory]</code><br />
+    Specify the name of the directory where the output will be saved.
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--timezone [timezone]</code><br />
+    Timezone.
+  </li>
+  <li>
+    <code>--overwrite</code><br />
+    Overwrite already downloaded video.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>For video download, support both mp4 and FLV format.</li>
+  <li>The timezone option is only supported for mp4 format.</li>
+  <li>Video download is done by batches of 5 videos at a time.</li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    Downloads the video from the specified camera if all required options are
+    provided.
+  </li>
+</ul>
+<hr />
+<h3>list</h3>
+<p>Get camera video list.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--esn [esn]</code><br />
+    ESN of the camera.
+  </li>
+  <li>
+    <code>--start-time [start time]</code><br />
+    Video start time.
+  </li>
+  <li>
+    <code>--end-time [end time]</code><br />
+    Video end time.
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    Lists videos available from the specified camera within the given time
+    frame.
+  </li>
+</ul>
+<hr />
+<h3>previewrecordingstatus</h3>
+<p>Get the status of preview recording.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <code>--esns [esns]</code><br />
+    ESNs of the camera.
+  </li>
+  <li>
+    <code>--start-time [start time]</code><br />
+    Video start time.
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>--end-time [end time]</code><br />
+    Video end time.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
+  </li>
+  <li>
+    <code>--no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--google-sheet</code><br />
+    List bridges in CSV format in Google Sheets.
+  </li>
+  <li>
+    <code>--verbose</code><br />
+    Enable verbose output.
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    The ISO 8601 timestamp format is a standardized format for representing data
+    and time information (Example: &quot;2023-10-02T23:50:06.337+00:00&quot;)
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    If ESNs and start time are provided, it checks the preview recording status.
+    If the <code>--google-sheet</code> option is provided, the status will be
+    listed in Google Sheets.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To download a video from a camera:</li>
+</ul>
+<pre><code class="language-bash">een video download --esn 123456 --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T01:00:00Z&quot; --format mp4 --target-directory /path/to/save
+</code></pre>
+<ul>
+  <li>To list videos from a camera:</li>
+</ul>
+<pre><code class="language-bash">een video list --esn 123456 --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T01:00:00Z&quot; --verbose
+</code></pre>
+<ul>
+  <li>To check the status of a preview recording:</li>
+</ul>
+<pre><code class="language-bash">een video previewrecordingstatus --esns 123456 --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T01:00:00Z&quot; --verbose
+</code></pre>
+<h1>lpr - Manage License Plate Recognition (LPR) Events</h1>
+<h2>NAME</h2>
+<p><code>lpr</code> - manage and retrieve License Plate Recognition events.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een lpr events [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>lpr events</code> command allows you to retrieve LPR events within a
+  specified time frame. It supports filtering by license plate number and camera
+  ID.
+</p>
+<h2>COMMANDS</h2>
+<h3>events</h3>
+<p>Get License Plate Recognition events.</p>
+<h4>Required options:</h4>
+<ul>
+  <li>
+    <p>
+      <code>--start-time [start time]</code><br />
+      Specify the start time for the events retrieval.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--end-time [end time]</code><br />
+      Specify the end time for the events retrieval.
+    </p>
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <p>
+      <code>--lp [license plate]</code><br />
+      Filter events by license plate number.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--esn [esn]</code><br />
+      Specify the camera ESN (Electronic Serial Number), which is the camera ID.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--verbose</code><br />
+      Enable verbose output.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--v3</code><br />
+      Use version 3 of the API for retrieving events.
+    </p>
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    If <code>--v3</code> is specified along with both
+    <code>--start-time</code> and <code>--end-time</code>, it retrieves LPR
+    events using version 3 of the API.
+  </li>
+  <li>
+    If only the start and end times are specified, it retrieves LPR events using
+    the default API.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To get LPR events for a specific time frame:</li>
+</ul>
+<pre><code class="language-bash">een lpr events --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot;
+</code></pre>
+<ul>
+  <li>To get LPR events for a specific license plate:</li>
+</ul>
+<pre><code class="language-bash">een lpr events --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot; --lp &quot;ABC123&quot;
+</code></pre>
+<h1>vsp - Manage Vehicle Surveillance Package (VSP) Events and Alerts</h1>
+<h2>NAME</h2>
+<p>
+  <code>vsp</code> - manage and retrieve Vehicle Surveillance Processing events
+  and alerts.
+</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een vsp [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>vsp</code> command allows you to manage and retrieve VSP events and
+  alerts based on various parameters such as time, vehicle characteristics, and
+  alert types.
+</p>
+<h2>COMMANDS</h2>
+<h3>listevents</h3>
+<p>Get VSP events.</p>
+<h4>Options</h4>
+<ul>
+  <li>
+    <p>
+      <code>--start-time [start time]</code><br />
+      Specify the start time for the events retrieval.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--end-time [end time]</code><br />
+      Specify the end time for the events retrieval.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--lp [lp]</code><br />
+      Filter events by license plate number.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--esns [esns]</code><br />
+      Specify camera ESNs (Electronic Serial Numbers).
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--makes [makes]</code><br />
+      Filter by vehicle makes.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--locations [locations]</code><br />
+      Filter by location name.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--colors [colors]</code><br />
+      Filter by vehicle colors.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--body-types [types]</code><br />
+      Filter by vehicle body types.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--directions [directions]</code><br />
+      Specify the direction of the vehicle.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--access-type [access type]</code><br />
+      Specify the type of access.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--html</code><br />
+      Generate a chart in an HTML file.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>-f, --file-name [file name]</code><br />
+      Specify the name of the file where the output will be saved.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--no-prompt</code><br />
+      Skip all user confirmation prompts.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--verbose</code><br />
+      Enable verbose output.
+    </p>
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    If you haven't specified any start-time and end-time it will take last 24
+    hours as default timestamps.
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    If <code>--html</code> is specified, it generates a report of VSP events.
+  </li>
+  <li>
+    If not, it retrieves VSP events and saves them according to the specified
+    options.
+  </li>
+</ul>
+<hr />
+<h3>listalerts</h3>
+<p>Get VSP alerts.</p>
+<h4>Options</h4>
+<ul>
+  <li>
+    <p>
+      <code>--start-time [start time]</code><br />
+      Specify the start time for the alerts retrieval.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--end-time [end time]</code><br />
+      Specify the end time for the alerts retrieval.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--esns [esns]</code><br />
+      Specify the camera ESN (Electronic Serial Number).
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--locations [locations]</code><br />
+      Specify the name of the location.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--allowed-vehicle</code><br />
+      Alert type: allowed vehicle.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--denied-vehicle</code><br />
+      Alert type: denied vehicle.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--count-of-license-plate</code><br />
+      Alert type: count of license plate.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--hotlist</code><br />
+      Alert type: hotlist.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--unregistered-vehicle</code><br />
+      Alert type: unregistered vehicle.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--watch-vehicle</code><br />
+      Alert type: watch vehicle.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--html</code><br />
+      Generate a chart in an HTML file.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>-f, --file-name [file name]</code><br />
+      Specify the name of the file where the output will be saved.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--no-prompt</code><br />
+      Skip all user confirmation prompts.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--verbose</code><br />
+      Enable verbose output.
+    </p>
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    If you haven't specified any start-time and end-time it will take last 24
+    hours as default timestamps.
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    If <code>--html</code> is specified, it generates a report of VSP alerts.
+  </li>
+  <li>
+    If not, it retrieves VSP alerts and saves them according to the specified
+    options.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To get VSP events for a specific time frame:</li>
+</ul>
+<pre><code class="language-bash">een vsp listevents --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot;
+</code></pre>
+<ul>
+  <li>To get VSP alerts for allowed vehicles:</li>
+</ul>
+<pre><code class="language-bash">een vsp listalerts --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot; --allowed-vehicle
+</code></pre>
+<h1>pos - Manage Point of Sale (POS) Events</h1>
+<h2>NAME</h2>
+<p><code>pos</code> - manage and retrieve Point of Sale events.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een pos listevents [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>pos</code> command allows you to manage and retrieve POS events
+  based on various parameters such as time, transaction details, and location.
+</p>
+<h2>COMMANDS</h2>
+<h3>listevents</h3>
+<p>Get POS events.</p>
+<h4>Options</h4>
+<ul>
+  <li>
+    <p>
+      <code>--start-time [start time]</code><br />
+      Specify the start time for events retrieval.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--end-time [end time]</code><br />
+      Specify the end time for events retrieval.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--locations [locations]</code><br />
+      Specify the name of the location.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--transaction-type [transaction type]</code><br />
+      Specify the type of the transaction.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--net-amount-min [net amount min]</code><br />
+      Specify the minimum net amount.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--net-amount-max [net amount max]</code><br />
+      Specify the maximum net amount.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--employee-id [employee id]</code><br />
+      Specify the ID of the employee.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--discount-min [discount min]</code><br />
+      Specify the minimum discount in percentage.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--discount-max [discount max]</code><br />
+      Specify the maximum discount in percentage.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--bill-number [bill number]</code><br />
+      Specify the bill number.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--flagged</code><br />
+      Retrieve flagged transactions.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--html</code><br />
+      Generate a chart in an HTML file.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>-f, --file-name [file name]</code><br />
+      Specify the name of the file where the output will be saved.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--no-prompt</code><br />
+      Skip all user confirmation prompts.
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>--verbose</code><br />
+      Enable verbose output.
+    </p>
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    If you haven't specified any start-time and end-time it will take last 24
+    hours as default timestamps.
+  </li>
+</ul>
+<h4>Actions:</h4>
+<ul>
+  <li>
+    If <code>--html</code> is specified, it generates a report of POS events.
+  </li>
+  <li>
+    If not, it retrieves POS events and saves them according to the specified
+    options.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To get POS events for a specific time frame:</li>
+</ul>
+<pre><code class="language-bash">een pos listevents --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot;
+</code></pre>
+<ul>
+  <li>To get flagged POS transactions:</li>
+</ul>
+<pre><code class="language-bash">een pos listevents --flagged
+</code></pre>
+<h1>googleconfig - Update Google Configuration Options</h1>
+<h2>NAME</h2>
+<p>
+  <code>googleconfig</code> - update configuration options for Google settings.
+</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een googleconfig update &lt;option name&gt; &lt;value&gt;
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>googleconfig</code> command allows you to update specific
+  configuration options related to Google settings.
+</p>
+<h2>COMMANDS</h2>
+<h3>update</h3>
+<p>Update google config option values</p>
+<h4>Arguments:</h4>
+<ul>
+  <li>
+    <p>
+      <code>&lt;option name&gt;</code> The name of the configuration option that
+      needs to be updated.
+    </p>
+  </li>
+  <li>
+    <p><code>&lt;value&gt;</code></p>
+  </li>
+</ul>
+<p>
+  The new value for the specified option. This value is parsed as a JSON string.
+</p>
+<h4>Action:</h4>
+<p>
+  The action processes the provided option name and value, parsing the value as
+  JSON and updating the Google configuration file accordingly.
+</p>
+<h2>EXAMPLES</h2>
+<p>To update a Google configuration option:</p>
+<pre><code class="language-bash">een googleconfig update &quot;api_key&quot; &quot;your_api_key_value&quot;
+</code></pre>
+<h1>For Google Sheets commands</h1>
 <h4>Generate Credentials for accessing google sheets and google drive</h4>
 <p><a href="https://console.cloud.google.com/">Google Cloud Console</a></p>
-<p>The credentials required depends on the type of data, platform, and access methodology of your app.</p>
+<p>
+  The credentials required depends on the type of data, platform, and access
+  methodology of your app.
+</p>
 <h4>Create a service account</h4>
 <ol>
-<li>Open the Google Cloud console.</li>
+  <li>Open the Google Cloud console.</li>
 </ol>
 <p><a href="https://console.cloud.google.com/">Google Cloud Console</a></p>
 <ol start="2">
-<li>At the top-left, click Menu menu &gt; IAM &amp; Admin &gt; Service Accounts.</li>
-<li>Click Create service account.</li>
-<li>Fill in the service account details, then click Create and continue.</li>
-<li>Optional: Assign roles to your service account to grant access to your Google Cloud project's resources.</li>
-<li>Click Continue.</li>
-<li>Optional: Enter users or groups that can manage and perform actions with this service account.</li>
-<li>Click Done.</li>
+  <li>
+    At the top-left, click Menu menu &gt; IAM &amp; Admin &gt; Service Accounts.
+  </li>
+  <li>Click Create service account.</li>
+  <li>Fill in the service account details, then click Create and continue.</li>
+  <li>
+    Optional: Assign roles to your service account to grant access to your
+    Google Cloud project's resources.
+  </li>
+  <li>Click Continue.</li>
+  <li>
+    Optional: Enter users or groups that can manage and perform actions with
+    this service account.
+  </li>
+  <li>Click Done.</li>
 </ol>
 <h3>Service account</h3>
-<p>Use this credential to authenticate as a robot service account or to access resources on behalf of Google Workspace or Cloud Identity users through domain-wide delegation.</p>
+<p>
+  Use this credential to authenticate as a robot service account or to access
+  resources on behalf of Google Workspace or Cloud Identity users through
+  domain-wide delegation.
+</p>
 <h4>Create credentials for a service account</h4>
-<p>You need to obtain credentials in the form of a public/private key pair. These credentials are used by your code to authorize service account actions within your app.</p>
+<p>
+  You need to obtain credentials in the form of a public/private key pair. These
+  credentials are used by your code to authorize service account actions within
+  your app.
+</p>
 <h4>To obtain credentials for your service account:</h4>
 <ol>
-<li>Open the Google Cloud console.</li>
+  <li>Open the Google Cloud console.</li>
 </ol>
 <p><a href="https://console.cloud.google.com/">Google Cloud Console</a></p>
 <ol start="2">
-<li>At the top-left, click Menu menu &gt; IAM &amp; Admin &gt; Service Accounts.</li>
-<li>Select your service account.</li>
-<li>Click Keys &gt; Add keys &gt; Create new key.</li>
-<li>Select JSON, then click Create.
-Your new public/private key pair is generated and downloaded to your machine as a new file. This file is the only copy of this key.</li>
-<li>Click Close.</li>
+  <li>
+    At the top-left, click Menu menu &gt; IAM &amp; Admin &gt; Service Accounts.
+  </li>
+  <li>Select your service account.</li>
+  <li>Click Keys &gt; Add keys &gt; Create new key.</li>
+  <li>
+    Select JSON, then click Create. Your new public/private key pair is
+    generated and downloaded to your machine as a new file. This file is the
+    only copy of this key.
+  </li>
+  <li>Click Close.</li>
 </ol>
 <h4>Drive Folder ID</h4>
-<p>A folder ID can be extracted from its URL. For example, the folder ID in the URL https://drive.google.com/drive/folders/ABCDE12345 is <code>ABCDE12345</code>.</p>
+<p>
+  A folder ID can be extracted from its URL. For example, the folder ID in the
+  URL https://drive.google.com/drive/folders/ABCDE12345 is
+  <code>ABCDE12345</code>.
+</p>
 <h4>Grant Editor permission to access google drive folder</h4>
-<p>Grant permission to your client email in your google drive folder.
-Client email is the email that you get while initializing the project in google cloud console.</p>
+<p>
+  Grant permission to your client email in your google drive folder. Client
+  email is the email that you get while initializing the project in google cloud
+  console.
+</p>
 <h3>IMPORTANT:</h3>
 <h4>Enable GoogleSheet API and Google Drive APIs</h4>
 <ol>
-<li>Open APIS and Services page</li>
+  <li>Open APIS and Services page</li>
 </ol>
 <p><a href="https://console.cloud.google.com/apis">APIS and Services</a></p>
 <ol start="2">
-<li>Navigate to API Library</li>
+  <li>Navigate to API Library</li>
 </ol>
 <p><a href="https://console.cloud.google.com/apis/library">API Library</a></p>
 <ol start="3">
-<li>Search for Google Drive API</li>
+  <li>Search for Google Drive API</li>
 </ol>
-<p><a href="https://console.cloud.google.com/apis/library/drive.googleapis.com">Google Drive API</a></p>
+<p>
+  <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com"
+    >Google Drive API</a
+  >
+</p>
 <ol start="4">
-<li>
-<p>Enable Google Drive API by clicking on the <code>ENABLE</code> button</p>
-</li>
-<li>
-<p>Search for Google Sheets API</p>
-</li>
+  <li>
+    <p>Enable Google Drive API by clicking on the <code>ENABLE</code> button</p>
+  </li>
+  <li>
+    <p>Search for Google Sheets API</p>
+  </li>
 </ol>
-<p><a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com">Google Sheets API</a></p>
+<p>
+  <a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com"
+    >Google Sheets API</a
+  >
+</p>
 <ol start="6">
-<li>Enable Google Sheets API by clicking on the <code>ENABLE</code> button</li>
+  <li>
+    Enable Google Sheets API by clicking on the <code>ENABLE</code> button
+  </li>
 </ol>
 <h3>Note:</h3>
-<p>While executing google sheets commands, if you encounter any error messages like:</p>
+<p>
+  While executing google sheets commands, if you encounter any error messages
+  like:
+</p>
 <pre><code> errors: [
     {
       message: 'Google Sheets API has not been used in project 886039128663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/sheets.googleapis.com/overview?project=886039128663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
@@ -721,7 +2371,10 @@ Client email is the email that you get while initializing the project in google 
   ]
 
 </code></pre>
-<p>This error indicates that you are not <code>enabled</code> Google Sheets API for your service account.</p>
+<p>
+  This error indicates that you are not <code>enabled</code> Google Sheets API
+  for your service account.
+</p>
 <pre><code>errors: [
    {
      message: 'Google Drive API has not been used in project 886039128663 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=886039128663 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
@@ -732,661 +2385,682 @@ Client email is the email that you get while initializing the project in google 
  ]
 
 </code></pre>
-<p>This error indicates that you are not <code>enabled</code> Google Drive API for your service account.</p>
-<p>To fix the same, please follow the steps above for enabling GoogleSheet API and Google Drive API</p>
+<p>
+  This error indicates that you are not <code>enabled</code> Google Drive API
+  for your service account.
+</p>
+<p>
+  To fix the same, please follow the steps above for enabling GoogleSheet API
+  and Google Drive API
+</p>
 <h4>Setting Google Configuration</h4>
-<p>The .een/static_config.json file that gets created while logging in using the CLI has the following values:</p>
+<p>
+  The .een/static_config.json file that gets created while logging in using the
+  CLI has the following values:
+</p>
 <ul>
-<li>&quot;serviceAccountPrivateKey&quot;: &quot;your private key&quot;</li>
-<li>&quot;serviceAccountClientEmail&quot;: &quot;your client email&quot;</li>
-<li>&quot;driveFolderID&quot;: &quot;google drive folder id&quot;</li>
+  <li>&quot;serviceAccountPrivateKey&quot;: &quot;your private key&quot;</li>
+  <li>&quot;serviceAccountClientEmail&quot;: &quot;your client email&quot;</li>
+  <li>&quot;driveFolderID&quot;: &quot;google drive folder id&quot;</li>
 </ul>
-<p>The serviceAccountPrivateKey and serviceAccountClientEmail can be found in your downloaded file, you get while doing the step 5 in obtaining the credentials for your service account.</p>
-<p>Replace these values with your credentials, you will be able to get the google sheets commands working.</p>
+<p>
+  The serviceAccountPrivateKey and serviceAccountClientEmail can be found in
+  your downloaded file, you get while doing the step 5 in obtaining the
+  credentials for your service account.
+</p>
+<p>
+  Replace these values with your credentials, you will be able to get the google
+  sheets commands working.
+</p>
 <h4>To update the google config values, you can also use the command:</h4>
-<pre><code>een update-google-config &lt;name&gt; -- &lt;value&gt;
+<pre><code>een googleconfig update &lt;name&gt; -- &lt;value&gt;
 </code></pre>
 <p>Example:</p>
-<pre><code>een update-config &quot;driveFolderID&quot; -- &quot;1giou_ghlihbZyUpwCx&quot;
+<pre><code>een googleconfig update &quot;driveFolderID&quot; -- &quot;1giou_ghlihbZyUpwCx&quot;
 </code></pre>
 <h3>Camera settings that can be edited:</h3>
 <ol>
-<li>cloud_retention_days - [Cloud retention]</li>
-<li>video_resolution - [Video resolution]</li>
-<li>bridge_target_days - [Local retention - Min]</li>
-<li>local_retention_days - [Local retention - Max]</li>
-<li>preview_resolution - [Preview resolution]</li>
-<li>preview_transmit_mode - [Preview transmit mode]</li>
-<li>video_transmit_mode - [Video transmit mode]</li>
-<li>video_quality - [Full Video quality]</li>
-<li>tags - [Tags]</li>
-<li>username - [Camera username]</li>
-<li>password - [Camera password]</li>
-<li>aspect_ratio- [Preview aspect ratio]</li>
-<li>video_capture_mode - [Preview Record when]</li>
-<li>preview_interval_ms - [Preview update rate]</li>
-<li>preview_quality - [Preview quality]</li>
-<li>preview_only_cloud_retention - [Cloud Preview Only (PR1)]</li>
+  <li>cloud-retention-days - [Cloud retention]</li>
+  <li>video-resolution - [Video resolution]</li>
+  <li>bridge-target-days - [Local retention - Min]</li>
+  <li>local-retention-days - [Local retention - Max]</li>
+  <li>preview-resolution - [Preview resolution]</li>
+  <li>preview-transmit-mode - [Preview transmit mode]</li>
+  <li>video-transmit-mode - [Video transmit mode]</li>
+  <li>video-quality - [Full Video quality]</li>
+  <li>tags - [Tags]</li>
+  <li>user-name - [Camera username]</li>
+  <li>password - [Camera password]</li>
+  <li>aspect-ratio- [Preview aspect ratio]</li>
+  <li>video-capture-mode - [Preview Record when]</li>
+  <li>preview-interval-ms - [Preview update rate]</li>
+  <li>preview-quality - [Preview quality]</li>
+  <li>preview-only-cloud-retention - [Cloud Preview Only (PR1)]</li>
+  <li>audio-enable - [Enable audio if available]</li>
+  <li>audio-disable - [Disable audio if available]</li>
 </ol>
 <p>Note:</p>
 <ul>
-<li>Except for <code>cameraID</code> and <code>cameraName</code> all other field in camera settings file are editable.</li>
+  <li>
+    Except for <code>cameraID</code> and <code>cameraName</code> all other field
+    in camera settings file are editable.
+  </li>
 </ul>
 <h3>Bridge settings that can be edited:</h3>
-<p>1.local_rtsp_metrics - [Bridge rtsp metrics]</p>
+<p>1.local-rtsp-metrics - [Bridge rtsp metrics]</p>
 <h3>Available camera status</h3>
 <ul>
-<li>&quot;Camera online&quot;</li>
-<li>&quot;Stream attached&quot;</li>
-<li>&quot;Camera on&quot;</li>
-<li>&quot;Camera recording&quot;</li>
-<li>&quot;Camera sending previews&quot;</li>
-<li>&quot;Camera located&quot;</li>
-<li>&quot;Camera not supported&quot;</li>
-<li>&quot;Camera configuration in process&quot;</li>
-<li>&quot;Camera needs ONVIF password&quot;</li>
-<li>&quot;Camera available but not yet attached&quot;</li>
-<li>&quot;Internal status&quot;</li>
-<li>&quot;Camera error&quot;</li>
-<li>&quot;Reserved&quot;</li>
-<li>&quot;Invalid state&quot;</li>
-<li>&quot;Camera streaming&quot;</li>
-<li>&quot;Camera registered&quot;</li>
+  <li>&quot;Camera online&quot;</li>
+  <li>&quot;Stream attached&quot;</li>
+  <li>&quot;Camera on&quot;</li>
+  <li>&quot;Camera recording&quot;</li>
+  <li>&quot;Camera sending previews&quot;</li>
+  <li>&quot;Camera located&quot;</li>
+  <li>&quot;Camera not supported&quot;</li>
+  <li>&quot;Camera configuration in process&quot;</li>
+  <li>&quot;Camera needs ONVIF password&quot;</li>
+  <li>&quot;Camera available but not yet attached&quot;</li>
+  <li>&quot;Internal status&quot;</li>
+  <li>&quot;Camera error&quot;</li>
+  <li>&quot;Reserved&quot;</li>
+  <li>&quot;Invalid state&quot;</li>
+  <li>&quot;Camera streaming&quot;</li>
+  <li>&quot;Camera registered&quot;</li>
 </ul>
 <h3>Available timezones</h3>
 <ul>
-<li>&quot;Africa/Abidjan&quot;</li>
-<li>&quot;Africa/Accra&quot;</li>
-<li>&quot;Africa/Addis_Ababa&quot;</li>
-<li>&quot;Africa/Algiers&quot;</li>
-<li>&quot;Africa/Asmara&quot;</li>
-<li>&quot;Africa/Asmera&quot;</li>
-<li>&quot;Africa/Bamako&quot;</li>
-<li>&quot;Africa/Bangui&quot;</li>
-<li>&quot;Africa/Banjul&quot;</li>
-<li>&quot;Africa/Bissau&quot;</li>
-<li>&quot;Africa/Blantyre&quot;</li>
-<li>&quot;Africa/Brazzaville&quot;</li>
-<li>&quot;Africa/Bujumbura&quot;</li>
-<li>&quot;Africa/Cairo&quot;</li>
-<li>&quot;Africa/Casablanca&quot;</li>
-<li>&quot;Africa/Ceuta&quot;</li>
-<li>&quot;Africa/Conakry&quot;</li>
-<li>&quot;Africa/Dakar&quot;</li>
-<li>&quot;Africa/Dar_es_Salaam&quot;</li>
-<li>&quot;Africa/Djibouti&quot;</li>
-<li>&quot;Africa/Douala&quot;</li>
-<li>&quot;Africa/El_Aaiun&quot;</li>
-<li>&quot;Africa/Freetown&quot;</li>
-<li>&quot;Africa/Gaborone&quot;</li>
-<li>&quot;Africa/Harare&quot;</li>
-<li>&quot;Africa/Johannesburg&quot;</li>
-<li>&quot;Africa/Juba&quot;</li>
-<li>&quot;Africa/Kampala&quot;</li>
-<li>&quot;Africa/Khartoum&quot;</li>
-<li>&quot;Africa/Kigali&quot;</li>
-<li>&quot;Africa/Kinshasa&quot;</li>
-<li>&quot;Africa/Lagos&quot;</li>
-<li>&quot;Africa/Libreville&quot;</li>
-<li>&quot;Africa/Lome&quot;</li>
-<li>&quot;Africa/Luanda&quot;</li>
-<li>&quot;Africa/Lubumbashi&quot;</li>
-<li>&quot;Africa/Lusaka&quot;</li>
-<li>&quot;Africa/Malabo&quot;</li>
-<li>&quot;Africa/Maputo&quot;</li>
-<li>&quot;Africa/Maseru&quot;</li>
-<li>&quot;Africa/Mbabane&quot;</li>
-<li>&quot;Africa/Mogadishu&quot;</li>
-<li>&quot;Africa/Monrovia&quot;</li>
-<li>&quot;Africa/Nairobi&quot;</li>
-<li>&quot;Africa/Ndjamena&quot;</li>
-<li>&quot;Africa/Niamey&quot;</li>
-<li>&quot;Africa/Nouakchott&quot;</li>
-<li>&quot;Africa/Ouagadougou&quot;</li>
-<li>&quot;Africa/Porto-Novo&quot;</li>
-<li>&quot;Africa/Sao_Tome&quot;</li>
-<li>&quot;Africa/Timbuktu&quot;</li>
-<li>&quot;Africa/Tripoli&quot;</li>
-<li>&quot;Africa/Tunis&quot;</li>
-<li>&quot;Africa/Windhoek&quot;</li>
-<li>&quot;America/Adak&quot;</li>
-<li>&quot;America/Anchorage&quot;</li>
-<li>&quot;America/Anguilla&quot;</li>
-<li>&quot;America/Antigua&quot;</li>
-<li>&quot;America/Araguaina&quot;</li>
-<li>&quot;America/Argentina/Buenos_Aires&quot;</li>
-<li>&quot;America/Argentina/Catamarca&quot;</li>
-<li>&quot;America/Argentina/ComodRivadavia&quot;</li>
-<li>&quot;America/Argentina/Cordoba&quot;</li>
-<li>&quot;America/Argentina/Jujuy&quot;</li>
-<li>&quot;America/Argentina/La_Rioja&quot;</li>
-<li>&quot;America/Argentina/Mendoza&quot;</li>
-<li>&quot;America/Argentina/Rio_Gallegos&quot;</li>
-<li>&quot;America/Argentina/Salta&quot;</li>
-<li>&quot;America/Argentina/San_Juan&quot;</li>
-<li>&quot;America/Argentina/San_Luis&quot;</li>
-<li>&quot;America/Argentina/Tucuman&quot;</li>
-<li>&quot;America/Argentina/Ushuaia&quot;</li>
-<li>&quot;America/Aruba&quot;</li>
-<li>&quot;America/Asuncion&quot;</li>
-<li>&quot;America/Atikokan&quot;</li>
-<li>&quot;America/Atka&quot;</li>
-<li>&quot;America/Bahia&quot;</li>
-<li>&quot;America/Bahia_Banderas&quot;</li>
-<li>&quot;America/Barbados&quot;</li>
-<li>&quot;America/Belem&quot;</li>
-<li>&quot;America/Belize&quot;</li>
-<li>&quot;America/Blanc-Sablon&quot;</li>
-<li>&quot;America/Boa_Vista&quot;</li>
-<li>&quot;America/Bogota&quot;</li>
-<li>&quot;America/Boise&quot;</li>
-<li>&quot;America/Buenos_Aires&quot;</li>
-<li>&quot;America/Cambridge_Bay&quot;</li>
-<li>&quot;America/Campo_Grande&quot;</li>
-<li>&quot;America/Cancun&quot;</li>
-<li>&quot;America/Caracas&quot;</li>
-<li>&quot;America/Catamarca&quot;</li>
-<li>&quot;America/Cayenne&quot;</li>
-<li>&quot;America/Cayman&quot;</li>
-<li>&quot;America/Chicago&quot;</li>
-<li>&quot;America/Chihuahua&quot;</li>
-<li>&quot;America/Coral_Harbour&quot;</li>
-<li>&quot;America/Cordoba&quot;</li>
-<li>&quot;America/Costa_Rica&quot;</li>
-<li>&quot;America/Creston&quot;</li>
-<li>&quot;America/Cuiaba&quot;</li>
-<li>&quot;America/Curacao&quot;</li>
-<li>&quot;America/Danmarkshavn&quot;</li>
-<li>&quot;America/Dawson&quot;</li>
-<li>&quot;America/Dawson_Creek&quot;</li>
-<li>&quot;America/Denver&quot;</li>
-<li>&quot;America/Detroit&quot;</li>
-<li>&quot;America/Dominica&quot;</li>
-<li>&quot;America/Edmonton&quot;</li>
-<li>&quot;America/Eirunepe&quot;</li>
-<li>&quot;America/El_Salvador&quot;</li>
-<li>&quot;America/Ensenada&quot;</li>
-<li>&quot;America/Fort_Nelson&quot;</li>
-<li>&quot;America/Fort_Wayne&quot;</li>
-<li>&quot;America/Fortaleza&quot;</li>
-<li>&quot;America/Glace_Bay&quot;</li>
-<li>&quot;America/Godthab&quot;</li>
-<li>&quot;America/Goose_Bay&quot;</li>
-<li>&quot;America/Grand_Turk&quot;</li>
-<li>&quot;America/Grenada&quot;</li>
-<li>&quot;America/Guadeloupe&quot;</li>
-<li>&quot;America/Guatemala&quot;</li>
-<li>&quot;America/Guayaquil&quot;</li>
-<li>&quot;America/Guyana&quot;</li>
-<li>&quot;America/Halifax&quot;</li>
-<li>&quot;America/Havana&quot;</li>
-<li>&quot;America/Hermosillo&quot;</li>
-<li>&quot;America/Indiana/Indianapolis&quot;</li>
-<li>&quot;America/Indiana/Knox&quot;</li>
-<li>&quot;America/Indiana/Marengo&quot;</li>
-<li>&quot;America/Indiana/Petersburg&quot;</li>
-<li>&quot;America/Indiana/Tell_City&quot;</li>
-<li>&quot;America/Indiana/Vevay&quot;</li>
-<li>&quot;America/Indiana/Vincennes&quot;</li>
-<li>&quot;America/Indiana/Winamac&quot;</li>
-<li>&quot;America/Indianapolis&quot;</li>
-<li>&quot;America/Inuvik&quot;</li>
-<li>&quot;America/Iqaluit&quot;</li>
-<li>&quot;America/Jamaica&quot;</li>
-<li>&quot;America/Jujuy&quot;</li>
-<li>&quot;America/Juneau&quot;</li>
-<li>&quot;America/Kentucky/Louisville&quot;</li>
-<li>&quot;America/Kentucky/Monticello&quot;</li>
-<li>&quot;America/Knox_IN&quot;</li>
-<li>&quot;America/Kralendijk&quot;</li>
-<li>&quot;America/La_Paz&quot;</li>
-<li>&quot;America/Lima&quot;</li>
-<li>&quot;America/Los_Angeles&quot;</li>
-<li>&quot;America/Louisville&quot;</li>
-<li>&quot;America/Lower_Princes&quot;</li>
-<li>&quot;America/Maceio&quot;</li>
-<li>&quot;America/Managua&quot;</li>
-<li>&quot;America/Manaus&quot;</li>
-<li>&quot;America/Marigot&quot;</li>
-<li>&quot;America/Martinique&quot;</li>
-<li>&quot;America/Matamoros&quot;</li>
-<li>&quot;America/Mazatlan&quot;</li>
-<li>&quot;America/Mendoza&quot;</li>
-<li>&quot;America/Menominee&quot;</li>
-<li>&quot;America/Merida&quot;</li>
-<li>&quot;America/Metlakatla&quot;</li>
-<li>&quot;America/Mexico_City&quot;</li>
-<li>&quot;America/Miquelon&quot;</li>
-<li>&quot;America/Moncton&quot;</li>
-<li>&quot;America/Monterrey&quot;</li>
-<li>&quot;America/Montevideo&quot;</li>
-<li>&quot;America/Montreal&quot;</li>
-<li>&quot;America/Montserrat&quot;</li>
-<li>&quot;America/Nassau&quot;</li>
-<li>&quot;America/New_York&quot;</li>
-<li>&quot;America/Nipigon&quot;</li>
-<li>&quot;America/Nome&quot;</li>
-<li>&quot;America/Noronha&quot;</li>
-<li>&quot;America/North_Dakota/Beulah&quot;</li>
-<li>&quot;America/North_Dakota/Center&quot;</li>
-<li>&quot;America/North_Dakota/New_Salem&quot;</li>
-<li>&quot;America/Ojinaga&quot;</li>
-<li>&quot;America/Panama&quot;</li>
-<li>&quot;America/Pangnirtung&quot;</li>
-<li>&quot;America/Paramaribo&quot;</li>
-<li>&quot;America/Phoenix&quot;</li>
-<li>&quot;America/Port-au-Prince&quot;</li>
-<li>&quot;America/Port_of_Spain&quot;</li>
-<li>&quot;America/Porto_Acre&quot;</li>
-<li>&quot;America/Porto_Velho&quot;</li>
-<li>&quot;America/Puerto_Rico&quot;</li>
-<li>&quot;America/Punta_Arenas&quot;</li>
-<li>&quot;America/Rainy_River&quot;</li>
-<li>&quot;America/Rankin_Inlet&quot;</li>
-<li>&quot;America/Recife&quot;</li>
-<li>&quot;America/Regina&quot;</li>
-<li>&quot;America/Resolute&quot;</li>
-<li>&quot;America/Rio_Branco&quot;</li>
-<li>&quot;America/Rosario&quot;</li>
-<li>&quot;America/Santa_Isabel&quot;</li>
-<li>&quot;America/Santarem&quot;</li>
-<li>&quot;America/Santiago&quot;</li>
-<li>&quot;America/Santo_Domingo&quot;</li>
-<li>&quot;America/Sao_Paulo&quot;</li>
-<li>&quot;America/Scoresbysund&quot;</li>
-<li>&quot;America/Shiprock&quot;</li>
-<li>&quot;America/Sitka&quot;</li>
-<li>&quot;America/St_Barthelemy&quot;</li>
-<li>&quot;America/St_Johns&quot;</li>
-<li>&quot;America/St_Kitts&quot;</li>
-<li>&quot;America/St_Lucia&quot;</li>
-<li>&quot;America/St_Thomas&quot;</li>
-<li>&quot;America/St_Vincent&quot;</li>
-<li>&quot;America/Swift_Current&quot;</li>
-<li>&quot;America/Tegucigalpa&quot;</li>
-<li>&quot;America/Thule&quot;</li>
-<li>&quot;America/Thunder_Bay&quot;</li>
-<li>&quot;America/Tijuana&quot;</li>
-<li>&quot;America/Toronto&quot;</li>
-<li>&quot;America/Tortola&quot;</li>
-<li>&quot;America/Vancouver&quot;</li>
-<li>&quot;America/Virgin&quot;</li>
-<li>&quot;America/Whitehorse&quot;</li>
-<li>&quot;America/Winnipeg&quot;</li>
-<li>&quot;America/Yakutat&quot;</li>
-<li>&quot;America/Yellowknife&quot;</li>
-<li>&quot;Antarctica/Casey&quot;</li>
-<li>&quot;Antarctica/Davis&quot;</li>
-<li>&quot;Antarctica/DumontDUrville&quot;</li>
-<li>&quot;Antarctica/Macquarie&quot;</li>
-<li>&quot;Antarctica/Mawson&quot;</li>
-<li>&quot;Antarctica/McMurdo&quot;</li>
-<li>&quot;Antarctica/Palmer&quot;</li>
-<li>&quot;Antarctica/Rothera&quot;</li>
-<li>&quot;Antarctica/South_Pole&quot;</li>
-<li>&quot;Antarctica/Syowa&quot;</li>
-<li>&quot;Antarctica/Troll&quot;</li>
-<li>&quot;Antarctica/Vostok&quot;</li>
-<li>&quot;Arctic/Longyearbyen&quot;</li>
-<li>&quot;Asia/Aden&quot;</li>
-<li>&quot;Asia/Almaty&quot;</li>
-<li>&quot;Asia/Amman&quot;</li>
-<li>&quot;Asia/Anadyr&quot;</li>
-<li>&quot;Asia/Aqtau&quot;</li>
-<li>&quot;Asia/Aqtobe&quot;</li>
-<li>&quot;Asia/Ashgabat&quot;</li>
-<li>&quot;Asia/Ashkhabad&quot;</li>
-<li>&quot;Asia/Atyrau&quot;</li>
-<li>&quot;Asia/Baghdad&quot;</li>
-<li>&quot;Asia/Bahrain&quot;</li>
-<li>&quot;Asia/Baku&quot;</li>
-<li>&quot;Asia/Bangkok&quot;</li>
-<li>&quot;Asia/Barnaul&quot;</li>
-<li>&quot;Asia/Beirut&quot;</li>
-<li>&quot;Asia/Bishkek&quot;</li>
-<li>&quot;Asia/Brunei&quot;</li>
-<li>&quot;Asia/Calcutta&quot;</li>
-<li>&quot;Asia/Chita&quot;</li>
-<li>&quot;Asia/Choibalsan&quot;</li>
-<li>&quot;Asia/Chongqing&quot;</li>
-<li>&quot;Asia/Chungking&quot;</li>
-<li>&quot;Asia/Colombo&quot;</li>
-<li>&quot;Asia/Dacca&quot;</li>
-<li>&quot;Asia/Damascus&quot;</li>
-<li>&quot;Asia/Dhaka&quot;</li>
-<li>&quot;Asia/Dili&quot;</li>
-<li>&quot;Asia/Dubai&quot;</li>
-<li>&quot;Asia/Dushanbe&quot;</li>
-<li>&quot;Asia/Famagusta&quot;</li>
-<li>&quot;Asia/Gaza&quot;</li>
-<li>&quot;Asia/Harbin&quot;</li>
-<li>&quot;Asia/Hebron&quot;</li>
-<li>&quot;Asia/Ho_Chi_Minh&quot;</li>
-<li>&quot;Asia/Hong_Kong&quot;</li>
-<li>&quot;Asia/Hovd&quot;</li>
-<li>&quot;Asia/Irkutsk&quot;</li>
-<li>&quot;Asia/Istanbul&quot;</li>
-<li>&quot;Asia/Jakarta&quot;</li>
-<li>&quot;Asia/Jayapura&quot;</li>
-<li>&quot;Asia/Jerusalem&quot;</li>
-<li>&quot;Asia/Kabul&quot;</li>
-<li>&quot;Asia/Kamchatka&quot;</li>
-<li>&quot;Asia/Karachi&quot;</li>
-<li>&quot;Asia/Kashgar&quot;</li>
-<li>&quot;Asia/Kathmandu&quot;</li>
-<li>&quot;Asia/Katmandu&quot;</li>
-<li>&quot;Asia/Khandyga&quot;</li>
-<li>&quot;Asia/Kolkata&quot;</li>
-<li>&quot;Asia/Krasnoyarsk&quot;</li>
-<li>&quot;Asia/Kuala_Lumpur&quot;</li>
-<li>&quot;Asia/Kuching&quot;</li>
-<li>&quot;Asia/Kuwait&quot;</li>
-<li>&quot;Asia/Macao&quot;</li>
-<li>&quot;Asia/Macau&quot;</li>
-<li>&quot;Asia/Magadan&quot;</li>
-<li>&quot;Asia/Makassar&quot;</li>
-<li>&quot;Asia/Manila&quot;</li>
-<li>&quot;Asia/Muscat&quot;</li>
-<li>&quot;Asia/Nicosia&quot;</li>
-<li>&quot;Asia/Novokuznetsk&quot;</li>
-<li>&quot;Asia/Novosibirsk&quot;</li>
-<li>&quot;Asia/Omsk&quot;</li>
-<li>&quot;Asia/Oral&quot;</li>
-<li>&quot;Asia/Phnom_Penh&quot;</li>
-<li>&quot;Asia/Pontianak&quot;</li>
-<li>&quot;Asia/Pyongyang&quot;</li>
-<li>&quot;Asia/Qatar&quot;</li>
-<li>&quot;Asia/Qostanay&quot;</li>
-<li>&quot;Asia/Qyzylorda&quot;</li>
-<li>&quot;Asia/Rangoon&quot;</li>
-<li>&quot;Asia/Riyadh&quot;</li>
-<li>&quot;Asia/Saigon&quot;</li>
-<li>&quot;Asia/Sakhalin&quot;</li>
-<li>&quot;Asia/Samarkand&quot;</li>
-<li>&quot;Asia/Seoul&quot;</li>
-<li>&quot;Asia/Shanghai&quot;</li>
-<li>&quot;Asia/Singapore&quot;</li>
-<li>&quot;Asia/Srednekolymsk&quot;</li>
-<li>&quot;Asia/Taipei&quot;</li>
-<li>&quot;Asia/Tashkent&quot;</li>
-<li>&quot;Asia/Tbilisi&quot;</li>
-<li>&quot;Asia/Tehran&quot;</li>
-<li>&quot;Asia/Tel_Aviv&quot;</li>
-<li>&quot;Asia/Thimbu&quot;</li>
-<li>&quot;Asia/Thimphu&quot;</li>
-<li>&quot;Asia/Tokyo&quot;</li>
-<li>&quot;Asia/Tomsk&quot;</li>
-<li>&quot;Asia/Ujung_Pandang&quot;</li>
-<li>&quot;Asia/Ulaanbaatar&quot;</li>
-<li>&quot;Asia/Ulan_Bator&quot;</li>
-<li>&quot;Asia/Urumqi&quot;</li>
-<li>&quot;Asia/Ust-Nera&quot;</li>
-<li>&quot;Asia/Vientiane&quot;</li>
-<li>&quot;Asia/Vladivostok&quot;</li>
-<li>&quot;Asia/Yakutsk&quot;</li>
-<li>&quot;Asia/Yangon&quot;</li>
-<li>&quot;Asia/Yekaterinburg&quot;</li>
-<li>&quot;Asia/Yerevan&quot;</li>
-<li>&quot;Atlantic/Azores&quot;</li>
-<li>&quot;Atlantic/Bermuda&quot;</li>
-<li>&quot;Atlantic/Canary&quot;</li>
-<li>&quot;Atlantic/Cape_Verde&quot;</li>
-<li>&quot;Atlantic/Faeroe&quot;</li>
-<li>&quot;Atlantic/Faroe&quot;</li>
-<li>&quot;Atlantic/Jan_Mayen&quot;</li>
-<li>&quot;Atlantic/Madeira&quot;</li>
-<li>&quot;Atlantic/Reykjavik&quot;</li>
-<li>&quot;Atlantic/South_Georgia&quot;</li>
-<li>&quot;Atlantic/St_Helena&quot;</li>
-<li>&quot;Atlantic/Stanley&quot;</li>
-<li>&quot;Australia/ACT&quot;</li>
-<li>&quot;Australia/Adelaide&quot;</li>
-<li>&quot;Australia/Brisbane&quot;</li>
-<li>&quot;Australia/Broken_Hill&quot;</li>
-<li>&quot;Australia/Canberra&quot;</li>
-<li>&quot;Australia/Currie&quot;</li>
-<li>&quot;Australia/Darwin&quot;</li>
-<li>&quot;Australia/Eucla&quot;</li>
-<li>&quot;Australia/Hobart&quot;</li>
-<li>&quot;Australia/LHI&quot;</li>
-<li>&quot;Australia/Lindeman&quot;</li>
-<li>&quot;Australia/Lord_Howe&quot;</li>
-<li>&quot;Australia/Melbourne&quot;</li>
-<li>&quot;Australia/NSW&quot;</li>
-<li>&quot;Australia/North&quot;</li>
-<li>&quot;Australia/Perth&quot;</li>
-<li>&quot;Australia/Queensland&quot;</li>
-<li>&quot;Australia/South&quot;</li>
-<li>&quot;Australia/Sydney&quot;</li>
-<li>&quot;Australia/Tasmania&quot;</li>
-<li>&quot;Australia/Victoria&quot;</li>
-<li>&quot;Australia/West&quot;</li>
-<li>&quot;Australia/Yancowinna&quot;</li>
-<li>&quot;Brazil/Acre&quot;</li>
-<li>&quot;Brazil/DeNoronha&quot;</li>
-<li>&quot;Brazil/East&quot;</li>
-<li>&quot;Brazil/West&quot;</li>
-<li>&quot;CET&quot;</li>
-<li>&quot;CST6CDT&quot;</li>
-<li>&quot;Canada/Atlantic&quot;</li>
-<li>&quot;Canada/Central&quot;</li>
-<li>&quot;Canada/Eastern&quot;</li>
-<li>&quot;Canada/Mountain&quot;</li>
-<li>&quot;Canada/Newfoundland&quot;</li>
-<li>&quot;Canada/Pacific&quot;</li>
-<li>&quot;Canada/Saskatchewan&quot;</li>
-<li>&quot;Canada/Yukon&quot;</li>
-<li>&quot;Chile/Continental&quot;</li>
-<li>&quot;Chile/EasterIsland&quot;</li>
-<li>&quot;Cuba&quot;</li>
-<li>&quot;EET&quot;</li>
-<li>&quot;EST&quot;</li>
-<li>&quot;EST5EDT&quot;</li>
-<li>&quot;Egypt&quot;</li>
-<li>&quot;Eire&quot;</li>
-<li>&quot;Etc/GMT&quot;</li>
-<li>&quot;Etc/GMT+0&quot;</li>
-<li>&quot;Etc/GMT+1&quot;</li>
-<li>&quot;Etc/GMT+10&quot;</li>
-<li>&quot;Etc/GMT+11&quot;</li>
-<li>&quot;Etc/GMT+12&quot;</li>
-<li>&quot;Etc/GMT+2&quot;</li>
-<li>&quot;Etc/GMT+3&quot;</li>
-<li>&quot;Etc/GMT+4&quot;</li>
-<li>&quot;Etc/GMT+5&quot;</li>
-<li>&quot;Etc/GMT+6&quot;</li>
-<li>&quot;Etc/GMT+7&quot;</li>
-<li>&quot;Etc/GMT+8&quot;</li>
-<li>&quot;Etc/GMT+9&quot;</li>
-<li>&quot;Etc/GMT-0&quot;</li>
-<li>&quot;Etc/GMT-1&quot;</li>
-<li>&quot;Etc/GMT-10&quot;</li>
-<li>&quot;Etc/GMT-11&quot;</li>
-<li>&quot;Etc/GMT-12&quot;</li>
-<li>&quot;Etc/GMT-13&quot;</li>
-<li>&quot;Etc/GMT-14&quot;</li>
-<li>&quot;Etc/GMT-2&quot;</li>
-<li>&quot;Etc/GMT-3&quot;</li>
-<li>&quot;Etc/GMT-4&quot;</li>
-<li>&quot;Etc/GMT-5&quot;</li>
-<li>&quot;Etc/GMT-6&quot;</li>
-<li>&quot;Etc/GMT-7&quot;</li>
-<li>&quot;Etc/GMT-8&quot;</li>
-<li>&quot;Etc/GMT-9&quot;</li>
-<li>&quot;Etc/GMT0&quot;</li>
-<li>&quot;Etc/Greenwich&quot;</li>
-<li>&quot;Etc/UCT&quot;</li>
-<li>&quot;Etc/UTC&quot;</li>
-<li>&quot;Etc/Universal&quot;</li>
-<li>&quot;Etc/Zulu&quot;</li>
-<li>&quot;Europe/Amsterdam&quot;</li>
-<li>&quot;Europe/Andorra&quot;</li>
-<li>&quot;Europe/Astrakhan&quot;</li>
-<li>&quot;Europe/Athens&quot;</li>
-<li>&quot;Europe/Belfast&quot;</li>
-<li>&quot;Europe/Belgrade&quot;</li>
-<li>&quot;Europe/Berlin&quot;</li>
-<li>&quot;Europe/Bratislava&quot;</li>
-<li>&quot;Europe/Brussels&quot;</li>
-<li>&quot;Europe/Bucharest&quot;</li>
-<li>&quot;Europe/Budapest&quot;</li>
-<li>&quot;Europe/Busingen&quot;</li>
-<li>&quot;Europe/Chisinau&quot;</li>
-<li>&quot;Europe/Copenhagen&quot;</li>
-<li>&quot;Europe/Dublin&quot;</li>
-<li>&quot;Europe/Gibraltar&quot;</li>
-<li>&quot;Europe/Guernsey&quot;</li>
-<li>&quot;Europe/Helsinki&quot;</li>
-<li>&quot;Europe/Isle_of_Man&quot;</li>
-<li>&quot;Europe/Istanbul&quot;</li>
-<li>&quot;Europe/Jersey&quot;</li>
-<li>&quot;Europe/Kaliningrad&quot;</li>
-<li>&quot;Europe/Kiev&quot;</li>
-<li>&quot;Europe/Kirov&quot;</li>
-<li>&quot;Europe/Lisbon&quot;</li>
-<li>&quot;Europe/Ljubljana&quot;</li>
-<li>&quot;Europe/London&quot;</li>
-<li>&quot;Europe/Luxembourg&quot;</li>
-<li>&quot;Europe/Madrid&quot;</li>
-<li>&quot;Europe/Malta&quot;</li>
-<li>&quot;Europe/Mariehamn&quot;</li>
-<li>&quot;Europe/Minsk&quot;</li>
-<li>&quot;Europe/Monaco&quot;</li>
-<li>&quot;Europe/Moscow&quot;</li>
-<li>&quot;Europe/Nicosia&quot;</li>
-<li>&quot;Europe/Oslo&quot;</li>
-<li>&quot;Europe/Paris&quot;</li>
-<li>&quot;Europe/Podgorica&quot;</li>
-<li>&quot;Europe/Prague&quot;</li>
-<li>&quot;Europe/Riga&quot;</li>
-<li>&quot;Europe/Rome&quot;</li>
-<li>&quot;Europe/Samara&quot;</li>
-<li>&quot;Europe/San_Marino&quot;</li>
-<li>&quot;Europe/Sarajevo&quot;</li>
-<li>&quot;Europe/Saratov&quot;</li>
-<li>&quot;Europe/Simferopol&quot;</li>
-<li>&quot;Europe/Skopje&quot;</li>
-<li>&quot;Europe/Sofia&quot;</li>
-<li>&quot;Europe/Stockholm&quot;</li>
-<li>&quot;Europe/Tallinn&quot;</li>
-<li>&quot;Europe/Tirane&quot;</li>
-<li>&quot;Europe/Tiraspol&quot;</li>
-<li>&quot;Europe/Ulyanovsk&quot;</li>
-<li>&quot;Europe/Uzhgorod&quot;</li>
-<li>&quot;Europe/Vaduz&quot;</li>
-<li>&quot;Europe/Vatican&quot;</li>
-<li>&quot;Europe/Vienna&quot;</li>
-<li>&quot;Europe/Vilnius&quot;</li>
-<li>&quot;Europe/Volgograd&quot;</li>
-<li>&quot;Europe/Warsaw&quot;</li>
-<li>&quot;Europe/Zagreb&quot;</li>
-<li>&quot;Europe/Zaporozhye&quot;</li>
-<li>&quot;Europe/Zurich&quot;</li>
-<li>&quot;Factory&quot;</li>
-<li>&quot;GB&quot;</li>
-<li>&quot;GB-Eire&quot;</li>
-<li>&quot;GMT&quot;</li>
-<li>&quot;GMT+0&quot;</li>
-<li>&quot;GMT-0&quot;</li>
-<li>&quot;GMT0&quot;</li>
-<li>&quot;Greenwich&quot;</li>
-<li>&quot;HST&quot;</li>
-<li>&quot;Hongkong&quot;</li>
-<li>&quot;Iceland&quot;</li>
-<li>&quot;Indian/Antananarivo&quot;</li>
-<li>&quot;Indian/Chagos&quot;</li>
-<li>&quot;Indian/Christmas&quot;</li>
-<li>&quot;Indian/Cocos&quot;</li>
-<li>&quot;Indian/Comoro&quot;</li>
-<li>&quot;Indian/Kerguelen&quot;</li>
-<li>&quot;Indian/Mahe&quot;</li>
-<li>&quot;Indian/Maldives&quot;</li>
-<li>&quot;Indian/Mauritius&quot;</li>
-<li>&quot;Indian/Mayotte&quot;</li>
-<li>&quot;Indian/Reunion&quot;</li>
-<li>&quot;Iran&quot;</li>
-<li>&quot;Israel&quot;</li>
-<li>&quot;Jamaica&quot;</li>
-<li>&quot;Japan&quot;</li>
-<li>&quot;Kwajalein&quot;</li>
-<li>&quot;Libya&quot;</li>
-<li>&quot;MET&quot;</li>
-<li>&quot;MST&quot;</li>
-<li>&quot;MST7MDT&quot;</li>
-<li>&quot;Mexico/BajaNorte&quot;</li>
-<li>&quot;Mexico/BajaSur&quot;</li>
-<li>&quot;Mexico/General&quot;</li>
-<li>&quot;NZ&quot;</li>
-<li>&quot;NZ-CHAT&quot;</li>
-<li>&quot;Navajo&quot;</li>
-<li>&quot;PRC&quot;</li>
-<li>&quot;PST8PDT&quot;</li>
-<li>&quot;Pacific/Apia&quot;</li>
-<li>&quot;Pacific/Auckland&quot;</li>
-<li>&quot;Pacific/Bougainville&quot;</li>
-<li>&quot;Pacific/Chatham&quot;</li>
-<li>&quot;Pacific/Chuuk&quot;</li>
-<li>&quot;Pacific/Easter&quot;</li>
-<li>&quot;Pacific/Efate&quot;</li>
-<li>&quot;Pacific/Enderbury&quot;</li>
-<li>&quot;Pacific/Fakaofo&quot;</li>
-<li>&quot;Pacific/Fiji&quot;</li>
-<li>&quot;Pacific/Funafuti&quot;</li>
-<li>&quot;Pacific/Galapagos&quot;</li>
-<li>&quot;Pacific/Gambier&quot;</li>
-<li>&quot;Pacific/Guadalcanal&quot;</li>
-<li>&quot;Pacific/Guam&quot;</li>
-<li>&quot;Pacific/Honolulu&quot;</li>
-<li>&quot;Pacific/Johnston&quot;</li>
-<li>&quot;Pacific/Kiritimati&quot;</li>
-<li>&quot;Pacific/Kosrae&quot;</li>
-<li>&quot;Pacific/Kwajalein&quot;</li>
-<li>&quot;Pacific/Majuro&quot;</li>
-<li>&quot;Pacific/Marquesas&quot;</li>
-<li>&quot;Pacific/Midway&quot;</li>
-<li>&quot;Pacific/Nauru&quot;</li>
-<li>&quot;Pacific/Niue&quot;</li>
-<li>&quot;Pacific/Norfolk&quot;</li>
-<li>&quot;Pacific/Noumea&quot;</li>
-<li>&quot;Pacific/Pago_Pago&quot;</li>
-<li>&quot;Pacific/Palau&quot;</li>
-<li>&quot;Pacific/Pitcairn&quot;</li>
-<li>&quot;Pacific/Pohnpei&quot;</li>
-<li>&quot;Pacific/Ponape&quot;</li>
-<li>&quot;Pacific/Port_Moresby&quot;</li>
-<li>&quot;Pacific/Rarotonga&quot;</li>
-<li>&quot;Pacific/Saipan&quot;</li>
-<li>&quot;Pacific/Samoa&quot;</li>
-<li>&quot;Pacific/Tahiti&quot;</li>
-<li>&quot;Pacific/Tarawa&quot;</li>
-<li>&quot;Pacific/Tongatapu&quot;</li>
-<li>&quot;Pacific/Truk&quot;</li>
-<li>&quot;Pacific/Wake&quot;</li>
-<li>&quot;Pacific/Wallis&quot;</li>
-<li>&quot;Pacific/Yap&quot;</li>
-<li>&quot;Poland&quot;</li>
-<li>&quot;Portugal&quot;</li>
-<li>&quot;ROC&quot;</li>
-<li>&quot;ROK&quot;</li>
-<li>&quot;Singapore&quot;</li>
-<li>&quot;Turkey&quot;</li>
-<li>&quot;UCT&quot;</li>
-<li>&quot;US/Alaska&quot;</li>
-<li>&quot;US/Aleutian&quot;</li>
-<li>&quot;US/Arizona&quot;</li>
-<li>&quot;US/Central&quot;</li>
-<li>&quot;US/East-Indiana&quot;</li>
-<li>&quot;US/Eastern&quot;</li>
-<li>&quot;US/Hawaii&quot;</li>
-<li>&quot;US/Indiana-Starke&quot;</li>
-<li>&quot;US/Michigan&quot;</li>
-<li>&quot;US/Mountain&quot;</li>
-<li>&quot;US/Pacific&quot;</li>
-<li>&quot;US/Pacific-New&quot;</li>
-<li>&quot;US/Samoa&quot;</li>
-<li>&quot;UTC&quot;</li>
-<li>&quot;Universal&quot;</li>
-<li>&quot;W-SU&quot;</li>
-<li>&quot;WET&quot;</li>
-<li>&quot;Zulu&quot;</li>
+  <li>&quot;Africa/Abidjan&quot;</li>
+  <li>&quot;Africa/Accra&quot;</li>
+  <li>&quot;Africa/Addis_Ababa&quot;</li>
+  <li>&quot;Africa/Algiers&quot;</li>
+  <li>&quot;Africa/Asmara&quot;</li>
+  <li>&quot;Africa/Asmera&quot;</li>
+  <li>&quot;Africa/Bamako&quot;</li>
+  <li>&quot;Africa/Bangui&quot;</li>
+  <li>&quot;Africa/Banjul&quot;</li>
+  <li>&quot;Africa/Bissau&quot;</li>
+  <li>&quot;Africa/Blantyre&quot;</li>
+  <li>&quot;Africa/Brazzaville&quot;</li>
+  <li>&quot;Africa/Bujumbura&quot;</li>
+  <li>&quot;Africa/Cairo&quot;</li>
+  <li>&quot;Africa/Casablanca&quot;</li>
+  <li>&quot;Africa/Ceuta&quot;</li>
+  <li>&quot;Africa/Conakry&quot;</li>
+  <li>&quot;Africa/Dakar&quot;</li>
+  <li>&quot;Africa/Dar_es_Salaam&quot;</li>
+  <li>&quot;Africa/Djibouti&quot;</li>
+  <li>&quot;Africa/Douala&quot;</li>
+  <li>&quot;Africa/El_Aaiun&quot;</li>
+  <li>&quot;Africa/Freetown&quot;</li>
+  <li>&quot;Africa/Gaborone&quot;</li>
+  <li>&quot;Africa/Harare&quot;</li>
+  <li>&quot;Africa/Johannesburg&quot;</li>
+  <li>&quot;Africa/Juba&quot;</li>
+  <li>&quot;Africa/Kampala&quot;</li>
+  <li>&quot;Africa/Khartoum&quot;</li>
+  <li>&quot;Africa/Kigali&quot;</li>
+  <li>&quot;Africa/Kinshasa&quot;</li>
+  <li>&quot;Africa/Lagos&quot;</li>
+  <li>&quot;Africa/Libreville&quot;</li>
+  <li>&quot;Africa/Lome&quot;</li>
+  <li>&quot;Africa/Luanda&quot;</li>
+  <li>&quot;Africa/Lubumbashi&quot;</li>
+  <li>&quot;Africa/Lusaka&quot;</li>
+  <li>&quot;Africa/Malabo&quot;</li>
+  <li>&quot;Africa/Maputo&quot;</li>
+  <li>&quot;Africa/Maseru&quot;</li>
+  <li>&quot;Africa/Mbabane&quot;</li>
+  <li>&quot;Africa/Mogadishu&quot;</li>
+  <li>&quot;Africa/Monrovia&quot;</li>
+  <li>&quot;Africa/Nairobi&quot;</li>
+  <li>&quot;Africa/Ndjamena&quot;</li>
+  <li>&quot;Africa/Niamey&quot;</li>
+  <li>&quot;Africa/Nouakchott&quot;</li>
+  <li>&quot;Africa/Ouagadougou&quot;</li>
+  <li>&quot;Africa/Porto-Novo&quot;</li>
+  <li>&quot;Africa/Sao_Tome&quot;</li>
+  <li>&quot;Africa/Timbuktu&quot;</li>
+  <li>&quot;Africa/Tripoli&quot;</li>
+  <li>&quot;Africa/Tunis&quot;</li>
+  <li>&quot;Africa/Windhoek&quot;</li>
+  <li>&quot;America/Adak&quot;</li>
+  <li>&quot;America/Anchorage&quot;</li>
+  <li>&quot;America/Anguilla&quot;</li>
+  <li>&quot;America/Antigua&quot;</li>
+  <li>&quot;America/Araguaina&quot;</li>
+  <li>&quot;America/Argentina/Buenos_Aires&quot;</li>
+  <li>&quot;America/Argentina/Catamarca&quot;</li>
+  <li>&quot;America/Argentina/ComodRivadavia&quot;</li>
+  <li>&quot;America/Argentina/Cordoba&quot;</li>
+  <li>&quot;America/Argentina/Jujuy&quot;</li>
+  <li>&quot;America/Argentina/La_Rioja&quot;</li>
+  <li>&quot;America/Argentina/Mendoza&quot;</li>
+  <li>&quot;America/Argentina/Rio_Gallegos&quot;</li>
+  <li>&quot;America/Argentina/Salta&quot;</li>
+  <li>&quot;America/Argentina/San_Juan&quot;</li>
+  <li>&quot;America/Argentina/San_Luis&quot;</li>
+  <li>&quot;America/Argentina/Tucuman&quot;</li>
+  <li>&quot;America/Argentina/Ushuaia&quot;</li>
+  <li>&quot;America/Aruba&quot;</li>
+  <li>&quot;America/Asuncion&quot;</li>
+  <li>&quot;America/Atikokan&quot;</li>
+  <li>&quot;America/Atka&quot;</li>
+  <li>&quot;America/Bahia&quot;</li>
+  <li>&quot;America/Bahia_Banderas&quot;</li>
+  <li>&quot;America/Barbados&quot;</li>
+  <li>&quot;America/Belem&quot;</li>
+  <li>&quot;America/Belize&quot;</li>
+  <li>&quot;America/Blanc-Sablon&quot;</li>
+  <li>&quot;America/Boa_Vista&quot;</li>
+  <li>&quot;America/Bogota&quot;</li>
+  <li>&quot;America/Boise&quot;</li>
+  <li>&quot;America/Buenos_Aires&quot;</li>
+  <li>&quot;America/Cambridge_Bay&quot;</li>
+  <li>&quot;America/Campo_Grande&quot;</li>
+  <li>&quot;America/Cancun&quot;</li>
+  <li>&quot;America/Caracas&quot;</li>
+  <li>&quot;America/Catamarca&quot;</li>
+  <li>&quot;America/Cayenne&quot;</li>
+  <li>&quot;America/Cayman&quot;</li>
+  <li>&quot;America/Chicago&quot;</li>
+  <li>&quot;America/Chihuahua&quot;</li>
+  <li>&quot;America/Coral_Harbour&quot;</li>
+  <li>&quot;America/Cordoba&quot;</li>
+  <li>&quot;America/Costa_Rica&quot;</li>
+  <li>&quot;America/Creston&quot;</li>
+  <li>&quot;America/Cuiaba&quot;</li>
+  <li>&quot;America/Curacao&quot;</li>
+  <li>&quot;America/Danmarkshavn&quot;</li>
+  <li>&quot;America/Dawson&quot;</li>
+  <li>&quot;America/Dawson_Creek&quot;</li>
+  <li>&quot;America/Denver&quot;</li>
+  <li>&quot;America/Detroit&quot;</li>
+  <li>&quot;America/Dominica&quot;</li>
+  <li>&quot;America/Edmonton&quot;</li>
+  <li>&quot;America/Eirunepe&quot;</li>
+  <li>&quot;America/El_Salvador&quot;</li>
+  <li>&quot;America/Ensenada&quot;</li>
+  <li>&quot;America/Fort_Nelson&quot;</li>
+  <li>&quot;America/Fort_Wayne&quot;</li>
+  <li>&quot;America/Fortaleza&quot;</li>
+  <li>&quot;America/Glace_Bay&quot;</li>
+  <li>&quot;America/Godthab&quot;</li>
+  <li>&quot;America/Goose_Bay&quot;</li>
+  <li>&quot;America/Grand_Turk&quot;</li>
+  <li>&quot;America/Grenada&quot;</li>
+  <li>&quot;America/Guadeloupe&quot;</li>
+  <li>&quot;America/Guatemala&quot;</li>
+  <li>&quot;America/Guayaquil&quot;</li>
+  <li>&quot;America/Guyana&quot;</li>
+  <li>&quot;America/Halifax&quot;</li>
+  <li>&quot;America/Havana&quot;</li>
+  <li>&quot;America/Hermosillo&quot;</li>
+  <li>&quot;America/Indiana/Indianapolis&quot;</li>
+  <li>&quot;America/Indiana/Knox&quot;</li>
+  <li>&quot;America/Indiana/Marengo&quot;</li>
+  <li>&quot;America/Indiana/Petersburg&quot;</li>
+  <li>&quot;America/Indiana/Tell_City&quot;</li>
+  <li>&quot;America/Indiana/Vevay&quot;</li>
+  <li>&quot;America/Indiana/Vincennes&quot;</li>
+  <li>&quot;America/Indiana/Winamac&quot;</li>
+  <li>&quot;America/Indianapolis&quot;</li>
+  <li>&quot;America/Inuvik&quot;</li>
+  <li>&quot;America/Iqaluit&quot;</li>
+  <li>&quot;America/Jamaica&quot;</li>
+  <li>&quot;America/Jujuy&quot;</li>
+  <li>&quot;America/Juneau&quot;</li>
+  <li>&quot;America/Kentucky/Louisville&quot;</li>
+  <li>&quot;America/Kentucky/Monticello&quot;</li>
+  <li>&quot;America/Knox_IN&quot;</li>
+  <li>&quot;America/Kralendijk&quot;</li>
+  <li>&quot;America/La_Paz&quot;</li>
+  <li>&quot;America/Lima&quot;</li>
+  <li>&quot;America/Los_Angeles&quot;</li>
+  <li>&quot;America/Louisville&quot;</li>
+  <li>&quot;America/Lower_Princes&quot;</li>
+  <li>&quot;America/Maceio&quot;</li>
+  <li>&quot;America/Managua&quot;</li>
+  <li>&quot;America/Manaus&quot;</li>
+  <li>&quot;America/Marigot&quot;</li>
+  <li>&quot;America/Martinique&quot;</li>
+  <li>&quot;America/Matamoros&quot;</li>
+  <li>&quot;America/Mazatlan&quot;</li>
+  <li>&quot;America/Mendoza&quot;</li>
+  <li>&quot;America/Menominee&quot;</li>
+  <li>&quot;America/Merida&quot;</li>
+  <li>&quot;America/Metlakatla&quot;</li>
+  <li>&quot;America/Mexico_City&quot;</li>
+  <li>&quot;America/Miquelon&quot;</li>
+  <li>&quot;America/Moncton&quot;</li>
+  <li>&quot;America/Monterrey&quot;</li>
+  <li>&quot;America/Montevideo&quot;</li>
+  <li>&quot;America/Montreal&quot;</li>
+  <li>&quot;America/Montserrat&quot;</li>
+  <li>&quot;America/Nassau&quot;</li>
+  <li>&quot;America/New_York&quot;</li>
+  <li>&quot;America/Nipigon&quot;</li>
+  <li>&quot;America/Nome&quot;</li>
+  <li>&quot;America/Noronha&quot;</li>
+  <li>&quot;America/North_Dakota/Beulah&quot;</li>
+  <li>&quot;America/North_Dakota/Center&quot;</li>
+  <li>&quot;America/North_Dakota/New_Salem&quot;</li>
+  <li>&quot;America/Ojinaga&quot;</li>
+  <li>&quot;America/Panama&quot;</li>
+  <li>&quot;America/Pangnirtung&quot;</li>
+  <li>&quot;America/Paramaribo&quot;</li>
+  <li>&quot;America/Phoenix&quot;</li>
+  <li>&quot;America/Port-au-Prince&quot;</li>
+  <li>&quot;America/Port_of_Spain&quot;</li>
+  <li>&quot;America/Porto_Acre&quot;</li>
+  <li>&quot;America/Porto_Velho&quot;</li>
+  <li>&quot;America/Puerto_Rico&quot;</li>
+  <li>&quot;America/Punta_Arenas&quot;</li>
+  <li>&quot;America/Rainy_River&quot;</li>
+  <li>&quot;America/Rankin_Inlet&quot;</li>
+  <li>&quot;America/Recife&quot;</li>
+  <li>&quot;America/Regina&quot;</li>
+  <li>&quot;America/Resolute&quot;</li>
+  <li>&quot;America/Rio_Branco&quot;</li>
+  <li>&quot;America/Rosario&quot;</li>
+  <li>&quot;America/Santa_Isabel&quot;</li>
+  <li>&quot;America/Santarem&quot;</li>
+  <li>&quot;America/Santiago&quot;</li>
+  <li>&quot;America/Santo_Domingo&quot;</li>
+  <li>&quot;America/Sao_Paulo&quot;</li>
+  <li>&quot;America/Scoresbysund&quot;</li>
+  <li>&quot;America/Shiprock&quot;</li>
+  <li>&quot;America/Sitka&quot;</li>
+  <li>&quot;America/St_Barthelemy&quot;</li>
+  <li>&quot;America/St_Johns&quot;</li>
+  <li>&quot;America/St_Kitts&quot;</li>
+  <li>&quot;America/St_Lucia&quot;</li>
+  <li>&quot;America/St_Thomas&quot;</li>
+  <li>&quot;America/St_Vincent&quot;</li>
+  <li>&quot;America/Swift_Current&quot;</li>
+  <li>&quot;America/Tegucigalpa&quot;</li>
+  <li>&quot;America/Thule&quot;</li>
+  <li>&quot;America/Thunder_Bay&quot;</li>
+  <li>&quot;America/Tijuana&quot;</li>
+  <li>&quot;America/Toronto&quot;</li>
+  <li>&quot;America/Tortola&quot;</li>
+  <li>&quot;America/Vancouver&quot;</li>
+  <li>&quot;America/Virgin&quot;</li>
+  <li>&quot;America/Whitehorse&quot;</li>
+  <li>&quot;America/Winnipeg&quot;</li>
+  <li>&quot;America/Yakutat&quot;</li>
+  <li>&quot;America/Yellowknife&quot;</li>
+  <li>&quot;Antarctica/Casey&quot;</li>
+  <li>&quot;Antarctica/Davis&quot;</li>
+  <li>&quot;Antarctica/DumontDUrville&quot;</li>
+  <li>&quot;Antarctica/Macquarie&quot;</li>
+  <li>&quot;Antarctica/Mawson&quot;</li>
+  <li>&quot;Antarctica/McMurdo&quot;</li>
+  <li>&quot;Antarctica/Palmer&quot;</li>
+  <li>&quot;Antarctica/Rothera&quot;</li>
+  <li>&quot;Antarctica/South_Pole&quot;</li>
+  <li>&quot;Antarctica/Syowa&quot;</li>
+  <li>&quot;Antarctica/Troll&quot;</li>
+  <li>&quot;Antarctica/Vostok&quot;</li>
+  <li>&quot;Arctic/Longyearbyen&quot;</li>
+  <li>&quot;Asia/Aden&quot;</li>
+  <li>&quot;Asia/Almaty&quot;</li>
+  <li>&quot;Asia/Amman&quot;</li>
+  <li>&quot;Asia/Anadyr&quot;</li>
+  <li>&quot;Asia/Aqtau&quot;</li>
+  <li>&quot;Asia/Aqtobe&quot;</li>
+  <li>&quot;Asia/Ashgabat&quot;</li>
+  <li>&quot;Asia/Ashkhabad&quot;</li>
+  <li>&quot;Asia/Atyrau&quot;</li>
+  <li>&quot;Asia/Baghdad&quot;</li>
+  <li>&quot;Asia/Bahrain&quot;</li>
+  <li>&quot;Asia/Baku&quot;</li>
+  <li>&quot;Asia/Bangkok&quot;</li>
+  <li>&quot;Asia/Barnaul&quot;</li>
+  <li>&quot;Asia/Beirut&quot;</li>
+  <li>&quot;Asia/Bishkek&quot;</li>
+  <li>&quot;Asia/Brunei&quot;</li>
+  <li>&quot;Asia/Calcutta&quot;</li>
+  <li>&quot;Asia/Chita&quot;</li>
+  <li>&quot;Asia/Choibalsan&quot;</li>
+  <li>&quot;Asia/Chongqing&quot;</li>
+  <li>&quot;Asia/Chungking&quot;</li>
+  <li>&quot;Asia/Colombo&quot;</li>
+  <li>&quot;Asia/Dacca&quot;</li>
+  <li>&quot;Asia/Damascus&quot;</li>
+  <li>&quot;Asia/Dhaka&quot;</li>
+  <li>&quot;Asia/Dili&quot;</li>
+  <li>&quot;Asia/Dubai&quot;</li>
+  <li>&quot;Asia/Dushanbe&quot;</li>
+  <li>&quot;Asia/Famagusta&quot;</li>
+  <li>&quot;Asia/Gaza&quot;</li>
+  <li>&quot;Asia/Harbin&quot;</li>
+  <li>&quot;Asia/Hebron&quot;</li>
+  <li>&quot;Asia/Ho_Chi_Minh&quot;</li>
+  <li>&quot;Asia/Hong_Kong&quot;</li>
+  <li>&quot;Asia/Hovd&quot;</li>
+  <li>&quot;Asia/Irkutsk&quot;</li>
+  <li>&quot;Asia/Istanbul&quot;</li>
+  <li>&quot;Asia/Jakarta&quot;</li>
+  <li>&quot;Asia/Jayapura&quot;</li>
+  <li>&quot;Asia/Jerusalem&quot;</li>
+  <li>&quot;Asia/Kabul&quot;</li>
+  <li>&quot;Asia/Kamchatka&quot;</li>
+  <li>&quot;Asia/Karachi&quot;</li>
+  <li>&quot;Asia/Kashgar&quot;</li>
+  <li>&quot;Asia/Kathmandu&quot;</li>
+  <li>&quot;Asia/Katmandu&quot;</li>
+  <li>&quot;Asia/Khandyga&quot;</li>
+  <li>&quot;Asia/Kolkata&quot;</li>
+  <li>&quot;Asia/Krasnoyarsk&quot;</li>
+  <li>&quot;Asia/Kuala_Lumpur&quot;</li>
+  <li>&quot;Asia/Kuching&quot;</li>
+  <li>&quot;Asia/Kuwait&quot;</li>
+  <li>&quot;Asia/Macao&quot;</li>
+  <li>&quot;Asia/Macau&quot;</li>
+  <li>&quot;Asia/Magadan&quot;</li>
+  <li>&quot;Asia/Makassar&quot;</li>
+  <li>&quot;Asia/Manila&quot;</li>
+  <li>&quot;Asia/Muscat&quot;</li>
+  <li>&quot;Asia/Nicosia&quot;</li>
+  <li>&quot;Asia/Novokuznetsk&quot;</li>
+  <li>&quot;Asia/Novosibirsk&quot;</li>
+  <li>&quot;Asia/Omsk&quot;</li>
+  <li>&quot;Asia/Oral&quot;</li>
+  <li>&quot;Asia/Phnom_Penh&quot;</li>
+  <li>&quot;Asia/Pontianak&quot;</li>
+  <li>&quot;Asia/Pyongyang&quot;</li>
+  <li>&quot;Asia/Qatar&quot;</li>
+  <li>&quot;Asia/Qostanay&quot;</li>
+  <li>&quot;Asia/Qyzylorda&quot;</li>
+  <li>&quot;Asia/Rangoon&quot;</li>
+  <li>&quot;Asia/Riyadh&quot;</li>
+  <li>&quot;Asia/Saigon&quot;</li>
+  <li>&quot;Asia/Sakhalin&quot;</li>
+  <li>&quot;Asia/Samarkand&quot;</li>
+  <li>&quot;Asia/Seoul&quot;</li>
+  <li>&quot;Asia/Shanghai&quot;</li>
+  <li>&quot;Asia/Singapore&quot;</li>
+  <li>&quot;Asia/Srednekolymsk&quot;</li>
+  <li>&quot;Asia/Taipei&quot;</li>
+  <li>&quot;Asia/Tashkent&quot;</li>
+  <li>&quot;Asia/Tbilisi&quot;</li>
+  <li>&quot;Asia/Tehran&quot;</li>
+  <li>&quot;Asia/Tel_Aviv&quot;</li>
+  <li>&quot;Asia/Thimbu&quot;</li>
+  <li>&quot;Asia/Thimphu&quot;</li>
+  <li>&quot;Asia/Tokyo&quot;</li>
+  <li>&quot;Asia/Tomsk&quot;</li>
+  <li>&quot;Asia/Ujung_Pandang&quot;</li>
+  <li>&quot;Asia/Ulaanbaatar&quot;</li>
+  <li>&quot;Asia/Ulan_Bator&quot;</li>
+  <li>&quot;Asia/Urumqi&quot;</li>
+  <li>&quot;Asia/Ust-Nera&quot;</li>
+  <li>&quot;Asia/Vientiane&quot;</li>
+  <li>&quot;Asia/Vladivostok&quot;</li>
+  <li>&quot;Asia/Yakutsk&quot;</li>
+  <li>&quot;Asia/Yangon&quot;</li>
+  <li>&quot;Asia/Yekaterinburg&quot;</li>
+  <li>&quot;Asia/Yerevan&quot;</li>
+  <li>&quot;Atlantic/Azores&quot;</li>
+  <li>&quot;Atlantic/Bermuda&quot;</li>
+  <li>&quot;Atlantic/Canary&quot;</li>
+  <li>&quot;Atlantic/Cape_Verde&quot;</li>
+  <li>&quot;Atlantic/Faeroe&quot;</li>
+  <li>&quot;Atlantic/Faroe&quot;</li>
+  <li>&quot;Atlantic/Jan_Mayen&quot;</li>
+  <li>&quot;Atlantic/Madeira&quot;</li>
+  <li>&quot;Atlantic/Reykjavik&quot;</li>
+  <li>&quot;Atlantic/South_Georgia&quot;</li>
+  <li>&quot;Atlantic/St_Helena&quot;</li>
+  <li>&quot;Atlantic/Stanley&quot;</li>
+  <li>&quot;Australia/ACT&quot;</li>
+  <li>&quot;Australia/Adelaide&quot;</li>
+  <li>&quot;Australia/Brisbane&quot;</li>
+  <li>&quot;Australia/Broken_Hill&quot;</li>
+  <li>&quot;Australia/Canberra&quot;</li>
+  <li>&quot;Australia/Currie&quot;</li>
+  <li>&quot;Australia/Darwin&quot;</li>
+  <li>&quot;Australia/Eucla&quot;</li>
+  <li>&quot;Australia/Hobart&quot;</li>
+  <li>&quot;Australia/LHI&quot;</li>
+  <li>&quot;Australia/Lindeman&quot;</li>
+  <li>&quot;Australia/Lord_Howe&quot;</li>
+  <li>&quot;Australia/Melbourne&quot;</li>
+  <li>&quot;Australia/NSW&quot;</li>
+  <li>&quot;Australia/North&quot;</li>
+  <li>&quot;Australia/Perth&quot;</li>
+  <li>&quot;Australia/Queensland&quot;</li>
+  <li>&quot;Australia/South&quot;</li>
+  <li>&quot;Australia/Sydney&quot;</li>
+  <li>&quot;Australia/Tasmania&quot;</li>
+  <li>&quot;Australia/Victoria&quot;</li>
+  <li>&quot;Australia/West&quot;</li>
+  <li>&quot;Australia/Yancowinna&quot;</li>
+  <li>&quot;Brazil/Acre&quot;</li>
+  <li>&quot;Brazil/DeNoronha&quot;</li>
+  <li>&quot;Brazil/East&quot;</li>
+  <li>&quot;Brazil/West&quot;</li>
+  <li>&quot;CET&quot;</li>
+  <li>&quot;CST6CDT&quot;</li>
+  <li>&quot;Canada/Atlantic&quot;</li>
+  <li>&quot;Canada/Central&quot;</li>
+  <li>&quot;Canada/Eastern&quot;</li>
+  <li>&quot;Canada/Mountain&quot;</li>
+  <li>&quot;Canada/Newfoundland&quot;</li>
+  <li>&quot;Canada/Pacific&quot;</li>
+  <li>&quot;Canada/Saskatchewan&quot;</li>
+  <li>&quot;Canada/Yukon&quot;</li>
+  <li>&quot;Chile/Continental&quot;</li>
+  <li>&quot;Chile/EasterIsland&quot;</li>
+  <li>&quot;Cuba&quot;</li>
+  <li>&quot;EET&quot;</li>
+  <li>&quot;EST&quot;</li>
+  <li>&quot;EST5EDT&quot;</li>
+  <li>&quot;Egypt&quot;</li>
+  <li>&quot;Eire&quot;</li>
+  <li>&quot;Etc/GMT&quot;</li>
+  <li>&quot;Etc/GMT+0&quot;</li>
+  <li>&quot;Etc/GMT+1&quot;</li>
+  <li>&quot;Etc/GMT+10&quot;</li>
+  <li>&quot;Etc/GMT+11&quot;</li>
+  <li>&quot;Etc/GMT+12&quot;</li>
+  <li>&quot;Etc/GMT+2&quot;</li>
+  <li>&quot;Etc/GMT+3&quot;</li>
+  <li>&quot;Etc/GMT+4&quot;</li>
+  <li>&quot;Etc/GMT+5&quot;</li>
+  <li>&quot;Etc/GMT+6&quot;</li>
+  <li>&quot;Etc/GMT+7&quot;</li>
+  <li>&quot;Etc/GMT+8&quot;</li>
+  <li>&quot;Etc/GMT+9&quot;</li>
+  <li>&quot;Etc/GMT-0&quot;</li>
+  <li>&quot;Etc/GMT-1&quot;</li>
+  <li>&quot;Etc/GMT-10&quot;</li>
+  <li>&quot;Etc/GMT-11&quot;</li>
+  <li>&quot;Etc/GMT-12&quot;</li>
+  <li>&quot;Etc/GMT-13&quot;</li>
+  <li>&quot;Etc/GMT-14&quot;</li>
+  <li>&quot;Etc/GMT-2&quot;</li>
+  <li>&quot;Etc/GMT-3&quot;</li>
+  <li>&quot;Etc/GMT-4&quot;</li>
+  <li>&quot;Etc/GMT-5&quot;</li>
+  <li>&quot;Etc/GMT-6&quot;</li>
+  <li>&quot;Etc/GMT-7&quot;</li>
+  <li>&quot;Etc/GMT-8&quot;</li>
+  <li>&quot;Etc/GMT-9&quot;</li>
+  <li>&quot;Etc/GMT0&quot;</li>
+  <li>&quot;Etc/Greenwich&quot;</li>
+  <li>&quot;Etc/UCT&quot;</li>
+  <li>&quot;Etc/UTC&quot;</li>
+  <li>&quot;Etc/Universal&quot;</li>
+  <li>&quot;Etc/Zulu&quot;</li>
+  <li>&quot;Europe/Amsterdam&quot;</li>
+  <li>&quot;Europe/Andorra&quot;</li>
+  <li>&quot;Europe/Astrakhan&quot;</li>
+  <li>&quot;Europe/Athens&quot;</li>
+  <li>&quot;Europe/Belfast&quot;</li>
+  <li>&quot;Europe/Belgrade&quot;</li>
+  <li>&quot;Europe/Berlin&quot;</li>
+  <li>&quot;Europe/Bratislava&quot;</li>
+  <li>&quot;Europe/Brussels&quot;</li>
+  <li>&quot;Europe/Bucharest&quot;</li>
+  <li>&quot;Europe/Budapest&quot;</li>
+  <li>&quot;Europe/Busingen&quot;</li>
+  <li>&quot;Europe/Chisinau&quot;</li>
+  <li>&quot;Europe/Copenhagen&quot;</li>
+  <li>&quot;Europe/Dublin&quot;</li>
+  <li>&quot;Europe/Gibraltar&quot;</li>
+  <li>&quot;Europe/Guernsey&quot;</li>
+  <li>&quot;Europe/Helsinki&quot;</li>
+  <li>&quot;Europe/Isle_of_Man&quot;</li>
+  <li>&quot;Europe/Istanbul&quot;</li>
+  <li>&quot;Europe/Jersey&quot;</li>
+  <li>&quot;Europe/Kaliningrad&quot;</li>
+  <li>&quot;Europe/Kiev&quot;</li>
+  <li>&quot;Europe/Kirov&quot;</li>
+  <li>&quot;Europe/Lisbon&quot;</li>
+  <li>&quot;Europe/Ljubljana&quot;</li>
+  <li>&quot;Europe/London&quot;</li>
+  <li>&quot;Europe/Luxembourg&quot;</li>
+  <li>&quot;Europe/Madrid&quot;</li>
+  <li>&quot;Europe/Malta&quot;</li>
+  <li>&quot;Europe/Mariehamn&quot;</li>
+  <li>&quot;Europe/Minsk&quot;</li>
+  <li>&quot;Europe/Monaco&quot;</li>
+  <li>&quot;Europe/Moscow&quot;</li>
+  <li>&quot;Europe/Nicosia&quot;</li>
+  <li>&quot;Europe/Oslo&quot;</li>
+  <li>&quot;Europe/Paris&quot;</li>
+  <li>&quot;Europe/Podgorica&quot;</li>
+  <li>&quot;Europe/Prague&quot;</li>
+  <li>&quot;Europe/Riga&quot;</li>
+  <li>&quot;Europe/Rome&quot;</li>
+  <li>&quot;Europe/Samara&quot;</li>
+  <li>&quot;Europe/San_Marino&quot;</li>
+  <li>&quot;Europe/Sarajevo&quot;</li>
+  <li>&quot;Europe/Saratov&quot;</li>
+  <li>&quot;Europe/Simferopol&quot;</li>
+  <li>&quot;Europe/Skopje&quot;</li>
+  <li>&quot;Europe/Sofia&quot;</li>
+  <li>&quot;Europe/Stockholm&quot;</li>
+  <li>&quot;Europe/Tallinn&quot;</li>
+  <li>&quot;Europe/Tirane&quot;</li>
+  <li>&quot;Europe/Tiraspol&quot;</li>
+  <li>&quot;Europe/Ulyanovsk&quot;</li>
+  <li>&quot;Europe/Uzhgorod&quot;</li>
+  <li>&quot;Europe/Vaduz&quot;</li>
+  <li>&quot;Europe/Vatican&quot;</li>
+  <li>&quot;Europe/Vienna&quot;</li>
+  <li>&quot;Europe/Vilnius&quot;</li>
+  <li>&quot;Europe/Volgograd&quot;</li>
+  <li>&quot;Europe/Warsaw&quot;</li>
+  <li>&quot;Europe/Zagreb&quot;</li>
+  <li>&quot;Europe/Zaporozhye&quot;</li>
+  <li>&quot;Europe/Zurich&quot;</li>
+  <li>&quot;Factory&quot;</li>
+  <li>&quot;GB&quot;</li>
+  <li>&quot;GB-Eire&quot;</li>
+  <li>&quot;GMT&quot;</li>
+  <li>&quot;GMT+0&quot;</li>
+  <li>&quot;GMT-0&quot;</li>
+  <li>&quot;GMT0&quot;</li>
+  <li>&quot;Greenwich&quot;</li>
+  <li>&quot;HST&quot;</li>
+  <li>&quot;Hongkong&quot;</li>
+  <li>&quot;Iceland&quot;</li>
+  <li>&quot;Indian/Antananarivo&quot;</li>
+  <li>&quot;Indian/Chagos&quot;</li>
+  <li>&quot;Indian/Christmas&quot;</li>
+  <li>&quot;Indian/Cocos&quot;</li>
+  <li>&quot;Indian/Comoro&quot;</li>
+  <li>&quot;Indian/Kerguelen&quot;</li>
+  <li>&quot;Indian/Mahe&quot;</li>
+  <li>&quot;Indian/Maldives&quot;</li>
+  <li>&quot;Indian/Mauritius&quot;</li>
+  <li>&quot;Indian/Mayotte&quot;</li>
+  <li>&quot;Indian/Reunion&quot;</li>
+  <li>&quot;Iran&quot;</li>
+  <li>&quot;Israel&quot;</li>
+  <li>&quot;Jamaica&quot;</li>
+  <li>&quot;Japan&quot;</li>
+  <li>&quot;Kwajalein&quot;</li>
+  <li>&quot;Libya&quot;</li>
+  <li>&quot;MET&quot;</li>
+  <li>&quot;MST&quot;</li>
+  <li>&quot;MST7MDT&quot;</li>
+  <li>&quot;Mexico/BajaNorte&quot;</li>
+  <li>&quot;Mexico/BajaSur&quot;</li>
+  <li>&quot;Mexico/General&quot;</li>
+  <li>&quot;NZ&quot;</li>
+  <li>&quot;NZ-CHAT&quot;</li>
+  <li>&quot;Navajo&quot;</li>
+  <li>&quot;PRC&quot;</li>
+  <li>&quot;PST8PDT&quot;</li>
+  <li>&quot;Pacific/Apia&quot;</li>
+  <li>&quot;Pacific/Auckland&quot;</li>
+  <li>&quot;Pacific/Bougainville&quot;</li>
+  <li>&quot;Pacific/Chatham&quot;</li>
+  <li>&quot;Pacific/Chuuk&quot;</li>
+  <li>&quot;Pacific/Easter&quot;</li>
+  <li>&quot;Pacific/Efate&quot;</li>
+  <li>&quot;Pacific/Enderbury&quot;</li>
+  <li>&quot;Pacific/Fakaofo&quot;</li>
+  <li>&quot;Pacific/Fiji&quot;</li>
+  <li>&quot;Pacific/Funafuti&quot;</li>
+  <li>&quot;Pacific/Galapagos&quot;</li>
+  <li>&quot;Pacific/Gambier&quot;</li>
+  <li>&quot;Pacific/Guadalcanal&quot;</li>
+  <li>&quot;Pacific/Guam&quot;</li>
+  <li>&quot;Pacific/Honolulu&quot;</li>
+  <li>&quot;Pacific/Johnston&quot;</li>
+  <li>&quot;Pacific/Kiritimati&quot;</li>
+  <li>&quot;Pacific/Kosrae&quot;</li>
+  <li>&quot;Pacific/Kwajalein&quot;</li>
+  <li>&quot;Pacific/Majuro&quot;</li>
+  <li>&quot;Pacific/Marquesas&quot;</li>
+  <li>&quot;Pacific/Midway&quot;</li>
+  <li>&quot;Pacific/Nauru&quot;</li>
+  <li>&quot;Pacific/Niue&quot;</li>
+  <li>&quot;Pacific/Norfolk&quot;</li>
+  <li>&quot;Pacific/Noumea&quot;</li>
+  <li>&quot;Pacific/Pago_Pago&quot;</li>
+  <li>&quot;Pacific/Palau&quot;</li>
+  <li>&quot;Pacific/Pitcairn&quot;</li>
+  <li>&quot;Pacific/Pohnpei&quot;</li>
+  <li>&quot;Pacific/Ponape&quot;</li>
+  <li>&quot;Pacific/Port_Moresby&quot;</li>
+  <li>&quot;Pacific/Rarotonga&quot;</li>
+  <li>&quot;Pacific/Saipan&quot;</li>
+  <li>&quot;Pacific/Samoa&quot;</li>
+  <li>&quot;Pacific/Tahiti&quot;</li>
+  <li>&quot;Pacific/Tarawa&quot;</li>
+  <li>&quot;Pacific/Tongatapu&quot;</li>
+  <li>&quot;Pacific/Truk&quot;</li>
+  <li>&quot;Pacific/Wake&quot;</li>
+  <li>&quot;Pacific/Wallis&quot;</li>
+  <li>&quot;Pacific/Yap&quot;</li>
+  <li>&quot;Poland&quot;</li>
+  <li>&quot;Portugal&quot;</li>
+  <li>&quot;ROC&quot;</li>
+  <li>&quot;ROK&quot;</li>
+  <li>&quot;Singapore&quot;</li>
+  <li>&quot;Turkey&quot;</li>
+  <li>&quot;UCT&quot;</li>
+  <li>&quot;US/Alaska&quot;</li>
+  <li>&quot;US/Aleutian&quot;</li>
+  <li>&quot;US/Arizona&quot;</li>
+  <li>&quot;US/Central&quot;</li>
+  <li>&quot;US/East-Indiana&quot;</li>
+  <li>&quot;US/Eastern&quot;</li>
+  <li>&quot;US/Hawaii&quot;</li>
+  <li>&quot;US/Indiana-Starke&quot;</li>
+  <li>&quot;US/Michigan&quot;</li>
+  <li>&quot;US/Mountain&quot;</li>
+  <li>&quot;US/Pacific&quot;</li>
+  <li>&quot;US/Pacific-New&quot;</li>
+  <li>&quot;US/Samoa&quot;</li>
+  <li>&quot;UTC&quot;</li>
+  <li>&quot;Universal&quot;</li>
+  <li>&quot;W-SU&quot;</li>
+  <li>&quot;WET&quot;</li>
+  <li>&quot;Zulu&quot;</li>
 </ul>
