@@ -728,14 +728,14 @@
     endDate = new Date(endDate).toISOString().slice(0, 10);
 
     while (nextDate.toISOString().slice(0, 10) <= endDate) {
-      nextDate.setDate(nextDate.getDate() + 1);
       const currentDate = nextDate.toISOString().slice(0, 10);
       dates.push(currentDate);
+      nextDate.setDate(nextDate.getDate() + 1);
     }
 
     return dates;
   };
-
+  
   const getWeeks = (current) => {
     const date = new Date(current);
     const currentWeekDay = date.getDay();
