@@ -7,34 +7,6 @@
     alt="Latest Release"
   />
 </p>
-<h2>Environment variables</h2>
-<p>&lt;a name=&quot;environment-variables&quot;&gt;&lt;/a&gt;</p>
-<ol>
-  <li>
-    <p><code>API_KEY</code></p>
-    <ul>
-      <li>
-        <p>
-          Creation: To get an <code>API_KEY</code> you will need an account. You
-          can either use your existing account or create a Developer Account.
-        </p>
-        <ul>
-          <li>
-            Existing account: You can create the key under your Account
-            Settings.
-          </li>
-          <li>
-            Developer account: You will have to verify your email address first
-            to create your Developer Account. Expect to get an email with a
-            shortcut to create the <code>API_KEY</code>. Click on the shortcut
-            link to create your <code>API_KEY</code> and get started writing
-            some code.
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
 <h2>Using the CLI</h2>
 <h2>Setting-up of Executable File</h2>
 <ul>
@@ -44,49 +16,49 @@
     <ul>
       <li>
         <p>
-          There are multiple ways to extract file from a compressed file here
-          are the step by step instruction:
+          There are multiple ways to extract a file from a compressed file. Here
+          are the step-by-step instructions:
         </p>
       </li>
       <li>
-        <p>First way:</p>
+        <p>First method:</p>
         <ol>
           <li>Point the cursor on the compressed file.</li>
           <li>
-            Right-click on it in-order to trigger context-menu(right-click
-            menu).
+            Right-click on it to trigger the context-menu (right-click menu).
           </li>
           <li>
-            On context menu select <code>Extract Here</code> option to extract
-            the file in same directory or Select <code>Extract to</code> option
-            in-order to extract the file in the current directory or directory
-            of your choice.
+            On the context menu select the <code>Extract Here</code> option to
+            extract the file in the same directory or Select the
+            <code>Extract to</code> option in order to extract the file into the
+            current directory or directory of your choice.
           </li>
         </ol>
       </li>
       <li>
-        <p>Second way:</p>
+        <p>Second method:</p>
         <ol>
           <li>Point the cursor on the compressed file.</li>
           <li>
-            Left-Double-click on it in-order to trigger a window that shows
+            Left-Double-click on it to trigger a window that shows the
             extraction option.
           </li>
           <li>
-            Select the <code>Extract</code> button in-order to extract the file
-            in desired directory.
+            Select the <code>Extract</code> button to extract the file into the
+            desired directory.
           </li>
         </ol>
       </li>
       <li>
-        <p>Third way:</p>
+        <p>Third method:</p>
         <ol>
           <li>
-            Open the terminal in the directory where compressed file is stored.
+            Open the terminal in the directory where the compressed file is
+            stored.
           </li>
           <li>
-            Type-in terminal command <code>unzip een.zip</code> in-order to
-            extract the file in the current directory.
+            Type in the terminal command <code>unzip een.zip</code> to extract
+            the file in the current directory.
           </li>
         </ol>
         <pre><code>unzip een.zip
@@ -96,21 +68,18 @@
     <h4><strong>In Windows:</strong></h4>
     <ul>
       <li>
-        Here are the step by step instruction:
+        Here are the step-by-step instructions:
         <ol>
           <li>Point the cursor on the compressed file.</li>
+          <li>Right-click on it to trigger context-menu(right-click menu).</li>
+          <li>On the context menu select <code>Extract All</code>.</li>
           <li>
-            Right-click on it in-order to trigger context-menu(right-click
-            menu).
-          </li>
-          <li>On context menu select <code>Extract All</code>.</li>
-          <li>
-            A window is triggered that shows a input-box which is used to
-            inserts the directory path to a choosen directory.
+            A window is triggered that shows an input box which is used to
+            insert the directory path to a chosen directory.
           </li>
           <li>
-            After choosing a directory click on <code>Extract</code> button,
-            in-order to extract the file to the choosen directory.
+            After choosing a directory click on the <code>Extract</code> button,
+            to extract the file to the chosen directory.
           </li>
         </ol>
       </li>
@@ -129,8 +98,8 @@
   </li>
   <li>
     <p>
-      Open all the CSV file outputs in google sheet or libre office as excel has
-      formatting issues.
+      Open all the CSV file outputs in Google Sheets or Libre Office as Excel
+      has formatting issues.
     </p>
   </li>
   <li>
@@ -186,7 +155,7 @@
   bridge availability     get bridge availability
 
   'een help' lists all the commands and options
-  'een &lt;command&gt; help' lists the usage with opitions and descriptions
+  'een &lt;command&gt; help' lists the usage with options and descriptions
 </code></pre>
   </li>
 </ul>
@@ -202,9 +171,9 @@
 <h2>DESCRIPTION</h2>
 <p>
   The <strong>een</strong> CLI provides various commands to interact with
-  cameras, bridges, users, locations, and other resources. It offers multiple
+  cameras, bridges, users, sites, and other resources. It offers multiple
   options for fetching information in different formats (CSV, tree structure,
-  etc.) and supports both standard and v3 APIs.
+  etc.) and supports both standard and v1 APIs.
 </p>
 <h4>Options:</h4>
 <ul>
@@ -250,7 +219,7 @@ een camera list --help
 <h2>DESCRIPTION</h2>
 <p>
   The <strong>een auth</strong> command provides utilities for logging in and
-  logging out of the EEN (Eagle Eye Networks).
+  out of Eagle Eye Networks.
 </p>
 <h2>COMMANDS</h2>
 <h3>login</h3>
@@ -258,30 +227,31 @@ een camera list --help
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--user-name [user name]</code><br />
-    The username used for login.
+    <p>
+      <code>-p, --password &lt;password&gt;</code><br />
+      Password for login. Use quotes around the password if it contains special
+      characters (e.g., <code>--password &quot;MyP@ssw0rd!&quot;</code>).
+    </p>
   </li>
   <li>
-    <code>--password [password]</code><br />
-    The password used for login.
+    <p>
+      <code>-u, --username &lt;username&gt;</code><br />
+      Username for login (e.g., <code>--username admin@example.com</code>).
+    </p>
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--api-key [api key]</code><br />
-    API key used for login.
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
 </ul>
 <h4>Notes:</h4>
 <ul>
   <li>
-    Password should be given in quotes, as the shell might have converting
-    issues.
+    If the shell misinterprets special characters, ensure the password is
+    wrapped in quotes.
   </li>
 </ul>
 <hr />
@@ -290,20 +260,20 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To login</li>
 </ul>
-<pre><code class="language-bash">een auth login --user-name johndoe --password secret --verbose
+<pre><code class="language-bash">een auth login --username johndoe --password secret --debug
 </code></pre>
 <ul>
   <li>To logout</li>
 </ul>
-<pre><code class="language-bash">een auth logout --verbose
+<pre><code class="language-bash">een auth logout --debug
 </code></pre>
 <h1>user - Manage Users</h1>
 <h2>NAME</h2>
@@ -323,46 +293,74 @@ een camera list --help
 <ul>
   <li>
     <code>--csv</code><br />
-    List all users in CSV format.
+    Export all users in CSV format.
   </li>
   <li>
-    <code>--google-sheet</code><br />
-    List users in CSV format in Google Sheets.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--v3</code><br />
-    Use v3 APIs.
+    <code>-e, --email</code><br />
+    Display user email addresses.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
+    Specify the file name to save the output under. Use with the
+    <code>--csv</code> option to generate a report.
+  </li>
+  <li>
+    <code>-F, --first-name</code><br />
+    Display user first names.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code><br />
+    Export users in CSV format and upload to Google Sheets.
   </li>
   <li>
     <code>--html</code><br />
-    Generate chart in HTML file.
+    Generate an HTML report for user permissions.
   </li>
   <li>
-    <code>--no-prompt</code><br />
+    <code>-l, --long</code><br />
+    Display user details, including name, email, last login, status, and
+    permissions.
+  </li>
+  <li>
+    <code>-L, --last-name</code><br />
+    Display user last names.
+  </li>
+  <li>
+    <code>-n, --no-prompt</code><br />
     Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-p, --permission</code><br />
+    Display user permissions.
+  </li>
+  <li>
+    <code>-s, --status</code><br />
+    Display user statuses.
+  </li>
+  <li>
+    <code>--v1</code><br />
+    Use v1 APIs for listing users.
   </li>
 </ul>
 <h4>Actions:</h4>
 <ul>
-  <li>If <code>--html</code> is specified, generate user permission report.</li>
   <li>
-    If <code>--csv</code> and <code>--v3</code> are specified, list users in CSV
-    format using v3.
+    If <code>--html</code> is specified, generate a user permissions report.
   </li>
-  <li>If <code>--csv</code> is specified, list users in CSV format.</li>
   <li>
-    If <code>--google-sheet</code> is specified, list user permissions in Google
-    Sheets.
+    If <code>--csv</code> and <code>--v1</code> are both specified, export users
+    in CSV format using v1 APIs.
   </li>
-  <li>If <code>--v3</code> is specified, list users using v3 APIs.</li>
+  <li>If <code>--csv</code> is specified, export users in CSV format.</li>
+  <li>
+    If <code>--google-sheet</code> is specified, export and upload user data to
+    Google Sheets.
+  </li>
+  <li>If <code>--v1</code> is specified, list users using v1 APIs.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -388,8 +386,8 @@ een camera list --help
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
-  The <code>account</code> command allows you to manage reseller accounts,
-  including listing all accounts and switching between sub-accounts.
+  The <code>account</code> command allows you to manage reseller accounts, list
+  all accounts, and switch between sub-accounts.
 </p>
 <h2>COMMANDS</h2>
 <h3>list</h3>
@@ -397,34 +395,56 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-l, --long</code><br />
+    Display account details, including account ID, account name, and account
+    type.
+  </li>
+  <li>
+    <code>--account-id [account ID]</code><br />
+    Specify an account ID to list its details.
+  </li>
+  <li>
+    <code>-s, --sub-account-id</code><br />
+    List sub-accounts (only applicable for reseller accounts).
   </li>
 </ul>
 <hr />
 <h3>switch</h3>
-<p>Switch to a sub-account.</p>
+<p>Switch to an account.</p>
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>--sub-account-id [sub-account id]</code><br />
-    Account ID to which we need to switch (required).
+    <code>-a, --account-id [account ID]</code><br />
+    Specify the Account ID to switch between logged-in accounts.
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-s, --sub-account-id [sub-account ID]</code><br />
+    Specify the Sub Account ID to switch to from the reseller account.
   </li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all accounts of the reseller:</li>
 </ul>
-<pre><code class="language-bash">een account list --verbose
+<pre><code class="language-bash">een account list --debug
 </code></pre>
 <ul>
   <li>To switch to a specific sub-account:</li>
 </ul>
-<pre><code class="language-bash">een account switch --sub-account-id &lt;sub-account id&gt; --verbose
+<pre><code class="language-bash">een account switch --sub-account-id &lt;sub-account ID&gt; --debug
+</code></pre>
+<ul>
+  <li>To switch to a specific account:</li>
+</ul>
+<pre><code class="language-bash">een account switch --account-id &lt;account ID&gt; --debug
 </code></pre>
 <h1>archive - Manage Archives</h1>
 <h2>NAME</h2>
@@ -443,28 +463,25 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
-    <p>
-      <code>--detailed</code><br />
-      Get a detailed archive list.
-    </p>
+    <code>--csv</code><br />
+    Export the archive list in CSV format.
   </li>
   <li>
-    <p>
-      <code>--csv</code><br />
-      List all archives in CSV format.
-    </p>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <p>
-      <code>--target-directory [target directory]</code><br />
-      Specify the name of the directory where the output will be saved.
-    </p>
+    <code>-D, --detailed</code><br />
+    Retrieve a detailed list of archives with additional metadata.
   </li>
   <li>
-    <p>
-      <code>--verbose</code><br />
-      Enable verbose output.
-    </p>
+    <code>-l, --long</code><br />
+    Display archive details, including filename, size, creation date, shared
+    status, and shared path.
+  </li>
+  <li>
+    <code>-t, --target-directory [target directory]</code><br />
+    Specify the directory from which the archive will be retrieved.
   </li>
 </ul>
 <hr />
@@ -480,19 +497,19 @@ een camera list --help
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--target-directory [target-directory]</code><br />
+    <code>-t, --target-directory [target-directory]</code><br />
     Specify the name of the directory where the output will be saved.
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--overwrite</code><br />
-    Overwrite already downloaded archive.
+    <code>-d, --debug</code><br />
+    Enable debug output for troubleshooting.
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-o, --overwrite</code><br />
+    Overwrite the already downloaded archive if it exists.
   </li>
 </ul>
 <h2>EXAMPLES</h2>
@@ -504,7 +521,7 @@ een camera list --help
 <ul>
   <li>To download a specific archive:</li>
 </ul>
-<pre><code class="language-bash">een archive download &lt;archive&gt; --target-directory /path/to/save --overwrite --verbose
+<pre><code class="language-bash">een archive download &lt;archive&gt; --target-directory /path/to/save --overwrite --debug
 </code></pre>
 <h1>camera - Manage Cameras</h1>
 <h2>NAME</h2>
@@ -518,69 +535,119 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
+    <code>-a, --all</code><br />
+    List all cameras without filtering.
+  </li>
+  <li>
+    <code>-A, --available</code><br />
+    List available cameras that are currently operational.
+  </li>
+  <li>
+    <code>-b, --bridge-esn</code><br />
+    List cameras by their bridge ESNs.
+  </li>
+  <li>
+    <code>-c, --cloud-retention-days</code><br />
+    List cameras filtered by their cloud retention days.
+  </li>
+  <li>
     <code>--csv</code><br />
     List cameras in CSV format.
   </li>
   <li>
-    <code>--tree</code><br />
-    List cameras and associated bridges in tree format.
+    <code>-d, --debug</code><br />
+    Enable debug output for troubleshooting and detailed logs.
   </li>
   <li>
-    <code>--tags [tags]</code><br />
-    List cameras based on the given tag.
+    <code>-e, --end-time [end time]</code><br />
+    Filter cameras based on video end time. Format:
+    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date-time with
+    milliseconds).
   </li>
   <li>
-    <code>--available</code><br />
-    List available cameras.
-  </li>
-  <li>
-    <code>--locations [locations]</code><br />
-    List cameras in a given location.
-  </li>
-  <li>
-    <code>--status [status]</code><br />
-    List cameras with a specific status.
-  </li>
-  <li>
-    <code>--short</code><br />
-    List camera name and ESN in CSV format to the given file.
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate chart in HTML file.
-  </li>
-  <li>
-    <code>--google-sheet</code><br />
-    List bridges in CSV format in Google Sheet.
-  </li>
-  <li>
-    <code>--purge</code><br />
-    The <code>--purge</code> option only exists with either
-    <code>--csv</code> or <code>--google-sheet</code>.
-  </li>
-  <li>
-    <code>--start-time [start time]</code><br />
-    Video start time.
-  </li>
-  <li>
-    <code>--end-time [end time]</code><br />
-    Video end time.
+    <code>--esn</code><br />
+    List cameras by their ESNs.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
+    Specify the name of the file where the output will be saved. This can be
+    used with <code>--csv</code> or <code>--google-sheet</code>.
   </li>
   <li>
-    <code>--no-prompt</code><br />
-    Skip all user confirmation prompts.
+    <code>-g, --google-sheet</code><br />
+    List cameras in CSV format in a Google Sheet.
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>--html</code><br />
+    Generate a chart of the camera list in an HTML file format.
   </li>
   <li>
-    <code>--v3</code><br />
-    Use v3 APIs.
+    <code>-l, --long</code><br />
+    List camera details, including camera ESN, bridge ESN, status, resolution,
+    cloud retention days, and local retention days.
+  </li>
+  <li>
+    <code>-L, --local-retention-days</code><br />
+    List cameras filtered by their local retention days.
+  </li>
+  <li>
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts during the command execution.
+  </li>
+  <li>
+    <code>-p, --purge</code><br />
+    The <code>--purge</code> option only works with <code>--csv</code> or
+    <code>--google-sheet</code> options. It removes expired data from the
+    output.
+  </li>
+  <li>
+    <code>--v1</code><br />
+    Use version 1 APIs for backward compatibility.
+  </li>
+  <li>
+    <code>-r, --resolution</code><br />
+    List cameras filtered by resolution.
+  </li>
+  <li>
+    <code>-s, --sites [site1, site2...]</code><br />
+    List cameras located in the specified sites. Provide a comma-separated list
+    of site names.
+  </li>
+  <li>
+    <code>-S, --start-time [start time]</code><br />
+    Filter cameras based on video start time. Format:
+    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date-time with
+    milliseconds).
+  </li>
+  <li>
+    <code>--shared</code><br />
+    List cameras that are shared with other users.
+  </li>
+  <li>
+    <code>--short</code><br />
+    List only the camera names and ESNs in CSV format to the specified file.
+  </li>
+  <li>
+    <code>--status [status]</code><br />
+    List cameras with a specific status. Accepts values like 'online',
+    'offline', or 'inactive'.
+  </li>
+  <li>
+    <code>-t, --tags [tag1, tag2...]</code><br />
+    List cameras based on the given tag. Specify the tag as a comma-separated
+    list of tag names.
+  </li>
+  <li>
+    <code>-T, --tree</code><br />
+    List cameras and associated bridges in a tree format.
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    Start-time and end-time must follow the format:
+    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date-time with
+    milliseconds).
   </li>
 </ul>
 <hr />
@@ -593,29 +660,33 @@ een camera list --help
     List camera status in CSV format.
   </li>
   <li>
-    <code>--html</code><br />
-    Generate chart in HTML file.
-  </li>
-  <li>
-    <code>--google-sheet</code><br />
-    List camera status in CSV format in Google Sheet.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
     Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <code>--no-prompt</code><br />
+    <code>-g, --google-sheet</code><br />
+    List camera status in CSV format in Google Sheet.
+  </li>
+  <li>
+    <code>--html</code><br />
+    Generate chart in HTML file.
+  </li>
+  <li>
+    <code>-n, --no-prompt</code><br />
     Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>--v1</code><br />
+    Use v1 APIs.
   </li>
 </ul>
 <hr />
 <h3>settings</h3>
-<p>Get all the camera settings.</p>
+<p>Get all camera settings.</p>
 <h4>Required options:</h4>
 <ul>
   <li>
@@ -626,45 +697,93 @@ een camera list --help
 <h4>Optional options:</h4>
 <ul>
   <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
     <code>-f, --file-name [file name]</code><br />
     Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <code>--no-prompt</code><br />
+    <code>-n, --no-prompt</code><br />
     Skip all user confirmation prompts.
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
   </li>
 </ul>
 <hr />
 <h3>set</h3>
-<p>Edit a single camera's settings.</p>
+<p>Edit camera's settings.</p>
 <h4>Arguments:</h4>
 <ul>
   <li>
-    <code>&lt;esn&gt;</code><br />
-    Camera ESN.
+    <code>-b, --bridge-esns [bridge-esns]</code><br />
+    Edit camera settings by bridge ESNs.
+  </li>
+  <li>
+    <code>--esns [esn1, esn2...]</code><br />
+    Edit camera settings by camera ESNs.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Edit camera settings by reading the CSV file.
+  </li>
+  <li>
+    <code>-T, --tags [tags]</code><br />
+    Edit camera settings by tag.
+  </li>
+  <li>
+    <code>-s, --site-id [site-id]</code><br />
+    Edit camera settings by site id.
+  </li>
+  <li>
+    <code>-S, --site-name [site-name]</code><br />
+    Edit camera settings by site name.
+  </li>
+  <li>
+    <code>--layout-name [layout-name]</code><br />
+    Edit camera settings by layout name.
+  </li>
+  <li>
+    <code>--layout-id [layout-id]</code><br />
+    Edit camera settings by layout id.
   </li>
 </ul>
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>--cloud-retention-days [cloud retention days]</code><br />
-    Cloud retention days.
+    <code>-a, --aspect-ratio [aspect ratio]</code><br />
+    Preview aspect ratio.
   </li>
   <li>
-    <code>--video-resolution [video resolution]</code><br />
-    Video resolution.
+    <code>--audio-enable</code><br />
+    Enable audio.
   </li>
   <li>
-    <code>--bridge-target-days [bridge target days]</code><br />
+    <code>--audio-disable</code><br />
+    Disable audio.
+  </li>
+  <li>
+    <code>-B, --bridge-target-days [bridge target days]</code><br />
     Bridge target days.
   </li>
   <li>
-    <code>--local-retention-days [local retention days]</code><br />
+    <code>-c, --cloud-retention-days [cloud retention days]</code><br />
+    Cloud retention days.
+  </li>
+  <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-l, --local-retention-days [local retention days]</code><br />
     Local retention days.
+  </li>
+  <li>
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>-p, --password [password]</code><br />
+    Password.
   </li>
   <li>
     <code>--preview-resolution [preview resolution]</code><br />
@@ -673,34 +792,6 @@ een camera list --help
   <li>
     <code>--preview-transmit-mode [preview transmit mode]</code><br />
     Preview transmit mode.
-  </li>
-  <li>
-    <code>--video-transmit-mode [video transmit mode]</code><br />
-    Video transmit mode.
-  </li>
-  <li>
-    <code>--video-quality [video quality]</code><br />
-    Video quality.
-  </li>
-  <li>
-    <code>--tags [tags]</code><br />
-    Tags.
-  </li>
-  <li>
-    <code>--user-name [user name]</code><br />
-    Username.
-  </li>
-  <li>
-    <code>--password [password]</code><br />
-    Password.
-  </li>
-  <li>
-    <code>--aspect-ratio [aspect ratio]</code><br />
-    Preview aspect ratio.
-  </li>
-  <li>
-    <code>--video-capture-mode [video capture mode]</code><br />
-    When to record video.
   </li>
   <li>
     <code>--preview-interval-ms [preview interval ms]</code><br />
@@ -716,341 +807,55 @@ een camera list --help
     Preview only cloud retention.
   </li>
   <li>
-    <code>--audio-enable</code><br />
-    Enable audio.
+    <code>-t, --add-tag [add tag]</code><br />
+    Tags.
   </li>
   <li>
-    <code>--audio-disable</code><br />
-    Disable audio.
-  </li>
-  <li>
-    <code>--no-prompt</code><br />
-    Skip all user confirmation prompts.
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
-  </li>
-</ul>
-<hr />
-<h3>bulkset</h3>
-<p>Edit multiple camera settings.</p>
-<h4>Required options:</h4>
-<ul>
-  <li>
-    <code>--esns [esns]</code><br />
-    camera esns which is camera ID
-  </li>
-</ul>
-<h4>Optional options:</h4>
-<ul>
-  <li>
-    <code>--cloud-retention-days [cloud retention days]</code><br />
-    cloud retention days
-  </li>
-  <li>
-    <code>--video-resolution [video resolution]</code><br />
-    video resolution
-  </li>
-  <li>
-    <code>--bridge-target-days [bridge target days]</code><br />
-    bridge target days
-  </li>
-  <li>
-    <code>--local-retention-days [local retention days]</code><br />
-    local retention days
-  </li>
-  <li>
-    <code>--preview-resolution [preview resolution]</code><br />
-    preview resolution
-  </li>
-  <li>
-    <code>--preview-transmit-mode [preview transmit mode]</code><br />
-    preview transmit mode
-  </li>
-  <li>
-    <code>--video-transmit-mode [video transmit mode]</code><br />
-    video transmit mode
-  </li>
-  <li>
-    <code>--video-quality [video quality]</code><br />
-    video quality
-  </li>
-  <li>
-    <code>--tags [tags]</code><br />
-    tags
-  </li>
-  <li>
-    <code>--user-name [user name]</code><br />
-    username
-  </li>
-  <li>
-    <code>--password [password]</code><br />
-    password
-  </li>
-  <li>
-    <code>--aspect-ratio [aspect ratio]</code><br />
-    preview aspect ratio
+    <code>-u, --username [username]</code><br />
+    Username.
   </li>
   <li>
     <code>--video-capture-mode [video capture mode]</code><br />
-    when to record video
-  </li>
-  <li>
-    <code>--preview-interval-ms [preview interval ms]</code><br />
-    preview interval rate in milliseconds
-  </li>
-  <li>
-    <code>--preview-quality [preview quality]</code><br />
-    preview quality
-  </li>
-  <li>
-    <code>--preview-only-cloud-retention [preview only cloud retention]</code
-    ><br />
-    preview only cloud retention
-  </li>
-  <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    enable verbose output
-  </li>
-  <li>
-    <code>--audio-enable</code><br />
-    audio enable
-  </li>
-  <li>
-    <code>--audio-disable</code><br />
-    audio disable
-  </li>
-</ul>
-<hr />
-<h3>tagset</h3>
-<p>Edit camera settings based on a specific tag.</p>
-<h4>Required options:</h4>
-<ul>
-  <li>
-    <code>--tag [tag]</code><br />
-    camera tag
-  </li>
-</ul>
-<h4>Optional options:</h4>
-<ul>
-  <li>
-    <code>--cloud-retention-days [cloud retention days]</code><br />
-    cloud retention days
-  </li>
-  <li>
-    <code>--video-resolution [video resolution]</code><br />
-    video resolution
-  </li>
-  <li>
-    <code>--bridge-target-days [bridge target days]</code><br />
-    bridge target days
-  </li>
-  <li>
-    <code>--local-retention-days [local retention days]</code><br />
-    local retention days
-  </li>
-  <li>
-    <code>--preview-resolution [preview resolution]</code><br />
-    preview resolution
-  </li>
-  <li>
-    <code>--preview-transmit-mode [preview transmit mode]</code><br />
-    preview transmit mode
+    When to record video.
   </li>
   <li>
     <code>--video-transmit-mode [video transmit mode]</code><br />
-    video transmit mode
+    Video transmit mode.
   </li>
   <li>
     <code>--video-quality [video quality]</code><br />
-    video quality
-  </li>
-  <li>
-    <code>--tags [tags]</code><br />
-    tags
-  </li>
-  <li>
-    <code>--user-name [user name]</code><br />
-    username
-  </li>
-  <li>
-    <code>--password [password]</code><br />
-    password
-  </li>
-  <li>
-    <code>--aspect-ratio [aspect ratio]</code><br />
-    preview aspect ratio
-  </li>
-  <li>
-    <code>--video-capture-mode [video capture mode]</code><br />
-    when to record video
-  </li>
-  <li>
-    <code>--preview-interval-ms [preview interval ms]</code><br />
-    preview interval rate in milliseconds
-  </li>
-  <li>
-    <code>--preview-quality [preview quality]</code><br />
-    preview quality
-  </li>
-  <li>
-    <code>--preview-only-cloud-retention [preview only cloud retention]</code
-    ><br />
-    preview only cloud retention
-  </li>
-  <li>
-    <code>--audio-enable</code><br />
-    audio enable
-  </li>
-  <li>
-    <code>--audio-disable</code><br />
-    audio disable
-  </li>
-  <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    enable verbose output
-  </li>
-</ul>
-<hr />
-<h3>multiset</h3>
-<p>Edit all camera settings.</p>
-<h4>Options:</h4>
-<ul>
-  <li>
-    <code>--cloud-retention-days [cloud retention days]</code><br />
-    cloud retention days
+    Video quality.
   </li>
   <li>
     <code>--video-resolution [video resolution]</code><br />
-    video resolution
-  </li>
-  <li>
-    <code>--bridge-target-days [bridge target days]</code><br />
-    bridge target days
-  </li>
-  <li>
-    <code>--local-retention-days [local retention days]</code><br />
-    local retention days
-  </li>
-  <li>
-    <code>--preview-resolution [preview resolution]</code><br />
-    preview resolution
-  </li>
-  <li>
-    <code>--preview-transmit-mode [preview transmit mode]</code><br />
-    preview transmit mode
-  </li>
-  <li>
-    <code>--video-transmit-mode [video transmit mode]</code><br />
-    video transmit mode
-  </li>
-  <li>
-    <code>--video-quality [video quality]</code><br />
-    video quality
-  </li>
-  <li>
-    <code>--tags [tags]</code><br />
-    tags
-  </li>
-  <li>
-    <code>--user-name [user name]</code><br />
-    username
-  </li>
-  <li>
-    <code>--password [password]</code><br />
-    password
-  </li>
-  <li>
-    <code>--aspect-ratio [aspect ratio]</code><br />
-    preview aspect ratio
-  </li>
-  <li>
-    <code>--video-capture-mode [video capture mode]</code><br />
-    when to record video
-  </li>
-  <li>
-    <code>--preview-interval-ms [preview interval ms]</code><br />
-    preview interval rate in milliseconds
-  </li>
-  <li>
-    <code>--preview-quality [preview quality]</code><br />
-    preview quality
-  </li>
-  <li>
-    <code>--preview-only-cloud-retention [preview only cloud retention]</code
-    ><br />
-    preview only cloud retention
-  </li>
-  <li>
-    <code>--audio-enable</code><br />
-    audio enable
-  </li>
-  <li>
-    <code>--audio-disable</code><br />
-    audio disable
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    specify the name of the file where the output will be saved (required)
-  </li>
-  <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    enable verbose output
+    Video resolution.
   </li>
 </ul>
 <hr />
-<h3>detailedset</h3>
-<p>Edit camera settings taking values from a CSV file.</p>
-<h4>Required options:</h4>
+<h4>Notes:</h4>
 <ul>
   <li>
-    <code>-f, --file-name [file name]</code><br />
-    specify the name of the CSV file
+    For <code>--esns &quot;*&quot;</code>, it changes settings for all cameras.
   </li>
 </ul>
-<h4>Optional options:</h4>
-<ul>
-  <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    enable verbose output
-  </li>
-</ul>
-<hr />
 <h3>delete</h3>
 <p>Delete a camera from the bridge.</p>
 <h4>Argument:</h4>
 <ul>
   <li>
     <code>&lt;esn&gt;</code><br />
-    esn of the camera (required)
+    ESN of the camera (required)
   </li>
 </ul>
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--verbose</code><br />
-    enable verbose output
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
   </li>
 </ul>
 <hr />
@@ -1060,106 +865,111 @@ een camera list --help
 <ul>
   <li>
     <code>&lt;esn&gt;</code><br />
-    esn of the bridge to which the camera is added
+    ESN of the bridge to which the camera is added.
   </li>
 </ul>
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--camera-name [camera name]</code><br />
-    name of the camera
+    <code>-C, --camera-name [camera name]</code><br />
+    Name of the camera.
   </li>
   <li>
     <code>--guid [guid]</code><br />
-    guid of the camera
+    GUID of the camera.
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--cloud-retention-days [cloud retention days]</code><br />
-    cloud retention days
+    <code>-c, --cloud-retention-days [cloud retention days]</code><br />
+    Cloud retention days.
   </li>
   <li>
-    <code>--scene [scene]</code><br />
-    scene
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--tags [tags]</code><br />
-    tags
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--user-name [user name]</code><br />
-    username
+    <code>-p, --password [password]</code><br />
+    Camera password.
   </li>
   <li>
-    <code>--password [password]</code><br />
-    password
+    <code>-s, --site [site]</code><br />
+    Site ID.
   </li>
   <li>
-    <code>--location [location]</code><br />
-    location id
+    <code>-S, --scene [scene]</code><br />
+    Scene.
   </li>
   <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
+    <code>-t, --tags [tags]</code><br />
+    Tags.
   </li>
   <li>
-    <code>--verbose</code><br />
-    enable verbose output
+    <code>-u, --username [username]</code><br />
+    Camera username.
   </li>
 </ul>
 <hr />
 <h3>streamstatus</h3>
 <p>Get camera stream status.</p>
-<h4>Arguments:</h4>
-<ul>
-  <li>
-    <code>&lt;esns&gt;</code><br />
-    esns of the camera
-  </li>
-</ul>
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--start-time [start time]</code><br />
-    camera stream start time
+    <code>-e, --end-time [end time]</code><br />
+    Camera stream end time.
   </li>
   <li>
-    <code>--end-time [end time]</code><br />
-    camera stream end time
+    <code>-s, --start-time [start time]</code><br />
+    Camera stream start time.
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--stream-type [stream type]</code><br />
-    stream type of the camera
+    <code>--esns [esn1, esn2...]</code><br />
+    ESNs of the cameras.
+  </li>
+  <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
-    specify the name of the file where the output will be saved
+    Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--verbose</code><br />
-    enable verbose output
+    <code>-S, --stream-type [stream type]</code><br />
+    Stream type of the camera.
   </li>
 </ul>
 <h4>Notes:</h4>
 <ul>
   <li>
-    stream-type can be <strong>&quot;fullvideo&quot;</strong> or
-    <strong>&quot;preview&quot;</strong>
+    <code>stream-type</code> can be <strong>&quot;fullvideo&quot;</strong> or
+    <strong>&quot;preview&quot;</strong>.
   </li>
   <li>
-    start-time can be <strong>&quot;-1h&quot;</strong> i.e., one hour before
-    current time
+    <code>start-time</code> can be <strong>&quot;-1h&quot;</strong> (one hour
+    before current time).
   </li>
-  <li>end-time can be <strong>&quot;now&quot;</strong> i.e., current time</li>
+  <li>
+    <code>end-time</code> can be <strong>&quot;now&quot;</strong> (current
+    time).
+  </li>
+  <li>
+    <code>start-time</code> and <code>end-time</code> time format should be
+    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date time with millisecond
+    precision).
+  </li>
 </ul>
 <hr />
 <h3>purgelist</h3>
@@ -1167,31 +977,36 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>--start-time [start time]</code><br />
-    purge start time
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--end-time [end time]</code><br />
-    purge end time
+    <code>-e, --end-time [end time]</code><br />
+    Purge end time.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
-    specify the name of the file where the output will be saved
+    Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--verbose</code><br />
-    enable verbose output
+    <code>-s, --start-time [start time]</code><br />
+    Purge start time.
   </li>
 </ul>
 <h4>Notes:</h4>
 <ul>
   <li>
-    If you haven't specified any start-time and end-time it will take the last
+    If you haven't specified any start-time and end-time, it will take the last
     24 hours as default timestamps.
+  </li>
+  <li>
+    <code>start-time</code> and <code>end-time</code> time format should be
+    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date time with millisecond
+    precision).
   </li>
 </ul>
 <hr />
@@ -1200,46 +1015,58 @@ een camera list --help
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--esns [esns]</code><br />
-    esns of the camera
+    <code>--esns [esn1, esn2...]</code><br />
+    ESNs of the camera.
+  </li>
+  <li>
+    <code>--start-time [start time]</code><br />
+    Video start time.
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--start-time [start time]</code><br />
-    video start time
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--end-time [end time]</code><br />
-    video end time
+    <code>-e, --end-time [end time]</code><br />
+    Video end time.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
-    specify the name of the file where the output will be saved
+    Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <code>--google-sheet</code><br />
-    list camera availability in CSV format in Google Sheets
+    <code>-g, --google-sheet</code><br />
+    List camera availability in CSV format in Google Sheets.
   </li>
   <li>
-    <code>--preview-availability</code><br />
-    get preview recording status along with camera availability
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--no-prompt</code><br />
-    skip all user confirmation prompts
+    <code>-N, --no-check</code><br />
+    Show all available data, including unchecked items.
   </li>
   <li>
-    <code>--verbose</code><br />
-    enable verbose output
+    <code>-p, --preview-availability</code><br />
+    Get preview recording status along with camera availability.
+  </li>
+  <li>
+    <code>-s, --start-time [start time]</code><br />
+    Video start time.
   </li>
 </ul>
 <h4>Notes:</h4>
 <ul>
   <li>
-    This command only supports a maximum of 200 devices and seven days of time
+    This command only supports a maximum of 200 devices and a seven-day time
     range.
+  </li>
+  <li>
+    <code>start-time</code> and <code>end-time</code> time format should be
+    <code>YYYY-MM-DDTHH:MM:SS.sss±HH:MM</code> (ISO 8601 extended date-time).
   </li>
 </ul>
 <h1>bridge - Manage Bridges</h1>
@@ -1261,63 +1088,77 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
+    <code>-a, --available</code><br />
+    List discovered cameras that are not yet attached.
+  </li>
+  <li>
     <code>--csv</code><br />
     List all bridges in CSV format.
   </li>
   <li>
-    <code>--tree</code><br />
-    List bridges and associated cameras in tree format.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--available</code><br />
-    List discovered cameras that are not yet attached.
-  </li>
-  <li>
-    <code>--locations [locations]</code><br />
-    List bridges in a given location.
-  </li>
-  <li>
-    <code>--tags [tags]</code><br />
-    List bridges based on the given tag.
-  </li>
-  <li>
-    <code>--status [status]</code><br />
-    List bridges with a specific status.
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate chart in HTML file.
-  </li>
-  <li>
-    <code>--google-sheet</code><br />
-    List bridges in CSV format in Google Sheet.
+    <code>--esn</code><br />
+    List bridge ESNs.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
     Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <code>--no-prompt</code><br />
+    <code>-g, --google-sheet</code><br />
+    List bridges in CSV format in Google Sheets.
+  </li>
+  <li>
+    <code>--html</code><br />
+    Generate a chart in HTML file.
+  </li>
+  <li>
+    <code>-l, --long</code><br />
+    Display bridge details, including bridge ID, name, and location. For v3,
+    also includes cameras in the account and online cameras; for v1, includes
+    GUID.
+  </li>
+  <li>
+    <code>-n, --no-prompt</code><br />
     Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-s, --site</code><br />
+    List the site of the bridge.
   </li>
   <li>
-    <code>--v3</code><br />
-    Use v3 APIs.
+    <code>--sites [site1, site2...]</code><br />
+    List bridges in a specific site.
+  </li>
+  <li>
+    <code>-S, --status [status]</code><br />
+    List bridges with a specific status.
+  </li>
+  <li>
+    <code>-t, --tags [tag1, tag2...]</code><br />
+    Filter bridges by tags.
+  </li>
+  <li>
+    <code>-T, --tree</code><br />
+    View bridges and associated cameras in tree format.
+  </li>
+  <li>
+    <code>--v1</code><br />
+    Use v1 APIs.
   </li>
 </ul>
 <h4>Actions:</h4>
 <ul>
   <li>
-    If <code>--html</code> is specified and <code>--v3</code>, generate bridge
-    list report using v3.
+    If <code>--html</code> is specified and <code>--v1</code>, generate a bridge
+    list report using v1.
   </li>
   <li>
-    If <code>--csv</code> is specified and <code>--v3</code>, list bridges in
-    CSV format using v3.
+    If <code>--csv</code> is specified and <code>--v1</code>, list bridges in
+    CSV format using v1.
   </li>
   <li>
     Handle other combinations of options to perform various listing and
@@ -1330,16 +1171,16 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting
+  </li>
+  <li>
+    <code>-g, --google-sheet</code><br />
+    List bridges in csv format in a Google Sheet
+  </li>
+  <li>
     <code>--html</code><br />
-    Generate chart in HTML file.
-  </li>
-  <li>
-    <code>--google-sheet</code><br />
-    List bridges in CSV format in Google Sheet.
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    Generate a chart in an HTML file
   </li>
 </ul>
 <hr />
@@ -1348,35 +1189,39 @@ een camera list --help
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--esns [esns]</code><br />
-    ESN of the bridge.
+    <code>-e, --end-time [end time]</code><br />
+    Specify video end time
+  </li>
+  <li>
+    <code>--esns [esn1, esn2...]</code><br />
+    ESNs of the bridge
   </li>
 </ul>
-<h4>Options:</h4>
+<h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--start-time [start time]</code><br />
-    Video start time.
-  </li>
-  <li>
-    <code>--end-time [end time]</code><br />
-    Video end time.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
+    Specify the file name to save the output
   </li>
   <li>
-    <code>--google-sheet</code><br />
-    List bridge availability in CSV format in Google Sheet.
+    <code>-g, --google-sheet</code><br />
+    List bridge availability in csv format in a Google Sheet
   </li>
   <li>
-    <code>--no-prompt</code><br />
-    Skip all user confirmation prompts.
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-N,. --no-check</code><br />
+    Show all available data
+  </li>
+  <li>
+    <code>-s, --start-time [start time]</code><br />
+    Specify video start time
   </li>
 </ul>
 <hr />
@@ -1385,143 +1230,57 @@ een camera list --help
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--esns [esns]</code><br />
-    ESNs of the bridge (required).
+    <code>--esns [esn1, esn2...]</code><br />
+    Esns of the bridge (required).
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--performance</code><br />
-    Performance of the bridge.
+    <code>-c, --count [count]</code><br />
+    Specify the number of annotations to return
   </li>
   <li>
-    <code>--events</code><br />
-    Events of the bridge.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting
   </li>
   <li>
-    <code>--count [count]</code><br />
-    Number of annotations to return.
+    <code>-e, --end-time [end time]</code><br />
+    Specify the end time
   </li>
   <li>
-    <code>--start-time [start time]</code><br />
-    Start time.
+    <code>-E, --events</code><br />
+    View events of the bridge
   </li>
   <li>
-    <code>--end-time [end time]</code><br />
-    End time.
+    <code>-l, --local-rtsp-metrics [enable/disable]</code><br />
+    Enable or disable the RTSP metrics set
   </li>
   <li>
-    <code>--summary</code><br />
-    Get summarized data.
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts
   </li>
   <li>
-    <code>--local-rtsp-metrics [enable/disable]</code><br />
-    Enable or disable metric set.
+    <code>-p, --performance</code><br />
+    View performance metrics of the bridge
   </li>
   <li>
-    <code>--no-prompt</code><br />
-    Skip all user confirmation prompts.
+    <code>-s, --start-time [start time]</code><br />
+    Specify the start time
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-S, --summary</code><br />
+    Get summarized data
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
+    ISO 8601 date time with millisecond precision)
   </li>
 </ul>
 <hr />
-<h3>updatecameras</h3>
-<p>Update all cameras under the bridge(s).</p>
-<h4>Required options:</h4>
-<ul>
-  <li>
-    <code>--esns [esns]</code><br />
-    ESN of the bridge (required).
-  </li>
-</ul>
-<h4>Optional options:</h4>
-<ul>
-  <li>
-    <code>--cloud-retention-days [cloud retention days]</code><br />
-    Cloud retention days.
-  </li>
-  <li>
-    <code>--video-resolution [video resolution]</code><br />
-    Video resolution.
-  </li>
-  <li>
-    <code>--bridge-target-days [bridge target days]</code><br />
-    Bridge target days.
-  </li>
-  <li>
-    <code>--local-retention-days [local retention days]</code><br />
-    Local retention days.
-  </li>
-  <li>
-    <code>--preview-resolution [preview resolution]</code><br />
-    Preview resolution.
-  </li>
-  <li>
-    <code>--preview-transmit-mode [preview transmit mode]</code><br />
-    Preview transmit mode.
-  </li>
-  <li>
-    <code>--video-transmit-mode [video transmit mode]</code><br />
-    Video transmit mode.
-  </li>
-  <li>
-    <code>--video-quality [video quality]</code><br />
-    Video quality.
-  </li>
-  <li>
-    <code>--tags [tags]</code><br />
-    Tags.
-  </li>
-  <li>
-    <code>--user-name [user name]</code><br />
-    Username.
-  </li>
-  <li>
-    <code>--password [password]</code><br />
-    Password.
-  </li>
-  <li>
-    <code>--aspect-ratio [aspect ratio]</code><br />
-    Preview aspect ratio.
-  </li>
-  <li>
-    <code>--video-capture-mode [video capture mode]</code><br />
-    When to record video.
-  </li>
-  <li>
-    <code>--preview-interval-ms [preview interval ms]</code><br />
-    Preview interval rate in milliseconds.
-  </li>
-  <li>
-    <code>--preview-quality [preview quality]</code><br />
-    Preview quality.
-  </li>
-  <li>
-    <code>--preview-only-cloud-retention [preview only cloud retention]</code
-    ><br />
-    Preview only cloud retention.
-  </li>
-  <li>
-    <code>--audio-enable</code><br />
-    Audio enable.
-  </li>
-  <li>
-    <code>--audio-disable</code><br />
-    Audio disable.
-  </li>
-  <li>
-    <code>--no-prompt</code><br />
-    Skip all user confirmation prompts.
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
-  </li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all bridges:</li>
@@ -1538,67 +1297,136 @@ een camera list --help
 </ul>
 <pre><code class="language-bash">een bridge availability --esns [esns] --start-time [start time] --end-time [end time]
 </code></pre>
-<h1>location - Manage Locations</h1>
+<h1>switch - Manage Switches</h1>
 <h2>NAME</h2>
-<p><code>location</code> - manage and interact with locations.</p>
+<p><code>switch</code> - manage and interact with switches.</p>
 <h2>SYNOPSIS</h2>
-<pre><code>een location [COMMAND] [OPTIONS]
+<pre><code>een switch [COMMAND] [OPTIONS]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
-  The <code>location</code> command allows you to manage locations, including
-  listing all available locations.
+  The <code>switch</code> command allows you to manage switches and list switch
+  status.
 </p>
 <h2>COMMANDS</h2>
 <h3>list</h3>
-<p>List all locations.</p>
+<p>List switches.</p>
 <h4>Options:</h4>
 <ul>
   <li>
+    <code>-b, --bridge</code><br />
+    List the bridge ESNs associated with the switches
+  </li>
+  <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting
+  </li>
+  <li>
+    <code>--id</code><br />
+    List the IDs of the switches
+  </li>
+  <li>
+    <code>-l, --long</code><br />
+    List switch details, including switch ID, bridge ESN, and status
+  </li>
+  <li>
+    <code>-s, --status</code><br />
+    List the status of the switches
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all switches:</li>
+</ul>
+<pre><code class="language-bash">een switch list
+</code></pre>
+<ul>
+  <li>To list switches ids:</li>
+</ul>
+<pre><code class="language-bash">een switch list --id
+</code></pre>
+<ul>
+  <li>To list switches and their statuses:</li>
+</ul>
+<pre><code class="language-bash">een switch list --status
+</code></pre>
+<h1>site - Manage Sites</h1>
+<h2>NAME</h2>
+<p><code>site</code> - manage and interact with sites.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een site [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>site</code> command allows you to manage sites, including listing
+  all available sites.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List all sites.</p>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>-a, --address</code><br />
+    List the site addresses.
+  </li>
+  <li>
     <code>--csv</code><br />
-    List all locations in CSV format.
+    List all sites in CSV format.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
     Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <code>--no-prompt</code><br />
+    <code>-n, --no-prompt</code><br />
     Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-l, --long</code><br />
+    List site details, including site name and site ID.
+  </li>
+  <li>
+    <code>-s, --site-id</code><br />
+    List the IDs of the sites.
+  </li>
+  <li>
+    <code>-S, --site-name</code><br />
+    List the site names.
   </li>
 </ul>
 <h4>Actions:</h4>
 <ul>
   <li>
-    List locations with options for CSV format, file output, skipping prompts,
-    and verbose output as specified.
+    List sites with options for CSV format, file output, skipping prompts, and
+    debug output as specified.
   </li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all locations in CSV format:</li>
+  <li>To list all sites in CSV format:</li>
 </ul>
-<pre><code class="language-bash">een location list --csv --file-name locations.csv
+<pre><code class="language-bash">een site list --csv --file-name sites.csv
 </code></pre>
 <ul>
-  <li>To list locations without prompting for confirmation:</li>
+  <li>To list sites without prompting for confirmation:</li>
 </ul>
-<pre><code class="language-bash">een location list --no-prompt --verbose
+<pre><code class="language-bash">een site list --no-prompt --debug
 </code></pre>
-<h1>video - Manage Camera Videos</h1>
+<h1>video - Manage Recorded Videos</h1>
 <h2>NAME</h2>
-<p><code>video</code> - manage and interact with videos from cameras.</p>
+<p><code>video</code> - manage and interact with recorded videos.</p>
 <h2>SYNOPSIS</h2>
 <pre><code>een video [COMMAND] [OPTIONS]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
-  The <code>video</code> command allows you to download videos from cameras,
-  list available videos, and check the status of preview recordings.
+  The <code>video</code> command allows you to download recorded videos, list
+  available videos, and check the status of preview recordings.
 </p>
 <h2>COMMANDS</h2>
 <h3>download</h3>
@@ -1610,42 +1438,46 @@ een camera list --help
     ESN of the camera.
   </li>
   <li>
-    <code>--start-time [start time]</code><br />
-    Video start time.
-  </li>
-  <li>
-    <code>--end-time [end time]</code><br />
+    <code>-e, --end-time [end time]</code><br />
     Video end time.
   </li>
   <li>
-    <code>--format [format]</code><br />
+    <code>-f, --format [format]</code><br />
     Video format.
   </li>
   <li>
-    <code>--target-directory [target-directory]</code><br />
-    Specify the name of the directory where the output will be saved.
+    <code>-s, --start-time [start time]</code><br />
+    Video start time.
+  </li>
+  <li>
+    <code>-t, --target-directory [target-directory]</code><br />
+    Specify the directory where the video will be saved.
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--timezone [timezone]</code><br />
-    Timezone.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--overwrite</code><br />
-    Overwrite already downloaded video.
+    <code>-o, --overwrite</code><br />
+    Overwrite the existing video file.
   </li>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-T, --timezone [timezone]</code><br />
+    Timezone to use for the video download.
   </li>
 </ul>
 <h4>Notes:</h4>
 <ul>
-  <li>For video download, support both mp4 and FLV format.</li>
+  <li>Video downloads support both mp4 and FLV formats.</li>
   <li>The timezone option is only supported for mp4 format.</li>
-  <li>Video download is done by batches of 5 videos at a time.</li>
+  <li>Video downloading is done in batches of 5 videos at a time.</li>
+  <li>
+    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
+    ISO 8601 date time with millisecond precision)
+  </li>
 </ul>
 <h4>Actions:</h4>
 <ul>
@@ -1656,7 +1488,7 @@ een camera list --help
 </ul>
 <hr />
 <h3>list</h3>
-<p>Get camera video list.</p>
+<p>Get a list of videos from the selected camera.</p>
 <h4>Required options:</h4>
 <ul>
   <li>
@@ -1664,19 +1496,26 @@ een camera list --help
     ESN of the camera.
   </li>
   <li>
-    <code>--start-time [start time]</code><br />
+    <code>-s, --start-time [start time]</code><br />
     Video start time.
   </li>
   <li>
-    <code>--end-time [end time]</code><br />
+    <code>-e, --end-time [end time]</code><br />
     Video end time.
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
+    ISO 8601 date time with millisecond precision)
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -1696,14 +1535,18 @@ een camera list --help
     ESNs of the camera.
   </li>
   <li>
-    <code>--start-time [start time]</code><br />
+    <code>-s, --start-time [start time]</code><br />
     Video start time.
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--end-time [end time]</code><br />
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-e, --end-time [end time]</code><br />
     Video end time.
   </li>
   <li>
@@ -1711,30 +1554,26 @@ een camera list --help
     Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <code>--no-prompt</code><br />
+    <code>-g, --google-sheet</code><br />
+    List camera recording status in CSV format in Google Sheets.
+  </li>
+  <li>
+    <code>-n, --no-prompt</code><br />
     Skip all user confirmation prompts.
-  </li>
-  <li>
-    <code>--google-sheet</code><br />
-    List bridges in CSV format in Google Sheets.
-  </li>
-  <li>
-    <code>--verbose</code><br />
-    Enable verbose output.
   </li>
 </ul>
 <h4>Notes:</h4>
 <ul>
   <li>
-    The ISO 8601 timestamp format is a standardized format for representing data
-    and time information (Example: &quot;2023-10-02T23:50:06.337+00:00&quot;)
+    start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM
+    (ISO 8601 extended date-time)
   </li>
 </ul>
 <h4>Actions:</h4>
 <ul>
   <li>
     If ESNs and start time are provided, it checks the preview recording status.
-    If the <code>--google-sheet</code> option is provided, the status will be
+    If the <code>--google-sheet</code> option is provided, the statuses will be
     listed in Google Sheets.
   </li>
 </ul>
@@ -1742,17 +1581,17 @@ een camera list --help
 <ul>
   <li>To download a video from a camera:</li>
 </ul>
-<pre><code class="language-bash">een video download --esn 123456 --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T01:00:00Z&quot; --format mp4 --target-directory /path/to/save
+<pre><code class="language-bash">een video download --esn 123456 --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot; --format mp4 --target-directory /path/to/save
 </code></pre>
 <ul>
   <li>To list videos from a camera:</li>
 </ul>
-<pre><code class="language-bash">een video list --esn 123456 --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T01:00:00Z&quot; --verbose
+<pre><code class="language-bash">een video list --esn 123456 --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot; --debug
 </code></pre>
 <ul>
   <li>To check the status of a preview recording:</li>
 </ul>
-<pre><code class="language-bash">een video previewrecordingstatus --esns 123456 --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T01:00:00Z&quot; --verbose
+<pre><code class="language-bash">een video previewrecordingstatus --esns 1005f355 --start-time  2024-11-17T09:20:54.619+00:00 --end-time  2024-11-18T09:20:54.619+00:00 --debug
 </code></pre>
 <h1>lpr - Manage License Plate Recognition (LPR) Events</h1>
 <h2>NAME</h2>
@@ -1764,59 +1603,54 @@ een camera list --help
 <p>
   The <code>lpr events</code> command allows you to retrieve LPR events within a
   specified time frame. It supports filtering by license plate number and camera
-  ID.
+  ESN.
 </p>
 <h2>COMMANDS</h2>
 <h3>events</h3>
-<p>Get License Plate Recognition events.</p>
+<p>Get LPR events.</p>
 <h4>Required options:</h4>
 <ul>
   <li>
-    <p>
-      <code>--start-time [start time]</code><br />
-      Specify the start time for the events retrieval.
-    </p>
+    <code>-e, --end-time [end time]</code><br />
+    Events end time.
   </li>
   <li>
-    <p>
-      <code>--end-time [end time]</code><br />
-      Specify the end time for the events retrieval.
-    </p>
+    <code>-s, --start-time [start time]</code><br />
+    Events start time.
   </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <p>
-      <code>--lp [license plate]</code><br />
-      Filter events by license plate number.
-    </p>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <p>
-      <code>--esn [esn]</code><br />
-      Specify the camera ESN (Electronic Serial Number), which is the camera ID.
-    </p>
+    <code>--esns [esn1, esn2...]</code><br />
+    The ESN for camera of interest.
   </li>
   <li>
-    <p>
-      <code>--verbose</code><br />
-      Enable verbose output.
-    </p>
+    <code>--lp [license plate]</code><br />
+    License plate number.
   </li>
   <li>
-    <p>
-      <code>--v3</code><br />
-      Use version 3 of the API for retrieving events.
-    </p>
+    <code>--v1</code><br />
+    Use v1 APIs.
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
+    ISO 8601 date time with millisecond precision)
   </li>
 </ul>
 <h4>Actions:</h4>
 <ul>
   <li>
-    If <code>--v3</code> is specified along with both
+    If <code>--v1</code> is specified along with both
     <code>--start-time</code> and <code>--end-time</code>, it retrieves LPR
-    events using version 3 of the API.
+    events using v1 APIs.
   </li>
   <li>
     If only the start and end times are specified, it retrieves LPR events using
@@ -1827,12 +1661,12 @@ een camera list --help
 <ul>
   <li>To get LPR events for a specific time frame:</li>
 </ul>
-<pre><code class="language-bash">een lpr events --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot;
+<pre><code class="language-bash">een lpr events --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot;
 </code></pre>
 <ul>
   <li>To get LPR events for a specific license plate:</li>
 </ul>
-<pre><code class="language-bash">een lpr events --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot; --lp &quot;ABC123&quot;
+<pre><code class="language-bash">een lpr events --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot; --lp &quot;ABC123&quot;
 </code></pre>
 <h1>vsp - Manage Vehicle Surveillance Package (VSP) Events and Alerts</h1>
 <h2>NAME</h2>
@@ -1846,97 +1680,69 @@ een camera list --help
 <h2>DESCRIPTION</h2>
 <p>
   The <code>vsp</code> command allows you to manage and retrieve VSP events and
-  alerts based on various parameters such as time, vehicle characteristics, and
-  alert types.
+  alerts based on parameters such as time, vehicle characteristics, and alert
+  types.
 </p>
 <h2>COMMANDS</h2>
 <h3>listevents</h3>
 <p>Get VSP events.</p>
-<h4>Options</h4>
+<h4>Options:</h4>
 <ul>
   <li>
-    <p>
-      <code>--start-time [start time]</code><br />
-      Specify the start time for the events retrieval.
-    </p>
+    <code>-a, --access-type [access type]</code><br />
+    Access type.
   </li>
   <li>
-    <p>
-      <code>--end-time [end time]</code><br />
-      Specify the end time for the events retrieval.
-    </p>
+    <code>-b, --body-types [types]</code><br />
+    Vehicle body types.
   </li>
   <li>
-    <p>
-      <code>--lp [lp]</code><br />
-      Filter events by license plate number.
-    </p>
+    <code>-c, --colors [colors]</code><br />
+    Vehicle colors.
   </li>
   <li>
-    <p>
-      <code>--esns [esns]</code><br />
-      Specify camera ESNs (Electronic Serial Numbers).
-    </p>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <p>
-      <code>--makes [makes]</code><br />
-      Filter by vehicle makes.
-    </p>
+    <code>-D, --directions [directions]</code><br />
+    Direction of the vehicle.
   </li>
   <li>
-    <p>
-      <code>--locations [locations]</code><br />
-      Filter by location name.
-    </p>
+    <code>-e, --end-time [end time]</code><br />
+    LPR end time.
   </li>
   <li>
-    <p>
-      <code>--colors [colors]</code><br />
-      Filter by vehicle colors.
-    </p>
+    <code>--esns [esns]</code><br />
+    Camera ESNs.
   </li>
   <li>
-    <p>
-      <code>--body-types [types]</code><br />
-      Filter by vehicle body types.
-    </p>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <p>
-      <code>--directions [directions]</code><br />
-      Specify the direction of the vehicle.
-    </p>
+    <code>--html</code><br />
+    Generate chart in HTML file.
   </li>
   <li>
-    <p>
-      <code>--access-type [access type]</code><br />
-      Specify the type of access.
-    </p>
+    <code>--lp [lp]</code><br />
+    License plate number.
   </li>
   <li>
-    <p>
-      <code>--html</code><br />
-      Generate a chart in an HTML file.
-    </p>
+    <code>-m, --makes [makes]</code><br />
+    Vehicle makes.
   </li>
   <li>
-    <p>
-      <code>-f, --file-name [file name]</code><br />
-      Specify the name of the file where the output will be saved.
-    </p>
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
   </li>
   <li>
-    <p>
-      <code>--no-prompt</code><br />
-      Skip all user confirmation prompts.
-    </p>
+    <code>-s, --sites [sites]</code><br />
+    Site names.
   </li>
   <li>
-    <p>
-      <code>--verbose</code><br />
-      Enable verbose output.
-    </p>
+    <code>-S, --start-time [start time]</code><br />
+    LPR start time.
   </li>
 </ul>
 <h4>Notes:</h4>
@@ -1944,6 +1750,10 @@ een camera list --help
   <li>
     If you haven't specified any start-time and end-time it will take last 24
     hours as default timestamps.
+  </li>
+  <li>
+    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
+    ISO 8601 date time with millisecond precision).
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -1962,88 +1772,60 @@ een camera list --help
 <h4>Options</h4>
 <ul>
   <li>
-    <p>
-      <code>--start-time [start time]</code><br />
-      Specify the start time for the alerts retrieval.
-    </p>
+    <code>-a, --allowed-vehicle</code><br />
+    Alert type - allowed vehicle.
   </li>
   <li>
-    <p>
-      <code>--end-time [end time]</code><br />
-      Specify the end time for the alerts retrieval.
-    </p>
+    <code>-c, --count-of-license-plate</code><br />
+    Alert type - count of license plate.
   </li>
   <li>
-    <p>
-      <code>--esns [esns]</code><br />
-      Specify the camera ESN (Electronic Serial Number).
-    </p>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <p>
-      <code>--locations [locations]</code><br />
-      Specify the name of the location.
-    </p>
+    <code>-D, --denied-vehicle</code><br />
+    Alert type - denied vehicle.
   </li>
   <li>
-    <p>
-      <code>--allowed-vehicle</code><br />
-      Alert type: allowed vehicle.
-    </p>
+    <code>-e, --end-time [end time]</code><br />
+    LPR end time.
   </li>
   <li>
-    <p>
-      <code>--denied-vehicle</code><br />
-      Alert type: denied vehicle.
-    </p>
+    <code>--esns [esns]</code><br />
+    Camera ESN.
   </li>
   <li>
-    <p>
-      <code>--count-of-license-plate</code><br />
-      Alert type: count of license plate.
-    </p>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <p>
-      <code>--hotlist</code><br />
-      Alert type: hotlist.
-    </p>
+    <code>--html</code><br />
+    Generate chart in HTML file.
   </li>
   <li>
-    <p>
-      <code>--unregistered-vehicle</code><br />
-      Alert type: unregistered vehicle.
-    </p>
+    <code>-H, --hotlist</code><br />
+    Alert type - hotlist.
   </li>
   <li>
-    <p>
-      <code>--watch-vehicle</code><br />
-      Alert type: watch vehicle.
-    </p>
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
   </li>
   <li>
-    <p>
-      <code>--html</code><br />
-      Generate a chart in an HTML file.
-    </p>
+    <code>-s, --sites [sites]</code><br />
+    Name of the site.
   </li>
   <li>
-    <p>
-      <code>-f, --file-name [file name]</code><br />
-      Specify the name of the file where the output will be saved.
-    </p>
+    <code>-S, --start-time [start time]</code><br />
+    LPR start time.
   </li>
   <li>
-    <p>
-      <code>--no-prompt</code><br />
-      Skip all user confirmation prompts.
-    </p>
+    <code>-u, --unregistered-vehicle</code><br />
+    Alert type - unregistered vehicle.
   </li>
   <li>
-    <p>
-      <code>--verbose</code><br />
-      Enable verbose output.
-    </p>
+    <code>-w, --watch-vehicle</code><br />
+    Alert type - watch vehicle.
   </li>
 </ul>
 <h4>Notes:</h4>
@@ -2051,6 +1833,10 @@ een camera list --help
   <li>
     If you haven't specified any start-time and end-time it will take last 24
     hours as default timestamps.
+  </li>
+  <li>
+    start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM
+    (ISO 8601 extended date-time).
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -2067,12 +1853,12 @@ een camera list --help
 <ul>
   <li>To get VSP events for a specific time frame:</li>
 </ul>
-<pre><code class="language-bash">een vsp listevents --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot;
+<pre><code class="language-bash">een vsp listevents --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001235959.000&quot;
 </code></pre>
 <ul>
   <li>To get VSP alerts for allowed vehicles:</li>
 </ul>
-<pre><code class="language-bash">een vsp listalerts --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot; --allowed-vehicle
+<pre><code class="language-bash">een vsp listalerts --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00 --allowed-vehicle
 </code></pre>
 <h1>pos - Manage Point of Sale (POS) Events</h1>
 <h2>NAME</h2>
@@ -2083,7 +1869,7 @@ een camera list --help
 <h2>DESCRIPTION</h2>
 <p>
   The <code>pos</code> command allows you to manage and retrieve POS events
-  based on various parameters such as time, transaction details, and location.
+  based on parameters such as time, transaction details, and site.
 </p>
 <h2>COMMANDS</h2>
 <h3>listevents</h3>
@@ -2091,101 +1877,79 @@ een camera list --help
 <h4>Options</h4>
 <ul>
   <li>
-    <p>
-      <code>--start-time [start time]</code><br />
-      Specify the start time for events retrieval.
-    </p>
+    <code>-b, --bill-number [bill number]</code><br />
+    Specify the bill number.
   </li>
   <li>
-    <p>
-      <code>--end-time [end time]</code><br />
-      Specify the end time for events retrieval.
-    </p>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <p>
-      <code>--locations [locations]</code><br />
-      Specify the name of the location.
-    </p>
+    <code>--discount-min [discount min]</code><br />
+    Specify the minimum discount in percentage.
   </li>
   <li>
-    <p>
-      <code>--transaction-type [transaction type]</code><br />
-      Specify the type of the transaction.
-    </p>
+    <code>--discount-max [discount max]</code><br />
+    Specify the maximum discount in percentage.
   </li>
   <li>
-    <p>
-      <code>--net-amount-min [net amount min]</code><br />
-      Specify the minimum net amount.
-    </p>
+    <code>-e, --end-time [end time]</code><br />
+    Defines the end point for retrieving events. The timestamp must be in ISO
+    8601 format with millisecond precision (e.g.,
+    YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
   </li>
   <li>
-    <p>
-      <code>--net-amount-max [net amount max]</code><br />
-      Specify the maximum net amount.
-    </p>
+    <code>-E, --employee-id [employee ID]</code><br />
+    Specify the ID of the employee.
   </li>
   <li>
-    <p>
-      <code>--employee-id [employee id]</code><br />
-      Specify the ID of the employee.
-    </p>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the name of the file where the output will be saved.
   </li>
   <li>
-    <p>
-      <code>--discount-min [discount min]</code><br />
-      Specify the minimum discount in percentage.
-    </p>
+    <code>-F, --flagged</code><br />
+    Retrieve flagged transactions.
   </li>
   <li>
-    <p>
-      <code>--discount-max [discount max]</code><br />
-      Specify the maximum discount in percentage.
-    </p>
+    <code>--html</code><br />
+    Generate chart in HTML file.
   </li>
   <li>
-    <p>
-      <code>--bill-number [bill number]</code><br />
-      Specify the bill number.
-    </p>
+    <code>-n, --no-prompt</code><br />
+    Skip all user confirmation prompts.
   </li>
   <li>
-    <p>
-      <code>--flagged</code><br />
-      Retrieve flagged transactions.
-    </p>
+    <code>--net-amount-min [net amount min]</code><br />
+    Specify the minimum net amount.
   </li>
   <li>
-    <p>
-      <code>--html</code><br />
-      Generate a chart in an HTML file.
-    </p>
+    <code>--net-amount-max [net amount max]</code><br />
+    Specify the maximum net amount.
   </li>
   <li>
-    <p>
-      <code>-f, --file-name [file name]</code><br />
-      Specify the name of the file where the output will be saved.
-    </p>
+    <code>-s, --sites [sites]</code><br />
+    Specify the name of the site.
   </li>
   <li>
-    <p>
-      <code>--no-prompt</code><br />
-      Skip all user confirmation prompts.
-    </p>
+    <code>-S, --start-time [start time]</code><br />
+    Defines the starting point for retrieving events. The timestamp must be in
+    ISO 8601 format with millisecond precision (e.g.,
+    YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
   </li>
   <li>
-    <p>
-      <code>--verbose</code><br />
-      Enable verbose output.
-    </p>
+    <code>-t, --transaction-type [transaction type]</code><br />
+    Specify the type of the transaction.
   </li>
 </ul>
 <h4>Notes:</h4>
 <ul>
   <li>
-    If you haven't specified any start-time and end-time it will take last 24
-    hours as default timestamps.
+    If no start time or end time is specified, the retrieval period defaults to
+    the last 24 hours.
+  </li>
+  <li>
+    Start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM
+    (ISO 8601 extended date-time).
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -2202,7 +1966,7 @@ een camera list --help
 <ul>
   <li>To get POS events for a specific time frame:</li>
 </ul>
-<pre><code class="language-bash">een pos listevents --start-time &quot;2024-10-01T00:00:00Z&quot; --end-time &quot;2024-10-01T23:59:59Z&quot;
+<pre><code class="language-bash">een pos listevents --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00
 </code></pre>
 <ul>
   <li>To get flagged POS transactions:</li>
@@ -2224,22 +1988,23 @@ een camera list --help
 </p>
 <h2>COMMANDS</h2>
 <h3>update</h3>
-<p>Update google config option values</p>
+<p>Update Google config option values.</p>
 <h4>Arguments:</h4>
 <ul>
   <li>
     <p>
-      <code>&lt;option name&gt;</code> The name of the configuration option that
-      needs to be updated.
+      <code>&lt;option name&gt;</code><br />
+      The name of the configuration option that needs to be updated.
     </p>
   </li>
   <li>
-    <p><code>&lt;value&gt;</code></p>
+    <p>
+      <code>&lt;value&gt;</code><br />
+      The new value for the specified option. This value is parsed as a JSON
+      string.
+    </p>
   </li>
 </ul>
-<p>
-  The new value for the specified option. This value is parsed as a JSON string.
-</p>
 <h4>Action:</h4>
 <p>
   The action processes the provided option name and value, parsing the value as
@@ -2250,7 +2015,7 @@ een camera list --help
 <pre><code class="language-bash">een googleconfig update &quot;api_key&quot; &quot;your_api_key_value&quot;
 </code></pre>
 <h1>For Google Sheets commands</h1>
-<h4>Generate Credentials for accessing google sheets and google drive</h4>
+<h4>Generate Credentials for accessing Google Sheets and Google Drive</h4>
 <p><a href="https://console.cloud.google.com/">Google Cloud Console</a></p>
 <p>
   The credentials required depends on the type of data, platform, and access
@@ -2314,11 +2079,11 @@ een camera list --help
   URL https://drive.google.com/drive/folders/ABCDE12345 is
   <code>ABCDE12345</code>.
 </p>
-<h4>Grant Editor permission to access google drive folder</h4>
+<h4>Grant Editor permission to access the Google Drive folder</h4>
 <p>
-  Grant permission to your client email in your google drive folder. Client
-  email is the email that you get while initializing the project in google cloud
-  console.
+  Grant permission to your client email in your Google Drive folder. Client
+  email is the email that you get while initializing the project in the Google
+  Cloud console.
 </p>
 <h3>IMPORTANT:</h3>
 <h4>Enable GoogleSheet API and Google Drive APIs</h4>
@@ -2358,7 +2123,7 @@ een camera list --help
 </ol>
 <h3>Note:</h3>
 <p>
-  While executing google sheets commands, if you encounter any error messages
+  While executing Google Sheets commands, if you encounter any error messages
   like:
 </p>
 <pre><code> errors: [
@@ -2409,10 +2174,10 @@ een camera list --help
   credentials for your service account.
 </p>
 <p>
-  Replace these values with your credentials, you will be able to get the google
-  sheets commands working.
+  Replace these values with your credentials, you will be able to get the Google
+  Sheets commands working.
 </p>
-<h4>To update the google config values, you can also use the command:</h4>
+<h4>To update the Google config values, you can also use the command:</h4>
 <pre><code>een googleconfig update &lt;name&gt; -- &lt;value&gt;
 </code></pre>
 <p>Example:</p>
@@ -2429,7 +2194,7 @@ een camera list --help
   <li>video-transmit-mode - [Video transmit mode]</li>
   <li>video-quality - [Full Video quality]</li>
   <li>tags - [Tags]</li>
-  <li>user-name - [Camera username]</li>
+  <li>username - [Camera username]</li>
   <li>password - [Camera password]</li>
   <li>aspect-ratio- [Preview aspect ratio]</li>
   <li>video-capture-mode - [Preview Record when]</li>
@@ -2442,12 +2207,14 @@ een camera list --help
 <p>Note:</p>
 <ul>
   <li>
-    Except for <code>cameraID</code> and <code>cameraName</code> all other field
-    in camera settings file are editable.
+    Except for <code>cameraID</code> and <code>cameraName</code> all other
+    fields in the camera settings file are editable.
   </li>
 </ul>
 <h3>Bridge settings that can be edited:</h3>
-<p>1.local-rtsp-metrics - [Bridge rtsp metrics]</p>
+<ol>
+  <li>local-rtsp-metrics - [Bridge rtsp metrics]</li>
+</ol>
 <h3>Available camera status</h3>
 <ul>
   <li>&quot;Camera online&quot;</li>
@@ -3064,3 +2831,31 @@ een camera list --help
   <li>&quot;WET&quot;</li>
   <li>&quot;Zulu&quot;</li>
 </ul>
+<h2>Environment variables</h2>
+<p>&lt;a name=&quot;environment-variables&quot;&gt;&lt;/a&gt;</p>
+<ol>
+  <li>
+    <p><code>API_KEY</code> - *Deprecated</p>
+    <ul>
+      <li>
+        <p>
+          Creation: To get an <code>API_KEY</code> you will need an account. You
+          can either use your existing account or create a Developer Account.
+        </p>
+        <ul>
+          <li>
+            Existing account: You can create the key under your Account
+            Settings.
+          </li>
+          <li>
+            Developer account: You will have to verify your email address first
+            to create your Developer Account. Expect to get an email with a
+            shortcut to create the <code>API_KEY</code>. Click on the shortcut
+            link to create your <code>API_KEY</code> and get started writing
+            some code.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
