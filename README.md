@@ -490,7 +490,7 @@ List cameras.
   Use version 1 APIs for backward compatibility.
 - `-r, --resolution`  
   List cameras filtered by resolution.
-- `-s, --sites [site1, site2...]`  
+- `-s, --sites [site1, site2]`  
   List cameras located in the specified sites. Provide a comma-separated list of site names.
 - `-S, --start-time [start time]`  
   Filter cameras based on video start time. Format: `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date-time with milliseconds).
@@ -500,7 +500,7 @@ List cameras.
   List only the camera names and ESNs in CSV format to the specified file.
 - `--status [status]`  
   List cameras with a specific status. Accepts values like 'online', 'offline', or 'inactive'.
-- `-t, --tags [tag1, tag2...]`  
+- `-t, --tags [tag1, tag2]`  
   List cameras based on the given tag. Specify the tag as a comma-separated list of tag names.
 - `-T, --tree`  
   List cameras and associated bridges in a tree format.
@@ -562,19 +562,19 @@ Edit camera's settings.
 
 - `-b, --bridge-esns [bridge-esns]`  
   Edit camera settings by bridge ESNs.
-- `--esns [esn1, esn2...]`  
+- `--esns [esn1, esn2]`  
   Edit camera settings by camera ESNs.
 - `-f, --file-name [file name]`  
   Edit camera settings by reading the CSV file.
-- `-T, --tags [tags]`  
+- `-T, --tags [tag1, tag2]`  
   Edit camera settings by tag.
-- `-s, --site-id [site-id]`  
+- `-s, --site-id [id1, id2]`  
   Edit camera settings by site id.
-- `-S, --site-name [site-name]`  
+- `-S, --site-name [name1, name2]`  
   Edit camera settings by site name.
-- `--layout-name [layout-name]`  
+- `--layout-name [name1, name2]`  
   Edit camera settings by layout name.
-- `--layout-id [layout-id]`  
+- `--layout-id [id1, id2]`  
   Edit camera settings by layout id.
 
 #### Options:
@@ -694,7 +694,7 @@ Get camera stream status.
 
 #### Optional options:
 
-- `--esns [esn1, esn2...]`  
+- `--esns [esn1, esn2]`  
   ESNs of the cameras.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
@@ -744,7 +744,7 @@ Get camera availability.
 
 #### Required options:
 
-- `--esns [esn1, esn2...]`  
+- `--esns [esn1, esn2]`  
   ESNs of the camera.
 - `--start-time [start time]`  
   Video start time.
@@ -817,11 +817,11 @@ List all bridges.
   Skip all user confirmation prompts.
 - `-s, --site`  
   List the site of the bridge.
-- `--sites [site1, site2...]`  
+- `--sites [site1, site2]`  
   List bridges in a specific site.
 - `-S, --status [status]`  
   List bridges with a specific status.
-- `-t, --tags [tag1, tag2...]`  
+- `-t, --tags [tag1, tag2]`  
   Filter bridges by tags.
 - `-T, --tree`  
   View bridges and associated cameras in tree format.
@@ -859,7 +859,7 @@ Get bridge availability.
 
 - `-e, --end-time [end time]`  
   Specify video end time
-- `--esns [esn1, esn2...]`  
+- `--esns [esn1, esn2]`  
   ESNs of the bridge
 
 #### Optional options:
@@ -885,7 +885,7 @@ Pull logs from the archiver/bridge.
 
 #### Required options:
 
-- `--esns [esn1, esn2...]`  
+- `--esns [esn1, esn2]`  
   Esns of the bridge (required).
 
 #### Optional options:
@@ -1219,7 +1219,7 @@ Get LPR events.
 
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
-- `--esns [esn1, esn2...]`  
+- `--esns [esn1, esn2]`  
   The ESN for camera of interest.
 - `--lp [license plate]`  
   License plate number.
