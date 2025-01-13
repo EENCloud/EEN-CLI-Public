@@ -151,6 +151,23 @@ een --help
 een -h
 een auth --help
 een camera list --help
+
+```
+
+### Time
+
+Shows the execution time of the command, use:
+
+```
+een <object> [COMMAND] [options] --time
+```
+
+### Call Time
+
+Shows the time taken to get response from api, use:
+
+```
+een <object> [COMMAND] [options] --call-time
 ```
 
 # auth - Manage EEN auth
@@ -456,9 +473,9 @@ List cameras.
 
 #### Options:
 
-- `-a, --all`  
+- `-A, --all`  
   List all cameras without filtering.
-- `-A, --available`  
+- `-a, --available`  
   List available cameras that are currently operational.
 - `-b, --bridge-esn`  
   List cameras by their bridge ESNs.
@@ -490,9 +507,11 @@ List cameras.
   Use version 1 APIs for backward compatibility.
 - `-r, --resolution`  
   List cameras filtered by resolution.
-- `-s, --sites [site1, site2]`  
+- `--site-id [id1, id2]`  
+  List cameras located in the specified sites. Provide a comma-separated list of site IDs.
+  `--site-name [name1, name2]`  
   List cameras located in the specified sites. Provide a comma-separated list of site names.
-- `-S, --start-time [start time]`  
+- `-s, --start-time [start time]`  
   Filter cameras based on video start time. Format: `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date-time with milliseconds).
 - `--shared`  
   List cameras that are shared with other users.
@@ -591,7 +610,7 @@ Edit camera's settings.
   Cloud retention days.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
-- `-l, --local-retention-days [local retention days]`  
+- `-L, --local-retention-days [local retention days]`  
   Local retention days.
 - `-n, --no-prompt`  
   Skip all user confirmation prompts.
@@ -670,9 +689,9 @@ Add camera to bridge.
   Skip all user confirmation prompts.
 - `-p, --password [password]`  
   Camera password.
-- `-s, --site [site]`  
+- `-S, --site [site]`  
   Site ID.
-- `-S, --scene [scene]`  
+- `-s, --scene [scene]`  
   Scene.
 - `-t, --tags [tags]`  
   Tags.
@@ -744,8 +763,6 @@ Get camera availability.
 
 #### Required options:
 
-- `--esns [esn1, esn2]`  
-  ESNs of the camera.
 - `--start-time [start time]`  
   Video start time.
 
@@ -755,6 +772,8 @@ Get camera availability.
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
   Video end time.
+- `--esns [esn1, esn2]`  
+  ESNs of the camera.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`  
@@ -765,6 +784,10 @@ Get camera availability.
   Show all available data, including unchecked items.
 - `-p, --preview-availability`  
   Get preview recording status along with camera availability.
+- `--site-id [id1, id2]`  
+  List cameras located in the specified sites. Provide a comma-separated list of site IDs.
+- `--site-name [name1, name2]`  
+  List cameras located in the specified sites. Provide a comma-separated list of site names.
 - `-s, --start-time [start time]`  
   Video start time.
 
@@ -815,11 +838,13 @@ List all bridges.
   Display bridge details, including bridge ID, name, and location. For v3, also includes cameras in the account and online cameras; for v1, includes GUID.
 - `-n, --no-prompt`  
   Skip all user confirmation prompts.
-- `-s, --site`  
+- `-S, --site`  
   List the site of the bridge.
-- `--sites [site1, site2]`  
-  List bridges in a specific site.
-- `-S, --status [status]`  
+- `--site-id [id1, id2]`  
+  List bridges in a specific site id.
+- `--site-name [name1, name2]`
+  List bridges in a specific site name.
+- `-s, --status [status]`  
   List bridges with a specific status.
 - `-t, --tags [tag1, tag2]`  
   Filter bridges by tags.
@@ -859,13 +884,13 @@ Get bridge availability.
 
 - `-e, --end-time [end time]`  
   Specify video end time
-- `--esns [esn1, esn2]`  
-  ESNs of the bridge
 
 #### Optional options:
 
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting
+- `--esns [esn1, esn2]`  
+  ESNs of the bridge
 - `-f, --file-name [file name]`  
   Specify the file name to save the output
 - `-g, --google-sheet`  
@@ -874,6 +899,10 @@ Get bridge availability.
   Skip all user confirmation prompts
 - `-N,. --no-check`  
   Show all available data
+- `--site-id [id1, id2]`  
+  Site ID associated with the bridge
+- `--site-name [name1, name2]`
+  Site name associated with the bridge
 - `-s, --start-time [start time]`  
   Specify video start time
 
@@ -1028,8 +1057,6 @@ List all sites.
   List site details, including site name and site ID.
 - `-s, --site-id`  
   List the IDs of the sites.
-- `-S, --site-name`  
-  List the site names.
 
 #### Actions:
 
@@ -1289,6 +1316,8 @@ Get VSP events.
   Camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`  
+  List VSP events in CSV format in Google Sheet
 - `--html`  
   Generate chart in HTML file.
 - `--lp [lp]`  
@@ -1297,9 +1326,11 @@ Get VSP events.
   Vehicle makes.
 - `-n, --no-prompt`  
   Skip all user confirmation prompts.
-- `-s, --sites [sites]`  
-  Site names.
-- `-S, --start-time [start time]`  
+- `--site-id [id1, id2]`  
+  List events in the specified sites. Provide a comma-separated list of site IDs.
+- `--site-name [name1, name2]`  
+  List events in the specified sites. Provide a comma-separated list of site names.
+- `-s, --start-time [start time]`  
   LPR start time.
 
 #### Notes:
@@ -1334,15 +1365,19 @@ Get VSP alerts.
   Camera ESN.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`  
+  List VSP alerts in CSV format in Google Sheet
 - `--html`  
   Generate chart in HTML file.
 - `-H, --hotlist`  
   Alert type - hotlist.
 - `-n, --no-prompt`  
-  Skip all user confirmation prompts.
-- `-s, --sites [sites]`  
-  Name of the site.
-- `-S, --start-time [start time]`  
+   Skip all user confirmation prompts.
+  -- `--site-id [id1, id2]`  
+   List alerts in the specified sites. Provide a comma-separated list of site IDs.
+- `--site-name [name1, name2]`  
+  List alerts in the specified sites. Provide a comma-separated list of site names.
+- `-s, --start-time [start time]`  
   LPR start time.
 - `-u, --unregistered-vehicle`  
   Alert type - unregistered vehicle.
@@ -1413,6 +1448,8 @@ Get POS events.
   Specify the name of the file where the output will be saved.
 - `-F, --flagged`  
   Retrieve flagged transactions.
+- `-g, --google-sheet`  
+  List POS events in CSV format in Google Sheet
 - `--html`  
   Generate chart in HTML file.
 - `-n, --no-prompt`  
@@ -1420,10 +1457,12 @@ Get POS events.
 - `--net-amount-min [net amount min]`  
   Specify the minimum net amount.
 - `--net-amount-max [net amount max]`  
-  Specify the maximum net amount.
-- `-s, --sites [sites]`  
-  Specify the name of the site.
-- `-S, --start-time [start time]`  
+   Specify the maximum net amount.
+  -- `--site-id [id1, id2]`  
+   List events in the specified sites. Provide a comma-separated list of site IDs.
+- `--site-name [name1, name2]`  
+  List events in the specified sites. Provide a comma-separated list of site names.
+- `-s, --start-time [start time]`  
   Defines the starting point for retrieving events. The timestamp must be in ISO 8601 format with millisecond precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
 - `-t, --transaction-type [transaction type]`  
   Specify the type of the transaction.

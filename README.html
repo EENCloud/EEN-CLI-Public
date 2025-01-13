@@ -209,6 +209,15 @@ een --help
 een -h
 een auth --help
 een camera list --help
+
+</code></pre>
+<h3>Time</h3>
+<p>Shows the execution time of the command, use:</p>
+<pre><code>een &lt;object&gt; [COMMAND] [options] --time
+</code></pre>
+<h3>Call Time</h3>
+<p>Shows the time taken to get response from api, use:</p>
+<pre><code>een &lt;object&gt; [COMMAND] [options] --call-time
 </code></pre>
 <h1>auth - Manage EEN auth</h1>
 <h2>NAME</h2>
@@ -535,11 +544,11 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>-a, --all</code><br />
+    <code>-A, --all</code><br />
     List all cameras without filtering.
   </li>
   <li>
-    <code>-A, --available</code><br />
+    <code>-a, --available</code><br />
     List available cameras that are currently operational.
   </li>
   <li>
@@ -609,12 +618,15 @@ een camera list --help
     List cameras filtered by resolution.
   </li>
   <li>
-    <code>-s, --sites [site1, site2]</code><br />
+    <code>--site-id [id1, id2]</code><br />
+    List cameras located in the specified sites. Provide a comma-separated list
+    of site IDs.
+    <code>--site-name [name1, name2]</code><br />
     List cameras located in the specified sites. Provide a comma-separated list
     of site names.
   </li>
   <li>
-    <code>-S, --start-time [start time]</code><br />
+    <code>-s, --start-time [start time]</code><br />
     Filter cameras based on video start time. Format:
     <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date-time with
     milliseconds).
@@ -774,7 +786,7 @@ een camera list --help
     Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>-l, --local-retention-days [local retention days]</code><br />
+    <code>-L, --local-retention-days [local retention days]</code><br />
     Local retention days.
   </li>
   <li>
@@ -898,11 +910,11 @@ een camera list --help
     Camera password.
   </li>
   <li>
-    <code>-s, --site [site]</code><br />
+    <code>-S, --site [site]</code><br />
     Site ID.
   </li>
   <li>
-    <code>-S, --scene [scene]</code><br />
+    <code>-s, --scene [scene]</code><br />
     Scene.
   </li>
   <li>
@@ -1015,10 +1027,6 @@ een camera list --help
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--esns [esn1, esn2]</code><br />
-    ESNs of the camera.
-  </li>
-  <li>
     <code>--start-time [start time]</code><br />
     Video start time.
   </li>
@@ -1032,6 +1040,10 @@ een camera list --help
   <li>
     <code>-e, --end-time [end time]</code><br />
     Video end time.
+  </li>
+  <li>
+    <code>--esns [esn1, esn2]</code><br />
+    ESNs of the camera.
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
@@ -1052,6 +1064,16 @@ een camera list --help
   <li>
     <code>-p, --preview-availability</code><br />
     Get preview recording status along with camera availability.
+  </li>
+  <li>
+    <code>--site-id [id1, id2]</code><br />
+    List cameras located in the specified sites. Provide a comma-separated list
+    of site IDs.
+  </li>
+  <li>
+    <code>--site-name [name1, name2]</code><br />
+    List cameras located in the specified sites. Provide a comma-separated list
+    of site names.
   </li>
   <li>
     <code>-s, --start-time [start time]</code><br />
@@ -1126,15 +1148,19 @@ een camera list --help
     Skip all user confirmation prompts.
   </li>
   <li>
-    <code>-s, --site</code><br />
+    <code>-S, --site</code><br />
     List the site of the bridge.
   </li>
   <li>
-    <code>--sites [site1, site2]</code><br />
-    List bridges in a specific site.
+    <code>--site-id [id1, id2]</code><br />
+    List bridges in a specific site id.
   </li>
   <li>
-    <code>-S, --status [status]</code><br />
+    <code>--site-name [name1, name2]</code> List bridges in a specific site
+    name.
+  </li>
+  <li>
+    <code>-s, --status [status]</code><br />
     List bridges with a specific status.
   </li>
   <li>
@@ -1192,16 +1218,16 @@ een camera list --help
     <code>-e, --end-time [end time]</code><br />
     Specify video end time
   </li>
-  <li>
-    <code>--esns [esn1, esn2]</code><br />
-    ESNs of the bridge
-  </li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
   <li>
     <code>-d, --debug</code><br />
     Enable detailed debug output for troubleshooting
+  </li>
+  <li>
+    <code>--esns [esn1, esn2]</code><br />
+    ESNs of the bridge
   </li>
   <li>
     <code>-f, --file-name [file name]</code><br />
@@ -1218,6 +1244,13 @@ een camera list --help
   <li>
     <code>-N,. --no-check</code><br />
     Show all available data
+  </li>
+  <li>
+    <code>--site-id [id1, id2]</code><br />
+    Site ID associated with the bridge
+  </li>
+  <li>
+    <code>--site-name [name1, name2]</code> Site name associated with the bridge
   </li>
   <li>
     <code>-s, --start-time [start time]</code><br />
@@ -1393,10 +1426,6 @@ een camera list --help
   <li>
     <code>-s, --site-id</code><br />
     List the IDs of the sites.
-  </li>
-  <li>
-    <code>-S, --site-name</code><br />
-    List the site names.
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -1721,6 +1750,10 @@ een camera list --help
     Specify the name of the file where the output will be saved.
   </li>
   <li>
+    <code>-g, --google-sheet</code><br />
+    List VSP events in CSV format in Google Sheet
+  </li>
+  <li>
     <code>--html</code><br />
     Generate chart in HTML file.
   </li>
@@ -1737,11 +1770,17 @@ een camera list --help
     Skip all user confirmation prompts.
   </li>
   <li>
-    <code>-s, --sites [sites]</code><br />
-    Site names.
+    <code>--site-id [id1, id2]</code><br />
+    List events in the specified sites. Provide a comma-separated list of site
+    IDs.
   </li>
   <li>
-    <code>-S, --start-time [start time]</code><br />
+    <code>--site-name [name1, name2]</code><br />
+    List events in the specified sites. Provide a comma-separated list of site
+    names.
+  </li>
+  <li>
+    <code>-s, --start-time [start time]</code><br />
     LPR start time.
   </li>
 </ul>
@@ -1800,6 +1839,10 @@ een camera list --help
     Specify the name of the file where the output will be saved.
   </li>
   <li>
+    <code>-g, --google-sheet</code><br />
+    List VSP alerts in CSV format in Google Sheet
+  </li>
+  <li>
     <code>--html</code><br />
     Generate chart in HTML file.
   </li>
@@ -1809,14 +1852,18 @@ een camera list --help
   </li>
   <li>
     <code>-n, --no-prompt</code><br />
-    Skip all user confirmation prompts.
+    Skip all user confirmation prompts. -- <code>--site-id [id1, id2]</code
+    ><br />
+    List alerts in the specified sites. Provide a comma-separated list of site
+    IDs.
   </li>
   <li>
-    <code>-s, --sites [sites]</code><br />
-    Name of the site.
+    <code>--site-name [name1, name2]</code><br />
+    List alerts in the specified sites. Provide a comma-separated list of site
+    names.
   </li>
   <li>
-    <code>-S, --start-time [start time]</code><br />
+    <code>-s, --start-time [start time]</code><br />
     LPR start time.
   </li>
   <li>
@@ -1911,6 +1958,10 @@ een camera list --help
     Retrieve flagged transactions.
   </li>
   <li>
+    <code>-g, --google-sheet</code><br />
+    List POS events in CSV format in Google Sheet
+  </li>
+  <li>
     <code>--html</code><br />
     Generate chart in HTML file.
   </li>
@@ -1924,14 +1975,17 @@ een camera list --help
   </li>
   <li>
     <code>--net-amount-max [net amount max]</code><br />
-    Specify the maximum net amount.
+    Specify the maximum net amount. -- <code>--site-id [id1, id2]</code><br />
+    List events in the specified sites. Provide a comma-separated list of site
+    IDs.
   </li>
   <li>
-    <code>-s, --sites [sites]</code><br />
-    Specify the name of the site.
+    <code>--site-name [name1, name2]</code><br />
+    List events in the specified sites. Provide a comma-separated list of site
+    names.
   </li>
   <li>
-    <code>-S, --start-time [start time]</code><br />
+    <code>-s, --start-time [start time]</code><br />
     Defines the starting point for retrieving events. The timestamp must be in
     ISO 8601 format with millisecond precision (e.g.,
     YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
