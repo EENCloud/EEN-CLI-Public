@@ -50,16 +50,9 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
 - For all commands with `--no-prompt` option it will skip all user confirmation prompts. This means it will also overwrite any existing files without any confirmation.
 - Open all the CSV file outputs in Google Sheets or Libre Office as Excel has formatting issues.
 - `verbose mode` : Use `--verbose` along with the commands to access the verbose mode.
-- Supported `EEN TIME FORMATS` :
-
-  - 20230125062511.000
-  - 2023-01-31
-  - 2023-01-31T08:24:32
-  - 2023-10-02T23:50:06.337+00:00
-
-- Execute this extracted file by mapping up the directory path of the een
-  on the terminal
-- Each command should start `./`.
+- All time inputs should be of the format `YYYYMMDDhhmmss.sss (20230125062511.000)`
+- Execute this extracted file by mapping up the directory path of the een on the terminal
+- Each command should start with `./`.
 
   Examples:
 
@@ -343,7 +336,7 @@ List all accounts of the reseller account.
   Display account details, including account ID, account name, and account type.
 - `--account-id [account ID]`  
   Specify an account ID to list its details.
-- `-s, --sub-account-id`  
+- `-s, --sub-account`  
   List sub-accounts (only applicable for reseller accounts).
 
 ---
@@ -477,7 +470,7 @@ List cameras.
   List all cameras without filtering.
 - `-a, --available`  
   List available cameras that are currently operational.
-- `-b, --bridge-esn`  
+- `-b, --bridge`  
   List cameras by their bridge ESNs.
 - `-c, --cloud-retention-days`  
   List cameras filtered by their cloud retention days.
@@ -507,9 +500,9 @@ List cameras.
   Use version 1 APIs for backward compatibility.
 - `-r, --resolution`  
   List cameras filtered by resolution.
-- `--site-id [id1, id2]`  
+- `--site-id [site id1, site id2]`  
   List cameras located in the specified sites. Provide a comma-separated list of site IDs.
-  `--site-name [name1, name2]`  
+  `--site-name [site name1, site name2]`  
   List cameras located in the specified sites. Provide a comma-separated list of site names.
 - `-s, --start-time [start time]`  
   Filter cameras based on video start time. Format: `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date-time with milliseconds).
@@ -519,7 +512,7 @@ List cameras.
   List only the camera names and ESNs in CSV format to the specified file.
 - `--status [status]`  
   List cameras with a specific status. Accepts values like 'online', 'offline', or 'inactive'.
-- `-t, --tags [tag1, tag2]`  
+- `-t, --tag [tag1, tag2]`  
   List cameras based on the given tag. Specify the tag as a comma-separated list of tag names.
 - `-T, --tree`  
   List cameras and associated bridges in a tree format.
@@ -579,21 +572,21 @@ Edit camera's settings.
 
 #### Arguments:
 
-- `-b, --bridge-esns [bridge-esns]`  
+- `-b, --bridge [bridge1, bridge2]`  
   Edit camera settings by bridge ESNs.
-- `--esns [esn1, esn2]`  
+- `--esn [esn1, esn2]`  
   Edit camera settings by camera ESNs.
 - `-f, --file-name [file name]`  
   Edit camera settings by reading the CSV file.
-- `-T, --tags [tag1, tag2]`  
+- `-T, --tag [tag1, tag2]`  
   Edit camera settings by tag.
-- `-s, --site-id [id1, id2]`  
+- `-s, --site-id [site id1, site id2]`  
   Edit camera settings by site id.
-- `-S, --site-name [name1, name2]`  
+- `-S, --site-name [site name1, site name2]`  
   Edit camera settings by site name.
-- `--layout-name [name1, name2]`  
+- `--layout-name [layout name1, layout name2]`  
   Edit camera settings by layout name.
-- `--layout-id [id1, id2]`  
+- `--layout-id [layout id1, layout id2]`  
   Edit camera settings by layout id.
 
 #### Options:
@@ -643,7 +636,7 @@ Edit camera's settings.
 
 #### Notes:
 
-- For `--esns "*"`, it changes settings for all cameras.
+- For `--esn "*"`, it changes settings for all cameras.
 
 ### delete
 
@@ -693,7 +686,7 @@ Add camera to bridge.
   Site ID.
 - `-s, --scene [scene]`  
   Scene.
-- `-t, --tags [tags]`  
+- `-t, --tag [tag1, tag2]`  
   Tags.
 - `-u, --username [username]`  
   Camera username.
@@ -713,7 +706,7 @@ Get camera stream status.
 
 #### Optional options:
 
-- `--esns [esn1, esn2]`  
+- `--esn [esn1, esn2]`  
   ESNs of the cameras.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
@@ -729,7 +722,6 @@ Get camera stream status.
 - `stream-type` can be **"fullvideo"** or **"preview"**.
 - `start-time` can be **"-1h"** (one hour before current time).
 - `end-time` can be **"now"** (current time).
-- `start-time` and `end-time` time format should be `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date time with millisecond precision).
 
 ---
 
@@ -753,7 +745,6 @@ Get camera purging and duty cycle.
 #### Notes:
 
 - If you haven't specified any start-time and end-time, it will take the last 24 hours as default timestamps.
-- `start-time` and `end-time` time format should be `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date time with millisecond precision).
 
 ---
 
@@ -772,7 +763,7 @@ Get camera availability.
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
   Video end time.
-- `--esns [esn1, esn2]`  
+- `--esn [esn1, esn2]`  
   ESNs of the camera.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
@@ -784,9 +775,9 @@ Get camera availability.
   Show all available data, including unchecked items.
 - `-p, --preview-availability`  
   Get preview recording status along with camera availability.
-- `--site-id [id1, id2]`  
+- `--site-id [site id1, site id2]`  
   List cameras located in the specified sites. Provide a comma-separated list of site IDs.
-- `--site-name [name1, name2]`  
+- `--site-name [site name1, site name2]`  
   List cameras located in the specified sites. Provide a comma-separated list of site names.
 - `-s, --start-time [start time]`  
   Video start time.
@@ -794,7 +785,44 @@ Get camera availability.
 #### Notes:
 
 - This command only supports a maximum of 200 devices and a seven-day time range.
-- `start-time` and `end-time` time format should be `YYYY-MM-DDTHH:MM:SS.sss±HH:MM` (ISO 8601 extended date-time).
+
+---
+
+### addtags
+
+Add tags to camera, accepts multiple tags and esns seperated by comma
+
+#### Argument:
+
+- `<esns>`  
+  ESNs of the cameras to which the tags are added.
+- `<tags>`  
+  Tags to be added to the cameras.
+
+#### Optional options:
+
+- `-d, --debug`  
+  Enable detailed debug output for troubleshooting.
+
+---
+
+### deletetags
+
+Delete tags from camera, accepts multiple tags and esns seperated by comma
+
+#### Argument:
+
+- `<esns>`  
+  ESNs of the cameras from which the tags are deleted.
+- `<tags>`  
+  Tags to be deleted from the cameras.
+
+#### Optional options:
+
+- `-d, --debug`  
+  Enable detailed debug output for troubleshooting.
+
+---
 
 # bridge - Manage Bridges
 
@@ -840,13 +868,13 @@ List all bridges.
   Skip all user confirmation prompts.
 - `-S, --site`  
   List the site of the bridge.
-- `--site-id [id1, id2]`  
+- `--site-id [site id1, site id2]`  
   List bridges in a specific site id.
-- `--site-name [name1, name2]`
+- `--site-name [site name1, site name2]`
   List bridges in a specific site name.
 - `-s, --status [status]`  
   List bridges with a specific status.
-- `-t, --tags [tag1, tag2]`  
+- `-t, --tag [tag1, tag2]`  
   Filter bridges by tags.
 - `-T, --tree`  
   View bridges and associated cameras in tree format.
@@ -889,7 +917,7 @@ Get bridge availability.
 
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting
-- `--esns [esn1, esn2]`  
+- `--esn [esn1, esn2]`  
   ESNs of the bridge
 - `-f, --file-name [file name]`  
   Specify the file name to save the output
@@ -899,9 +927,9 @@ Get bridge availability.
   Skip all user confirmation prompts
 - `-N,. --no-check`  
   Show all available data
-- `--site-id [id1, id2]`  
+- `--site-id [site id1, site id2]`  
   Site ID associated with the bridge
-- `--site-name [name1, name2]`
+- `--site-name [site name1, site name2]`
   Site name associated with the bridge
 - `-s, --start-time [start time]`  
   Specify video start time
@@ -914,7 +942,7 @@ Pull logs from the archiver/bridge.
 
 #### Required options:
 
-- `--esns [esn1, esn2]`  
+- `--esn [esn1, esn2]`  
   Esns of the bridge (required).
 
 #### Optional options:
@@ -938,10 +966,6 @@ Pull logs from the archiver/bridge.
 - `-S, --summary`  
   Get summarized data
 
-#### Notes:
-
-- start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact ISO 8601 date time with millisecond precision)
-
 ---
 
 ## EXAMPLES
@@ -961,7 +985,7 @@ een bridge status --html
 - To get availability information for a bridge:
 
 ```bash
-een bridge availability --esns [esns] --start-time [start time] --end-time [end time]
+een bridge availability --esn [esn1, esn2] --start-time [start time] --end-time [end time]
 ```
 
 # switch - Manage Switches
@@ -1043,8 +1067,6 @@ List all sites.
 
 #### Options:
 
-- `-a, --address`  
-  List the site addresses.
 - `--csv`  
   List all sites in CSV format.
 - `-f, --file-name [file name]`  
@@ -1125,7 +1147,6 @@ Download video from the camera.
 - Video downloads support both mp4 and FLV formats.
 - The timezone option is only supported for mp4 format.
 - Video downloading is done in batches of 5 videos at a time.
-- start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact ISO 8601 date time with millisecond precision)
 
 #### Actions:
 
@@ -1151,10 +1172,6 @@ Get a list of videos from the selected camera.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 
-#### Notes:
-
-- start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact ISO 8601 date time with millisecond precision)
-
 #### Actions:
 
 - Lists videos available from the specified camera within the given time frame.
@@ -1167,7 +1184,7 @@ Get the status of preview recording.
 
 #### Required options:
 
-- `--esns [esns]`  
+- `--esn [esn]`  
   ESNs of the camera.
 - `-s, --start-time [start time]`  
   Video start time.
@@ -1184,10 +1201,6 @@ Get the status of preview recording.
   List camera recording status in CSV format in Google Sheets.
 - `-n, --no-prompt`  
   Skip all user confirmation prompts.
-
-#### Notes:
-
-- start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM (ISO 8601 extended date-time)
 
 #### Actions:
 
@@ -1210,7 +1223,7 @@ een video list --esn 123456 --start-time "20241001000000.000" --end-time "202410
 - To check the status of a preview recording:
 
 ```bash
-een video previewrecordingstatus --esns 1005f355 --start-time  2024-11-17T09:20:54.619+00:00 --end-time  2024-11-18T09:20:54.619+00:00 --debug
+een video previewrecordingstatus --esn 1005f355 --start-time  2024-11-17T09:20:54.619+00:00 --end-time  2024-11-18T09:20:54.619+00:00 --debug
 ```
 
 # lpr - Manage License Plate Recognition (LPR) Events
@@ -1246,16 +1259,12 @@ Get LPR events.
 
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
-- `--esns [esn1, esn2]`  
+- `--esn [esn1, esn2]`  
   The ESN for camera of interest.
 - `--lp [license plate]`  
   License plate number.
 - `--v1`  
   Use v1 APIs.
-
-#### Notes:
-
-- start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact ISO 8601 date time with millisecond precision)
 
 #### Actions:
 
@@ -1302,17 +1311,17 @@ Get VSP events.
 
 - `-a, --access-type [access type]`  
   Access type.
-- `-b, --body-types [types]`  
+- `-b, --body-type [types]`  
   Vehicle body types.
-- `-c, --colors [colors]`  
+- `-c, --color [colors]`  
   Vehicle colors.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
-- `-D, --directions [directions]`  
+- `-D, --direction [directions]`  
   Direction of the vehicle.
 - `-e, --end-time [end time]`  
   LPR end time.
-- `--esns [esns]`  
+- `--esn [esn1, esn2]`  
   Camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
@@ -1322,13 +1331,13 @@ Get VSP events.
   Generate chart in HTML file.
 - `--lp [lp]`  
   License plate number.
-- `-m, --makes [makes]`  
+- `-m, --make [makes]`  
   Vehicle makes.
 - `-n, --no-prompt`  
   Skip all user confirmation prompts.
-- `--site-id [id1, id2]`  
+- `--site-id [site id1, site id2]`  
   List events in the specified sites. Provide a comma-separated list of site IDs.
-- `--site-name [name1, name2]`  
+- `--site-name [site name1, site name2]`  
   List events in the specified sites. Provide a comma-separated list of site names.
 - `-s, --start-time [start time]`  
   LPR start time.
@@ -1336,7 +1345,6 @@ Get VSP events.
 #### Notes:
 
 - If you haven't specified any start-time and end-time it will take last 24 hours as default timestamps.
-- start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact ISO 8601 date time with millisecond precision).
 
 #### Actions:
 
@@ -1361,7 +1369,7 @@ Get VSP alerts.
   Alert type - denied vehicle.
 - `-e, --end-time [end time]`  
   LPR end time.
-- `--esns [esns]`  
+- `--esn [esn1, esn2]`  
   Camera ESN.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
@@ -1373,9 +1381,9 @@ Get VSP alerts.
   Alert type - hotlist.
 - `-n, --no-prompt`  
    Skip all user confirmation prompts.
-  -- `--site-id [id1, id2]`  
+- `--site-id [site id1, site id2]`  
    List alerts in the specified sites. Provide a comma-separated list of site IDs.
-- `--site-name [name1, name2]`  
+- `--site-name [site name1, site name2]`  
   List alerts in the specified sites. Provide a comma-separated list of site names.
 - `-s, --start-time [start time]`  
   LPR start time.
@@ -1387,7 +1395,6 @@ Get VSP alerts.
 #### Notes:
 
 - If you haven't specified any start-time and end-time it will take last 24 hours as default timestamps.
-- start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM (ISO 8601 extended date-time).
 
 #### Actions:
 
@@ -1458,9 +1465,9 @@ Get POS events.
   Specify the minimum net amount.
 - `--net-amount-max [net amount max]`  
    Specify the maximum net amount.
-  -- `--site-id [id1, id2]`  
+  `--site-id [site id1, site id2]`  
    List events in the specified sites. Provide a comma-separated list of site IDs.
-- `--site-name [name1, name2]`  
+- `--site-name [site name1, site name2]`  
   List events in the specified sites. Provide a comma-separated list of site names.
 - `-s, --start-time [start time]`  
   Defines the starting point for retrieving events. The timestamp must be in ISO 8601 format with millisecond precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
@@ -1470,7 +1477,6 @@ Get POS events.
 #### Notes:
 
 - If no start time or end time is specified, the retrieval period defaults to the last 24 hours.
-- Start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM (ISO 8601 extended date-time).
 
 #### Actions:
 
@@ -1489,6 +1495,86 @@ een pos listevents --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11
 
 ```bash
 een pos listevents --flagged
+```
+
+# perftest - Execute Performance Tests
+
+## NAME
+
+`perftest` - execute performance tests.
+
+## SYNOPSIS
+
+```
+een perftest preview [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `perftest` command allows you to execute performance tests on various aspects of the platform.
+
+## COMMANDS
+
+### preview
+
+Get performance test results for preview images.
+
+#### Options
+
+- `-a, --all-log`  
+  Display execution logs.
+- `--bridge [bridge1, bridge2]`  
+  Test based on bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`  
+  Test based on bridge ESNs.
+- `-c, --count [count]`  
+  Number of previews to be tested (default: 10).
+- `-d, --debug`  
+  Enable detailed debug output for troubleshooting.
+- `-e, --end-time [end time]`  
+  Specify the end timestamp for analysis, this option requires --start-time to be specified.
+- `--esn [esn1, esn2]`  
+  Test based on camera ESNs.
+- `-f, --file-name [file name]`  
+  Specify the file name to save the test results.
+- `--layout [layout1, layout2]`  
+  Test based on layouts.
+- `--layout-id [layout id1, layout id2]`  
+  Test based on layouts IDs.
+- `-s, --start-time [start time]`  
+  Specify the start timestamp for analysis.
+- `--site [site1, site2]`  
+  Test based on sites.
+- `--site-id [site id1, site id2]`  
+  Test based on site IDs.
+- `-t, --table`  
+  Display result in table format.
+- `--tag [tag1, tag2]`  
+  Test based on tags.
+
+#### Notes:
+
+- If no start time or end time is specified, the test interval will be last 30 days.
+- If the specified time range exceeds the retention period of the camera, the test will be performed over the actual retention period of the camera.
+
+## EXAMPLES
+
+- To test preview performance of all the cameras in an account for last 30 days:
+
+```bash
+een perftest preview
+```
+
+- To test preview performance of all the cameras in a specific layout:
+
+```bash
+een perftest preview --layout "layout1"
+```
+
+- To test preview performance of all the cameras in a specific site:
+
+```bash
+een perftest preview --site "site1"
 ```
 
 # googleconfig - Update Google Configuration Options

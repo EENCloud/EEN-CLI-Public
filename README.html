@@ -109,13 +109,10 @@
     </p>
   </li>
   <li>
-    <p>Supported <code>EEN TIME FORMATS</code> :</p>
-    <ul>
-      <li>20230125062511.000</li>
-      <li>2023-01-31</li>
-      <li>2023-01-31T08:24:32</li>
-      <li>2023-10-02T23:50:06.337+00:00</li>
-    </ul>
+    <p>
+      All time inputs should be of the format
+      <code>YYYYMMDDhhmmss.sss (20230125062511.000)</code>
+    </p>
   </li>
   <li>
     <p>
@@ -124,7 +121,7 @@
     </p>
   </li>
   <li>
-    <p>Each command should start <code>./</code>.</p>
+    <p>Each command should start with <code>./</code>.</p>
     <p>Examples:</p>
     <pre><code>./een --version
 </code></pre>
@@ -417,7 +414,7 @@ een camera list --help
     Specify an account ID to list its details.
   </li>
   <li>
-    <code>-s, --sub-account-id</code><br />
+    <code>-s, --sub-account</code><br />
     List sub-accounts (only applicable for reseller accounts).
   </li>
 </ul>
@@ -552,7 +549,7 @@ een camera list --help
     List available cameras that are currently operational.
   </li>
   <li>
-    <code>-b, --bridge-esn</code><br />
+    <code>-b, --bridge</code><br />
     List cameras by their bridge ESNs.
   </li>
   <li>
@@ -618,10 +615,10 @@ een camera list --help
     List cameras filtered by resolution.
   </li>
   <li>
-    <code>--site-id [id1, id2]</code><br />
+    <code>--site-id [site id1, site id2]</code><br />
     List cameras located in the specified sites. Provide a comma-separated list
     of site IDs.
-    <code>--site-name [name1, name2]</code><br />
+    <code>--site-name [site name1, site name2]</code><br />
     List cameras located in the specified sites. Provide a comma-separated list
     of site names.
   </li>
@@ -645,7 +642,7 @@ een camera list --help
     'offline', or 'inactive'.
   </li>
   <li>
-    <code>-t, --tags [tag1, tag2]</code><br />
+    <code>-t, --tag [tag1, tag2]</code><br />
     List cameras based on the given tag. Specify the tag as a comma-separated
     list of tag names.
   </li>
@@ -727,11 +724,11 @@ een camera list --help
 <h4>Arguments:</h4>
 <ul>
   <li>
-    <code>-b, --bridge-esns [bridge-esns]</code><br />
+    <code>-b, --bridge [bridge1, bridge2]</code><br />
     Edit camera settings by bridge ESNs.
   </li>
   <li>
-    <code>--esns [esn1, esn2]</code><br />
+    <code>--esn [esn1, esn2]</code><br />
     Edit camera settings by camera ESNs.
   </li>
   <li>
@@ -739,23 +736,23 @@ een camera list --help
     Edit camera settings by reading the CSV file.
   </li>
   <li>
-    <code>-T, --tags [tag1, tag2]</code><br />
+    <code>-T, --tag [tag1, tag2]</code><br />
     Edit camera settings by tag.
   </li>
   <li>
-    <code>-s, --site-id [id1, id2]</code><br />
+    <code>-s, --site-id [site id1, site id2]</code><br />
     Edit camera settings by site id.
   </li>
   <li>
-    <code>-S, --site-name [name1, name2]</code><br />
+    <code>-S, --site-name [site name1, site name2]</code><br />
     Edit camera settings by site name.
   </li>
   <li>
-    <code>--layout-name [name1, name2]</code><br />
+    <code>--layout-name [layout name1, layout name2]</code><br />
     Edit camera settings by layout name.
   </li>
   <li>
-    <code>--layout-id [id1, id2]</code><br />
+    <code>--layout-id [layout id1, layout id2]</code><br />
     Edit camera settings by layout id.
   </li>
 </ul>
@@ -847,7 +844,7 @@ een camera list --help
 <h4>Notes:</h4>
 <ul>
   <li>
-    For <code>--esns &quot;*&quot;</code>, it changes settings for all cameras.
+    For <code>--esn &quot;*&quot;</code>, it changes settings for all cameras.
   </li>
 </ul>
 <h3>delete</h3>
@@ -918,7 +915,7 @@ een camera list --help
     Scene.
   </li>
   <li>
-    <code>-t, --tags [tags]</code><br />
+    <code>-t, --tag [tag1, tag2]</code><br />
     Tags.
   </li>
   <li>
@@ -943,7 +940,7 @@ een camera list --help
 <h4>Optional options:</h4>
 <ul>
   <li>
-    <code>--esns [esn1, esn2]</code><br />
+    <code>--esn [esn1, esn2]</code><br />
     ESNs of the cameras.
   </li>
   <li>
@@ -976,11 +973,6 @@ een camera list --help
   <li>
     <code>end-time</code> can be <strong>&quot;now&quot;</strong> (current
     time).
-  </li>
-  <li>
-    <code>start-time</code> and <code>end-time</code> time format should be
-    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date time with millisecond
-    precision).
   </li>
 </ul>
 <hr />
@@ -1015,11 +1007,6 @@ een camera list --help
     If you haven't specified any start-time and end-time, it will take the last
     24 hours as default timestamps.
   </li>
-  <li>
-    <code>start-time</code> and <code>end-time</code> time format should be
-    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date time with millisecond
-    precision).
-  </li>
 </ul>
 <hr />
 <h3>availability</h3>
@@ -1042,7 +1029,7 @@ een camera list --help
     Video end time.
   </li>
   <li>
-    <code>--esns [esn1, esn2]</code><br />
+    <code>--esn [esn1, esn2]</code><br />
     ESNs of the camera.
   </li>
   <li>
@@ -1066,12 +1053,12 @@ een camera list --help
     Get preview recording status along with camera availability.
   </li>
   <li>
-    <code>--site-id [id1, id2]</code><br />
+    <code>--site-id [site id1, site id2]</code><br />
     List cameras located in the specified sites. Provide a comma-separated list
     of site IDs.
   </li>
   <li>
-    <code>--site-name [name1, name2]</code><br />
+    <code>--site-name [site name1, site name2]</code><br />
     List cameras located in the specified sites. Provide a comma-separated list
     of site names.
   </li>
@@ -1086,11 +1073,52 @@ een camera list --help
     This command only supports a maximum of 200 devices and a seven-day time
     range.
   </li>
+</ul>
+<hr />
+<h3>addtags</h3>
+<p>Add tags to camera, accepts multiple tags and esns seperated by comma</p>
+<h4>Argument:</h4>
+<ul>
   <li>
-    <code>start-time</code> and <code>end-time</code> time format should be
-    <code>YYYY-MM-DDTHH:MM:SS.sss±HH:MM</code> (ISO 8601 extended date-time).
+    <code>&lt;esns&gt;</code><br />
+    ESNs of the cameras to which the tags are added.
+  </li>
+  <li>
+    <code>&lt;tags&gt;</code><br />
+    Tags to be added to the cameras.
   </li>
 </ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+</ul>
+<hr />
+<h3>deletetags</h3>
+<p>
+  Delete tags from camera, accepts multiple tags and esns seperated by comma
+</p>
+<h4>Argument:</h4>
+<ul>
+  <li>
+    <code>&lt;esns&gt;</code><br />
+    ESNs of the cameras from which the tags are deleted.
+  </li>
+  <li>
+    <code>&lt;tags&gt;</code><br />
+    Tags to be deleted from the cameras.
+  </li>
+</ul>
+<h4>Optional options:</h4>
+<ul>
+  <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+</ul>
+<hr />
 <h1>bridge - Manage Bridges</h1>
 <h2>NAME</h2>
 <p>
@@ -1152,19 +1180,19 @@ een camera list --help
     List the site of the bridge.
   </li>
   <li>
-    <code>--site-id [id1, id2]</code><br />
+    <code>--site-id [site id1, site id2]</code><br />
     List bridges in a specific site id.
   </li>
   <li>
-    <code>--site-name [name1, name2]</code> List bridges in a specific site
-    name.
+    <code>--site-name [site name1, site name2]</code> List bridges in a specific
+    site name.
   </li>
   <li>
     <code>-s, --status [status]</code><br />
     List bridges with a specific status.
   </li>
   <li>
-    <code>-t, --tags [tag1, tag2]</code><br />
+    <code>-t, --tag [tag1, tag2]</code><br />
     Filter bridges by tags.
   </li>
   <li>
@@ -1226,7 +1254,7 @@ een camera list --help
     Enable detailed debug output for troubleshooting
   </li>
   <li>
-    <code>--esns [esn1, esn2]</code><br />
+    <code>--esn [esn1, esn2]</code><br />
     ESNs of the bridge
   </li>
   <li>
@@ -1246,11 +1274,12 @@ een camera list --help
     Show all available data
   </li>
   <li>
-    <code>--site-id [id1, id2]</code><br />
+    <code>--site-id [site id1, site id2]</code><br />
     Site ID associated with the bridge
   </li>
   <li>
-    <code>--site-name [name1, name2]</code> Site name associated with the bridge
+    <code>--site-name [site name1, site name2]</code> Site name associated with
+    the bridge
   </li>
   <li>
     <code>-s, --start-time [start time]</code><br />
@@ -1263,7 +1292,7 @@ een camera list --help
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--esns [esn1, esn2]</code><br />
+    <code>--esn [esn1, esn2]</code><br />
     Esns of the bridge (required).
   </li>
 </ul>
@@ -1306,13 +1335,6 @@ een camera list --help
     Get summarized data
   </li>
 </ul>
-<h4>Notes:</h4>
-<ul>
-  <li>
-    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
-    ISO 8601 date time with millisecond precision)
-  </li>
-</ul>
 <hr />
 <h2>EXAMPLES</h2>
 <ul>
@@ -1328,7 +1350,7 @@ een camera list --help
 <ul>
   <li>To get availability information for a bridge:</li>
 </ul>
-<pre><code class="language-bash">een bridge availability --esns [esns] --start-time [start time] --end-time [end time]
+<pre><code class="language-bash">een bridge availability --esn [esn1, esn2] --start-time [start time] --end-time [end time]
 </code></pre>
 <h1>switch - Manage Switches</h1>
 <h2>NAME</h2>
@@ -1399,10 +1421,6 @@ een camera list --help
 <p>List all sites.</p>
 <h4>Options:</h4>
 <ul>
-  <li>
-    <code>-a, --address</code><br />
-    List the site addresses.
-  </li>
   <li>
     <code>--csv</code><br />
     List all sites in CSV format.
@@ -1503,10 +1521,6 @@ een camera list --help
   <li>Video downloads support both mp4 and FLV formats.</li>
   <li>The timezone option is only supported for mp4 format.</li>
   <li>Video downloading is done in batches of 5 videos at a time.</li>
-  <li>
-    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
-    ISO 8601 date time with millisecond precision)
-  </li>
 </ul>
 <h4>Actions:</h4>
 <ul>
@@ -1540,13 +1554,6 @@ een camera list --help
     Enable detailed debug output for troubleshooting.
   </li>
 </ul>
-<h4>Notes:</h4>
-<ul>
-  <li>
-    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
-    ISO 8601 date time with millisecond precision)
-  </li>
-</ul>
 <h4>Actions:</h4>
 <ul>
   <li>
@@ -1560,7 +1567,7 @@ een camera list --help
 <h4>Required options:</h4>
 <ul>
   <li>
-    <code>--esns [esns]</code><br />
+    <code>--esn [esn]</code><br />
     ESNs of the camera.
   </li>
   <li>
@@ -1591,13 +1598,6 @@ een camera list --help
     Skip all user confirmation prompts.
   </li>
 </ul>
-<h4>Notes:</h4>
-<ul>
-  <li>
-    start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM
-    (ISO 8601 extended date-time)
-  </li>
-</ul>
 <h4>Actions:</h4>
 <ul>
   <li>
@@ -1620,7 +1620,7 @@ een camera list --help
 <ul>
   <li>To check the status of a preview recording:</li>
 </ul>
-<pre><code class="language-bash">een video previewrecordingstatus --esns 1005f355 --start-time  2024-11-17T09:20:54.619+00:00 --end-time  2024-11-18T09:20:54.619+00:00 --debug
+<pre><code class="language-bash">een video previewrecordingstatus --esn 1005f355 --start-time  2024-11-17T09:20:54.619+00:00 --end-time  2024-11-18T09:20:54.619+00:00 --debug
 </code></pre>
 <h1>lpr - Manage License Plate Recognition (LPR) Events</h1>
 <h2>NAME</h2>
@@ -1655,7 +1655,7 @@ een camera list --help
     Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--esns [esn1, esn2]</code><br />
+    <code>--esn [esn1, esn2]</code><br />
     The ESN for camera of interest.
   </li>
   <li>
@@ -1665,13 +1665,6 @@ een camera list --help
   <li>
     <code>--v1</code><br />
     Use v1 APIs.
-  </li>
-</ul>
-<h4>Notes:</h4>
-<ul>
-  <li>
-    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
-    ISO 8601 date time with millisecond precision)
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -1722,11 +1715,11 @@ een camera list --help
     Access type.
   </li>
   <li>
-    <code>-b, --body-types [types]</code><br />
+    <code>-b, --body-type [types]</code><br />
     Vehicle body types.
   </li>
   <li>
-    <code>-c, --colors [colors]</code><br />
+    <code>-c, --color [colors]</code><br />
     Vehicle colors.
   </li>
   <li>
@@ -1734,7 +1727,7 @@ een camera list --help
     Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>-D, --directions [directions]</code><br />
+    <code>-D, --direction [directions]</code><br />
     Direction of the vehicle.
   </li>
   <li>
@@ -1742,7 +1735,7 @@ een camera list --help
     LPR end time.
   </li>
   <li>
-    <code>--esns [esns]</code><br />
+    <code>--esn [esn1, esn2]</code><br />
     Camera ESNs.
   </li>
   <li>
@@ -1762,7 +1755,7 @@ een camera list --help
     License plate number.
   </li>
   <li>
-    <code>-m, --makes [makes]</code><br />
+    <code>-m, --make [makes]</code><br />
     Vehicle makes.
   </li>
   <li>
@@ -1770,12 +1763,12 @@ een camera list --help
     Skip all user confirmation prompts.
   </li>
   <li>
-    <code>--site-id [id1, id2]</code><br />
+    <code>--site-id [site id1, site id2]</code><br />
     List events in the specified sites. Provide a comma-separated list of site
     IDs.
   </li>
   <li>
-    <code>--site-name [name1, name2]</code><br />
+    <code>--site-name [site name1, site name2]</code><br />
     List events in the specified sites. Provide a comma-separated list of site
     names.
   </li>
@@ -1789,10 +1782,6 @@ een camera list --help
   <li>
     If you haven't specified any start-time and end-time it will take last 24
     hours as default timestamps.
-  </li>
-  <li>
-    start-time and end-time time format should be YYYYMMDDHHMMSS.sss (Compact
-    ISO 8601 date time with millisecond precision).
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -1831,7 +1820,7 @@ een camera list --help
     LPR end time.
   </li>
   <li>
-    <code>--esns [esns]</code><br />
+    <code>--esn [esn1, esn2]</code><br />
     Camera ESN.
   </li>
   <li>
@@ -1852,13 +1841,15 @@ een camera list --help
   </li>
   <li>
     <code>-n, --no-prompt</code><br />
-    Skip all user confirmation prompts. -- <code>--site-id [id1, id2]</code
-    ><br />
+    Skip all user confirmation prompts.
+  </li>
+  <li>
+    <code>--site-id [site id1, site id2]</code><br />
     List alerts in the specified sites. Provide a comma-separated list of site
     IDs.
   </li>
   <li>
-    <code>--site-name [name1, name2]</code><br />
+    <code>--site-name [site name1, site name2]</code><br />
     List alerts in the specified sites. Provide a comma-separated list of site
     names.
   </li>
@@ -1880,10 +1871,6 @@ een camera list --help
   <li>
     If you haven't specified any start-time and end-time it will take last 24
     hours as default timestamps.
-  </li>
-  <li>
-    start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM
-    (ISO 8601 extended date-time).
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -1975,12 +1962,13 @@ een camera list --help
   </li>
   <li>
     <code>--net-amount-max [net amount max]</code><br />
-    Specify the maximum net amount. -- <code>--site-id [id1, id2]</code><br />
+    Specify the maximum net amount.
+    <code>--site-id [site id1, site id2]</code><br />
     List events in the specified sites. Provide a comma-separated list of site
     IDs.
   </li>
   <li>
-    <code>--site-name [name1, name2]</code><br />
+    <code>--site-name [site name1, site name2]</code><br />
     List events in the specified sites. Provide a comma-separated list of site
     names.
   </li>
@@ -2000,10 +1988,6 @@ een camera list --help
   <li>
     If no start time or end time is specified, the retrieval period defaults to
     the last 24 hours.
-  </li>
-  <li>
-    Start-time and end-time time format should be YYYY-MM-DDTHH:MM:SS.sss±HH:MM
-    (ISO 8601 extended date-time).
   </li>
 </ul>
 <h4>Actions:</h4>
@@ -2026,6 +2010,114 @@ een camera list --help
   <li>To get flagged POS transactions:</li>
 </ul>
 <pre><code class="language-bash">een pos listevents --flagged
+</code></pre>
+<h1>perftest - Execute Performance Tests</h1>
+<h2>NAME</h2>
+<p><code>perftest</code> - execute performance tests.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een perftest preview [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>perftest</code> command allows you to execute performance tests on
+  various aspects of the platform.
+</p>
+<h2>COMMANDS</h2>
+<h3>preview</h3>
+<p>Get performance test results for preview images.</p>
+<h4>Options</h4>
+<ul>
+  <li>
+    <code>-a, --all-log</code><br />
+    Display execution logs.
+  </li>
+  <li>
+    <code>--bridge [bridge1, bridge2]</code><br />
+    Test based on bridges.
+  </li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code><br />
+    Test based on bridge ESNs.
+  </li>
+  <li>
+    <code>-c, --count [count]</code><br />
+    Number of previews to be tested (default: 10).
+  </li>
+  <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-e, --end-time [end time]</code><br />
+    Specify the end timestamp for analysis, this option requires --start-time to
+    be specified.
+  </li>
+  <li>
+    <code>--esn [esn1, esn2]</code><br />
+    Test based on camera ESNs.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the file name to save the test results.
+  </li>
+  <li>
+    <code>--layout [layout1, layout2]</code><br />
+    Test based on layouts.
+  </li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code><br />
+    Test based on layouts IDs.
+  </li>
+  <li>
+    <code>-s, --start-time [start time]</code><br />
+    Specify the start timestamp for analysis.
+  </li>
+  <li>
+    <code>--site [site1, site2]</code><br />
+    Test based on sites.
+  </li>
+  <li>
+    <code>--site-id [site id1, site id2]</code><br />
+    Test based on site IDs.
+  </li>
+  <li>
+    <code>-t, --table</code><br />
+    Display result in table format.
+  </li>
+  <li>
+    <code>--tag [tag1, tag2]</code><br />
+    Test based on tags.
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    If no start time or end time is specified, the test interval will be last 30
+    days.
+  </li>
+  <li>
+    If the specified time range exceeds the retention period of the camera, the
+    test will be performed over the actual retention period of the camera.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>
+    To test preview performance of all the cameras in an account for last 30
+    days:
+  </li>
+</ul>
+<pre><code class="language-bash">een perftest preview
+</code></pre>
+<ul>
+  <li>To test preview performance of all the cameras in a specific layout:</li>
+</ul>
+<pre><code class="language-bash">een perftest preview --layout &quot;layout1&quot;
+</code></pre>
+<ul>
+  <li>To test preview performance of all the cameras in a specific site:</li>
+</ul>
+<pre><code class="language-bash">een perftest preview --site &quot;site1&quot;
 </code></pre>
 <h1>googleconfig - Update Google Configuration Options</h1>
 <h2>NAME</h2>
