@@ -601,6 +601,8 @@ Edit camera's settings.
   Bridge target days.
 - `-c, --cloud-retention-days [cloud retention days]`  
   Cloud retention days.
+- `-C, --camera-name [camera name]`  
+  Camera name.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-L, --local-retention-days [local retention days]`  
@@ -1575,6 +1577,133 @@ een perftest preview --layout "layout1"
 
 ```bash
 een perftest preview --site "site1"
+```
+
+### assetlist
+
+Get performance test results for asset list endpoint.
+
+#### Options
+
+- `-a, --all-log`  
+  Display execution logs.
+- `-A, --asset-count [asset count]`  
+   Number of assets per list (default: 10).
+- `--bridge [bridge1, bridge2]`  
+  Test based on bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`  
+  Test based on bridge ESNs.
+- `-c, --count [count]`  
+  Number of asset lists to be tested (default: 10).
+- `-d, --debug`  
+  Enable detailed debug output for troubleshooting.
+- `-e, --end-time [end time]`  
+  Specify the end timestamp for analysis, this option requires --start-time to be specified.
+- `--esn [esn1, esn2]`  
+  Test based on camera ESNs.
+- `-f, --file-name [file name]`  
+  Specify the file name to save the test results.
+- `--layout [layout1, layout2]`  
+  Test based on layouts.
+- `--layout-id [layout id1, layout id2]`  
+  Test based on layouts IDs.
+- `-s, --start-time [start time]`  
+  Specify the start timestamp for analysis.
+- `--site [site1, site2]`  
+  Test based on sites.
+- `--site-id [site id1, site id2]`  
+  Test based on site IDs.
+- `-t, --table`  
+  Display result in table format.
+- `--tag [tag1, tag2]`  
+  Test based on tags.
+
+#### Notes:
+
+- If no start time or end time is specified, the test interval will be last 30 days.
+
+## EXAMPLES
+
+- To test asset list performance of all the cameras in an account for last 30 days:
+
+```bash
+een perftest assetlist
+```
+
+- To test asset list performance of all the cameras in a specific layout:
+
+```bash
+een perftest assetlist --layout "layout1"
+```
+
+- To test asset list performance of all the cameras in a specific site:
+
+```bash
+een perftest assetlist --site "site1"
+```
+
+### pngspan
+
+Get performance test results for pngspan endpoint.
+
+#### Options
+
+- `-a, --all-log`  
+  Display execution logs.
+- `--bridge [bridge1, bridge2]`  
+  Test based on bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`  
+  Test based on bridge ESNs.
+- `-c, --count [count]`  
+  Number of previews to be tested (default: 10).
+- `-d, --debug`  
+  Enable detailed debug output for troubleshooting.
+- `-e, --end-time [end time]`  
+  Specify the end timestamp for analysis, this option requires --start-time to be specified.
+- `--esn [esn1, esn2]`  
+  Test based on camera ESNs.
+- `-f, --file-name [file name]`  
+  Specify the file name to save the test results.
+- `--layout [layout1, layout2]`  
+  Test based on layouts.
+- `--layout-id [layout id1, layout id2]`  
+  Test based on layouts IDs.
+- `-s, --start-time [start time]`  
+  Specify the start timestamp for analysis.
+- `--site [site1, site2]`  
+  Test based on sites.
+- `--site-id [site id1, site id2]`  
+  Test based on site IDs.
+- `-t, --table`  
+  Display result in table format.
+- `--tag [tag1, tag2]`  
+  Test based on tags.
+- `--width [width]`  
+  Width of pngspan to be tested.
+
+#### Notes:
+
+- If no start time or end time is specified, the test interval will be last 30 days.
+- If the specified time range exceeds the retention period of the camera, the test will be performed over the actual retention period of the camera.
+
+## EXAMPLES
+
+- To test pngspan performance of all the cameras in an account for last 30 days:
+
+```bash
+een perftest pngspan
+```
+
+- To test pngspan performance of all the cameras in a specific layout:
+
+```bash
+een perftest pngspan --layout "layout1"
+```
+
+- To test pngspan performance of all the cameras in a specific site:
+
+```bash
+een perftest pngspan --site "site1"
 ```
 
 # googleconfig - Update Google Configuration Options
