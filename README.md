@@ -326,16 +326,18 @@ The `account` command allows you to manage reseller accounts, list all accounts,
 
 ### list
 
-List all accounts of the reseller account.
+List all logged in accounts.
 
 #### Options:
 
+- `-a, --account-id`  
+  List account ID.
+- `-A, --account-name`  
+  List account name.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-l, --long`  
   Display account details, including account ID, account name, and account type.
-- `--account-id [account ID]`  
-  Specify an account ID to list its details.
 - `-s, --sub-account`  
   List sub-accounts (only applicable for reseller accounts).
 
@@ -353,6 +355,8 @@ Switch to an account.
   Enable detailed debug output for troubleshooting.
 - `-s, --sub-account-id [sub-account ID]`  
   Specify the Sub Account ID to switch to from the reseller account.
+- `--username [username]`  
+  Specify the username to switch between logged-in accounts.
 
 ## EXAMPLES
 
@@ -492,6 +496,10 @@ List cameras.
   List camera details, including camera ESN, bridge ESN, status, resolution, cloud retention days, and local retention days.
 - `-L, --local-retention-days`  
   List cameras filtered by their local retention days.
+- `--layout-id [layout id1, layout id2]`  
+  List cameras based on the given layout IDs. Provide a comma-separated list of layout IDs.
+- `--layout-name [layout name1, layout name2]`  
+  List cameras based on the given layout names. Provide a comma-separated list of layout names.
 - `-n, --no-prompt`  
   Skip all user confirmation prompts during the command execution.
 - `-p, --purge`  
@@ -1531,6 +1539,8 @@ Get performance test results for preview images.
   Test based on bridge ESNs.
 - `-c, --count [count]`  
   Number of previews to be tested (default: 10).
+- `-C, --camera [camera1, camera2]`  
+   Test based on cameras.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -1588,13 +1598,15 @@ Get performance test results for asset list endpoint.
 - `-a, --all-log`  
   Display execution logs.
 - `-A, --asset-count [asset count]`  
-   Number of assets per list (default: 10).
+  Number of assets per list (default: 10).
 - `--bridge [bridge1, bridge2]`  
   Test based on bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`  
   Test based on bridge ESNs.
 - `-c, --count [count]`  
   Number of asset lists to be tested (default: 10).
+- `-C, --camera [camera1, camera2]`  
+  Test based on cameras.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -1603,6 +1615,8 @@ Get performance test results for asset list endpoint.
   Test based on camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the file name to save the test results.
+- `-H, --headerinfo`  
+  Display response header info
 - `--layout [layout1, layout2]`  
   Test based on layouts.
 - `--layout-id [layout id1, layout id2]`  
@@ -1656,6 +1670,8 @@ Get performance test results for pngspan endpoint.
   Test based on bridge ESNs.
 - `-c, --count [count]`  
   Number of previews to be tested (default: 10).
+- `-C, --camera [camera1, camera2]`  
+  Test based on cameras.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -1664,6 +1680,8 @@ Get performance test results for pngspan endpoint.
   Test based on camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the file name to save the test results.
+- `-H, --headerinfo`  
+  Display response header info
 - `--layout [layout1, layout2]`  
   Test based on layouts.
 - `--layout-id [layout id1, layout id2]`  
@@ -1704,6 +1722,129 @@ een perftest pngspan --layout "layout1"
 
 ```bash
 een perftest pngspan --site "site1"
+```
+
+### live
+
+Get performance test results for live video.
+
+#### Options
+
+- `-a, --all-log`  
+  Display execution logs.
+- `--bridge [bridge1, bridge2]`  
+  Test based on bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`  
+  Test based on bridge ESNs.
+- `-c, --count [count]`  
+  Number of videos to be tested (default: 1).
+- `-C, --camera [camera1, camera2]`  
+  Test based on cameras.
+- `-d, --debug`  
+  Enable detailed debug output for troubleshooting.
+- `--esn [esn1, esn2]`  
+  Test based on camera ESNs.
+- `-f, --file-name [file name]`  
+  Specify the file name to save the test results.
+- `-l, --length`  
+  Specify the video duration for analysis (default: 5s).
+- `--layout [layout1, layout2]`  
+  Test based on layouts.
+- `--layout-id [layout id1, layout id2]`  
+  Test based on layouts IDs.
+- `--site [site1, site2]`  
+  Test based on sites.
+- `--site-id [site id1, site id2]`  
+  Test based on site IDs.
+- `-t, --table`  
+  Display result in table format.
+- `--tag [tag1, tag2]`  
+  Test based on tags.
+
+## EXAMPLES
+
+- To test live video performance of all the cameras in an account:
+
+```bash
+een perftest live
+```
+
+- To test live video performance of all the cameras in a specific layout:
+
+```bash
+een perftest live --layout "layout1"
+```
+
+- To test live video performance of all the cameras in a specific site:
+
+```bash
+een perftest live --site "site1"
+```
+
+### historic
+
+Get performance test results for history video.
+
+#### Options
+
+- `-a, --all-log`  
+  Display execution logs.
+- `--bridge [bridge1, bridge2]`  
+  Test based on bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`  
+  Test based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`  
+  Test based on cameras.
+- `-c, --count [count]`  
+  Number of previews to be tested (default: 5).
+- `-d, --debug`  
+  Enable detailed debug output for troubleshooting.
+- `-e, --end-time [end time]`  
+  Specify the end timestamp for analysis, this option requires --start-time to be specified.
+- `--esn [esn1, esn2]`  
+  Test based on camera ESNs.
+- `-f, --file-name [file name]`  
+  Specify the file name to save the test results.
+- `--layout [layout1, layout2]`  
+  Test based on layouts.
+- `--layout-id [layout id1, layout id2]`  
+  Test based on layouts IDs.
+- `-l, --length`  
+  Specify the video duration for analysis (default: 10s).
+- `-s, --start-time [start time]`  
+  Specify the start timestamp for analysis.
+- `--site [site1, site2]`  
+  Test based on sites.
+- `--site-id [site id1, site id2]`  
+  Test based on site IDs.
+- `-t, --table`  
+  Display result in table format.
+- `--tag [tag1, tag2]`  
+  Test based on tags.
+
+#### Notes:
+
+- If no start time or end time is specified, the test interval will be last 30 days.
+- If the specified time range exceeds the retention period of the camera, the test will be performed over the actual retention period of the camera.
+
+## EXAMPLES
+
+- To test history video performance of all the cameras in an account for last 30 days:
+
+```bash
+een perftest historic
+```
+
+- To test history video performance of all the cameras in a specific layout:
+
+```bash
+een perftest historic --layout "layout1"
+```
+
+- To test history video performance of all the cameras in a specific site:
+
+```bash
+een perftest historic --site "site1"
 ```
 
 # googleconfig - Update Google Configuration Options
