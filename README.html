@@ -397,9 +397,17 @@ een camera list --help
 </p>
 <h2>COMMANDS</h2>
 <h3>list</h3>
-<p>List all accounts of the reseller account.</p>
+<p>List all logged in accounts.</p>
 <h4>Options:</h4>
 <ul>
+  <li>
+    <code>-a, --account-id</code><br />
+    List account ID.
+  </li>
+  <li>
+    <code>-A, --account-name</code><br />
+    List account name.
+  </li>
   <li>
     <code>-d, --debug</code><br />
     Enable detailed debug output for troubleshooting.
@@ -408,10 +416,6 @@ een camera list --help
     <code>-l, --long</code><br />
     Display account details, including account ID, account name, and account
     type.
-  </li>
-  <li>
-    <code>--account-id [account ID]</code><br />
-    Specify an account ID to list its details.
   </li>
   <li>
     <code>-s, --sub-account</code><br />
@@ -434,6 +438,10 @@ een camera list --help
   <li>
     <code>-s, --sub-account-id [sub-account ID]</code><br />
     Specify the Sub Account ID to switch to from the reseller account.
+  </li>
+  <li>
+    <code>--username [username]</code><br />
+    Specify the username to switch between logged-in accounts.
   </li>
 </ul>
 <h2>EXAMPLES</h2>
@@ -595,6 +603,16 @@ een camera list --help
   <li>
     <code>-L, --local-retention-days</code><br />
     List cameras filtered by their local retention days.
+  </li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code><br />
+    List cameras based on the given layout IDs. Provide a comma-separated list
+    of layout IDs.
+  </li>
+  <li>
+    <code>--layout-name [layout name1, layout name2]</code><br />
+    List cameras based on the given layout names. Provide a comma-separated list
+    of layout names.
   </li>
   <li>
     <code>-n, --no-prompt</code><br />
@@ -2048,6 +2066,10 @@ een camera list --help
     Number of previews to be tested (default: 10).
   </li>
   <li>
+    <code>-C, --camera [camera1, camera2]</code><br />
+    Test based on cameras.
+  </li>
+  <li>
     <code>-d, --debug</code><br />
     Enable detailed debug output for troubleshooting.
   </li>
@@ -2148,6 +2170,10 @@ een camera list --help
     Number of asset lists to be tested (default: 10).
   </li>
   <li>
+    <code>-C, --camera [camera1, camera2]</code><br />
+    Test based on cameras.
+  </li>
+  <li>
     <code>-d, --debug</code><br />
     Enable detailed debug output for troubleshooting.
   </li>
@@ -2163,6 +2189,10 @@ een camera list --help
   <li>
     <code>-f, --file-name [file name]</code><br />
     Specify the file name to save the test results.
+  </li>
+  <li>
+    <code>-H, --headerinfo</code><br />
+    Display response header info
   </li>
   <li>
     <code>--layout [layout1, layout2]</code><br />
@@ -2242,6 +2272,10 @@ een camera list --help
     Number of previews to be tested (default: 10).
   </li>
   <li>
+    <code>-C, --camera [camera1, camera2]</code><br />
+    Test based on cameras.
+  </li>
+  <li>
     <code>-d, --debug</code><br />
     Enable detailed debug output for troubleshooting.
   </li>
@@ -2257,6 +2291,10 @@ een camera list --help
   <li>
     <code>-f, --file-name [file name]</code><br />
     Specify the file name to save the test results.
+  </li>
+  <li>
+    <code>-H, --headerinfo</code><br />
+    Display response header info
   </li>
   <li>
     <code>--layout [layout1, layout2]</code><br />
@@ -2320,6 +2358,197 @@ een camera list --help
   <li>To test pngspan performance of all the cameras in a specific site:</li>
 </ul>
 <pre><code class="language-bash">een perftest pngspan --site &quot;site1&quot;
+</code></pre>
+<h3>live</h3>
+<p>Get performance test results for live video.</p>
+<h4>Options</h4>
+<ul>
+  <li>
+    <code>-a, --all-log</code><br />
+    Display execution logs.
+  </li>
+  <li>
+    <code>--bridge [bridge1, bridge2]</code><br />
+    Test based on bridges.
+  </li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code><br />
+    Test based on bridge ESNs.
+  </li>
+  <li>
+    <code>-c, --count [count]</code><br />
+    Number of videos to be tested (default: 1).
+  </li>
+  <li>
+    <code>-C, --camera [camera1, camera2]</code><br />
+    Test based on cameras.
+  </li>
+  <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>--esn [esn1, esn2]</code><br />
+    Test based on camera ESNs.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the file name to save the test results.
+  </li>
+  <li>
+    <code>-l, --length</code><br />
+    Specify the video duration for analysis (default: 5s).
+  </li>
+  <li>
+    <code>--layout [layout1, layout2]</code><br />
+    Test based on layouts.
+  </li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code><br />
+    Test based on layouts IDs.
+  </li>
+  <li>
+    <code>--site [site1, site2]</code><br />
+    Test based on sites.
+  </li>
+  <li>
+    <code>--site-id [site id1, site id2]</code><br />
+    Test based on site IDs.
+  </li>
+  <li>
+    <code>-t, --table</code><br />
+    Display result in table format.
+  </li>
+  <li>
+    <code>--tag [tag1, tag2]</code><br />
+    Test based on tags.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To test live video performance of all the cameras in an account:</li>
+</ul>
+<pre><code class="language-bash">een perftest live
+</code></pre>
+<ul>
+  <li>
+    To test live video performance of all the cameras in a specific layout:
+  </li>
+</ul>
+<pre><code class="language-bash">een perftest live --layout &quot;layout1&quot;
+</code></pre>
+<ul>
+  <li>To test live video performance of all the cameras in a specific site:</li>
+</ul>
+<pre><code class="language-bash">een perftest live --site &quot;site1&quot;
+</code></pre>
+<h3>historic</h3>
+<p>Get performance test results for history video.</p>
+<h4>Options</h4>
+<ul>
+  <li>
+    <code>-a, --all-log</code><br />
+    Display execution logs.
+  </li>
+  <li>
+    <code>--bridge [bridge1, bridge2]</code><br />
+    Test based on bridges.
+  </li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code><br />
+    Test based on bridge ESNs.
+  </li>
+  <li>
+    <code>-C, --camera [camera1, camera2]</code><br />
+    Test based on cameras.
+  </li>
+  <li>
+    <code>-c, --count [count]</code><br />
+    Number of previews to be tested (default: 5).
+  </li>
+  <li>
+    <code>-d, --debug</code><br />
+    Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-e, --end-time [end time]</code><br />
+    Specify the end timestamp for analysis, this option requires --start-time to
+    be specified.
+  </li>
+  <li>
+    <code>--esn [esn1, esn2]</code><br />
+    Test based on camera ESNs.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code><br />
+    Specify the file name to save the test results.
+  </li>
+  <li>
+    <code>--layout [layout1, layout2]</code><br />
+    Test based on layouts.
+  </li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code><br />
+    Test based on layouts IDs.
+  </li>
+  <li>
+    <code>-l, --length</code><br />
+    Specify the video duration for analysis (default: 10s).
+  </li>
+  <li>
+    <code>-s, --start-time [start time]</code><br />
+    Specify the start timestamp for analysis.
+  </li>
+  <li>
+    <code>--site [site1, site2]</code><br />
+    Test based on sites.
+  </li>
+  <li>
+    <code>--site-id [site id1, site id2]</code><br />
+    Test based on site IDs.
+  </li>
+  <li>
+    <code>-t, --table</code><br />
+    Display result in table format.
+  </li>
+  <li>
+    <code>--tag [tag1, tag2]</code><br />
+    Test based on tags.
+  </li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    If no start time or end time is specified, the test interval will be last 30
+    days.
+  </li>
+  <li>
+    If the specified time range exceeds the retention period of the camera, the
+    test will be performed over the actual retention period of the camera.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>
+    To test history video performance of all the cameras in an account for last
+    30 days:
+  </li>
+</ul>
+<pre><code class="language-bash">een perftest historic
+</code></pre>
+<ul>
+  <li>
+    To test history video performance of all the cameras in a specific layout:
+  </li>
+</ul>
+<pre><code class="language-bash">een perftest historic --layout &quot;layout1&quot;
+</code></pre>
+<ul>
+  <li>
+    To test history video performance of all the cameras in a specific site:
+  </li>
+</ul>
+<pre><code class="language-bash">een perftest historic --site &quot;site1&quot;
 </code></pre>
 <h1>googleconfig - Update Google Configuration Options</h1>
 <h2>NAME</h2>
