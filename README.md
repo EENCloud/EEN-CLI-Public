@@ -47,7 +47,7 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
 
 #### Notes:
 
-- For all commands with `--no-prompt` option it will skip all user confirmation prompts. This means it will also overwrite any existing files without any confirmation.
+- For all commands with `--prompt` option will show user confirmation prompts. This means it will show confirmation message when overwriting any existing files.
 - Open all the CSV file outputs in Google Sheets or Libre Office as Excel has formatting issues.
 - `verbose mode` : Use `--verbose` along with the commands to access the verbose mode.
 - All time inputs should be of the format `YYYYMMDDhhmmss.sss (20230125062511.000)`
@@ -195,8 +195,12 @@ Log in to EEN using the provided credentials.
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
@@ -210,8 +214,12 @@ Log out from EEN.
 
 #### Options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
+- `--time`  
+  Display the execution time of the command.
 
 ## EXAMPLES
 
@@ -251,6 +259,8 @@ List users.
 
 #### Options:
 
+- `--call-time`  
+  Get api response time.
 - `--csv`  
   Export all users in CSV format.
 - `-d, --debug`  
@@ -263,18 +273,22 @@ List users.
   Display user first names.
 - `-g, --google-sheet`  
   Export users in CSV format and upload to Google Sheets.
+- `--header`  
+  Display column headers in the result.
 - `--html`  
   Generate an HTML report for user permissions.
 - `-l, --long`  
   Display user details, including name, email, last login, status, and permissions.
 - `-L, --last-name`  
   Display user last names.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
 - `-p, --permission`  
   Display user permissions.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-s, --status`  
   Display user statuses.
+- `--time`  
+  Display the execution time of the command.
 - `--v1`  
   Use v1 APIs for listing users.
 
@@ -334,12 +348,18 @@ List all logged in accounts.
   List account ID.
 - `-A, --account-name`  
   List account name.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
+- `--header`  
+  Display column headers in the result.
 - `-l, --long`  
   Display account details, including account ID, account name, and account type.
 - `-s, --sub-account`  
   List sub-accounts (only applicable for reseller accounts).
+- `--time`  
+  Display the execution time of the command.
 
 ---
 
@@ -351,10 +371,14 @@ Switch to an account.
 
 - `-a, --account-id [account ID]`  
   Specify the Account ID to switch between logged-in accounts.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-s, --sub-account-id [sub-account ID]`  
   Specify the Sub Account ID to switch to from the reseller account.
+- `--time`  
+  Display the execution time of the command.
 - `--username [username]`  
   Specify the username to switch between logged-in accounts.
 
@@ -402,16 +426,22 @@ Get the list of available archives.
 
 #### Options:
 
+- `--call-time`  
+  Get api response time.
 - `--csv`  
   Export the archive list in CSV format.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-D, --detailed`  
   Retrieve a detailed list of archives with additional metadata.
+- `--header`  
+  Display column headers in the result.
 - `-l, --long`  
   Display archive details, including filename, size, creation date, shared status, and shared path.
 - `-t, --target-directory [target directory]`  
   Specify the directory from which the archive will be retrieved.
+- `--time`  
+  Display the execution time of the command.
 
 ---
 
@@ -431,10 +461,14 @@ Download a specific archive.
 
 #### Optional options:
 
+- `--call-time`
+  Get API response time.
 - `-d, --debug`  
   Enable debug output for troubleshooting.
 - `-o, --overwrite`  
   Overwrite the already downloaded archive if it exists.
+- `--time`  
+  Display the execution time of the command.
 
 ## EXAMPLES
 
@@ -470,60 +504,72 @@ List cameras.
 
 #### Options:
 
-- `-A, --all`  
-  List all cameras without filtering.
 - `-a, --available`  
   List available cameras that are currently operational.
+- `-A, --all`  
+  List all cameras without filtering.
 - `-b, --bridge`  
-  List cameras by their bridge ESNs.
-- `-c, --cloud-retention-days`  
-  List cameras filtered by their cloud retention days.
+  List bridge name of the cameras.
+- `-B, --bridge-esn`  
+  List bridge ESNs of the cameras.
+- `-C, --camera`  
+  List cameras.
+- `--call-time`  
+  Get API response time.
 - `--csv`  
   List cameras in CSV format.
 - `-d, --debug`  
   Enable debug output for troubleshooting and detailed logs.
+- `--direct`  
+  List cameras which are direct to cloud.
 - `-e, --end-time [end time]`  
   Filter cameras based on video end time. Format: `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date-time with milliseconds).
 - `--esn`  
-  List cameras by their ESNs.
+  List cameras ESNs.
 - `-f, --file-name [file name]`  
-  Specify the name of the file where the output will be saved. This can be used with `--csv` or `--google-sheet`.
+  Specify the name of the file where the output will be saved.
+- `filter-layout [layout name1, layout name2]`  
+  Filter cameras by layout.
+- `filter-layout-id [layout id, layout id]`  
+  Filter cameras by layout ID.
+- `filter-site [site name1, site name2]`
+  Filter cameras by site.
+- `filter-site-id [site id1, site id2]`
+  Filter cameras by site ID.
+- `filter-status <status>`
+  Filter cameras by status
 - `-g, --google-sheet`  
   List cameras in CSV format in a Google Sheet.
+- `-H, --header`  
+  Display column headers in the result.
 - `--html`  
   Generate a chart of the camera list in an HTML file format.
 - `-l, --long`  
-  List camera details, including camera ESN, bridge ESN, status, resolution, cloud retention days, and local retention days.
-- `-L, --local-retention-days`  
-  List cameras filtered by their local retention days.
-- `--layout-id [layout id1, layout id2]`  
-  List cameras based on the given layout IDs. Provide a comma-separated list of layout IDs.
-- `--layout-name [layout name1, layout name2]`  
-  List cameras based on the given layout names. Provide a comma-separated list of layout names.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts during the command execution.
-- `-p, --purge`  
-  The `--purge` option only works with `--csv` or `--google-sheet` options. It removes expired data from the output.
-- `--v1`  
-  Use version 1 APIs for backward compatibility.
-- `-r, --resolution`  
-  List cameras filtered by resolution.
-- `--site-id [site id1, site id2]`  
-  List cameras located in the specified sites. Provide a comma-separated list of site IDs.
-  `--site-name [site name1, site name2]`  
-  List cameras located in the specified sites. Provide a comma-separated list of site names.
+  List camera details, including camera, camera ESN, bridge, bridge ESN, site, site ID, status, tags, shared, timezone, IP address and GUID.
+- `--prompt`  
+  Show user confirmation prompts during the command execution.
 - `-s, --start-time [start time]`  
   Filter cameras based on video start time. Format: `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date-time with milliseconds).
 - `--shared`  
   List cameras that are shared with other users.
 - `--short`  
   List only the camera names and ESNs in CSV format to the specified file.
-- `--status [status]`  
-  List cameras with a specific status. Accepts values like 'online', 'offline', or 'inactive'.
+- `--site`  
+  List sites of the cameras.
+- `--site-id`  
+  List site IDs of the cameras.
+- `--status`  
+  List status of the cameras.
 - `-t, --tag [tag1, tag2]`  
-  List cameras based on the given tag. Specify the tag as a comma-separated list of tag names.
+  Filter cameras by tags.
 - `-T, --tree`  
   List cameras and associated bridges in a tree format.
+- `--tag`  
+  List tags of the cameras.
+- `--time`  
+  Display the execution time of the command.
+- `--v1`  
+  Use version 1 APIs for backward compatibility.
 
 #### Notes:
 
@@ -537,6 +583,8 @@ List status of all cameras.
 
 #### Options:
 
+- `--call-time`  
+  Get api response time.
 - `--csv`  
   List camera status in CSV format.
 - `-d, --debug`  
@@ -547,8 +595,16 @@ List status of all cameras.
   List camera status in CSV format in Google Sheet.
 - `--html`  
   Generate chart in HTML file.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `--layout [layout name1, layout name2]`  
+  Layout names associated with the camera.
+- `--layout-id [layout id1, layout id2]`  
+  Layout IDs associated with the camera.
+- `--prompt`  
+  Show user confirmation prompts.
+- `-t, --tag [tag1, tag2]`  
+  Filter cameras using tags.
+- `--time`  
+  Display the execution time of the command.
 - `--v1`  
   Use v1 APIs.
 
@@ -561,16 +617,28 @@ Get all camera settings.
 #### Required options:
 
 - `--csv`  
-  List camera settings in CSV format.
+  List camera settings.
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `-H, --header`  
+  Display column headers in the result.
+- `j, --json`
+  List settings in JSON format
+- `-l, --long`  
+  List the camera settings in long format.
+- `--prompt`  
+  Show user confirmation prompts.
+- `--time`  
+  Display the execution time of the command.
+- `--v1`
+  Use v1 APIs
 
 ---
 
@@ -590,57 +658,71 @@ Edit camera's settings.
   Edit camera settings by tag.
 - `-s, --site-id [site id1, site id2]`  
   Edit camera settings by site id.
-- `-S, --site-name [site name1, site name2]`  
+- `-S, --site [site name1, site name2]`  
   Edit camera settings by site name.
-- `--layout-name [layout name1, layout name2]`  
-  Edit camera settings by layout name.
 - `--layout-id [layout id1, layout id2]`  
   Edit camera settings by layout id.
+- `--layout [layout name1, layout name2]`  
+  Edit camera settings by layout name.
+- `--prompt`  
+  Show user confirmation prompts.
 
 #### Options:
 
 - `-a, --aspect-ratio [aspect ratio]`  
   Preview aspect ratio.
-- `--audio-enable`  
-  Enable audio.
 - `--audio-disable`  
   Disable audio.
+- `--audio-enable`  
+  Enable audio.
 - `-B, --bridge-target-days [bridge target days]`  
   Bridge target days.
 - `-c, --cloud-retention-days [cloud retention days]`  
   Cloud retention days.
 - `-C, --camera-name [camera name]`  
   Camera name.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-L, --local-retention-days [local retention days]`  
   Local retention days.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `--layout [layout name1, layout name2]`  
+  Layout names associated with the camera.
+- `--layout-id [layout id1, layout id2]`  
+  Layout IDs associated with the camera.
 - `-p, --password [password]`  
   Password.
+- `--preview-interval-ms [preview interval ms]`  
+  Preview interval rate in milliseconds.
+- `--preview-only-cloud-retention [preview only cloud retention]`  
+  Preview only cloud retention.
+- `--preview-quality [preview quality]`  
+  Preview quality.
 - `--preview-resolution [preview resolution]`  
   Preview resolution.
 - `--preview-transmit-mode [preview transmit mode]`  
   Preview transmit mode.
-- `--preview-interval-ms [preview interval ms]`  
-  Preview interval rate in milliseconds.
-- `--preview-quality [preview quality]`  
-  Preview quality.
-- `--preview-only-cloud-retention [preview only cloud retention]`  
-  Preview only cloud retention.
-- `-t, --add-tag [add tag]`  
-  Tags.
+- `--prompt`  
+  Show user confirmation prompts.
+- `-s, --site-id [site id1, site id2]`  
+  Site IDs associated with the camera.
+- `-S, --site [site name1, site name2]`  
+  Site name associated with the camera.
+- `-t, --tag [tag1, tag2]`  
+  Tags associated with camera.
+- `--time`  
+  Display the execution time of the command.
 - `-u, --username [username]`  
   Username.
 - `--video-capture-mode [video capture mode]`  
   When to record video.
-- `--video-transmit-mode [video transmit mode]`  
-  Video transmit mode.
 - `--video-quality [video quality]`  
   Video quality.
 - `--video-resolution [video resolution]`  
   Video resolution.
+- `--video-transmit-mode [video transmit mode]`  
+  Video transmit mode.
 
 ---
 
@@ -659,10 +741,14 @@ Delete a camera from the bridge.
 
 #### Options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `--prompt`  
+  Show user confirmation prompts.
+- `--time`  
+  Display the execution time of the command.
 
 ---
 
@@ -686,18 +772,22 @@ Add camera to bridge.
 
 - `-c, --cloud-retention-days [cloud retention days]`  
   Cloud retention days.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
 - `-p, --password [password]`  
   Camera password.
-- `-S, --site [site]`  
-  Site ID.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-s, --scene [scene]`  
   Scene.
+- `-S, --site [site]`  
+  Site ID.
 - `-t, --tag [tag1, tag2]`  
   Tags.
+- `--time`  
+  Display the execution time of the command.
 - `-u, --username [username]`  
   Camera username.
 
@@ -716,16 +806,20 @@ Get camera stream status.
 
 #### Optional options:
 
-- `--esn [esn1, esn2]`  
-  ESNs of the cameras.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
+- `--esn [esn1, esn2]`  
+  ESNs of the cameras.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-S, --stream-type [stream type]`  
   Stream type of the camera.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
@@ -741,16 +835,28 @@ Get camera purging and duty cycle.
 
 #### Options:
 
+- `--call-time`  
+  Get api response time.
+- `--csv`
+  List the camera purge list in csv format
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
   Purge end time.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `-g, --google-sheet`
+  List the camera purge list in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `-l, --long`
+  List the camera purge list in long format.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-s, --start-time [start time]`  
   Purge start time.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
@@ -764,11 +870,13 @@ Get camera availability.
 
 #### Required options:
 
-- `--start-time [start time]`  
+- `-s, --start-time [start time]`  
   Video start time.
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -779,18 +887,24 @@ Get camera availability.
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`  
   List camera availability in CSV format in Google Sheets.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `--layout [layout name1, layout name2]`
+  Layout names associated with the camera.
+- `--layout-id [layout id1, layout id2]`
+  Layout IDs associated with the camera.
 - `-N, --no-check`  
   Show all available data, including unchecked items.
 - `-p, --preview-availability`  
   Get preview recording status along with camera availability.
+- `--prompt`  
+  Show user confirmation prompts.
+- `--site [site name1, site name2]`  
+  List cameras located in the specified sites. Provide a comma-separated list of site names.
 - `--site-id [site id1, site id2]`  
   List cameras located in the specified sites. Provide a comma-separated list of site IDs.
-- `--site-name [site name1, site name2]`  
-  List cameras located in the specified sites. Provide a comma-separated list of site names.
-- `-s, --start-time [start time]`  
-  Video start time.
+- `-t, --tag [tag1, tag2]`  
+  Filter cameras using tags.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
@@ -811,8 +925,12 @@ Add tags to camera, accepts multiple tags and esns seperated by comma
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
+- `--time`  
+  Display the execution time of the command.
 
 ---
 
@@ -829,8 +947,12 @@ Delete tags from camera, accepts multiple tags and esns seperated by comma
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
+- `--time`  
+  Display the execution time of the command.
 
 ---
 
@@ -860,6 +982,8 @@ List all bridges.
 
 - `-a, --available`  
   List discovered cameras that are not yet attached.
+- `--call-time`  
+  Get api response time.
 - `--csv`  
   List all bridges in CSV format.
 - `-d, --debug`  
@@ -870,24 +994,26 @@ List all bridges.
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`  
   List bridges in CSV format in Google Sheets.
+- `--header`  
+  Display column headers in the result.
 - `--html`  
   Generate a chart in HTML file.
 - `-l, --long`  
   Display bridge details, including bridge ID, name, and location. For v3, also includes cameras in the account and online cameras; for v1, includes GUID.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
-- `-S, --site`  
-  List the site of the bridge.
-- `--site-id [site id1, site id2]`  
-  List bridges in a specific site id.
-- `--site-name [site name1, site name2]`
-  List bridges in a specific site name.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-s, --status [status]`  
   List bridges with a specific status.
+- `--site [site name1, site name2]`
+  List bridges in a specific site name.
+- `--site-id [site id1, site id2]`  
+  List bridges in a specific site id.
 - `-t, --tag [tag1, tag2]`  
   Filter bridges by tags.
 - `-T, --tree`  
   View bridges and associated cameras in tree format.
+- `--time`  
+  Display the execution time of the command.
 - `--v1`  
   Use v1 APIs.
 
@@ -905,12 +1031,16 @@ List bridge status.
 
 #### Options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting
 - `-g, --google-sheet`  
   List bridges in csv format in a Google Sheet
 - `--html`  
   Generate a chart in an HTML file
+- `--time`  
+  Display the execution time of the command.
 
 ---
 
@@ -920,29 +1050,35 @@ Get bridge availability.
 
 #### Required options:
 
-- `-e, --end-time [end time]`  
-  Specify video end time
+- `-s, --start-time [start time]`  
+  Specify video start time.
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
-  Enable detailed debug output for troubleshooting
+  Enable detailed debug output for troubleshooting.
+- `-e, --end-time [end time]`
+  Specify video end time.
 - `--esn [esn1, esn2]`  
   ESNs of the bridge
 - `-f, --file-name [file name]`  
   Specify the file name to save the output
 - `-g, --google-sheet`  
   List bridge availability in csv format in a Google Sheet
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts
-- `-N,. --no-check`  
+- `-N, --no-check`  
   Show all available data
-- `--site-id [site id1, site id2]`  
-  Site ID associated with the bridge
-- `--site-name [site name1, site name2]`
+- `--prompt`  
+  Show user confirmation prompts
+- `--site [site name1, site name2]`
   Site name associated with the bridge
-- `-s, --start-time [start time]`  
-  Specify video start time
+- `--site-id [site id1, site id2]`  
+  Site ID associated with the bridge.
+- `-t, --tag [tag1, tag2]`  
+  Filter bridges using tags.
+- `--time`  
+  Display the execution time of the command.
 
 ---
 
@@ -959,6 +1095,8 @@ Pull logs from the archiver/bridge.
 
 - `-c, --count [count]`  
   Specify the number of annotations to return
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting
 - `-e, --end-time [end time]`  
@@ -967,14 +1105,16 @@ Pull logs from the archiver/bridge.
   View events of the bridge
 - `-l, --local-rtsp-metrics [enable/disable]`  
   Enable or disable the RTSP metrics set
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts
 - `-p, --performance`  
   View performance metrics of the bridge
+- `--prompt`  
+  Show user confirmation prompts
 - `-s, --start-time [start time]`  
   Specify the start time
 - `-S, --summary`  
   Get summarized data
+- `--time`  
+  Display the execution time of the command.
 
 ---
 
@@ -1024,14 +1164,20 @@ List switches.
 
 - `-b, --bridge`  
   List the bridge ESNs associated with the switches
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting
+- `--header`  
+  Display column headers in the result.
 - `--id`  
   List the IDs of the switches
 - `-l, --long`  
   List switch details, including switch ID, bridge ESN, and status
 - `-s, --status`  
   List the status of the switches
+- `--time`  
+  Display the execution time of the command.
 
 ## EXAMPLES
 
@@ -1051,6 +1197,83 @@ een switch list --id
 
 ```bash
 een switch list --status
+```
+
+# sensor - Manage Sensors
+
+## NAME
+
+`sensor` - manage and interact with sensors.
+
+## SYNOPSIS
+
+```
+een sensor [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `sensor` command allows you to manage sensors and list all available sensors.
+
+## COMMANDS
+
+### list
+
+List sensors.
+
+#### Options:
+
+- `-b, --battery-level`
+  List battery level of sensors.
+- `B, --bt-signal`
+  List bluetooth signal strength of the sensors.
+- `--call-time`  
+  Get api response time.
+- `--csv`  
+  List all sensors in CSV format.
+- `-d, --debug`  
+  Enable detailed debug output for troubleshooting.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `-H, --header`  
+  Display column headers in the result.
+- `--id`
+  List ID of sensors.
+- `-l, --long`  
+  List sensor details, including name, id, parentId, battery level, bluetooth strength, site name and status.
+- `--name`
+  List name of sensors.
+- `--parent-id`
+  List parent id of sensors.
+- `--prompt`  
+  Show user confirmation prompts.
+- `-s, --status`
+  List status of sensors.
+- `--site`
+  List site name of sensors.
+- `--site-id`  
+  List site ID of sensors.
+- `--time`  
+  Display the execution time of the command.
+
+## EXAMPLES
+
+- To list all sensors:
+
+```bash
+een sensor list
+```
+
+- To list sensor names:
+
+```bash
+een sensor list --name
+```
+
+- To list sensor names and their statuses:
+
+```bash
+een sensor list --name --status
 ```
 
 # site - Manage Sites
@@ -1077,22 +1300,28 @@ List all sites.
 
 #### Options:
 
+- `--call-time`  
+  Get api response time.
 - `--csv`  
   List all sites in CSV format.
-- `-f, --file-name [file name]`  
-  Specify the name of the file where the output will be saved.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
+- `-f, --file-name [file name]`  
+  Specify the name of the file where the output will be saved.
+- `--header`  
+  Display column headers in the result.
 - `-l, --long`  
   List site details, including site name and site ID.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-s, --site-id`  
   List the IDs of the sites.
+- `--time`  
+  Display the execution time of the command.
 
 #### Actions:
 
-- List sites with options for CSV format, file output, skipping prompts, and debug output as specified.
+- List sites with options for CSV format, file output, prompts, and debug output as specified.
 
 ## EXAMPLES
 
@@ -1102,10 +1331,10 @@ List all sites.
 een site list --csv --file-name sites.csv
 ```
 
-- To list sites without prompting for confirmation:
+- To get sites list in a file with prompting for confirmation:
 
 ```bash
-een site list --no-prompt --debug
+een site list --csv --file-name sites.csv --prompt --debug
 ```
 
 # video - Manage Recorded Videos
@@ -1132,10 +1361,10 @@ Download video from the camera.
 
 #### Required options:
 
-- `--esn [esn]`  
-  ESN of the camera.
 - `-e, --end-time [end time]`  
   Video end time.
+- `--esn [esn]`  
+  ESN of the camera.
 - `-f, --format [format]`  
   Video format.
 - `-s, --start-time [start time]`  
@@ -1145,12 +1374,16 @@ Download video from the camera.
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-o, --overwrite`  
   Overwrite the existing video file.
 - `-T, --timezone [timezone]`  
   Timezone to use for the video download.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
@@ -1170,17 +1403,23 @@ Get a list of videos from the selected camera.
 
 #### Required options:
 
+- `-e, --end-time [end time]`  
+  Video end time.
 - `--esn [esn]`  
   ESN of the camera.
 - `-s, --start-time [start time]`  
   Video start time.
-- `-e, --end-time [end time]`  
-  Video end time.
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
+- `--header`
+  Display column headers in the result.
+- `--time`  
+  Display the execution time of the command.
 
 #### Actions:
 
@@ -1201,6 +1440,10 @@ Get the status of preview recording.
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
+- `--csv`  
+  List preview recording status result in csv format.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -1209,8 +1452,12 @@ Get the status of preview recording.
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`  
   List camera recording status in CSV format in Google Sheets.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `--header`  
+  Display column headers in the result.
+- `--prompt`  
+  Show user confirmation prompts.
+- `--time`  
+  Display the execution time of the command.
 
 #### Actions:
 
@@ -1267,12 +1514,22 @@ Get LPR events.
 
 #### Optional options:
 
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `--esn [esn1, esn2]`  
   The ESN for camera of interest.
+- `--layout [layout name1, layout name2]`  
+  Layout names associated with the camera.
+- `--layout-id [layout id1, layout id2]`  
+  Layout IDs associated with the camera.
 - `--lp [license plate]`  
   License plate number.
+- `-t, --tag [tag1, tag2]`  
+  Filter by camera tags.
+- `--time`
+  Display the execution time of the command.
 - `--v1`  
   Use v1 APIs.
 
@@ -1322,9 +1579,11 @@ Get VSP events.
 - `-a, --access-type [access type]`  
   Access type.
 - `-b, --body-type [types]`  
-  Vehicle body types.
+   Vehicle body types.
 - `-c, --color [colors]`  
   Vehicle colors.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-D, --direction [directions]`  
@@ -1343,14 +1602,16 @@ Get VSP events.
   License plate number.
 - `-m, --make [makes]`  
   Vehicle makes.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
-- `--site-id [site id1, site id2]`  
-  List events in the specified sites. Provide a comma-separated list of site IDs.
-- `--site-name [site name1, site name2]`  
-  List events in the specified sites. Provide a comma-separated list of site names.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-s, --start-time [start time]`  
   LPR start time.
+- `--site [site name1, site name2]`  
+  List events in the specified sites. Provide a comma-separated list of site names.
+- `--site-id [site id1, site id2]`  
+  List events in the specified sites. Provide a comma-separated list of site IDs.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
@@ -1373,6 +1634,8 @@ Get VSP alerts.
   Alert type - allowed vehicle.
 - `-c, --count-of-license-plate`  
   Alert type - count of license plate.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-D, --denied-vehicle`  
@@ -1385,18 +1648,20 @@ Get VSP alerts.
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`  
   List VSP alerts in CSV format in Google Sheet
-- `--html`  
-  Generate chart in HTML file.
 - `-H, --hotlist`  
   Alert type - hotlist.
-- `-n, --no-prompt`  
-   Skip all user confirmation prompts.
-- `--site-id [site id1, site id2]`  
-   List alerts in the specified sites. Provide a comma-separated list of site IDs.
-- `--site-name [site name1, site name2]`  
-  List alerts in the specified sites. Provide a comma-separated list of site names.
+- `--html`  
+  Generate chart in HTML file.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-s, --start-time [start time]`  
   LPR start time.
+- `--site [site name1, site name2]`  
+  List alerts in the specified sites. Provide a comma-separated list of site names.
+- `--site-id [site id1, site id2]`  
+   List alerts in the specified sites. Provide a comma-separated list of site IDs.
+- `--time`  
+  Display the execution time of the command.
 - `-u, --unregistered-vehicle`  
   Alert type - unregistered vehicle.
 - `-w, --watch-vehicle`  
@@ -1451,12 +1716,14 @@ Get POS events.
 
 - `-b, --bill-number [bill number]`  
   Specify the bill number.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
-- `--discount-min [discount min]`  
-  Specify the minimum discount in percentage.
 - `--discount-max [discount max]`  
   Specify the maximum discount in percentage.
+- `--discount-min [discount min]`  
+  Specify the minimum discount in percentage.
 - `-e, --end-time [end time]`  
   Defines the end point for retrieving events. The timestamp must be in ISO 8601 format with millisecond precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
 - `-E, --employee-id [employee ID]`  
@@ -1469,20 +1736,22 @@ Get POS events.
   List POS events in CSV format in Google Sheet
 - `--html`  
   Generate chart in HTML file.
-- `-n, --no-prompt`  
-  Skip all user confirmation prompts.
+- `--net-amount-max [net amount max]`  
+  Specify the maximum net amount.
 - `--net-amount-min [net amount min]`  
   Specify the minimum net amount.
-- `--net-amount-max [net amount max]`  
-   Specify the maximum net amount.
-  `--site-id [site id1, site id2]`  
-   List events in the specified sites. Provide a comma-separated list of site IDs.
-- `--site-name [site name1, site name2]`  
-  List events in the specified sites. Provide a comma-separated list of site names.
+- `--prompt`  
+  Show user confirmation prompts.
 - `-s, --start-time [start time]`  
   Defines the starting point for retrieving events. The timestamp must be in ISO 8601 format with millisecond precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
+- `--site [site name1, site name2]`  
+  List events in the specified sites. Provide a comma-separated list of site names.
+  `--site-id [site id1, site id2]`  
+   List events in the specified sites. Provide a comma-separated list of site IDs.
 - `-t, --transaction-type [transaction type]`  
   Specify the type of the transaction.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
@@ -1541,6 +1810,8 @@ Get performance test results for preview images.
   Number of previews to be tested (default: 10).
 - `-C, --camera [camera1, camera2]`  
    Test based on cameras.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -1549,6 +1820,8 @@ Get performance test results for preview images.
   Test based on camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the file name to save the test results.
+- `--header`  
+  Display column headers in the result.
 - `--layout [layout1, layout2]`  
   Test based on layouts.
 - `--layout-id [layout id1, layout id2]`  
@@ -1563,6 +1836,10 @@ Get performance test results for preview images.
   Display result in table format.
 - `--tag [tag1, tag2]`  
   Test based on tags.
+- `--time`  
+  Display the execution time of the command.
+- `--v1`  
+  Test performance of the V1 API.
 
 #### Notes:
 
@@ -1607,6 +1884,8 @@ Get performance test results for asset list endpoint.
   Number of asset lists to be tested (default: 10).
 - `-C, --camera [camera1, camera2]`  
   Test based on cameras.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -1615,6 +1894,8 @@ Get performance test results for asset list endpoint.
   Test based on camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the file name to save the test results.
+- `--header`  
+  Display column headers in the result.
 - `-H, --headerinfo`  
   Display response header info
 - `--layout [layout1, layout2]`  
@@ -1631,6 +1912,8 @@ Get performance test results for asset list endpoint.
   Display result in table format.
 - `--tag [tag1, tag2]`  
   Test based on tags.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
@@ -1672,6 +1955,8 @@ Get performance test results for pngspan endpoint.
   Number of previews to be tested (default: 10).
 - `-C, --camera [camera1, camera2]`  
   Test based on cameras.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -1680,6 +1965,8 @@ Get performance test results for pngspan endpoint.
   Test based on camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the file name to save the test results.
+- `--header`  
+  Display column headers in the result.
 - `-H, --headerinfo`  
   Display response header info
 - `--layout [layout1, layout2]`  
@@ -1696,6 +1983,8 @@ Get performance test results for pngspan endpoint.
   Display result in table format.
 - `--tag [tag1, tag2]`  
   Test based on tags.
+- `--time`  
+  Display the execution time of the command.
 - `--width [width]`  
   Width of pngspan to be tested.
 
@@ -1740,12 +2029,16 @@ Get performance test results for live video.
   Number of videos to be tested (default: 1).
 - `-C, --camera [camera1, camera2]`  
   Test based on cameras.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `--esn [esn1, esn2]`  
   Test based on camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the file name to save the test results.
+- `--header`  
+  Display column headers in the result.
 - `-l, --length`  
   Specify the video duration for analysis (default: 5s).
 - `--layout [layout1, layout2]`  
@@ -1760,6 +2053,8 @@ Get performance test results for live video.
   Display result in table format.
 - `--tag [tag1, tag2]`  
   Test based on tags.
+- `--time`  
+  Display the execution time of the command.
 
 ## EXAMPLES
 
@@ -1793,10 +2088,12 @@ Get performance test results for history video.
   Test based on bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`  
   Test based on bridge ESNs.
-- `-C, --camera [camera1, camera2]`  
-  Test based on cameras.
 - `-c, --count [count]`  
   Number of previews to be tested (default: 5).
+- `-C, --camera [camera1, camera2]`  
+  Test based on cameras.
+- `--call-time`  
+  Get api response time.
 - `-d, --debug`  
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`  
@@ -1805,12 +2102,14 @@ Get performance test results for history video.
   Test based on camera ESNs.
 - `-f, --file-name [file name]`  
   Specify the file name to save the test results.
+- `--header`  
+  Display column headers in the result.
+- `-l, --length`  
+  Specify the video duration for analysis (default: 10s).
 - `--layout [layout1, layout2]`  
   Test based on layouts.
 - `--layout-id [layout id1, layout id2]`  
   Test based on layouts IDs.
-- `-l, --length`  
-  Specify the video duration for analysis (default: 10s).
 - `-s, --start-time [start time]`  
   Specify the start timestamp for analysis.
 - `--site [site1, site2]`  
@@ -1821,6 +2120,8 @@ Get performance test results for history video.
   Display result in table format.
 - `--tag [tag1, tag2]`  
   Test based on tags.
+- `--time`  
+  Display the execution time of the command.
 
 #### Notes:
 
