@@ -484,6 +484,67 @@ een archive list --detailed --csv --target-directory /path/to/output
 een archive download <archive> --target-directory /path/to/save --overwrite --debug
 ```
 
+# auditlog - Manage Audit logs
+
+## NAME
+
+`auditlog` - manage audit log.
+
+## SYNOPSIS
+
+```
+een auditlog [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `auditlog` command allows you to list audit log.
+
+## COMMANDS
+
+### list
+
+List audit logs.
+
+#### Options:
+
+- `--call-time`
+  Get api response time.
+- `--csv`
+  List all audit log in CSV format.
+- `-d, --debug`
+  Enable detailed debug output for troubleshooting.
+- `-e, --end-time [end time]`
+  End time for audit log events(defaults to current time)
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List all audit log in CSV format in Google Sheets.
+- `-H, --header`
+  Display column headers in the result. By default headers will be hidden.
+- `--prompt`
+  Show user confirmation prompts.
+- `-s, --start-time [start time]`
+  Start time for audit log events(defaults to 10 minutes before the current time)
+- `--time`
+  Display the execution time of the command.
+- `-u, --userid [user id]`
+  Filter audit log by user-id
+
+## EXAMPLES
+
+- To list all audit logs:
+
+```bash
+een auditlog list
+```
+
+- To list all audit logs for a specific time:
+
+```bash
+een auditlog list -s 20250328010101.000 -e 20250328010204.201
+```
+
 # camera - Manage Cameras
 
 ## NAME
@@ -864,6 +925,33 @@ Get camera purging and duty cycle.
 
 ---
 
+### i-summary
+
+Get camera installer summary.
+
+#### Options:
+
+- `--call-time`
+  Get api response time.
+- `--csv`
+  List the details in csv format
+- `-d, --debug`
+  Enable detailed debug output for troubleshooting.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List the details in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `-l, --long`
+  List the installer summary list in long format.
+- `--prompt`
+  Show user confirmation prompts.
+- `--time`
+  Display the execution time of the command.
+
+---
+
 ### availability
 
 Get camera availability.
@@ -1162,21 +1250,29 @@ List switches.
 
 #### Options:
 
-- `-b, --bridge`  
-  List the bridge ESNs associated with the switches
-- `--call-time`  
+- `-b, --bridge`
+  List the bridge ESNs associated with the switches.
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
-  Enable detailed debug output for troubleshooting
-- `--header`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
+  Enable detailed debug output for troubleshooting.
+- `-f, --file-name`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
   Display column headers in the result.
-- `--id`  
-  List the IDs of the switches
-- `-l, --long`  
-  List switch details, including switch ID, bridge ESN, and status
-- `-s, --status`  
-  List the status of the switches
-- `--time`  
+- `--id`
+  List the IDs of the switches.
+- `-l, --long`
+  List switch details, including switch ID, bridge ESN, and status.
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `-s, --status`
+  List the status of the switches.
+- `--time`
   Display the execution time of the command.
 
 ## EXAMPLES
@@ -1235,6 +1331,8 @@ List sensors.
   Enable detailed debug output for troubleshooting.
 - `-f, --file-name [file name]`  
   Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List all sensors in CSV format in Google Sheets.
 - `-H, --header`  
   Display column headers in the result.
 - `--id`
@@ -1274,6 +1372,57 @@ een sensor list --name
 
 ```bash
 een sensor list --name --status
+```
+
+# speaker - Manage Speakers
+
+## NAME
+
+`speaker` - manage and interact with speakers.
+
+## SYNOPSIS
+
+```
+een speaker [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `speaker` command allows you to manage speakers and list all available speakers.
+
+## COMMANDS
+
+### list
+
+List speakers.
+
+#### Options:
+
+- `--call-time`
+  Get api response time.
+- `--csv`
+  List all speakers in CSV format.
+- `-d, --debug`
+  Enable detailed debug output for troubleshooting.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List all speakers in CSV format in Google Sheets.
+- `-H, --header`
+  Display column headers in the result. By default headers will be hidden.
+- `-l, --long`
+  List more details of speaker.
+- `--prompt`
+  Show user confirmation prompts.
+- `--time`
+  Display the execution time of the command.
+
+## EXAMPLES
+
+- To list all speakers:
+
+```bash
+een speaker list
 ```
 
 # site - Manage Sites
@@ -2074,6 +2223,65 @@ een perftest live --layout "layout1"
 
 ```bash
 een perftest live --site "site1"
+```
+
+### live-video-latency
+
+Get test results live video latency
+
+#### Options
+
+- `-a, --all-log`
+  Display execution logs.
+- `-b, --bridge [bridge1, bridge2]`
+  Test based on bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Test based on bridge ESNs.
+- `-c, --count [count]`
+  Number of videos frames to be tested (default: 3).
+- `-C, --camera [camera1, camera2]`
+  Test based on cameras.
+- `--call-time`
+  Get api response time.
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
+  Enable detailed debug output for troubleshooting.
+- `--esn [esn1, esn2]`
+  Test based on camera ESNs.
+- `-f, --file-name [file name]`
+  Specify the file name to save the test results.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `--layout [layout1, layout2]`
+  Test based on layouts.
+- `--layout-id [layout id1, layout id2]`
+  Test based on layouts IDs.
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `--site [site1, site2]`
+  Test based on sites.
+- `--site-id [site id1, site id2]`
+  Test based on site IDs.
+- `--tag [tag1, tag2]`
+  Test based on tags.
+- `--time`
+  Display the execution time of the command.
+
+## EXAMPLES
+
+- To test live video latency of all the cameras in an account:
+
+```bash
+een perftest live-video-latency
+```
+
+- To test live video latency of all the cameras in a specific bridge:
+
+```bash
+een perftest live-video-latency --bridge-esn "<bridge_id>"
 ```
 
 ### historic
