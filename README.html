@@ -602,6 +602,59 @@ een camera list --help
 </ul>
 <pre><code class="language-bash">een archive download &lt;archive&gt; --target-directory /path/to/save --overwrite --debug
 </code></pre>
+<h1>auditlog - Manage Audit logs</h1>
+<h2>NAME</h2>
+<p><code>auditlog</code> - manage audit log.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een auditlog [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>The <code>auditlog</code> command allows you to list audit log.</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List audit logs.</p>
+<h4>Options:</h4>
+<ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List all audit log in CSV format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-e, --end-time [end time]</code> End time for audit log
+    events(defaults to current time)
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List all audit log in CSV format in Google
+    Sheets.
+  </li>
+  <li>
+    <code>-H, --header</code> Display column headers in the result. By default
+    headers will be hidden.
+  </li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li>
+    <code>-s, --start-time [start time]</code> Start time for audit log
+    events(defaults to 10 minutes before the current time)
+  </li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+  <li><code>-u, --userid [user id]</code> Filter audit log by user-id</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all audit logs:</li>
+</ul>
+<pre><code class="language-bash">een auditlog list
+</code></pre>
+<ul>
+  <li>To list all audit logs for a specific time:</li>
+</ul>
+<pre><code class="language-bash">een auditlog list -s 20250328010101.000 -e 20250328010204.201
+</code></pre>
 <h1>camera - Manage Cameras</h1>
 <h2>NAME</h2>
 <p><code>camera</code> - Manage camera settings and operations</p>
@@ -1213,6 +1266,31 @@ een camera list --help
   </li>
 </ul>
 <hr />
+<h3>i-summary</h3>
+<p>Get camera installer summary.</p>
+<h4>Options:</h4>
+<ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List the details in csv format</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List the details in CSV format in Google
+    Sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>-l, --long</code> List the installer summary list in long format.
+  </li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<hr />
 <h3>availability</h3>
 <p>Get camera availability.</p>
 <h4>Required options:</h4>
@@ -1638,37 +1716,31 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>-b, --bridge</code><br />
-    List the bridge ESNs associated with the switches
+    <code>-b, --bridge</code> List the bridge ESNs associated with the switches.
+  </li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-f, --file-name</code> Specify the name of the file where the output
+    will be saved.
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li><code>--id</code> List the IDs of the switches.</li>
+  <li>
+    <code>-l, --long</code> List switch details, including switch ID, bridge
+    ESN, and status.
   </li>
   <li>
-    <code>--header</code><br />
-    Display column headers in the result.
+    <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
-  <li>
-    <code>--id</code><br />
-    List the IDs of the switches
-  </li>
-  <li>
-    <code>-l, --long</code><br />
-    List switch details, including switch ID, bridge ESN, and status
-  </li>
-  <li>
-    <code>-s, --status</code><br />
-    List the status of the switches
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
+  <li><code>-s, --status</code> List the status of the switches.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -1723,6 +1795,10 @@ een camera list --help
     Specify the name of the file where the output will be saved.
   </li>
   <li>
+    <code>-g, --google-sheet</code> List all sensors in CSV format in Google
+    Sheets.
+  </li>
+  <li>
     <code>-H, --header</code><br />
     Display column headers in the result.
   </li>
@@ -1764,6 +1840,49 @@ een camera list --help
   <li>To list sensor names and their statuses:</li>
 </ul>
 <pre><code class="language-bash">een sensor list --name --status
+</code></pre>
+<h1>speaker - Manage Speakers</h1>
+<h2>NAME</h2>
+<p><code>speaker</code> - manage and interact with speakers.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een speaker [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>speaker</code> command allows you to manage speakers and list all
+  available speakers.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List speakers.</p>
+<h4>Options:</h4>
+<ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List all speakers in CSV format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List all speakers in CSV format in Google
+    Sheets.
+  </li>
+  <li>
+    <code>-H, --header</code> Display column headers in the result. By default
+    headers will be hidden.
+  </li>
+  <li><code>-l, --long</code> List more details of speaker.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all speakers:</li>
+</ul>
+<pre><code class="language-bash">een speaker list
 </code></pre>
 <h1>site - Manage Sites</h1>
 <h2>NAME</h2>
@@ -2917,6 +3036,58 @@ een camera list --help
   <li>To test live video performance of all the cameras in a specific site:</li>
 </ul>
 <pre><code class="language-bash">een perftest live --site &quot;site1&quot;
+</code></pre>
+<h3>live-video-latency</h3>
+<p>Get test results live video latency</p>
+<h4>Options</h4>
+<ul>
+  <li><code>-a, --all-log</code> Display execution logs.</li>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Test based on bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Test based on bridge
+    ESNs.
+  </li>
+  <li>
+    <code>-c, --count [count]</code> Number of videos frames to be tested
+    (default: 3).
+  </li>
+  <li><code>-C, --camera [camera1, camera2]</code> Test based on cameras.</li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Test based on camera ESNs.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the file name to save the
+    test results.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li><code>--layout [layout1, layout2]</code> Test based on layouts.</li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code> Test based on layouts IDs.
+  </li>
+  <li>
+    <code>--prompt</code> Show user confirmation prompts (default: false).
+  </li>
+  <li><code>--site [site1, site2]</code> Test based on sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Test based on site IDs.</li>
+  <li><code>--tag [tag1, tag2]</code> Test based on tags.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To test live video latency of all the cameras in an account:</li>
+</ul>
+<pre><code class="language-bash">een perftest live-video-latency
+</code></pre>
+<ul>
+  <li>To test live video latency of all the cameras in a specific bridge:</li>
+</ul>
+<pre><code class="language-bash">een perftest live-video-latency --bridge-esn &quot;&lt;bridge_id&gt;&quot;
 </code></pre>
 <h3>historic</h3>
 <p>Get performance test results for history video.</p>
