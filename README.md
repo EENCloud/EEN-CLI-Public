@@ -57,7 +57,7 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
   Examples:
 
   ```
-  ./een --version
+  een --version
   ```
 
 - To check if the executable works fine
@@ -65,7 +65,7 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
   - Run the command:
 
   ```
-   ./een
+   een
   ```
 
   - Output:
@@ -259,37 +259,29 @@ List users.
 
 #### Options:
 
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `--csv`  
+- `--csv`
   Export all users in CSV format.
-- `-d, --debug`  
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-e, --email`  
-  Display user email addresses.
-- `-f, --file-name [file name]`  
+- `-f, --file-name [file name]`
   Specify the file name to save the output under. Use with the `--csv` option to generate a report.
-- `-F, --first-name`  
-  Display user first names.
-- `-g, --google-sheet`  
+- `-g, --google-sheet`
   Export users in CSV format and upload to Google Sheets.
-- `--header`  
+- `--header`
   Display column headers in the result.
-- `--html`  
+- `--html`
   Generate an HTML report for user permissions.
-- `-l, --long`  
+- `--include [value1, value2]`
+  Display associated items. supported values: email, firstname, id, lastname, permission, status.
+- `-l, --long`
   Display user details, including name, email, last login, status, and permissions.
-- `-L, --last-name`  
-  Display user last names.
-- `-p, --permission`  
-  Display user permissions.
-- `--prompt`  
+- `--prompt`
   Show user confirmation prompts.
-- `-s, --status`  
-  Display user statuses.
-- `--time`  
+- `--time`
   Display the execution time of the command.
-- `--v1`  
+- `--v1`
   Use v1 APIs for listing users.
 
 #### Actions:
@@ -344,21 +336,21 @@ List all logged in accounts.
 
 #### Options:
 
-- `-a, --account-id`  
-  List account ID.
-- `-A, --account-name`  
-  List account name.
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List all audit log in CSV format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `--header`  
+- `--header`
   Display column headers in the result.
-- `-l, --long`  
+- `--include [value1, value2]`
+  Display associated items. supported values: id, name.
+- `-l, --long`
   Display account details, including account ID, account name, and account type.
-- `-s, --sub-account`  
+- `-s, --sub-account`
   List sub-accounts (only applicable for reseller accounts).
-- `--time`  
+- `--time`
   Display the execution time of the command.
 
 ---
@@ -387,20 +379,32 @@ Switch to an account.
 - To list all accounts of the reseller:
 
 ```bash
-een account list --debug
+een account list
 ```
 
-- To switch to a specific sub-account:
+- Switch to a sub-account (from reseller account):
 
 ```bash
-een account switch --sub-account-id <sub-account ID> --debug
+een account switch --sub-account-id <sub-account ID>
 ```
 
-- To switch to a specific account:
+- Switch back to reseller account (from sub-account):
 
 ```bash
-een account switch --account-id <account ID> --debug
+een account switch
 ```
+
+- Switch between different logged-in accounts:
+
+```bash
+een account switch --account-id <account ID>
+```
+
+## Notes:
+
+- When you're logged in as a reseller and want to access a sub-account, you must use the `-s` flag with the sub-account ID.
+- To switch back to the reseller account from a sub-account, run `een account switch` without any options.
+- The `-a` and `--username` options are for switching between different accounts you're logged into, not for sub-account switching.
 
 # archive - Manage Archives
 
@@ -528,8 +532,11 @@ List audit logs.
   Start time for audit log events(defaults to 10 minutes before the current time)
 - `--time`
   Display the execution time of the command.
+
+#### Filters:
+
 - `-u, --userid [user id]`
-  Filter audit log by user-id
+  Filter audit log by user-id.
 
 ## EXAMPLES
 
@@ -543,6 +550,68 @@ een auditlog list
 
 ```bash
 een auditlog list -s 20250328010101.000 -e 20250328010204.201
+```
+
+# availabledevices - Manage Available Devices
+
+## NAME
+
+`availabledevices` - manage available devices.
+
+## SYNOPSIS
+
+```
+een availabledevices [COMMAND] [OPTIONS]
+```
+
+## COMMANDS
+
+### list
+
+List available devices.
+
+#### Options:
+
+- `--call-time`
+  Get api response time.
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
+  Enable detailed debug output for troubleshooting.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `-l, --long`
+  Display user details, including make, model and IP Address.
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `--time`
+  Time taken to execute the command.
+
+#### Selectors:
+
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge esn.
+- `--devicestate [state1, state2]`
+  Filter by device state. supported values: notSupported, addable, inOtherAccount, unknown.
+- `--devicetype [type1, type2]`
+  Filter by device types. supported values: camera, speaker, display, multiCamera.
+
+## EXAMPLES
+
+- To list all available devices:
+
+```bash
+een availabledevices list
+```
+
+- To list all available devices for a specific type:
+
+```bash
+een availabledevices list --devicetype 'camera, speaker' -d
 ```
 
 # camera - Manage Cameras
@@ -565,109 +634,88 @@ List cameras.
 
 #### Options:
 
-- `-a, --available`  
-  List available cameras that are currently operational.
-- `-A, --all`  
-  List all cameras without filtering.
-- `-b, --bridge`  
-  List bridge name of the cameras.
-- `-B, --bridge-esn`  
-  List bridge ESNs of the cameras.
-- `-C, --camera`  
-  List cameras.
-- `--call-time`  
-  Get API response time.
-- `--csv`  
-  List cameras in CSV format.
-- `-d, --debug`  
-  Enable debug output for troubleshooting and detailed logs.
-- `--direct`  
-  List cameras which are direct to cloud.
-- `-e, --end-time [end time]`  
-  Filter cameras based on video end time. Format: `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date-time with milliseconds).
-- `--esn`  
-  List cameras ESNs.
-- `-f, --file-name [file name]`  
-  Specify the name of the file where the output will be saved.
-- `filter-layout [layout name1, layout name2]`  
-  Filter cameras by layout.
-- `filter-layout-id [layout id, layout id]`  
-  Filter cameras by layout ID.
-- `filter-site [site name1, site name2]`
-  Filter cameras by site.
-- `filter-site-id [site id1, site id2]`
-  Filter cameras by site ID.
-- `filter-status <status>`
-  Filter cameras by status
-- `-g, --google-sheet`  
-  List cameras in CSV format in a Google Sheet.
-- `-H, --header`  
-  Display column headers in the result.
-- `--html`  
-  Generate a chart of the camera list in an HTML file format.
-- `-l, --long`  
-  List camera details, including camera, camera ESN, bridge, bridge ESN, site, site ID, status, tags, shared, timezone, IP address and GUID.
-- `--prompt`  
-  Show user confirmation prompts during the command execution.
-- `-s, --start-time [start time]`  
-  Filter cameras based on video start time. Format: `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date-time with milliseconds).
-- `--shared`  
-  List cameras that are shared with other users.
-- `--short`  
-  List only the camera names and ESNs in CSV format to the specified file.
-- `--site`  
-  List sites of the cameras.
-- `--site-id`  
-  List site IDs of the cameras.
-- `--status`  
-  List status of the cameras.
-- `-t, --tag [tag1, tag2]`  
-  Filter cameras by tags.
-- `-T, --tree`  
-  List cameras and associated bridges in a tree format.
-- `--tag`  
-  List tags of the cameras.
-- `--time`  
-  Display the execution time of the command.
-- `--v1`  
-  Use version 1 APIs for backward compatibility.
-
-#### Notes:
-
-- Start-time and end-time must follow the format: `YYYYMMDDHHMMSS.sss` (Compact ISO 8601 date-time with milliseconds).
-
----
-
-### status
-
-List status of all cameras.
-
-#### Options:
-
-- `--call-time`  
+- `-a, --available`
+  List cameras discovered by bridges but not yet added.
+- `-A, --all`
+  List all cameras, including shared ones.
+- `--call-time`
   Get api response time.
-- `--csv`  
-  List camera status in CSV format.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-f, --file-name [file name]`  
+- `--direct`
+  List cameras which are direct to cloud.
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
-- `-g, --google-sheet`  
-  List camera status in CSV format in Google Sheet.
-- `--html`  
-  Generate chart in HTML file.
-- `--layout [layout name1, layout name2]`  
-  Layout names associated with the camera.
-- `--layout-id [layout id1, layout id2]`  
-  Layout IDs associated with the camera.
-- `--prompt`  
-  Show user confirmation prompts.
-- `-t, --tag [tag1, tag2]`  
-  Filter cameras using tags.
-- `--time`  
-  Display the execution time of the command.
-- `--v1`  
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `--html`
+  Generate a chart in an html file.
+- `--include [value1, value2]`
+  Display associated items. supported values: esn, camera, bridge-esn, bridge, site, siteid, status, tag.
+- `-l, --long`
+  List camera details including camera, esn, bridge, bridge esn, site, site id, status, timezone, tags, shared, ip address and guid.
+- `--layout [layout name1, layout name2]`
+  Filter cameras by layouts.
+- `--layout-id [layout id1, layout id2]`
+  Filter cameras by layout IDs.
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `--shared`
+  List cameras that are shared.
+- `--site [site name1, site name2]`
+  Filter cameras by sites.
+- `--site-id [site id1, site id2]`
+  Filter cameras by site IDs.
+- `--status [status]`
+  Filter cameras by status.
+- `-t, --tag [tag1, tag2]`
+  Filter cameras by tags.
+- `-T, --tree`
+  List cameras and associated bridges in tree format.
+- `--time`
+  Time taken to execute the command.
+- `--v1`
   Use v1 APIs.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `--layout [layout name1, layout name2]`
+  Filter cameras by layouts.
+- `--layout-id [layout id1, layout id2]`
+  Filter cameras by layout IDs.
+- `--site [site name1, site name2]`
+  Filter cameras by sites.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
+- `--status [status]`
+  Filter cameras by status.
+- `-t, --tag [tag1, tag2]`
+  Filter cameras by tags.
+
+#### Example
+
+To list all cameras with specific fields in CSV format (with headers):
+
+```bash
+een camera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
+```
+
+#### Output
+
+```csv
+"camera id","camera name","bridge id","bridge name","site id","site name","status","tags"
+"12345d7f","Test camera 1","10135b4a","Test bridge - 1","b583ace7-6ee2-450a-9f5a-15a8f7ffcd73","Test Site - 1","deviceOffline","109"
+"13345d7f","Test camera 2","10135b4a","Test bridge - 2","b583ace7-6ee2-450a-9f5a-15a8f7ffcd73","Test Site - 2","online","108"
+"14345d7f","Test camera 3","10135b4a","Test Site - 2","b583ace7-6ee2-450a-9f5a-15a8f7ffcd73","Test Site - 2","off","110"
+```
 
 ---
 
@@ -703,93 +751,250 @@ Get all camera settings.
 
 ---
 
+### get
+
+Get camera settings and analytics.
+
+#### DESCRIPTION
+
+The `camera get` command allows you to get a specific setting for one or more cameras.
+You can specify the setting to retrieve as `<parameter>`.
+You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific cameras.
+
+#### Parameters:
+
+- `audio`
+  Get audio settings(Is audio enabled or not).
+- `camera-name`
+  Get the camera name.
+- `password`
+  Get the camera password.
+- `username`
+  Get the camera username.
+- `preview-update-rate`
+  Get the preview video update rate (in ms).
+- `preview-quality`
+  Get the preview video quality.
+- `preview-resolution`
+  Get the preview video resolution.
+- `preview-transmit-mode`
+  Get the preview video transmit mode.
+- `video-capture-mode`
+  Get the video capture mode.
+- `video-quality`
+  Get the video quality.
+- `video-resolution`
+  Get the video resolution.
+- `video-transmit-mode`
+  Get the video transmit mode.
+- `cloud-retention`
+  Get the cloud retention days.
+- `minimum-premise-retention`
+  Get the minimum premise retention days.
+- `maximum-premise-retention`
+  Get the maximum premise retention days.
+- `scene-analytics`
+  Get scene analytics (Is scene analytics enabled or not).
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `--esn [esn1, esn2]`
+  Filter based on camera ESNs.
+- `--layout [layout name1, layout name2]`
+  Filter cameras by layouts.
+- `--layout-id [layout id1, layout id2]`
+  Filter cameras by layout IDs.
+- `--site [site name1, site name2]`
+  Filter cameras by sites.
+- `--site-id [site id1, site id2]`
+  Filter cameras by site IDs.
+  `--status [status]`
+  Filter cameras by status.
+- `--tag [tag1, tag2]`
+  Filter cameras by tags.
+
+#### Common Options:
+
+- `--call-time`
+  Get api response time.
+- `--csv`
+  Export the result in CSV format.
+- `--debug`
+  Enable detailed debug output for troubleshooting.
+- `--file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Export the result to Google Sheets.
+- `--header`
+  Display column headers in the result.
+- `--prompt`
+  Show user confirmation prompts.
+- `--time`
+  Display the execution time of the command.
+
+#### EXAMPLES
+
+```bash
+# Get audio settings
+een camera get audio --esn 12345
+
+# Get preview update rate and save as CSV
+een camera get preview-update-rate --bridge-esn 12345 --csv -f update-rate.csv
+
+# Get scene analytics for all cameras and export to Google Sheets with headers
+een camera get scene-analytics --enable -g --header
+```
+
+#### Output
+
+When running a `camera get audio` command with `--csv` and `--header`, the output will be in CSV format and is suitable for scripting and automation.
+
+```
+"camera id","camera name","is audio enabled"
+"10062dd9","0000","no"
+```
+
+---
+
 ### set
 
 Edit camera's settings.
 
-#### Arguments:
+#### DESCRIPTION
 
-- `-b, --bridge [bridge1, bridge2]`  
-  Edit camera settings by bridge ESNs.
-- `--esn [esn1, esn2]`  
-  Edit camera settings by camera ESNs.
-- `-f, --file-name [file name]`  
-  Edit camera settings by reading the CSV file.
-- `-T, --tag [tag1, tag2]`  
-  Edit camera settings by tag.
-- `-s, --site-id [site id1, site id2]`  
-  Edit camera settings by site id.
-- `-S, --site [site name1, site name2]`  
-  Edit camera settings by site name.
-- `--layout-id [layout id1, layout id2]`  
-  Edit camera settings by layout id.
-- `--layout [layout name1, layout name2]`  
-  Edit camera settings by layout name.
-- `--prompt`  
-  Show user confirmation prompts.
+The `camera set` command allows you to update a specific setting for one or more cameras.
+You can specify the setting to change as `<parameter>`, and the new value as `<value>`.
+You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific cameras.
 
-#### Options:
+#### Parameters:
 
-- `-a, --aspect-ratio [aspect ratio]`  
-  Preview aspect ratio.
-- `--audio-disable`  
-  Disable audio.
-- `--audio-enable`  
-  Enable audio.
-- `-B, --bridge-target-days [bridge target days]`  
-  Bridge target days.
-- `-c, --cloud-retention-days [cloud retention days]`  
-  Cloud retention days.
-- `-C, --camera-name [camera name]`  
-  Camera name.
-- `--call-time`  
+- `audio`
+  Enable or disable audio (use --enable or --disable).
+- `camera-name <camera-name>`
+  Set the camera name.
+- `password <password>`
+  Set the camera password.
+- `username <username>`
+  Set the camera username.
+- `preview-update-rate <milliseconds>`
+  Set the preview video update rate (in ms).
+- `preview-quality <quality>`
+  Set the preview video quality.
+- `preview-resolution <resolution>`
+  Set the preview video resolution.
+- `preview-transmit-mode <mode>`
+  Set the preview video transmit mode.
+- `video-capture-mode <mode>`
+  Set the video capture mode.
+- `video-quality <quality>`
+  Set the video quality.
+- `video-resolution <resolution>`
+  Set the video resolution.
+- `video-transmit-mode <mode>`
+  Set the video transmit mode.
+- `cloud-retention <days>`
+  Set the cloud retention days.
+- `minimum-premise-retention <days>`
+  Set the minimum premise retention days.
+- `maximum-premise-retention <days>`
+  Set the maximum premise retention days.
+- `scene-analytics`
+  Enable or disable scene analytics (use --enable or --disable).
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `--esn [esn1, esn2]`
+  Comma-separated list of camera ESNs to update, or use `'*'` to apply to all cameras.
+- `--layout [layout name1, layout name2]`
+  Filter cameras by layouts.
+- `--layout-id [layout id1, layout id2]`
+  Filter cameras by layout IDs.
+- `--site [site name1, site name2]`
+  Filter cameras by sites.
+- `--site-id [site id1, site id2]`
+  Filter cameras by site IDs.
+  `--status [status]`
+  Filter cameras by status.
+- `--tag [tag1, tag2]`
+  Filter cameras by tags.
+
+#### Common Options:
+
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  Export the result in CSV format.
+- `--debug`
   Enable detailed debug output for troubleshooting.
-- `-L, --local-retention-days [local retention days]`  
-  Local retention days.
-- `--layout [layout name1, layout name2]`  
-  Layout names associated with the camera.
-- `--layout-id [layout id1, layout id2]`  
-  Layout IDs associated with the camera.
-- `-p, --password [password]`  
-  Password.
-- `--preview-interval-ms [preview interval ms]`  
-  Preview interval rate in milliseconds.
-- `--preview-only-cloud-retention [preview only cloud retention]`  
-  Preview only cloud retention.
-- `--preview-quality [preview quality]`  
-  Preview quality.
-- `--preview-resolution [preview resolution]`  
-  Preview resolution.
-- `--preview-transmit-mode [preview transmit mode]`  
-  Preview transmit mode.
-- `--prompt`  
+- `--file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Export the result to Google Sheets.
+- `--header`
+  Display column headers in the result.
+- `--prompt`
   Show user confirmation prompts.
-- `-s, --site-id [site id1, site id2]`  
-  Site IDs associated with the camera.
-- `-S, --site [site name1, site name2]`  
-  Site name associated with the camera.
-- `-t, --tag [tag1, tag2]`  
-  Tags associated with camera.
-- `--time`  
+- `--time`
   Display the execution time of the command.
-- `-u, --username [username]`  
-  Username.
-- `--video-capture-mode [video capture mode]`  
-  When to record video.
-- `--video-quality [video quality]`  
-  Video quality.
-- `--video-resolution [video resolution]`  
-  Video resolution.
-- `--video-transmit-mode [video transmit mode]`  
-  Video transmit mode.
+
+#### EXAMPLES
+
+```bash
+# Enable audio for specific cameras
+een camera set audio --enable --esn 12345
+
+# Set preview update rate and save as CSV
+een camera set preview-update-rate 5000 --bridge-esn 12345 --csv -f update-rate.csv
+
+# Set video quality
+een camera set video-quality high --esn 12345
+
+# Enable scene analytics for all cameras and export to Google Sheets
+een camera set scene-analytics --enable --esn '*' -g --header
+```
+
+#### Output
+
+When running a `camera set` command with `--csv` and `--header`, the output will be in CSV format and is suitable for scripting and automation.
+
+**Successful Output Example:**
+
+```text
+Updated camera for 1/1 camera
+
+"camera id","camera name","camera status","is successful"
+"1002257a","93 Test Bengaluru Operations Room - PoS demo test","online","yes"
+```
+
+**Error Output Example:**
+
+```text
+Updated camera for 0/1 camera
+
+"camera id","camera name","camera status","is successful","error reason"
+"100457e6","Mobotix","online","no","Invalid argument: microphoneEnabled (response status: 400)"
+```
+
+**Scripting/AI Usage Notes:**
+
+- The first line indicates how many cameras were updated successfully.
+- The CSV output can be parsed to check the `"is successful"` column for `"yes"` or `"no"`.
+- If an error occurs, the `"error reason"` column will contain the error message.
+- This format is ideal for automation: scripts can check for `"yes"`/`"no"` and handle errors accordingly.
 
 ---
-
-#### Notes:
-
-- For `--esn "*"`, it changes settings for all cameras.
 
 ### delete
 
@@ -958,41 +1163,56 @@ Get camera availability.
 
 #### Required options:
 
-- `-s, --start-time [start time]`  
+- `-s, --start-time [start time]`
   Video start time.
 
 #### Optional options:
 
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-e, --end-time [end time]`  
-  Video end time.
-- `--esn [esn1, esn2]`  
-  ESNs of the camera.
-- `-f, --file-name [file name]`  
+- `-e, --end-time [end time]`
+  End time for video.
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
-- `-g, --google-sheet`  
-  List camera availability in CSV format in Google Sheets.
-- `--layout [layout name1, layout name2]`
-  Layout names associated with the camera.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `-N, --no-check`
+  List all available data, including unchecked items.
+- `-p, --preview-availability`
+  Display preview recording status along with camera availability.
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `-s, --start-time [start time]`
+  Start time for video (required).
+- `--time`
+  Time taken to execute the command.
+
+#### Filters:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `-t, --tag [tag1, tag2]`
+  Filter cameras by tags.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `--esn [esn1, esn2]`
+  Filter based on camera ESNs.
 - `--layout-id [layout id1, layout id2]`
-  Layout IDs associated with the camera.
-- `-N, --no-check`  
-  Show all available data, including unchecked items.
-- `-p, --preview-availability`  
-  Get preview recording status along with camera availability.
-- `--prompt`  
-  Show user confirmation prompts.
-- `--site [site name1, site name2]`  
-  List cameras located in the specified sites. Provide a comma-separated list of site names.
-- `--site-id [site id1, site id2]`  
-  List cameras located in the specified sites. Provide a comma-separated list of site IDs.
-- `-t, --tag [tag1, tag2]`  
-  Filter cameras using tags.
-- `--time`  
-  Display the execution time of the command.
+  Filter cameras by layout IDs
+- `--layout [layout name1, layout name2]`
+  Filter cameras by layouts.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
+- `--site [site name1, site name2]`
+  Filter cameras by sites.
 
 #### Notes:
 
@@ -1068,42 +1288,41 @@ List all bridges.
 
 #### Options:
 
-- `-a, --available`  
-  List discovered cameras that are not yet attached.
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `--csv`  
+- `--csv`
   List all bridges in CSV format.
-- `-d, --debug`  
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `--esn`  
-  List bridge ESNs.
-- `-f, --file-name [file name]`  
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
-- `-g, --google-sheet`  
+- `-g, --google-sheet`
   List bridges in CSV format in Google Sheets.
-- `--header`  
+- `--header`
   Display column headers in the result.
-- `--html`  
+- `--html`
   Generate a chart in HTML file.
-- `-l, --long`  
-  Display bridge details, including bridge ID, name, and location. For v3, also includes cameras in the account and online cameras; for v1, includes GUID.
-- `--prompt`  
+- `--include[item 1, item 2]`
+  display associated items. supported values: esn
+- `-l, --long`
+  Display bridge details including: "bridge id","bridge name","serial number","tags","connection status","timezone","site id","site name","mac address","guid","ip address","createtimestamp","number of cameras online","cloud bandwidth used last 7 days average","average available bandwidth last 7 days".
+- `--prompt`
   Show user confirmation prompts.
-- `-s, --status [status]`  
-  List bridges with a specific status.
-- `--site [site name1, site name2]`
-  List bridges in a specific site name.
-- `--site-id [site id1, site id2]`  
-  List bridges in a specific site id.
-- `-t, --tag [tag1, tag2]`  
-  Filter bridges by tags.
-- `-T, --tree`  
-  View bridges and associated cameras in tree format.
-- `--time`  
+- `--time`
   Display the execution time of the command.
-- `--v1`  
+- `--v1`
   Use v1 APIs.
+
+#### Filters:
+
+- `-s, --status [status]`
+  Filter bridges with a specific status.
+- `--site [site name1, site name2]`
+  Filter bridges by site name.
+- `--site-id [site id1, site id2]`
+  Filter bridges by site id.
+- `-t, --tag [tag1, tag2]`
+  Filter bridges by tags.
 
 #### Actions:
 
@@ -1111,24 +1330,21 @@ List all bridges.
 - If `--csv` is specified and `--v1`, list bridges in CSV format using v1.
 - Handle other combinations of options to perform various listing and reporting tasks.
 
----
+#### Example
 
-### status
+To list all bridge ESNs in CSV format (with headers):
 
-List bridge status.
+```bash
+een bridge list --include 'esn' --header --csv
+```
 
-#### Options:
+#### Output
 
-- `--call-time`  
-  Get api response time.
-- `-d, --debug`  
-  Enable detailed debug output for troubleshooting
-- `-g, --google-sheet`  
-  List bridges in csv format in a Google Sheet
-- `--html`  
-  Generate a chart in an HTML file
-- `--time`  
-  Display the execution time of the command.
+```csv
+"bridge id"
+"100479d5"
+"1002f572"
+```
 
 ---
 
@@ -1138,35 +1354,42 @@ Get bridge availability.
 
 #### Required options:
 
-- `-s, --start-time [start time]`  
+- `-s, --start-time [start time]`
   Specify video start time.
 
 #### Optional options:
 
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in CSV format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
 - `-e, --end-time [end time]`
-  Specify video end time.
-- `--esn [esn1, esn2]`  
-  ESNs of the bridge
-- `-f, --file-name [file name]`  
-  Specify the file name to save the output
-- `-g, --google-sheet`  
-  List bridge availability in csv format in a Google Sheet
-- `-N, --no-check`  
-  Show all available data
-- `--prompt`  
-  Show user confirmation prompts
+  Specify video end time; ensure that the --start-time option is used.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `-N, --no-check`
+  Show all available data.
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `--time`
+  Time taken to execute the command.
+
+#### Selectors:
+
+- `--esn [esn1, esn2]`
+  Filter bridges by bridge ESNs.
 - `--site [site name1, site name2]`
-  Site name associated with the bridge
-- `--site-id [site id1, site id2]`  
-  Site ID associated with the bridge.
-- `-t, --tag [tag1, tag2]`  
-  Filter bridges using tags.
-- `--time`  
-  Display the execution time of the command.
+  Filter bridges by sites.
+- `--site-id [site id1, site id2]`
+  Filter bridges by site IDs.
+- `-t, --tag [tag1, tag2]`
+  Filter bridges by tags.
 
 ---
 
@@ -1250,8 +1473,6 @@ List switches.
 
 #### Options:
 
-- `-b, --bridge`
-  List the bridge ESNs associated with the switches.
 - `--call-time`
   Get api response time.
 - `--csv`
@@ -1264,14 +1485,12 @@ List switches.
   List details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
-- `--id`
-  List the IDs of the switches.
+- `--include [value1, value2]`
+  Display associated items. supported values: id, bridge, status.
 - `-l, --long`
   List switch details, including switch ID, bridge ESN, and status.
 - `--prompt`
   Show user confirmation prompts (default: false).
-- `-s, --status`
-  List the status of the switches.
 - `--time`
   Display the execution time of the command.
 
@@ -1319,39 +1538,25 @@ List sensors.
 
 #### Options:
 
-- `-b, --battery-level`
-  List battery level of sensors.
-- `B, --bt-signal`
-  List bluetooth signal strength of the sensors.
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `--csv`  
+- `--csv`
   List all sensors in CSV format.
-- `-d, --debug`  
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-f, --file-name [file name]`  
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   List all sensors in CSV format in Google Sheets.
-- `-H, --header`  
+- `-H, --header`
   Display column headers in the result.
-- `--id`
-  List ID of sensors.
-- `-l, --long`  
+- `--include [value1, value2]`
+  Display associated items. supported values: batterylevel, bluetoothsignal, id, name, parentid, status, site, siteid.
+- `-l, --long`
   List sensor details, including name, id, parentId, battery level, bluetooth strength, site name and status.
-- `--name`
-  List name of sensors.
-- `--parent-id`
-  List parent id of sensors.
-- `--prompt`  
+- `--prompt`
   Show user confirmation prompts.
-- `-s, --status`
-  List status of sensors.
-- `--site`
-  List site name of sensors.
-- `--site-id`  
-  List site ID of sensors.
-- `--time`  
+- `--time`
   Display the execution time of the command.
 
 ## EXAMPLES
@@ -1449,23 +1654,27 @@ List all sites.
 
 #### Options:
 
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `--csv`  
+- `--csv`
   List all sites in CSV format.
-- `-d, --debug`  
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-f, --file-name [file name]`  
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
-- `--header`  
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
   Display column headers in the result.
-- `-l, --long`  
+- `--include [value1, value2]`
+  Display associated items. supported values: siteid.
+- `-l, --long`
   List site details, including site name and site ID.
-- `--prompt`  
+- `--prompt`
   Show user confirmation prompts.
-- `-s, --site-id`  
+- `-s, --site-id`
   List the IDs of the sites.
-- `--time`  
+- `--time`
   Display the execution time of the command.
 
 #### Actions:
@@ -1663,24 +1872,29 @@ Get LPR events.
 
 #### Optional options:
 
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `--esn [esn1, esn2]`  
-  The ESN for camera of interest.
-- `--layout [layout name1, layout name2]`  
-  Layout names associated with the camera.
-- `--layout-id [layout id1, layout id2]`  
-  Layout IDs associated with the camera.
-- `--lp [license plate]`  
-  License plate number.
-- `-t, --tag [tag1, tag2]`  
-  Filter by camera tags.
+- `--header`
+  Display column headers in the result.
 - `--time`
   Display the execution time of the command.
-- `--v1`  
+- `--v1`
   Use v1 APIs.
+
+#### Filters:
+
+- `--esn [esn1, esn2]`
+  Filter by camera ESNs.
+- `--layout [layout name1, layout name2]`
+  Filter by Layout names associated with the camera.
+- `--layout-id [layout id1, layout id2]`
+  Filter by Layout IDs associated with the camera.
+- `--lp [license plate]`
+  Filter by License plate number.
+- `-t, --tag [tag1, tag2]`
+  Filter by camera tags.
 
 #### Actions:
 
@@ -1725,42 +1939,49 @@ Get VSP events.
 
 #### Options:
 
-- `-a, --access-type [access type]`  
-  Access type.
-- `-b, --body-type [types]`  
-   Vehicle body types.
-- `-c, --color [colors]`  
-  Vehicle colors.
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-D, --direction [directions]`  
-  Direction of the vehicle.
-- `-e, --end-time [end time]`  
+- `-e, --end-time [end time]`
   LPR end time.
-- `--esn [esn1, esn2]`  
-  Camera ESNs.
-- `-f, --file-name [file name]`  
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
-- `-g, --google-sheet`  
-  List VSP events in CSV format in Google Sheet
-- `--html`  
+- `-g, --google-sheet`
+  List VSP events in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result
+- `--html`
   Generate chart in HTML file.
-- `--lp [lp]`  
-  License plate number.
-- `-m, --make [makes]`  
-  Vehicle makes.
-- `--prompt`  
+- `--prompt`
   Show user confirmation prompts.
-- `-s, --start-time [start time]`  
+- `-s, --start-time [start time]`
   LPR start time.
-- `--site [site name1, site name2]`  
-  List events in the specified sites. Provide a comma-separated list of site names.
-- `--site-id [site id1, site id2]`  
-  List events in the specified sites. Provide a comma-separated list of site IDs.
-- `--time`  
+- `--time`
   Display the execution time of the command.
+
+#### Selectors:
+
+- `-a, --access-type [access types]`
+  Filter by access types.
+- `-b, --body-type [types]`
+  Filter by vehicle body types.
+- `-c, --color [colors]`
+  Filter by vehicle colors.
+- `-D, --direction [directions]`
+  Filter by direction of the vehicle.
+- `--esn [esn1, esn2]`
+  Filter by camera ESNs.
+- `--lp [lp]`
+  Filter by license plate number.
+- `-m, --make [makes]`
+  Filter by vehicle makes.
+- `--site [site name1, site name2]`
+  Filter by site name. Provide a comma-separated list of site names.
+- `--site-id [site id1, site id2]`
+  Filter by site id. Provide a comma-separated list of site IDs.
 
 #### Notes:
 
@@ -1777,44 +1998,51 @@ Get VSP events.
 
 Get VSP alerts.
 
-#### Options
+#### Options:
 
-- `-a, --allowed-vehicle`  
-  Alert type - allowed vehicle.
-- `-c, --count-of-license-plate`  
-  Alert type - count of license plate.
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-D, --denied-vehicle`  
-  Alert type - denied vehicle.
-- `-e, --end-time [end time]`  
+- `-e, --end-time [end time]`
   LPR end time.
-- `--esn [esn1, esn2]`  
-  Camera ESN.
-- `-f, --file-name [file name]`  
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
-- `-g, --google-sheet`  
+- `-g, --google-sheet`
   List VSP alerts in CSV format in Google Sheet
-- `-H, --hotlist`  
-  Alert type - hotlist.
-- `--html`  
+- `--header`
+  Display column headers in the result
+- `--html`
   Generate chart in HTML file.
-- `--prompt`  
+- `--prompt`
   Show user confirmation prompts.
-- `-s, --start-time [start time]`  
+- `-s, --start-time [start time]`
   LPR start time.
-- `--site [site name1, site name2]`  
-  List alerts in the specified sites. Provide a comma-separated list of site names.
-- `--site-id [site id1, site id2]`  
-   List alerts in the specified sites. Provide a comma-separated list of site IDs.
-- `--time`  
+- `--time`
   Display the execution time of the command.
-- `-u, --unregistered-vehicle`  
-  Alert type - unregistered vehicle.
-- `-w, --watch-vehicle`  
-  Alert type - watch vehicle.
+
+#### Selectors:
+
+- `-a, --allowed-vehicle`
+  Filter by alert type - allowed vehicle.
+- `-c, --count-of-license-plate`
+  Filter by alert type - count of license plate.
+- `-D, --denied-vehicle`
+  Filter by alert type - denied vehicle.
+- `--esn [esn1, esn2]`
+  Filter by camera ESNs.
+- `-H, --hotlist`
+  Filter by alert type - hotlist.
+- `--site [site name1, site name2]`
+  Filter by alerts in the specified sites. Provide a comma-separated list of site names.
+- `--site-id [site id1, site id2]`
+  Filter by alerts in the specified sites. Provide a comma-separated list of site IDs.
+- `-u, --unregistered-vehicle`
+  Filter by alert type - unregistered vehicle.
+- `-w, --watch-vehicle`
+  Filter by alert type - watch vehicle.
 
 #### Notes:
 
@@ -1861,46 +2089,53 @@ The `pos` command allows you to manage and retrieve POS events based on paramete
 
 Get POS events.
 
-#### Options
+#### Options:
 
-- `-b, --bill-number [bill number]`  
-  Specify the bill number.
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `--discount-max [discount max]`  
-  Specify the maximum discount in percentage.
-- `--discount-min [discount min]`  
-  Specify the minimum discount in percentage.
-- `-e, --end-time [end time]`  
+- `-e, --end-time [end time]`
   Defines the end point for retrieving events. The timestamp must be in ISO 8601 format with millisecond precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
-- `-E, --employee-id [employee ID]`  
-  Specify the ID of the employee.
-- `-f, --file-name [file name]`  
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
-- `-F, --flagged`  
-  Retrieve flagged transactions.
-- `-g, --google-sheet`  
+- `-g, --google-sheet`
   List POS events in CSV format in Google Sheet
-- `--html`  
+- `--header`
+  Display column headers in the result
+- `--html`
   Generate chart in HTML file.
-- `--net-amount-max [net amount max]`  
-  Specify the maximum net amount.
-- `--net-amount-min [net amount min]`  
-  Specify the minimum net amount.
-- `--prompt`  
+- `--prompt`
   Show user confirmation prompts.
-- `-s, --start-time [start time]`  
+- `-s, --start-time [start time]`
   Defines the starting point for retrieving events. The timestamp must be in ISO 8601 format with millisecond precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
-- `--site [site name1, site name2]`  
-  List events in the specified sites. Provide a comma-separated list of site names.
-  `--site-id [site id1, site id2]`  
-   List events in the specified sites. Provide a comma-separated list of site IDs.
-- `-t, --transaction-type [transaction type]`  
-  Specify the type of the transaction.
-- `--time`  
+- `--time`
   Display the execution time of the command.
+
+#### Fitlers:
+
+- `-b, --bill-number [bill number]`
+  Filter by bill number.
+- `--discount-max [discount max]`
+  Filter by maximum discount percentage.
+- `--discount-min [discount min]`
+  Filter by minimum discount percentage.
+- `-E, --employee-id [employee ID]`
+  Filter by employee ID.
+- `-F, --flagged`
+  Filter by flagged transactions.
+- `--net-amount-max [net amount max]`
+  Filter by maximum net amount.
+- `--net-amount-min [net amount min]`
+  Filter by minimum net amount.
+- `--site [site name1, site name2]`
+  Filter by site names. Provide a comma-separated list of site names.
+  `--site-id [site id1, site id2]`
+  Filter by site IDs. Provide a comma-separated list of site IDs.
+- `-t, --transaction-type [transaction type]`
+  Filter by transaction type.
 
 #### Notes:
 
@@ -1941,54 +2176,87 @@ een perftest preview [OPTIONS]
 
 The `perftest` command allows you to execute performance tests on various aspects of the platform.
 
+## Example
+
+To get camera perftest livelatency for all cameras in CSV format (with headers):
+
+```bash
+een perftest livelatency --header --csv
+```
+
+Output:
+
+```
+account: Account_name(00244829)
+
+running livelatency performance test for 10 samples on 1 cameras
+
+tested camera test-camera-1 (1003d9df)... min: 5312.00ms, max: 9149.00ms, avg: 8464.40ms
+
+perftest livelatency run on 1/1 cameras 10 samples each
+
+"bridge","camera","minimum time (ms)","maximum time (ms)","average time (ms)"
+"test-camera-1(100236d0)","DB14-GUN(1003d9df)","5312.00","9149.00","8464.40"
+
+```
+
 ## COMMANDS
 
 ### preview
 
 Get performance test results for preview images.
 
-#### Options
+#### Options:
 
-- `-a, --all-log`  
+- `-a, --all-log`
   Display execution logs.
-- `--bridge [bridge1, bridge2]`  
-  Test based on bridges.
-- `--bridge-esn [bridge esn1, bridge esn2]`  
-  Test based on bridge ESNs.
-- `-c, --count [count]`  
+- `-c, --count [count]`
   Number of previews to be tested (default: 10).
-- `-C, --camera [camera1, camera2]`  
-   Test based on cameras.
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-e, --end-time [end time]`  
+- `-e, --end-time [end time]`
   Specify the end timestamp for analysis, this option requires --start-time to be specified.
-- `--esn [esn1, esn2]`  
-  Test based on camera ESNs.
-- `-f, --file-name [file name]`  
-  Specify the file name to save the test results.
-- `--header`  
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `--fixed`
+  Generate timestamps at fixed intervals (interval: 10000 ms).
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
   Display column headers in the result.
-- `--layout [layout1, layout2]`  
-  Test based on layouts.
-- `--layout-id [layout id1, layout id2]`  
-  Test based on layouts IDs.
-- `-s, --start-time [start time]`  
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `-s, --start-time [start time]`
   Specify the start timestamp for analysis.
-- `--site [site1, site2]`  
-  Test based on sites.
-- `--site-id [site id1, site id2]`  
-  Test based on site IDs.
-- `-t, --table`  
-  Display result in table format.
-- `--tag [tag1, tag2]`  
-  Test based on tags.
-- `--time`  
-  Display the execution time of the command.
-- `--v1`  
+- `--time`
+  Time taken to execute the command.
+- `--v1`
   Test performance of the V1 API.
+
+#### Filters:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `--esn [esn1, esn2]`
+  Filter based on camera ESNs.
+- `--layout [layout1, layout2]`
+  Filter based on layouts.
+- `--layout-id [layout id1, layout id2]`
+  Filter based on layouts IDs.
+- `--site [site1, site2]`
+  Filter based on sites.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
+- `-t, --tag [tag1, tag2]`
+  Filter based on tags.
 
 #### Notes:
 
@@ -2019,50 +2287,61 @@ een perftest preview --site "site1"
 
 Get performance test results for asset list endpoint.
 
-#### Options
+#### Options:
 
-- `-a, --all-log`  
+- `-a, --all-log`
   Display execution logs.
-- `-A, --asset-count [asset count]`  
+- `-A, --asset-count [asset count]`
   Number of assets per list (default: 10).
-- `--bridge [bridge1, bridge2]`  
-  Test based on bridges.
-- `--bridge-esn [bridge esn1, bridge esn2]`  
-  Test based on bridge ESNs.
-- `-c, --count [count]`  
+- `--archiver`
+  Display the archiver ID.
+- `-c, --count [count]`
   Number of asset lists to be tested (default: 10).
-- `-C, --camera [camera1, camera2]`  
-  Test based on cameras.
-- `--call-time`  
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-e, --end-time [end time]`  
+- `-e, --end-time [end time]`
   Specify the end timestamp for analysis, this option requires --start-time to be specified.
-- `--esn [esn1, esn2]`  
-  Test based on camera ESNs.
-- `-f, --file-name [file name]`  
-  Specify the file name to save the test results.
-- `--header`  
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `--fixed`
+  Generate timestamps at fixed intervals (interval: 10000 ms).
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `-H, --headerinfo`
+  Display response header info.
+- `--header`
   Display column headers in the result.
-- `-H, --headerinfo`  
-  Display response header info
-- `--layout [layout1, layout2]`  
-  Test based on layouts.
-- `--layout-id [layout id1, layout id2]`  
-  Test based on layouts IDs.
-- `-s, --start-time [start time]`  
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `-s, --start-time [start time]`
   Specify the start timestamp for analysis.
-- `--site [site1, site2]`  
-  Test based on sites.
-- `--site-id [site id1, site id2]`  
-  Test based on site IDs.
-- `-t, --table`  
-  Display result in table format.
-- `--tag [tag1, tag2]`  
-  Test based on tags.
-- `--time`  
+- `--time`
   Display the execution time of the command.
+
+#### Filters:
+
+- `--bridge [bridge1, bridge2]`
+  Test based on bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Test based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Test based on cameras.
+- `--esn [esn1, esn2]`
+  Test based on camera ESNs.
+- `--layout [layout1, layout2]`
+  Test based on layouts.
+- `--layout-id [layout id1, layout id2]`
+  Test based on layouts IDs.
+- `--site [site1, site2]`
+  Test based on sites.
+- `--site-id [site id1, site id2]`
+  Test based on site IDs.
+- `-t, --tag [tag1, tag2]`
+  Test based on tags.
 
 #### Notes:
 
@@ -2092,50 +2371,61 @@ een perftest assetlist --site "site1"
 
 Get performance test results for pngspan endpoint.
 
-#### Options
+#### Options:
 
-- `-a, --all-log`  
+- `-a, --all-log`
   Display execution logs.
-- `--bridge [bridge1, bridge2]`  
-  Test based on bridges.
-- `--bridge-esn [bridge esn1, bridge esn2]`  
-  Test based on bridge ESNs.
-- `-c, --count [count]`  
-  Number of previews to be tested (default: 10).
-- `-C, --camera [camera1, camera2]`  
-  Test based on cameras.
-- `--call-time`  
+- `--archiver`
+  Display the archiver ID.
+- `-c, --count [count]`
+  Number of pngspans to be tested (default: 10).
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-e, --end-time [end time]`  
+- `-e, --end-time [end time]`
   Specify the end timestamp for analysis, this option requires --start-time to be specified.
-- `--esn [esn1, esn2]`  
-  Test based on camera ESNs.
-- `-f, --file-name [file name]`  
-  Specify the file name to save the test results.
-- `--header`  
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `--fixed`
+  Generate timestamps at fixed intervals (interval: 10000 ms).
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `-H, --headerinfo`
+  Display response header info.
+- `--header`
   Display column headers in the result.
-- `-H, --headerinfo`  
-  Display response header info
-- `--layout [layout1, layout2]`  
-  Test based on layouts.
-- `--layout-id [layout id1, layout id2]`  
-  Test based on layouts IDs.
-- `-s, --start-time [start time]`  
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `-s, --start-time [start time]`
   Specify the start timestamp for analysis.
-- `--site [site1, site2]`  
-  Test based on sites.
-- `--site-id [site id1, site id2]`  
-  Test based on site IDs.
-- `-t, --table`  
-  Display result in table format.
-- `--tag [tag1, tag2]`  
-  Test based on tags.
-- `--time`  
-  Display the execution time of the command.
-- `--width [width]`  
-  Width of pngspan to be tested.
+- `--time`
+  Time taken to execute the command.
+- `--width [width]`
+  Width of pngspan to be tested (default: 240).
+
+#### Filters:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `--esn [esn1, esn2]`
+  Filter based on camera ESNs.
+- `--layout [layout1, layout2]`
+  Filter based on layouts.
+- `--layout-id [layout id1, layout id2]`
+  Filter based on layouts IDs.
+- `--site [site1, site2]`
+  Filter based on sites.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
+- `-t, --tag [tag1, tag2]`
+  Filter based on tags.
 
 #### Notes:
 
@@ -2166,44 +2456,51 @@ een perftest pngspan --site "site1"
 
 Get performance test results for live video.
 
-#### Options
+#### Options:
 
-- `-a, --all-log`  
+- `-a, --all-log`
   Display execution logs.
-- `--bridge [bridge1, bridge2]`  
-  Test based on bridges.
-- `--bridge-esn [bridge esn1, bridge esn2]`  
-  Test based on bridge ESNs.
-- `-c, --count [count]`  
-  Number of videos to be tested (default: 1).
-- `-C, --camera [camera1, camera2]`  
-  Test based on cameras.
-- `--call-time`  
+- `-c, --count [count]`
+  Number of videos to be tested (default: 10).
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `--esn [esn1, esn2]`  
-  Test based on camera ESNs.
-- `-f, --file-name [file name]`  
-  Specify the file name to save the test results.
-- `--header`  
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
   Display column headers in the result.
-- `-l, --length`  
+- `-l, --length [length]`
   Specify the video duration for analysis (default: 5s).
-- `--layout [layout1, layout2]`  
-  Test based on layouts.
-- `--layout-id [layout id1, layout id2]`  
-  Test based on layouts IDs.
-- `--site [site1, site2]`  
-  Test based on sites.
-- `--site-id [site id1, site id2]`  
-  Test based on site IDs.
-- `-t, --table`  
-  Display result in table format.
-- `--tag [tag1, tag2]`  
-  Test based on tags.
-- `--time`  
-  Display the execution time of the command.
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `--time`
+  Time taken to execute the command.
+
+#### Filters:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `--esn [esn1, esn2]`
+  Filter based on camera ESNs.
+- `--layout [layout1, layout2]`
+  Filter based on layouts
+- `--layout-id [layout id1, layout id2]`
+  Filter based on layout IDs.
+- `--site [site1, site2]`
+  Filter based on sites.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
+- `-t, --tag [tag1, tag2]`
+  Filter based on tags.
 
 ## EXAMPLES
 
@@ -2225,111 +2522,123 @@ een perftest live --layout "layout1"
 een perftest live --site "site1"
 ```
 
-### live-video-latency
+### livelatency
 
 Get test results live video latency
 
-#### Options
+#### Options:
 
 - `-a, --all-log`
   Display execution logs.
-- `-b, --bridge [bridge1, bridge2]`
-  Test based on bridges.
-- `--bridge-esn [bridge esn1, bridge esn2]`
-  Test based on bridge ESNs.
 - `-c, --count [count]`
-  Number of videos frames to be tested (default: 3).
-- `-C, --camera [camera1, camera2]`
-  Test based on cameras.
+  Number of videos frames to be tested (default: 10).
 - `--call-time`
   Get api response time.
 - `--csv`
   List details in csv format.
 - `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `--esn [esn1, esn2]`
-  Test based on camera ESNs.
 - `-f, --file-name [file name]`
   Specify the file name to save the test results.
 - `-g, --google-sheet`
   List details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
-- `--layout [layout1, layout2]`
-  Test based on layouts.
-- `--layout-id [layout id1, layout id2]`
-  Test based on layouts IDs.
 - `--prompt`
   Show user confirmation prompts (default: false).
-- `--site [site1, site2]`
-  Test based on sites.
-- `--site-id [site id1, site id2]`
-  Test based on site IDs.
-- `--tag [tag1, tag2]`
-  Test based on tags.
 - `--time`
   Display the execution time of the command.
+
+#### Filters:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `--esn [esn1, esn2]`
+  Filter based on camera ESNs.
+- `--layout [layout1, layout2]`
+  Filter based on layouts.
+- `--layout-id [layout id1, layout id2]`
+  Filter based on layouts IDs.
+- `--site [site1, site2]`
+  Filter based on sites.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
+- `-t, --tag [tag1, tag2]`
+  Filter based on tags.
 
 ## EXAMPLES
 
 - To test live video latency of all the cameras in an account:
 
 ```bash
-een perftest live-video-latency
+een perftest livelatency
 ```
 
 - To test live video latency of all the cameras in a specific bridge:
 
 ```bash
-een perftest live-video-latency --bridge-esn "<bridge_id>"
+een perftest livelatency --bridge-esn "<bridge_id>"
 ```
 
 ### historic
 
 Get performance test results for history video.
 
-#### Options
+#### Options:
 
-- `-a, --all-log`  
+- `-a, --all-log`
   Display execution logs.
-- `--bridge [bridge1, bridge2]`  
-  Test based on bridges.
-- `--bridge-esn [bridge esn1, bridge esn2]`  
-  Test based on bridge ESNs.
-- `-c, --count [count]`  
-  Number of previews to be tested (default: 5).
-- `-C, --camera [camera1, camera2]`  
-  Test based on cameras.
-- `--call-time`  
+- `-c, --count [count]`
+  Number of videos to be tested (default: 10).
+- `--call-time`
   Get api response time.
-- `-d, --debug`  
+- `--csv`
+  List details in csv format.
+- `-d, --debug`
   Enable detailed debug output for troubleshooting.
-- `-e, --end-time [end time]`  
+- `-e, --end-time [end time]`
   Specify the end timestamp for analysis, this option requires --start-time to be specified.
-- `--esn [esn1, esn2]`  
-  Test based on camera ESNs.
-- `-f, --file-name [file name]`  
-  Specify the file name to save the test results.
-- `--header`  
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `--fixed`
+  Generate timestamps at fixed intervals.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
   Display column headers in the result.
-- `-l, --length`  
+- `-l, --length [video length]`
   Specify the video duration for analysis (default: 10s).
-- `--layout [layout1, layout2]`  
-  Test based on layouts.
-- `--layout-id [layout id1, layout id2]`  
-  Test based on layouts IDs.
-- `-s, --start-time [start time]`  
+- `--prompt`
+  Show user confirmation prompts (default: false).
+- `-s, --start-time [start time]`
   Specify the start timestamp for analysis.
-- `--site [site1, site2]`  
-  Test based on sites.
-- `--site-id [site id1, site id2]`  
-  Test based on site IDs.
-- `-t, --table`  
-  Display result in table format.
-- `--tag [tag1, tag2]`  
-  Test based on tags.
-- `--time`  
-  Display the execution time of the command.
+- `--time`
+  Time taken to execute the command.
+
+#### Filters:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `--esn [esn1, esn2]`
+  Filter based on camera ESNs.
+- `--layout [layout1, layout2]`
+  Filter based on layouts.
+- `--layout-id [layout id1, layout id2]`
+  Filter based on layouts IDs.
+- `--site [site1, site2]`
+  Filter based on sites.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
+- `-t, --tag [tag1, tag2]`
+  Filter based on tags.
 
 #### Notes:
 
@@ -2532,53 +2841,167 @@ Example:
 een googleconfig update "driveFolderID" -- "1giou_ghlihbZyUpwCx"
 ```
 
-### Camera settings that can be edited:
+---
 
-1. cloud-retention-days - [Cloud retention]
-2. video-resolution - [Video resolution]
-3. bridge-target-days - [Local retention - Min]
-4. local-retention-days - [Local retention - Max]
-5. preview-resolution - [Preview resolution]
-6. preview-transmit-mode - [Preview transmit mode]
-7. video-transmit-mode - [Video transmit mode]
-8. video-quality - [Full Video quality]
-9. tags - [Tags]
-10. username - [Camera username]
-11. password - [Camera password]
-12. aspect-ratio- [Preview aspect ratio]
-13. video-capture-mode - [Preview Record when]
-14. preview-interval-ms - [Preview update rate]
-15. preview-quality - [Preview quality]
-16. preview-only-cloud-retention - [Cloud Preview Only (PR1)]
-17. audio-enable - [Enable audio if available]
-18. audio-disable - [Disable audio if available]
+### Output Formats and Options
 
-Note:
+#### Using `--include` to Select Fields
 
-- Except for `cameraID` and `cameraName` all other fields in the camera settings file are editable.
+Many commands support the `--include` option to display only specific fields in the output. This allows you to customize the data returned for easier parsing and processing.
 
-### Bridge settings that can be edited:
+**Examples:**
 
-1. local-rtsp-metrics - [Bridge rtsp metrics]
+```bash
+# Get only camera ESNs in camera list
+een camera list --include 'esn'
 
-### Available camera status
+# Get only bridge ESNs in bridge list
+een bridge list --include 'esn'
+```
 
-- "Camera online"
-- "Stream attached"
-- "Camera on"
-- "Camera recording"
-- "Camera sending previews"
-- "Camera located"
-- "Camera not supported"
-- "Camera configuration in process"
-- "Camera needs ONVIF password"
-- "Camera available but not yet attached"
-- "Internal status"
-- "Camera error"
-- "Reserved"
-- "Invalid state"
-- "Camera streaming"
-- "Camera registered"
+When using the `--include` option, only the specified fields will be returned in the output.
+
+---
+
+#### Output Formats
+
+The EEN CLI tool supports three main output formats. By default, headers are hidden in all formats unless `--header` is specified.
+
+1. **Table Format (Default)**
+   Human-readable output in a table format.
+
+   ```bash
+   # Table output (headers hidden)
+   een camera list
+
+   # Table output with headers
+   een camera list --header
+   ```
+
+2. **CSV Format**
+   Comma-separated values for data processing.
+
+   ```bash
+   # CSV output without headers
+   een camera list --csv
+
+   # CSV output with headers
+   een camera list --csv --header
+   ```
+
+3. **Google Sheets Format**
+   Uploads the output to a Google Sheet in your configured Google account.
+
+   ```bash
+   # Google Sheets output without headers
+   een camera list --google-sheet
+
+   # Google Sheets output with headers
+   een camera list --google-sheet --header
+   ```
+
+---
+
+#### Prompt Handling (`--prompt` option)
+
+The `--prompt` option adds confirmation prompts during command execution for safety-critical operations, such as overwriting files.
+
+**Example:**
+
+```bash
+# File overwrite prompt
+een camera list --csv --file-name cameras.csv --prompt
+# Output: File 'cameras.csv' already exists. Overwrite? (y/N):
+```
+
+---
+
+#### Error Handling
+
+All error messages are printed to stderr, and successful data is printed to stdout, making it easy to parse and process results in scripts.
+
+---
+
+#### API Versions
+
+The EEN CLI tool supports two API versions:
+
+- **v3 API (Default):** All commands use v3 APIs by default (recommended).
+- **v1 API (Legacy):** Some commands support the legacy v1 API using the `--v1` option.
+
+**Usage v1 APIs:**
+
+```bash
+# Using default v3 API
+een camera list
+
+# Using v1 API
+een camera list --v1
+```
+
+**Commands Supporting `--v1`:**
+
+- `user list`
+- `camera list`
+- `camera settings`
+- `bridge list`
+- `lpr events`
+- `perftest preview`
+
+---
+
+#### Available Status Values
+
+**Camera status for v1:**
+
+- Camera online
+- Stream attached
+- Camera on
+- Camera recording
+- Camera sending previews
+- Camera located
+- Camera not supported
+- Camera configuration in process
+- Camera needs ONVIF password
+- Camera available but not yet attached
+- Internal status
+- Camera error
+- Reserved
+- Invalid state
+- Camera streaming
+- Camera registered
+
+**Device status for v3 (camera, bridge, etc.):**
+
+- online
+- deviceOffline
+- invalidCredentials
+- bridgeOffline
+- off
+- offline
+- error
+- unknown
+
+---
+
+#### Important Note about Comma-Separated Values:
+
+When passing multiple values separated by commas to any option, always use **single quotes** to prevent shell interpretation issues.
+
+**Correct:**:
+
+```bash
+een camera list --esn 'cam1,cam2,cam3'
+een bridge list --site 'Site A,Site B,Site C'
+een user list --include 'email,firstname,lastname'
+```
+
+**Avoid:**:
+
+```bash
+een camera list --esn cam1,cam2,cam3          # May not work - shell splits on commas
+een camera list --esn "cam1,cam2,cam3"        # May work but can cause issues in some cases
+```
 
 ### Available timezones
 

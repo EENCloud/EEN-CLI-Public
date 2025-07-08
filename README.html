@@ -123,7 +123,7 @@
   <li>
     <p>Each command should start with <code>./</code>.</p>
     <p>Examples:</p>
-    <pre><code>./een --version
+    <pre><code>een --version
 </code></pre>
   </li>
   <li>
@@ -131,7 +131,7 @@
     <ul>
       <li>Run the command:</li>
     </ul>
-    <pre><code> ./een
+    <pre><code> een
 </code></pre>
     <ul>
       <li>Output:</li>
@@ -313,72 +313,32 @@ een camera list --help
 <p>List users.</p>
 <h4>Options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> Export all users in CSV format.</li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--csv</code><br />
-    Export all users in CSV format.
+    <code>-f, --file-name [file name]</code> Specify the file name to save the
+    output under. Use with the <code>--csv</code> option to generate a report.
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
+    <code>-g, --google-sheet</code> Export users in CSV format and upload to
+    Google Sheets.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li><code>--html</code> Generate an HTML report for user permissions.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items. supported
+    values: email, firstname, id, lastname, permission, status.
   </li>
   <li>
-    <code>-e, --email</code><br />
-    Display user email addresses.
+    <code>-l, --long</code> Display user details, including name, email, last
+    login, status, and permissions.
   </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the file name to save the output under. Use with the
-    <code>--csv</code> option to generate a report.
-  </li>
-  <li>
-    <code>-F, --first-name</code><br />
-    Display user first names.
-  </li>
-  <li>
-    <code>-g, --google-sheet</code><br />
-    Export users in CSV format and upload to Google Sheets.
-  </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate an HTML report for user permissions.
-  </li>
-  <li>
-    <code>-l, --long</code><br />
-    Display user details, including name, email, last login, status, and
-    permissions.
-  </li>
-  <li>
-    <code>-L, --last-name</code><br />
-    Display user last names.
-  </li>
-  <li>
-    <code>-p, --permission</code><br />
-    Display user permissions.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li>
-    <code>-s, --status</code><br />
-    Display user statuses.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-  <li>
-    <code>--v1</code><br />
-    Use v1 APIs for listing users.
-  </li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+  <li><code>--v1</code> Use v1 APIs for listing users.</li>
 </ul>
 <h4>Actions:</h4>
 <ul>
@@ -428,39 +388,25 @@ een camera list --help
 <p>List all logged in accounts.</p>
 <h4>Options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List all audit log in CSV format.</li>
   <li>
-    <code>-a, --account-id</code><br />
-    List account ID.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items. supported
+    values: id, name.
   </li>
   <li>
-    <code>-A, --account-name</code><br />
-    List account name.
+    <code>-l, --long</code> Display account details, including account ID,
+    account name, and account type.
   </li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-s, --sub-account</code> List sub-accounts (only applicable for
+    reseller accounts).
   </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>-l, --long</code><br />
-    Display account details, including account ID, account name, and account
-    type.
-  </li>
-  <li>
-    <code>-s, --sub-account</code><br />
-    List sub-accounts (only applicable for reseller accounts).
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
+  <li><code>--time</code> Display the execution time of the command.</li>
 </ul>
 <hr />
 <h3>switch</h3>
@@ -496,18 +442,39 @@ een camera list --help
 <ul>
   <li>To list all accounts of the reseller:</li>
 </ul>
-<pre><code class="language-bash">een account list --debug
+<pre><code class="language-bash">een account list
 </code></pre>
 <ul>
-  <li>To switch to a specific sub-account:</li>
+  <li>Switch to a sub-account (from reseller account):</li>
 </ul>
-<pre><code class="language-bash">een account switch --sub-account-id &lt;sub-account ID&gt; --debug
+<pre><code class="language-bash">een account switch --sub-account-id &lt;sub-account ID&gt;
 </code></pre>
 <ul>
-  <li>To switch to a specific account:</li>
+  <li>Switch back to reseller account (from sub-account):</li>
 </ul>
-<pre><code class="language-bash">een account switch --account-id &lt;account ID&gt; --debug
+<pre><code class="language-bash">een account switch
 </code></pre>
+<ul>
+  <li>Switch between different logged-in accounts:</li>
+</ul>
+<pre><code class="language-bash">een account switch --account-id &lt;account ID&gt;
+</code></pre>
+<h2>Notes:</h2>
+<ul>
+  <li>
+    When you're logged in as a reseller and want to access a sub-account, you
+    must use the <code>-s</code> flag with the sub-account ID.
+  </li>
+  <li>
+    To switch back to the reseller account from a sub-account, run
+    <code>een account switch</code> without any options.
+  </li>
+  <li>
+    The <code>-a</code> and <code>--username</code> options are for switching
+    between different accounts you're logged into, not for sub-account
+    switching.
+  </li>
+</ul>
 <h1>archive - Manage Archives</h1>
 <h2>NAME</h2>
 <p><code>archive</code> - manage and interact with archives.</p>
@@ -642,7 +609,10 @@ een camera list --help
     events(defaults to 10 minutes before the current time)
   </li>
   <li><code>--time</code> Display the execution time of the command.</li>
-  <li><code>-u, --userid [user id]</code> Filter audit log by user-id</li>
+</ul>
+<h4>Filters:</h4>
+<ul>
+  <li><code>-u, --userid [user id]</code> Filter audit log by user-id.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -654,6 +624,64 @@ een camera list --help
   <li>To list all audit logs for a specific time:</li>
 </ul>
 <pre><code class="language-bash">een auditlog list -s 20250328010101.000 -e 20250328010204.201
+</code></pre>
+<h1>availabledevices - Manage Available Devices</h1>
+<h2>NAME</h2>
+<p><code>availabledevices</code> - manage available devices.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een availabledevices [COMMAND] [OPTIONS]
+</code></pre>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List available devices.</p>
+<h4>Options:</h4>
+<ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>-l, --long</code> Display user details, including make, model and IP
+    Address.
+  </li>
+  <li>
+    <code>--prompt</code> Show user confirmation prompts (default: false).
+  </li>
+  <li><code>--time</code> Time taken to execute the command.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esn.
+  </li>
+  <li>
+    <code>--devicestate [state1, state2]</code> Filter by device state.
+    supported values: notSupported, addable, inOtherAccount, unknown.
+  </li>
+  <li>
+    <code>--devicetype [type1, type2]</code> Filter by device types. supported
+    values: camera, speaker, display, multiCamera.
+  </li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all available devices:</li>
+</ul>
+<pre><code class="language-bash">een availabledevices list
+</code></pre>
+<ul>
+  <li>To list all available devices for a specific type:</li>
+</ul>
+<pre><code class="language-bash">een availabledevices list --devicetype 'camera, speaker' -d
 </code></pre>
 <h1>camera - Manage Cameras</h1>
 <h2>NAME</h2>
@@ -667,200 +695,90 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>-a, --available</code><br />
-    List available cameras that are currently operational.
+    <code>-a, --available</code> List cameras discovered by bridges but not yet
+    added.
+  </li>
+  <li><code>-A, --all</code> List all cameras, including shared ones.</li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li><code>--direct</code> List cameras which are direct to cloud.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>-A, --all</code><br />
-    List all cameras without filtering.
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li><code>--html</code> Generate a chart in an html file.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items. supported
+    values: esn, camera, bridge-esn, bridge, site, siteid, status, tag.
   </li>
   <li>
-    <code>-b, --bridge</code><br />
-    List bridge name of the cameras.
+    <code>-l, --long</code> List camera details including camera, esn, bridge,
+    bridge esn, site, site id, status, timezone, tags, shared, ip address and
+    guid.
   </li>
   <li>
-    <code>-B, --bridge-esn</code><br />
-    List bridge ESNs of the cameras.
+    <code>--layout [layout name1, layout name2]</code> Filter cameras by
+    layouts.
   </li>
   <li>
-    <code>-C, --camera</code><br />
-    List cameras.
+    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
+    IDs.
   </li>
   <li>
-    <code>--call-time</code><br />
-    Get API response time.
+    <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
+  <li><code>--shared</code> List cameras that are shared.</li>
+  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
   <li>
-    <code>--csv</code><br />
-    List cameras in CSV format.
+    <code>--site-id [site id1, site id2]</code> Filter cameras by site IDs.
   </li>
+  <li><code>--status [status]</code> Filter cameras by status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable debug output for troubleshooting and detailed logs.
+    <code>-T, --tree</code> List cameras and associated bridges in tree format.
   </li>
-  <li>
-    <code>--direct</code><br />
-    List cameras which are direct to cloud.
-  </li>
-  <li>
-    <code>-e, --end-time [end time]</code><br />
-    Filter cameras based on video end time. Format:
-    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date-time with
-    milliseconds).
-  </li>
-  <li>
-    <code>--esn</code><br />
-    List cameras ESNs.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
-  </li>
-  <li>
-    <code>filter-layout [layout name1, layout name2]</code><br />
-    Filter cameras by layout.
-  </li>
-  <li>
-    <code>filter-layout-id [layout id, layout id]</code><br />
-    Filter cameras by layout ID.
-  </li>
-  <li>
-    <code>filter-site [site name1, site name2]</code> Filter cameras by site.
-  </li>
-  <li>
-    <code>filter-site-id [site id1, site id2]</code> Filter cameras by site ID.
-  </li>
-  <li><code>filter-status &lt;status&gt;</code> Filter cameras by status</li>
-  <li>
-    <code>-g, --google-sheet</code><br />
-    List cameras in CSV format in a Google Sheet.
-  </li>
-  <li>
-    <code>-H, --header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate a chart of the camera list in an HTML file format.
-  </li>
-  <li>
-    <code>-l, --long</code><br />
-    List camera details, including camera, camera ESN, bridge, bridge ESN, site,
-    site ID, status, tags, shared, timezone, IP address and GUID.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts during the command execution.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Filter cameras based on video start time. Format:
-    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date-time with
-    milliseconds).
-  </li>
-  <li>
-    <code>--shared</code><br />
-    List cameras that are shared with other users.
-  </li>
-  <li>
-    <code>--short</code><br />
-    List only the camera names and ESNs in CSV format to the specified file.
-  </li>
-  <li>
-    <code>--site</code><br />
-    List sites of the cameras.
-  </li>
-  <li>
-    <code>--site-id</code><br />
-    List site IDs of the cameras.
-  </li>
-  <li>
-    <code>--status</code><br />
-    List status of the cameras.
-  </li>
-  <li>
-    <code>-t, --tag [tag1, tag2]</code><br />
-    Filter cameras by tags.
-  </li>
-  <li>
-    <code>-T, --tree</code><br />
-    List cameras and associated bridges in a tree format.
-  </li>
-  <li>
-    <code>--tag</code><br />
-    List tags of the cameras.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-  <li>
-    <code>--v1</code><br />
-    Use version 1 APIs for backward compatibility.
-  </li>
+  <li><code>--time</code> Time taken to execute the command.</li>
+  <li><code>--v1</code> Use v1 APIs.</li>
 </ul>
-<h4>Notes:</h4>
+<h4>Selectors:</h4>
 <ul>
   <li>
-    Start-time and end-time must follow the format:
-    <code>YYYYMMDDHHMMSS.sss</code> (Compact ISO 8601 date-time with
-    milliseconds).
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
   </li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
+  </li>
+  <li>
+    <code>--layout [layout name1, layout name2]</code> Filter cameras by
+    layouts.
+  </li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
+    IDs.
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>--status [status]</code> Filter cameras by status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
 </ul>
-<hr />
-<h3>status</h3>
-<p>List status of all cameras.</p>
-<h4>Options:</h4>
-<ul>
-  <li>
-    <code>--call-time</code><br />
-    Get api response time.
-  </li>
-  <li>
-    <code>--csv</code><br />
-    List camera status in CSV format.
-  </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
-  </li>
-  <li>
-    <code>-g, --google-sheet</code><br />
-    List camera status in CSV format in Google Sheet.
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate chart in HTML file.
-  </li>
-  <li>
-    <code>--layout [layout name1, layout name2]</code><br />
-    Layout names associated with the camera.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Layout IDs associated with the camera.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li>
-    <code>-t, --tag [tag1, tag2]</code><br />
-    Filter cameras using tags.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-  <li>
-    <code>--v1</code><br />
-    Use v1 APIs.
-  </li>
-</ul>
+<h4>Example</h4>
+<p>To list all cameras with specific fields in CSV format (with headers):</p>
+<pre><code class="language-bash">een camera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;camera id&quot;,&quot;camera name&quot;,&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;site id&quot;,&quot;site name&quot;,&quot;status&quot;,&quot;tags&quot;
+&quot;12345d7f&quot;,&quot;Test camera 1&quot;,&quot;10135b4a&quot;,&quot;Test bridge - 1&quot;,&quot;b583ace7-6ee2-450a-9f5a-15a8f7ffcd73&quot;,&quot;Test Site - 1&quot;,&quot;deviceOffline&quot;,&quot;109&quot;
+&quot;13345d7f&quot;,&quot;Test camera 2&quot;,&quot;10135b4a&quot;,&quot;Test bridge - 2&quot;,&quot;b583ace7-6ee2-450a-9f5a-15a8f7ffcd73&quot;,&quot;Test Site - 2&quot;,&quot;online&quot;,&quot;108&quot;
+&quot;14345d7f&quot;,&quot;Test camera 3&quot;,&quot;10135b4a&quot;,&quot;Test Site - 2&quot;,&quot;b583ace7-6ee2-450a-9f5a-15a8f7ffcd73&quot;,&quot;Test Site - 2&quot;,&quot;off&quot;,&quot;110&quot;
+</code></pre>
 <hr />
 <h3>settings</h3>
 <p>Get all camera settings.</p>
@@ -905,166 +823,272 @@ een camera list --help
   <li><code>--v1</code> Use v1 APIs</li>
 </ul>
 <hr />
-<h3>set</h3>
-<p>Edit camera's settings.</p>
-<h4>Arguments:</h4>
+<h3>get</h3>
+<p>Get camera settings and analytics.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>camera get</code> command allows you to get a specific setting for
+  one or more cameras. You can specify the setting to retrieve as
+  <code>&lt;parameter&gt;</code>. You can use selectors (like
+  <code>--esn</code>, <code>--tag</code>, <code>--site</code>, etc.) to target
+  specific cameras.
+</p>
+<h4>Parameters:</h4>
 <ul>
+  <li><code>audio</code> Get audio settings(Is audio enabled or not).</li>
+  <li><code>camera-name</code> Get the camera name.</li>
+  <li><code>password</code> Get the camera password.</li>
+  <li><code>username</code> Get the camera username.</li>
   <li>
-    <code>-b, --bridge [bridge1, bridge2]</code><br />
-    Edit camera settings by bridge ESNs.
+    <code>preview-update-rate</code> Get the preview video update rate (in ms).
+  </li>
+  <li><code>preview-quality</code> Get the preview video quality.</li>
+  <li><code>preview-resolution</code> Get the preview video resolution.</li>
+  <li>
+    <code>preview-transmit-mode</code> Get the preview video transmit mode.
+  </li>
+  <li><code>video-capture-mode</code> Get the video capture mode.</li>
+  <li><code>video-quality</code> Get the video quality.</li>
+  <li><code>video-resolution</code> Get the video resolution.</li>
+  <li><code>video-transmit-mode</code> Get the video transmit mode.</li>
+  <li><code>cloud-retention</code> Get the cloud retention days.</li>
+  <li>
+    <code>minimum-premise-retention</code> Get the minimum premise retention
+    days.
   </li>
   <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Edit camera settings by camera ESNs.
+    <code>maximum-premise-retention</code> Get the maximum premise retention
+    days.
   </li>
   <li>
-    <code>-f, --file-name [file name]</code><br />
-    Edit camera settings by reading the CSV file.
-  </li>
-  <li>
-    <code>-T, --tag [tag1, tag2]</code><br />
-    Edit camera settings by tag.
-  </li>
-  <li>
-    <code>-s, --site-id [site id1, site id2]</code><br />
-    Edit camera settings by site id.
-  </li>
-  <li>
-    <code>-S, --site [site name1, site name2]</code><br />
-    Edit camera settings by site name.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Edit camera settings by layout id.
-  </li>
-  <li>
-    <code>--layout [layout name1, layout name2]</code><br />
-    Edit camera settings by layout name.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
+    <code>scene-analytics</code> Get scene analytics (Is scene analytics enabled
+    or not).
   </li>
 </ul>
-<h4>Options:</h4>
+<h4>Selectors:</h4>
 <ul>
   <li>
-    <code>-a, --aspect-ratio [aspect ratio]</code><br />
-    Preview aspect ratio.
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
   </li>
   <li>
-    <code>--audio-disable</code><br />
-    Disable audio.
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
   </li>
   <li>
-    <code>--audio-enable</code><br />
-    Enable audio.
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li>
+    <code>--layout [layout name1, layout name2]</code> Filter cameras by
+    layouts.
   </li>
   <li>
-    <code>-B, --bridge-target-days [bridge target days]</code><br />
-    Bridge target days.
+    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
+    IDs.
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
+  <li>
+    <code>--site-id [site id1, site id2]</code>
+    Filter cameras by site IDs.
+    <code>--status [status]</code>
+    Filter cameras by status.
+  </li>
+  <li><code>--tag [tag1, tag2]</code> Filter cameras by tags.</li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> Export the result in CSV format.</li>
+  <li>
+    <code>--debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>-c, --cloud-retention-days [cloud retention days]</code><br />
-    Cloud retention days.
+    <code>--file-name [file name]</code> Specify the name of the file where the
+    output will be saved.
+  </li>
+  <li><code>-g, --google-sheet</code> Export the result to Google Sheets.</li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Get audio settings
+een camera get audio --esn 12345
+
+# Get preview update rate and save as CSV
+een camera get preview-update-rate --bridge-esn 12345 --csv -f update-rate.csv
+
+# Get scene analytics for all cameras and export to Google Sheets with headers
+een camera get scene-analytics --enable -g --header
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>camera get audio</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<pre><code>&quot;camera id&quot;,&quot;camera name&quot;,&quot;is audio enabled&quot;
+&quot;10062dd9&quot;,&quot;0000&quot;,&quot;no&quot;
+</code></pre>
+<hr />
+<h3>set</h3>
+<p>Edit camera's settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>camera set</code> command allows you to update a specific setting
+  for one or more cameras. You can specify the setting to change as
+  <code>&lt;parameter&gt;</code>, and the new value as
+  <code>&lt;value&gt;</code>. You can use selectors (like <code>--esn</code>,
+  <code>--tag</code>, <code>--site</code>, etc.) to target specific cameras.
+</p>
+<h4>Parameters:</h4>
+<ul>
+  <li>
+    <code>audio</code> Enable or disable audio (use --enable or --disable).
+  </li>
+  <li><code>camera-name &lt;camera-name&gt;</code> Set the camera name.</li>
+  <li><code>password &lt;password&gt;</code> Set the camera password.</li>
+  <li><code>username &lt;username&gt;</code> Set the camera username.</li>
+  <li>
+    <code>preview-update-rate &lt;milliseconds&gt;</code> Set the preview video
+    update rate (in ms).
   </li>
   <li>
-    <code>-C, --camera-name [camera name]</code><br />
-    Camera name.
+    <code>preview-quality &lt;quality&gt;</code> Set the preview video quality.
   </li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>preview-resolution &lt;resolution&gt;</code> Set the preview video
+    resolution.
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
+    <code>preview-transmit-mode &lt;mode&gt;</code> Set the preview video
+    transmit mode.
   </li>
   <li>
-    <code>-L, --local-retention-days [local retention days]</code><br />
-    Local retention days.
+    <code>video-capture-mode &lt;mode&gt;</code> Set the video capture mode.
+  </li>
+  <li><code>video-quality &lt;quality&gt;</code> Set the video quality.</li>
+  <li>
+    <code>video-resolution &lt;resolution&gt;</code> Set the video resolution.
   </li>
   <li>
-    <code>--layout [layout name1, layout name2]</code><br />
-    Layout names associated with the camera.
+    <code>video-transmit-mode &lt;mode&gt;</code> Set the video transmit mode.
   </li>
   <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Layout IDs associated with the camera.
+    <code>cloud-retention &lt;days&gt;</code> Set the cloud retention days.
   </li>
   <li>
-    <code>-p, --password [password]</code><br />
-    Password.
+    <code>minimum-premise-retention &lt;days&gt;</code> Set the minimum premise
+    retention days.
   </li>
   <li>
-    <code>--preview-interval-ms [preview interval ms]</code><br />
-    Preview interval rate in milliseconds.
+    <code>maximum-premise-retention &lt;days&gt;</code> Set the maximum premise
+    retention days.
   </li>
   <li>
-    <code>--preview-only-cloud-retention [preview only cloud retention]</code
-    ><br />
-    Preview only cloud retention.
+    <code>scene-analytics</code> Enable or disable scene analytics (use --enable
+    or --disable).
+  </li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li>
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
   </li>
   <li>
-    <code>--preview-quality [preview quality]</code><br />
-    Preview quality.
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
   </li>
   <li>
-    <code>--preview-resolution [preview resolution]</code><br />
-    Preview resolution.
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
   </li>
   <li>
-    <code>--preview-transmit-mode [preview transmit mode]</code><br />
-    Preview transmit mode.
+    <code>--esn [esn1, esn2]</code> Comma-separated list of camera ESNs to
+    update, or use <code>'*'</code> to apply to all cameras.
   </li>
   <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
+    <code>--layout [layout name1, layout name2]</code> Filter cameras by
+    layouts.
   </li>
   <li>
-    <code>-s, --site-id [site id1, site id2]</code><br />
-    Site IDs associated with the camera.
+    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
+    IDs.
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
+  <li>
+    <code>--site-id [site id1, site id2]</code>
+    Filter cameras by site IDs.
+    <code>--status [status]</code>
+    Filter cameras by status.
+  </li>
+  <li><code>--tag [tag1, tag2]</code> Filter cameras by tags.</li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> Export the result in CSV format.</li>
+  <li>
+    <code>--debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>-S, --site [site name1, site name2]</code><br />
-    Site name associated with the camera.
+    <code>--file-name [file name]</code> Specify the name of the file where the
+    output will be saved.
+  </li>
+  <li><code>-g, --google-sheet</code> Export the result to Google Sheets.</li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Enable audio for specific cameras
+een camera set audio --enable --esn 12345
+
+# Set preview update rate and save as CSV
+een camera set preview-update-rate 5000 --bridge-esn 12345 --csv -f update-rate.csv
+
+# Set video quality
+een camera set video-quality high --esn 12345
+
+# Enable scene analytics for all cameras and export to Google Sheets
+een camera set scene-analytics --enable --esn '*' -g --header
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>camera set</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format and is suitable for
+  scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">Updated camera for 1/1 camera
+
+&quot;camera id&quot;,&quot;camera name&quot;,&quot;camera status&quot;,&quot;is successful&quot;
+&quot;1002257a&quot;,&quot;93 Test Bengaluru Operations Room - PoS demo test&quot;,&quot;online&quot;,&quot;yes&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">Updated camera for 0/1 camera
+
+&quot;camera id&quot;,&quot;camera name&quot;,&quot;camera status&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;100457e6&quot;,&quot;Mobotix&quot;,&quot;online&quot;,&quot;no&quot;,&quot;Invalid argument: microphoneEnabled (response status: 400)&quot;
+</code></pre>
+<p><strong>Scripting/AI Usage Notes:</strong></p>
+<ul>
+  <li>The first line indicates how many cameras were updated successfully.</li>
+  <li>
+    The CSV output can be parsed to check the
+    <code>&quot;is successful&quot;</code> column for
+    <code>&quot;yes&quot;</code> or <code>&quot;no&quot;</code>.
   </li>
   <li>
-    <code>-t, --tag [tag1, tag2]</code><br />
-    Tags associated with camera.
+    If an error occurs, the <code>&quot;error reason&quot;</code> column will
+    contain the error message.
   </li>
   <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-  <li>
-    <code>-u, --username [username]</code><br />
-    Username.
-  </li>
-  <li>
-    <code>--video-capture-mode [video capture mode]</code><br />
-    When to record video.
-  </li>
-  <li>
-    <code>--video-quality [video quality]</code><br />
-    Video quality.
-  </li>
-  <li>
-    <code>--video-resolution [video resolution]</code><br />
-    Video resolution.
-  </li>
-  <li>
-    <code>--video-transmit-mode [video transmit mode]</code><br />
-    Video transmit mode.
+    This format is ideal for automation: scripts can check for
+    <code>&quot;yes&quot;</code>/<code>&quot;no&quot;</code> and handle errors
+    accordingly.
   </li>
 </ul>
 <hr />
-<h4>Notes:</h4>
-<ul>
-  <li>
-    For <code>--esn &quot;*&quot;</code>, it changes settings for all cameras.
-  </li>
-</ul>
 <h3>delete</h3>
 <p>Delete a camera from the bridge.</p>
 <h4>Argument:</h4>
@@ -1295,75 +1319,64 @@ een camera list --help
 <p>Get camera availability.</p>
 <h4>Required options:</h4>
 <ul>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Video start time.
-  </li>
+  <li><code>-s, --start-time [start time]</code> Video start time.</li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li><code>-e, --end-time [end time]</code> End time for video.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>-N, --no-check</code> List all available data, including unchecked
+    items.
   </li>
   <li>
-    <code>-e, --end-time [end time]</code><br />
-    Video end time.
+    <code>-p, --preview-availability</code> Display preview recording status
+    along with camera availability.
   </li>
   <li>
-    <code>--esn [esn1, esn2]</code><br />
-    ESNs of the camera.
+    <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
   <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
+    <code>-s, --start-time [start time]</code> Start time for video (required).
+  </li>
+  <li><code>--time</code> Time taken to execute the command.</li>
+</ul>
+<h4>Filters:</h4>
+<ul>
+  <li>
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
   </li>
   <li>
-    <code>-g, --google-sheet</code><br />
-    List camera availability in CSV format in Google Sheets.
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
+  </li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
+    IDs
   </li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Layout names associated
-    with the camera.
+    <code>--layout [layout name1, layout name2]</code> Filter cameras by
+    layouts.
   </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Layout IDs associated with
-    the camera.
-  </li>
-  <li>
-    <code>-N, --no-check</code><br />
-    Show all available data, including unchecked items.
-  </li>
-  <li>
-    <code>-p, --preview-availability</code><br />
-    Get preview recording status along with camera availability.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li>
-    <code>--site [site name1, site name2]</code><br />
-    List cameras located in the specified sites. Provide a comma-separated list
-    of site names.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    List cameras located in the specified sites. Provide a comma-separated list
-    of site IDs.
-  </li>
-  <li>
-    <code>-t, --tag [tag1, tag2]</code><br />
-    Filter cameras using tags.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
@@ -1451,80 +1464,50 @@ een camera list --help
 <p>List all bridges.</p>
 <h4>Options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List all bridges in CSV format.</li>
   <li>
-    <code>-a, --available</code><br />
-    List discovered cameras that are not yet attached.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>--csv</code><br />
-    List all bridges in CSV format.
+    <code>-g, --google-sheet</code> List bridges in CSV format in Google Sheets.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li><code>--html</code> Generate a chart in HTML file.</li>
+  <li>
+    <code>--include[item 1, item 2]</code> display associated items. supported
+    values: esn
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
+    <code>-l, --long</code> Display bridge details including: &quot;bridge
+    id&quot;,&quot;bridge name&quot;,&quot;serial
+    number&quot;,&quot;tags&quot;,&quot;connection
+    status&quot;,&quot;timezone&quot;,&quot;site id&quot;,&quot;site
+    name&quot;,&quot;mac address&quot;,&quot;guid&quot;,&quot;ip
+    address&quot;,&quot;createtimestamp&quot;,&quot;number of cameras
+    online&quot;,&quot;cloud bandwidth used last 7 days
+    average&quot;,&quot;average available bandwidth last 7 days&quot;.
+  </li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+  <li><code>--v1</code> Use v1 APIs.</li>
+</ul>
+<h4>Filters:</h4>
+<ul>
+  <li>
+    <code>-s, --status [status]</code> Filter bridges with a specific status.
   </li>
   <li>
-    <code>--esn</code><br />
-    List bridge ESNs.
+    <code>--site [site name1, site name2]</code> Filter bridges by site name.
   </li>
   <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
+    <code>--site-id [site id1, site id2]</code> Filter bridges by site id.
   </li>
-  <li>
-    <code>-g, --google-sheet</code><br />
-    List bridges in CSV format in Google Sheets.
-  </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate a chart in HTML file.
-  </li>
-  <li>
-    <code>-l, --long</code><br />
-    Display bridge details, including bridge ID, name, and location. For v3,
-    also includes cameras in the account and online cameras; for v1, includes
-    GUID.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li>
-    <code>-s, --status [status]</code><br />
-    List bridges with a specific status.
-  </li>
-  <li>
-    <code>--site [site name1, site name2]</code> List bridges in a specific site
-    name.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    List bridges in a specific site id.
-  </li>
-  <li>
-    <code>-t, --tag [tag1, tag2]</code><br />
-    Filter bridges by tags.
-  </li>
-  <li>
-    <code>-T, --tree</code><br />
-    View bridges and associated cameras in tree format.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-  <li>
-    <code>--v1</code><br />
-    Use v1 APIs.
-  </li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter bridges by tags.</li>
 </ul>
 <h4>Actions:</h4>
 <ul>
@@ -1541,89 +1524,55 @@ een camera list --help
     reporting tasks.
   </li>
 </ul>
-<hr />
-<h3>status</h3>
-<p>List bridge status.</p>
-<h4>Options:</h4>
-<ul>
-  <li>
-    <code>--call-time</code><br />
-    Get api response time.
-  </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting
-  </li>
-  <li>
-    <code>-g, --google-sheet</code><br />
-    List bridges in csv format in a Google Sheet
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate a chart in an HTML file
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-</ul>
+<h4>Example</h4>
+<p>To list all bridge ESNs in CSV format (with headers):</p>
+<pre><code class="language-bash">een bridge list --include 'esn' --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;bridge id&quot;
+&quot;100479d5&quot;
+&quot;1002f572&quot;
+</code></pre>
 <hr />
 <h3>availability</h3>
 <p>Get bridge availability.</p>
 <h4>Required options:</h4>
 <ul>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Specify video start time.
-  </li>
+  <li><code>-s, --start-time [start time]</code> Specify video start time.</li>
 </ul>
 <h4>Optional options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in CSV format.</li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li><code>-e, --end-time [end time]</code> Specify video end time.</li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    ESNs of the bridge
+    <code>-e, --end-time [end time]</code> Specify video end time; ensure that
+    the --start-time option is used.
   </li>
   <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the file name to save the output
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code><br />
-    List bridge availability in csv format in a Google Sheet
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
   </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li><code>-N, --no-check</code> Show all available data.</li>
   <li>
-    <code>-N, --no-check</code><br />
-    Show all available data
+    <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
+  <li><code>--time</code> Time taken to execute the command.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--esn [esn1, esn2]</code> Filter bridges by bridge ESNs.</li>
+  <li><code>--site [site name1, site name2]</code> Filter bridges by sites.</li>
   <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts
+    <code>--site-id [site id1, site id2]</code> Filter bridges by site IDs.
   </li>
-  <li>
-    <code>--site [site name1, site name2]</code> Site name associated with the
-    bridge
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    Site ID associated with the bridge.
-  </li>
-  <li>
-    <code>-t, --tag [tag1, tag2]</code><br />
-    Filter bridges using tags.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter bridges by tags.</li>
 </ul>
 <hr />
 <h3>qlstreammetrics</h3>
@@ -1715,9 +1664,6 @@ een camera list --help
 <p>List switches.</p>
 <h4>Options:</h4>
 <ul>
-  <li>
-    <code>-b, --bridge</code> List the bridge ESNs associated with the switches.
-  </li>
   <li><code>--call-time</code> Get api response time.</li>
   <li><code>--csv</code> List details in csv format.</li>
   <li>
@@ -1731,7 +1677,10 @@ een camera list --help
     <code>-g, --google-sheet</code> List details in csv format in google sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
-  <li><code>--id</code> List the IDs of the switches.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items. supported
+    values: id, bridge, status.
+  </li>
   <li>
     <code>-l, --long</code> List switch details, including switch ID, bridge
     ESN, and status.
@@ -1739,7 +1688,6 @@ een camera list --help
   <li>
     <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
-  <li><code>-s, --status</code> List the status of the switches.</li>
   <li><code>--time</code> Display the execution time of the command.</li>
 </ul>
 <h2>EXAMPLES</h2>
@@ -1774,56 +1722,31 @@ een camera list --help
 <p>List sensors.</p>
 <h4>Options:</h4>
 <ul>
-  <li><code>-b, --battery-level</code> List battery level of sensors.</li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List all sensors in CSV format.</li>
   <li>
-    <code>B, --bt-signal</code> List bluetooth signal strength of the sensors.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
-  </li>
-  <li>
-    <code>--csv</code><br />
-    List all sensors in CSV format.
-  </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
     <code>-g, --google-sheet</code> List all sensors in CSV format in Google
     Sheets.
   </li>
+  <li><code>-H, --header</code> Display column headers in the result.</li>
   <li>
-    <code>-H, --header</code><br />
-    Display column headers in the result.
-  </li>
-  <li><code>--id</code> List ID of sensors.</li>
-  <li>
-    <code>-l, --long</code><br />
-    List sensor details, including name, id, parentId, battery level, bluetooth
-    strength, site name and status.
-  </li>
-  <li><code>--name</code> List name of sensors.</li>
-  <li><code>--parent-id</code> List parent id of sensors.</li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li><code>-s, --status</code> List status of sensors.</li>
-  <li><code>--site</code> List site name of sensors.</li>
-  <li>
-    <code>--site-id</code><br />
-    List site ID of sensors.
+    <code>--include [value1, value2]</code> Display associated items. supported
+    values: batterylevel, bluetoothsignal, id, name, parentid, status, site,
+    siteid.
   </li>
   <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
+    <code>-l, --long</code> List sensor details, including name, id, parentId,
+    battery level, bluetooth strength, site name and status.
   </li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -1900,42 +1823,29 @@ een camera list --help
 <p>List all sites.</p>
 <h4>Options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List all sites in CSV format.</li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--csv</code><br />
-    List all sites in CSV format.
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items. supported
+    values: siteid.
   </li>
   <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
+    <code>-l, --long</code> List site details, including site name and site ID.
   </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>-l, --long</code><br />
-    List site details, including site name and site ID.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li>
-    <code>-s, --site-id</code><br />
-    List the IDs of the sites.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>-s, --site-id</code> List the IDs of the sites.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
 </ul>
 <h4>Actions:</h4>
 <ul>
@@ -2174,39 +2084,27 @@ een camera list --help
 </ul>
 <h4>Optional options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    The ESN for camera of interest.
-  </li>
-  <li>
-    <code>--layout [layout name1, layout name2]</code><br />
-    Layout names associated with the camera.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Layout IDs associated with the camera.
-  </li>
-  <li>
-    <code>--lp [license plate]</code><br />
-    License plate number.
-  </li>
-  <li>
-    <code>-t, --tag [tag1, tag2]</code><br />
-    Filter by camera tags.
-  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
   <li><code>--time</code> Display the execution time of the command.</li>
+  <li><code>--v1</code> Use v1 APIs.</li>
+</ul>
+<h4>Filters:</h4>
+<ul>
+  <li><code>--esn [esn1, esn2]</code> Filter by camera ESNs.</li>
   <li>
-    <code>--v1</code><br />
-    Use v1 APIs.
+    <code>--layout [layout name1, layout name2]</code> Filter by Layout names
+    associated with the camera.
   </li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code> Filter by Layout IDs
+    associated with the camera.
+  </li>
+  <li><code>--lp [license plate]</code> Filter by License plate number.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter by camera tags.</li>
 </ul>
 <h4>Actions:</h4>
 <ul>
@@ -2251,79 +2149,45 @@ een camera list --help
 <p>Get VSP events.</p>
 <h4>Options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
   <li>
-    <code>-a, --access-type [access type]</code><br />
-    Access type.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li><code>-e, --end-time [end time]</code> LPR end time.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>-b, --body-type [types]</code><br />
-    Vehicle body types.
+    <code>-g, --google-sheet</code> List VSP events in CSV format in Google
+    Sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result</li>
+  <li><code>--html</code> Generate chart in HTML file.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>-s, --start-time [start time]</code> LPR start time.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-a, --access-type [access types]</code> Filter by access types.</li>
+  <li><code>-b, --body-type [types]</code> Filter by vehicle body types.</li>
+  <li><code>-c, --color [colors]</code> Filter by vehicle colors.</li>
+  <li>
+    <code>-D, --direction [directions]</code> Filter by direction of the
+    vehicle.
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Filter by camera ESNs.</li>
+  <li><code>--lp [lp]</code> Filter by license plate number.</li>
+  <li><code>-m, --make [makes]</code> Filter by vehicle makes.</li>
+  <li>
+    <code>--site [site name1, site name2]</code> Filter by site name. Provide a
+    comma-separated list of site names.
   </li>
   <li>
-    <code>-c, --color [colors]</code><br />
-    Vehicle colors.
-  </li>
-  <li>
-    <code>--call-time</code><br />
-    Get api response time.
-  </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>-D, --direction [directions]</code><br />
-    Direction of the vehicle.
-  </li>
-  <li>
-    <code>-e, --end-time [end time]</code><br />
-    LPR end time.
-  </li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Camera ESNs.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
-  </li>
-  <li>
-    <code>-g, --google-sheet</code><br />
-    List VSP events in CSV format in Google Sheet
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate chart in HTML file.
-  </li>
-  <li>
-    <code>--lp [lp]</code><br />
-    License plate number.
-  </li>
-  <li>
-    <code>-m, --make [makes]</code><br />
-    Vehicle makes.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    LPR start time.
-  </li>
-  <li>
-    <code>--site [site name1, site name2]</code><br />
-    List events in the specified sites. Provide a comma-separated list of site
-    names.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    List events in the specified sites. Provide a comma-separated list of site
-    IDs.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
+    <code>--site-id [site id1, site id2]</code> Filter by site id. Provide a
+    comma-separated list of site IDs.
   </li>
 </ul>
 <h4>Notes:</h4>
@@ -2346,81 +2210,56 @@ een camera list --help
 <hr />
 <h3>listalerts</h3>
 <p>Get VSP alerts.</p>
-<h4>Options</h4>
+<h4>Options:</h4>
+<ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li><code>-e, --end-time [end time]</code> LPR end time.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List VSP alerts in CSV format in Google
+    Sheet
+  </li>
+  <li><code>--header</code> Display column headers in the result</li>
+  <li><code>--html</code> Generate chart in HTML file.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>-s, --start-time [start time]</code> LPR start time.</li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h4>Selectors:</h4>
 <ul>
   <li>
-    <code>-a, --allowed-vehicle</code><br />
-    Alert type - allowed vehicle.
+    <code>-a, --allowed-vehicle</code> Filter by alert type - allowed vehicle.
   </li>
   <li>
-    <code>-c, --count-of-license-plate</code><br />
-    Alert type - count of license plate.
+    <code>-c, --count-of-license-plate</code> Filter by alert type - count of
+    license plate.
   </li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-D, --denied-vehicle</code> Filter by alert type - denied vehicle.
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Filter by camera ESNs.</li>
+  <li><code>-H, --hotlist</code> Filter by alert type - hotlist.</li>
+  <li>
+    <code>--site [site name1, site name2]</code> Filter by alerts in the
+    specified sites. Provide a comma-separated list of site names.
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
+    <code>--site-id [site id1, site id2]</code> Filter by alerts in the
+    specified sites. Provide a comma-separated list of site IDs.
   </li>
   <li>
-    <code>-D, --denied-vehicle</code><br />
-    Alert type - denied vehicle.
+    <code>-u, --unregistered-vehicle</code> Filter by alert type - unregistered
+    vehicle.
   </li>
   <li>
-    <code>-e, --end-time [end time]</code><br />
-    LPR end time.
-  </li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Camera ESN.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
-  </li>
-  <li>
-    <code>-g, --google-sheet</code><br />
-    List VSP alerts in CSV format in Google Sheet
-  </li>
-  <li>
-    <code>-H, --hotlist</code><br />
-    Alert type - hotlist.
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate chart in HTML file.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    LPR start time.
-  </li>
-  <li>
-    <code>--site [site name1, site name2]</code><br />
-    List alerts in the specified sites. Provide a comma-separated list of site
-    names.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    List alerts in the specified sites. Provide a comma-separated list of site
-    IDs.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-  <li>
-    <code>-u, --unregistered-vehicle</code><br />
-    Alert type - unregistered vehicle.
-  </li>
-  <li>
-    <code>-w, --watch-vehicle</code><br />
-    Alert type - watch vehicle.
+    <code>-w, --watch-vehicle</code> Filter by alert type - watch vehicle.
   </li>
 </ul>
 <h4>Notes:</h4>
@@ -2465,87 +2304,64 @@ een camera list --help
 <h2>COMMANDS</h2>
 <h3>listevents</h3>
 <p>Get POS events.</p>
-<h4>Options</h4>
+<h4>Options:</h4>
 <ul>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format</li>
   <li>
-    <code>-b, --bill-number [bill number]</code><br />
-    Specify the bill number.
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>-e, --end-time [end time]</code> Defines the end point for retrieving
+    events. The timestamp must be in ISO 8601 format with millisecond precision
+    (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
   </li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>--discount-max [discount max]</code><br />
-    Specify the maximum discount in percentage.
+    <code>-g, --google-sheet</code> List POS events in CSV format in Google
+    Sheet
+  </li>
+  <li><code>--header</code> Display column headers in the result</li>
+  <li><code>--html</code> Generate chart in HTML file.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li>
+    <code>-s, --start-time [start time]</code> Defines the starting point for
+    retrieving events. The timestamp must be in ISO 8601 format with millisecond
+    precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
+  </li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h4>Fitlers:</h4>
+<ul>
+  <li><code>-b, --bill-number [bill number]</code> Filter by bill number.</li>
+  <li>
+    <code>--discount-max [discount max]</code> Filter by maximum discount
+    percentage.
   </li>
   <li>
-    <code>--discount-min [discount min]</code><br />
-    Specify the minimum discount in percentage.
+    <code>--discount-min [discount min]</code> Filter by minimum discount
+    percentage.
+  </li>
+  <li><code>-E, --employee-id [employee ID]</code> Filter by employee ID.</li>
+  <li><code>-F, --flagged</code> Filter by flagged transactions.</li>
+  <li>
+    <code>--net-amount-max [net amount max]</code> Filter by maximum net amount.
   </li>
   <li>
-    <code>-e, --end-time [end time]</code><br />
-    Defines the end point for retrieving events. The timestamp must be in ISO
-    8601 format with millisecond precision (e.g.,
-    YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
+    <code>--net-amount-min [net amount min]</code> Filter by minimum net amount.
   </li>
   <li>
-    <code>-E, --employee-id [employee ID]</code><br />
-    Specify the ID of the employee.
+    <code>--site [site name1, site name2]</code>
+    Filter by site names. Provide a comma-separated list of site names.
+    <code>--site-id [site id1, site id2]</code>
+    Filter by site IDs. Provide a comma-separated list of site IDs.
   </li>
   <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the name of the file where the output will be saved.
-  </li>
-  <li>
-    <code>-F, --flagged</code><br />
-    Retrieve flagged transactions.
-  </li>
-  <li>
-    <code>-g, --google-sheet</code><br />
-    List POS events in CSV format in Google Sheet
-  </li>
-  <li>
-    <code>--html</code><br />
-    Generate chart in HTML file.
-  </li>
-  <li>
-    <code>--net-amount-max [net amount max]</code><br />
-    Specify the maximum net amount.
-  </li>
-  <li>
-    <code>--net-amount-min [net amount min]</code><br />
-    Specify the minimum net amount.
-  </li>
-  <li>
-    <code>--prompt</code><br />
-    Show user confirmation prompts.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Defines the starting point for retrieving events. The timestamp must be in
-    ISO 8601 format with millisecond precision (e.g.,
-    YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
-  </li>
-  <li>
-    <code>--site [site name1, site name2]</code><br />
-    List events in the specified sites. Provide a comma-separated list of site
-    names.
-    <code>--site-id [site id1, site id2]</code><br />
-    List events in the specified sites. Provide a comma-separated list of site
-    IDs.
-  </li>
-  <li>
-    <code>-t, --transaction-type [transaction type]</code><br />
-    Specify the type of the transaction.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
+    <code>-t, --transaction-type [transaction type]</code> Filter by transaction
+    type.
   </li>
 </ul>
 <h4>Notes:</h4>
@@ -2587,92 +2403,88 @@ een camera list --help
   The <code>perftest</code> command allows you to execute performance tests on
   various aspects of the platform.
 </p>
+<h2>Example</h2>
+<p>
+  To get camera perftest livelatency for all cameras in CSV format (with
+  headers):
+</p>
+<pre><code class="language-bash">een perftest livelatency --header --csv
+</code></pre>
+<p>Output:</p>
+<pre><code>account: Account_name(00244829)
+
+running livelatency performance test for 10 samples on 1 cameras
+
+tested camera test-camera-1 (1003d9df)... min: 5312.00ms, max: 9149.00ms, avg: 8464.40ms
+
+perftest livelatency run on 1/1 cameras 10 samples each
+
+&quot;bridge&quot;,&quot;camera&quot;,&quot;minimum time (ms)&quot;,&quot;maximum time (ms)&quot;,&quot;average time (ms)&quot;
+&quot;test-camera-1(100236d0)&quot;,&quot;DB14-GUN(1003d9df)&quot;,&quot;5312.00&quot;,&quot;9149.00&quot;,&quot;8464.40&quot;
+
+</code></pre>
 <h2>COMMANDS</h2>
 <h3>preview</h3>
 <p>Get performance test results for preview images.</p>
-<h4>Options</h4>
+<h4>Options:</h4>
+<ul>
+  <li><code>-a, --all-log</code> Display execution logs.</li>
+  <li>
+    <code>-c, --count [count]</code> Number of previews to be tested (default:
+    10).
+  </li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-e, --end-time [end time]</code> Specify the end timestamp for
+    analysis, this option requires --start-time to be specified.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>--fixed</code> Generate timestamps at fixed intervals (interval: 10000
+    ms).
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--prompt</code> Show user confirmation prompts (default: false).
+  </li>
+  <li>
+    <code>-s, --start-time [start time]</code> Specify the start timestamp for
+    analysis.
+  </li>
+  <li><code>--time</code> Time taken to execute the command.</li>
+  <li><code>--v1</code> Test performance of the V1 API.</li>
+</ul>
+<h4>Filters:</h4>
 <ul>
   <li>
-    <code>-a, --all-log</code><br />
-    Display execution logs.
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
   </li>
   <li>
-    <code>--bridge [bridge1, bridge2]</code><br />
-    Test based on bridges.
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
   </li>
   <li>
-    <code>--bridge-esn [bridge esn1, bridge esn2]</code><br />
-    Test based on bridge ESNs.
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
   </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li><code>--layout [layout1, layout2]</code> Filter based on layouts.</li>
   <li>
-    <code>-c, --count [count]</code><br />
-    Number of previews to be tested (default: 10).
+    <code>--layout-id [layout id1, layout id2]</code> Filter based on layouts
+    IDs.
   </li>
-  <li>
-    <code>-C, --camera [camera1, camera2]</code><br />
-    Test based on cameras.
-  </li>
-  <li>
-    <code>--call-time</code><br />
-    Get api response time.
-  </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>-e, --end-time [end time]</code><br />
-    Specify the end timestamp for analysis, this option requires --start-time to
-    be specified.
-  </li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Test based on camera ESNs.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the file name to save the test results.
-  </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>--layout [layout1, layout2]</code><br />
-    Test based on layouts.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Test based on layouts IDs.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Specify the start timestamp for analysis.
-  </li>
-  <li>
-    <code>--site [site1, site2]</code><br />
-    Test based on sites.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    Test based on site IDs.
-  </li>
-  <li>
-    <code>-t, --table</code><br />
-    Display result in table format.
-  </li>
-  <li>
-    <code>--tag [tag1, tag2]</code><br />
-    Test based on tags.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-  <li>
-    <code>--v1</code><br />
-    Test performance of the V1 API.
-  </li>
+  <li><code>--site [site1, site2]</code> Filter based on sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
@@ -2706,93 +2518,65 @@ een camera list --help
 </code></pre>
 <h3>assetlist</h3>
 <p>Get performance test results for asset list endpoint.</p>
-<h4>Options</h4>
+<h4>Options:</h4>
 <ul>
+  <li><code>-a, --all-log</code> Display execution logs.</li>
   <li>
-    <code>-a, --all-log</code><br />
-    Display execution logs.
+    <code>-A, --asset-count [asset count]</code> Number of assets per list
+    (default: 10).
+  </li>
+  <li><code>--archiver</code> Display the archiver ID.</li>
+  <li>
+    <code>-c, --count [count]</code> Number of asset lists to be tested
+    (default: 10).
+  </li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
   <li>
-    <code>-A, --asset-count [asset count]</code><br />
-    Number of assets per list (default: 10).
+    <code>-e, --end-time [end time]</code> Specify the end timestamp for
+    analysis, this option requires --start-time to be specified.
   </li>
   <li>
-    <code>--bridge [bridge1, bridge2]</code><br />
-    Test based on bridges.
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>--bridge-esn [bridge esn1, bridge esn2]</code><br />
-    Test based on bridge ESNs.
+    <code>--fixed</code> Generate timestamps at fixed intervals (interval: 10000
+    ms).
   </li>
   <li>
-    <code>-c, --count [count]</code><br />
-    Number of asset lists to be tested (default: 10).
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>-H, --headerinfo</code> Display response header info.</li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
   <li>
-    <code>-C, --camera [camera1, camera2]</code><br />
-    Test based on cameras.
+    <code>-s, --start-time [start time]</code> Specify the start timestamp for
+    analysis.
   </li>
+  <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h4>Filters:</h4>
+<ul>
+  <li><code>--bridge [bridge1, bridge2]</code> Test based on bridges.</li>
   <li>
-    <code>--call-time</code><br />
-    Get api response time.
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Test based on bridge
+    ESNs.
   </li>
+  <li><code>-C, --camera [camera1, camera2]</code> Test based on cameras.</li>
+  <li><code>--esn [esn1, esn2]</code> Test based on camera ESNs.</li>
+  <li><code>--layout [layout1, layout2]</code> Test based on layouts.</li>
   <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
+    <code>--layout-id [layout id1, layout id2]</code> Test based on layouts IDs.
   </li>
-  <li>
-    <code>-e, --end-time [end time]</code><br />
-    Specify the end timestamp for analysis, this option requires --start-time to
-    be specified.
-  </li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Test based on camera ESNs.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the file name to save the test results.
-  </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>-H, --headerinfo</code><br />
-    Display response header info
-  </li>
-  <li>
-    <code>--layout [layout1, layout2]</code><br />
-    Test based on layouts.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Test based on layouts IDs.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Specify the start timestamp for analysis.
-  </li>
-  <li>
-    <code>--site [site1, site2]</code><br />
-    Test based on sites.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    Test based on site IDs.
-  </li>
-  <li>
-    <code>-t, --table</code><br />
-    Display result in table format.
-  </li>
-  <li>
-    <code>--tag [tag1, tag2]</code><br />
-    Test based on tags.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
+  <li><code>--site [site1, site2]</code> Test based on sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Test based on site IDs.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Test based on tags.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
@@ -2824,93 +2608,69 @@ een camera list --help
 </code></pre>
 <h3>pngspan</h3>
 <p>Get performance test results for pngspan endpoint.</p>
-<h4>Options</h4>
+<h4>Options:</h4>
+<ul>
+  <li><code>-a, --all-log</code> Display execution logs.</li>
+  <li><code>--archiver</code> Display the archiver ID.</li>
+  <li>
+    <code>-c, --count [count]</code> Number of pngspans to be tested (default:
+    10).
+  </li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-e, --end-time [end time]</code> Specify the end timestamp for
+    analysis, this option requires --start-time to be specified.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>--fixed</code> Generate timestamps at fixed intervals (interval: 10000
+    ms).
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>-H, --headerinfo</code> Display response header info.</li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--prompt</code> Show user confirmation prompts (default: false).
+  </li>
+  <li>
+    <code>-s, --start-time [start time]</code> Specify the start timestamp for
+    analysis.
+  </li>
+  <li><code>--time</code> Time taken to execute the command.</li>
+  <li>
+    <code>--width [width]</code> Width of pngspan to be tested (default: 240).
+  </li>
+</ul>
+<h4>Filters:</h4>
 <ul>
   <li>
-    <code>-a, --all-log</code><br />
-    Display execution logs.
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
   </li>
   <li>
-    <code>--bridge [bridge1, bridge2]</code><br />
-    Test based on bridges.
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
   </li>
   <li>
-    <code>--bridge-esn [bridge esn1, bridge esn2]</code><br />
-    Test based on bridge ESNs.
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
   </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li><code>--layout [layout1, layout2]</code> Filter based on layouts.</li>
   <li>
-    <code>-c, --count [count]</code><br />
-    Number of previews to be tested (default: 10).
+    <code>--layout-id [layout id1, layout id2]</code> Filter based on layouts
+    IDs.
   </li>
-  <li>
-    <code>-C, --camera [camera1, camera2]</code><br />
-    Test based on cameras.
-  </li>
-  <li>
-    <code>--call-time</code><br />
-    Get api response time.
-  </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>-e, --end-time [end time]</code><br />
-    Specify the end timestamp for analysis, this option requires --start-time to
-    be specified.
-  </li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Test based on camera ESNs.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the file name to save the test results.
-  </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>-H, --headerinfo</code><br />
-    Display response header info
-  </li>
-  <li>
-    <code>--layout [layout1, layout2]</code><br />
-    Test based on layouts.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Test based on layouts IDs.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Specify the start timestamp for analysis.
-  </li>
-  <li>
-    <code>--site [site1, site2]</code><br />
-    Test based on sites.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    Test based on site IDs.
-  </li>
-  <li>
-    <code>-t, --table</code><br />
-    Display result in table format.
-  </li>
-  <li>
-    <code>--tag [tag1, tag2]</code><br />
-    Test based on tags.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
-  <li>
-    <code>--width [width]</code><br />
-    Width of pngspan to be tested.
-  </li>
+  <li><code>--site [site1, site2]</code> Filter based on sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
@@ -2944,80 +2704,56 @@ een camera list --help
 </code></pre>
 <h3>live</h3>
 <p>Get performance test results for live video.</p>
-<h4>Options</h4>
+<h4>Options:</h4>
+<ul>
+  <li><code>-a, --all-log</code> Display execution logs.</li>
+  <li>
+    <code>-c, --count [count]</code> Number of videos to be tested (default:
+    10).
+  </li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>-l, --length [length]</code> Specify the video duration for analysis
+    (default: 5s).
+  </li>
+  <li>
+    <code>--prompt</code> Show user confirmation prompts (default: false).
+  </li>
+  <li><code>--time</code> Time taken to execute the command.</li>
+</ul>
+<h4>Filters:</h4>
 <ul>
   <li>
-    <code>-a, --all-log</code><br />
-    Display execution logs.
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
   </li>
   <li>
-    <code>--bridge [bridge1, bridge2]</code><br />
-    Test based on bridges.
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
   </li>
   <li>
-    <code>--bridge-esn [bridge esn1, bridge esn2]</code><br />
-    Test based on bridge ESNs.
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
   </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li><code>--layout [layout1, layout2]</code> Filter based on layouts</li>
   <li>
-    <code>-c, --count [count]</code><br />
-    Number of videos to be tested (default: 1).
+    <code>--layout-id [layout id1, layout id2]</code> Filter based on layout
+    IDs.
   </li>
-  <li>
-    <code>-C, --camera [camera1, camera2]</code><br />
-    Test based on cameras.
-  </li>
-  <li>
-    <code>--call-time</code><br />
-    Get api response time.
-  </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Test based on camera ESNs.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the file name to save the test results.
-  </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>-l, --length</code><br />
-    Specify the video duration for analysis (default: 5s).
-  </li>
-  <li>
-    <code>--layout [layout1, layout2]</code><br />
-    Test based on layouts.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Test based on layouts IDs.
-  </li>
-  <li>
-    <code>--site [site1, site2]</code><br />
-    Test based on sites.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    Test based on site IDs.
-  </li>
-  <li>
-    <code>-t, --table</code><br />
-    Display result in table format.
-  </li>
-  <li>
-    <code>--tag [tag1, tag2]</code><br />
-    Test based on tags.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
+  <li><code>--site [site1, site2]</code> Filter based on sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -3037,27 +2773,20 @@ een camera list --help
 </ul>
 <pre><code class="language-bash">een perftest live --site &quot;site1&quot;
 </code></pre>
-<h3>live-video-latency</h3>
+<h3>livelatency</h3>
 <p>Get test results live video latency</p>
-<h4>Options</h4>
+<h4>Options:</h4>
 <ul>
   <li><code>-a, --all-log</code> Display execution logs.</li>
-  <li><code>-b, --bridge [bridge1, bridge2]</code> Test based on bridges.</li>
-  <li>
-    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Test based on bridge
-    ESNs.
-  </li>
   <li>
     <code>-c, --count [count]</code> Number of videos frames to be tested
-    (default: 3).
+    (default: 10).
   </li>
-  <li><code>-C, --camera [camera1, camera2]</code> Test based on cameras.</li>
   <li><code>--call-time</code> Get api response time.</li>
   <li><code>--csv</code> List details in csv format.</li>
   <li>
     <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
   </li>
-  <li><code>--esn [esn1, esn2]</code> Test based on camera ESNs.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the file name to save the
     test results.
@@ -3066,114 +2795,105 @@ een camera list --help
     <code>-g, --google-sheet</code> List details in csv format in google sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
-  <li><code>--layout [layout1, layout2]</code> Test based on layouts.</li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Test based on layouts IDs.
-  </li>
   <li>
     <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
-  <li><code>--site [site1, site2]</code> Test based on sites.</li>
-  <li><code>--site-id [site id1, site id2]</code> Test based on site IDs.</li>
-  <li><code>--tag [tag1, tag2]</code> Test based on tags.</li>
   <li><code>--time</code> Display the execution time of the command.</li>
+</ul>
+<h4>Filters:</h4>
+<ul>
+  <li>
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
+  </li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
+  </li>
+  <li>
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li><code>--layout [layout1, layout2]</code> Filter based on layouts.</li>
+  <li>
+    <code>--layout-id [layout id1, layout id2]</code> Filter based on layouts
+    IDs.
+  </li>
+  <li><code>--site [site1, site2]</code> Filter based on sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To test live video latency of all the cameras in an account:</li>
 </ul>
-<pre><code class="language-bash">een perftest live-video-latency
+<pre><code class="language-bash">een perftest livelatency
 </code></pre>
 <ul>
   <li>To test live video latency of all the cameras in a specific bridge:</li>
 </ul>
-<pre><code class="language-bash">een perftest live-video-latency --bridge-esn &quot;&lt;bridge_id&gt;&quot;
+<pre><code class="language-bash">een perftest livelatency --bridge-esn &quot;&lt;bridge_id&gt;&quot;
 </code></pre>
 <h3>historic</h3>
 <p>Get performance test results for history video.</p>
-<h4>Options</h4>
+<h4>Options:</h4>
+<ul>
+  <li><code>-a, --all-log</code> Display execution logs.</li>
+  <li>
+    <code>-c, --count [count]</code> Number of videos to be tested (default:
+    10).
+  </li>
+  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+  </li>
+  <li>
+    <code>-e, --end-time [end time]</code> Specify the end timestamp for
+    analysis, this option requires --start-time to be specified.
+  </li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li><code>--fixed</code> Generate timestamps at fixed intervals.</li>
+  <li>
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>-l, --length [video length]</code> Specify the video duration for
+    analysis (default: 10s).
+  </li>
+  <li>
+    <code>--prompt</code> Show user confirmation prompts (default: false).
+  </li>
+  <li>
+    <code>-s, --start-time [start time]</code> Specify the start timestamp for
+    analysis.
+  </li>
+  <li><code>--time</code> Time taken to execute the command.</li>
+</ul>
+<h4>Filters:</h4>
 <ul>
   <li>
-    <code>-a, --all-log</code><br />
-    Display execution logs.
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
   </li>
   <li>
-    <code>--bridge [bridge1, bridge2]</code><br />
-    Test based on bridges.
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
   </li>
   <li>
-    <code>--bridge-esn [bridge esn1, bridge esn2]</code><br />
-    Test based on bridge ESNs.
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
   </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li><code>--layout [layout1, layout2]</code> Filter based on layouts.</li>
   <li>
-    <code>-c, --count [count]</code><br />
-    Number of previews to be tested (default: 5).
+    <code>--layout-id [layout id1, layout id2]</code> Filter based on layouts
+    IDs.
   </li>
-  <li>
-    <code>-C, --camera [camera1, camera2]</code><br />
-    Test based on cameras.
-  </li>
-  <li>
-    <code>--call-time</code><br />
-    Get api response time.
-  </li>
-  <li>
-    <code>-d, --debug</code><br />
-    Enable detailed debug output for troubleshooting.
-  </li>
-  <li>
-    <code>-e, --end-time [end time]</code><br />
-    Specify the end timestamp for analysis, this option requires --start-time to
-    be specified.
-  </li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Test based on camera ESNs.
-  </li>
-  <li>
-    <code>-f, --file-name [file name]</code><br />
-    Specify the file name to save the test results.
-  </li>
-  <li>
-    <code>--header</code><br />
-    Display column headers in the result.
-  </li>
-  <li>
-    <code>-l, --length</code><br />
-    Specify the video duration for analysis (default: 10s).
-  </li>
-  <li>
-    <code>--layout [layout1, layout2]</code><br />
-    Test based on layouts.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code><br />
-    Test based on layouts IDs.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Specify the start timestamp for analysis.
-  </li>
-  <li>
-    <code>--site [site1, site2]</code><br />
-    Test based on sites.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    Test based on site IDs.
-  </li>
-  <li>
-    <code>-t, --table</code><br />
-    Display result in table format.
-  </li>
-  <li>
-    <code>--tag [tag1, tag2]</code><br />
-    Test based on tags.
-  </li>
-  <li>
-    <code>--time</code><br />
-    Display the execution time of the command.
-  </li>
+  <li><code>--site [site1, site2]</code> Filter based on sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
@@ -3419,57 +3139,163 @@ een camera list --help
 <p>Example:</p>
 <pre><code>een googleconfig update &quot;driveFolderID&quot; -- &quot;1giou_ghlihbZyUpwCx&quot;
 </code></pre>
-<h3>Camera settings that can be edited:</h3>
+<hr />
+<h3>Output Formats and Options</h3>
+<h4>Using <code>--include</code> to Select Fields</h4>
+<p>
+  Many commands support the <code>--include</code> option to display only
+  specific fields in the output. This allows you to customize the data returned
+  for easier parsing and processing.
+</p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-bash"># Get only camera ESNs in camera list
+een camera list --include 'esn'
+
+# Get only bridge ESNs in bridge list
+een bridge list --include 'esn'
+</code></pre>
+<p>
+  When using the <code>--include</code> option, only the specified fields will
+  be returned in the output.
+</p>
+<hr />
+<h4>Output Formats</h4>
+<p>
+  The EEN CLI tool supports three main output formats. By default, headers are
+  hidden in all formats unless <code>--header</code> is specified.
+</p>
 <ol>
-  <li>cloud-retention-days - [Cloud retention]</li>
-  <li>video-resolution - [Video resolution]</li>
-  <li>bridge-target-days - [Local retention - Min]</li>
-  <li>local-retention-days - [Local retention - Max]</li>
-  <li>preview-resolution - [Preview resolution]</li>
-  <li>preview-transmit-mode - [Preview transmit mode]</li>
-  <li>video-transmit-mode - [Video transmit mode]</li>
-  <li>video-quality - [Full Video quality]</li>
-  <li>tags - [Tags]</li>
-  <li>username - [Camera username]</li>
-  <li>password - [Camera password]</li>
-  <li>aspect-ratio- [Preview aspect ratio]</li>
-  <li>video-capture-mode - [Preview Record when]</li>
-  <li>preview-interval-ms - [Preview update rate]</li>
-  <li>preview-quality - [Preview quality]</li>
-  <li>preview-only-cloud-retention - [Cloud Preview Only (PR1)]</li>
-  <li>audio-enable - [Enable audio if available]</li>
-  <li>audio-disable - [Disable audio if available]</li>
+  <li>
+    <p>
+      <strong>Table Format (Default)</strong> Human-readable output in a table
+      format.
+    </p>
+    <pre><code class="language-bash"># Table output (headers hidden)
+een camera list
+
+# Table output with headers
+een camera list --header
+</code></pre>
+  </li>
+  <li>
+    <p>
+      <strong>CSV Format</strong> Comma-separated values for data processing.
+    </p>
+    <pre><code class="language-bash"># CSV output without headers
+een camera list --csv
+
+# CSV output with headers
+een camera list --csv --header
+</code></pre>
+  </li>
+  <li>
+    <p>
+      <strong>Google Sheets Format</strong> Uploads the output to a Google Sheet
+      in your configured Google account.
+    </p>
+    <pre><code class="language-bash"># Google Sheets output without headers
+een camera list --google-sheet
+
+# Google Sheets output with headers
+een camera list --google-sheet --header
+</code></pre>
+  </li>
 </ol>
-<p>Note:</p>
+<hr />
+<h4>Prompt Handling (<code>--prompt</code> option)</h4>
+<p>
+  The <code>--prompt</code> option adds confirmation prompts during command
+  execution for safety-critical operations, such as overwriting files.
+</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash"># File overwrite prompt
+een camera list --csv --file-name cameras.csv --prompt
+# Output: File 'cameras.csv' already exists. Overwrite? (y/N):
+</code></pre>
+<hr />
+<h4>Error Handling</h4>
+<p>
+  All error messages are printed to stderr, and successful data is printed to
+  stdout, making it easy to parse and process results in scripts.
+</p>
+<hr />
+<h4>API Versions</h4>
+<p>The EEN CLI tool supports two API versions:</p>
 <ul>
   <li>
-    Except for <code>cameraID</code> and <code>cameraName</code> all other
-    fields in the camera settings file are editable.
+    <strong>v3 API (Default):</strong> All commands use v3 APIs by default
+    (recommended).
+  </li>
+  <li>
+    <strong>v1 API (Legacy):</strong> Some commands support the legacy v1 API
+    using the <code>--v1</code> option.
   </li>
 </ul>
-<h3>Bridge settings that can be edited:</h3>
-<ol>
-  <li>local-rtsp-metrics - [Bridge rtsp metrics]</li>
-</ol>
-<h3>Available camera status</h3>
+<p><strong>Usage v1 APIs:</strong></p>
+<pre><code class="language-bash"># Using default v3 API
+een camera list
+
+# Using v1 API
+een camera list --v1
+</code></pre>
+<p>
+  <strong>Commands Supporting <code>--v1</code>:</strong>
+</p>
 <ul>
-  <li>&quot;Camera online&quot;</li>
-  <li>&quot;Stream attached&quot;</li>
-  <li>&quot;Camera on&quot;</li>
-  <li>&quot;Camera recording&quot;</li>
-  <li>&quot;Camera sending previews&quot;</li>
-  <li>&quot;Camera located&quot;</li>
-  <li>&quot;Camera not supported&quot;</li>
-  <li>&quot;Camera configuration in process&quot;</li>
-  <li>&quot;Camera needs ONVIF password&quot;</li>
-  <li>&quot;Camera available but not yet attached&quot;</li>
-  <li>&quot;Internal status&quot;</li>
-  <li>&quot;Camera error&quot;</li>
-  <li>&quot;Reserved&quot;</li>
-  <li>&quot;Invalid state&quot;</li>
-  <li>&quot;Camera streaming&quot;</li>
-  <li>&quot;Camera registered&quot;</li>
+  <li><code>user list</code></li>
+  <li><code>camera list</code></li>
+  <li><code>camera settings</code></li>
+  <li><code>bridge list</code></li>
+  <li><code>lpr events</code></li>
+  <li><code>perftest preview</code></li>
 </ul>
+<hr />
+<h4>Available Status Values</h4>
+<p><strong>Camera status for v1:</strong></p>
+<ul>
+  <li>Camera online</li>
+  <li>Stream attached</li>
+  <li>Camera on</li>
+  <li>Camera recording</li>
+  <li>Camera sending previews</li>
+  <li>Camera located</li>
+  <li>Camera not supported</li>
+  <li>Camera configuration in process</li>
+  <li>Camera needs ONVIF password</li>
+  <li>Camera available but not yet attached</li>
+  <li>Internal status</li>
+  <li>Camera error</li>
+  <li>Reserved</li>
+  <li>Invalid state</li>
+  <li>Camera streaming</li>
+  <li>Camera registered</li>
+</ul>
+<p><strong>Device status for v3 (camera, bridge, etc.):</strong></p>
+<ul>
+  <li>online</li>
+  <li>deviceOffline</li>
+  <li>invalidCredentials</li>
+  <li>bridgeOffline</li>
+  <li>off</li>
+  <li>offline</li>
+  <li>error</li>
+  <li>unknown</li>
+</ul>
+<hr />
+<h4>Important Note about Comma-Separated Values:</h4>
+<p>
+  When passing multiple values separated by commas to any option, always use
+  <strong>single quotes</strong> to prevent shell interpretation issues.
+</p>
+<p><strong>Correct:</strong>:</p>
+<pre><code class="language-bash">een camera list --esn 'cam1,cam2,cam3'
+een bridge list --site 'Site A,Site B,Site C'
+een user list --include 'email,firstname,lastname'
+</code></pre>
+<p><strong>Avoid:</strong>:</p>
+<pre><code class="language-bash">een camera list --esn cam1,cam2,cam3          # May not work - shell splits on commas
+een camera list --esn &quot;cam1,cam2,cam3&quot;        # May work but can cause issues in some cases
+</code></pre>
 <h3>Available timezones</h3>
 <ul>
   <li>&quot;Africa/Abidjan&quot;</li>
