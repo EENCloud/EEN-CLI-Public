@@ -848,7 +848,7 @@ een camera get audio --esn 12345
 een camera get preview-update-rate --bridge-esn 12345 --csv -f update-rate.csv
 
 # Get scene analytics for all cameras and export to Google Sheets with headers
-een camera get scene-analytics --enable -g --header
+een camera get scene-analytics -g --header
 ```
 
 #### Output
