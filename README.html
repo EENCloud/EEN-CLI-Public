@@ -724,23 +724,9 @@ een camera list --help
     guid.
   </li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs.
-  </li>
-  <li>
     <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
   <li><code>--shared</code> List cameras that are shared.</li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
-  <li>
-    <code>--site-id [site id1, site id2]</code> Filter cameras by site IDs.
-  </li>
-  <li><code>--status [status]</code> Filter cameras by status.</li>
-  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
   <li>
     <code>-T, --tree</code> List cameras and associated bridges in tree format.
   </li>
@@ -757,17 +743,11 @@ een camera list --help
     ESNs.
   </li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
+    <code>--site [site name1, site name2]</code> Filter based on site names.
   </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs.
-  </li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
-  <li><code>--status [status]</code> Filter cameras by status.</li>
-  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
+  <li><code>--status [status]</code> Filter based on status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Example</h4>
 <p>To list all cameras with specific fields in CSV format (with headers):</p>
@@ -879,21 +859,15 @@ een camera list --help
   </li>
   <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
+    <code>--site [site name1, site name2]</code> Filter based on site names.
   </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs.
-  </li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
   <li>
     <code>--site-id [site id1, site id2]</code>
-    Filter cameras by site IDs.
+    Filter based on site IDs.
     <code>--status [status]</code>
-    Filter cameras by status.
+    Filter based on status.
   </li>
-  <li><code>--tag [tag1, tag2]</code> Filter cameras by tags.</li>
+  <li><code>--tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Common Options:</h4>
 <ul>
@@ -1007,21 +981,15 @@ een camera get scene-analytics -g --header
     update, or use <code>'*'</code> to apply to all cameras.
   </li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
+    <code>--site [site name1, site name2]</code> Filter based on site names.
   </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs.
-  </li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
   <li>
     <code>--site-id [site id1, site id2]</code>
-    Filter cameras by site IDs.
+    Filter based on site IDs.
     <code>--status [status]</code>
-    Filter cameras by status.
+    Filter based on status.
   </li>
-  <li><code>--tag [tag1, tag2]</code> Filter cameras by tags.</li>
+  <li><code>--tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Common Options:</h4>
 <ul>
@@ -1282,6 +1250,26 @@ een camera set scene-analytics --enable --esn '*' -g --header
     Display the execution time of the command.
   </li>
 </ul>
+<h4>Selectors:</h4>
+<ul>
+  <li>
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
+  </li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
+  </li>
+  <li>
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li>
+    <code>--site [site name1, site name2]</code> Filter based on site names.
+  </li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>--status [status]</code> Filter based on status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
+</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -1361,22 +1349,17 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li>
     <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
   </li>
-  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
   <li>
     <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
     ESNs.
   </li>
   <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
   <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs
-  </li>
-  <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
+    <code>--site [site name1, site name2]</code> Filter based on site names.
   </li>
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
+  <li><code>--status [status]</code> Filter based on status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
