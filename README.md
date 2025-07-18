@@ -658,22 +658,10 @@ List cameras.
   Display associated items. supported values: esn, camera, bridge-esn, bridge, site, siteid, status, tag.
 - `-l, --long`
   List camera details including camera, esn, bridge, bridge esn, site, site id, status, timezone, tags, shared, ip address and guid.
-- `--layout [layout name1, layout name2]`
-  Filter cameras by layouts.
-- `--layout-id [layout id1, layout id2]`
-  Filter cameras by layout IDs.
 - `--prompt`
   Show user confirmation prompts (default: false).
 - `--shared`
   List cameras that are shared.
-- `--site [site name1, site name2]`
-  Filter cameras by sites.
-- `--site-id [site id1, site id2]`
-  Filter cameras by site IDs.
-- `--status [status]`
-  Filter cameras by status.
-- `-t, --tag [tag1, tag2]`
-  Filter cameras by tags.
 - `-T, --tree`
   List cameras and associated bridges in tree format.
 - `--time`
@@ -687,18 +675,14 @@ List cameras.
   Filter based on bridge names.
 - `--bridge-esn [bridge esn1, bridge esn2]`
   Filter based on bridge ESNs.
-- `--layout [layout name1, layout name2]`
-  Filter cameras by layouts.
-- `--layout-id [layout id1, layout id2]`
-  Filter cameras by layout IDs.
 - `--site [site name1, site name2]`
-  Filter cameras by sites.
+  Filter based on site names.
 - `--site-id [site id1, site id2]`
   Filter based on site IDs.
 - `--status [status]`
-  Filter cameras by status.
+  Filter based on status.
 - `-t, --tag [tag1, tag2]`
-  Filter cameras by tags.
+  Filter based on tags.
 
 #### Example
 
@@ -806,18 +790,14 @@ You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific
   Filter based on camera names.
 - `--esn [esn1, esn2]`
   Filter based on camera ESNs.
-- `--layout [layout name1, layout name2]`
-  Filter cameras by layouts.
-- `--layout-id [layout id1, layout id2]`
-  Filter cameras by layout IDs.
 - `--site [site name1, site name2]`
-  Filter cameras by sites.
+  Filter based on site names.
 - `--site-id [site id1, site id2]`
-  Filter cameras by site IDs.
+  Filter based on site IDs.
   `--status [status]`
-  Filter cameras by status.
+  Filter based on status.
 - `--tag [tag1, tag2]`
-  Filter cameras by tags.
+  Filter based on tags.
 
 #### Common Options:
 
@@ -917,18 +897,14 @@ You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific
   Filter based on camera names.
 - `--esn [esn1, esn2]`
   Comma-separated list of camera ESNs to update, or use `'*'` to apply to all cameras.
-- `--layout [layout name1, layout name2]`
-  Filter cameras by layouts.
-- `--layout-id [layout id1, layout id2]`
-  Filter cameras by layout IDs.
 - `--site [site name1, site name2]`
-  Filter cameras by sites.
+  Filter based on site names.
 - `--site-id [site id1, site id2]`
-  Filter cameras by site IDs.
+  Filter based on site IDs.
   `--status [status]`
-  Filter cameras by status.
+  Filter based on status.
 - `--tag [tag1, tag2]`
-  Filter cameras by tags.
+  Filter based on tags.
 
 #### Common Options:
 
@@ -1124,6 +1100,25 @@ Get camera purging and duty cycle.
 - `--time`  
   Display the execution time of the command.
 
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter based on bridge names.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter based on camera names.
+- `--esn [esn1, esn2]`
+  Filter based on camera ESNs.
+- `--site [site name1, site name2]`
+  Filter based on site names.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
+- `--status [status]`
+  Filter based on status.
+- `-t, --tag [tag1, tag2]`
+  Filter based on tags.
+
 #### Notes:
 
 - If you haven't specified any start-time and end-time, it will take the last 24 hours as default timestamps.
@@ -1199,20 +1194,18 @@ Get camera availability.
   Filter based on bridge names.
 - `-C, --camera [camera1, camera2]`
   Filter based on camera names.
-- `-t, --tag [tag1, tag2]`
-  Filter cameras by tags.
 - `--bridge-esn [bridge esn1, bridge esn2]`
   Filter based on bridge ESNs.
 - `--esn [esn1, esn2]`
   Filter based on camera ESNs.
-- `--layout-id [layout id1, layout id2]`
-  Filter cameras by layout IDs
-- `--layout [layout name1, layout name2]`
-  Filter cameras by layouts.
+- `--site [site name1, site name2]`
+  Filter based on site names.
 - `--site-id [site id1, site id2]`
   Filter based on site IDs.
-- `--site [site name1, site name2]`
-  Filter cameras by sites.
+- `--status [status]`
+  Filter based on status.
+- `-t, --tag [tag1, tag2]`
+  Filter based on tags.
 
 #### Notes:
 
