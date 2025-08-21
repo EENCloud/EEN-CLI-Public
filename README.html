@@ -724,23 +724,9 @@ een camera list --help
     guid.
   </li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs.
-  </li>
-  <li>
     <code>--prompt</code> Show user confirmation prompts (default: false).
   </li>
   <li><code>--shared</code> List cameras that are shared.</li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
-  <li>
-    <code>--site-id [site id1, site id2]</code> Filter cameras by site IDs.
-  </li>
-  <li><code>--status [status]</code> Filter cameras by status.</li>
-  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
   <li>
     <code>-T, --tree</code> List cameras and associated bridges in tree format.
   </li>
@@ -757,17 +743,11 @@ een camera list --help
     ESNs.
   </li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
+    <code>--site [site name1, site name2]</code> Filter based on site names.
   </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs.
-  </li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
-  <li><code>--status [status]</code> Filter cameras by status.</li>
-  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
+  <li><code>--status [status]</code> Filter based on status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Example</h4>
 <p>To list all cameras with specific fields in CSV format (with headers):</p>
@@ -879,21 +859,15 @@ een camera list --help
   </li>
   <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
+    <code>--site [site name1, site name2]</code> Filter based on site names.
   </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs.
-  </li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
   <li>
     <code>--site-id [site id1, site id2]</code>
-    Filter cameras by site IDs.
+    Filter based on site IDs.
     <code>--status [status]</code>
-    Filter cameras by status.
+    Filter based on status.
   </li>
-  <li><code>--tag [tag1, tag2]</code> Filter cameras by tags.</li>
+  <li><code>--tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Common Options:</h4>
 <ul>
@@ -1007,21 +981,15 @@ een camera get scene-analytics -g --header
     update, or use <code>'*'</code> to apply to all cameras.
   </li>
   <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
+    <code>--site [site name1, site name2]</code> Filter based on site names.
   </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs.
-  </li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
   <li>
     <code>--site-id [site id1, site id2]</code>
-    Filter cameras by site IDs.
+    Filter based on site IDs.
     <code>--status [status]</code>
-    Filter cameras by status.
+    Filter based on status.
   </li>
-  <li><code>--tag [tag1, tag2]</code> Filter cameras by tags.</li>
+  <li><code>--tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Common Options:</h4>
 <ul>
@@ -1282,6 +1250,26 @@ een camera set scene-analytics --enable --esn '*' -g --header
     Display the execution time of the command.
   </li>
 </ul>
+<h4>Selectors:</h4>
+<ul>
+  <li>
+    <code>-b, --bridge [bridge1, bridge2]</code> Filter based on bridge names.
+  </li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    ESNs.
+  </li>
+  <li>
+    <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
+  <li>
+    <code>--site [site name1, site name2]</code> Filter based on site names.
+  </li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
+  <li><code>--status [status]</code> Filter based on status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
+</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -1294,6 +1282,10 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <p>Get camera installer summary.</p>
 <h4>Options:</h4>
 <ul>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
+    esns.
+  </li>
   <li><code>--call-time</code> Get api response time.</li>
   <li><code>--csv</code> List the details in csv format</li>
   <li>
@@ -1312,6 +1304,7 @@ een camera set scene-analytics --enable --esn '*' -g --header
     <code>-l, --long</code> List the installer summary list in long format.
   </li>
   <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
   <li><code>--time</code> Display the execution time of the command.</li>
 </ul>
 <hr />
@@ -1361,22 +1354,17 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li>
     <code>-C, --camera [camera1, camera2]</code> Filter based on camera names.
   </li>
-  <li><code>-t, --tag [tag1, tag2]</code> Filter cameras by tags.</li>
   <li>
     <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter based on bridge
     ESNs.
   </li>
   <li><code>--esn [esn1, esn2]</code> Filter based on camera ESNs.</li>
   <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter cameras by layout
-    IDs
-  </li>
-  <li>
-    <code>--layout [layout name1, layout name2]</code> Filter cameras by
-    layouts.
+    <code>--site [site name1, site name2]</code> Filter based on site names.
   </li>
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
-  <li><code>--site [site name1, site name2]</code> Filter cameras by sites.</li>
+  <li><code>--status [status]</code> Filter based on status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
@@ -1864,6 +1852,238 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li>To get sites list in a file with prompting for confirmation:</li>
 </ul>
 <pre><code class="language-bash">een site list --csv --file-name sites.csv --prompt --debug
+</code></pre>
+<h1>download - Manage Downloads</h1>
+<h2>NAME</h2>
+<p>
+  <code>download</code> - manage and interact with downloads, including videos
+  and previews.
+</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een download [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>download</code> command allows you to export, list, get and delete
+  video downloads, and get previews.
+</p>
+<h2>COMMANDS</h2>
+<h3>video</h3>
+<p>Manage video downloads.</p>
+<h4>Subcommands:</h4>
+<h5>list</h5>
+<p>List all videos.</p>
+<h6>Options:</h6>
+<ul>
+  <li><code>--csv</code> List details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List details in CSV format in Google Sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items. Supported
+    values: id, name, dfilename.
+  </li>
+  <li>
+    <code>-l, --long</code> Display video details including id, name, dfilename,
+    length, start-time and end-time.
+  </li>
+</ul>
+<h6>Selectors:</h6>
+<ul>
+  <li><code>-C, --camera [camera]</code> Filter based on camera name.</li>
+  <li><code>--esn [esn]</code> Filter based on camera ESN.</li>
+</ul>
+<h6>General Options:</h6>
+<ul>
+  <li><code>--call-time</code> Display API response time.</li>
+  <li><code>-d, --debug</code> Enable detailed debug output.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display time taken to execute the command.</li>
+</ul>
+<hr />
+<h5>export</h5>
+<p>Export video.</p>
+<h6>Options:</h6>
+<ul>
+  <li><code>-C, --camera [camera]</code> Camera name.</li>
+  <li><code>-e, --end-time [end time]</code> End time.</li>
+  <li><code>--esn [esn]</code> Camera ESN.</li>
+  <li><code>--length [length]</code> Length from start time in seconds.</li>
+  <li><code>--name [name]</code> Export file name.</li>
+  <li><code>-s, --start-time [start time]</code> Start time (required).</li>
+  <li>
+    <code>-T, --timezone [timezone]</code> Timezone for timestamp (defaults to
+    camera's timezone).
+  </li>
+  <li><code>--timestamp</code> Add timestamp.</li>
+  <li>
+    <code>--max-length [max length] </code> Maximum duration in seconds for
+    time-lapse video.
+  </li>
+  <li><code>--time-lapse</code> Export a time-lapsed video.</li>
+</ul>
+<h6>General Options:</h6>
+<ul>
+  <li><code>--call-time</code> Display API response time.</li>
+  <li><code>-d, --debug</code> Enable detailed debug output.</li>
+  <li><code>--time</code> Display time taken to execute the command.</li>
+</ul>
+<hr />
+<h5>get</h5>
+<p>Download video.</p>
+<h6>Options:</h6>
+<ul>
+  <li><code>--dfilename [dfilename]</code> Filename to download.</li>
+  <li><code>--directory [directory]</code> Output directory.</li>
+  <li><code>-f, --file-name [file-name]</code> Override output file name.</li>
+  <li><code>--id [id]</code> ID of video to be downloaded.</li>
+  <li><code>--name [name]</code> Name of video to be downloaded.</li>
+</ul>
+<h6>General Options:</h6>
+<ul>
+  <li><code>--call-time</code> Display API response time.</li>
+  <li><code>-d, --debug</code> Enable detailed debug output.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display time taken to execute the command.</li>
+</ul>
+<hr />
+<h5>delete</h5>
+<p>Delete a video by ID.</p>
+<h6>Arguments:</h6>
+<ul>
+  <li><code>&lt;video-id&gt;</code> The ID of the video to delete.</li>
+</ul>
+<h6>General Options:</h6>
+<ul>
+  <li><code>--call-time</code> Display API response time.</li>
+  <li><code>-d, --debug</code> Enable detailed debug output.</li>
+  <li><code>--time</code> Display time taken to execute the command.</li>
+</ul>
+<hr />
+<h3>preview</h3>
+<p>Download preview.</p>
+<h4>Options:</h4>
+<ul>
+  <li><code>-C, --camera [camera]</code> Camera to download from.</li>
+  <li><code>--directory [directory]</code> Output directory.</li>
+  <li><code>-e, --end-time [end time]</code> End time.</li>
+  <li><code>--esn [esn]</code> ESN to download from.</li>
+  <li><code>--length [length]</code> Length from start time in seconds.</li>
+  <li><code>--overlay</code> Add overlay.</li>
+  <li><code>-s, --start-time [start time]</code> Start time (required).</li>
+  <li>
+    <code>-T, --timezone [timezone]</code> Timezone for timestamp (default:
+    camera's timezone).
+  </li>
+</ul>
+<h4>General Options:</h4>
+<ul>
+  <li><code>--call-time</code> Display API response time.</li>
+  <li><code>-d, --debug</code> Enable detailed debug output.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display time taken to execute the command.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all videos available for download:</li>
+</ul>
+<pre><code class="language-bash">een download video list
+</code></pre>
+<ul>
+  <li>To list videos with specific details in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een download video list --include 'id,name,dfilename' --csv --header
+</code></pre>
+<ul>
+  <li>To export a video with timestamp:</li>
+</ul>
+<pre><code class="language-bash">een download video export --esn 12345 --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot; --timestamp
+</code></pre>
+<ul>
+  <li>To download a specific video by ID:</li>
+</ul>
+<pre><code class="language-bash">een download video get --id &quot;12345&quot; --directory &quot;/path/to/save&quot;
+</code></pre>
+<ul>
+  <li>To download a preview from a camera:</li>
+</ul>
+<pre><code class="language-bash">een download preview --esn 12345 --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010004.000&quot; --directory &quot;/path/to/save&quot;
+</code></pre>
+<ul>
+  <li>To delete a video by ID:</li>
+</ul>
+<pre><code class="language-bash">een download video delete video123
+</code></pre>
+<h1>job - Manage Jobs</h1>
+<h2>NAME</h2>
+<p><code>job</code> - manage and interact with jobs.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een job [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>job</code> command allows you to list and manage jobs in the system.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List jobs.</p>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> List details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List details in CSV format in Google Sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--jobid [job-id]</code> Filter by job ID.</li>
+  <li>
+    <code>--jobstate [state]</code> Filter by job state (pending, started,
+    failure, success, revoked).
+  </li>
+</ul>
+<h4>General Options:</h4>
+<ul>
+  <li><code>--call-time</code> Display API response time.</li>
+  <li><code>-d, --debug</code> Enable detailed debug output.</li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display time taken to execute the command.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all jobs:</li>
+</ul>
+<pre><code class="language-bash">een job list
+</code></pre>
+<ul>
+  <li>To list jobs with headers in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een job list --csv --header
+</code></pre>
+<ul>
+  <li>To list jobs with a specific state:</li>
+</ul>
+<pre><code class="language-bash">een job list --jobstate success
+</code></pre>
+<ul>
+  <li>To list pending jobs and save to file:</li>
+</ul>
+<pre><code class="language-bash">een job list --jobstate pending --csv --file-name pending_jobs.csv
+</code></pre>
+<ul>
+  <li>To list a specific job by ID:</li>
+</ul>
+<pre><code class="language-bash">een job list --jobid &quot;123456&quot;
 </code></pre>
 <h1>video - Manage Recorded Videos</h1>
 <h2>NAME</h2>
