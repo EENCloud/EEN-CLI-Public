@@ -1131,6 +1131,8 @@ Get camera installer summary.
 
 #### Options:
 
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter based on bridge esns.
 - `--call-time`
   Get api response time.
 - `--csv`
@@ -1147,6 +1149,8 @@ Get camera installer summary.
   List the installer summary list in long format.
 - `--prompt`
   Show user confirmation prompts.
+- `--site-id [site id1, site id2]`
+  Filter based on site IDs.
 - `--time`
   Display the execution time of the command.
 
@@ -1686,6 +1690,312 @@ een site list --csv --file-name sites.csv
 
 ```bash
 een site list --csv --file-name sites.csv --prompt --debug
+```
+
+# download - Manage Downloads
+
+## NAME
+
+`download` - manage and interact with downloads, including videos and previews.
+
+## SYNOPSIS
+
+```
+een download [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `download` command allows you to export, list, get and delete video downloads, and get previews.
+
+## COMMANDS
+
+### video
+
+Manage video downloads.
+
+#### Subcommands:
+
+##### list
+
+List all videos.
+
+###### Options:
+
+- `--csv`
+  List details in CSV format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`
+  Display associated items. Supported values: id, name, dfilename.
+- `-l, --long`
+  Display video details including id, name, dfilename, length, start-time and end-time.
+
+###### Selectors:
+
+- `-C, --camera [camera]`
+  Filter based on camera name.
+- `--esn [esn]`
+  Filter based on camera ESN.
+
+###### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Enable detailed debug output.
+- `--prompt`
+  Show user confirmation prompts.
+- `--time`
+  Display time taken to execute the command.
+
+---
+
+##### export
+
+Export video.
+
+###### Options:
+
+- `-C, --camera [camera]`
+  Camera name.
+- `-e, --end-time [end time]`
+  End time.
+- `--esn [esn]`
+  Camera ESN.
+- `--length [length]`
+  Length from start time in seconds.
+- `--name [name]`
+  Export file name.
+- `-s, --start-time [start time]`
+  Start time (required).
+- `-T, --timezone [timezone]`
+  Timezone for timestamp (defaults to camera's timezone).
+- `--timestamp`
+  Add timestamp.
+- `--max-length [max length] `
+  Maximum duration in seconds for time-lapse video.
+- `--time-lapse`
+  Export a time-lapsed video.
+
+###### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Enable detailed debug output.
+- `--time`
+  Display time taken to execute the command.
+
+---
+
+##### get
+
+Download video.
+
+###### Options:
+
+- `--dfilename [dfilename]`
+  Filename to download.
+- `--directory [directory]`
+  Output directory.
+- `-f, --file-name [file-name]`
+  Override output file name.
+- `--id [id]`
+  ID of video to be downloaded.
+- `--name [name]`
+  Name of video to be downloaded.
+
+###### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Enable detailed debug output.
+- `--prompt`
+  Show user confirmation prompts.
+- `--time`
+  Display time taken to execute the command.
+
+---
+
+##### delete
+
+Delete a video by ID.
+
+###### Arguments:
+
+- `<video-id>`
+  The ID of the video to delete.
+
+###### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Enable detailed debug output.
+- `--time`
+  Display time taken to execute the command.
+
+---
+
+### preview
+
+Download preview.
+
+#### Options:
+
+- `-C, --camera [camera]`
+  Camera to download from.
+- `--directory [directory]`
+  Output directory.
+- `-e, --end-time [end time]`
+  End time.
+- `--esn [esn]`
+  ESN to download from.
+- `--length [length]`
+  Length from start time in seconds.
+- `--overlay`
+  Add overlay.
+- `-s, --start-time [start time]`
+  Start time (required).
+- `-T, --timezone [timezone]`
+  Timezone for timestamp (default: camera's timezone).
+
+#### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Enable detailed debug output.
+- `--prompt`
+  Show user confirmation prompts.
+- `--time`
+  Display time taken to execute the command.
+
+## EXAMPLES
+
+- To list all videos available for download:
+
+```bash
+een download video list
+```
+
+- To list videos with specific details in CSV format:
+
+```bash
+een download video list --include 'id,name,dfilename' --csv --header
+```
+
+- To export a video with timestamp:
+
+```bash
+een download video export --esn 12345 --start-time "20241001000000.000" --end-time "20241001010000.000" --timestamp
+```
+
+- To download a specific video by ID:
+
+```bash
+een download video get --id "12345" --directory "/path/to/save"
+```
+
+- To download a preview from a camera:
+
+```bash
+een download preview --esn 12345 --start-time "20241001000000.000" --end-time "20241001010004.000" --directory "/path/to/save"
+```
+
+- To delete a video by ID:
+
+```bash
+een download video delete video123
+```
+
+# job - Manage Jobs
+
+## NAME
+
+`job` - manage and interact with jobs.
+
+## SYNOPSIS
+
+```
+een job [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `job` command allows you to list and manage jobs in the system.
+
+## COMMANDS
+
+### list
+
+List jobs.
+
+#### Options:
+
+- `--csv`
+  List details in CSV format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `--jobid [job-id]`
+  Filter by job ID.
+- `--jobstate [state]`
+  Filter by job state (pending, started, failure, success, revoked).
+
+#### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Enable detailed debug output.
+- `--prompt`
+  Show user confirmation prompts.
+- `--time`
+  Display time taken to execute the command.
+
+## EXAMPLES
+
+- To list all jobs:
+
+```bash
+een job list
+```
+
+- To list jobs with headers in CSV format:
+
+```bash
+een job list --csv --header
+```
+
+- To list jobs with a specific state:
+
+```bash
+een job list --jobstate success
+```
+
+- To list pending jobs and save to file:
+
+```bash
+een job list --jobstate pending --csv --file-name pending_jobs.csv
+```
+
+- To list a specific job by ID:
+
+```bash
+een job list --jobid "123456"
 ```
 
 # video - Manage Recorded Videos
