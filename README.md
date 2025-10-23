@@ -136,6 +136,23 @@ Shows detailed help instructions. For shorter help on a specific object, use:
 een <object> --help
 ```
 
+## General Options:
+
+General options are available for all commands that include `[general-options]` in their usage.
+
+- `--call-time`
+  Display api response time.
+- `-d, --debug`
+  Enable detailed debug output.
+- `-h, --help`
+  Shows how to execute the selected subcommand and provides usage examples.
+- `--prompt`
+  Show user confirmation prompts.
+- `--time`
+  Display time taken to execute the command.
+
+Note: `--prompt` may be unavailable for some commands.
+
 ## EXAMPLES
 
 ```
@@ -177,7 +194,7 @@ een auth [COMMAND] [options]
 
 ## DESCRIPTION
 
-The **een auth** command provides utilities for logging in and out of Eagle Eye Networks.
+The **een auth** command provides utilities for logging in and out of Eagle Eye Networks. When using `auth login`, the user is redirected to a login URL and completes the authentication in the web browser. However, when the `--v1` option is used, the users are authenticated directly through the CLI.
 
 ## COMMANDS
 
@@ -185,22 +202,20 @@ The **een auth** command provides utilities for logging in and out of Eagle Eye 
 
 Log in to EEN using the provided credentials.
 
-#### Required options:
+#### Usage:
+
+```
+een auth login [options] [general options]
+```
+
+#### Options:
 
 - `-p, --password <password>`
   Password for login. Use quotes around the password if it contains special characters (e.g., `--password "MyP@ssw0rd!"`).
-
 - `-u, --username <username>`
   Username for login (e.g., `--username admin@example.com`).
-
-#### General options:
-
-- `--call-time`
-  Get api response time.
-- `-d, --debug`
-  Enable detailed debug output for troubleshooting.
-- `--time`
-  Display the execution time of the command.
+- `--v1`
+  Use the v1 API for authentication.
 
 #### Notes:
 
@@ -212,14 +227,11 @@ Log in to EEN using the provided credentials.
 
 Log out from EEN.
 
-#### General Options:
+#### Usage:
 
-- `--call-time`
-  Get api response time.
-- `-d, --debug`
-  Enable detailed debug output for troubleshooting.
-- `--time`
-  Display the execution time of the command.
+```
+een auth logout [general options]
+```
 
 ## EXAMPLES
 
@@ -227,6 +239,10 @@ Log out from EEN.
 
 ```bash
 een auth login --username johndoe --password secret --debug
+```
+
+```bash
+een auth login
 ```
 
 - To logout
@@ -257,6 +273,12 @@ The `user` command allows you to manage users, list user permissions, and export
 
 List users.
 
+#### Usage:
+
+```
+een user list [options] [general options]
+```
+
 #### Options:
 
 - `--csv`
@@ -276,17 +298,6 @@ List users.
 - `--v1`
   Use v1 APIs for listing users.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Actions:
 
 - If `--html` is specified, generate a user permissions report.
@@ -300,7 +311,15 @@ List users.
 - To list all users:
 
 ```bash
-een user list
+een user list --header --csv
+```
+
+#### Output
+
+```csv
+"id","account id","first name","last name"
+"ca046095","00052029","Anandhakrishnan","M"
+"ca01060e","00052029","Anandhan","Sreekumar"
 ```
 
 - To list users in CSV format:
@@ -337,6 +356,12 @@ The `account` command allows you to manage reseller accounts, list all accounts,
 
 List all logged in accounts.
 
+#### Usage:
+
+```
+een account list [options] [general options]
+```
+
 #### Options:
 
 - `--csv`
@@ -350,20 +375,17 @@ List all logged in accounts.
 - `-s, --sub-account`
   List sub-accounts (only applicable for reseller accounts).
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
 ### switch
 
 Switch to an account.
+
+#### Usage:
+
+```
+een switch list [options] [general options]
+```
 
 #### Options:
 
@@ -374,22 +396,19 @@ Switch to an account.
 - `--username [username]`  
   Specify the username to switch between logged-in accounts.
 
-#### General Options:
-
-- `--call-time`
-  display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--time`
-  display time taken to execute the command.
-
 ## EXAMPLES
 
 - To list all accounts of the reseller:
 
 ```bash
-een account list
+een account list --header
 ```
+
+#### Output
+
+"account"
+"Sijin Jacob(00052029)"
+"Deepak M K(00064711)"
 
 - Switch to a sub-account (from reseller account):
 
@@ -437,6 +456,12 @@ The `archive` command allows you to manage archives, including listing archives 
 
 Get the list of available archives.
 
+#### Usage:
+
+```
+een archive list [options] [general options]
+```
+
 #### Options:
 
 - `--csv`
@@ -450,44 +475,32 @@ Get the list of available archives.
 - `-t, --target-directory [target directory]`
   Specify the directory from which the archive will be retrieved.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
 ### download
 
 Download a specific archive.
 
+#### Usage:
+
+```
+een archive download <archive> [options] [general options]
+```
+
 #### Arguments:
 
 - `<archive>`
   The name of the archive to download (required).
 
-#### Required options:
+#### Required Options:
 
 - `-t, --target-directory [target-directory]`
   Specify the name of the directory where the output will be saved.
 
-#### Optional options:
+#### Optional Options:
 
 - `-o, --overwrite`
   Overwrite the already downloaded archive if it exists.
-
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--time`
-  Display time taken to execute the command.
 
 ## EXAMPLES
 
@@ -525,6 +538,12 @@ The `auditlog` command allows you to list audit log.
 
 List audit logs.
 
+#### Usage:
+
+```
+een auditlog list [options] [selectors] [general options]
+```
+
 #### Options:
 
 - `--csv`
@@ -535,7 +554,7 @@ List audit logs.
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   List all audit log in CSV format in Google Sheets.
-- `-H, --header`
+- `--header`
   Display column headers in the result. By default headers will be hidden.
 - `-s, --start-time [start time]`
   Start time for audit log events(defaults to 10 minutes before the current time)
@@ -545,23 +564,20 @@ List audit logs.
 - `-u, --userid [user id]`
   Filter audit log by user-id.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ## EXAMPLES
 
 - To list all audit logs:
 
 ```bash
-een auditlog list
+een auditlog list --header --csv
+```
+
+#### Output
+
+```csv
+"user","type","timestamp","description"
+"Lakshmi Sai P(lpaspuleti+vs@een.com)","Create File","2025-10-07T09:43:17.851+00:00","File name "VSP Events Count Summary Report - 20251007094316035.html" created"
+"Lakshmi Sai P(lpaspuleti+vs@een.com)","Create File","2025-10-07T09:43:17.461+00:00","File name "VSP Events Count Summary Report - 20251007094316035.csv" created"
 ```
 
 - To list all audit logs for a specific time:
@@ -588,6 +604,12 @@ een availabledevices [COMMAND] [OPTIONS]
 
 List available devices.
 
+#### Usage:
+
+```
+een availabledevices list [options] [general options]
+```
+
 #### Options:
 
 - `--csv`
@@ -609,17 +631,6 @@ List available devices.
   Filter by device state. supported values: notSupported, addable, inOtherAccount, unknown.
 - `--devicetype [type1, type2]`
   Filter by device types. supported values: camera, speaker, display, multiCamera.
-
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
 
 ## EXAMPLES
 
@@ -653,10 +664,14 @@ een camera [COMMAND] [OPTIONS]
 
 List cameras.
 
+#### Usage:
+
+```
+een camera list [options] [selectors] [general options]
+```
+
 #### Options:
 
-- `-a, --available`
-  List cameras discovered by bridges but not yet added.
 - `-A, --all`
   List all cameras, including shared ones.
 - `--csv`
@@ -697,17 +712,6 @@ List cameras.
 - `-t, --tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Example
 
 To list all cameras with specific fields in CSV format (with headers):
@@ -736,6 +740,12 @@ Get camera settings and analytics.
 The `camera get` command allows you to get a specific setting for one or more cameras.
 You can specify the setting to retrieve as `<parameter>`.
 You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific cameras.
+
+#### Usage:
+
+```
+een camera get [parameter] [value] [options] [selectors] [general options]
+```
 
 #### Parameters:
 
@@ -804,17 +814,6 @@ You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific
 - `--tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### EXAMPLES
 
 ```bash
@@ -848,6 +847,12 @@ Edit camera's settings.
 The `camera set` command allows you to update a specific setting for one or more cameras.
 You can specify the setting to change as `<parameter>`, and the new value as `<value>`.
 You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific cameras.
+
+#### Usage:
+
+```
+een camera set [parameter] [value] [options] [selectors] [general options]
+```
 
 #### Parameters:
 
@@ -916,17 +921,6 @@ You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific
 - `--tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### EXAMPLES
 
 ```bash
@@ -978,21 +972,16 @@ Updated camera for 0/1 camera
 
 Delete a camera from the bridge.
 
+#### Usage:
+
+```
+ een camera delete <esn> [general options]
+```
+
 #### Argument:
 
 - `<esn>`  
   ESN of the camera (required)
-
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
 
 ---
 
@@ -1000,19 +989,25 @@ Delete a camera from the bridge.
 
 Add camera to bridge.
 
+#### Usage:
+
+```
+een camera add <esn> [options] [general options]
+```
+
 #### Argument:
 
 - `<esn>`
   ESN of the bridge to which the camera is added.
 
-#### Required options:
+#### Required Options:
 
 - `-C, --camera-name [camera name]`
   Name of the camera.
 - `--guid [guid]`
   GUID of the camera.
 
-#### Optional options:
+#### Optional Options:
 
 - `-c, --cloud-retention-days [cloud retention days]`
   Cloud retention days.
@@ -1027,31 +1022,26 @@ Add camera to bridge.
 - `-u, --username [username]`
   Camera username.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
 ### streamstatus
 
 Get camera stream status.
 
-#### Required options:
+#### Usage:
+
+```
+een camera streamstatus [options] [general options]
+```
+
+#### Required Options:
 
 - `-e, --end-time [end time]`
   Camera stream end time.
 - `-s, --start-time [start time]`
   Camera stream start time.
 
-#### Optional options:
+#### Optional Options:
 
 - `--esn [esn1, esn2]`
   ESNs of the cameras.
@@ -1059,17 +1049,6 @@ Get camera stream status.
   Specify the name of the file where the output will be saved.
 - `-S, --stream-type [stream type]`
   Stream type of the camera.
-
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
 
 #### Notes:
 
@@ -1082,6 +1061,12 @@ Get camera stream status.
 ### purgelist
 
 Get camera purging and duty cycle.
+
+#### Usage:
+
+```
+een camera purgelist [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -1119,17 +1104,6 @@ Get camera purging and duty cycle.
 - `-t, --tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - If you haven't specified any start-time and end-time, it will take the last 24 hours as default timestamps.
@@ -1139,6 +1113,12 @@ Get camera purging and duty cycle.
 ### i-summary
 
 Get camera installer summary.
+
+#### Usage:
+
+```
+een camera i-summary [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -1160,29 +1140,24 @@ Get camera installer summary.
 - `--site-id [site id1, site id2]`
   Filter based on site IDs.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
 ### availability
 
 Get camera availability.
 
-#### Required options:
+#### Usage:
+
+```
+een camera availability [options] [selectors] [general options]
+```
+
+#### Required Options:
 
 - `-s, --start-time [start time]`
   Video start time.
 
-#### Optional options:
+#### Optional Options:
 
 - `--csv`
   List details in csv format.
@@ -1220,64 +1195,161 @@ Get camera availability.
 - `-t, --tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - This command only supports a maximum of 200 devices and a seven-day time range.
 
 ---
 
-### addtags
+### addtag
 
-Add tags to camera, accepts multiple tags and esns seperated by comma
+The `camera addtag` command allows you to add tags to camera.
+It can accept multiple tags, you can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific cameras.
+
+#### Usage:
+
+```
+een camera addtag <tags> [options] [selectors] [general options]
+```
 
 #### Argument:
 
-- `<esns>`
-  ESNs of the cameras to which the tags are added.
 - `<tags>`
   Tags to be added to the cameras.
 
-#### General Options:
+#### Options:
 
-- `--call-time`
-  Get api response time.
-- `-d, --debug`
-  Enable detailed debug output for troubleshooting.
-- `--time`
-  Display the execution time of the command.
+- `--csv`
+  List details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--esn [esn1, esn2]`
+  Filter by camera esns(use '\*' to apply to all cameras)
+- `--site [site name1, site name2]`
+  Filter by site names.
+- `--site-id [site id1, site id2]`
+  Filter by site IDs.
+  `--status [status]`
+  Filter by status.
+- `--tag [tag1, tag2]`
+  Filter by tags.
+
+#### EXAMPLES
+
+```bash
+# add tags newtag, test to camera with esn 1234
+een camera addtag 'new tag, test' --esn '1234'
+
+# add tags test to camera with bridge esn 0987 and camera status online
+een camera addtag 'test' --bridge-esn '0987' --status 'online'
+```
+
+#### Output
+
+When running a `camera addtag` command with `--csv` and `--header`, the output will be in CSV format and is suitable for scripting and automation.
+
+**Successful Output Example:**
+
+```csv
+"camera id","camera name","camera tags","is successful","error reason"
+"1234","Wiktoria regression 140525","new tag, testing","yes",""
+```
+
+**Error Output Example:**
+
+```csv
+"camera id","camera name","camera tags","is successful","error reason"
+"1234","Wiktoria regression 140525","new tag, testing","no","Internal Server Error (response status: unknown)"
+```
 
 ---
 
 ### deletetags
 
-Delete tags from camera, accepts multiple tags and esns seperated by comma
+The `camera deletetag` command allows you to delete tags from camera.
+It can accept multiple tags, you can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific cameras.
+
+#### Usage:
+
+```
+een camera deletetag <tags> [options] [selectors] [general options]
+```
 
 #### Argument:
 
-- `<esns>`
-  ESNs of the cameras from which the tags are deleted.
 - `<tags>`
   Tags to be deleted from the cameras.
 
-#### General Options:
+#### Options:
 
-- `--call-time`
-  Get api response time.
-- `-d, --debug`
-  Enable detailed debug output for troubleshooting.
-- `--time`
-  Display the execution time of the command.
+- `--csv`
+  List details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--esn [esn1, esn2]`
+  Filter by camera esns(use '\*' to apply to all cameras)
+- `--site [site name1, site name2]`
+  Filter by site names.
+- `--site-id [site id1, site id2]`
+  Filter by site IDs.
+  `--status [status]`
+  Filter by status.
+- `--tag [tag1, tag2]`
+  Filter by tags.
+
+#### EXAMPLES
+
+```bash
+# delete tags newtag from camera with esns 1234,5678 give output in csv format with header:
+een camera deletetag 'new tag' --esn '1234, 5678' --csv --header
+
+# add tags test, new tag to camera with bridge esn 0987 and camera status online:
+een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
+```
+
+#### Output
+
+When running a `camera deletetag` command with `--csv` and `--header`, the output will be in CSV format and is suitable for scripting and automation.
+
+**Successful Output Example:**
+
+```csv
+"camera id","camera name","camera tags","is successful","error reason"
+"1007bdb3","Hanwha LPR Camera","lpr testing - 2.4.0","yes",""
+```
+
+**Error Output Example:**
+
+```csv
+"camera id","camera name","camera tags","is successful","error reason"
+"100276a7","Wiktoria regression 140525","new tag, testing","no","Internal Server Error (response status: unknown)"
+```
 
 ---
 
@@ -1302,6 +1374,12 @@ The `bridge` command allows you to manage bridges, list their status, check avai
 ### list
 
 List all bridges.
+
+#### Usage:
+
+```
+een bridge list [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -1333,17 +1411,6 @@ List all bridges.
 - `-t, --tag [tag1, tag2]`
   Filter bridges by tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Actions:
 
 - If `--html` is specified and `--v1`, generate a bridge list report using v1.
@@ -1372,12 +1439,18 @@ een bridge list --include 'esn' --header --csv
 
 Get bridge availability.
 
-#### Required options:
+#### Usage:
+
+```
+een bridge availability [options] [selectors] [general options]
+```
+
+#### Required Options:
 
 - `-s, --start-time [start time]`
   Specify video start time.
 
-#### Optional options:
+#### Optional Options:
 
 - `--csv`
   List details in CSV format.
@@ -1403,29 +1476,24 @@ Get bridge availability.
 - `-t, --tag [tag1, tag2]`
   Filter bridges by tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
 ### qlstreammetrics
 
 Pull logs from the archiver/bridge.
 
-#### Required options:
+#### Usage:
+
+```
+een  bridge qlstreammetrics [options] [general options]
+```
+
+#### Required Options:
 
 - `--esn [esn1, esn2]`
   Esns of the bridge (required).
 
-#### Optional options:
+#### Optional Options:
 
 - `-c, --count [count]`
   Specify the number of annotations to return.
@@ -1441,17 +1509,6 @@ Pull logs from the archiver/bridge.
   Specify the start time.
 - `-S, --summary`
   Get summarized data.
-
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
 
 ---
 
@@ -1497,6 +1554,12 @@ The `switch` command allows you to manage switches and list switch status.
 
 List switches.
 
+#### Usage:
+
+```
+een switch list [options] [general options]
+```
+
 #### Options:
 
 - `--csv`
@@ -1512,35 +1575,20 @@ List switches.
 - `-l, --long`
   List switch details, including switch ID, bridge ESN, and status.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ## EXAMPLES
 
 - To list all switches:
 
 ```bash
-een switch list
+een switch list --header --csv
 ```
 
-- To list switches ids:
+#### Output
 
-```bash
-een switch list --id
-```
-
-- To list switches and their statuses:
-
-```bash
-een switch list --status
+```csv
+"switch name"
+"DiversitySwitch"
+"Aut_v3_Switch_Bridge1"
 ```
 
 # sensor - Manage Sensors
@@ -1565,6 +1613,12 @@ The `sensor` command allows you to manage sensors and list all available sensors
 
 List sensors.
 
+#### Usage:
+
+```
+een sensor list [options] [general options]
+```
+
 #### Options:
 
 - `--csv`
@@ -1573,23 +1627,12 @@ List sensors.
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   List all sensors in CSV format in Google Sheets.
-- `-H, --header`
+- `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
   Display associated items. supported values: batterylevel, bluetoothsignal, id, name, parentid, status, site, siteid.
 - `-l, --long`
   List sensor details, including name, id, parentId, battery level, bluetooth strength, site name and status.
-
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
 
 ## EXAMPLES
 
@@ -1597,18 +1640,6 @@ List sensors.
 
 ```bash
 een sensor list
-```
-
-- To list sensor names:
-
-```bash
-een sensor list --name
-```
-
-- To list sensor names and their statuses:
-
-```bash
-een sensor list --name --status
 ```
 
 # speaker - Manage Speakers
@@ -1631,6 +1662,12 @@ The `speaker` command allows you to manage speakers and list all available speak
 
 ### list
 
+#### Usage:
+
+```
+een speaker list [options] [general options]
+```
+
 List speakers.
 
 #### Options:
@@ -1641,21 +1678,10 @@ List speakers.
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   List all speakers in CSV format in Google Sheets.
-- `-H, --header`
+- `--header`
   Display column headers in the result. By default headers will be hidden.
 - `-l, --long`
   List more details of speaker.
-
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
 
 ## EXAMPLES
 
@@ -1687,6 +1713,12 @@ The `site` command allows you to manage sites, including listing all available s
 
 List all sites.
 
+#### Usage
+
+```
+een site list [command] [options]
+```
+
 #### Options:
 
 - `--csv`
@@ -1704,17 +1736,6 @@ List all sites.
 - `-s, --site-id`
   List the IDs of the sites.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Actions:
 
 - List sites with options for CSV format, file output, prompts, and debug output as specified.
@@ -1724,7 +1745,16 @@ List all sites.
 - To list all sites in CSV format:
 
 ```bash
-een site list --csv --file-name sites.csv
+een site list --csv --header
+```
+
+#### Output
+
+```csv
+"site name"
+"Eagle Eye Bangalore"
+"Eagle Eye India 1"
+"Lakshmi test site 595"
 ```
 
 - To get sites list in a file with prompting for confirmation:
@@ -1749,17 +1779,35 @@ een download [COMMAND] [OPTIONS]
 
 The `download` command allows you to export, list, get and delete video downloads, and get previews.
 
+#### Usage:
+
+```
+een download [command] [options]
+```
+
 ## COMMANDS
 
 ### video
 
 Manage video downloads.
 
+#### Usage:
+
+```
+een download video [command] [options]
+```
+
 #### Subcommands:
 
 ##### list
 
 List all videos.
+
+#### Usage:
+
+```
+een download video list [options] [selectors] [general options]
+```
 
 ###### Options:
 
@@ -1783,22 +1831,17 @@ List all videos.
 - `--esn [esn]`
   Filter based on camera ESN.
 
-###### General Options:
-
-- `--call-time`
-  Display API response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
-##### export
+##### video export
 
 Export video.
+
+#### Usage:
+
+```
+een download video export [command] [options]
+```
 
 ###### Options:
 
@@ -1823,20 +1866,17 @@ Export video.
 - `--time-lapse`
   Export a time-lapsed video.
 
-###### General Options:
-
-- `--call-time`
-  Display API response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
-##### get
+##### video get
 
 Download video.
+
+#### Usage:
+
+```
+een download video get [options] [general options]
+```
 
 ###### Options:
 
@@ -1851,42 +1891,34 @@ Download video.
 - `--name [name]`
   Name of video to be downloaded.
 
-###### General Options:
-
-- `--call-time`
-  Display API response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
-##### delete
+##### video delete
 
 Delete a video by ID.
+
+#### Usage:
+
+```
+een download video delete <video-id> [general options]
+```
 
 ###### Arguments:
 
 - `<video-id>`
   The ID of the video to delete.
 
-###### General Options:
-
-- `--call-time`
-  Display API response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--time`
-  Display time taken to execute the command.
-
 ---
 
 ### preview
 
 Download preview.
+
+#### Usage:
+
+```
+een download preview [options] [general options]
+```
 
 #### Options:
 
@@ -1906,17 +1938,6 @@ Download preview.
   Start time (required).
 - `-T, --timezone [timezone]`
   Timezone for timestamp (default: camera's timezone).
-
-#### General Options:
-
-- `--call-time`
-  Display API response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
 
 ## EXAMPLES
 
@@ -1978,6 +1999,12 @@ The `job` command allows you to list and manage jobs in the system.
 
 List jobs.
 
+#### Usage:
+
+```
+een job list [options] [selectors] [general options]
+```
+
 #### Options:
 
 - `--csv`
@@ -1996,23 +2023,19 @@ List jobs.
 - `--jobstate [state]`
   Filter by job state (pending, started, failure, success, revoked).
 
-#### General Options:
-
-- `--call-time`
-  Display API response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ## EXAMPLES
 
 - To list all jobs:
 
 ```bash
-een job list
+een job list --csv
+```
+
+#### Output
+
+```csv
+"dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac","reports.vsp-events","failure","0%"
+"20146d9d-1752-447c-b35f-1b76d5f25a4f","reports.vsp-events","failure","0%"
 ```
 
 - To list jobs with headers in CSV format:
@@ -2021,10 +2044,26 @@ een job list
 een job list --csv --header
 ```
 
+#### Output
+
+```csv
+"id","type","state","progress"
+"dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac","reports.vsp-events","failure","0%"
+"20146d9d-1752-447c-b35f-1b76d5f25a4f","reports.vsp-events","failure","0%"
+```
+
 - To list jobs with a specific state:
 
 ```bash
-een job list --jobstate success
+een job list --jobstate success --header --csv
+```
+
+#### Output
+
+```csv
+"id","type","state","progress"
+"8126210f-ed1e-471e-b8b6-6ccf2c58a3fe","reports.audit-log","success","100%"
+"2493b136-96a1-45b0-b553-789503981702","reports.audit-log","success","100%"
 ```
 
 - To list pending jobs and save to file:
@@ -2055,20 +2094,32 @@ een video [COMMAND] [OPTIONS]
 
 The `video` command allows you to download recorded videos, list available videos, and check the status of preview recordings.
 
+#### Usage:
+
+```
+een video [command] [options]
+```
+
 ## COMMANDS
 
 ### previewrecordingstatus
 
 Get the status of preview recording.
 
-#### Required options:
+#### Usage:
+
+```
+een video previewrecordingstatus [options] [general options]
+```
+
+#### Required Options:
 
 - `--esn [esn]`  
   ESNs of the camera.
 - `-s, --start-time [start time]`  
   Video start time.
 
-#### Optional options:
+#### Optional Options:
 
 - `--csv`  
   List preview recording status result in csv format.
@@ -2081,17 +2132,6 @@ Get the status of preview recording.
 - `--header`  
   Display column headers in the result.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Actions:
 
 - If ESNs and start time are provided, it checks the preview recording status. If the `--google-sheet` option is provided, the statuses will be listed in Google Sheets.
@@ -2102,12 +2142,6 @@ Get the status of preview recording.
 
 ```bash
 een video download --esn 123456 --start-time "20241001000000.000" --end-time "20241001010000.000" --format mp4 --target-directory /path/to/save
-```
-
-- To list videos from a camera:
-
-```bash
-een video list --esn 123456 --start-time "20241001000000.000" --end-time "20241001010000.000" --debug
 ```
 
 - To check the status of a preview recording:
@@ -2138,14 +2172,20 @@ The `lpr events` command allows you to retrieve LPR events within a specified ti
 
 Get LPR events.
 
-#### Required options:
+#### Usage:
+
+```
+een lpr events [options] [selectors] [general options]
+```
+
+#### Required Options:
 
 - `-e, --end-time [end time]`
   Events end time.
 - `-s, --start-time [start time]`
   Events start time.
 
-#### Optional options:
+#### Optional Options:
 
 - `--header`
   Display column headers in the result.
@@ -2166,15 +2206,6 @@ Get LPR events.
   Filter by License plate number.
 - `-t, --tag [tag1, tag2]`
   Filter by camera tags.
-
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--time`
-  Display time taken to execute the command.
 
 #### Actions:
 
@@ -2204,18 +2235,38 @@ een lpr events --start-time "20241001000000.000" --end-time "20241001010000.000"
 ## SYNOPSIS
 
 ```
-een vsp [COMMAND] [OPTIONS]
+een vsp [command] [options]
 ```
 
 ## DESCRIPTION
 
-The `vsp` command allows you to manage and retrieve VSP events and alerts based on parameters such as time, vehicle characteristics, and alert types.
+The `vsp` command allows you to manage and retrieve VSP events, alerts, vehiclelist and vehicle details based on parameters such as time, vehicle characteristics, and alert types.
 
 ## COMMANDS
 
-### listevents
+### list
 
-Get VSP events.
+#### Usage:
+
+```
+een vsp list [command] [options]
+```
+
+## DESCRIPTION
+
+Manage and list various VSP-related entities.
+
+## COMMANDS
+
+### events
+
+List VSP events.
+
+#### Usage:
+
+```
+een vsp list events [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2255,17 +2306,6 @@ Get VSP events.
 - `--site-id [site id1, site id2]`
   Filter by site id. Provide a comma-separated list of site IDs.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - If you haven't specified any start-time and end-time it will take last 24 hours as default timestamps.
@@ -2277,9 +2317,15 @@ Get VSP events.
 
 ---
 
-### listalerts
+### alerts
 
-Get VSP alerts.
+List VSP alerts.
+
+#### Usage:
+
+```
+een vsp list alerts [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2319,17 +2365,6 @@ Get VSP alerts.
 - `-w, --watch-vehicle`
   Filter by alert type - watch vehicle.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - If you haven't specified any start-time and end-time it will take last 24 hours as default timestamps.
@@ -2344,14 +2379,182 @@ Get VSP alerts.
 - To get VSP events for a specific time frame:
 
 ```bash
-een vsp listevents --start-time "20241001000000.000" --end-time "20241001235959.000"
+een vsp list events --start-time "20241001000000.000" --end-time "20241001235959.000"
 ```
 
 - To get VSP alerts for allowed vehicles:
 
 ```bash
-een vsp listalerts --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00 --allowed-vehicle
+een vsp list alerts --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00 --allowed-vehicle
 ```
+
+---
+
+### vehiclelist
+
+List all vehicle list
+
+#### Usage:
+
+```
+een vsp list vehiclelist [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  List details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List VSP list vehiclelist in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`  
+  Display associated items. Supported values: id, name.
+- `-l, --long`
+  List more details of alerts.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--esn [esn1, esn2]`
+  Filter by camera ESNs.
+- `--name [name]`
+  Filter by vehicle list name.
+- `--plate [plate]`
+  Filter by license plate number
+- `--site [site name1, site name2]`
+  Filter by site names.
+- `--site-id [site id1, site id2]`
+  Filter by site IDs.
+  `--status [status]`
+  Filter by status.
+- `--tag [tag1, tag2]`
+  Filter by tags.
+
+## EXAMPLES
+
+- To get VSP list vehiclelist in csv format with header:
+
+```bash
+een vsp list vehiclelist --csv --header
+```
+
+#### Output
+
+```csv
+"id","name","status","vehicle count","camera count","site count"
+"406cdb01-3383-44d9-8884-7de9eefd6106","Testtt558","active","","12",""
+"2ae96131-707a-46b3-ac87-5bcb427e9141","Test1234","active","1","12",""
+"9ac3a7a6-040c-4e17-8f1f-632da3c1b0fc","Test0933","active","","12",""
+```
+
+- To get VSP list vehiclelist for esn '1234' with vehicle list name 'my name' in csv format with headers as long list:
+
+```bash
+een vsp list vehiclelist --csv --header -l --esn '1006b36f' --name 'EEN India North'
+```
+
+#### Output
+
+```csv
+"id","name","status","vehicle count","camera count","site count","camera name","site name","notes"
+"416d8e21-a6f0-4b02-93a7-07cd01a9effa","EEN India North","active","19","1","2","108 Test camera (RMA ROOM)","Eagle Eye Bangalor,Eagle Eye India 1","EEN India office North road side facing camera"
+```
+
+---
+
+### vehicle
+
+List details of vehicle
+
+#### Usage:
+
+```
+een vsp list vehicle [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  List details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List VSP list vehiclelist in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `--id [id]`
+  Display details of vehicles with the specified vehicle list id.
+- `--include [value1, value2]`  
+  Display associated items. Supported values: id, plate.
+- `-l, --long`
+  Display details of vehicles, including vehicle id, color, make, model, user tags, security status, vehicle list id.
+- `--name [name]`
+  Display details of vehicles with the specified vehicle list name.
+
+#### Selectors:
+
+- `--access-type [type1, type2]`
+  Filter by access type.
+- `--plate [plate]`
+  Filter by license plate number.
+- `--security-status [status1, status2]`
+  Filter by security status.
+- `--user-tag [tag1, tag2]`
+  Filter by user tags.
+
+## EXAMPLES
+
+- To get VSP list vehicles with vehicle list name 'Hotlist Vehicles' in csv format with header:
+
+```bash
+een vsp list vehicle --name 'Hotlist Vehicles' --csv --header
+```
+
+#### Output
+
+```csv
+"license plate","accsss type","valid from","valid to","user data","vehicle list name"
+"LHS7593","allow","","","","Hotlist Vehicles"
+"SMY5299","allow","","","","Hotlist Vehicles"
+"GZJ8668","allow","","","","Hotlist Vehicles"
+```
+
+- To get VSP list vehicles with vehicle list id '23j2j5' and user tags 'brivo' in csv format with headers as long list:
+
+```bash
+een vsp list vehicle --id 'e705d1f9-4846-4c98-aa09-20b5e54b694f' -l --header  --user-tags 'brivo' --csv
+```
+
+#### Output
+
+```csv
+"license plate","accsss type","valid from","valid to","user data","vehicle list name","id","color","make","model","user tags","security status","vehicle list id"
+"VPM1767","allow","","","emp_id/1028, company/brivo","Employee List","ff149647-7146-4dd1-ba6a-a55640f53f29","","","","emp_id,1028,company,brivo","exempted","e705d1f9-4846-4c98-aa09-20b5e54b694f"
+"TKN9576","allow","","","emp_id/1007, company/brivo","Employee List","fc540121-cb52-4fd9-b9ce-bc3abd43a7e1","","","","emp_id,1007,company,brivo","exempted","e705d1f9-4846-4c98-aa09-20b5e54b694f"
+```
+
+- To get VSP list vehicles with vehicle list name 'hotlist' and license plate number 'NJIFUI7' in csv format with headers as long list:
+
+```bash
+een vsp list vehicle --name 'Hotlist Vehicles'  -l --header  --plate 'PSM1356' --csv
+```
+
+#### Output
+
+```csv
+"license plate","accsss type","valid from","valid to","user data","vehicle list name","id","color","make","model","user tags","security status","vehicle list id"
+"PSM1356","allow","","","","Hotlist Vehicles","f34478ea-46f5-4423-b5a0-23bbe5ad19f0","","","","","","3539f639-00d1-4c6b-b1a7-c66954f4cb93"
+```
+
+---
 
 # pos - Manage Point of Sale (POS) Events
 
@@ -2374,6 +2577,12 @@ The `pos` command allows you to manage and retrieve POS events based on paramete
 ### listevents
 
 Get POS events.
+
+#### Usage:
+
+```
+een pos listevents [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2415,17 +2624,6 @@ Get POS events.
 - `-t, --transaction-type [transaction type]`
   Filter by transaction type.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - If no start time or end time is specified, the retrieval period defaults to the last 24 hours.
@@ -2465,6 +2663,12 @@ een perftest preview [OPTIONS]
 
 The `perftest` command allows you to execute performance tests on various aspects of the platform.
 
+#### Usage:
+
+```
+een perftest livelatency [options] [selectors] [general options]
+```
+
 ## Example
 
 To get camera perftest livelatency for all cameras in CSV format (with headers):
@@ -2473,7 +2677,7 @@ To get camera perftest livelatency for all cameras in CSV format (with headers):
 een perftest livelatency --header --csv
 ```
 
-Output:
+#### Output:
 
 ```
 account: Account_name(00244829)
@@ -2494,6 +2698,12 @@ perftest livelatency run on 1/1 cameras 10 samples each
 ### preview
 
 Get performance test results for preview images.
+
+#### Usage:
+
+```
+een perftest preview [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2539,17 +2749,6 @@ Get performance test results for preview images.
 - `-t, --tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - If no start time or end time is specified, the test interval will be last 30 days.
@@ -2578,6 +2777,12 @@ een perftest preview --site "site1"
 ### assetlist
 
 Get performance test results for asset list endpoint.
+
+#### Usage:
+
+```
+een perftest assetlist [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2627,17 +2832,6 @@ Get performance test results for asset list endpoint.
 - `-t, --tag [tag1, tag2]`
   Test based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - If no start time or end time is specified, the test interval will be last 30 days.
@@ -2649,8 +2843,6 @@ Get performance test results for asset list endpoint.
 ```bash
 een perftest assetlist
 ```
-
-- To test asset list performance of all the cameras in a specific layout:
 
 ```bash
 een perftest assetlist --layout "layout1"
@@ -2665,6 +2857,12 @@ een perftest assetlist --site "site1"
 ### pngspan
 
 Get performance test results for pngspan endpoint.
+
+#### Usage:
+
+```
+een perftest pngspan [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2714,17 +2912,6 @@ Get performance test results for pngspan endpoint.
 - `-t, --tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - If no start time or end time is specified, the test interval will be last 30 days.
@@ -2753,6 +2940,12 @@ een perftest pngspan --site "site1"
 ### live
 
 Get performance test results for live video.
+
+#### Usage:
+
+```
+een perftest live [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2792,17 +2985,6 @@ Get performance test results for live video.
 - `-t, --tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ## EXAMPLES
 
 - To test live video performance of all the cameras in an account:
@@ -2826,6 +3008,12 @@ een perftest live --site "site1"
 ### livelatency
 
 Get test results live video latency
+
+#### Usage:
+
+```
+een perftest livelatency [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2863,17 +3051,6 @@ Get test results live video latency
 - `-t, --tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 ## EXAMPLES
 
 - To test live video latency of all the cameras in an account:
@@ -2891,6 +3068,12 @@ een perftest livelatency --bridge-esn "<bridge_id>"
 ### historic
 
 Get performance test results for history video.
+
+#### Usage:
+
+```
+een perftest historic [options] [selectors] [general options]
+```
 
 #### Options:
 
@@ -2936,17 +3119,6 @@ Get performance test results for history video.
 - `-t, --tag [tag1, tag2]`
   Filter based on tags.
 
-#### General Options:
-
-- `--call-time`
-  Display api response time.
-- `-d, --debug`
-  Enable detailed debug output.
-- `--prompt`
-  Show user confirmation prompts.
-- `--time`
-  Display time taken to execute the command.
-
 #### Notes:
 
 - If no start time or end time is specified, the test interval will be last 30 days.
@@ -2988,18 +3160,30 @@ een googleconfig update <option name> <value>
 
 The `googleconfig` command allows you to update specific configuration options related to Google settings.
 
+#### Usage:
+
+```
+een googleconfig [options] [command]
+```
+
 ## COMMANDS
 
 ### update
 
 Update Google config option values.
 
+#### Usage:
+
+```
+een googleconfig update [options] <option name> <value>
+```
+
 #### Arguments:
 
-- `<option name>`  
+- `<option name>`
   The name of the configuration option that needs to be updated.
 
-- `<value>`  
+- `<value>`
   The new value for the specified option. This value is parsed as a JSON string.
 
 #### Action:

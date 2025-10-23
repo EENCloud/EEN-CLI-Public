@@ -200,6 +200,22 @@
 </p>
 <pre><code>een &lt;object&gt; --help
 </code></pre>
+<h2>General Options:</h2>
+<p>
+  General options are available for all commands that include
+  <code>[general-options]</code> in their usage.
+</p>
+<ul>
+  <li><code>--call-time</code> Display api response time.</li>
+  <li><code>-d, --debug</code> Enable detailed debug output.</li>
+  <li>
+    <code>-h, --help</code> Shows how to execute the selected subcommand and
+    provides usage examples.
+  </li>
+  <li><code>--prompt</code> Show user confirmation prompts.</li>
+  <li><code>--time</code> Display time taken to execute the command.</li>
+</ul>
+<p>Note: <code>--prompt</code> may be unavailable for some commands.</p>
 <h2>EXAMPLES</h2>
 <pre><code>een help
 een --help
@@ -225,34 +241,29 @@ een camera list --help
 <h2>DESCRIPTION</h2>
 <p>
   The <strong>een auth</strong> command provides utilities for logging in and
-  out of Eagle Eye Networks.
+  out of Eagle Eye Networks. When using <code>auth login</code>, the user is
+  redirected to a login URL and completes the authentication in the web browser.
+  However, when the <code>--v1</code> option is used, the users are
+  authenticated directly through the CLI.
 </p>
 <h2>COMMANDS</h2>
 <h3>login</h3>
 <p>Log in to EEN using the provided credentials.</p>
-<h4>Required options:</h4>
+<h4>Usage:</h4>
+<pre><code>een auth login [options] [general options]
+</code></pre>
+<h4>Options:</h4>
 <ul>
   <li>
-    <p>
-      <code>-p, --password &lt;password&gt;</code> Password for login. Use
-      quotes around the password if it contains special characters (e.g.,
-      <code>--password &quot;MyP@ssw0rd!&quot;</code>).
-    </p>
+    <code>-p, --password &lt;password&gt;</code> Password for login. Use quotes
+    around the password if it contains special characters (e.g.,
+    <code>--password &quot;MyP@ssw0rd!&quot;</code>).
   </li>
   <li>
-    <p>
-      <code>-u, --username &lt;username&gt;</code> Username for login (e.g.,
-      <code>--username admin@example.com</code>).
-    </p>
+    <code>-u, --username &lt;username&gt;</code> Username for login (e.g.,
+    <code>--username admin@example.com</code>).
   </li>
-</ul>
-<h4>General options:</h4>
-<ul>
-  <li><code>--call-time</code> Get api response time.</li>
-  <li>
-    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
-  </li>
-  <li><code>--time</code> Display the execution time of the command.</li>
+  <li><code>--v1</code> Use the v1 API for authentication.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
@@ -264,19 +275,16 @@ een camera list --help
 <hr />
 <h3>logout</h3>
 <p>Log out from EEN.</p>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Get api response time.</li>
-  <li>
-    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
-  </li>
-  <li><code>--time</code> Display the execution time of the command.</li>
-</ul>
+<h4>Usage:</h4>
+<pre><code>een auth logout [general options]
+</code></pre>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To login</li>
 </ul>
 <pre><code class="language-bash">een auth login --username johndoe --password secret --debug
+</code></pre>
+<pre><code class="language-bash">een auth login
 </code></pre>
 <ul>
   <li>To logout</li>
@@ -297,6 +305,9 @@ een camera list --help
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List users.</p>
+<h4>Usage:</h4>
+<pre><code>een user list [options] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> Export all users in CSV format.</li>
@@ -320,13 +331,6 @@ een camera list --help
   </li>
   <li><code>--v1</code> Use v1 APIs for listing users.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Actions:</h4>
 <ul>
   <li>
@@ -347,7 +351,12 @@ een camera list --help
 <ul>
   <li>To list all users:</li>
 </ul>
-<pre><code class="language-bash">een user list
+<pre><code class="language-bash">een user list --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;account id&quot;,&quot;first name&quot;,&quot;last name&quot;
+&quot;ca046095&quot;,&quot;00052029&quot;,&quot;Anandhakrishnan&quot;,&quot;M&quot;
+&quot;ca01060e&quot;,&quot;00052029&quot;,&quot;Anandhan&quot;,&quot;Sreekumar&quot;
 </code></pre>
 <ul>
   <li>To list users in CSV format:</li>
@@ -373,6 +382,9 @@ een camera list --help
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List all logged in accounts.</p>
+<h4>Usage:</h4>
+<pre><code>een account list [options] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List all audit log in CSV format.</li>
@@ -390,15 +402,12 @@ een camera list --help
     reseller accounts).
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
 <h3>switch</h3>
 <p>Switch to an account.</p>
+<h4>Usage:</h4>
+<pre><code>een switch list [options] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li>
@@ -414,18 +423,17 @@ een camera list --help
     Specify the username to switch between logged-in accounts.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--time</code> display time taken to execute the command.</li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all accounts of the reseller:</li>
 </ul>
-<pre><code class="language-bash">een account list
+<pre><code class="language-bash">een account list --header
 </code></pre>
+<h4>Output</h4>
+<p>
+  &quot;account&quot; &quot;Sijin Jacob(00052029)&quot; &quot;Deepak M
+  K(00064711)&quot;
+</p>
 <ul>
   <li>Switch to a sub-account (from reseller account):</li>
 </ul>
@@ -471,6 +479,9 @@ een camera list --help
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>Get the list of available archives.</p>
+<h4>Usage:</h4>
+<pre><code>een archive list [options] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> Export the archive list in CSV format.</li>
@@ -488,40 +499,31 @@ een camera list --help
     from which the archive will be retrieved.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
 <h3>download</h3>
 <p>Download a specific archive.</p>
+<h4>Usage:</h4>
+<pre><code>een archive download &lt;archive&gt; [options] [general options]
+</code></pre>
 <h4>Arguments:</h4>
 <ul>
   <li>
     <code>&lt;archive&gt;</code> The name of the archive to download (required).
   </li>
 </ul>
-<h4>Required options:</h4>
+<h4>Required Options:</h4>
 <ul>
   <li>
     <code>-t, --target-directory [target-directory]</code> Specify the name of
     the directory where the output will be saved.
   </li>
 </ul>
-<h4>Optional options:</h4>
+<h4>Optional Options:</h4>
 <ul>
   <li>
     <code>-o, --overwrite</code> Overwrite the already downloaded archive if it
     exists.
   </li>
-</ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -545,6 +547,9 @@ een camera list --help
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List audit logs.</p>
+<h4>Usage:</h4>
+<pre><code>een auditlog list [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List all audit log in CSV format.</li>
@@ -561,7 +566,7 @@ een camera list --help
     Sheets.
   </li>
   <li>
-    <code>-H, --header</code> Display column headers in the result. By default
+    <code>--header</code> Display column headers in the result. By default
     headers will be hidden.
   </li>
   <li>
@@ -573,18 +578,16 @@ een camera list --help
 <ul>
   <li><code>-u, --userid [user id]</code> Filter audit log by user-id.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all audit logs:</li>
 </ul>
-<pre><code class="language-bash">een auditlog list
+<pre><code class="language-bash">een auditlog list --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;user&quot;,&quot;type&quot;,&quot;timestamp&quot;,&quot;description&quot;
+&quot;Lakshmi Sai P(lpaspuleti+vs@een.com)&quot;,&quot;Create File&quot;,&quot;2025-10-07T09:43:17.851+00:00&quot;,&quot;File name &quot;VSP Events Count Summary Report - 20251007094316035.html&quot; created&quot;
+&quot;Lakshmi Sai P(lpaspuleti+vs@een.com)&quot;,&quot;Create File&quot;,&quot;2025-10-07T09:43:17.461+00:00&quot;,&quot;File name &quot;VSP Events Count Summary Report - 20251007094316035.csv&quot; created&quot;
 </code></pre>
 <ul>
   <li>To list all audit logs for a specific time:</li>
@@ -600,6 +603,9 @@ een camera list --help
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List available devices.</p>
+<h4>Usage:</h4>
+<pre><code>een availabledevices list [options] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List details in csv format.</li>
@@ -630,13 +636,6 @@ een camera list --help
     values: camera, speaker, display, multiCamera.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all available devices:</li>
@@ -657,12 +656,11 @@ een camera list --help
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List cameras.</p>
+<h4>Usage:</h4>
+<pre><code>een camera list [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
-  <li>
-    <code>-a, --available</code> List cameras discovered by bridges but not yet
-    added.
-  </li>
   <li><code>-A, --all</code> List all cameras, including shared ones.</li>
   <li><code>--csv</code> List details in csv format.</li>
   <li><code>--direct</code> List cameras which are direct to cloud.</li>
@@ -706,13 +704,6 @@ een camera list --help
   <li><code>--status [status]</code> Filter based on status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Example</h4>
 <p>To list all cameras with specific fields in CSV format (with headers):</p>
 <pre><code class="language-bash">een camera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
@@ -734,6 +725,9 @@ een camera list --help
   <code>--esn</code>, <code>--tag</code>, <code>--site</code>, etc.) to target
   specific cameras.
 </p>
+<h4>Usage:</h4>
+<pre><code>een camera get [parameter] [value] [options] [selectors] [general options]
+</code></pre>
 <h4>Parameters:</h4>
 <ul>
   <li><code>audio</code> Get audio settings(Is audio enabled or not).</li>
@@ -806,13 +800,6 @@ een camera list --help
   </li>
   <li><code>--tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>EXAMPLES</h4>
 <pre><code class="language-bash"># Get audio settings
 een camera get audio --esn 12345
@@ -843,6 +830,9 @@ een camera get scene-analytics -g --header
   <code>&lt;value&gt;</code>. You can use selectors (like <code>--esn</code>,
   <code>--tag</code>, <code>--site</code>, etc.) to target specific cameras.
 </p>
+<h4>Usage:</h4>
+<pre><code>een camera set [parameter] [value] [options] [selectors] [general options]
+</code></pre>
 <h4>Parameters:</h4>
 <ul>
   <li>
@@ -930,13 +920,6 @@ een camera get scene-analytics -g --header
   </li>
   <li><code>--tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>EXAMPLES</h4>
 <pre><code class="language-bash"># Enable audio for specific cameras
 een camera set audio --enable --esn 12345
@@ -989,6 +972,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <hr />
 <h3>delete</h3>
 <p>Delete a camera from the bridge.</p>
+<h4>Usage:</h4>
+<pre><code> een camera delete &lt;esn&gt; [general options]
+</code></pre>
 <h4>Argument:</h4>
 <ul>
   <li>
@@ -996,28 +982,24 @@ een camera set scene-analytics --enable --esn '*' -g --header
     ESN of the camera (required)
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
 <h3>add</h3>
 <p>Add camera to bridge.</p>
+<h4>Usage:</h4>
+<pre><code>een camera add &lt;esn&gt; [options] [general options]
+</code></pre>
 <h4>Argument:</h4>
 <ul>
   <li>
     <code>&lt;esn&gt;</code> ESN of the bridge to which the camera is added.
   </li>
 </ul>
-<h4>Required options:</h4>
+<h4>Required Options:</h4>
 <ul>
   <li><code>-C, --camera-name [camera name]</code> Name of the camera.</li>
   <li><code>--guid [guid]</code> GUID of the camera.</li>
 </ul>
-<h4>Optional options:</h4>
+<h4>Optional Options:</h4>
 <ul>
   <li>
     <code>-c, --cloud-retention-days [cloud retention days]</code> Cloud
@@ -1029,22 +1011,18 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li><code>-t, --tag [tag1, tag2]</code> Tags.</li>
   <li><code>-u, --username [username]</code> Camera username.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
 <h3>streamstatus</h3>
 <p>Get camera stream status.</p>
-<h4>Required options:</h4>
+<h4>Usage:</h4>
+<pre><code>een camera streamstatus [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
 <ul>
   <li><code>-e, --end-time [end time]</code> Camera stream end time.</li>
   <li><code>-s, --start-time [start time]</code> Camera stream start time.</li>
 </ul>
-<h4>Optional options:</h4>
+<h4>Optional Options:</h4>
 <ul>
   <li><code>--esn [esn1, esn2]</code> ESNs of the cameras.</li>
   <li>
@@ -1054,13 +1032,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li>
     <code>-S, --stream-type [stream type]</code> Stream type of the camera.
   </li>
-</ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
 </ul>
 <h4>Notes:</h4>
 <ul>
@@ -1080,6 +1051,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <hr />
 <h3>purgelist</h3>
 <p>Get camera purging and duty cycle.</p>
+<h4>Usage:</h4>
+<pre><code>een camera purgelist [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List the camera purge list in csv format</li>
@@ -1116,13 +1090,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li><code>--status [status]</code> Filter based on status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -1133,6 +1100,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <hr />
 <h3>i-summary</h3>
 <p>Get camera installer summary.</p>
+<h4>Usage:</h4>
+<pre><code>een camera i-summary [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List the details in csv format</li>
@@ -1157,21 +1127,17 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
 <h3>availability</h3>
 <p>Get camera availability.</p>
-<h4>Required options:</h4>
+<h4>Usage:</h4>
+<pre><code>een camera availability [options] [selectors] [general options]
+</code></pre>
+<h4>Required Options:</h4>
 <ul>
   <li><code>-s, --start-time [start time]</code> Video start time.</li>
 </ul>
-<h4>Optional options:</h4>
+<h4>Optional Options:</h4>
 <ul>
   <li><code>--csv</code> List details in csv format.</li>
   <li><code>-e, --end-time [end time]</code> End time for video.</li>
@@ -1215,13 +1181,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li><code>--status [status]</code> Filter based on status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -1230,44 +1189,140 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
 </ul>
 <hr />
-<h3>addtags</h3>
-<p>Add tags to camera, accepts multiple tags and esns seperated by comma</p>
+<h3>addtag</h3>
+<p>
+  The <code>camera addtag</code> command allows you to add tags to camera. It
+  can accept multiple tags, you can use selectors (like <code>--esn</code>,
+  <code>--tag</code>, <code>--site</code>, etc.) to target specific cameras.
+</p>
+<h4>Usage:</h4>
+<pre><code>een camera addtag &lt;tags&gt; [options] [selectors] [general options]
+</code></pre>
 <h4>Argument:</h4>
 <ul>
-  <li>
-    <code>&lt;esns&gt;</code> ESNs of the cameras to which the tags are added.
-  </li>
   <li><code>&lt;tags&gt;</code> Tags to be added to the cameras.</li>
 </ul>
-<h4>General Options:</h4>
+<h4>Options:</h4>
 <ul>
-  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
   <li>
-    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
-  <li><code>--time</code> Display the execution time of the command.</li>
+  <li>
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
 </ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs.
+  </li>
+  <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
+  <li>
+    <code>--esn [esn1, esn2]</code> Filter by camera esns(use '*' to apply to
+    all cameras)
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li>
+    <code>--site-id [site id1, site id2]</code>
+    Filter by site IDs.
+    <code>--status [status]</code>
+    Filter by status.
+  </li>
+  <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># add tags newtag, test to camera with esn 1234
+een camera addtag 'new tag, test' --esn '1234'
+
+# add tags test to camera with bridge esn 0987 and camera status online
+een camera addtag 'test' --bridge-esn '0987' --status 'online'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>camera addtag</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format and is suitable for
+  scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">&quot;camera id&quot;,&quot;camera name&quot;,&quot;camera tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1234&quot;,&quot;Wiktoria regression 140525&quot;,&quot;new tag, testing&quot;,&quot;yes&quot;,&quot;&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">&quot;camera id&quot;,&quot;camera name&quot;,&quot;camera tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1234&quot;,&quot;Wiktoria regression 140525&quot;,&quot;new tag, testing&quot;,&quot;no&quot;,&quot;Internal Server Error (response status: unknown)&quot;
+</code></pre>
 <hr />
 <h3>deletetags</h3>
 <p>
-  Delete tags from camera, accepts multiple tags and esns seperated by comma
+  The <code>camera deletetag</code> command allows you to delete tags from
+  camera. It can accept multiple tags, you can use selectors (like
+  <code>--esn</code>, <code>--tag</code>, <code>--site</code>, etc.) to target
+  specific cameras.
 </p>
+<h4>Usage:</h4>
+<pre><code>een camera deletetag &lt;tags&gt; [options] [selectors] [general options]
+</code></pre>
 <h4>Argument:</h4>
 <ul>
-  <li>
-    <code>&lt;esns&gt;</code> ESNs of the cameras from which the tags are
-    deleted.
-  </li>
   <li><code>&lt;tags&gt;</code> Tags to be deleted from the cameras.</li>
 </ul>
-<h4>General Options:</h4>
+<h4>Options:</h4>
 <ul>
-  <li><code>--call-time</code> Get api response time.</li>
+  <li><code>--csv</code> List details in csv format.</li>
   <li>
-    <code>-d, --debug</code> Enable detailed debug output for troubleshooting.
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
-  <li><code>--time</code> Display the execution time of the command.</li>
+  <li>
+    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
 </ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs.
+  </li>
+  <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
+  <li>
+    <code>--esn [esn1, esn2]</code> Filter by camera esns(use '*' to apply to
+    all cameras)
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li>
+    <code>--site-id [site id1, site id2]</code>
+    Filter by site IDs.
+    <code>--status [status]</code>
+    Filter by status.
+  </li>
+  <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># delete tags newtag from camera with esns 1234,5678 give output in csv format with header:
+een camera deletetag 'new tag' --esn '1234, 5678' --csv --header
+
+# add tags test, new tag to camera with bridge esn 0987 and camera status online:
+een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>camera deletetag</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">&quot;camera id&quot;,&quot;camera name&quot;,&quot;camera tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007bdb3&quot;,&quot;Hanwha LPR Camera&quot;,&quot;lpr testing - 2.4.0&quot;,&quot;yes&quot;,&quot;&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">&quot;camera id&quot;,&quot;camera name&quot;,&quot;camera tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;100276a7&quot;,&quot;Wiktoria regression 140525&quot;,&quot;new tag, testing&quot;,&quot;no&quot;,&quot;Internal Server Error (response status: unknown)&quot;
+</code></pre>
 <hr />
 <h1>bridge - Manage Bridges</h1>
 <h2>NAME</h2>
@@ -1285,6 +1340,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List all bridges.</p>
+<h4>Usage:</h4>
+<pre><code>een bridge list [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List all bridges in CSV format.</li>
@@ -1326,13 +1384,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter bridges by tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Actions:</h4>
 <ul>
   <li>
@@ -1360,11 +1411,14 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <hr />
 <h3>availability</h3>
 <p>Get bridge availability.</p>
-<h4>Required options:</h4>
+<h4>Usage:</h4>
+<pre><code>een bridge availability [options] [selectors] [general options]
+</code></pre>
+<h4>Required Options:</h4>
 <ul>
   <li><code>-s, --start-time [start time]</code> Specify video start time.</li>
 </ul>
-<h4>Optional options:</h4>
+<h4>Optional Options:</h4>
 <ul>
   <li><code>--csv</code> List details in CSV format.</li>
   <li>
@@ -1390,21 +1444,17 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter bridges by tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
 <h3>qlstreammetrics</h3>
 <p>Pull logs from the archiver/bridge.</p>
-<h4>Required options:</h4>
+<h4>Usage:</h4>
+<pre><code>een  bridge qlstreammetrics [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
 <ul>
   <li><code>--esn [esn1, esn2]</code> Esns of the bridge (required).</li>
 </ul>
-<h4>Optional options:</h4>
+<h4>Optional Options:</h4>
 <ul>
   <li>
     <code>-c, --count [count]</code> Specify the number of annotations to
@@ -1421,13 +1471,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
   <li><code>-s, --start-time [start time]</code> Specify the start time.</li>
   <li><code>-S, --summary</code> Get summarized data.</li>
-</ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
 </ul>
 <hr />
 <h2>EXAMPLES</h2>
@@ -1460,6 +1503,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List switches.</p>
+<h4>Usage:</h4>
+<pre><code>een switch list [options] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List details in csv format.</li>
@@ -1480,28 +1526,16 @@ een camera set scene-analytics --enable --esn '*' -g --header
     ESN, and status.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all switches:</li>
 </ul>
-<pre><code class="language-bash">een switch list
+<pre><code class="language-bash">een switch list --header --csv
 </code></pre>
-<ul>
-  <li>To list switches ids:</li>
-</ul>
-<pre><code class="language-bash">een switch list --id
-</code></pre>
-<ul>
-  <li>To list switches and their statuses:</li>
-</ul>
-<pre><code class="language-bash">een switch list --status
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;switch name&quot;
+&quot;DiversitySwitch&quot;
+&quot;Aut_v3_Switch_Bridge1&quot;
 </code></pre>
 <h1>sensor - Manage Sensors</h1>
 <h2>NAME</h2>
@@ -1517,6 +1551,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List sensors.</p>
+<h4>Usage:</h4>
+<pre><code>een sensor list [options] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List all sensors in CSV format.</li>
@@ -1528,7 +1565,7 @@ een camera set scene-analytics --enable --esn '*' -g --header
     <code>-g, --google-sheet</code> List all sensors in CSV format in Google
     Sheets.
   </li>
-  <li><code>-H, --header</code> Display column headers in the result.</li>
+  <li><code>--header</code> Display column headers in the result.</li>
   <li>
     <code>--include [value1, value2]</code> Display associated items. supported
     values: batterylevel, bluetoothsignal, id, name, parentid, status, site,
@@ -1539,28 +1576,11 @@ een camera set scene-analytics --enable --esn '*' -g --header
     battery level, bluetooth strength, site name and status.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all sensors:</li>
 </ul>
 <pre><code class="language-bash">een sensor list
-</code></pre>
-<ul>
-  <li>To list sensor names:</li>
-</ul>
-<pre><code class="language-bash">een sensor list --name
-</code></pre>
-<ul>
-  <li>To list sensor names and their statuses:</li>
-</ul>
-<pre><code class="language-bash">een sensor list --name --status
 </code></pre>
 <h1>speaker - Manage Speakers</h1>
 <h2>NAME</h2>
@@ -1575,6 +1595,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 </p>
 <h2>COMMANDS</h2>
 <h3>list</h3>
+<h4>Usage:</h4>
+<pre><code>een speaker list [options] [general options]
+</code></pre>
 <p>List speakers.</p>
 <h4>Options:</h4>
 <ul>
@@ -1588,17 +1611,10 @@ een camera set scene-analytics --enable --esn '*' -g --header
     Sheets.
   </li>
   <li>
-    <code>-H, --header</code> Display column headers in the result. By default
+    <code>--header</code> Display column headers in the result. By default
     headers will be hidden.
   </li>
   <li><code>-l, --long</code> List more details of speaker.</li>
-</ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -1620,6 +1636,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List all sites.</p>
+<h4>Usage</h4>
+<pre><code>een site list [command] [options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List all sites in CSV format.</li>
@@ -1640,13 +1659,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
   <li><code>-s, --site-id</code> List the IDs of the sites.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Actions:</h4>
 <ul>
   <li>
@@ -1658,7 +1670,13 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <ul>
   <li>To list all sites in CSV format:</li>
 </ul>
-<pre><code class="language-bash">een site list --csv --file-name sites.csv
+<pre><code class="language-bash">een site list --csv --header
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;site name&quot;
+&quot;Eagle Eye Bangalore&quot;
+&quot;Eagle Eye India 1&quot;
+&quot;Lakshmi test site 595&quot;
 </code></pre>
 <ul>
   <li>To get sites list in a file with prompting for confirmation:</li>
@@ -1679,12 +1697,21 @@ een camera set scene-analytics --enable --esn '*' -g --header
   The <code>download</code> command allows you to export, list, get and delete
   video downloads, and get previews.
 </p>
+<h4>Usage:</h4>
+<pre><code>een download [command] [options]
+</code></pre>
 <h2>COMMANDS</h2>
 <h3>video</h3>
 <p>Manage video downloads.</p>
+<h4>Usage:</h4>
+<pre><code>een download video [command] [options]
+</code></pre>
 <h4>Subcommands:</h4>
 <h5>list</h5>
 <p>List all videos.</p>
+<h4>Usage:</h4>
+<pre><code>een download video list [options] [selectors] [general options]
+</code></pre>
 <h6>Options:</h6>
 <ul>
   <li><code>--csv</code> List details in CSV format.</li>
@@ -1710,16 +1737,12 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li><code>-C, --camera [camera]</code> Filter based on camera name.</li>
   <li><code>--esn [esn]</code> Filter based on camera ESN.</li>
 </ul>
-<h6>General Options:</h6>
-<ul>
-  <li><code>--call-time</code> Display API response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
-<h5>export</h5>
+<h5>video export</h5>
 <p>Export video.</p>
+<h4>Usage:</h4>
+<pre><code>een download video export [command] [options]
+</code></pre>
 <h6>Options:</h6>
 <ul>
   <li><code>-C, --camera [camera]</code> Camera name.</li>
@@ -1739,15 +1762,12 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
   <li><code>--time-lapse</code> Export a time-lapsed video.</li>
 </ul>
-<h6>General Options:</h6>
-<ul>
-  <li><code>--call-time</code> Display API response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
-<h5>get</h5>
+<h5>video get</h5>
 <p>Download video.</p>
+<h4>Usage:</h4>
+<pre><code>een download video get [options] [general options]
+</code></pre>
 <h6>Options:</h6>
 <ul>
   <li><code>--dfilename [dfilename]</code> Filename to download.</li>
@@ -1756,29 +1776,22 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li><code>--id [id]</code> ID of video to be downloaded.</li>
   <li><code>--name [name]</code> Name of video to be downloaded.</li>
 </ul>
-<h6>General Options:</h6>
-<ul>
-  <li><code>--call-time</code> Display API response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
-<h5>delete</h5>
+<h5>video delete</h5>
 <p>Delete a video by ID.</p>
+<h4>Usage:</h4>
+<pre><code>een download video delete &lt;video-id&gt; [general options]
+</code></pre>
 <h6>Arguments:</h6>
 <ul>
   <li><code>&lt;video-id&gt;</code> The ID of the video to delete.</li>
 </ul>
-<h6>General Options:</h6>
-<ul>
-  <li><code>--call-time</code> Display API response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <hr />
 <h3>preview</h3>
 <p>Download preview.</p>
+<h4>Usage:</h4>
+<pre><code>een download preview [options] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>-C, --camera [camera]</code> Camera to download from.</li>
@@ -1792,13 +1805,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
     <code>-T, --timezone [timezone]</code> Timezone for timestamp (default:
     camera's timezone).
   </li>
-</ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display API response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -1844,6 +1850,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <p>List jobs.</p>
+<h4>Usage:</h4>
+<pre><code>een job list [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List details in CSV format.</li>
@@ -1864,28 +1873,35 @@ een camera set scene-analytics --enable --esn '*' -g --header
     failure, success, revoked).
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display API response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all jobs:</li>
 </ul>
-<pre><code class="language-bash">een job list
+<pre><code class="language-bash">een job list --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac&quot;,&quot;reports.vsp-events&quot;,&quot;failure&quot;,&quot;0%&quot;
+&quot;20146d9d-1752-447c-b35f-1b76d5f25a4f&quot;,&quot;reports.vsp-events&quot;,&quot;failure&quot;,&quot;0%&quot;
 </code></pre>
 <ul>
   <li>To list jobs with headers in CSV format:</li>
 </ul>
 <pre><code class="language-bash">een job list --csv --header
 </code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;type&quot;,&quot;state&quot;,&quot;progress&quot;
+&quot;dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac&quot;,&quot;reports.vsp-events&quot;,&quot;failure&quot;,&quot;0%&quot;
+&quot;20146d9d-1752-447c-b35f-1b76d5f25a4f&quot;,&quot;reports.vsp-events&quot;,&quot;failure&quot;,&quot;0%&quot;
+</code></pre>
 <ul>
   <li>To list jobs with a specific state:</li>
 </ul>
-<pre><code class="language-bash">een job list --jobstate success
+<pre><code class="language-bash">een job list --jobstate success --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;type&quot;,&quot;state&quot;,&quot;progress&quot;
+&quot;8126210f-ed1e-471e-b8b6-6ccf2c58a3fe&quot;,&quot;reports.audit-log&quot;,&quot;success&quot;,&quot;100%&quot;
+&quot;2493b136-96a1-45b0-b553-789503981702&quot;,&quot;reports.audit-log&quot;,&quot;success&quot;,&quot;100%&quot;
 </code></pre>
 <ul>
   <li>To list pending jobs and save to file:</li>
@@ -1908,10 +1924,16 @@ een camera set scene-analytics --enable --esn '*' -g --header
   The <code>video</code> command allows you to download recorded videos, list
   available videos, and check the status of preview recordings.
 </p>
+<h4>Usage:</h4>
+<pre><code>een video [command] [options]
+</code></pre>
 <h2>COMMANDS</h2>
 <h3>previewrecordingstatus</h3>
 <p>Get the status of preview recording.</p>
-<h4>Required options:</h4>
+<h4>Usage:</h4>
+<pre><code>een video previewrecordingstatus [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
 <ul>
   <li>
     <code>--esn [esn]</code><br />
@@ -1922,7 +1944,7 @@ een camera set scene-analytics --enable --esn '*' -g --header
     Video start time.
   </li>
 </ul>
-<h4>Optional options:</h4>
+<h4>Optional Options:</h4>
 <ul>
   <li>
     <code>--csv</code><br />
@@ -1945,13 +1967,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
     Display column headers in the result.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Actions:</h4>
 <ul>
   <li>
@@ -1965,11 +1980,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li>To download a video from a camera:</li>
 </ul>
 <pre><code class="language-bash">een video download --esn 123456 --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot; --format mp4 --target-directory /path/to/save
-</code></pre>
-<ul>
-  <li>To list videos from a camera:</li>
-</ul>
-<pre><code class="language-bash">een video list --esn 123456 --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot; --debug
 </code></pre>
 <ul>
   <li>To check the status of a preview recording:</li>
@@ -1991,12 +2001,15 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <h2>COMMANDS</h2>
 <h3>events</h3>
 <p>Get LPR events.</p>
-<h4>Required options:</h4>
+<h4>Usage:</h4>
+<pre><code>een lpr events [options] [selectors] [general options]
+</code></pre>
+<h4>Required Options:</h4>
 <ul>
   <li><code>-e, --end-time [end time]</code> Events end time.</li>
   <li><code>-s, --start-time [start time]</code> Events start time.</li>
 </ul>
-<h4>Optional options:</h4>
+<h4>Optional Options:</h4>
 <ul>
   <li><code>--header</code> Display column headers in the result.</li>
   <li><code>--time</code> Display the execution time of the command.</li>
@@ -2015,12 +2028,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
   <li><code>--lp [license plate]</code> Filter by License plate number.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by camera tags.</li>
-</ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
 </ul>
 <h4>Actions:</h4>
 <ul>
@@ -2052,17 +2059,27 @@ een camera set scene-analytics --enable --esn '*' -g --header
   and alerts.
 </p>
 <h2>SYNOPSIS</h2>
-<pre><code>een vsp [COMMAND] [OPTIONS]
+<pre><code>een vsp [command] [options]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
-  The <code>vsp</code> command allows you to manage and retrieve VSP events and
-  alerts based on parameters such as time, vehicle characteristics, and alert
-  types.
+  The <code>vsp</code> command allows you to manage and retrieve VSP events,
+  alerts, vehiclelist and vehicle details based on parameters such as time,
+  vehicle characteristics, and alert types.
 </p>
 <h2>COMMANDS</h2>
-<h3>listevents</h3>
-<p>Get VSP events.</p>
+<h3>list</h3>
+<h4>Usage:</h4>
+<pre><code>een vsp list [command] [options]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Manage and list various VSP-related entities.</p>
+<h2>COMMANDS</h2>
+<h3>events</h3>
+<p>List VSP events.</p>
+<h4>Usage:</h4>
+<pre><code>een vsp list events [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List details in csv format.</li>
@@ -2100,13 +2117,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
     comma-separated list of site IDs.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -2125,8 +2135,11 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
 </ul>
 <hr />
-<h3>listalerts</h3>
-<p>Get VSP alerts.</p>
+<h3>alerts</h3>
+<p>List VSP alerts.</p>
+<h4>Usage:</h4>
+<pre><code>een vsp list alerts [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List details in csv format</li>
@@ -2173,13 +2186,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
     <code>-w, --watch-vehicle</code> Filter by alert type - watch vehicle.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -2201,13 +2207,165 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <ul>
   <li>To get VSP events for a specific time frame:</li>
 </ul>
-<pre><code class="language-bash">een vsp listevents --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001235959.000&quot;
+<pre><code class="language-bash">een vsp list events --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001235959.000&quot;
 </code></pre>
 <ul>
   <li>To get VSP alerts for allowed vehicles:</li>
 </ul>
-<pre><code class="language-bash">een vsp listalerts --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00 --allowed-vehicle
+<pre><code class="language-bash">een vsp list alerts --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00 --allowed-vehicle
 </code></pre>
+<hr />
+<h3>vehiclelist</h3>
+<p>List all vehicle list</p>
+<h4>Usage:</h4>
+<pre><code>een vsp list vehiclelist [options] [selectors] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List VSP list vehiclelist in CSV format in
+    Google Sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code><br />
+    Display associated items. Supported values: id, name.
+  </li>
+  <li><code>-l, --long</code> List more details of alerts.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs.
+  </li>
+  <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
+  <li><code>--esn [esn1, esn2]</code> Filter by camera ESNs.</li>
+  <li><code>--name [name]</code> Filter by vehicle list name.</li>
+  <li><code>--plate [plate]</code> Filter by license plate number</li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li>
+    <code>--site-id [site id1, site id2]</code>
+    Filter by site IDs.
+    <code>--status [status]</code>
+    Filter by status.
+  </li>
+  <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To get VSP list vehiclelist in csv format with header:</li>
+</ul>
+<pre><code class="language-bash">een vsp list vehiclelist --csv --header
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;,&quot;status&quot;,&quot;vehicle count&quot;,&quot;camera count&quot;,&quot;site count&quot;
+&quot;406cdb01-3383-44d9-8884-7de9eefd6106&quot;,&quot;Testtt558&quot;,&quot;active&quot;,&quot;&quot;,&quot;12&quot;,&quot;&quot;
+&quot;2ae96131-707a-46b3-ac87-5bcb427e9141&quot;,&quot;Test1234&quot;,&quot;active&quot;,&quot;1&quot;,&quot;12&quot;,&quot;&quot;
+&quot;9ac3a7a6-040c-4e17-8f1f-632da3c1b0fc&quot;,&quot;Test0933&quot;,&quot;active&quot;,&quot;&quot;,&quot;12&quot;,&quot;&quot;
+</code></pre>
+<ul>
+  <li>
+    To get VSP list vehiclelist for esn '1234' with vehicle list name 'my name'
+    in csv format with headers as long list:
+  </li>
+</ul>
+<pre><code class="language-bash">een vsp list vehiclelist --csv --header -l --esn '1006b36f' --name 'EEN India North'
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;,&quot;status&quot;,&quot;vehicle count&quot;,&quot;camera count&quot;,&quot;site count&quot;,&quot;camera name&quot;,&quot;site name&quot;,&quot;notes&quot;
+&quot;416d8e21-a6f0-4b02-93a7-07cd01a9effa&quot;,&quot;EEN India North&quot;,&quot;active&quot;,&quot;19&quot;,&quot;1&quot;,&quot;2&quot;,&quot;108 Test camera (RMA ROOM)&quot;,&quot;Eagle Eye Bangalor,Eagle Eye India 1&quot;,&quot;EEN India office North road side facing camera&quot;
+</code></pre>
+<hr />
+<h3>vehicle</h3>
+<p>List details of vehicle</p>
+<h4>Usage:</h4>
+<pre><code>een vsp list vehicle [options] [selectors] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> List details in csv format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> List VSP list vehiclelist in CSV format in
+    Google Sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--id [id]</code> Display details of vehicles with the specified
+    vehicle list id.
+  </li>
+  <li>
+    <code>--include [value1, value2]</code><br />
+    Display associated items. Supported values: id, plate.
+  </li>
+  <li>
+    <code>-l, --long</code> Display details of vehicles, including vehicle id,
+    color, make, model, user tags, security status, vehicle list id.
+  </li>
+  <li>
+    <code>--name [name]</code> Display details of vehicles with the specified
+    vehicle list name.
+  </li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--access-type [type1, type2]</code> Filter by access type.</li>
+  <li><code>--plate [plate]</code> Filter by license plate number.</li>
+  <li>
+    <code>--security-status [status1, status2]</code> Filter by security status.
+  </li>
+  <li><code>--user-tag [tag1, tag2]</code> Filter by user tags.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>
+    To get VSP list vehicles with vehicle list name 'Hotlist Vehicles' in csv
+    format with header:
+  </li>
+</ul>
+<pre><code class="language-bash">een vsp list vehicle --name 'Hotlist Vehicles' --csv --header
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;license plate&quot;,&quot;accsss type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehicle list name&quot;
+&quot;LHS7593&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Hotlist Vehicles&quot;
+&quot;SMY5299&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Hotlist Vehicles&quot;
+&quot;GZJ8668&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Hotlist Vehicles&quot;
+</code></pre>
+<ul>
+  <li>
+    To get VSP list vehicles with vehicle list id '23j2j5' and user tags 'brivo'
+    in csv format with headers as long list:
+  </li>
+</ul>
+<pre><code class="language-bash">een vsp list vehicle --id 'e705d1f9-4846-4c98-aa09-20b5e54b694f' -l --header  --user-tags 'brivo' --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;license plate&quot;,&quot;accsss type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehicle list name&quot;,&quot;id&quot;,&quot;color&quot;,&quot;make&quot;,&quot;model&quot;,&quot;user tags&quot;,&quot;security status&quot;,&quot;vehicle list id&quot;
+&quot;VPM1767&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;emp_id/1028, company/brivo&quot;,&quot;Employee List&quot;,&quot;ff149647-7146-4dd1-ba6a-a55640f53f29&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;emp_id,1028,company,brivo&quot;,&quot;exempted&quot;,&quot;e705d1f9-4846-4c98-aa09-20b5e54b694f&quot;
+&quot;TKN9576&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;emp_id/1007, company/brivo&quot;,&quot;Employee List&quot;,&quot;fc540121-cb52-4fd9-b9ce-bc3abd43a7e1&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;emp_id,1007,company,brivo&quot;,&quot;exempted&quot;,&quot;e705d1f9-4846-4c98-aa09-20b5e54b694f&quot;
+</code></pre>
+<ul>
+  <li>
+    To get VSP list vehicles with vehicle list name 'hotlist' and license plate
+    number 'NJIFUI7' in csv format with headers as long list:
+  </li>
+</ul>
+<pre><code class="language-bash">een vsp list vehicle --name 'Hotlist Vehicles'  -l --header  --plate 'PSM1356' --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;license plate&quot;,&quot;accsss type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehicle list name&quot;,&quot;id&quot;,&quot;color&quot;,&quot;make&quot;,&quot;model&quot;,&quot;user tags&quot;,&quot;security status&quot;,&quot;vehicle list id&quot;
+&quot;PSM1356&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Hotlist Vehicles&quot;,&quot;f34478ea-46f5-4423-b5a0-23bbe5ad19f0&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;3539f639-00d1-4c6b-b1a7-c66954f4cb93&quot;
+</code></pre>
+<hr />
 <h1>pos - Manage Point of Sale (POS) Events</h1>
 <h2>NAME</h2>
 <p><code>pos</code> - manage and retrieve Point of Sale events.</p>
@@ -2222,6 +2380,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <h2>COMMANDS</h2>
 <h3>listevents</h3>
 <p>Get POS events.</p>
+<h4>Usage:</h4>
+<pre><code>een pos listevents [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>--csv</code> List details in csv format</li>
@@ -2276,13 +2437,6 @@ een camera set scene-analytics --enable --esn '*' -g --header
     type.
   </li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -2322,6 +2476,9 @@ een camera set scene-analytics --enable --esn '*' -g --header
   The <code>perftest</code> command allows you to execute performance tests on
   various aspects of the platform.
 </p>
+<h4>Usage:</h4>
+<pre><code>een perftest livelatency [options] [selectors] [general options]
+</code></pre>
 <h2>Example</h2>
 <p>
   To get camera perftest livelatency for all cameras in CSV format (with
@@ -2329,7 +2486,7 @@ een camera set scene-analytics --enable --esn '*' -g --header
 </p>
 <pre><code class="language-bash">een perftest livelatency --header --csv
 </code></pre>
-<p>Output:</p>
+<h4>Output:</h4>
 <pre><code>account: Account_name(00244829)
 
 running livelatency performance test for 10 samples on 1 cameras
@@ -2345,6 +2502,9 @@ perftest livelatency run on 1/1 cameras 10 samples each
 <h2>COMMANDS</h2>
 <h3>preview</h3>
 <p>Get performance test results for preview images.</p>
+<h4>Usage:</h4>
+<pre><code>een perftest preview [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>-a, --all-log</code> Display execution logs.</li>
@@ -2397,13 +2557,6 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -2436,6 +2589,9 @@ perftest livelatency run on 1/1 cameras 10 samples each
 </code></pre>
 <h3>assetlist</h3>
 <p>Get performance test results for asset list endpoint.</p>
+<h4>Usage:</h4>
+<pre><code>een perftest assetlist [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>-a, --all-log</code> Display execution logs.</li>
@@ -2488,13 +2644,6 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li><code>--site-id [site id1, site id2]</code> Test based on site IDs.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Test based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -2511,11 +2660,6 @@ perftest livelatency run on 1/1 cameras 10 samples each
 </ul>
 <pre><code class="language-bash">een perftest assetlist
 </code></pre>
-<ul>
-  <li>
-    To test asset list performance of all the cameras in a specific layout:
-  </li>
-</ul>
 <pre><code class="language-bash">een perftest assetlist --layout &quot;layout1&quot;
 </code></pre>
 <ul>
@@ -2525,6 +2669,9 @@ perftest livelatency run on 1/1 cameras 10 samples each
 </code></pre>
 <h3>pngspan</h3>
 <p>Get performance test results for pngspan endpoint.</p>
+<h4>Usage:</h4>
+<pre><code>een perftest pngspan [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>-a, --all-log</code> Display execution logs.</li>
@@ -2581,13 +2728,6 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -2620,6 +2760,9 @@ perftest livelatency run on 1/1 cameras 10 samples each
 </code></pre>
 <h3>live</h3>
 <p>Get performance test results for live video.</p>
+<h4>Usage:</h4>
+<pre><code>een perftest live [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>-a, --all-log</code> Display execution logs.</li>
@@ -2663,13 +2806,6 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To test live video performance of all the cameras in an account:</li>
@@ -2690,6 +2826,9 @@ perftest livelatency run on 1/1 cameras 10 samples each
 </code></pre>
 <h3>livelatency</h3>
 <p>Get test results live video latency</p>
+<h4>Usage:</h4>
+<pre><code>een perftest livelatency [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>-a, --all-log</code> Display execution logs.</li>
@@ -2729,13 +2868,6 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To test live video latency of all the cameras in an account:</li>
@@ -2749,6 +2881,9 @@ perftest livelatency run on 1/1 cameras 10 samples each
 </code></pre>
 <h3>historic</h3>
 <p>Get performance test results for history video.</p>
+<h4>Usage:</h4>
+<pre><code>een perftest historic [options] [selectors] [general options]
+</code></pre>
 <h4>Options:</h4>
 <ul>
   <li><code>-a, --all-log</code> Display execution logs.</li>
@@ -2801,13 +2936,6 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li><code>--site-id [site id1, site id2]</code> Filter based on site IDs.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter based on tags.</li>
 </ul>
-<h4>General Options:</h4>
-<ul>
-  <li><code>--call-time</code> Display api response time.</li>
-  <li><code>-d, --debug</code> Enable detailed debug output.</li>
-  <li><code>--prompt</code> Show user confirmation prompts.</li>
-  <li><code>--time</code> Display time taken to execute the command.</li>
-</ul>
 <h4>Notes:</h4>
 <ul>
   <li>
@@ -2855,22 +2983,27 @@ perftest livelatency run on 1/1 cameras 10 samples each
   The <code>googleconfig</code> command allows you to update specific
   configuration options related to Google settings.
 </p>
+<h4>Usage:</h4>
+<pre><code>een googleconfig [options] [command]
+</code></pre>
 <h2>COMMANDS</h2>
 <h3>update</h3>
 <p>Update Google config option values.</p>
+<h4>Usage:</h4>
+<pre><code>een googleconfig update [options] &lt;option name&gt; &lt;value&gt;
+</code></pre>
 <h4>Arguments:</h4>
 <ul>
   <li>
     <p>
-      <code>&lt;option name&gt;</code><br />
-      The name of the configuration option that needs to be updated.
+      <code>&lt;option name&gt;</code> The name of the configuration option that
+      needs to be updated.
     </p>
   </li>
   <li>
     <p>
-      <code>&lt;value&gt;</code><br />
-      The new value for the specified option. This value is parsed as a JSON
-      string.
+      <code>&lt;value&gt;</code> The new value for the specified option. This
+      value is parsed as a JSON string.
     </p>
   </li>
 </ul>
