@@ -1,0 +1,25 @@
+name: Een Cli Public
+id: >-
+  ari:cloud:compass:4337fc0d-aa55-4ff9-bd75-ef7117ff9381:component/4c6fdffe-fa4a-46ef-9e6f-a1aa05480c89/a55d69ca-6693-43f2-89d4-091bd042d4b7
+slug: een-cli-public
+configVersion: 1
+typeId: APPLICATION
+ownerId: ari:cloud:identity::team/dcea9c23-b60b-4c6f-b373-8b195d5076c2
+fields:
+  tier: 1
+  isMonorepoProject: false
+links:
+  - name: null
+    type: REPOSITORY
+    url: https://github.com/EENCloud/EEN-CLI-Public
+relationships: {}
+labels:
+  - csv-import
+  - synced-with-jsm
+customFields:
+  - name: Audit status
+    type: single_select
+    value: 4cf80f9c-76b0-43bc-b5ec-91a0414b8ed8
+  - name: Production deployed
+    type: boolean
+    value: true
