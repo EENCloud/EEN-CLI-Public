@@ -1,0 +1,27 @@
+name: Een CLI Public
+id: "ari:cloud:compass:4337fc0d-aa55-4ff9-bd75-ef7117ff9381:component/4c6fdffe-fa4a-46ef-9e6f-a1aa05480c89/a55d69ca-6693-43f2-89d4-091bd042d4b7"
+description: Public CLI tool
+configVersion: 1
+typeId: APPLICATION
+ownerId: "ari:cloud:identity::team/75ff7018-66c1-49ba-8f5f-37946c4e11fb"
+fields:
+  tier: 2
+  isMonorepoProject: false
+  lifecycle: Active
+links:
+  - name: null
+    type: REPOSITORY
+    url: "https://github.com/EENCloud/EEN-CLI-Public"
+relationships: {}
+labels:
+  - csv-import
+  - synced-with-jsm
+customFields:
+  - name: Audit status
+    type: single_select
+    value: 4cf80f9c-76b0-43bc-b5ec-91a0414b8ed8
+  - name: Production deployed
+    type: boolean
+    value: true
+# Learn more about formatting compass.yml:
+# https://go.atlassian.com/compass-yml-format
