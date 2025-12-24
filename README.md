@@ -143,11 +143,11 @@ General options are available for all commands that include `[general-options]` 
 - `--call-time`
   Display api response time.
 - `-d, --debug`
-  Enable detailed debug output.
+  Display detailed debug output.
 - `-h, --help`
-  Shows how to execute the selected subcommand and provides usage examples.
+  Display how to execute the selected subcommand and provides usage examples.
 - `--prompt`
-  Show user confirmation prompts.
+  Display user confirmation prompts.
 - `--time`
   Display time taken to execute the command.
 
@@ -276,27 +276,40 @@ List users.
 #### Usage:
 
 ```
-een user list [options] [general options]
+een user list [options] [selectors] [general options]
 ```
 
 #### Options:
 
 - `--csv`
-  Export all users in CSV format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
-  Specify the file name to save the output under. Use with the `--csv` option to generate a report.
+  Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  Export users in CSV format and upload to Google Sheets.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `--html`
-  Generate an HTML report for user permissions.
+  Generate a chart in an HTML file; ensure that the --v1 option is used.
 - `--include [value1, value2]`
-  Display associated items. supported values: email, firstname, id, lastname, permission, status.
+  Display associated items (supported values: email, firstname, id, lastname, permission, status).
 - `-l, --long`
-  Display user details, including name, email, last login, status, and permissions.
+  Display details of user including accessible cameras, language, last login, login status, permissions.
 - `--v1`
-  Use v1 APIs for listing users.
+  Use v1 APIs.
+
+#### Selectors:
+
+- `--email [email-id1, email-id2]`
+  Filter by email ID.
+- `--firstname [first-name1, first-name2]`
+  Filter by first name.
+- `--id [id1, id2]`
+  Filter by user ID.
+- `--lastname [last-name1, last-name2]`
+  Filter by last name.
+- `--status [status1, status2]`
+  Filter by status (supported values: active, pending, blocked).
 
 #### Actions:
 
@@ -334,6 +347,219 @@ een user list --csv -f users.csv
 een user list --html
 ```
 
+---
+
+### set
+
+Update user settings.
+
+#### Usage:
+
+```
+een user set [parameter] [value] [options] [selectors] [general options]
+```
+
+#### Parameters:
+
+- `firstname <first-name>`
+  Update first name.
+- `lastname <last-name>`
+  Update last name.
+- `permission <permissions>`
+  Update permission.
+- `status`
+  Enable or disable a user.
+
+---
+
+### set firstname
+
+Update the first name of users.
+
+#### Usage:
+
+```
+een user set firstname <first-name> [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `--email [email-id1, email-id2]`
+  Filter by email id.
+- `--id [id1, id2]`
+  Filter by user id.
+
+#### Example:
+
+```bash
+een user set firstname "John" --email "user@example.com"
+```
+
+---
+
+### set lastname
+
+Update the last name of users.
+
+#### Usage:
+
+```
+een user set lastname <last-name> [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `--email [email-id1, email-id2]`
+  Filter by email id.
+- `--id [id1, id2]`
+  Filter by user id.
+
+#### Example:
+
+```bash
+een user set lastname "J" --email "user@example.com"
+```
+
+---
+
+### set status
+
+Activate or block users.
+
+#### Usage:
+
+```
+een user set status [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in csv format.
+- `--disable`
+  Disable user
+- `--enable`
+  Enable user
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `--email [email-id1, email-id2]`
+  Filter by email id.
+- `--id [id1, id2]`
+  Filter by user id.
+
+#### Examples:
+
+- To enable users by ID:
+
+  ```bash
+  ./een user set status --enable --id 'ca020825, ca04fb15' --header
+  ```
+
+#### Output
+
+When running `een user set status --enable --id 'ca020825, ca04fb15'` command with `--csv` and `--header`, the output will be in CSV format suitable for scripting and automation.
+
+**Successful Output Example:**
+
+```text
+Updated user details for 2/2 users
+
+"user id","email","first name","last name",,"is successful"
+"12345","alice@example.com","Alice","Johnson","yes"
+"12346","bob@example.com","Bob","Doe","yes"
+```
+
+**Error Output Example:**
+
+```text
+Updated user details for 1/2 users
+
+"user id","email","first name","last name","is successful","error reason"
+"12345","alice@example.com","Alice","Johnson","yes",""
+"12346","bob@example.com","Bob","Doe","no","user is already active"
+```
+
+---
+
+### set permission
+
+Update user permissions.
+
+#### Usage:
+
+```
+een user set permission <permissions> [options] [selectors] [general options]
+```
+
+#### Arguments:
+
+- `permissions` — supported values:
+  `viewVSP`, `editMap`, `talkDown`, `editUsers`, `controlPTZ`, `editSharing`, `exportUsers`, `viewArchive`, `editArchive`, `viewVSPRule`, `editVSPRule`, `editAccounts`, `viewAuditLog`,
+  `editSpeakers`, `viewLiveVideo`, `administrator`, `createLayouts`, `downloadVideo`, `upgradeEdition`, `addEditSpeakers`, `viewVehicleList`, `editVehicleList`, `viewAutomations`,
+  `editAutomations`, `editPTZStations`, `editMotionAreas`, `viewPreviewVideo`, `turnCamerasOnOff`, `viewHistoricVideo`, `layoutAdministrator`, `editAllCameraSettings`,
+  `addEditBridgesCameras`, `editNoBillingDeviceSettings`.
+
+#### Options:
+
+- `--csv`
+  Display details in csv format.
+- `--disable`
+  Disable user
+- `--enable`
+  enable user
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `--email [email-id1, email-id2]`
+  Filter by email id.
+- `--id [id1, id2]`
+  Filter by user id.
+
+#### Examples:
+
+- To enable permissions for users by ID:
+
+  ```bash
+  ./een user set permission 'editMap,viewVSP' --enable --id 'ca020825, ca04fb15' --header
+  ```
+
+---
+
 # account - Manage User Accounts
 
 ## NAME
@@ -365,15 +591,15 @@ een account list [options] [general options]
 #### Options:
 
 - `--csv`
-  List all audit log in CSV format.
+  Display details in csv format.
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
-  Display associated items. supported values: id, name.
+  Display associated items (supported values: id, name).
 - `-l, --long`
-  Display account details, including account ID, account name, and account type.
+  Display details of account, including account ID, account name, and account type.
 - `-s, --sub-account`
-  List sub-accounts (only applicable for reseller accounts).
+  Display sub-accounts (only applicable for reseller accounts).
 
 ---
 
@@ -384,17 +610,17 @@ Switch to an account.
 #### Usage:
 
 ```
-een switch list [options] [general options]
+een account switch [options] [general options]
 ```
 
 #### Options:
 
 - `-a, --account-id [account ID]`  
-  Specify the Account ID to switch between logged-in accounts.
+  Specify account id to switch to.
 - `-s, --sub-account-id [sub-account ID]`  
-  Specify the Sub Account ID to switch to from the reseller account.
+  Specify sub account id to switch to.
 - `--username [username]`  
-  Specify the username to switch between logged-in accounts.
+  Specify username to switch to.
 
 ## EXAMPLES
 
@@ -465,13 +691,13 @@ een archive list [options] [general options]
 #### Options:
 
 - `--csv`
-  Export the archive list in CSV format.
+  Display details in csv format.
 - `-D, --detailed`
-  Retrieve a detailed list of archives with additional metadata.
+  Display detailed archive list.
 - `--header`
   Display column headers in the result.
 - `-l, --long`
-  Display archive details, including filename, size, creation date, shared status, and shared path.
+  Display archive details, including file name, size, creation date, shared status, and shared path.
 - `-t, --target-directory [target directory]`
   Specify the directory from which the archive will be retrieved.
 
@@ -500,7 +726,7 @@ een archive download <archive> [options] [general options]
 #### Optional Options:
 
 - `-o, --overwrite`
-  Overwrite the already downloaded archive if it exists.
+  Specify whether to overwrite already downloaded archive.
 
 ## EXAMPLES
 
@@ -547,26 +773,36 @@ een auditlog list [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List all audit log in CSV format.
-- `-e, --end-time [end time]`
-  End time for audit log events(defaults to current time)
+  Display details in CSV format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List all audit log in CSV format in Google Sheets.
+  Display details in csv format in Google Sheets.
 - `--header`
-  Display column headers in the result. By default headers will be hidden.
-- `-s, --start-time [start time]`
-  Start time for audit log events(defaults to 10 minutes before the current time)
+  Display column headers in the result.
+- `--include [value1, value2]`  
+  Display associated items (supported values: user, audit-type, description).
+- `-l, --long`  
+  Display details of audit log including user id, target type, target id, account id.
 
 #### Selectors:
 
-- `-u, --userid [user id]`
-  Filter audit log by user-id.
+- `--audit-type [audit type]`  
+  Filter by audit type (supported values: notificationSent, notificationNotSent, create911Camera, createAction, updateAction, deleteAction, reportCreated, reportDeleted, createReportSchedule, deleteReportSchedule, updateReportSchedule, createRegister, updateRegister, deleteRegister, createAlert, clearAlert, getLayout, createLayout, deleteLayout, updateLayout, addPosSystem, updatePosSystem, deletePosSystem, createFile, deleteFile, updateFile, createLocation, updateLocation, deleteLocation, lprSearch, videoSearch, searchTransaction, bridgeSwap, createLprRule, updateLprRule, delteLprRule, createSensorGateway, deleteSensorGateway, updateSensorGateway, createSensor, deleteSensor, updateSensor, createRule, updateRule, deleteRule, createVehicleListEntry, updateVehicleListEntry, deleteVehicleListEntry, newVehiclesAdded, vehiclesDeleted, existingVehiclesUpdated, updateMeasurement, createRole, updateRole, deleteRole, createVehicleList, updateVehicleList, deleteVehicleList, createUserViaApplication, createUserViaSso, deleteUser, updateUser, userLogin, userLogout, forgotPassword, resetPassword, userSettingsSnapshot, updateUserRole, assignRoleToUser, unassignRoleToUser, acceptedTermsAndConditions, grantResourceToUser, ungrantResourceToUser, createMeasurementThreshold, deleteMeasurementThreshold, updateMeasurementThreshold, requestDownloaded, saveDownloaded, videoRecordStart, videoRecordEnd, viewVideoStart, viewVideoEnd, createExport, createGroup, updateGroup, deleteGroup, groupAssignmentRemove, groupAssignmentAdd, bulkCreateGroupAssignments, bulkDeleteGroupAssignments, assignUserToGroup, unassignUserToGroup, createAccount, deleteAccount, updateAccount, switchAccount, accountSettingsSnapshot, activateFirstResponders, deactivateFirstResponders, updateResponderCamera, removeResponderCamera, updateTransaction, createDevice, deleteDevice, updateDevice, devicesOn, devicesOff, deviceRestart, managedSwitchControl, managedSwitchUpdate, deviceSettingsSnapshot, openTunnel, closeTunnel, activeOutput0, activeOutput1, activeOutput2, activeOutput3, cameraSnapshot, audioSessionStarted, audioSessionFinished, createCameraShare, deleteCameraShare, updateCameraShare, cameraSwap, updateCameraAddress, upgradeDevice).
+- `-e, --end-time [end time]`
+  Filter by end time (defaults to current time).
+- `-s, --start-time [start time]`
+  Filter by start time (defaults to 10 minutes before the current time).
+- `--target-id [target id]`  
+  Filter by target id.
+- `--target-type [target type]`  
+  Filter by target type (supported values: notification, action, report, posRegister, alert, layout, posIntegration, file, location, analytic, lprRule, sensorGateway, sensor, rule, vehicleListEntry, measurement, role, vehicleList, user, measurementThreshold, video, group, account, posTransaction, device).
+- `-u, --user-id [user id]`  
+  Filter by user id.
 
 ## EXAMPLES
 
-- To list all audit logs:
+- To list all audit logs with headers in csv format:
 
 ```bash
 een auditlog list --header --csv
@@ -580,10 +816,18 @@ een auditlog list --header --csv
 "Lakshmi Sai P(lpaspuleti+vs@een.com)","Create File","2025-10-07T09:43:17.461+00:00","File name "VSP Events Count Summary Report - 20251007094316035.csv" created"
 ```
 
-- To list all audit logs for a specific time:
+- To list all audit logs for a specific time with taget type file with headers in csv and long list format:
 
 ```bash
-een auditlog list -s 20250328010101.000 -e 20250328010204.201
+een auditlog list -s 20250328010101.000 -e 20250328010204.201 --target-type 'file' --csv --header -l
+```
+
+#### Output
+
+```csv
+"user","audit type name","timestamp","description","user id","target type","target id","account id"
+"Harees Kumar(hkumar+vsp@een.com)","Create File","2025-11-27T06:43:31.466+00:00","File name "Worker Safety Monitoring Report - 20251127064330736.html" created","ca0c6b19","file","00052029","00052029"
+"Harees Kumar(hkumar+vsp@een.com)","Create File","2025-11-27T06:43:31.142+00:00","File name "Worker Safety Monitoring Report - 20251127064330736.csv" created","ca0c6b19","file","00052029","00052029"
 ```
 
 # availabledevices - Manage Available Devices
@@ -613,24 +857,24 @@ een availabledevices list [options] [general options]
 #### Options:
 
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `-l, --long`
-  Display user details, including make, model and IP Address.
+  Display details of devices, including visibility by bridges, make, model, IP address.
 
 #### Selectors:
 
 - `--bridge-esn [bridge esn1, bridge esn2]`
   Filter by bridge esn.
 - `--devicestate [state1, state2]`
-  Filter by device state. supported values: notSupported, addable, inOtherAccount, unknown.
+  Filter by device state (supported values: notSupported, addable, inOtherAccount, unknown).
 - `--devicetype [type1, type2]`
-  Filter by device types. supported values: camera, speaker, display, multiCamera.
+  Filter by device types (Supported values: camera, speaker, display, multiCamera).
 
 ## EXAMPLES
 
@@ -673,44 +917,48 @@ een camera list [options] [selectors] [general options]
 #### Options:
 
 - `-A, --all`
-  List all cameras, including shared ones.
+  Display all cameras, including shared ones.
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `--direct`
-  List cameras which are direct to cloud.
+  Display cameras which are direct to cloud.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `--html`
   Generate a chart in an html file.
 - `--include [value1, value2]`
-  Display associated items. supported values: esn, camera, bridge-esn, bridge, site, siteid, status, tag.
+  Display associated items (supported values: esn, camera, bridge-esn, bridge, site, siteid, status, tag).
 - `-l, --long`
-  List camera details including camera, esn, bridge, bridge esn, site, site id, status, timezone, tags, shared, ip address and guid.
+  Display details of camera, including camera name, camera id, bridge id, bridge name, status, site name, site id, timezone, guid, tags, is shared, is direct, ip address, mac address.
 - `--shared`
-  List cameras that are shared.
+  Display cameras that are shared.
 - `-T, --tree`
-  List cameras and associated bridges in tree format.
+  Display cameras and associated bridges in tree format.
 - `--v1`
   Use v1 APIs.
 
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--esn [esn1, esn2]`  
+  Filter by camera esns.
 - `--site [site name1, site name2]`
-  Filter based on site names.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
 - `--status [status]`
-  Filter based on status.
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 #### Example
 
@@ -787,32 +1035,32 @@ een camera get [parameter] [value] [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  Export the result in CSV format.
+  Display details in csv format.
 - `--file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  Export the result to Google Sheets.
+  Display details in csv format in google sheets.
 - `--header`
   Display column headers in the result.
 
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter based on camera ESNs.
+  Filter by on camera esns.
 - `--site [site name1, site name2]`
-  Filter based on site names.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
   `--status [status]`
-  Filter based on status.
+  Filter by camera status.
 - `--tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 #### EXAMPLES
 
@@ -894,32 +1142,32 @@ een camera set [parameter] [value] [options] [selectors] [general options]
 #### Common Options:
 
 - `--csv`
-  Export the result in CSV format.
+  Display details in csv format.
 - `--file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  Export the result to Google Sheets.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Comma-separated list of camera ESNs to update, or use `'*'` to apply to all cameras.
+  Filter by camera esns(use '\*' to apply to all cameras).
 - `--site [site name1, site name2]`
-  Filter based on site names.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
   `--status [status]`
-  Filter based on status.
+  Filter by status.
 - `--tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 #### EXAMPLES
 
@@ -981,7 +1229,7 @@ Delete a camera from the bridge.
 #### Argument:
 
 - `<esn>`  
-  ESN of the camera (required)
+  esn of the camera to delete (required).
 
 ---
 
@@ -1003,24 +1251,24 @@ een camera add <esn> [options] [general options]
 #### Required Options:
 
 - `-C, --camera-name [camera name]`
-  Name of the camera.
+  Specify name of the camera.
 - `--guid [guid]`
-  GUID of the camera.
+  Specify GUID of the camera.
 
 #### Optional Options:
 
 - `-c, --cloud-retention-days [cloud retention days]`
-  Cloud retention days.
+  Set cloud retention days for the camera.
 - `-p, --password [password]`
-  Camera password.
+  Set camera password.
 - `-s, --scene [scene]`
-  Scene.
+  Set the camera's scene.
 - `-S, --site [site]`
-  Site ID.
+  Set site id of the camera.
 - `-t, --tag [tag1, tag2]`
-  Tags.
+  Set camera tags.
 - `-u, --username [username]`
-  Camera username.
+  Set camera username.
 
 ---
 
@@ -1037,18 +1285,18 @@ een camera streamstatus [options] [general options]
 #### Required Options:
 
 - `-e, --end-time [end time]`
-  Camera stream end time.
+  Specify end time of the camera stream.
 - `-s, --start-time [start time]`
-  Camera stream start time.
+  Specify start time of the camera stream.
 
 #### Optional Options:
 
 - `--esn [esn1, esn2]`
-  ESNs of the cameras.
+  Filter by camera esns.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-S, --stream-type [stream type]`
-  Stream type of the camera.
+  Filter by stream type for the camera.
 
 #### Notes:
 
@@ -1071,38 +1319,38 @@ een camera purgelist [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List the camera purge list in csv format
+  Display details in csv format.
 - `-e, --end-time [end time]`
-  Purge end time.
+  Specify end time for purging.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List the camera purge list in CSV format in Google Sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `-l, --long`
-  List the camera purge list in long format.
+  Display camera details including esn, bridge esn, status, resolution, cloud retention days.
 - `-s, --start-time [start time]`
-  Purge start time.
+  Specify start time for purging.
 
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter based on camera ESNs.
+  Filter by camera esns.
 - `--site [site name1, site name2]`
-  Filter based on site names.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by on site ids.
 - `--status [status]`
-  Filter based on status.
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 #### Notes:
 
@@ -1123,22 +1371,34 @@ een camera i-summary [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List the details in csv format
+  Display the details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List the details in CSV format in Google Sheet.
+  Display the details in CSV format in Google Sheet.
 - `--header`
   Display column headers in the result.
 - `-l, --long`
-  List the installer summary list in long format.
+  Display details of installer summary, including duty cycle, preview size, video size, update rate (s), bandwidth speed/mode, cloud retention, minimum on premise retention, maximum on premise retention, cloud preview only (pr1), stream type.
 
 #### Selectors:
 
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge esns.
+  Filter by bridge esns.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--esn [esn1, esn2]`
+  Filter by camera esns.
+- `--site [site1, site2]`
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
+- `-t, --tag [tag1, tag2]`
+  Filter by tags.
 
 ---
 
@@ -1155,45 +1415,43 @@ een camera availability [options] [selectors] [general options]
 #### Required Options:
 
 - `-s, --start-time [start time]`
-  Video start time.
+  Specify start time for video.
 
 #### Optional Options:
 
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-e, --end-time [end time]`
-  End time for video.
+  Specify end time for video.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `-N, --no-check`
-  List all available data, including unchecked items.
+  Display all available data, including unchecked items.
 - `-p, --preview-availability`
   Display preview recording status along with camera availability.
-- `-s, --start-time [start time]`
-  Start time for video (required).
 
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
-- `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter based on camera ESNs.
+  Filter by camera esns.
 - `--site [site name1, site name2]`
-  Filter based on site names.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by on site ids.
 - `--status [status]`
-  Filter based on status.
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 #### Notes:
 
@@ -1220,11 +1478,11 @@ een camera addtag <tags> [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List details in csv format.
-- `-f, --file-name [file name]`
+  Display details in csv format.
+- `--file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 
@@ -1296,11 +1554,11 @@ een camera deletetag <tags> [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List details in csv format.
-- `-f, --file-name [file name]`
+  Display details in csv format.
+- `--file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 
@@ -1384,32 +1642,32 @@ een bridge list [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List all bridges in CSV format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List bridges in CSV format in Google Sheets.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `--html`
   Generate a chart in HTML file.
 - `--include[item 1, item 2]`
-  display associated items. supported values: esn
+  Display associated items (supported values: esn).
 - `-l, --long`
-  Display bridge details including: "bridge id","bridge name","serial number","tags","connection status","timezone","site id","site name","mac address","guid","ip address","createtimestamp","number of cameras online","cloud bandwidth used last 7 days average","average available bandwidth last 7 days".
+  Display details of bridges, including bridge id, bridge name, serial number, tags, connection status, timezone, site id, site name, mac address, guid, IP address, created timestamp, number of cameras online, cloud bandwidth used last 7 days avarage (gb), avarage available bandwidth last 7 days (gb).
 - `--v1`
   Use v1 APIs.
 
 #### Selectors:
 
 - `-s, --status [status]`
-  Filter bridges with a specific status.
+  Filter by status.
 - `--site [site name1, site name2]`
-  Filter bridges by site name.
+  Filter by site names.
 - `--site-id [site id1, site id2]`
-  Filter bridges by site id.
+  Filter by site ids.
 - `-t, --tag [tag1, tag2]`
-  Filter bridges by tags.
+  Filter by tags.
 
 #### Actions:
 
@@ -1453,28 +1711,28 @@ een bridge availability [options] [selectors] [general options]
 #### Optional Options:
 
 - `--csv`
-  List details in CSV format.
+  Display details in CSV format.
 - `-e, --end-time [end time]`
   Specify video end time; ensure that the --start-time option is used.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `-N, --no-check`
-  Show all available data.
+  Display all available data.
 
 #### Selectors:
 
 - `--esn [esn1, esn2]`
-  Filter bridges by bridge ESNs.
+  Filter by bridge esns.
 - `--site [site name1, site name2]`
-  Filter bridges by sites.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter bridges by site IDs.
+  Filter by site ids.
 - `-t, --tag [tag1, tag2]`
-  Filter bridges by tags.
+  Filter by tags.
 
 ---
 
@@ -1491,7 +1749,7 @@ een  bridge qlstreammetrics [options] [general options]
 #### Required Options:
 
 - `--esn [esn1, esn2]`
-  Esns of the bridge (required).
+  Specify esns of the bridge.
 
 #### Optional Options:
 
@@ -1500,15 +1758,15 @@ een  bridge qlstreammetrics [options] [general options]
 - `-e, --end-time [end time]`
   Specify the end time.
 - `-E, --events`
-  View events of the bridge.
+  Display events of the bridge.
 - `-l, --local-rtsp-metrics [enable/disable]`
-  Enable or disable the RTSP metrics set.
+  Specify whether enable or disable the RTSP metrics set.
 - `-p, --performance`
-  View performance metrics of the bridge.
+  Display performance metrics of the bridge.
 - `-s, --start-time [start time]`
   Specify the start time.
 - `-S, --summary`
-  Get summarized data.
+  Display summarized data.
 
 ---
 
@@ -1557,23 +1815,30 @@ List switches.
 #### Usage:
 
 ```
-een switch list [options] [general options]
+een switch list [options] [selectors] [general options]
 ```
 
 #### Options:
 
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-f, --file-name`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
   Display associated items. supported values: id, bridge, status.
 - `-l, --long`
-  List switch details, including switch ID, bridge ESN, and status.
+  Display details of switches including bridge id, bridge name, visibility by bridges, switch status, port count, account id.
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by switch ids.
+- `--name [name]`
+  Filter by switch name.
 
 ## EXAMPLES
 
@@ -1586,9 +1851,23 @@ een switch list --header --csv
 #### Output
 
 ```csv
-"switch name"
-"DiversitySwitch"
-"Aut_v3_Switch_Bridge1"
+"switch name","switch id"
+"Aut_v3_Switch_Bridge1","a7459fd0-0169-5eca-8588-17fc6c695f81"
+"Switch","ac246e13-82b3-5ff7-99de-de6e4b75e64e"
+```
+
+- To list all switches with the specified ids with headers in csv and long list format:
+
+```bash
+een switch list --id '1234, 6788' -l --header --csv
+```
+
+#### Output
+
+```csv
+"switch name","switch id","bridge id","bridge name","visible by bridges","switch status","port count","account id"
+"Aut_v3_Switch_Bridge1","a7459fd0-0169-5eca-8588-17fc6c695f81","10035b4a","501 LPR Test Bengaluru Server Roomsss","406+ LPR Test Bengaluru Server room","online","8","00052029"
+"Switch","ac246e13-82b3-5ff7-99de-de6e4b75e64e","-","-","DB 15 LPR Test Bridge","off","-","00052029"
 ```
 
 # sensor - Manage Sensors
@@ -1611,35 +1890,69 @@ The `sensor` command allows you to manage sensors and list all available sensors
 
 ### list
 
-List sensors.
+List all sensors.
 
 #### Usage:
 
 ```
-een sensor list [options] [general options]
+een sensor list [options] [selectors] [general options]
 ```
 
 #### Options:
 
 - `--csv`
-  List all sensors in CSV format.
+  Display details in CSV format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List all sensors in CSV format in Google Sheets.
+  Display details in CSV format in Google Sheets.
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
-  Display associated items. supported values: batterylevel, bluetoothsignal, id, name, parentid, status, site, siteid.
+  Display associated items (supported values: battery-level, bluetooth-signal, id, name, parent-id, status, site, site-id).
 - `-l, --long`
-  List sensor details, including name, id, parentId, battery level, bluetooth strength, site name and status.
+  Display details of sensor including parent id, battery level, bluetooth signal, site id, site name, status, primary camera id, created timestamp, time zone, notes.
+
+#### Selectors:
+
+- `--camera-esn [esn1, esn2]`  
+  Filter by camera esns.
+- `--id [id1, id2]`
+  Filter by sensor ids.
+- `--parent-id [id1, id2]`  
+  Filter by parent ids.
+- `--site-id [site id1, site id2]`  
+  Filter by site ids.
 
 ## EXAMPLES
 
-- To list all sensors:
+- To list all sensors with header in csv foramt:
 
 ```bash
-een sensor list
+een sensor list --header --csv
+```
+
+#### Output
+
+```csv
+"id","sensor name"
+"465772","BOX1 test"
+"176038","BOX2"
+"834978","BOX3"
+```
+
+- To list all sensors with ids 1234. 4567 with header in long list and csv foramt:
+
+```bash
+een sensor list --id '834978,199109 ' --header --csv --long
+```
+
+#### Output
+
+```csv
+"id","sensor name","parent id","battery level","bluetooth signal","site id","site name","status","primary camera id","created timestamp","time zone","notes"
+"834978","BOX3","347624","100","-59","0f8aedc1-af82-4950-97e5-8c154668c961","Eagle Eye Office","online","-","2025-05-21T14:10:44+00:00","US/Central","SS3-101 (A00DQA)  "
+"199109","PARKING LOT 1","347624","100","-63","0f8aedc1-af82-4950-97e5-8c154668c961","Eagle Eye Office","online","-","2025-05-21T12:41:49+00:00","US/Central","SS3-101 (A00DL0)"
 ```
 
 # speaker - Manage Speakers
@@ -1665,7 +1978,7 @@ The `speaker` command allows you to manage speakers and list all available speak
 #### Usage:
 
 ```
-een speaker list [options] [general options]
+een speaker list [options] [selectors] [general options]
 ```
 
 List speakers.
@@ -1673,23 +1986,695 @@ List speakers.
 #### Options:
 
 - `--csv`
-  List all speakers in CSV format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List all speakers in CSV format in Google Sheets.
+  Display details in csv format in google sheet.
 - `--header`
-  Display column headers in the result. By default headers will be hidden.
+  Display column headers in the result.
 - `-l, --long`
-  List more details of speaker.
+  Display details of speaker, including tags, site id, site name, status, GUID, account id, is shared, speaker make, visible by bridges
+
+#### Selectors:
+
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge esns.
+- `--id [id1, id2]`
+  Filter by speaker ids.
+- `--name [name1, name2]`  
+  Filter by speaker names.
+- `--site-id [site id1, site id2]`
+  Filter by site ids.
+- `--status [status]`
+  Filter by status.
+- `-t, --tag [tag1, tag2]`
+  Filter by tags.
 
 ## EXAMPLES
 
-- To list all speakers:
+- To list all speakers with headers in csv format:
 
 ```bash
-een speaker list
+een speaker list --csv --header
 ```
+
+#### Output
+
+```csv
+"id","name","bridge id","bridge name"
+"1006cefc","Speaker AXIS C1310-E","10017196","401 AI - Parking Lot 1"
+"10017fd3","Speaker EN-SDUH-001a","10017196","401 AI - Parking Lot 1"
+```
+
+- To list all speakers with bridge esn '1234', speaker id '54321,3455,2445' with headers in csv and long list format:
+
+```bash
+een speaker list --bridge-esn '10017196' --id '1006cefc,10017fd3,100bddf1' -l --csv --header
+```
+
+#### Output
+
+```csv
+"id","name","bridge id","bridge name","tags","site name","site id","status","guid","account id","is shared","speaker make","visible by bridges"
+"1006cefc","Speaker AXIS C1310-E","10017196","401 AI - Parking Lot 1","","Eagle Eye Office","0f8aedc1-af82-4950-97e5-8c154668c961","online","f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c","00159662","no","axis","401 AI - Parking Lot 1 (10017196)"
+"10017fd3","Speaker EN-SDUH-001a","10017196","401 AI - Parking Lot 1","parking lot 1,EN-SDUH-001a","Eagle Eye Office","0f8aedc1-af82-4950-97e5-8c154668c961","online","50436373-38ae-6f1c-0001-a2c0a4202fc4","00159662","no","eagle eye networks","401 AI - Parking Lot 1 (10017196)"
+```
+
+# alert - Manage Alerts
+
+## NAME
+
+`alert` - manage and interact with alerts.
+
+## SYNOPSIS
+
+```
+een alerts [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `alert` command allows you to manage alerts and list all alerts.
+
+## COMMANDS
+
+### list
+
+List alerts.
+
+#### Usage:
+
+```
+een alert list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`  
+  Display associated items. Supported values: name, id, alert-type.
+- `-l, --long`
+  Display alert details including id, alert type, device id, event type, event id, creator id, site id, account id, seriverule id, bridge id.
+- `-m, --machine-readable`
+  Display details in machine-readable form.
+
+#### Selectors:
+
+- `--alert-name [name]`
+  Filter by alert name.
+- `--alert-type [type1, type2] `
+  Filter by alert types. (Supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, thermalDetection, gunDetection, vehicleDetection, deviceStatus, evaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle).
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--e, --end-time [end-time]`
+  Filter by end time(default: current time).
+- `--esn [esn1, esn2]`
+  Filter by camera ESNs.
+- `--maximum-priority [number]`
+  Filter by maximum priority (supported values: 0-10).
+- `--minimum-priority [number]`
+  Filter by minimum priority (supported values: 0-10).
+- `--origin [origin]`
+  Filter by origin (supported values: vsp).
+- `-s, --start-time [start-time]`
+  Filter by start time(default: 1 hrs before now).
+- `--site [site1, site2]`
+  Filter by sites.
+- `--site-id [site id1, site id2]`
+  Filter by site IDs.
+- `--status [status]`
+  Filter by cameras status.
+- `-t, --tag [tag1, tag2]`
+  Filter by tags.
+
+## EXAMPLES
+
+- To list all alerts in csv format with headers:
+
+```bash
+een alert list --csv --header
+```
+
+#### Output
+
+```csv
+"timestamp","alert name","device name","category","site name","priority","meta"
+"2025-10-18T04:51:17.981+00:00","Motion In Region Detection Alert","CPPLUS - LPR Camera 10","video","Eagle Eye India 1","9","-"
+"2025-10-18T04:51:17.756+00:00","Vehicle Detection Alert","CPPLUS - LPR Camera 9.1.1","video","Lakshmi test site 595","9","vehicleColor: gray; bodyType: car"9
+```
+
+- To list all alerts for a specific alert type with headers in machine-readable form and in csv format:
+
+```bash
+een alert list --alert--type 'personDetection' --header --csv -m
+```
+
+#### Output
+
+```csv
+"id","alert type","device id","category","event type","event id","created timestamp","creator id","site id","account id","service rule id","bridge id"
+"c4c060d0-aa6b-11f0-91c9-9bd277816f28","een.personDetectionAlert.v1","1001760c","video","een.personDetectionEvent.v1","00052029-9878055a-6cb99440-fcba-4129-bd8d-de3f11606680","2025-10-16T08:40:40.695+00:00","een.events","","00052029","79480fd9-7dcb-4e1f-bee8-21289a56dd78","10035b4a"
+"c4c060d0-aa6b-11f0-be8c-934bbe680362","een.personDetectionAlert.v1","1001760c","video","een.personDetectionEvent.v1","00052029-9878055a-6cb99440-fcba-4129-bd8d-de3f11606680","2025-10-16T08:40:40.697+00:00","een.events","","00052029","ecf7d429-c480-4d08-9ec3-c68906d7ce51","10035b4a"
+```
+
+- To list all alerts for camera esn '1234' with headers in long list and in csv format:
+
+```bash
+een alert list --esn '1234' --header -l --csv
+```
+
+#### Output
+
+```csv
+"timestamp","alert name","device name","category","site name","priority","meta","id","alert type","device id","event type","event id","created timestamp","creator id","site id","account id","service rule id","bridge id"
+"2025-10-18T04:53:19.218+00:00","Person Detection Alert","Wiktoria regression 140525","video","Eagle Eye India 1","9","-","5dbc0d20-abde-11f0-a3e8-f48363476040","een.personDetectionAlert.v1","100276a7","een.personDetectionEvent.v1","00052029-4ca52bb6-31653c1f-b397-48e1-bb00-1040cdc90728","2025-10-18T04:53:21.546+00:00","een.events","5acd0dd1-05a0-4d75-a14b-30e0f4083c70","00052029","79480fd9-7dcb-4e1f-bee8-21289a56dd78","10068caa"
+"2025-10-18T04:53:19.218+00:00","Person Detection Alert","Wiktoria regression 140525","video","Eagle Eye India 1","10","-","5dbc0d20-abde-11f0-bf4c-67f1212ca612","een.personDetectionAlert.v1","100276a7","een.personDetectionEvent.v1","00052029-4ca52bb6-31653c1f-b397-48e1-bb00-1040cdc90728","2025-10-18T04:53:21.546+00:00","een.events","5acd0dd1-05a0-4d75-a14b-30e0f4083c70","00052029","1b8ded4e-7d71-4466-bb0e-c7146725f72d","10068caa"
+```
+
+# notification - Manage Notifications
+
+## NAME
+
+`notification` - manage and interact with notifications.
+
+## SYNOPSIS
+
+```
+een notification [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `notification` command allows you to manage notifications and list all notifications.
+
+## COMMANDS
+
+### list
+
+List notifications.
+
+#### Usage:
+
+```
+een notification list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`
+  Display associated items. Supported values: id, alert-type.
+- `-l, --long`
+  Display details of notifications, including id, alert type, alert id, user id, device id, validation status, account id, bridge id.
+- `-m, --machine-readable`
+  Display details in machine-readable form.
+
+#### Selectors:
+
+- `--alert-id [alert id]`  
+   Filter by alert id.
+- `--alert-type [type1, type2] `
+  Filter by alert types.(Supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, thermalDetection, gunDetection, vehicleDetection, evaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle).
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge esns.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--category [category]`  
+  Filter by category (values: health, video, operational, audit, job, security, sharing).
+- `--max [max]`
+  Filter by maximum number of notifications to display (default: 25).
+- `--e, --end-time [end-time]`
+  Filter by end time.
+- `--esn [esn1, esn2]`
+  Filter by camera ESNs.
+- `--notification-status [status]`  
+  Filter by notification status (values: pending, bounced, dropped, deferred, delivered, security, sent, outsideUsersSchedule, notificationsDisabled, noNotificationActions, sendingFailed, throttled, secuunableToGetSettingsrity).
+- `-s, --start-time [start-time]`
+  Filter by start time.
+- `--site [site1, site2]`
+  Filter by sites.
+- `--site-id [site id1, site id2]`
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
+- `-t, --tag [tag1, tag2]`
+  Filter by tags.
+- `--user-id [user id]`
+  Filter by user id.
+- `--user-name [user name]`
+  Filter by user name.
+
+## EXAMPLES
+
+- To list all notifications details in csv format:
+
+```bash
+een notification list --csv
+```
+
+#### Output
+
+```csv
+"2025-10-20T11:23:27.215+00:00","sent","video","LPR Camera 9","push","plateNumber: WDP7651; direction: exit; plateRegion: "
+"2025-10-20T11:23:24.464+00:00","sent","video","EN-CDUB-011a-3","email","-"
+```
+
+- To list all notifications for a specific alert type with headers in machine-readable form and in csv format:
+
+```bash
+een notification list --alert-type 'personDetection' --header --csv -m
+```
+
+#### Output
+
+```csv
+"id","alert type","alert id","category","user id","device id","validation status","account id","bridge id"
+"79c23600-ada7-11f0-8ebd-e0e85d966211","een.personDetectionAlert.v1","79c23600-ada7-11f0-a3df-cb64ccbffc9a","video","ca0edebd","100954c1","","00052029","1007fda2"
+"6c2f2ca0-ada7-11f0-8e48-2c6fa5757c96","een.personDetectionAlert.v1","6c2f2ca0-ada7-11f0-b351-f8eb60f88180","video","ca0edebd","100c16ad","","00052029","1007fda2"
+```
+
+-- To list all notifications for category video with headers in long list and in csv format:
+
+```bash
+een notification list --category 'video' -l --header --csv
+```
+
+#### Output
+
+```csv
+"timestamp","notification status","category","device name","notification actions","meta","id","alert type","alert id","user id","device id","validation status","account id","bridge id"
+"2025-10-20T11:25:44.961+00:00","sent","video","CAMLAN Camera 1","email","-","84eacf10-ada7-11f0-b3f5-2db1a68e5554","een.personDetectionAlert.v1","84eacf10-ada7-11f0-8388-895efa10aa36","ca0edebd","10017523","","00052029","1007a214"
+"2025-10-20T11:25:44.961+00:00","sent","video","CAMLAN Camera 1","email","-","84eacf10-ada7-11f0-8f64-dee519634509","een.personDetectionAlert.v1","84eacf10-ada7-11f0-a7ed-6aa9649f93ad","ca0edebd","10017523","","00052029","1007a214"
+```
+
+# event - Manage Events
+
+## NAME
+
+`event` - manage and interact with events.
+
+## SYNOPSIS
+
+```
+een event [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `event` command allows you to manage events and list all events.
+
+## COMMANDS
+
+### list
+
+List all events.
+
+#### Usage:
+
+```
+een event list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`
+  Display associated items. Supported values: eventId,eventType.
+- `-l, --long`
+  Display event details including device type, id, event type, device id, event id, end time, start time, meta, creator id.
+- `-m, --machine-readable`
+  Display details in machine-readable form.
+
+  ###### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge esns.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `-e, --end-time [end time]`
+  Filter by end time (default: current time).
+- `--esn [esn1, esn2]`
+  Filter by camera esns.
+- `--event-type [type1,type2]`
+  Filter by event types. (supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, thermalDetection, gunDetection, vehicleDetection, deviceStatus, evaQuery, lprPlateRead, deviceCreation, posTransaction, motionInRegionDetection, deviceIO).
+- `-s, --start-time [start-time]`
+  Filter by start time (default: 1 hrs before now).
+- `--site [site1, site2]`
+  Filter by sites.
+- `--site-id [site id1, site id2]`
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
+- `-t, --tag [tag1, tag2]`
+  Filter by tags.
+
+## EXAMPLES
+
+- To list all events with headers in csv format:
+
+```bash
+een event list --csv --header
+```
+
+```csv
+"id","event type","start time","end time","meta"
+"camera","2025-10-27T04:48:13.253+00:00","2025-10-27T04:48:13.253+00:00","BodyTypeConfidence: 44.9%; BodyType: car;"
+"camera","2025-10-27T04:48:11.261+00:00","2025-10-27T04:48:11.261+00:00","BodyTypeConfidence: 49.8%; BodyType: car;"
+```
+
+- To list all events for a specific event type with headers in csv format:
+
+```bash
+een event list --event-type 'vehicleDetection' --header --csv
+```
+
+#### Output
+
+```csv
+"device type","start time","end time","meta"
+"camera","2025-10-27T05:45:38.618+00:00","2025-10-27T05:45:38.618+00:00","BodyTypeConfidence: 82.5%; BodyType: motorbike;"
+"camera","2025-10-27T05:45:18.620+00:00","2025-10-27T05:45:18.620+00:00","BodyTypeConfidence: 44.9%; BodyType: van;"
+```
+
+- To list all events with long list in csv format:
+
+```bash
+een event list --header --long --csv
+```
+
+#### Output
+
+```csv
+"id","event type","start time","end time","meta","device id","device type","creator id",
+camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  -                                                00052029-032d57e9-5d58d553-21ca-4b15-88a4-24464115c517  een.personDetectionEvent.v1          100954c1   een.analytics.v1
+camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyTypeConfidence: 69.1%; BodyType: motorbike;  00052029-032d57e9-70fecbe7-c37f-42a9-aca4-4831ee531eeb  een.vehicleDetectionEvent.v1         100954c1   een.analytics.v1
+```
+
+# rule - Manage Rules
+
+## NAME
+
+`rule` - manage and interact with rules.
+
+## SYNOPSIS
+
+```
+een rule [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `rule` command allows you to manage rule and list all rules.
+
+## COMMANDS
+
+### list
+
+List all rules.
+
+#### Usage:
+
+```
+een rule list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result. By default headers will be hidden.
+- `--include [value1, value2]`  
+  Display associated items. Supported values: name, id, rule-type.
+- `-l, --long`
+  Display details of rules, including id, created timestamp, creator id, account id.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--disabled`
+  Filter by disabled.
+- `--enabled [enabled]`
+  Filter by enabled.
+- `--esn [esn1, esn2]`
+  Filter by camera ESNs.
+- `--maximum-priority [number]`
+  Filter by maximum priority (supported values: 0-10).
+- `--minimum-priority [number]`
+  Filter by minimum priority (supported values: 0-10).
+- `--rule-type [rule type]`
+  Filter by rule type(supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, evaQuery, lprPlateRead, deviceCreation,
+  posTransaction, motionInRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle).
+- `--site [site1, site2]`
+  Filter by sites.
+- `--site-id [site id1, site id2]`
+  Filter by site IDs.
+- `--status [status]`
+  Filter by cameras status.
+- `-t, --tag [tag1, tag2]`
+  Filter based on tags.
+
+## EXAMPLES
+
+- To list all rules in csv format with headers:
+
+```bash
+een rule list --csv --header
+```
+
+#### Output
+
+```csv
+"name","rule type","priority","devices","status","actions","insights"
+"DrewTestMotion sdd","motionDetection","9","1","disable","","lastEvent: 2025-10-06T16:24:51.611+00:00; countToday: 0; countLast7Days: 0"
+"Swathi_VehicleDetection_Rule001","vehicleDetection","9","6","disable","notification: Swathi_Notifications","lastEvent: -; countToday: 0; countLast7Days: 0"
+```
+
+- To list all rule for a specific rule type and enabled true with headers in csv format:
+
+```bash
+een rule list --rule-type 'motionDetection' --enabled --header --csv
+```
+
+#### Output
+
+```csv
+"name","rule type","priority","devices","status","actions","insights"
+"danny test","motionDetection","9","1","enable","notification: Danny Email","lastEvent: 2025-11-04T12:40:38.286+00:00; countToday: 2623; countLast7Days: 32805"
+"wiktoria rule test 1.10.2025 no 2","motionDetection","9","3","enable","zapier: Wiktoria Zapier test","lastEvent: 2025-11-04T12:38:29.683+00:00; countToday: 434; countLast7Days: 5745"
+```
+
+- To list all rule for camera bridge esn '1234' with headers in long list and in csv format:
+
+```bash
+een rule list --esn '1234' --header -l --csv
+```
+
+#### Output
+
+```csv
+"name","rule type","priority","devices","status","actions","insights","id","created timestamp","creator id","account id"
+"DrewTestMotion sdd","motionDetection","9","1","disable","","lastEvent: 2025-10-06T16:24:51.611+00:00; countToday: 0; countLast7Days: 0","81c604fb-6d0e-4750-bf8d-5c6b65ebba0a","2024-12-10T18:10:19.978+00:00","een.events","00159662"
+"Wiktoria Intrusion Zapier test","intrusionDetection","9","288","disable","zapier: Wiktoria Zapier test","lastEvent: -; countToday: 0; countLast7Days: 0","4c4c18bd-32a3-436a-ba3f-64c1f6689353","2025-05-05T09:45:28.782+00:00","een.events","00159662"
+```
+
+### delete
+
+Delete a rule from the rule list.
+
+#### Usage:
+
+```
+een rule delete <id> [general options]
+```
+
+#### Argument:
+
+- `<id>`
+  id of the rule to delete (required).
+
+#### EXAMPLES
+
+- To delete a rule with id '1234':
+
+```bash
+een rule delete 42d4b2f6-1aeb-4e21-84d8-1a7c46818fc4
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully deleted the rule: 42d4b2f6-1aeb-4e21-84d8-1a7c46818fc4
+```
+
+**Error Output Example:**
+
+```text
+error: unable to delete the rule: rule with 42d4b2f6-1aeb-4e21-84d8-1a7c46818fc4 not found (status: 404)
+```
+
+---
+
+# action - Manage Action
+
+## NAME
+
+`action` - manage and interact with actions.
+
+## SYNOPSIS
+
+```
+een action [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `action` command allows you to manage action and list all actions.
+
+## COMMANDS
+
+### list
+
+List all actions.
+
+#### Usage:
+
+```
+een action list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  List details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  List details in csv format in google sheet.
+- `--header`
+  Display column headers in the result. By default headers will be hidden.
+- `--include [value1, value2]`  
+  Display associated items. Supported values: id, name, action-type, recipient-name.
+- `-l, --long`
+  Display action details including id, created timestamp, rearm seconds, max per hour, site url, email, port, user name, password, tls, duration, port id, device id.
+
+#### Selectors:
+
+- `--action-type [type]`
+  Filter by action types (supported values: immix, sentinal, notification, webhook, zapier, outputPort, sms_mmsNotification).
+
+## EXAMPLES
+
+- To list all action in csv format with headers:
+
+```bash
+een action list --csv --header
+```
+
+#### Output
+
+```csv
+"name","action type","recipients","status"
+"Yen Test","notification","1","disable"
+"Alert Shubham & Hari","notification","2","enable"
+"Alert Hari","notification","1","enable"
+```
+
+- To list all action for a specific action type with headers in long list format:
+
+```bash
+een action list --action-type 'zapier' --header --csv
+```
+
+#### Output
+
+```csv
+"name","action type","recipients","status","id","created timestamp","rearm seconds","max per hour"
+"000 wiktoria action test","zapier","","disable","d1349bc4-96d0-4c6f-930f-edc870e2abbc","2024-12-18T11:08:26.887+00:00","",""
+"Zapier wiktoria test","zapier","","disable","8371abcd-313d-4ee2-96ee-0c78da658a36","2025-02-12T14:13:47.300+00:00","",""
+```
+
+---
+
+### delete
+
+Delete an action from the action list.
+
+#### Usage:
+
+```
+een action delete <id> [general options]
+```
+
+#### Argument:
+
+- `<id>`  
+  id of the action to delete (required).
+
+#### EXAMPLES
+
+- To delete an action with id '1234':
+
+```bash
+een action delete 'ed4e7090-23ee-41dc-bf5a-58df32cdd960'
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully deleted the action: ed4e7090-23ee-41dc-bf5a-58df32cdd960
+```
+
+**Error Output Example:**
+
+```text
+error: unable to delete the action: ed4e7090-23ee-41dc-bf5a-58df32cdd960
+```
+
+---
 
 # site - Manage Sites
 
@@ -1716,25 +2701,38 @@ List all sites.
 #### Usage
 
 ```
-een site list [command] [options]
+een site list [options] [selectors] [general options]
 ```
 
 #### Options:
 
 - `--csv`
-  List all sites in CSV format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
-  Display associated items. supported values: siteid.
+  Display associated items (supported values: siteid).
 - `-l, --long`
-  List site details, including site name and site ID.
-- `-s, --site-id`
-  List the IDs of the sites.
+  Display details of site including address, city, region, postal code, country, camera count, bridge count, user count, speaker count, multi camera count.
+
+#### Selectors:
+
+- `--city [city1, city2]`
+  Filter by city.
+- `--country [country1, country2]`
+  Filter by country.
+- `--postal-code [postal code1, postal code2]`
+  Filter by postal code.
+- `--region [region1, region2]`
+  Filter by region.
+- `--site [site name1, site name2]`
+  Filter by sites.
+- `--site-id [site id1, site id2]`  
+  Filter by site ids.
 
 #### Actions:
 
@@ -1751,16 +2749,35 @@ een site list --csv --header
 #### Output
 
 ```csv
-"site name"
-"Eagle Eye Bangalore"
-"Eagle Eye India 1"
-"Lakshmi test site 595"
+"site name","site id"
+"Eagle Eye Bangalor","83860e96-cd90-4b32-ba41-5866e3088927"
+"Eagle Eye India 1","5acd0dd1-05a0-4d75-a14b-30e0f4083c70"
 ```
 
-- To get sites list in a file with prompting for confirmation:
+- To get sites list with site name 'eagle eye', city 'bangalore' in csv and long list format with header:
 
 ```bash
-een site list --csv --file-name sites.csv --prompt --debug
+een site list --site 'Eagle Eye Bangalor' --city 'Bangalore ' --header -l --csv
+```
+
+#### Output
+
+```csv
+"site name","site id","address","city","region","postal code","country","camera count","bridge count","user count","speaker count","multi camera count"
+"Eagle Eye Bangalor","83860e96-cd90-4b32-ba41-5866e3088927","Sri Krishna Temple Road, Indira Nagar,","Bangalore","Karanataka","560038","India","3","1","-","-","-"
+```
+
+- To get sites list with site id '1234', region 'Karnataka' in csv and long list format with header:
+
+```bash
+een site list --site-id '5acd0dd1-05a0-4d75-a14b-30e0f4083c70' --region 'Karnataka' -l --header --csv
+```
+
+#### Output
+
+```csv
+"site name","site id","address","city","region","postal code","country","camera count","bridge count","user count","speaker count","multi camera count"
+"Eagle Eye India 1","5acd0dd1-05a0-4d75-a14b-30e0f4083c70","Ginserv, Leela Palace Road,, Kodihalli, ","Bangalore","Karnataka","560008","India","21","3","1","-","-"
 ```
 
 # download - Manage Downloads
@@ -1812,24 +2829,24 @@ een download video list [options] [selectors] [general options]
 ###### Options:
 
 - `--csv`
-  List details in CSV format.
-- `-f, --file-name [file name]`
+  Display details in csv format.
+- `--file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in CSV format in Google Sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
   Display associated items. Supported values: id, name, dfilename.
 - `-l, --long`
-  Display video details including id, name, dfilename, length, start-time and end-time.
+  Display details of videos, including id, name, dfilename, camera id, start time, end time, timezone.
 
 ###### Selectors:
 
 - `-C, --camera [camera]`
-  Filter based on camera name.
+  Filter by camera name.
 - `--esn [esn]`
-  Filter based on camera ESN.
+  Filter by camera esn.
 
 ---
 
@@ -1843,28 +2860,31 @@ Export video.
 een download video export [command] [options]
 ```
 
+#### Required Options:
+
+- `-s, --start-time [start time]`
+  Specify start time.
+
 ###### Options:
 
 - `-C, --camera [camera]`
-  Camera name.
+  Specify camera name.
 - `-e, --end-time [end time]`
-  End time.
+  Specify end time.
 - `--esn [esn]`
-  Camera ESN.
+  Specify camera ESN.
 - `--length [length]`
-  Length from start time in seconds.
-- `--name [name]`
-  Export file name.
-- `-s, --start-time [start time]`
-  Start time (required).
-- `-T, --timezone [timezone]`
-  Timezone for timestamp (defaults to camera's timezone).
-- `--timestamp`
-  Add timestamp.
+  Specify length from start time in seconds.
 - `--max-length [max length] `
-  Maximum duration in seconds for time-lapse video.
+  Specify maximum duration in seconds for time-lapse video.
+- `--name [name]`
+  Specify export file name.
+- `-T, --timezone [timezone]`
+  Specify timezone for timestamp (default: camera's timezone).
 - `--time-lapse`
   Export a time-lapsed video.
+- `--timestamp`
+  Specify timestamp.
 
 ---
 
@@ -1881,15 +2901,15 @@ een download video get [options] [general options]
 ###### Options:
 
 - `--dfilename [dfilename]`
-  Filename to download.
+  Specify file name to download.
 - `--directory [directory]`
-  Output directory.
+  Specify output directory.
 - `-f, --file-name [file-name]`
-  Override output file name.
+  Specify override output file name.
 - `--id [id]`
-  ID of video to be downloaded.
+  Specify id of video to be downloaded.
 - `--name [name]`
-  Name of video to be downloaded.
+  Specify name of video to be downloaded.
 
 ---
 
@@ -1917,27 +2937,45 @@ Download preview.
 #### Usage:
 
 ```
-een download preview [options] [general options]
+een download preview [options] [selectors] [general options]
 ```
+
+#### Required Options:
+
+- `-s, --start-time [start time]`
+  Specify start time.
 
 #### Options:
 
-- `-C, --camera [camera]`
-  Camera to download from.
 - `--directory [directory]`
-  Output directory.
+  Specify output directory.
 - `-e, --end-time [end time]`
-  End time.
-- `--esn [esn]`
-  ESN to download from.
+  Specify end time.
 - `--length [length]`
-  Length from start time in seconds.
+  Specify length from start time in seconds.
 - `--overlay`
-  Add overlay.
-- `-s, --start-time [start time]`
-  Start time (required).
+  Specify overlay.
 - `-T, --timezone [timezone]`
-  Timezone for timestamp (default: camera's timezone).
+  Specify timezone for timestamp (default: camera's timezone).
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge esns.
+- `-C, --camera [camera1, camera2]`
+  Filter by cameras.
+- `--esn [esn1, esn2]`
+  Filter by camera esns.
+- `--site [site name1, site name2]`
+  Filter by sites.
+- `--site-id [site id1, site id2]`
+  Filter by site ids.
+- `--status [status]`
+  Filter by camera status.
+- `-t, --tag [tag1, tag2]`
+  Filter by tags.
 
 ## EXAMPLES
 
@@ -1969,6 +3007,12 @@ een download video get --id "12345" --directory "/path/to/save"
 
 ```bash
 een download preview --esn 12345 --start-time "20241001000000.000" --end-time "20241001010004.000" --directory "/path/to/save"
+```
+
+- To download preview from cameras with specified bridge esn and camera status online:
+
+```bash
+een download preview --bridge-esn 12345 --status 'online' --start-time "20241001000000.000" --length 3
 ```
 
 - To delete a video by ID:
@@ -2008,11 +3052,11 @@ een job list [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List details in CSV format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in CSV format in Google Sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 
@@ -2021,7 +3065,7 @@ een job list [options] [selectors] [general options]
 - `--jobid [job-id]`
   Filter by job ID.
 - `--jobstate [state]`
-  Filter by job state (pending, started, failure, success, revoked).
+  Filter by job state (supported values: pending, started, failure, success, revoked).
 
 ## EXAMPLES
 
@@ -2115,21 +3159,21 @@ een video previewrecordingstatus [options] [general options]
 #### Required Options:
 
 - `--esn [esn]`  
-  ESNs of the camera.
+  Specify esns of the camera.
 - `-s, --start-time [start time]`  
-  Video start time.
+  Specify video start time.
 
 #### Optional Options:
 
-- `--csv`  
-  List preview recording status result in csv format.
+- `--csv`
+  Display details in csv format.
 - `-e, --end-time [end time]`  
-  Video end time.
-- `-f, --file-name [file name]`  
+  Specify video end time.
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
-- `-g, --google-sheet`  
-  List camera recording status in CSV format in Google Sheets.
-- `--header`  
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
   Display column headers in the result.
 
 #### Actions:
@@ -2181,29 +3225,27 @@ een lpr events [options] [selectors] [general options]
 #### Required Options:
 
 - `-e, --end-time [end time]`
-  Events end time.
+  Specify events end time.
 - `-s, --start-time [start time]`
-  Events start time.
+  Specify events start time.
 
 #### Optional Options:
 
 - `--header`
   Display column headers in the result.
-- `--time`
-  Display the execution time of the command.
 - `--v1`
   Use v1 APIs.
 
 #### Selectors:
 
 - `--esn [esn1, esn2]`
-  Filter by camera ESNs.
+  Filter by camera esns.
 - `--layout [layout name1, layout name2]`
-  Filter by Layout names associated with the camera.
+  Filter by layout names associated with the camera.
 - `--layout-id [layout id1, layout id2]`
-  Filter by Layout IDs associated with the camera.
+  Filter by layout IDs associated with the camera.
 - `--lp [license plate]`
-  Filter by License plate number.
+  Filter by license plate number.
 - `-t, --tag [tag1, tag2]`
   Filter by camera tags.
 
@@ -2271,19 +3313,19 @@ een vsp list events [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-e, --end-time [end time]`
-  LPR end time.
+  Specify LPR end time; ensure that the --start-time option is used.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List VSP events in CSV format in Google Sheet.
+  Display details in csv format in google sheet.
 - `--header`
-  Display column headers in the result
+  Display column headers in the result.
 - `--html`
   Generate chart in HTML file.
 - `-s, --start-time [start time]`
-  LPR start time.
+  Specify LPR start time.
 
 #### Selectors:
 
@@ -2330,19 +3372,19 @@ een vsp list alerts [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List details in csv format
+  Display details in csv format.
 - `-e, --end-time [end time]`
-  LPR end time.
+  Specify LPR end time; ensure that the --start-time option is used.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List VSP alerts in CSV format in Google Sheet
+  Display details in csv format in google sheet.
 - `--header`
-  Display column headers in the result
+  Display column headers in the result.
 - `--html`
   Generate chart in HTML file.
 - `-s, --start-time [start time]`
-  LPR start time.
+  Specify LPR start time.
 
 #### Selectors:
 
@@ -2403,17 +3445,17 @@ een vsp list vehiclelist [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List VSP list vehiclelist in CSV format in Google Sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`  
   Display associated items. Supported values: id, name.
 - `-l, --long`
-  List more details of alerts.
+  Display details of vehicles, including camera names, site names, notes.
 
 #### Selectors:
 
@@ -2483,11 +3525,11 @@ een vsp list vehicle [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List VSP list vehiclelist in CSV format in Google Sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `--id [id]`
@@ -2587,19 +3629,19 @@ een pos listevents [options] [selectors] [general options]
 #### Options:
 
 - `--csv`
-  List details in csv format
+  Display details in csv format.
 - `-e, --end-time [end time]`
-  Defines the end point for retrieving events. The timestamp must be in ISO 8601 format with millisecond precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
+  Specify events end time; ensure that the --start-time option is used.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List POS events in CSV format in Google Sheet
+  Display details in CSV format in Google Sheet.
 - `--header`
-  Display column headers in the result
+  Display column headers in the result.
 - `--html`
   Generate chart in HTML file.
 - `-s, --start-time [start time]`
-  Defines the starting point for retrieving events. The timestamp must be in ISO 8601 format with millisecond precision (e.g., YYYY-MM-DDTHH:MM:SS.sss±HH:MM).
+  Specify events start time.
 
 #### Selectors:
 
@@ -2710,9 +3752,9 @@ een perftest preview [options] [selectors] [general options]
 - `-a, --all-log`
   Display execution logs.
 - `-c, --count [count]`
-  Number of previews to be tested (default: 10).
+  Specify number of previews to be tested (default: 10).
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-e, --end-time [end time]`
   Specify the end timestamp for analysis, this option requires --start-time to be specified.
 - `-f, --file-name [file name]`
@@ -2720,7 +3762,7 @@ een perftest preview [options] [selectors] [general options]
 - `--fixed`
   Generate timestamps at fixed intervals (interval: 10000 ms).
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `-s, --start-time [start time]`
@@ -2731,23 +3773,25 @@ een perftest preview [options] [selectors] [general options]
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter based on camera ESNs.
+  Filter by camera esns.
 - `--layout [layout1, layout2]`
-  Filter based on layouts.
+  Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter based on layouts IDs.
+  Filter by layouts ids.
 - `--site [site1, site2]`
-  Filter based on sites.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 #### Notes:
 
@@ -2789,13 +3833,13 @@ een perftest assetlist [options] [selectors] [general options]
 - `-a, --all-log`
   Display execution logs.
 - `-A, --asset-count [asset count]`
-  Number of assets per list (default: 10).
+  Specify number of assets per list (default: 10).
 - `--archiver`
-  Display the archiver ID.
+  Display the archiver id.
 - `-c, --count [count]`
-  Number of asset lists to be tested (default: 10).
+  Specify number of asset lists to be tested (default: 10).
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-e, --end-time [end time]`
   Specify the end timestamp for analysis, this option requires --start-time to be specified.
 - `-f, --file-name [file name]`
@@ -2803,7 +3847,7 @@ een perftest assetlist [options] [selectors] [general options]
 - `--fixed`
   Generate timestamps at fixed intervals (interval: 10000 ms).
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `-H, --headerinfo`
   Display response header info.
 - `--header`
@@ -2813,24 +3857,26 @@ een perftest assetlist [options] [selectors] [general options]
 
 #### Selectors:
 
-- `--bridge [bridge1, bridge2]`
-  Test based on bridges.
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Test based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Test based on cameras.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Test based on camera ESNs.
+  Filter by camera esns.
 - `--layout [layout1, layout2]`
-  Test based on layouts.
+  Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Test based on layouts IDs.
+  Filter by layouts ids.
 - `--site [site1, site2]`
-  Test based on sites.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Test based on site IDs.
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Test based on tags.
+  Filter by tags.
 
 #### Notes:
 
@@ -2871,9 +3917,9 @@ een perftest pngspan [options] [selectors] [general options]
 - `--archiver`
   Display the archiver ID.
 - `-c, --count [count]`
-  Number of pngspans to be tested (default: 10).
+  Specify number of pngspans to be tested (default: 10).
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-e, --end-time [end time]`
   Specify the end timestamp for analysis, this option requires --start-time to be specified.
 - `-f, --file-name [file name]`
@@ -2881,7 +3927,7 @@ een perftest pngspan [options] [selectors] [general options]
 - `--fixed`
   Generate timestamps at fixed intervals (interval: 10000 ms).
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `-H, --headerinfo`
   Display response header info.
 - `--header`
@@ -2889,28 +3935,30 @@ een perftest pngspan [options] [selectors] [general options]
 - `-s, --start-time [start time]`
   Specify the start timestamp for analysis.
 - `--width [width]`
-  Width of pngspan to be tested (default: 240).
+  Specify width of pngspan to be tested (default: 240).
 
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter based on camera ESNs.
+  Filter by camera esns.
 - `--layout [layout1, layout2]`
-  Filter based on layouts.
+  Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter based on layouts IDs.
+  Filter by layouts ids.
 - `--site [site1, site2]`
-  Filter based on sites.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 #### Notes:
 
@@ -2952,13 +4000,13 @@ een perftest live [options] [selectors] [general options]
 - `-a, --all-log`
   Display execution logs.
 - `-c, --count [count]`
-  Number of videos to be tested (default: 10).
+  Specify number of videos to be tested (default: 10).
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `-l, --length [length]`
@@ -2967,23 +4015,25 @@ een perftest live [options] [selectors] [general options]
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter based on camera ESNs.
+  Filter by camera esns.
 - `--layout [layout1, layout2]`
-  Filter based on layouts
+  Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter based on layout IDs.
+  Filter by layouts ids.
 - `--site [site1, site2]`
-  Filter based on sites.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 ## EXAMPLES
 
@@ -3020,36 +4070,38 @@ een perftest livelatency [options] [selectors] [general options]
 - `-a, --all-log`
   Display execution logs.
 - `-c, --count [count]`
-  Number of videos frames to be tested (default: 10).
+  Specify number of videos frames to be tested (default: 10).
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-f, --file-name [file name]`
   Specify the file name to save the test results.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter based on camera ESNs.
+  Filter by camera esns.
 - `--layout [layout1, layout2]`
-  Filter based on layouts.
+  Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter based on layouts IDs.
+  Filter by layouts ids.
 - `--site [site1, site2]`
-  Filter based on sites.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 ## EXAMPLES
 
@@ -3080,9 +4132,9 @@ een perftest historic [options] [selectors] [general options]
 - `-a, --all-log`
   Display execution logs.
 - `-c, --count [count]`
-  Number of videos to be tested (default: 10).
+  Specify number of videos to be tested (default: 10).
 - `--csv`
-  List details in csv format.
+  Display details in csv format.
 - `-e, --end-time [end time]`
   Specify the end timestamp for analysis, this option requires --start-time to be specified.
 - `-f, --file-name [file name]`
@@ -3090,7 +4142,7 @@ een perftest historic [options] [selectors] [general options]
 - `--fixed`
   Generate timestamps at fixed intervals.
 - `-g, --google-sheet`
-  List details in csv format in google sheet.
+  Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
 - `-l, --length [video length]`
@@ -3101,23 +4153,25 @@ een perftest historic [options] [selectors] [general options]
 #### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
-  Filter based on bridge names.
+  Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
-  Filter based on bridge ESNs.
+  Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
-  Filter based on camera names.
+  Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter based on camera ESNs.
+  Filter by camera esns.
 - `--layout [layout1, layout2]`
-  Filter based on layouts.
+  Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter based on layouts IDs.
+  Filter by layouts ids.
 - `--site [site1, site2]`
-  Filter based on sites.
+  Filter by sites.
 - `--site-id [site id1, site id2]`
-  Filter based on site IDs.
+  Filter by site ids.
+- `--status [status]`  
+  Filter by camera status.
 - `-t, --tag [tag1, tag2]`
-  Filter based on tags.
+  Filter by tags.
 
 #### Notes:
 
