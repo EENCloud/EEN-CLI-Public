@@ -2,7 +2,10 @@
 <h2>Latest CLI Version</h2>
 <p>
   The latest CLI release version:
-  <img src="https://img.shields.io/github/v/release/EENCloud/EEN-CLI-Public" alt="Latest Release" />
+  <img
+    src="https://img.shields.io/github/v/release/EENCloud/EEN-CLI-Public"
+    alt="Latest Release"
+  />
 </p>
 <h2>Using the CLI</h2>
 <h2>Setting-up of Executable File</h2>
@@ -173,14 +176,13 @@
 <ul>
   <li>
     <p>
-      <strong>--help, -h</strong><br />
-      Displays the help information for the een command or a specific object.
+      <strong>--help, -h</strong> Displays the help information for the een
+      command or a specific object.
     </p>
   </li>
   <li>
     <p>
-      <strong>--version</strong><br />
-      Displays the current version of the een CLI.
+      <strong>--version</strong> Displays the current version of the een CLI.
     </p>
   </li>
 </ul>
@@ -240,8 +242,8 @@ een camera list --help
   The <strong>een auth</strong> command provides utilities for logging in and
   out of Eagle Eye Networks. When using <code>auth login</code>, the user is
   redirected to a login URL and completes the authentication in the web browser.
-  However, when the <code>--v1</code> option is used, the users are
-  authenticated directly through the CLI.
+  However, when the <code>--v1</code> option is used, the user is authenticated
+  directly through the CLI.
 </p>
 <h2>COMMANDS</h2>
 <h3>login</h3>
@@ -271,7 +273,7 @@ een camera list --help
 </ul>
 <hr />
 <h3>logout</h3>
-<p>Log out from EEN.</p>
+<p>Log out of your EEN account.</p>
 <h4>Usage:</h4>
 <pre><code>een auth logout [general options]
 </code></pre>
@@ -288,6 +290,7 @@ een camera list --help
 </ul>
 <pre><code class="language-bash">een auth logout --debug
 </code></pre>
+<hr />
 <h1>user - Manage Users</h1>
 <h2>NAME</h2>
 <p><code>user</code> - manage and interact with users.</p>
@@ -307,13 +310,13 @@ een camera list --help
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -402,21 +405,21 @@ een camera list --help
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
-  <li><code>--email [email-id1, email-id2]</code> Filter by email id.</li>
-  <li><code>--id [id1, id2]</code> Filter by user id.</li>
+  <li><code>--email [email-id1, email-id2]</code> Filter by email ID.</li>
+  <li><code>--id [id1, id2]</code> Filter by user ID.</li>
 </ul>
 <h4>Example:</h4>
 <pre><code class="language-bash">een user set firstname &quot;John&quot; --email &quot;user@example.com&quot;
@@ -429,21 +432,21 @@ een camera list --help
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
-  <li><code>--email [email-id1, email-id2]</code> Filter by email id.</li>
-  <li><code>--id [id1, id2]</code> Filter by user id.</li>
+  <li><code>--email [email-id1, email-id2]</code> Filter by email ID.</li>
+  <li><code>--id [id1, id2]</code> Filter by user ID.</li>
 </ul>
 <h4>Example:</h4>
 <pre><code class="language-bash">een user set lastname &quot;J&quot; --email &quot;user@example.com&quot;
@@ -456,7 +459,7 @@ een camera list --help
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li><code>--disable</code> Disable user</li>
   <li><code>--enable</code> Enable user</li>
   <li>
@@ -464,15 +467,15 @@ een camera list --help
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
-  <li><code>--email [email-id1, email-id2]</code> Filter by email id.</li>
-  <li><code>--id [id1, id2]</code> Filter by user id.</li>
+  <li><code>--email [email-id1, email-id2]</code> Filter by email ID.</li>
+  <li><code>--id [id1, id2]</code> Filter by user ID.</li>
 </ul>
 <h4>Examples:</h4>
 <ul>
@@ -490,9 +493,9 @@ een camera list --help
   format suitable for scripting and automation.
 </p>
 <p><strong>Successful Output Example:</strong></p>
-<pre><code class="language-text">Updated user details for 2/2 users
+<pre><code class="language-csv">Updated user details for 2/2 users
 
-&quot;user id&quot;,&quot;email&quot;,&quot;first name&quot;,&quot;last name&quot;,,&quot;is successful&quot;
+&quot;user id&quot;,&quot;email&quot;,&quot;first name&quot;,&quot;last name&quot;,&quot;is successful&quot;
 &quot;12345&quot;,&quot;alice@example.com&quot;,&quot;Alice&quot;,&quot;Johnson&quot;,&quot;yes&quot;
 &quot;12346&quot;,&quot;bob@example.com&quot;,&quot;Bob&quot;,&quot;Doe&quot;,&quot;yes&quot;
 </code></pre>
@@ -533,23 +536,23 @@ een camera list --help
 </ul>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
-  <li><code>--disable</code> Disable user</li>
-  <li><code>--enable</code> enable user</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li><code>--disable</code> Disable permission.</li>
+  <li><code>--enable</code> Enable permission.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
-  <li><code>--email [email-id1, email-id2]</code> Filter by email id.</li>
-  <li><code>--id [id1, id2]</code> Filter by user id.</li>
+  <li><code>--email [email-id1, email-id2]</code> Filter by email ID.</li>
+  <li><code>--id [id1, id2]</code> Filter by user ID.</li>
 </ul>
 <h4>Examples:</h4>
 <ul>
@@ -573,13 +576,13 @@ een camera list --help
 </p>
 <h2>COMMANDS</h2>
 <h3>list</h3>
-<p>List all logged in accounts.</p>
+<p>List all logged-in accounts.</p>
 <h4>Usage:</h4>
 <pre><code>een account list [options] [general options]
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
     <code>--include [value1, value2]</code> Display associated items (supported
@@ -603,17 +606,13 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li>
-    <code>-a, --account-id [account ID]</code><br />
-    Specify account id to switch to.
+    <code>-a, --account-id [account ID]</code> Specify account id to switch to.
   </li>
   <li>
-    <code>-s, --sub-account-id [sub-account ID]</code><br />
-    Specify sub account id to switch to.
+    <code>-s, --sub-account-id [sub-account ID]</code> Specify sub account id to
+    switch to.
   </li>
-  <li>
-    <code>--username [username]</code><br />
-    Specify username to switch to.
-  </li>
+  <li><code>--username [username]</code> Specify username to switch to.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -622,10 +621,10 @@ een camera list --help
 <pre><code class="language-bash">een account list --header
 </code></pre>
 <h4>Output</h4>
-<p>
-  &quot;account&quot; &quot;Sijin Jacob(00052029)&quot; &quot;Deepak M
-  K(00064711)&quot;
-</p>
+<pre><code class="language-text">&quot;account&quot;
+&quot;Sijin Jacob(00052029)&quot;
+&quot;Deepak M K(00064711)&quot;
+</code></pre>
 <ul>
   <li>Switch to a sub-account (from reseller account):</li>
 </ul>
@@ -657,6 +656,7 @@ een camera list --help
     switching.
   </li>
 </ul>
+<hr />
 <h1>archive - Manage Archives</h1>
 <h2>NAME</h2>
 <p><code>archive</code> - manage and interact with archives.</p>
@@ -676,7 +676,7 @@ een camera list --help
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li><code>-D, --detailed</code> Display detailed archive list.</li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
@@ -696,18 +696,16 @@ een camera list --help
 </code></pre>
 <h4>Arguments:</h4>
 <ul>
-  <li>
-    <code>&lt;archive&gt;</code> The name of the archive to download (required).
-  </li>
+  <li><code>&lt;archive&gt;</code> The name of the archive to download.</li>
 </ul>
 <h4>Required Options:</h4>
 <ul>
   <li>
     <code>-t, --target-directory [target-directory]</code> Specify the name of
-    the directory where the output will be saved.
+    the directory to save the output.
   </li>
 </ul>
-<h4>Optional Options:</h4>
+<h4>Options:</h4>
 <ul>
   <li>
     <code>-o, --overwrite</code> Specify whether to overwrite already downloaded
@@ -725,9 +723,10 @@ een camera list --help
 </ul>
 <pre><code class="language-bash">een archive download &lt;archive&gt; --target-directory /path/to/save --overwrite --debug
 </code></pre>
+<hr />
 <h1>auditlog - Manage Audit logs</h1>
 <h2>NAME</h2>
-<p><code>auditlog</code> - manage audit log.</p>
+<p><code>auditlog</code> - Manage audit log.</p>
 <h2>SYNOPSIS</h2>
 <pre><code>een auditlog [COMMAND] [OPTIONS]
 </code></pre>
@@ -747,54 +746,53 @@ een camera list --help
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in Google
+    <code>-g, --google-sheet</code> Display details in CSV format in Google
     Sheets.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
-    <code>--include [value1, value2]</code><br />
-    Display associated items (supported values: user, audit-type, description).
+    <code>--include [value1, value2]</code> Display associated items (supported
+    values: user, audit-type, description).
   </li>
   <li>
-    <code>-l, --long</code><br />
-    Display details of audit log including user id, target type, target id,
-    account id.
+    <code>-l, --long</code> Display details of audit log including user id,
+    target type, target id, account id.
   </li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
   <li>
-    <code>--audit-type [audit type]</code><br />
-    Filter by audit type (supported values: notificationSent,
-    notificationNotSent, create911Camera, createAction, updateAction,
-    deleteAction, reportCreated, reportDeleted, createReportSchedule,
-    deleteReportSchedule, updateReportSchedule, createRegister, updateRegister,
-    deleteRegister, createAlert, clearAlert, getLayout, createLayout,
-    deleteLayout, updateLayout, addPosSystem, updatePosSystem, deletePosSystem,
-    createFile, deleteFile, updateFile, createLocation, updateLocation,
-    deleteLocation, lprSearch, videoSearch, searchTransaction, bridgeSwap,
-    createLprRule, updateLprRule, delteLprRule, createSensorGateway,
-    deleteSensorGateway, updateSensorGateway, createSensor, deleteSensor,
-    updateSensor, createRule, updateRule, deleteRule, createVehicleListEntry,
-    updateVehicleListEntry, deleteVehicleListEntry, newVehiclesAdded,
-    vehiclesDeleted, existingVehiclesUpdated, updateMeasurement, createRole,
-    updateRole, deleteRole, createVehicleList, updateVehicleList,
-    deleteVehicleList, createUserViaApplication, createUserViaSso, deleteUser,
-    updateUser, userLogin, userLogout, forgotPassword, resetPassword,
-    userSettingsSnapshot, updateUserRole, assignRoleToUser, unassignRoleToUser,
-    acceptedTermsAndConditions, grantResourceToUser, ungrantResourceToUser,
-    createMeasurementThreshold, deleteMeasurementThreshold,
-    updateMeasurementThreshold, requestDownloaded, saveDownloaded,
-    videoRecordStart, videoRecordEnd, viewVideoStart, viewVideoEnd,
-    createExport, createGroup, updateGroup, deleteGroup, groupAssignmentRemove,
-    groupAssignmentAdd, bulkCreateGroupAssignments, bulkDeleteGroupAssignments,
-    assignUserToGroup, unassignUserToGroup, createAccount, deleteAccount,
-    updateAccount, switchAccount, accountSettingsSnapshot,
-    activateFirstResponders, deactivateFirstResponders, updateResponderCamera,
-    removeResponderCamera, updateTransaction, createDevice, deleteDevice,
-    updateDevice, devicesOn, devicesOff, deviceRestart, managedSwitchControl,
-    managedSwitchUpdate, deviceSettingsSnapshot, openTunnel, closeTunnel,
-    activeOutput0, activeOutput1, activeOutput2, activeOutput3, cameraSnapshot,
+    <code>--audit-type [audit type]</code> Filter by audit type (supported
+    values: notificationSent, notificationNotSent, create911Camera,
+    createAction, updateAction, deleteAction, reportCreated, reportDeleted,
+    createReportSchedule, deleteReportSchedule, updateReportSchedule,
+    createRegister, updateRegister, deleteRegister, createAlert, clearAlert,
+    getLayout, createLayout, deleteLayout, updateLayout, addPosSystem,
+    updatePosSystem, deletePosSystem, createFile, deleteFile, updateFile,
+    createLocation, updateLocation, deleteLocation, lprSearch, videoSearch,
+    searchTransaction, bridgeSwap, createLprRule, updateLprRule, delteLprRule,
+    createSensorGateway, deleteSensorGateway, updateSensorGateway, createSensor,
+    deleteSensor, updateSensor, createRule, updateRule, deleteRule,
+    createVehicleListEntry, updateVehicleListEntry, deleteVehicleListEntry,
+    newVehiclesAdded, vehiclesDeleted, existingVehiclesUpdated,
+    updateMeasurement, createRole, updateRole, deleteRole, createVehicleList,
+    updateVehicleList, deleteVehicleList, createUserViaApplication,
+    createUserViaSso, deleteUser, updateUser, userLogin, userLogout,
+    forgotPassword, resetPassword, userSettingsSnapshot, updateUserRole,
+    assignRoleToUser, unassignRoleToUser, acceptedTermsAndConditions,
+    grantResourceToUser, ungrantResourceToUser, createMeasurementThreshold,
+    deleteMeasurementThreshold, updateMeasurementThreshold, requestDownloaded,
+    saveDownloaded, videoRecordStart, videoRecordEnd, viewVideoStart,
+    viewVideoEnd, createExport, createGroup, updateGroup, deleteGroup,
+    groupAssignmentRemove, groupAssignmentAdd, bulkCreateGroupAssignments,
+    bulkDeleteGroupAssignments, assignUserToGroup, unassignUserToGroup,
+    createAccount, deleteAccount, updateAccount, switchAccount,
+    accountSettingsSnapshot, activateFirstResponders, deactivateFirstResponders,
+    updateResponderCamera, removeResponderCamera, updateTransaction,
+    createDevice, deleteDevice, updateDevice, devicesOn, devicesOff,
+    deviceRestart, managedSwitchControl, managedSwitchUpdate,
+    deviceSettingsSnapshot, openTunnel, closeTunnel, activeOutput0,
+    activeOutput1, activeOutput2, activeOutput3, cameraSnapshot,
     audioSessionStarted, audioSessionFinished, createCameraShare,
     deleteCameraShare, updateCameraShare, cameraSwap, updateCameraAddress,
     upgradeDevice).
@@ -807,26 +805,19 @@ een camera list --help
     <code>-s, --start-time [start time]</code> Filter by start time (defaults to
     10 minutes before the current time).
   </li>
+  <li><code>--target-id [target id]</code> Filter by target id.</li>
   <li>
-    <code>--target-id [target id]</code><br />
-    Filter by target id.
+    <code>--target-type [target type]</code> Filter by target type (supported
+    values: notification, action, report, posRegister, alert, layout,
+    posIntegration, file, location, analytic, lprRule, sensorGateway, sensor,
+    rule, vehicleListEntry, measurement, role, vehicleList, user,
+    measurementThreshold, video, group, account, posTransaction, device).
   </li>
-  <li>
-    <code>--target-type [target type]</code><br />
-    Filter by target type (supported values: notification, action, report,
-    posRegister, alert, layout, posIntegration, file, location, analytic,
-    lprRule, sensorGateway, sensor, rule, vehicleListEntry, measurement, role,
-    vehicleList, user, measurementThreshold, video, group, account,
-    posTransaction, device).
-  </li>
-  <li>
-    <code>-u, --user-id [user id]</code><br />
-    Filter by user id.
-  </li>
+  <li><code>-u, --user-id [user id]</code> Filter by user id.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all audit logs with headers in csv format:</li>
+  <li>To list all audit logs with headers in CSV format:</li>
 </ul>
 <pre><code class="language-bash">een auditlog list --header --csv
 </code></pre>
@@ -837,8 +828,8 @@ een camera list --help
 </code></pre>
 <ul>
   <li>
-    To list all audit logs for a specific time with taget type file with headers
-    in csv and long list format:
+    To list all audit logs for a specific time with target type file with
+    headers in CSV and long list format:
   </li>
 </ul>
 <pre><code class="language-bash">een auditlog list -s 20250328010101.000 -e 20250328010204.201 --target-type 'file' --csv --header -l
@@ -848,6 +839,7 @@ een camera list --help
 &quot;Harees Kumar(hkumar+vsp@een.com)&quot;,&quot;Create File&quot;,&quot;2025-11-27T06:43:31.466+00:00&quot;,&quot;File name &quot;Worker Safety Monitoring Report - 20251127064330736.html&quot; created&quot;,&quot;ca0c6b19&quot;,&quot;file&quot;,&quot;00052029&quot;,&quot;00052029&quot;
 &quot;Harees Kumar(hkumar+vsp@een.com)&quot;,&quot;Create File&quot;,&quot;2025-11-27T06:43:31.142+00:00&quot;,&quot;File name &quot;Worker Safety Monitoring Report - 20251127064330736.csv&quot; created&quot;,&quot;ca0c6b19&quot;,&quot;file&quot;,&quot;00052029&quot;,&quot;00052029&quot;
 </code></pre>
+<hr />
 <h1>availabledevices - Manage Available Devices</h1>
 <h2>NAME</h2>
 <p><code>availabledevices</code> - manage available devices.</p>
@@ -856,19 +848,22 @@ een camera list --help
 </code></pre>
 <h2>COMMANDS</h2>
 <h3>list</h3>
-<p>List available devices.</p>
+<p>
+  List of all devices found by the bridges in the account that have not yet been
+  added.
+</p>
 <h4>Usage:</h4>
 <pre><code>een availabledevices list [options] [general options]
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -887,7 +882,7 @@ een camera list --help
     (supported values: notSupported, addable, inOtherAccount, unknown).
   </li>
   <li>
-    <code>--devicetype [type1, type2]</code> Filter by device types (Supported
+    <code>--devicetype [type1, type2]</code> Filter by device types (supported
     values: camera, speaker, display, multiCamera).
   </li>
 </ul>
@@ -898,10 +893,13 @@ een camera list --help
 <pre><code class="language-bash">een availabledevices list
 </code></pre>
 <ul>
-  <li>To list all available devices for a specific type:</li>
+  <li>
+    To list all available devices for a specific device type with debug option:
+  </li>
 </ul>
 <pre><code class="language-bash">een availabledevices list --devicetype 'camera, speaker' -d
 </code></pre>
+<hr />
 <h1>camera - Manage Cameras</h1>
 <h2>NAME</h2>
 <p><code>camera</code> - Manage camera settings and operations</p>
@@ -917,14 +915,14 @@ een camera list --help
 <h4>Options:</h4>
 <ul>
   <li><code>-A, --all</code> Display all cameras, including shared ones.</li>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li><code>--direct</code> Display cameras which are direct to cloud.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -952,10 +950,7 @@ een camera list --help
     <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esns.
   </li>
   <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
-  <li>
-    <code>--esn [esn1, esn2]</code><br />
-    Filter by camera esns.
-  </li>
+  <li><code>--esn [esn1, esn2]</code> Filter by camera esns.</li>
   <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
   <li><code>--status [status]</code> Filter by camera status.</li>
@@ -983,11 +978,11 @@ een camera list --help
   specific cameras.
 </p>
 <h4>Usage:</h4>
-<pre><code>een camera get [parameter] [value] [options] [selectors] [general options]
+<pre><code>een camera get [parameters] [options] [selectors] [general options]
 </code></pre>
 <h4>Parameters:</h4>
 <ul>
-  <li><code>audio</code> Get audio settings(Is audio enabled or not).</li>
+  <li><code>audio</code> Get audio settings (Is audio enabled or not).</li>
   <li><code>camera-name</code> Get the camera name.</li>
   <li><code>password</code> Get the camera password.</li>
   <li><code>username</code> Get the camera username.</li>
@@ -997,7 +992,8 @@ een camera list --help
   <li><code>preview-quality</code> Get the preview video quality.</li>
   <li><code>preview-resolution</code> Get the preview video resolution.</li>
   <li>
-    <code>preview-transmit-mode</code> Get the preview video transmit mode.
+    <code>preview-transmit-mode</code> Get the preview video transmit mode
+    (values: onDemand, always, background, event).
   </li>
   <li><code>video-capture-mode</code> Get the video capture mode.</li>
   <li><code>video-quality</code> Get the video quality.</li>
@@ -1025,13 +1021,13 @@ een camera list --help
 </ul>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>--file-name [file name]</code> Specify the name of the file where the
     output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheets.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -1045,12 +1041,8 @@ een camera list --help
   <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
   <li><code>--esn [esn1, esn2]</code> Filter by on camera esns.</li>
   <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
-  <li>
-    <code>--site-id [site id1, site id2]</code>
-    Filter by site ids.
-    <code>--status [status]</code>
-    Filter by camera status.
-  </li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h4>EXAMPLES</h4>
@@ -1138,13 +1130,13 @@ een camera get scene-analytics -g --header
 </ul>
 <h4>Common Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>--file-name [file name]</code> Specify the name of the file where the
     output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -1161,12 +1153,8 @@ een camera get scene-analytics -g --header
     all cameras).
   </li>
   <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
-  <li>
-    <code>--site-id [site id1, site id2]</code>
-    Filter by site ids.
-    <code>--status [status]</code>
-    Filter by status.
-  </li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li><code>--status [status]</code> Filter by status.</li>
   <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h4>EXAMPLES</h4>
@@ -1226,10 +1214,7 @@ een camera set scene-analytics --enable --esn '*' -g --header
 </code></pre>
 <h4>Argument:</h4>
 <ul>
-  <li>
-    <code>&lt;esn&gt;</code><br />
-    esn of the camera to delete (required).
-  </li>
+  <li><code>&lt;esn&gt;</code> esn of the camera to delete.</li>
 </ul>
 <hr />
 <h3>add</h3>
@@ -1240,7 +1225,8 @@ een camera set scene-analytics --enable --esn '*' -g --header
 <h4>Argument:</h4>
 <ul>
   <li>
-    <code>&lt;esn&gt;</code> ESN of the bridge to which the camera is added.
+    <code>&lt;esn&gt;</code> ESN of the bridge to which the camera will be
+    added.
   </li>
 </ul>
 <h4>Required Options:</h4>
@@ -1250,7 +1236,7 @@ een camera set scene-analytics --enable --esn '*' -g --header
   </li>
   <li><code>--guid [guid]</code> Specify GUID of the camera.</li>
 </ul>
-<h4>Optional Options:</h4>
+<h4>Options:</h4>
 <ul>
   <li>
     <code>-c, --cloud-retention-days [cloud retention days]</code> Set cloud
@@ -1314,14 +1300,14 @@ een camera set scene-analytics --enable --esn '*' -g --header
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li><code>-e, --end-time [end time]</code> Specify end time for purging.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -1361,7 +1347,7 @@ een camera set scene-analytics --enable --esn '*' -g --header
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display the details in csv format.</li>
+  <li><code>--csv</code> Display the details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
@@ -1388,10 +1374,7 @@ een camera set scene-analytics --enable --esn '*' -g --header
   <li><code>--esn [esn1, esn2]</code> Filter by camera esns.</li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li>
-    <code>--status [status]</code><br />
-    Filter by camera status.
-  </li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <hr />
@@ -1408,14 +1391,14 @@ een camera set scene-analytics --enable --esn '*' -g --header
 </ul>
 <h4>Optional Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li><code>-e, --end-time [end time]</code> Specify end time for video.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -1464,13 +1447,13 @@ een camera set scene-analytics --enable --esn '*' -g --header
 </ul>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>--file-name [file name]</code> Specify the name of the file where the
     output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -1487,12 +1470,8 @@ een camera set scene-analytics --enable --esn '*' -g --header
     all cameras)
   </li>
   <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
-  <li>
-    <code>--site-id [site id1, site id2]</code>
-    Filter by site IDs.
-    <code>--status [status]</code>
-    Filter by status.
-  </li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status]</code> Filter by status.</li>
   <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h4>EXAMPLES</h4>
@@ -1517,10 +1496,10 @@ een camera addtag 'test' --bridge-esn '0987' --status 'online'
 &quot;1234&quot;,&quot;Wiktoria regression 140525&quot;,&quot;new tag, testing&quot;,&quot;no&quot;,&quot;Internal Server Error (response status: unknown)&quot;
 </code></pre>
 <hr />
-<h3>deletetags</h3>
+<h3>deletetag</h3>
 <p>
   The <code>camera deletetag</code> command allows you to delete tags from
-  camera. It can accept multiple tags, you can use selectors (like
+  selected cameras. It can accept multiple tags, you can use selectors (like
   <code>--esn</code>, <code>--tag</code>, <code>--site</code>, etc.) to target
   specific cameras.
 </p>
@@ -1533,13 +1512,13 @@ een camera addtag 'test' --bridge-esn '0987' --status 'online'
 </ul>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>--file-name [file name]</code> Specify the name of the file where the
     output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -1556,20 +1535,17 @@ een camera addtag 'test' --bridge-esn '0987' --status 'online'
     all cameras)
   </li>
   <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
-  <li>
-    <code>--site-id [site id1, site id2]</code>
-    Filter by site IDs.
-    <code>--status [status]</code>
-    Filter by status.
-  </li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status]</code> Filter by status.</li>
   <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h4>EXAMPLES</h4>
 <pre><code class="language-bash"># delete tags newtag from camera with esns 1234,5678 give output in csv format with header:
 een camera deletetag 'new tag' --esn '1234, 5678' --csv --header
 
-# add tags test, new tag to camera with bridge esn 0987 and camera status online:
-een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
+# delete tags test, new tag in cameras with bridge esn 0987 and camera status online:
+een camera deletetag 'test, new tag' --bridge-esn '0987' --status 'online'
+
 </code></pre>
 <h4>Output</h4>
 <p>
@@ -1607,27 +1583,28 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
-  <li><code>--html</code> Generate a chart in HTML file.</li>
+  <li><code>--html</code> Generate a chart in an HTML file.</li>
   <li>
-    <code>--include[item 1, item 2]</code> Display associated items (supported
+    <code>--include [value1, value2]</code> Display associated items (supported
     values: esn).
   </li>
   <li>
     <code>-l, --long</code> Display details of bridges, including bridge id,
     bridge name, serial number, tags, connection status, timezone, site id, site
     name, mac address, guid, IP address, created timestamp, number of cameras
-    online, cloud bandwidth used last 7 days avarage (gb), avarage available
-    bandwidth last 7 days (gb).
+    online, cloud bandwidth measured - last 7 days (mega bits per seconds),
+    realtime bandwidth - last 7 days (mega bits per seconds), background
+    bandwidth (background + on-demand) - last 7 days (mega bits per seconds).
   </li>
   <li><code>--v1</code> Use v1 APIs.</li>
 </ul>
@@ -1664,7 +1641,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </code></pre>
 <hr />
 <h3>availability</h3>
-<p>Get bridge availability.</p>
+<p>Get bridge availability details.</p>
 <h4>Usage:</h4>
 <pre><code>een bridge availability [options] [selectors] [general options]
 </code></pre>
@@ -1684,7 +1661,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -1692,7 +1669,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </ul>
 <h4>Selectors:</h4>
 <ul>
-  <li><code>--esn [esn1, esn2]</code> Filter by bridge esns.</li>
+  <li><code>--esn [esn1, esn2]</code> Filter by bridge ESNs.</li>
   <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
@@ -1701,7 +1678,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 <h3>qlstreammetrics</h3>
 <p>Pull logs from the archiver/bridge.</p>
 <h4>Usage:</h4>
-<pre><code>een  bridge qlstreammetrics [options] [general options]
+<pre><code>een bridge qlstreammetrics [options] [general options]
 </code></pre>
 <h4>Required Options:</h4>
 <ul>
@@ -1725,6 +1702,14 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
   <li><code>-s, --start-time [start time]</code> Specify the start time.</li>
   <li><code>-S, --summary</code> Display summarized data.</li>
 </ul>
+<h2>Note:</h2>
+<ul>
+  <li>
+    Along with <code>--esn</code>, one of <code>--events</code>,
+    <code>--performance</code>, or <code>--local-rtsp-metrics</code> must be
+    specified.
+  </li>
+</ul>
 <hr />
 <h2>EXAMPLES</h2>
 <ul>
@@ -1733,15 +1718,16 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 <pre><code class="language-bash">een bridge list
 </code></pre>
 <ul>
-  <li>To check the status of a specific bridge:</li>
+  <li>To check the bridges with status online:</li>
 </ul>
-<pre><code class="language-bash">een bridge status --html
+<pre><code class="language-bash">een bridge list --status 'online'  --html
 </code></pre>
 <ul>
   <li>To get availability information for a bridge:</li>
 </ul>
 <pre><code class="language-bash">een bridge availability --esn [esn1, esn2] --start-time [start time] --end-time [end time]
 </code></pre>
+<hr />
 <h1>switch - Manage Switches</h1>
 <h2>NAME</h2>
 <p><code>switch</code> - manage and interact with switches.</p>
@@ -1761,19 +1747,19 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
-    <code>-f, --file-name</code> Specify the name of the file where the output
-    will be saved.
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
-    <code>--include [value1, value2]</code> Display associated items. supported
-    values: id, bridge, status.
+    <code>--include [value1, value2]</code> Display associated items. (supported
+    values: id, name, bridge-esn, bridge, status).
   </li>
   <li>
     <code>-l, --long</code> Display details of switches including bridge id,
@@ -1798,7 +1784,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </code></pre>
 <ul>
   <li>
-    To list all switches with the specified ids with headers in csv and long
+    To list all switches with the specified ids with headers in CSV and long
     list format:
   </li>
 </ul>
@@ -1809,6 +1795,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 &quot;Aut_v3_Switch_Bridge1&quot;,&quot;a7459fd0-0169-5eca-8588-17fc6c695f81&quot;,&quot;10035b4a&quot;,&quot;501 LPR Test Bengaluru Server Roomsss&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;online&quot;,&quot;8&quot;,&quot;00052029&quot;
 &quot;Switch&quot;,&quot;ac246e13-82b3-5ff7-99de-de6e4b75e64e&quot;,&quot;-&quot;,&quot;-&quot;,&quot;DB 15 LPR Test Bridge&quot;,&quot;off&quot;,&quot;-&quot;,&quot;00052029&quot;
 </code></pre>
+<hr />
 <h1>sensor - Manage Sensors</h1>
 <h2>NAME</h2>
 <p><code>sensor</code> - manage and interact with sensors.</p>
@@ -1851,23 +1838,14 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </ul>
 <h4>Selectors:</h4>
 <ul>
-  <li>
-    <code>--camera-esn [esn1, esn2]</code><br />
-    Filter by camera esns.
-  </li>
+  <li><code>--camera-esn [esn1, esn2]</code> Filter by camera esns.</li>
   <li><code>--id [id1, id2]</code> Filter by sensor ids.</li>
-  <li>
-    <code>--parent-id [id1, id2]</code><br />
-    Filter by parent ids.
-  </li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    Filter by site ids.
-  </li>
+  <li><code>--parent-id [id1, id2]</code> Filter by parent ids.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all sensors with header in csv foramt:</li>
+  <li>To list all sensors with header in CSV format:</li>
 </ul>
 <pre><code class="language-bash">een sensor list --header --csv
 </code></pre>
@@ -1879,8 +1857,8 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </code></pre>
 <ul>
   <li>
-    To list all sensors with ids 1234. 4567 with header in long list and csv
-    foramt:
+    To list all sensors with ids 1234. 4567 with header in long list and CSV
+    format:
   </li>
 </ul>
 <pre><code class="language-bash">een sensor list --id '834978,199109 ' --header --csv --long
@@ -1890,6 +1868,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 &quot;834978&quot;,&quot;BOX3&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-59&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;Eagle Eye Office&quot;,&quot;online&quot;,&quot;-&quot;,&quot;2025-05-21T14:10:44+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DQA)  &quot;
 &quot;199109&quot;,&quot;PARKING LOT 1&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-63&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;Eagle Eye Office&quot;,&quot;online&quot;,&quot;-&quot;,&quot;2025-05-21T12:41:49+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DL0)&quot;
 </code></pre>
+<hr />
 <h1>speaker - Manage Speakers</h1>
 <h2>NAME</h2>
 <p><code>speaker</code> - manage and interact with speakers.</p>
@@ -1909,16 +1888,20 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 <p>List speakers.</p>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items (supported
+    values: id, name).
+  </li>
   <li>
     <code>-l, --long</code> Display details of speaker, including tags, site id,
     site name, status, GUID, account id, is shared, speaker make, visible by
@@ -1931,17 +1914,14 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
     <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esns.
   </li>
   <li><code>--id [id1, id2]</code> Filter by speaker ids.</li>
-  <li>
-    <code>--name [name1, name2]</code><br />
-    Filter by speaker names.
-  </li>
+  <li><code>--name [name1, name2]</code> Filter by speaker names.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li><code>--status [status]</code> Filter by status.</li>
+  <li><code>--status [status1, status2]</code> Filter by status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all speakers with headers in csv format:</li>
+  <li>To list all speakers with headers in CSV format:</li>
 </ul>
 <pre><code class="language-bash">een speaker list --csv --header
 </code></pre>
@@ -1953,7 +1933,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 <ul>
   <li>
     To list all speakers with bridge esn '1234', speaker id '54321,3455,2445'
-    with headers in csv and long list format:
+    with headers in CSV and long list format:
   </li>
 </ul>
 <pre><code class="language-bash">een speaker list --bridge-esn '10017196' --id '1006cefc,10017fd3,100bddf1' -l --csv --header
@@ -1963,11 +1943,12 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 &quot;1006cefc&quot;,&quot;Speaker AXIS C1310-E&quot;,&quot;10017196&quot;,&quot;401 AI - Parking Lot 1&quot;,&quot;&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c&quot;,&quot;00159662&quot;,&quot;no&quot;,&quot;axis&quot;,&quot;401 AI - Parking Lot 1 (10017196)&quot;
 &quot;10017fd3&quot;,&quot;Speaker EN-SDUH-001a&quot;,&quot;10017196&quot;,&quot;401 AI - Parking Lot 1&quot;,&quot;parking lot 1,EN-SDUH-001a&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;50436373-38ae-6f1c-0001-a2c0a4202fc4&quot;,&quot;00159662&quot;,&quot;no&quot;,&quot;eagle eye networks&quot;,&quot;401 AI - Parking Lot 1 (10017196)&quot;
 </code></pre>
+<hr />
 <h1>alert - Manage Alerts</h1>
 <h2>NAME</h2>
 <p><code>alert</code> - manage and interact with alerts.</p>
 <h2>SYNOPSIS</h2>
-<pre><code>een alerts [COMMAND] [OPTIONS]
+<pre><code>een alert [COMMAND] [OPTIONS]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
@@ -1982,24 +1963,24 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
-    <code>--include [value1, value2]</code><br />
-    Display associated items. Supported values: name, id, alert-type.
+    <code>--include [value1, value2]</code> Display associated items. (supported
+    values: name, id, alert-type).
   </li>
   <li>
     <code>-l, --long</code> Display alert details including id, alert type,
-    device id, event type, event id, creator id, site id, account id, seriverule
-    id, bridge id.
+    device id, event type, event id, creator id, site id, account id, service
+    rule id, bridge id.
   </li>
   <li>
     <code>-m, --machine-readable</code> Display details in machine-readable
@@ -2011,11 +1992,12 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
   <li><code>--alert-name [name]</code> Filter by alert name.</li>
   <li>
     <code>--alert-type [type1, type2] </code> Filter by alert types. (Supported
-    values: intrusionDetection, loitering, motionDetection,
-    motionRegionDetection, objectLineCross, personDetection,
-    measurementThresholdStatus, tampering, thermalDetection, gunDetection,
-    vehicleDetection, deviceStatus, evaQuery, hotlistVehicle, watchVehicle,
-    allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle).
+    values: intrusionDetection, loitering, motionDetection, objectLineCross,
+    personDetection, measurementThresholdStatus, tampering, vehicleDetection,
+    deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection,
+    deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate,
+    deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered,
+    wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
   </li>
   <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
   <li>
@@ -2023,7 +2005,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
   </li>
   <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
   <li>
-    <code>--e, --end-time [end-time]</code> Filter by end time(default: current
+    <code>-e, --end-time [end-time]</code> Filter by end time(default: current
     time).
   </li>
   <li><code>--esn [esn1, esn2]</code> Filter by camera ESNs.</li>
@@ -2039,29 +2021,29 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
     <code>--origin [origin]</code> Filter by origin (supported values: vsp).
   </li>
   <li>
-    <code>-s, --start-time [start-time]</code> Filter by start time(default: 1
-    hrs before now).
+    <code>-s, --start-time [start-time]</code> Filter by start time (default: 1
+    hr before now).
   </li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
-  <li><code>--status [status]</code> Filter by cameras status.</li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all alerts in csv format with headers:</li>
+  <li>To list all alerts in CSV format with headers:</li>
 </ul>
 <pre><code class="language-bash">een alert list --csv --header
 </code></pre>
 <h4>Output</h4>
 <pre><code class="language-csv">&quot;timestamp&quot;,&quot;alert name&quot;,&quot;device name&quot;,&quot;category&quot;,&quot;site name&quot;,&quot;priority&quot;,&quot;meta&quot;
 &quot;2025-10-18T04:51:17.981+00:00&quot;,&quot;Motion In Region Detection Alert&quot;,&quot;CPPLUS - LPR Camera 10&quot;,&quot;video&quot;,&quot;Eagle Eye India 1&quot;,&quot;9&quot;,&quot;-&quot;
-&quot;2025-10-18T04:51:17.756+00:00&quot;,&quot;Vehicle Detection Alert&quot;,&quot;CPPLUS - LPR Camera 9.1.1&quot;,&quot;video&quot;,&quot;Lakshmi test site 595&quot;,&quot;9&quot;,&quot;vehicleColor: gray; bodyType: car&quot;9
+&quot;2025-10-18T04:51:17.756+00:00&quot;,&quot;Vehicle Detection Alert&quot;,&quot;CPPLUS - LPR Camera 9.1.1&quot;,&quot;video&quot;,&quot;Lakshmi test site 595&quot;,&quot;9&quot;,&quot;vehicleColor: gray; bodyType: car&quot;
 </code></pre>
 <ul>
   <li>
     To list all alerts for a specific alert type with headers in
-    machine-readable form and in csv format:
+    machine-readable form and in CSV format:
   </li>
 </ul>
 <pre><code class="language-bash">een alert list --alert--type 'personDetection' --header --csv -m
@@ -2074,7 +2056,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 <ul>
   <li>
     To list all alerts for camera esn '1234' with headers in long list and in
-    csv format:
+    CSV format:
   </li>
 </ul>
 <pre><code class="language-bash">een alert list --esn '1234' --header -l --csv
@@ -2084,6 +2066,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 &quot;2025-10-18T04:53:19.218+00:00&quot;,&quot;Person Detection Alert&quot;,&quot;Wiktoria regression 140525&quot;,&quot;video&quot;,&quot;Eagle Eye India 1&quot;,&quot;9&quot;,&quot;-&quot;,&quot;5dbc0d20-abde-11f0-a3e8-f48363476040&quot;,&quot;een.personDetectionAlert.v1&quot;,&quot;100276a7&quot;,&quot;een.personDetectionEvent.v1&quot;,&quot;00052029-4ca52bb6-31653c1f-b397-48e1-bb00-1040cdc90728&quot;,&quot;2025-10-18T04:53:21.546+00:00&quot;,&quot;een.events&quot;,&quot;5acd0dd1-05a0-4d75-a14b-30e0f4083c70&quot;,&quot;00052029&quot;,&quot;79480fd9-7dcb-4e1f-bee8-21289a56dd78&quot;,&quot;10068caa&quot;
 &quot;2025-10-18T04:53:19.218+00:00&quot;,&quot;Person Detection Alert&quot;,&quot;Wiktoria regression 140525&quot;,&quot;video&quot;,&quot;Eagle Eye India 1&quot;,&quot;10&quot;,&quot;-&quot;,&quot;5dbc0d20-abde-11f0-bf4c-67f1212ca612&quot;,&quot;een.personDetectionAlert.v1&quot;,&quot;100276a7&quot;,&quot;een.personDetectionEvent.v1&quot;,&quot;00052029-4ca52bb6-31653c1f-b397-48e1-bb00-1040cdc90728&quot;,&quot;2025-10-18T04:53:21.546+00:00&quot;,&quot;een.events&quot;,&quot;5acd0dd1-05a0-4d75-a14b-30e0f4083c70&quot;,&quot;00052029&quot;,&quot;1b8ded4e-7d71-4466-bb0e-c7146725f72d&quot;,&quot;10068caa&quot;
 </code></pre>
+<hr />
 <h1>notification - Manage Notifications</h1>
 <h2>NAME</h2>
 <p><code>notification</code> - manage and interact with notifications.</p>
@@ -2103,13 +2086,13 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -2129,17 +2112,15 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </ul>
 <h4>Selectors:</h4>
 <ul>
+  <li><code>--alert-id [alert id]</code> Filter by alert id.</li>
   <li>
-    <code>--alert-id [alert id]</code><br />
-    Filter by alert id.
-  </li>
-  <li>
-    <code>--alert-type [type1, type2] </code> Filter by alert types.(Supported
-    values: intrusionDetection, loitering, motionDetection,
-    motionRegionDetection, objectLineCross, personDetection,
-    measurementThresholdStatus, tampering, thermalDetection, gunDetection,
-    vehicleDetection, evaQuery, hotlistVehicle, watchVehicle, allowedVehicle,
-    countOfLicensePlate, deniedVehicle, unregisteredVehicle).
+    <code>--alert-type [type1, type2] </code> Filter by alert types.(supported
+    values: intrusionDetection, loitering, motionDetection, objectLineCross,
+    personDetection, measurementThresholdStatus, tampering, vehicleDetection,
+    deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection,
+    deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate,
+    deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered,
+    wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
   </li>
   <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
   <li>
@@ -2147,37 +2128,32 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
   </li>
   <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
   <li>
-    <code>--category [category]</code><br />
-    Filter by category (values: health, video, operational, audit, job,
-    security, sharing).
+    <code>--category [category]</code> Filter by category (values: health,
+    video, operational, audit, job, security, sharing).
   </li>
   <li>
     <code>--max [max]</code> Filter by maximum number of notifications to
     display (default: 25).
   </li>
-  <li><code>--e, --end-time [end-time]</code> Filter by end time.</li>
+  <li><code>-e, --end-time [end-time]</code> Filter by end time.</li>
   <li><code>--esn [esn1, esn2]</code> Filter by camera ESNs.</li>
   <li>
-    <code>--notification-status [status]</code><br />
-    Filter by notification status (values: pending, bounced, dropped, deferred,
-    delivered, security, sent, outsideUsersSchedule, notificationsDisabled,
-    noNotificationActions, sendingFailed, throttled,
-    secuunableToGetSettingsrity).
+    <code>--notification-status [status]</code> Filter by notification status
+    (supported values: pending, bounced, dropped, deferred, delivered, sent,
+    outsideUsersSchedule, notificationsDisabled, noNotificationActions,
+    sendingFailed, throttled, unableToGetSettings).
   </li>
   <li><code>-s, --start-time [start-time]</code> Filter by start time.</li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li>
-    <code>--status [status]</code><br />
-    Filter by camera status.
-  </li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
   <li><code>--user-id [user id]</code> Filter by user id.</li>
   <li><code>--user-name [user name]</code> Filter by user name.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all notifications details in csv format:</li>
+  <li>To list all notifications details in CSV format:</li>
 </ul>
 <pre><code class="language-bash">een notification list --csv
 </code></pre>
@@ -2188,7 +2164,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 <ul>
   <li>
     To list all notifications for a specific alert type with headers in
-    machine-readable form and in csv format:
+    machine-readable form and in CSV format:
   </li>
 </ul>
 <pre><code class="language-bash">een notification list --alert-type 'personDetection' --header --csv -m
@@ -2198,10 +2174,12 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 &quot;79c23600-ada7-11f0-8ebd-e0e85d966211&quot;,&quot;een.personDetectionAlert.v1&quot;,&quot;79c23600-ada7-11f0-a3df-cb64ccbffc9a&quot;,&quot;video&quot;,&quot;ca0edebd&quot;,&quot;100954c1&quot;,&quot;&quot;,&quot;00052029&quot;,&quot;1007fda2&quot;
 &quot;6c2f2ca0-ada7-11f0-8e48-2c6fa5757c96&quot;,&quot;een.personDetectionAlert.v1&quot;,&quot;6c2f2ca0-ada7-11f0-b351-f8eb60f88180&quot;,&quot;video&quot;,&quot;ca0edebd&quot;,&quot;100c16ad&quot;,&quot;&quot;,&quot;00052029&quot;,&quot;1007fda2&quot;
 </code></pre>
-<p>
-  -- To list all notifications for category video with headers in long list and
-  in csv format:
-</p>
+<ul>
+  <li>
+    To list all notifications for category video with headers in long list and
+    in CSV format:
+  </li>
+</ul>
 <pre><code class="language-bash">een notification list --category 'video' -l --header --csv
 </code></pre>
 <h4>Output</h4>
@@ -2209,6 +2187,63 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 &quot;2025-10-20T11:25:44.961+00:00&quot;,&quot;sent&quot;,&quot;video&quot;,&quot;CAMLAN Camera 1&quot;,&quot;email&quot;,&quot;-&quot;,&quot;84eacf10-ada7-11f0-b3f5-2db1a68e5554&quot;,&quot;een.personDetectionAlert.v1&quot;,&quot;84eacf10-ada7-11f0-8388-895efa10aa36&quot;,&quot;ca0edebd&quot;,&quot;10017523&quot;,&quot;&quot;,&quot;00052029&quot;,&quot;1007a214&quot;
 &quot;2025-10-20T11:25:44.961+00:00&quot;,&quot;sent&quot;,&quot;video&quot;,&quot;CAMLAN Camera 1&quot;,&quot;email&quot;,&quot;-&quot;,&quot;84eacf10-ada7-11f0-8f64-dee519634509&quot;,&quot;een.personDetectionAlert.v1&quot;,&quot;84eacf10-ada7-11f0-a7ed-6aa9649f93ad&quot;,&quot;ca0edebd&quot;,&quot;10017523&quot;,&quot;&quot;,&quot;00052029&quot;,&quot;1007a214&quot;
 </code></pre>
+<hr />
+<h1>multicamera - Manage Multicameras</h1>
+<h2>NAME</h2>
+<p><code>multicamera</code> - Manage multicamera settings and operations</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een multicamera [command] [options]
+</code></pre>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List all multi cameras.</p>
+<h4>Usage:</h4>
+<pre><code>een multicamera list [options] [selectors] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in csv format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in csv format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items (supported
+    values: esn, camera, bridge-esn, bridge, site, siteid, status, tag).
+  </li>
+  <li>
+    <code>-l, --long</code> Display details of multicamera, including name, id,
+    bridge id, bridge name, status, site name, site id, timezone, guid, tags, ip
+    address, mac address.
+  </li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esns.
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
+</ul>
+<h4>Example</h4>
+<p>
+  To list all multicameras with specific fields in CSV format (with headers):
+</p>
+<pre><code class="language-bash">een multicamera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;multicamera id&quot;,&quot;multicamera name&quot;,&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;site id&quot;,&quot;site name&quot;,&quot;status&quot;,&quot;tags&quot;
+&quot;1007b4fb&quot;,&quot;Camera 47 - i-PRO WV-S8574L&quot;,&quot;10055c51&quot;,&quot;620 Enterprise Edition - Box 1&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;Eagle Eye Office&quot;,&quot;bridgeOffline&quot;,&quot;&quot;
+&quot;100c792a&quot;,&quot;Encoder EN-ECMF-001&quot;,&quot;100b7102&quot;,&quot;301 - EN-ECMF-001 - ENCODER&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;Eagle Eye Office&quot;,&quot;online&quot;,&quot;&quot;
+</code></pre>
+<hr />
 <h1>event - Manage Events</h1>
 <h2>NAME</h2>
 <p><code>event</code> - manage and interact with events.</p>
@@ -2229,7 +2264,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 <h4>Options:</h4>
 <ul>
   <li>
-    <p><code>--csv</code> Display details in csv format.</p>
+    <p><code>--csv</code> Display details in CSV format.</p>
   </li>
   <li>
     <p>
@@ -2239,7 +2274,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
   </li>
   <li>
     <p>
-      <code>-g, --google-sheet</code> Display details in csv format in google
+      <code>-g, --google-sheet</code> Display details in CSV format in google
       sheet.
     </p>
   </li>
@@ -2289,11 +2324,13 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
   <li>
     <p>
       <code>--event-type [type1,type2]</code> Filter by event types. (supported
-      values: intrusionDetection, loitering, motionDetection,
-      motionRegionDetection, objectLineCross, personDetection,
-      measurementThresholdStatus, tampering, thermalDetection, gunDetection,
-      vehicleDetection, deviceStatus, evaQuery, lprPlateRead, deviceCreation,
-      posTransaction, motionInRegionDetection, deviceIO).
+      values: intrusionDetection, loitering, motionDetection, objectLineCross,
+      personDetection, measurementThresholdStatus, tampering, vehicleDetection,
+      deviceStatus, gunDetection, eevaQuery, lprPlateRead, deviceCreation,
+      posTransaction, motionRegionDetection, deviceIO, hotlistVehicle,
+      watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle,
+      unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay,
+      slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
     </p>
   </li>
   <li>
@@ -2309,10 +2346,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
     <p><code>--site-id [site id1, site id2]</code> Filter by site ids.</p>
   </li>
   <li>
-    <p>
-      <code>--status [status]</code><br />
-      Filter by camera status.
-    </p>
+    <p><code>--status [status]</code> Filter by camera status.</p>
   </li>
   <li>
     <p><code>-t, --tag [tag1, tag2]</code> Filter by tags.</p>
@@ -2320,7 +2354,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all events with headers in csv format:</li>
+  <li>To list all events with headers in CSV format:</li>
 </ul>
 <pre><code class="language-bash">een event list --csv --header
 </code></pre>
@@ -2330,7 +2364,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 </code></pre>
 <ul>
   <li>
-    To list all events for a specific event type with headers in csv format:
+    To list all events for a specific event type with headers in CSV format:
   </li>
 </ul>
 <pre><code class="language-bash">een event list --event-type 'vehicleDetection' --header --csv
@@ -2341,7 +2375,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 &quot;camera&quot;,&quot;2025-10-27T05:45:18.620+00:00&quot;,&quot;2025-10-27T05:45:18.620+00:00&quot;,&quot;BodyTypeConfidence: 44.9%; BodyType: van;&quot;
 </code></pre>
 <ul>
-  <li>To list all events with long list in csv format:</li>
+  <li>To list all events with long list in CSV format:</li>
 </ul>
 <pre><code class="language-bash">een event list --header --long --csv
 </code></pre>
@@ -2350,6 +2384,7 @@ een camera addtag 'test, new tag' --bridge-esn '0987' --status 'online'
 camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  -                                                00052029-032d57e9-5d58d553-21ca-4b15-88a4-24464115c517  een.personDetectionEvent.v1          100954c1   een.analytics.v1
 camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyTypeConfidence: 69.1%; BodyType: motorbike;  00052029-032d57e9-70fecbe7-c37f-42a9-aca4-4831ee531eeb  een.vehicleDetectionEvent.v1         100954c1   een.analytics.v1
 </code></pre>
+<hr />
 <h1>rule - Manage Rules</h1>
 <h2>NAME</h2>
 <p><code>rule</code> - manage and interact with rules.</p>
@@ -2368,13 +2403,13 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li>
@@ -2382,8 +2417,8 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
     headers will be hidden.
   </li>
   <li>
-    <code>--include [value1, value2]</code><br />
-    Display associated items. Supported values: name, id, rule-type.
+    <code>--include [value1, value2]</code> Display associated items. Supported
+    values: name, id, rule-type.
   </li>
   <li>
     <code>-l, --long</code> Display details of rules, including id, created
@@ -2398,7 +2433,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
   </li>
   <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
   <li><code>--disabled</code> Filter by disabled.</li>
-  <li><code>--enabled [enabled]</code> Filter by enabled.</li>
+  <li><code>--enabled</code> Filter by enabled.</li>
   <li><code>--esn [esn1, esn2]</code> Filter by camera ESNs.</li>
   <li>
     <code>--maximum-priority [number]</code> Filter by maximum priority
@@ -2409,13 +2444,13 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
     (supported values: 0-10).
   </li>
   <li>
-    <code>--rule-type [rule type]</code> Filter by rule type(supported values:
+    <code>--rule-type [rule type]</code> Filter by rule type (supported values:
     intrusionDetection, loitering, motionDetection, objectLineCross,
     personDetection, measurementThresholdStatus, tampering, vehicleDetection,
-    deviceStatus, gunDetection, evaQuery, lprPlateRead, deviceCreation,
-    posTransaction, motionInRegionDetection, deviceIO, hotlistVehicle,
-    watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle,
-    unregisteredVehicle).
+    deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection,
+    deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate,
+    deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered,
+    wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
   </li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
@@ -2424,7 +2459,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all rules in csv format with headers:</li>
+  <li>To list all rules in CSV format with headers:</li>
 </ul>
 <pre><code class="language-bash">een rule list --csv --header
 </code></pre>
@@ -2436,7 +2471,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <ul>
   <li>
     To list all rule for a specific rule type and enabled true with headers in
-    csv format:
+    CSV format:
   </li>
 </ul>
 <pre><code class="language-bash">een rule list --rule-type 'motionDetection' --enabled --header --csv
@@ -2449,7 +2484,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <ul>
   <li>
     To list all rule for camera bridge esn '1234' with headers in long list and
-    in csv format:
+    in CSV format:
   </li>
 </ul>
 <pre><code class="language-bash">een rule list --esn '1234' --header -l --csv
@@ -2466,7 +2501,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Argument:</h4>
 <ul>
-  <li><code>&lt;id&gt;</code> id of the rule to delete (required).</li>
+  <li><code>&lt;id&gt;</code> id of the rule to delete.</li>
 </ul>
 <h4>EXAMPLES</h4>
 <ul>
@@ -2480,6 +2515,888 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <p><strong>Error Output Example:</strong></p>
 <pre><code class="language-text">error: unable to delete the rule: rule with 42d4b2f6-1aeb-4e21-84d8-1a7c46818fc4 not found (status: 404)
+</code></pre>
+<hr />
+<h3>add</h3>
+<p>Add a rule.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>rule add</code> command allows you to add a specific rule with
+  action. You can specify the rule type and give the options needed.
+</p>
+<h4>Usage:</h4>
+<pre><code>een rule add [rule type] [options] [general options]
+</code></pre>
+<h2>Rule Type</h2>
+<h3>allowedvehicle</h3>
+<p>Add allowed vehicle rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add allowedvehicle [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+  <li>
+    <code>--target-type [target type]</code> Specify target type (supported
+    values: vehicleList, plate).
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li><code>--plate [plate]</code> Specify license plate number.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+  <li>
+    <code>--vehiclelist-id [vehiclelist id]</code> Specify vehiclelist id.
+  </li>
+  <li>
+    <code>--vehiclelist-name [vehiclelist name]</code> Specify vehiclelist name.
+  </li>
+</ul>
+<h3>countoflicenseplate</h3>
+<p>Add count of license plate rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add countoflicenseplate [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--count [count]</code> Specify count.</li>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li>
+    <code>--duration [duration]</code> Specify duration in minutes (default to 5
+    minutes).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--rule-value [value]</code> Specify rule value (supported values:
+    greaterThan, lessThan).
+  </li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>crowdformation</h3>
+<p>Add crowd formation rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add crowdformation [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>deniedvehicle</h3>
+<p>Add denied vehicle rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add deniedvehicle [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+  <li>
+    <code>--target-type [target type]</code> Specify target type (supported
+    values: vehicleList, plate).
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li><code>--plate [plate]</code> Specify license plate number.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+  <li>
+    <code>--vehiclelist-id [vehiclelist id]</code> Specify vehiclelist id.
+  </li>
+  <li>
+    <code>--vehiclelist-name [vehiclelist name]</code> Specify vehiclelist name.
+  </li>
+</ul>
+<h3>devicestatus</h3>
+<p>Add device status rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add devicestatus [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li>
+    <code>--device-type [type]</code> Specify device type (supported values:
+    camera, speaker).
+  </li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--device-id [id1, id2]</code> Specify device ids.</li>
+  <li><code>--device-name [name1, name2]</code> Specify device names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>eevaevent</h3>
+<p>Add eeva event rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add eevaevent [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>fireandsmokedetection</h3>
+<p>Add fire and smoke detection rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add fireandsmokedetection [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>gundetection</h3>
+<p>Add gun detection rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add gundetection [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>hotlistvehicle</h3>
+<p>Add hotlist vehicle rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add hotlistvehicle [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+  <li>
+    <code>--target-type [target type]</code> Specify target type (supported
+    values: vehicleList, plate).
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li><code>--plate [plate]</code> Specify license plate number.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+  <li>
+    <code>--vehiclelist-id [vehiclelist id]</code> Specify vehiclelist id.
+  </li>
+  <li>
+    <code>--vehiclelist-name [vehiclelist name]</code> Specify vehiclelist name.
+  </li>
+</ul>
+<h3>inputtriggered</h3>
+<p>Add input triggered rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add inputtriggered [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li>
+    <code>--device-type [type]</code> Specify device type (supported values:
+    camera, speaker).
+  </li>
+  <li><code>--input-port [port]</code> Specify input port.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--device-id [id1, id2]</code> Specify device ids.</li>
+  <li><code>--device-name [name1, name2]</code> Specify device names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>intrusiondetection</h3>
+<p>Add intrusion detection rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add intrusiondetection [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>loitering</h3>
+<p>Add loitering rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add loitering [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>measurementthresholdstatus</h3>
+<p>Add measurement threshold status rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add measurementthresholdstatus [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--measurement-id [id1, id2]</code> Specify measurement ids.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>motiondetection</h3>
+<p>Add motion detection rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add motiondetection [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>motionregiondetection</h3>
+<p>Add motion region detection rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add motionregiondetection [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>objectlinecross</h3>
+<p>Add object line cross rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add objectlinecross [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>persondetection</h3>
+<p>Add person detection rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add persondetection [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>ppeviolation</h3>
+<p>Add ppe violation rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add ppeviolation [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>slipandfall</h3>
+<p>Add slip and fall rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add slipandfall [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>thermalthresholdcrossed</h3>
+<p>Add thermal threshold crossed rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add thermalthresholdcrossed [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>unregisteredvehicle</h3>
+<p>Add unregistered vehicle rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add unregisteredvehicle [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+  <li>
+    <code>--vehiclelist-id [vehiclelist id]</code> Specify vehiclelist id.
+  </li>
+  <li>
+    <code>--vehiclelist-name [vehiclelist name]</code> Specify vehiclelist name.
+  </li>
+</ul>
+<h3>vehicledetection</h3>
+<p>Add vehicle detection rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add vehicledetection [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h3>watchvehicle</h3>
+<p>Add watch vehicle rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add watchvehicle [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+  <li>
+    <code>--target-type [target type]</code> Specify target type (supported
+    values: vehicleList, plate, anyPlateExcept).
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li>
+    <code>--destination-camera [camera1, camera2]</code> Specify destination
+    camera names.
+  </li>
+  <li>
+    <code>--destination-esn [esn1, esn2]</code> Specify destination camera esns.
+  </li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li>
+    <code>--duration [duration]</code> Specify duration in minutes (default to 5
+    minutes).
+  </li>
+  <li>
+    <code>--exemption-vehiclelist-id [exemption vehiclelist id]</code> Specify
+    exemption vehiclelist id.
+  </li>
+  <li>
+    <code>--exemption-vehiclelist-name [exemption vehiclelist name]</code>
+    Specify exemption vehiclelist name.
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--origin-camera [camera1, camera2]</code> Specify origin camera names.
+  </li>
+  <li><code>--origin-esn [esn1, esn2]</code> Specify origin camera esns.</li>
+  <li><code>--plate [plate]</code> Specify license plate number.</li>
+  <li>
+    <code>--vehiclelist-id [vehiclelist id]</code> Specify vehiclelist id.
+  </li>
+  <li>
+    <code>--vehiclelist-name [vehiclelist name]</code> Specify vehiclelist name.
+  </li>
+</ul>
+<h3>wrongway</h3>
+<p>Add wrong way rule.</p>
+<h4>Usage:</h4>
+<pre><code>een rule add wrongway [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify rule name.</li>
+  <li><code>--priority [priority]</code> Specify priority.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--action-id [id1, id2]</code> Specify action ids.</li>
+  <li><code>--action-name [name1, name2]</code> Specify action names.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (enabled by default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+  </li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add rule for eevaevent with name 'name', priority 5, schedule work hours,
+    for specified cameras with specified actions:
+  </li>
+</ul>
+<pre><code class="language-bash">een rule add eevaevent --name 'evaa rule' --priority '5' --schedule 'workHours' --camera 'FFserver-Test testing  ' --esn '10037500' --action-name 'R2' --action-id 'e9a6a541-6cdf-4f3c-a0e4-410478f51595'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully added rule with action: (id: f169315d-a76c-4f2f-9924-5958cc74e44b)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">unable to add rule: same rule already exists (status: 409)
+</code></pre>
+<hr />
+<h3>set</h3>
+<p>Update rule.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>rule set</code> command allows you to update the rule for the
+  specified id. You can specify the id of rule to change as
+  <code>&lt;parameter&gt;</code> and specify options to change.
+</p>
+<h4>Usage:</h4>
+<pre><code>een rule set &lt;id&gt; [options] [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li><code>&lt;id&gt;</code> Id of the rule to update.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--action-id [id1, id2]</code> Specify action ids (supported by: all
+    types).
+  </li>
+  <li>
+    <code>--action-name [name1, name2]</code> Specify action names (supported
+    by: all types).
+  </li>
+  <li>
+    <code>--camera [camera1, camera2]</code> Specify camera names (supported by:
+    intrusionDetection, loitering, motionDetection, motionRegionDetection,
+    objectLineCross, thermalThresholdCrossed, vehicleDetection, personDetection,
+    eevaQuery, gunDetection, slipAndFall, crowdFormation, ppeViolation,
+    fireAndSmokeDetection, allowedVehicle, deniedVehicle, countOfLicensePlate,
+    unregisteredVehicle, hotlistVehicle, wrongWay).
+  </li>
+  <li>
+    <code>--count [count]</code> Specify count (supported by:
+    countOfLicensePlate).
+  </li>
+  <li>
+    <code>--destination-camera [camera1, camera2]</code> Specify destination
+    camera names (supported by: watchVehicle).
+  </li>
+  <li>
+    <code>--destination-esn [esn1, esn2]</code> Specify destination camera esns
+    (supported by: watchVehicle).
+  </li>
+  <li>
+    <code>--device-id [id1, id2]</code> Specify device ids (supported by:
+    inputTriggered, deviceStatus).
+  </li>
+  <li>
+    <code>--device-name [name1, name2]</code> Specify device names (supported
+    by: inputTriggered, deviceStatus).
+  </li>
+  <li>
+    <code>--device-type [type]</code> Specify device type (supported values:
+    camera, speaker) (supported by: inputTriggered, deviceStatus).
+  </li>
+  <li>
+    <code>--disable</code> Set the rule status to disabled (supported by: all
+    types).
+  </li>
+  <li>
+    <code>--duration [duration]</code> Specify duration in minutes (supported
+    by: watchVehicle, countOfLicensePlate).
+  </li>
+  <li>
+    <code>--enable</code> Set the rule status to enabled (supported by: all
+    types).
+  </li>
+  <li>
+    <code>--esn [esn1, esn2]</code> Specify camera esns (supported by:
+    intrusionDetection, loitering, motionDetection, motionRegionDetection,
+    objectLineCross, thermalThresholdCrossed, vehicleDetection, personDetection,
+    eevaQuery, gunDetection, slipAndFall, crowdFormation, ppeViolation,
+    fireAndSmokeDetection, allowedVehicle, deniedVehicle, countOfLicensePlate,
+    unregisteredVehicle, hotlistVehicle, wrongWay).
+  </li>
+  <li>
+    <code>--exemption-vehiclelist-id [exemption vehiclelist id]</code> Specify
+    exemption vehiclelist id (supported by: watchVehicle).
+  </li>
+  <li>
+    <code>--exemption-vehiclelist-name [exemption vehiclelist name]</code>
+    Specify exemption vehiclelist name (supported by: watchVehicle).
+  </li>
+  <li>
+    <code>--input-port [port1, port2]</code> Specify input ports (supported by:
+    inputTriggered).
+  </li>
+  <li>
+    <code>--measurement-id [id1, id2]</code> Specify measurement ids (supported
+    by: measurementThresholdStatus).
+  </li>
+  <li>
+    <code>--name [name]</code> Specify rule name (supported by: all types).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes (supported by: all types).</li>
+  <li>
+    <code>--origin-camera [camera1, camera2]</code> Specify origin camera names
+    (supported by: watchVehicle).
+  </li>
+  <li>
+    <code>--origin-esn [esn1, esn2]</code> Specify origin camera esns (supported
+    by: watchVehicle).
+  </li>
+  <li>
+    <code>--plate [plate]</code> Specify license plate number (supported by:
+    allowedVehicle, deniedVehicle, hotlistVehicle, watchVehicle).
+  </li>
+  <li>
+    <code>--priority [priority]</code> Specify priority (supported by: all
+    types).
+  </li>
+  <li>
+    <code>--rule-type [rule type]</code> Specify rule type (supported values:
+    intrusionDetection, loitering, motionDetection, motionRegionDetection,
+    objectLineCross, personDetection, measurementThresholdStatus, tampering,
+    gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle,
+    watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle,
+    unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered,
+    wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection)
+    (supported by: all types).
+  </li>
+  <li>
+    <code>--rule-value [value]</code> Specify rule value (supported values:
+    greaterThan, lessThan) (supported by: countOfLicensePlate).
+  </li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours) (supported by: intrusionDetection,
+    loitering, motionDetection, motionRegionDetection, objectLineCross,
+    thermalThresholdCrossed, vehicleDetection, personDetection, eevaQuery,
+    gunDetection, slipAndFall, crowdFormation, ppeViolation,
+    fireAndSmokeDetection, allowedVehicle, deniedVehicle, countOfLicensePlate,
+    unregisteredVehicle, hotlistVehicle, wrongWay, measurementThresholdStatus,
+    inputTriggered, deviceStatus, deviceIO).
+  </li>
+  <li>
+    <code>--target-type [target type]</code> Specify target type (supported
+    values: vehicleList, plate, anyPlateExcept) (supported by: allowedVehicle,
+    deniedVehicle, hotlistVehicle, watchVehicle).
+  </li>
+  <li>
+    <code>--vehiclelist-id [vehiclelist id]</code> Specify vehiclelist id
+    (supported by: allowedVehicle, deniedVehicle, hotlistVehicle, watchVehicle,
+    unregisteredVehicle).
+  </li>
+  <li>
+    <code>--vehiclelist-name [vehiclelist name]</code> Specify vehiclelist name
+    (supported by: allowedVehicle, deniedVehicle, hotlistVehicle, watchVehicle,
+    unregisteredVehicle).
+  </li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To update rule with id '1234' to set the name as 'name' and disable the
+    rule:
+  </li>
+</ul>
+<pre><code class="language-bash">een rule set 4879606b-1b89-4c74-8080-25cbf93faffc --name 'new unregistered test' --disable
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully updated the rule: (id: 4879606b-1b89-4c74-8080-25cbf93faffc)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">unable to update rule: rule with 4879606b-1b89-4c74-8080-25cbf93faffc not found (status: 404)
 </code></pre>
 <hr />
 <h1>action - Manage Action</h1>
@@ -2501,22 +3418,21 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> List details in csv format.</li>
+  <li><code>--csv</code> List details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> List details in csv format in google sheet.
+    <code>-g, --google-sheet</code> List details in CSV format in google sheet.
   </li>
   <li>
     <code>--header</code> Display column headers in the result. By default
     headers will be hidden.
   </li>
   <li>
-    <code>--include [value1, value2]</code><br />
-    Display associated items. Supported values: id, name, action-type,
-    recipient-name.
+    <code>--include [value1, value2]</code> Display associated items. (supported
+    values: id, name, action-type, recipients-name).
   </li>
   <li>
     <code>-l, --long</code> Display action details including id, created
@@ -2529,12 +3445,12 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
   <li>
     <code>--action-type [type]</code> Filter by action types (supported values:
     immix, sentinal, notification, webhook, zapier, outputPort,
-    sms_mmsNotification).
+    smsMmsNotification, ebus).
   </li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To list all action in csv format with headers:</li>
+  <li>To list all action in CSV format with headers:</li>
 </ul>
 <pre><code class="language-bash">een action list --csv --header
 </code></pre>
@@ -2558,6 +3474,304 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 &quot;Zapier wiktoria test&quot;,&quot;zapier&quot;,&quot;&quot;,&quot;disable&quot;,&quot;8371abcd-313d-4ee2-96ee-0c78da658a36&quot;,&quot;2025-02-12T14:13:47.300+00:00&quot;,&quot;&quot;,&quot;&quot;
 </code></pre>
 <hr />
+<h3>add</h3>
+<p>Add actions.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>action add</code> command allows you to add a specific action. You
+  can specify the action type to add as <code>&lt;parameter&gt;</code>, and give
+  the options.
+</p>
+<h4>Usage:</h4>
+<pre><code>een action add [action type] [options] [general options]
+</code></pre>
+<h2>Action Type</h2>
+<h3>ebus</h3>
+<p>Add ebus action.</p>
+<h4>Usage:</h4>
+<pre><code>een action add ebus [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--email [email]</code> Specify email address.</li>
+  <li><code>--name [name] </code> Specify action name.</li>
+  <li><code>--port [port]</code> Specify port id.</li>
+  <li><code>--url [url]</code> Specify url or ip address .</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--disable</code> Set the action status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li><code>--password [password]</code> Specify password.</li>
+  <li><code>--username [username]</code> Specify user name.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add action for ebus with name 'ebus test', email 'test@gmail.com', port
+    45 and url '112.111.2.1':
+  </li>
+</ul>
+<pre><code class="language-bash">een action add ebus --name 'ebus cli' --email 'test@gmail.com' --port '45' --url '112.111.2.1'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">ebus action added successfully (id: b2c25698-0d7d-4d37-b406-0c7b30e6dfef)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">failed to add action — Invalid argument: port (status: 400)
+</code></pre>
+<h3>immix</h3>
+<p>Add immix action.</p>
+<h4>Usage:</h4>
+<pre><code>een action add immix [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--email [email]</code> Specify email address.</li>
+  <li><code>--name [name] </code> Specify action name.</li>
+  <li><code>--port [port]</code> Specify port id.</li>
+  <li><code>--url [url]</code> Specify url or ip address .</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--bounding-box</code> Specify whether to enable bounding box.</li>
+  <li>
+    <code>--disable</code> Set the action status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li><code>--password [password]</code> Specify password.</li>
+  <li><code>--tls</code> Specify whether to enable tls.</li>
+  <li><code>--username [username]</code> Specify user name.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add action for immix with name 'immix test', email 'test@gmail.com', port
+    45, url 'https://.../' and username 'testuser' :
+  </li>
+</ul>
+<pre><code class="language-bash">een action add immix --name 'immix cli' --email 'test@gmail.com' --port '45' --url 'https://.***com/' --username 'testuser'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">immix action added successfully (id: b2c25698-0d7d-4d37-b406-0c7b30e6dfef)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">failed to add action — Invalid argument: port (status: 400)
+</code></pre>
+<h3>notification</h3>
+<p>Add notification action.</p>
+<h4>Usage:</h4>
+<pre><code>een action add notification [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name] </code> Specify action name.</li>
+  <li>
+    <code>--notification-type [type1, type2]</code> Specify notification types
+    (supported values: email, push).
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--disable</code> Set the action status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--max-per-hour [max per hour]</code> Specify max per hour.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li><code>--rearm [rearm]</code> Specify rearm in seconds.</li>
+  <li><code>--user-id [id1, id2]</code> Specify user ids.</li>
+  <li><code>--user-name [name1, name2]</code> Specify user names.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add action for notification with name 'notification test', notification
+    type 'email,push', user id '1234':
+  </li>
+</ul>
+<pre><code class="language-bash">een action add notification --name 'notification cli' --notification-type 'email,push' --user-id 'ca08f'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">notification action added successfully (id: ae834f23-f70a-4adf-8f1f-6dc8dabec42f)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">failed to add action — users.0.id: ID must be 8 lowercase letters or digits. (status: 400)
+</code></pre>
+<h3>outputport</h3>
+<p>Add outputport action.</p>
+<h4>Usage:</h4>
+<pre><code>een action add outputport [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--device-id [device id]</code> Specify device id.</li>
+  <li><code>--duration [duration]</code> Specify duration in seconds.</li>
+  <li><code>--name [name] </code> Specify action name.</li>
+  <li><code>--port [port]</code> Specify port id.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--disable</code> Set the action status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add action for outputport with name 'outputport test', device id '1234',
+    port 'relay_1', duration 20:
+  </li>
+</ul>
+<pre><code class="language-bash">een action add outputport --device-id '1009f415' --port 'relay_1' --duration '20' --name 'outputport cli'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">outputPort action added successfully (id: 233e8083-b6a8-44b9-bd37-1ac2425d227c)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">failed to add action — Invalid argument: portId (status: 400)
+</code></pre>
+<h3>sentinel</h3>
+<p>Add monitor computer system-sentinel action.</p>
+<h4>Usage:</h4>
+<pre><code>een action add sentinel [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name] </code> Specify action name.</li>
+  <li><code>--url [url]</code> Specify url.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--disable</code> Set the action status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add action for sentinel with name 'sentinel test', url
+    'https://***.com/':
+  </li>
+</ul>
+<pre><code class="language-bash">een action add sentinel --url 'https://***.com/' --name 'sentinel test'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code>sentinel action added successfully (id: 0263e5d6-d76a-4613-931e-4e8f8fa9f6bd)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">failed to add action — Invalid argument: url (status: 400)
+</code></pre>
+<h3>smsmms</h3>
+<p>Add SMS/MMS notification action.</p>
+<h4>Usage:</h4>
+<pre><code>een action add smsmms [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name] </code> Specify action name.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--disable</code> Set the action status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+  <li><code>--user-id [id1, id2]</code> Specify user ids.</li>
+  <li><code>--user-name [name1, name2]</code> Specify user names.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To add action for smsmms with name 'smsmms test', user id '1234':</li>
+</ul>
+<pre><code class="language-bash">een action add smsmms --name 'smsmmstest' --user-id 'ca08135f'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code>sms action added successfully (id: fcdd212e-d378-4ecf-8714-dc1788c7a9b6)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">failed to add action — users.0.id: ID must be 8 lowercase letters or digits. (status: 400)
+</code></pre>
+<h3>webhook</h3>
+<p>Add webhook action.</p>
+<h4>Usage:</h4>
+<pre><code>een action add webhook [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name] </code> Specify action name.</li>
+  <li><code>--url [url]</code> Specify url.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--disable</code> Set the action status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add action for webhook with name 'webhook test', url 'https://***.com/':
+  </li>
+</ul>
+<pre><code class="language-bash">een action add webhook --url 'https://***.com/' --name 'webhook test'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code>webhook action added successfully (id: 9269483b-9300-4e45-a2ab-0c087e93c09e)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">failed to add action — Invalid argument: url (status: 400)
+</code></pre>
+<h3>zapier</h3>
+<p>Add zapier action.</p>
+<h4>Usage:</h4>
+<pre><code>een action add zapier [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify action name.</li>
+  <li><code>--url [url]</code> Specify url.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--disable</code> Set the action status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To add action for zapier with name 'name' and url 'https://.../':</li>
+</ul>
+<pre><code class="language-bash">een action add zapier --name 'zapier cli' --url 'https://mail.******.com/'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">zapier action added successfully (id: 9f0121aa-1241-46d4-884b-110ca780f3e7)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">failed to add action — Invalid argument: url (status: 400)
+</code></pre>
+<hr />
 <h3>delete</h3>
 <p>Delete an action from the action list.</p>
 <h4>Usage:</h4>
@@ -2565,10 +3779,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Argument:</h4>
 <ul>
-  <li>
-    <code>&lt;id&gt;</code><br />
-    id of the action to delete (required).
-  </li>
+  <li><code>&lt;id&gt;</code> id of the action to delete.</li>
 </ul>
 <h4>EXAMPLES</h4>
 <ul>
@@ -2582,6 +3793,181 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <p><strong>Error Output Example:</strong></p>
 <pre><code class="language-text">error: unable to delete the action: ed4e7090-23ee-41dc-bf5a-58df32cdd960
+</code></pre>
+<hr />
+<h3>set</h3>
+<p>Update action.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>action set</code> command allows you to update the action for the
+  specified id. You can specify the id of action to change as
+  <code>&lt;parameter&gt;</code> and specify options to change.
+</p>
+<h4>Usage:</h4>
+<pre><code>een action set &lt;id&gt; [options] [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li><code>&lt;id&gt;</code> Id of the action to update.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--bounding-box [boolean]</code> Specify whether to enable or disable
+    bounding box (supported by: immix).
+  </li>
+  <li>
+    <code>--device-id [device id]</code> Specify device id (supported by:
+    outputPort).
+  </li>
+  <li>
+    <code>--disable</code> Set the action status to disabled (supported by: all
+    types).
+  </li>
+  <li>
+    <code>--duration [duration]</code> Specify duration in seconds (supported
+    by: outputPort).
+  </li>
+  <li>
+    <code>--email [email]</code> Specify email address (supported by: immix,
+    ebus).
+  </li>
+  <li>
+    <code>--enable</code> Set the rule status to enabled (supported by: all
+    types).
+  </li>
+  <li>
+    <code>--max-per-hour [max per hour]</code> Specify max per hour (supported
+    by: notification).
+  </li>
+  <li>
+    <code>--name [name]</code> Specify action name (supported by: all types).
+  </li>
+  <li><code>--notes [notes]</code> Specify notes (supported by: all types).</li>
+  <li>
+    <code>--notification-type [type1, type2]</code> Specify notification types
+    (supported values: email, push) (supported by: notification).
+  </li>
+  <li>
+    <code>--password [password]</code> Specify password (supported by: immix,
+    ebus).
+  </li>
+  <li>
+    <code>--port [port]</code> Specify port id (supported by: immix, outputPort,
+    ebus).
+  </li>
+  <li>
+    <code>--rearm [rearm]</code> Specify rearm in seconds (supported by:
+    notification).
+  </li>
+  <li>
+    <code>--tls [boolean]</code> Specify whether to enable or disable tls
+    (supported by: immix).
+  </li>
+  <li>
+    <code>--url [url]</code> Specify url (supported by: immix, sentinel,
+    webhook, zapier, ebus).
+  </li>
+  <li>
+    <code>--user-id [user id1, user id2]</code> Specify user ids (supported by:
+    notification, sms).
+  </li>
+  <li>
+    <code>--user-name [name1, name2]</code> Specify user names (supported by:
+    immix, notification, sms, ebus).
+  </li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To update action for zapier with id '1234' set name 'name' and disable the
+    action:
+  </li>
+</ul>
+<pre><code class="language-bash">een action set 76e44752-cc39-4e9f-b65c-9313b961a896 --notes 'zapier action' --name 'zapier update' --disable
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully updated action: (id: 76e44752-cc39-4e9f-b65c-9313b961a896)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">unable to update action: the resource was not found (status: 404)
+</code></pre>
+<hr />
+<h1>role - Manage Roles</h1>
+<h2>NAME</h2>
+<p><code>role</code> - manage and interact with roles.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een role [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>role</code> command allows you to manage roles in current user's
+  account, including listing all available roles.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List of all roles in current user's account.</p>
+<h4>Usage</h4>
+<pre><code>een role list [options] [selectors] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items (supported
+    values: role-id, role-name, users, default-role).
+  </li>
+  <li>
+    <code>-l, --long</code> Display details of role including role id, is
+    assignable and permissions.
+  </li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--role [role name]</code> Filter by role name.</li>
+  <li><code>--role-id [id1, id2]</code> Filter by role IDs.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all roles with headers in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een role list --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;default role&quot;
+&quot;Administrator&quot;,&quot;Default administrator role&quot;,&quot;3&quot;,&quot;false&quot;
+&quot;Test role 724&quot;,&quot;Test role 724&quot;,&quot;1&quot;,&quot;false&quot;
+</code></pre>
+<ul>
+  <li>To get role with role name 'Viewers' in CSV format with headers:</li>
+</ul>
+<pre><code class="language-bash">een role list --role 'Viewers' --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;default role&quot;
+&quot;Administrator&quot;,&quot;Default administrator role&quot;,&quot;3&quot;,&quot;false&quot;
+</code></pre>
+<ul>
+  <li>
+    To get roles with id '1234,4321' in long list and CSV format with headers:
+  </li>
+</ul>
+<pre><code class="language-bash">een role list --role-id '8b284309-062a-4d50-af1c-fff4de07f122, 7e7b9e69-5112-4bb2-ba4e-08c061f8dbd5' --header --csv --long
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;default role&quot;,&quot;role id&quot;,&quot;is assignable&quot;,&quot;permissions&quot;
+&quot;Viewers&quot;,&quot;Default viewer role&quot;,&quot;3&quot;,&quot;false&quot;,&quot;8b284309-062a-4d50-af1c-fff4de07f122&quot;,&quot;true&quot;,&quot;viewLiveVideo,viewHistoricVideo,downloadVideo,viewPreviewVideo&quot;
+&quot;Administrator&quot;,&quot;Default administrator role&quot;,&quot;3&quot;,&quot;false&quot;,&quot;8b284309-062a-4d50-af1c-fff4de07f122&quot;,&quot;true&quot;,&quot;viewLiveVideo,viewHistoricVideo,downloadVideo,viewPreviewVideo&quot;
 </code></pre>
 <hr />
 <h1>site - Manage Sites</h1>
@@ -2603,19 +3989,19 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
     <code>--include [value1, value2]</code> Display associated items (supported
-    values: siteid).
+    values: site-id, site-name).
   </li>
   <li>
     <code>-l, --long</code> Display details of site including address, city,
@@ -2633,17 +4019,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
   </li>
   <li><code>--region [region1, region2]</code> Filter by region.</li>
   <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
-  <li>
-    <code>--site-id [site id1, site id2]</code><br />
-    Filter by site ids.
-  </li>
-</ul>
-<h4>Actions:</h4>
-<ul>
-  <li>
-    List sites with options for CSV format, file output, prompts, and debug
-    output as specified.
-  </li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -2658,11 +4034,11 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <ul>
   <li>
-    To get sites list with site name 'eagle eye', city 'bangalore' in csv and
+    To get sites list with site name 'eagle eye', city 'bangalore' in CSV and
     long list format with header:
   </li>
 </ul>
-<pre><code class="language-bash">een site list --site 'Eagle Eye Bangalor' --city 'Bangalore ' --header -l --csv
+<pre><code class="language-bash">een site list --site 'Eagle Eye Bangalor' --city 'Bangalore' --header -l --csv
 </code></pre>
 <h4>Output</h4>
 <pre><code class="language-csv">&quot;site name&quot;,&quot;site id&quot;,&quot;address&quot;,&quot;city&quot;,&quot;region&quot;,&quot;postal code&quot;,&quot;country&quot;,&quot;camera count&quot;,&quot;bridge count&quot;,&quot;user count&quot;,&quot;speaker count&quot;,&quot;multi camera count&quot;
@@ -2670,7 +4046,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <ul>
   <li>
-    To get sites list with site id '1234', region 'Karnataka' in csv and long
+    To get sites list with site id '1234', region 'Karnataka' in CSV and long
     list format with header:
   </li>
 </ul>
@@ -2680,6 +4056,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <pre><code class="language-csv">&quot;site name&quot;,&quot;site id&quot;,&quot;address&quot;,&quot;city&quot;,&quot;region&quot;,&quot;postal code&quot;,&quot;country&quot;,&quot;camera count&quot;,&quot;bridge count&quot;,&quot;user count&quot;,&quot;speaker count&quot;,&quot;multi camera count&quot;
 &quot;Eagle Eye India 1&quot;,&quot;5acd0dd1-05a0-4d75-a14b-30e0f4083c70&quot;,&quot;Ginserv, Leela Palace Road,, Kodihalli, &quot;,&quot;Bangalore&quot;,&quot;Karnataka&quot;,&quot;560008&quot;,&quot;India&quot;,&quot;21&quot;,&quot;3&quot;,&quot;1&quot;,&quot;-&quot;,&quot;-&quot;
 </code></pre>
+<hr />
 <h1>download - Manage Downloads</h1>
 <h2>NAME</h2>
 <p>
@@ -2711,13 +4088,13 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h6>Options:</h6>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>--file-name [file name]</code> Specify the name of the file where the
     output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -2739,7 +4116,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <h5>video export</h5>
 <p>Export video.</p>
 <h4>Usage:</h4>
-<pre><code>een download video export [command] [options]
+<pre><code>een download video export [options] [general options]
 </code></pre>
 <h4>Required Options:</h4>
 <ul>
@@ -2866,6 +4243,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </ul>
 <pre><code class="language-bash">een download video delete video123
 </code></pre>
+<hr />
 <h1>job - Manage Jobs</h1>
 <h2>NAME</h2>
 <p><code>job</code> - manage and interact with jobs.</p>
@@ -2884,20 +4262,20 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
-  <li><code>--jobid [job-id]</code> Filter by job ID.</li>
+  <li><code>--jobid [id]</code> Filter by job ID.</li>
   <li>
     <code>--jobstate [state]</code> Filter by job state (supported values:
     pending, started, failure, success, revoked).
@@ -2943,6 +4321,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </ul>
 <pre><code class="language-bash">een job list --jobid &quot;123456&quot;
 </code></pre>
+<hr />
 <h1>video - Manage Recorded Videos</h1>
 <h2>NAME</h2>
 <p><code>video</code> - manage and interact with recorded videos.</p>
@@ -2951,8 +4330,8 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
-  The <code>video</code> command allows you to download recorded videos, list
-  available videos, and check the status of preview recordings.
+  The <code>video</code> command allows you to check the status of preview
+  recordings.
 </p>
 <h4>Usage:</h4>
 <pre><code>een video [command] [options]
@@ -2965,28 +4344,19 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Required Options:</h4>
 <ul>
-  <li>
-    <code>--esn [esn]</code><br />
-    Specify esns of the camera.
-  </li>
-  <li>
-    <code>-s, --start-time [start time]</code><br />
-    Specify video start time.
-  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify esns of the camera.</li>
+  <li><code>-s, --start-time [start time]</code> Specify video start time.</li>
 </ul>
 <h4>Optional Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
-  <li>
-    <code>-e, --end-time [end time]</code><br />
-    Specify video end time.
-  </li>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li><code>-e, --end-time [end time]</code> Specify video end time.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -3001,80 +4371,11 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To download a video from a camera:</li>
-</ul>
-<pre><code class="language-bash">een video download --esn 123456 --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot; --format mp4 --target-directory /path/to/save
-</code></pre>
-<ul>
   <li>To check the status of a preview recording:</li>
 </ul>
 <pre><code class="language-bash">een video previewrecordingstatus --esn 1005f355 --start-time  2024-11-17T09:20:54.619+00:00 --end-time  2024-11-18T09:20:54.619+00:00 --debug
 </code></pre>
-<h1>lpr - Manage License Plate Recognition (LPR) Events</h1>
-<h2>NAME</h2>
-<p><code>lpr</code> - manage and retrieve License Plate Recognition events.</p>
-<h2>SYNOPSIS</h2>
-<pre><code>een lpr events [OPTIONS]
-</code></pre>
-<h2>DESCRIPTION</h2>
-<p>
-  The <code>lpr events</code> command allows you to retrieve LPR events within a
-  specified time frame. It supports filtering by license plate number and camera
-  ESN.
-</p>
-<h2>COMMANDS</h2>
-<h3>events</h3>
-<p>Get LPR events.</p>
-<h4>Usage:</h4>
-<pre><code>een lpr events [options] [selectors] [general options]
-</code></pre>
-<h4>Required Options:</h4>
-<ul>
-  <li><code>-e, --end-time [end time]</code> Specify events end time.</li>
-  <li><code>-s, --start-time [start time]</code> Specify events start time.</li>
-</ul>
-<h4>Optional Options:</h4>
-<ul>
-  <li><code>--header</code> Display column headers in the result.</li>
-  <li><code>--v1</code> Use v1 APIs.</li>
-</ul>
-<h4>Selectors:</h4>
-<ul>
-  <li><code>--esn [esn1, esn2]</code> Filter by camera esns.</li>
-  <li>
-    <code>--layout [layout name1, layout name2]</code> Filter by layout names
-    associated with the camera.
-  </li>
-  <li>
-    <code>--layout-id [layout id1, layout id2]</code> Filter by layout IDs
-    associated with the camera.
-  </li>
-  <li><code>--lp [license plate]</code> Filter by license plate number.</li>
-  <li><code>-t, --tag [tag1, tag2]</code> Filter by camera tags.</li>
-</ul>
-<h4>Actions:</h4>
-<ul>
-  <li>
-    If <code>--v1</code> is specified along with both
-    <code>--start-time</code> and <code>--end-time</code>, it retrieves LPR
-    events using v1 APIs.
-  </li>
-  <li>
-    If only the start and end times are specified, it retrieves LPR events using
-    the default API.
-  </li>
-</ul>
-<h2>EXAMPLES</h2>
-<ul>
-  <li>To get LPR events for a specific time frame:</li>
-</ul>
-<pre><code class="language-bash">een lpr events --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot;
-</code></pre>
-<ul>
-  <li>To get LPR events for a specific license plate:</li>
-</ul>
-<pre><code class="language-bash">een lpr events --start-time &quot;20241001000000.000&quot; --end-time &quot;20241001010000.000&quot; --lp &quot;ABC123&quot;
-</code></pre>
+<hr />
 <h1>vsp - Manage Vehicle Surveillance Package (VSP) Events and Alerts</h1>
 <h2>NAME</h2>
 <p>
@@ -3105,7 +4406,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-e, --end-time [end time]</code> Specify LPR end time; ensure that the
     --start-time option is used.
@@ -3115,7 +4416,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -3168,7 +4469,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-e, --end-time [end time]</code> Specify LPR end time; ensure that the
     --start-time option is used.
@@ -3178,7 +4479,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -3244,26 +4545,100 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <pre><code class="language-bash">een vsp list alerts --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00 --allowed-vehicle
 </code></pre>
 <hr />
-<h3>vehiclelist</h3>
-<p>List all vehicle list</p>
+<h1>vehiclelist - Manage Vehiclelist</h1>
+<h2>NAME</h2>
+<p><code>vehiclelist</code> - manage and interact with vehiclelist.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een vehiclelist [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>vehiclelist</code> command allows you to manage vehiclelist and list
+  all vehiclelist.
+</p>
+<h2>COMMANDS</h2>
+<h3>add</h3>
+<p>Add vehiclelist.</p>
 <h4>Usage:</h4>
-<pre><code>een vsp list vehiclelist [options] [selectors] [general options]
+<pre><code>een vehiclelist add [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--name [name]</code> Specify vehiclelist name.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li>
+    <code>--disable</code> Set the vehiclelist status to disabled (enabled by
+    default).
+  </li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add a vehiclelist with name 'name' and cameras '108 Test camera (RMA
+    ROOM), 117 Test camera (Server ROOM)' :
+  </li>
+</ul>
+<pre><code class="language-bash">een vehiclelist add --name 'vehiclelist test' --camera '108 Test camera (RMA ROOM), 117 Test camera (Server ROOM)'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully added vehiclelist: (id: dd5b1209-408d-4c13-aaa5-85da4a4719ba)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">unable to add vehiclelist: name already exists (status: 409)
+</code></pre>
+<h3>delete</h3>
+<p>Delete a vehiclelist.</p>
+<h4>Usage:</h4>
+<pre><code>een vehiclelist delete [options] [general options]
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--id [id]</code> Specify id of the vehiclelist to delete.</li>
+  <li><code>--name [name]</code> Specify name of the vehiclelist to delete.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To delete a vehiclelist with name 'test':</li>
+</ul>
+<pre><code class="language-bash">een vehiclelist delete --name 'test'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully deleted the vehiclelist: 92cb225e-0c6a-4599-80e4-76b01ecd9c09
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to delete the vehiclelist: resource not found (status: 404)
+</code></pre>
+<h4>Notes:</h4>
+<ul>
+  <li>Either --name or --id option must be provided.</li>
+</ul>
+<h3>list</h3>
+<p>List all vehiclelist</p>
+<h4>Usage:</h4>
+<pre><code>een vehiclelist list [options] [selectors] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
-    <code>--include [value1, value2]</code><br />
-    Display associated items. Supported values: id, name.
+    <code>--include [value1, value2]</code> Display associated items. Supported
+    values: id, name.
   </li>
   <li>
     <code>-l, --long</code> Display details of vehicles, including camera names,
@@ -3278,22 +4653,18 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
   </li>
   <li><code>-C, --camera [camera1, camera2]</code> Filter by cameras.</li>
   <li><code>--esn [esn1, esn2]</code> Filter by camera ESNs.</li>
-  <li><code>--name [name]</code> Filter by vehicle list name.</li>
+  <li><code>--name [name]</code> Filter by vehiclelist name.</li>
   <li><code>--plate [plate]</code> Filter by license plate number</li>
   <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
-  <li>
-    <code>--site-id [site id1, site id2]</code>
-    Filter by site IDs.
-    <code>--status [status]</code>
-    Filter by status.
-  </li>
-  <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
-  <li>To get VSP list vehiclelist in csv format with header:</li>
+  <li>To get vehiclelist list in CSV format with header:</li>
 </ul>
-<pre><code class="language-bash">een vsp list vehiclelist --csv --header
+<pre><code class="language-bash">een vehiclelist list --csv --header
 </code></pre>
 <h4>Output</h4>
 <pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;,&quot;status&quot;,&quot;vehicle count&quot;,&quot;camera count&quot;,&quot;site count&quot;
@@ -3303,106 +4674,330 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <ul>
   <li>
-    To get VSP list vehiclelist for esn '1234' with vehicle list name 'my name'
-    in csv format with headers as long list:
+    To get vehiclelist list for esn '1234' with vehiclelist name 'my name' in
+    CSV format with headers as long list:
   </li>
 </ul>
-<pre><code class="language-bash">een vsp list vehiclelist --csv --header -l --esn '1006b36f' --name 'EEN India North'
+<pre><code class="language-bash">een vehiclelist list --csv --header -l --esn '1006b36f' --name 'EEN India North'
 </code></pre>
 <h4>Output</h4>
 <pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;,&quot;status&quot;,&quot;vehicle count&quot;,&quot;camera count&quot;,&quot;site count&quot;,&quot;camera name&quot;,&quot;site name&quot;,&quot;notes&quot;
 &quot;416d8e21-a6f0-4b02-93a7-07cd01a9effa&quot;,&quot;EEN India North&quot;,&quot;active&quot;,&quot;19&quot;,&quot;1&quot;,&quot;2&quot;,&quot;108 Test camera (RMA ROOM)&quot;,&quot;Eagle Eye Bangalor,Eagle Eye India 1&quot;,&quot;EEN India office North road side facing camera&quot;
 </code></pre>
-<hr />
-<h3>vehicle</h3>
-<p>List details of vehicle</p>
+<h3>set</h3>
+<p>Update vehiclelist.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>vehiclelist set</code> command allows you to update the vehiclelist
+  for the specified id. You can specify the id or name of vehiclelist to change
+  as options and specify options to change.
+</p>
 <h4>Usage:</h4>
-<pre><code>een vsp list vehicle [options] [selectors] [general options]
+<pre><code>een vehiclelist set [options] [general options]
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--camera [camera1, camera2]</code> Specify camera names.</li>
+  <li><code>--disable</code> Set the vehiclelist status to disabled.</li>
+  <li><code>--enable</code> Set the vehiclelist status to enabled.</li>
+  <li><code>--esn [esn1, esn2]</code> Specify camera esns.</li>
+  <li><code>--id [id]</code> Specify id of the vehiclelist to update.</li>
+  <li><code>--name [name]</code> Specify name of the vehiclelist to update.</li>
+  <li>
+    <code>--new-name [new name]</code> Specify the new name to update the
+    vehiclelist.
+  </li>
+  <li><code>--notes [notes]</code> Specify notes.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To update vehiclelist with name 'Name check list ' to set the name as 'Name
+    Check Vehiclelist' and disable the vehiclelist:
+  </li>
+</ul>
+<pre><code class="language-bash">een vehiclelist set --name 'Name check list' --new-name 'Name Check Vehiclelist' --disable
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully updated the vehiclelist: (id: 4879606b-1b89-4c74-8080-25cbf93faffc)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">unable to update vehiclelist: 100f5b5fga is not a valid camera (status: 400)
+</code></pre>
+<h2>Notes:</h2>
+<ul>
+  <li>
+    Either --name or --id option and at least one option to update must be
+    provided.
+  </li>
+</ul>
+<hr />
+<h1>vehicle - Manage Vehicle</h1>
+<h2>NAME</h2>
+<p><code>vehicle</code> - manage and interact with vehicles.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een vehicle [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>vehicle</code> command allows you to manage vehicle and list all
+  vehicles.
+</p>
+<h2>COMMANDS</h2>
+<h3>add</h3>
+<p>Add vehicle to vehiclelist.</p>
+<h4>Usage:</h4>
+<pre><code>een vehicle add [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li>
+    <code>--access-type [access-type]</code> Specify access type (supported
+    values: allow, deny).
+  </li>
+  <li><code>--plate [plate]</code> Specify license plate number.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--color [color]</code> Specify color.</li>
+  <li><code>--make [make]</code> Specify make.</li>
+  <li><code>--model [model]</code> Specify model.</li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours).
+  </li>
+  <li><code>--tag [tag1, tag2]</code> Specify tag.</li>
+  <li>
+    <code>--valid-from [valid-from]</code> Specify date from which this record
+    is valid (supported format: YYYYMMDDhhmmss.sss).
+  </li>
+  <li>
+    <code>--valid-to [valid-to]</code> Specify date up to which this record is
+    valid (supported format: YYYYMMDDhhmmss.sss).
+  </li>
+  <li>
+    <code>--vehiclelist-id [id]</code> Specify vehiclelist id to add vehicle to.
+  </li>
+  <li>
+    <code>--vehiclelist-name [name]</code> Specify vehiclelist name to add
+    vehicle to.
+  </li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add a vehicle to vehiclelist with id 1234 access type 'allow' plate
+    number 'ABCDK7' make 'acura' color 'white':
+  </li>
+</ul>
+<pre><code class="language-bash">een vehicle add --access-type allow --plate 'ABCDK7' --vehiclelist-id 'd9e9742c-9522-49e8-bb86-ed7eeb4aa14e' --make acura --color white
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully added vehicle to the vehiclelist: (id: 06c0c857-07ed-4885-9fe9-9cbf4bee1560)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">unable to add vehicle to the vehiclelist: plate already exists (status: 409)
+</code></pre>
+<h3>delete</h3>
+<p>Delete a vehicle from vehiclelist.</p>
+<h4>Usage:</h4>
+<pre><code>een vehicle delete [options] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--plate [plate]</code> Specify license plate number of the vehicle to
+    delete.
+  </li>
+  <li><code>--vehicle-id [id]</code> Specify id of the vehicle to delete.</li>
+  <li>
+    <code>--vehiclelist-id [id]</code> Specify id of the vehiclelist to delete
+    the vehicle from.
+  </li>
+  <li>
+    <code>--vehiclelist-name [name]</code> Specify name of the vehiclelist to
+    delete the vehicle from.
+  </li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To delete a vehicle with plate number 'YUIOPT' from vehiclelist with name
+    'een north':
+  </li>
+</ul>
+<pre><code class="language-bash">een vehicle delete --plate 'YUIOPT' --vehiclelist-name 'een north'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully deleted the vehicle: 8b741095-89fd-420c-93e7-ca2914107761 from the vehiclelist d9e9742c-9522-49e8-bb86-ed7eeb4aa14e
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to delete the vehicle from vehiclelist: resource not found (status: 404)
+</code></pre>
+<h2>Notes:</h2>
+<ul>
+  <li>
+    Either --vehiclelist-name or --vehiclelist-id option must be provided.
+  </li>
+  <li>Either --plate or --vehicle-id option must be provided.</li>
+</ul>
+<h3>list</h3>
+<p>List details of vehicle</p>
+<h4>Usage:</h4>
+<pre><code>een vehicle list [options] [selectors] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
     <code>--id [id]</code> Display details of vehicles with the specified
-    vehicle list id.
+    vehiclelist id.
   </li>
   <li>
-    <code>--include [value1, value2]</code><br />
-    Display associated items. Supported values: id, plate.
+    <code>--include [value1, value2]</code> Display associated items. Supported
+    values: id, plate.
   </li>
   <li>
     <code>-l, --long</code> Display details of vehicles, including vehicle id,
-    color, make, model, user tags, security status, vehicle list id.
+    color, make, model, user tags, security status, vehiclelist id.
   </li>
   <li>
     <code>--name [name]</code> Display details of vehicles with the specified
-    vehicle list name.
+    vehiclelist name.
   </li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
-  <li><code>--access-type [type1, type2]</code> Filter by access type.</li>
-  <li><code>--plate [plate]</code> Filter by license plate number.</li>
   <li>
-    <code>--security-status [status1, status2]</code> Filter by security status.
+    <code>--access-type [type1, type2]</code> Filter by access type (supported
+    values: allow, deny).
   </li>
-  <li><code>--user-tag [tag1, tag2]</code> Filter by user tags.</li>
+  <li><code>--plate [plate]</code> Filter by license plate number.</li>
+  <li><code>--user-tags [tag1, tag2]</code> Filter by user tags.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>
-    To get VSP list vehicles with vehicle list name 'Hotlist Vehicles' in csv
+    To get VSP list vehicles with vehiclelist name 'Hotlist Vehicles' in CSV
     format with header:
   </li>
 </ul>
-<pre><code class="language-bash">een vsp list vehicle --name 'Hotlist Vehicles' --csv --header
+<pre><code class="language-bash">een vehicle list --name 'Hotlist Vehicles' --csv --header
 </code></pre>
 <h4>Output</h4>
-<pre><code class="language-csv">&quot;license plate&quot;,&quot;accsss type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehicle list name&quot;
+<pre><code class="language-csv">&quot;license plate&quot;,&quot;access type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehiclelist name&quot;
 &quot;LHS7593&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Hotlist Vehicles&quot;
 &quot;SMY5299&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Hotlist Vehicles&quot;
 &quot;GZJ8668&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Hotlist Vehicles&quot;
 </code></pre>
 <ul>
   <li>
-    To get VSP list vehicles with vehicle list id '23j2j5' and user tags 'brivo'
-    in csv format with headers as long list:
+    To get VSP list vehicles with vehiclelist id '23j2j5' and user tags 'brivo'
+    in CSV format with headers as long list:
   </li>
 </ul>
-<pre><code class="language-bash">een vsp list vehicle --id 'e705d1f9-4846-4c98-aa09-20b5e54b694f' -l --header  --user-tags 'brivo' --csv
+<pre><code class="language-bash">een vehicle list --id 'e705d1f9-4846-4c98-aa09-20b5e54b694f' -l --header  --user-tags 'brivo' --csv
 </code></pre>
 <h4>Output</h4>
-<pre><code class="language-csv">&quot;license plate&quot;,&quot;accsss type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehicle list name&quot;,&quot;id&quot;,&quot;color&quot;,&quot;make&quot;,&quot;model&quot;,&quot;user tags&quot;,&quot;security status&quot;,&quot;vehicle list id&quot;
+<pre><code class="language-csv">&quot;license plate&quot;,&quot;access type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehiclelist name&quot;,&quot;id&quot;,&quot;color&quot;,&quot;make&quot;,&quot;model&quot;,&quot;user tags&quot;,&quot;security status&quot;,&quot;vehiclelist id&quot;
 &quot;VPM1767&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;emp_id/1028, company/brivo&quot;,&quot;Employee List&quot;,&quot;ff149647-7146-4dd1-ba6a-a55640f53f29&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;emp_id,1028,company,brivo&quot;,&quot;exempted&quot;,&quot;e705d1f9-4846-4c98-aa09-20b5e54b694f&quot;
 &quot;TKN9576&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;emp_id/1007, company/brivo&quot;,&quot;Employee List&quot;,&quot;fc540121-cb52-4fd9-b9ce-bc3abd43a7e1&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;emp_id,1007,company,brivo&quot;,&quot;exempted&quot;,&quot;e705d1f9-4846-4c98-aa09-20b5e54b694f&quot;
 </code></pre>
 <ul>
   <li>
-    To get VSP list vehicles with vehicle list name 'hotlist' and license plate
-    number 'NJIFUI7' in csv format with headers as long list:
+    To get VSP list vehicles with vehiclelist name 'hotlist' and license plate
+    number 'NJIFUI7' in CSV format with headers as long list:
   </li>
 </ul>
-<pre><code class="language-bash">een vsp list vehicle --name 'Hotlist Vehicles'  -l --header  --plate 'PSM1356' --csv
+<pre><code class="language-bash">een vehicle list --name 'Hotlist Vehicles'  -l --header  --plate 'PSM1356' --csv
 </code></pre>
 <h4>Output</h4>
-<pre><code class="language-csv">&quot;license plate&quot;,&quot;accsss type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehicle list name&quot;,&quot;id&quot;,&quot;color&quot;,&quot;make&quot;,&quot;model&quot;,&quot;user tags&quot;,&quot;security status&quot;,&quot;vehicle list id&quot;
+<pre><code class="language-csv">&quot;license plate&quot;,&quot;access type&quot;,&quot;valid from&quot;,&quot;valid to&quot;,&quot;user data&quot;,&quot;vehiclelist name&quot;,&quot;id&quot;,&quot;color&quot;,&quot;make&quot;,&quot;model&quot;,&quot;user tags&quot;,&quot;security status&quot;,&quot;vehiclelist id&quot;
 &quot;PSM1356&quot;,&quot;allow&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;Hotlist Vehicles&quot;,&quot;f34478ea-46f5-4423-b5a0-23bbe5ad19f0&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;3539f639-00d1-4c6b-b1a7-c66954f4cb93&quot;
 </code></pre>
+<h3>set</h3>
+<p>Update vehicle details.</p>
+<h4>Usage:</h4>
+<pre><code>een vehicle set [options] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--access-type [access-type]</code> Specify access type (supported
+    values: allow, deny).
+  </li>
+  <li><code>--color [color]</code> Specify color.</li>
+  <li><code>--make [make]</code> Specify make.</li>
+  <li><code>--model [model]</code> Specify model.</li>
+  <li>
+    <code>--plate [plate]</code> Specify license plate number of the vehicle to
+    update.
+  </li>
+  <li>
+    <code>--schedule [schedule]</code> Specify schedule (supported values:
+    workHours, nonWorkHours, fullHours).
+  </li>
+  <li><code>--tag [tag1, tag2]</code> Specify tag.</li>
+  <li>
+    <code>--valid-from [valid-from]</code> Specify date from which this record
+    is valid (supported format: YYYYMMDDhhmmss.sss).
+  </li>
+  <li>
+    <code>--valid-to [valid-to]</code> Specify date up to which this record is
+    valid (supported format: YYYYMMDDhhmmss.sss).
+  </li>
+  <li><code>--vehicle-id [id]</code> Specify id of the vehicle to update.</li>
+  <li>
+    <code>--vehiclelist-id [id]</code> Specify id of the vehiclelist to update
+    the vehicle from.
+  </li>
+  <li>
+    <code>--vehiclelist-name [name]</code> Specify name of the vehiclelist to
+    update the vehicle from.
+  </li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To update vehicle with plate number 'QWERTY' from the vehiclelist
+    'New_Vehicle list_1901' to set the access type as 'allow' and valid from to
+    '2026-04-01':
+  </li>
+</ul>
+<pre><code class="language-bash">een vehicle set --plate 'QWERTY' --vehiclelist-name 'New_Vehicle list_1901' --access-type 'allow' --valid-from '20260401000000.000'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully updated vehicle details: (id: d32c71fd-0b47-4da7-9716-e2cfca5e519f)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to update vehicle details: validfrom must be less than validto (status: 400)
+</code></pre>
+<h2>Notes:</h2>
+<ul>
+  <li>
+    Either --vehiclelist-name or --vehiclelist-id option must be provided.
+  </li>
+  <li>Either --plate or --vehicle-id option must be provided.</li>
+</ul>
 <hr />
 <h1>pos - Manage Point of Sale (POS) Events</h1>
 <h2>NAME</h2>
 <p><code>pos</code> - manage and retrieve Point of Sale events.</p>
 <h2>SYNOPSIS</h2>
-<pre><code>een pos listevents [OPTIONS]
+<pre><code>een pos [COMMAND] [OPTIONS]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
@@ -3411,13 +5006,13 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </p>
 <h2>COMMANDS</h2>
 <h3>listevents</h3>
-<p>Get POS events.</p>
+<p>Get point of sale (POS) events.</p>
 <h4>Usage:</h4>
 <pre><code>een pos listevents [options] [selectors] [general options]
 </code></pre>
 <h4>Options:</h4>
 <ul>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-e, --end-time [end time]</code> Specify events end time; ensure that
     the --start-time option is used.
@@ -3438,12 +5033,10 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <ul>
   <li><code>-b, --bill-number [bill number]</code> Filter by bill number.</li>
   <li>
-    <code>--discount-max [discount max]</code> Filter by maximum discount
-    percentage.
+    <code>--discount-max [discount max]</code> Filter by maximum discount.
   </li>
   <li>
-    <code>--discount-min [discount min]</code> Filter by minimum discount
-    percentage.
+    <code>--discount-min [discount min]</code> Filter by minimum discount.
   </li>
   <li><code>-E, --employee-id [employee ID]</code> Filter by employee ID.</li>
   <li><code>-F, --flagged</code> Filter by flagged transactions.</li>
@@ -3454,14 +5047,16 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
     <code>--net-amount-min [net amount min]</code> Filter by minimum net amount.
   </li>
   <li>
-    <code>--site [site name1, site name2]</code>
-    Filter by site names. Provide a comma-separated list of site names.
-    <code>--site-id [site id1, site id2]</code>
-    Filter by site IDs. Provide a comma-separated list of site IDs.
+    <code>--site [site name1, site name2]</code> Filter by site names associated
+    with the camera.
   </li>
   <li>
-    <code>-t, --transaction-type [transaction type]</code> Filter by transaction
-    type.
+    <code>--site-id [site id1, site id2]</code> Filter by site IDs associated
+    with the camera.
+  </li>
+  <li>
+    <code>-t, --transaction-type [transaction type]</code> Filter by type of the
+    transaction.
   </li>
 </ul>
 <h4>Notes:</h4>
@@ -3492,17 +5087,20 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </ul>
 <pre><code class="language-bash">een pos listevents --flagged
 </code></pre>
+<hr />
 <h1>perftest - Execute Performance Tests</h1>
 <h2>NAME</h2>
 <p><code>perftest</code> - execute performance tests.</p>
 <h2>SYNOPSIS</h2>
-<pre><code>een perftest preview [OPTIONS]
+<pre><code>een perftest [COMMAND] [OPTIONS]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
   The <code>perftest</code> command allows you to execute performance tests on
   various aspects of the platform.
 </p>
+<h2>COMMAND</h2>
+<h3>livelatency</h3>
 <h4>Usage:</h4>
 <pre><code>een perftest livelatency [options] [selectors] [general options]
 </code></pre>
@@ -3526,7 +5124,6 @@ perftest livelatency run on 1/1 cameras 10 samples each
 &quot;test-camera-1(100236d0)&quot;,&quot;DB14-GUN(1003d9df)&quot;,&quot;5312.00&quot;,&quot;9149.00&quot;,&quot;8464.40&quot;
 
 </code></pre>
-<h2>COMMANDS</h2>
 <h3>preview</h3>
 <p>Get performance test results for preview images.</p>
 <h4>Usage:</h4>
@@ -3539,7 +5136,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
     <code>-c, --count [count]</code> Specify number of previews to be tested
     (default: 10).
   </li>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-e, --end-time [end time]</code> Specify the end timestamp for
     analysis, this option requires --start-time to be specified.
@@ -3553,7 +5150,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
     ms).
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -3577,10 +5174,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li>
-    <code>--status [status]</code><br />
-    Filter by camera status.
-  </li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h4>Notes:</h4>
@@ -3630,7 +5224,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
     <code>-c, --count [count]</code> Specify number of asset lists to be tested
     (default: 10).
   </li>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-e, --end-time [end time]</code> Specify the end timestamp for
     analysis, this option requires --start-time to be specified.
@@ -3644,7 +5238,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
     ms).
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>-H, --headerinfo</code> Display response header info.</li>
@@ -3668,10 +5262,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li>
-    <code>--status [status]</code><br />
-    Filter by camera status.
-  </li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h4>Notes:</h4>
@@ -3710,7 +5301,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
     <code>-c, --count [count]</code> Specify number of pngspans to be tested
     (default: 10).
   </li>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-e, --end-time [end time]</code> Specify the end timestamp for
     analysis, this option requires --start-time to be specified.
@@ -3724,7 +5315,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
     ms).
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>-H, --headerinfo</code> Display response header info.</li>
@@ -3752,10 +5343,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li>
-    <code>--status [status]</code><br />
-    Filter by camera status.
-  </li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h4>Notes:</h4>
@@ -3800,19 +5388,19 @@ perftest livelatency run on 1/1 cameras 10 samples each
     <code>-c, --count [count]</code> Specify number of videos to be tested
     (default: 10).
   </li>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the name of the file where
     the output will be saved.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
     <code>-l, --length [length]</code> Specify the video duration for analysis
-    (default: 5s).
+    (default: 10s).
   </li>
 </ul>
 <h4>Selectors:</h4>
@@ -3865,13 +5453,13 @@ perftest livelatency run on 1/1 cameras 10 samples each
     <code>-c, --count [count]</code> Specify number of videos frames to be
     tested (default: 10).
   </li>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-f, --file-name [file name]</code> Specify the file name to save the
     test results.
   </li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -3890,10 +5478,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li>
-    <code>--status [status]</code><br />
-    Filter by camera status.
-  </li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h2>EXAMPLES</h2>
@@ -3919,7 +5504,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
     <code>-c, --count [count]</code> Specify number of videos to be tested
     (default: 10).
   </li>
-  <li><code>--csv</code> Display details in csv format.</li>
+  <li><code>--csv</code> Display details in CSV format.</li>
   <li>
     <code>-e, --end-time [end time]</code> Specify the end timestamp for
     analysis, this option requires --start-time to be specified.
@@ -3930,7 +5515,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
   <li><code>--fixed</code> Generate timestamps at fixed intervals.</li>
   <li>
-    <code>-g, --google-sheet</code> Display details in csv format in google
+    <code>-g, --google-sheet</code> Display details in CSV format in google
     sheet.
   </li>
   <li><code>--header</code> Display column headers in the result.</li>
@@ -3957,10 +5542,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
   <li><code>--site [site1, site2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li>
-    <code>--status [status]</code><br />
-    Filter by camera status.
-  </li>
+  <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
 <h4>Notes:</h4>
@@ -3997,6 +5579,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
 </ul>
 <pre><code class="language-bash">een perftest historic --site &quot;site1&quot;
 </code></pre>
+<hr />
 <h1>googleconfig - Update Google Configuration Options</h1>
 <h2>NAME</h2>
 <p>
@@ -4128,7 +5711,9 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li>Search for Google Drive API</li>
 </ol>
 <p>
-  <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com">Google Drive API</a>
+  <a href="https://console.cloud.google.com/apis/library/drive.googleapis.com"
+    >Google Drive API</a
+  >
 </p>
 <ol start="4">
   <li>
@@ -4139,7 +5724,9 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
 </ol>
 <p>
-  <a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com">Google Sheets API</a>
+  <a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com"
+    >Google Sheets API</a
+  >
 </p>
 <ol start="6">
   <li>
