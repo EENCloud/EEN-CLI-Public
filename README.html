@@ -1640,6 +1640,116 @@ een camera deletetag 'test, new tag' --bridge-esn '0987' --status 'online'
 &quot;1002f572&quot;
 </code></pre>
 <hr />
+<h3>get</h3>
+<p>Get bridge settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>bridge get</code> command allows you to get a specific setting for
+  one or more bridges. You can specify the setting to retrieve as
+  <code>&lt;parameter&gt;</code>. You can use selectors (like
+  <code>--bridge-esn</code>, <code>--tag</code>, <code>--site</code>, etc.) to
+  target specific bridges.
+</p>
+<h4>Usage:</h4>
+<pre><code>een bridge get [parameters] [options] [selectors] [general options]
+</code></pre>
+<h4>Parameters:</h4>
+<ul>
+  <li><code>bandwidth-mode</code> Get bandwidth-mode.</li>
+  <li><code>bandwidth-limit</code> Get bandwidth-limit.</li>
+  <li><code>bridge-name</code> Get bridge-name.</li>
+  <li>
+    <code>local-display-browser</code> Get local-display-browser (Is local
+    display browser enabled or not).
+  </li>
+  <li>
+    <code>local-display-monitor</code> Get local-display-monitor (Is local
+    display monitor enabled or not).
+  </li>
+  <li>
+    <code>media-shortcut</code> Get media-shortcut (Is media shortcut enabled or
+    not).
+  </li>
+  <li><code>rtsp-auth</code> Get rtsp-auth (Is RTSP auth enabled or not).</li>
+  <li>
+    <code>rtsp-stream</code> Get rtsp-stream (Is RTSP stream enabled or not).
+  </li>
+  <li><code>site-name</code> Get site-name.</li>
+  <li>
+    <code>upnp</code> Get universal plug and play (UPnP) (Is UPnP enabled or
+    not).
+  </li>
+  <li><code>video-standard</code> Get video-standard.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs.
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status]</code> Filter by status.</li>
+  <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Get bandwidth mode for a specific bridge
+een bridge get bandwidth-mode --bridge-esn BRIDGE123
+
+# Get bandwidth limit for multiple bridges and export as CSV
+een bridge get bandwidth-limit --bridge bridge1,bridge2 --csv -f bandwidth.csv
+
+# Get bridge name for all bridges at a site
+een bridge get bridge-name --site &quot;Main Office&quot;
+
+# Check if local display browser is enabled
+een bridge get local-display-browser --bridge-esn BRIDGE123
+
+# Check if local display monitor is enabled
+een bridge get local-display-monitor --bridge-esn BRIDGE123
+
+# Check if media shortcut is enabled for all bridges
+een bridge get media-shortcut
+
+# Check if RTSP authentication is enabled
+een bridge get rtsp-auth --bridge-esn BRIDGE123
+
+# Check if RTSP streaming is enabled
+een bridge get rtsp-stream --bridge-esn BRIDGE123
+
+# Check if UPnP is enabled for all bridges with a specific tag
+een bridge get upnp --tag warehouse
+
+# Get video standard for bridges at a site and export to Google Sheets with headers
+een bridge get video-standard --site-id SITE123 -g --header
+
+# Get site-name for every bridge
+een bridge get site-name
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>bridge get bandwidth-mode</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<pre><code>&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bandwidth mode&quot;
+&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;percent&quot;
+&quot;100b7c74&quot;,&quot;420 LPR test&quot;,&quot;percent&quot;
+</code></pre>
+<hr />
 <h3>availability</h3>
 <p>Get bridge availability details.</p>
 <h4>Usage:</h4>
@@ -1726,6 +1836,321 @@ een camera deletetag 'test, new tag' --bridge-esn '0987' --status 'online'
   <li>To get availability information for a bridge:</li>
 </ul>
 <pre><code class="language-bash">een bridge availability --esn [esn1, esn2] --start-time [start time] --end-time [end time]
+</code></pre>
+<hr />
+<h3>set</h3>
+<p>Edit bridge settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>bridge set</code> command allows you to update a specific setting
+  for one or more bridges. You can specify the setting to change as
+  <code>&lt;parameter&gt;</code>, and the new value as
+  <code>&lt;value&gt;</code>. You can use selectors (like
+  <code>--bridge-esn</code>, <code>--tag</code>, <code>--site</code>, etc.) to
+  target specific bridges.
+</p>
+<h4>Usage:</h4>
+<pre><code>een bridge set [parameter] [value] [options] [selectors] [general options]
+</code></pre>
+<h4>Note:</h4>
+<ul>
+  <li>
+    When setting bandwidth-limit, the value is automatically interpreted and
+    converted based on the selected bandwidth-mode (fixed, percent, or minimum).
+  </li>
+  <li>
+    Users only need to provide the numeric value — the system handles the
+    necessary conversion internally.
+  </li>
+  <li>
+    When bandwidth-mode is set to minimum, the bandwidth limit is automatically
+    set to the minimum allowed value and any provided limit is ignored.
+  </li>
+</ul>
+<h4>Parameters:</h4>
+<ul>
+  <li>
+    <code>bandwidth-limit &lt;bandwidth-limit&gt;</code> Set bandwidth limit.
+  </li>
+  <li>
+    <code>bandwidth-mode &lt;bandwidth-mode&gt;</code> Set bandwidth mode
+    (values: fixed, percent, minimum).
+  </li>
+  <li><code>bridge-name &lt;bridge-name&gt;</code> Set the bridge name.</li>
+  <li>
+    <code>local-display-browser</code> Enable or disable local display via
+    browser (use --enable or --disable).
+  </li>
+  <li>
+    <code>local-display-monitor</code> Enable or disable local display via
+    monitor (use --enable or --disable).
+  </li>
+  <li>
+    <code>media-shortcut</code> Enable or disable media shortcut (use --enable
+    or --disable).
+  </li>
+  <li>
+    <code>rtsp-auth</code> Enable or disable RTSP auth (use --enable or
+    --disable).
+  </li>
+  <li>
+    <code>rtsp-stream</code> Enable or disable bridge RTSP stream (use --enable
+    or --disable).
+  </li>
+  <li><code>site-name &lt;site-name&gt;</code> Set the site name.</li>
+  <li>
+    <code>upnp</code> Enable or disable universal plug and play (UPnP) (use
+    --enable or --disable).
+  </li>
+  <li>
+    <code>video-standard &lt;video-standard&gt;</code> Set video standard
+    (values: ntsc, pal).
+  </li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in csv format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in csv format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs
+    (use '*' to apply to all bridges).
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li><code>--status [status]</code> Filter by status.</li>
+  <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Enable RTSP stream for specific bridges
+een bridge set rtsp-stream --enable --bridge 'first_bridge, second_bridge'
+
+# Set bridge-name and save as CSV
+een bridge set bridge-name 'new bridge name' --bridge-esn 12345 --csv -f update-bridge-name.csv
+
+# Disable local display via monitor for bridges on the site given
+een bridge set local-display-monitor --disable --site 'site name'
+
+# Enable media-shortcut for all bridges and export results to Google Sheets
+een bridge set media-shortcut --enable --bridge-esn '*' -g --header
+
+# Set bandwidth mode as percent for specific bridge ESNs
+een bridge set bandwidth-mode percent --bridge-esn '1007fda2,10035b4a'
+
+# Set bandwidth limit as 50 for specified bridge
+een bridge set bandwidth-limit 50 --bridge-esn '1007fda2'
+
+# Set video-standard as ntsc for the bridges in site 'Eagle Eye Bangalore'
+een bridge set video-standard ntsc --site 'Eagle Eye Bangalore'
+
+# Enable upnp for the specified bridge
+een bridge set upnp --bridge-esn '1007fda2' --enable
+
+# Disable rtsp auth for the specified bridge
+een bridge set rtsp-auth --bridge-esn '1007fda2' --disable
+
+# Set site-name for a specific bridge
+een bridge set site-name 'Hari Test' --bridge-esn '1007fda2'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>bridge set</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format and is suitable for
+  scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">Updated bridge for 1/1 bridge
+
+&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bridge status&quot;,&quot;is successful&quot;
+&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;online&quot;,&quot;yes&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">Updated bridge for 0/1 bridge
+
+&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bridge status&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;100b7c74&quot;,&quot;420 LPR test&quot;,&quot;deviceOffline&quot;,&quot;no&quot;,&quot;Internal Server Error (response status: Unable to communicate with a device. Please try again later.)&quot;
+</code></pre>
+<h4>NOTES:</h4>
+<ul>
+  <li>
+    The <code>video-standard</code> parameter is only applicable to bridges with
+    analog inputs. Attempting to set it on unsupported bridges may result in an
+    error.
+  </li>
+  <li>
+    When updating <code>bandwidth-mode</code>, the existing bandwidth limit is
+    preserved automatically. You do not need to specify
+    <code>bandwidth-limit</code> again.
+  </li>
+  <li>
+    If <code>bandwidth-mode</code> is set to <code>minimum</code>, the bandwidth
+    limit will be set to <code>0</code>.
+  </li>
+  <li>
+    Some cameras require <code>upnp</code> for discovery. Enable it only if
+    needed. All upnp devices will appear under available cameras.
+  </li>
+  <li>
+    <code>bridgeRtspEnabled</code> allows cameras on the bridge to be streamed
+    in full resolution over the local network.
+  </li>
+  <li>
+    <code>bridgeRtspAuth</code> secures RTSP streams with a username and
+    password; disabling it makes the stream publicly accessible via the RTSP
+    URL.
+  </li>
+</ul>
+<p><strong>Scripting/AI Usage Notes:</strong></p>
+<ul>
+  <li>The first line indicates how many bridges were updated successfully.</li>
+  <li>
+    The CSV output can be parsed to check the
+    <code>&quot;is successful&quot;</code> column for
+    <code>&quot;yes&quot;</code> or <code>&quot;no&quot;</code>.
+  </li>
+  <li>
+    If an error occurs, the <code>&quot;error reason&quot;</code> column will
+    contain the error message.
+  </li>
+  <li>
+    This format is ideal for automation: scripts can check for
+    <code>&quot;yes&quot;</code>/<code>&quot;no&quot;</code> and handle errors
+    accordingly.
+  </li>
+</ul>
+<hr />
+<h3>addtag</h3>
+<p>
+  The <code>bridge addtag</code> command allows you to add tags to bridge. It
+  can accept multiple tags, you can use selectors (like
+  <code>--bridge-esn</code>, <code>--tag</code>, <code>--site</code>, etc.) to
+  target specific bridges.
+</p>
+<h4>Usage:</h4>
+<pre><code>een bridge addtag &lt;tags&gt; [options] [selectors] [general options]
+</code></pre>
+<h4>Argument:</h4>
+<ul>
+  <li><code>&lt;tags&gt;</code> Tags to be added to the bridges.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>--file-name [file name]</code> Specify the name of the file where the
+    output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs
+    (use '*' to apply to all bridges).
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status]</code> Filter by status.</li>
+  <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># add tags 'newtag, testtag' to bridge with esn 1234
+een bridge addtag 'new tag, test' --bridge-esn '1234'
+
+# add tags 'clitag' to bridge in site 'Eagle Eye India 1' and status online
+een bridge addtag 'clitag' --site 'Eagle Eye India 1' --status 'online'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>bridge addtag</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format and is suitable for
+  scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bridge tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2, newtag, testtag&quot;,&quot;yes&quot;,&quot;&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bridge tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2&quot;,&quot;no&quot;,&quot;Not Found (response status: unknown)&quot;
+</code></pre>
+<hr />
+<h3>deletetag</h3>
+<p>
+  The <code>bridge deletetag</code> command allows you to delete tags from
+  selected bridges. It can accept multiple tags, you can use selectors (like
+  <code>--bridge-esn</code>, <code>--tag</code>, <code>--site</code>, etc.) to
+  target specific bridges.
+</p>
+<h4>Usage:</h4>
+<pre><code>een bridge deletetag &lt;tags&gt; [options] [selectors] [general options]
+</code></pre>
+<h4>Argument:</h4>
+<ul>
+  <li><code>&lt;tags&gt;</code> Tags to be deleted from the bridges.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>--file-name [file name]</code> Specify the name of the file where the
+    output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs
+    (use '*' to apply to all bridges).
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status]</code> Filter by status.</li>
+  <li><code>--tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># delete tags 'new tag, new tag' from bridge with esn '1234' give output in csv format with header:
+een bridge deletetag 'new tag, test' --esn '1234' --csv --header
+
+# delete tag 'clitag' from bridges in site 'Eagle Eye India 1' with status online:
+een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online'
+
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>bridge deletetag</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bridge tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2&quot;,&quot;yes&quot;,&quot;&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bridge tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2&quot;,&quot;no&quot;,&quot;Not Found (response status: unknown)&quot;&quot;
 </code></pre>
 <hr />
 <h1>switch - Manage Switches</h1>
