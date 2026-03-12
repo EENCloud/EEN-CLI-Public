@@ -385,6 +385,89 @@ een camera list --help
 <pre><code class="language-bash">een user list --html
 </code></pre>
 <hr />
+<h3>add</h3>
+<p>Add a new user to the account.</p>
+<h4>Usage:</h4>
+<pre><code>een user add [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--email [email]</code> Specify email id of the user.</li>
+  <li>
+    <code>--first-name [first-name]</code> Specify first name of the user.
+  </li>
+  <li><code>--last-name [last-name]</code> Specify last name of the user.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--grant-all-accounts</code> Grant access to all accounts.</li>
+  <li><code>--grant-all-cameras</code> Grant access to all cameras.</li>
+  <li><code>--grant-all-layouts</code> Grant access to all layouts.</li>
+  <li><code>--grant-all-locations</code> Grant access to all locations.</li>
+  <li>
+    <code>--grant-all-multicameras</code> Grant access to all multi cameras.
+  </li>
+  <li><code>--grant-all-speakers</code> Grant access to all speakers.</li>
+  <li>
+    <code>--permissions [permission1, permission2]</code> Specify permissions
+    (supported values: viewVSP, editMap, talkDown, editUsers, controlPTZ,
+    editSharing, exportUsers, viewArchive, editArchive, viewVSPRule,
+    editVSPRule, editAccounts, viewAuditLog, editSpeakers, viewLiveVideo,
+    administrator, createLayouts, downloadVideo, upgradeEdition,
+    addEditSpeakers, viewVehicleList, editVehicleList, viewAutomations,
+    editAutomations, editPTZStations, editMotionAreas, viewPreviewVideo,
+    turnCamerasOnOff, viewHistoricVideo, layoutAdministrator,
+    editAllCameraSettings, addEditBridgesCameras, editNoBillingDeviceSettings,
+    viewInvoice, addRemovePayment, placeOrders, viewShipments).
+  </li>
+  <li><code>--role-id [id1, id2]</code> Specify role ids.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add a user with first name 'addcli', last name 'test', email
+    'addcli@gmail.com' with permissions 'viewVSP, addEditBridgesCameras,
+    viewAuditLog', with access to all cameras:
+  </li>
+</ul>
+<pre><code class="language-bash">een user add --first-name 'addcli' --last-name 'test' --email 'addcli@gmail.com' --permissions 'viewVSP, addEditBridgesCameras, viewAuditLog' --grant-all-cameras
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully added user: (id: ca03cfda)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to add user: the resource already exists (status: 409)
+</code></pre>
+<hr />
+<h3>delete</h3>
+<p>Delete a user from the account.</p>
+<h4>Usage:</h4>
+<pre><code>een user delete [options] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--email [email]</code> Specify email of the user to delete.</li>
+  <li><code>--id [id]</code> Specify id of the user to delete.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To delete a user with id '1234':</li>
+</ul>
+<pre><code class="language-bash">een user delete --id ca03cfda
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully deleted the user: ca03cfda
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to delete user from the account: the resource was not found (status: 404)
+</code></pre>
+<h4>Notes</h4>
+<ul>
+  <li>Either --email or --id option must be provided.</li>
+</ul>
+<hr />
 <h3>set</h3>
 <p>Update user settings.</p>
 <h4>Usage:</h4>
@@ -531,7 +614,9 @@ een camera list --help
     <code>turnCamerasOnOff</code>, <code>viewHistoricVideo</code>,
     <code>layoutAdministrator</code>, <code>editAllCameraSettings</code>,
     <code>addEditBridgesCameras</code>,
-    <code>editNoBillingDeviceSettings</code>.
+    <code>editNoBillingDeviceSettings</code>, <code>viewInvoice</code>,
+    <code>addRemovePayment</code>, <code>placeOrders</code>,
+    <code>viewShipments</code>.
   </li>
 </ul>
 <h4>Options:</h4>
@@ -2132,7 +2217,7 @@ een bridge addtag 'clitag' --site 'Eagle Eye India 1' --status 'online'
 </ul>
 <h4>EXAMPLES</h4>
 <pre><code class="language-bash"># delete tags 'new tag, new tag' from bridge with esn '1234' give output in csv format with header:
-een bridge deletetag 'new tag, test' --esn '1234' --csv --header
+een bridge deletetag 'new tag, test' --bridge-esn '1234' --csv --header
 
 # delete tag 'clitag' from bridges in site 'Eagle Eye India 1' with status online:
 een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online'
@@ -2146,11 +2231,11 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 </p>
 <p><strong>Successful Output Example:</strong></p>
 <pre><code class="language-csv">&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bridge tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
-&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2&quot;,&quot;yes&quot;,&quot;&quot;
+&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2&quot;,&quot;yes&quot;,&quot;-&quot;
 </code></pre>
 <p><strong>Error Output Example:</strong></p>
 <pre><code class="language-csv">&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;bridge tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
-&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2&quot;,&quot;no&quot;,&quot;Not Found (response status: unknown)&quot;&quot;
+&quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2&quot;,&quot;no&quot;,&quot;Not Found (response status: unknown)&quot;
 </code></pre>
 <hr />
 <h1>switch - Manage Switches</h1>
@@ -5525,30 +5610,6 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
   various aspects of the platform.
 </p>
 <h2>COMMAND</h2>
-<h3>livelatency</h3>
-<h4>Usage:</h4>
-<pre><code>een perftest livelatency [options] [selectors] [general options]
-</code></pre>
-<h2>Example</h2>
-<p>
-  To get camera perftest livelatency for all cameras in CSV format (with
-  headers):
-</p>
-<pre><code class="language-bash">een perftest livelatency --header --csv
-</code></pre>
-<h4>Output:</h4>
-<pre><code>account: Account_name(00244829)
-
-running livelatency performance test for 10 samples on 1 cameras
-
-tested camera test-camera-1 (1003d9df)... min: 5312.00ms, max: 9149.00ms, avg: 8464.40ms
-
-perftest livelatency run on 1/1 cameras 10 samples each
-
-&quot;bridge&quot;,&quot;camera&quot;,&quot;minimum time (ms)&quot;,&quot;maximum time (ms)&quot;,&quot;average time (ms)&quot;
-&quot;test-camera-1(100236d0)&quot;,&quot;DB14-GUN(1003d9df)&quot;,&quot;5312.00&quot;,&quot;9149.00&quot;,&quot;8464.40&quot;
-
-</code></pre>
 <h3>preview</h3>
 <p>Get performance test results for preview images.</p>
 <h4>Usage:</h4>
@@ -5611,6 +5672,25 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li>
     If the specified time range exceeds the retention period of the camera, the
     test will be performed over the actual retention period of the camera.
+  </li>
+  <li>
+    The following custom errors may appear in the
+    <code>error reason</code> during preview testing:
+    <ul>
+      <li>
+        Out of retention period - The requested timestamp is older than the
+        camera’s configured retention period, so the video cannot be retrieved.
+      </li>
+      <li>
+        Time range too short - The provided time range is too small to generate
+        valid timestamps for fetching video assets.
+      </li>
+      <li>
+        Failed to generate unique retry timestamp - The retry flow could not
+        create a new timestamp that was different from the timestamps already
+        used.
+      </li>
+    </ul>
   </li>
 </ul>
 <h2>EXAMPLES</h2>
@@ -5695,6 +5775,25 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li>
     If no start time or end time is specified, the test interval will be last 30
     days.
+  </li>
+  <li>
+    The following custom errors may appear in the
+    <code>error reason</code> during assetlist testing:
+    <ul>
+      <li>
+        Out of retention period - The requested timestamp is older than the
+        camera’s configured retention period, so the video cannot be retrieved.
+      </li>
+      <li>
+        Time range too short - The provided time range is too small to generate
+        valid timestamps for fetching video assets.
+      </li>
+      <li>
+        Failed to generate unique retry timestamp - The retry flow could not
+        create a new timestamp that was different from the timestamps already
+        used.
+      </li>
+    </ul>
   </li>
 </ul>
 <h2>EXAMPLES</h2>
@@ -5781,6 +5880,25 @@ perftest livelatency run on 1/1 cameras 10 samples each
     If the specified time range exceeds the retention period of the camera, the
     test will be performed over the actual retention period of the camera.
   </li>
+  <li>
+    The following custom errors may appear in the
+    <code>error reason</code> during pngspan testing:
+    <ul>
+      <li>
+        Out of retention period - The requested timestamp is older than the
+        camera’s configured retention period, so the video cannot be retrieved.
+      </li>
+      <li>
+        Time range too short - The provided time range is too small to generate
+        valid timestamps for fetching video assets.
+      </li>
+      <li>
+        Failed to generate unique retry timestamp - The retry flow could not
+        create a new timestamp that was different from the timestamps already
+        used.
+      </li>
+    </ul>
+  </li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -5848,6 +5966,24 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    The following custom errors may appear in the
+    <code>error reason</code> during live video testing:
+    <ul>
+      <li>
+        Video URL is not available - The system could not retrieve a valid live
+        video URL for the specified camera.
+      </li>
+      <li>
+        Live video failed to load within the estimated time to load the video
+        (in seconds) - The live video stream did not start within the calculated
+        timeout period.
+      </li>
+    </ul>
+  </li>
+</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To test live video performance of all the cameras in an account:</li>
@@ -5905,6 +6041,19 @@ perftest livelatency run on 1/1 cameras 10 samples each
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
   <li><code>--status [status]</code> Filter by camera status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>Notes:</h4>
+<ul>
+  <li>
+    The following custom errors may appear in the
+    <code>error reason</code> during livelatency testing:
+    <ul>
+      <li>
+        Video URL is not available - The system could not retrieve a valid live
+        video URL for the specified camera.
+      </li>
+    </ul>
+  </li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -5980,6 +6129,32 @@ perftest livelatency run on 1/1 cameras 10 samples each
     If the specified time range exceeds the retention period of the camera, the
     test will be performed over the actual retention period of the camera.
   </li>
+  <li>
+    The following custom errors may appear in the
+    <code>error reason</code> during historic testing:
+    <ul>
+      <li>
+        Out of retention period - The requested timestamp is older than the
+        camera’s configured retention period, so the video cannot be retrieved.
+      </li>
+      <li>
+        Time range too short - The provided time range is too small to generate
+        valid timestamps for fetching video assets.
+      </li>
+      <li>
+        Video URL not available for device ID - The system could not retrieve a
+        valid video stream URL for the specified device/camera ID.
+      </li>
+      <li>
+        No video available for the specified duration - No recorded video exists
+        for the requested time range.
+      </li>
+      <li>
+        Video failed to load within the estimated time (in seconds) - The video
+        stream did not load within the configured timeout period.
+      </li>
+    </ul>
+  </li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -6003,6 +6178,28 @@ perftest livelatency run on 1/1 cameras 10 samples each
   </li>
 </ul>
 <pre><code class="language-bash">een perftest historic --site &quot;site1&quot;
+</code></pre>
+<h2>Example</h2>
+<ul>
+  <li>
+    To get camera perftest livelatency for a camera in CSV format (with
+    headers):
+  </li>
+</ul>
+<pre><code class="language-bash">een perftest livelatency --esn '10101462' --header --csv
+</code></pre>
+<h4>Output:</h4>
+<pre><code>account: Account_name(00244829)
+
+running livelatency performance test for 10 samples on 1 cameras
+
+tested camera test-camera-1 (1003d9df)... min: 5312.00ms, max: 9149.00ms, avg: 8464.40ms
+
+perftest livelatency run on 1/1 cameras 10 samples each
+
+&quot;bridge&quot;,&quot;camera&quot;,&quot;status&quot;,&quot;minimum time (ms)&quot;,&quot;maximum time (ms)&quot;,&quot;average time (ms)&quot;,&quot;error reasons&quot;
+&quot;420 AI - Parking Lot 1(1003bdcc)&quot;,&quot;Camera 01 - AVYCON AVC-NKV81M(10052bcb)&quot;,&quot;online&quot;,&quot;507.00&quot;,&quot;934.00&quot;,&quot;752.30&quot;,&quot;-&quot;
+
 </code></pre>
 <hr />
 <h1>googleconfig - Update Google Configuration Options</h1>
