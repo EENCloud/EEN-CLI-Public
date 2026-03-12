@@ -351,6 +351,113 @@ een user list --html
 
 ---
 
+### add
+
+Add a new user to the account.
+
+#### Usage:
+
+```
+een user add [options] [general options]
+```
+
+#### Required Options:
+
+- `--email [email]`
+  Specify email id of the user.
+- `--first-name [first-name]`
+  Specify first name of the user.
+- `--last-name [last-name]`
+  Specify last name of the user.
+
+#### Options:
+
+- `--grant-all-accounts`
+  Grant access to all accounts.
+- `--grant-all-cameras`
+  Grant access to all cameras.
+- `--grant-all-layouts`
+  Grant access to all layouts.
+- `--grant-all-locations`
+  Grant access to all locations.
+- `--grant-all-multicameras`
+  Grant access to all multi cameras.
+- `--grant-all-speakers`
+  Grant access to all speakers.
+- `--permissions [permission1, permission2]`
+  Specify permissions (supported values: viewVSP, editMap, talkDown, editUsers, controlPTZ, editSharing, exportUsers, viewArchive, editArchive, viewVSPRule, editVSPRule, editAccounts, viewAuditLog, editSpeakers, viewLiveVideo, administrator, createLayouts, downloadVideo, upgradeEdition, addEditSpeakers, viewVehicleList, editVehicleList, viewAutomations, editAutomations, editPTZStations, editMotionAreas, viewPreviewVideo, turnCamerasOnOff, viewHistoricVideo, layoutAdministrator, editAllCameraSettings, addEditBridgesCameras, editNoBillingDeviceSettings, viewInvoice, addRemovePayment, placeOrders, viewShipments).
+- `--role-id [id1, id2]`
+  Specify role ids.
+
+#### EXAMPLES
+
+- To add a user with first name 'addcli', last name 'test', email 'addcli@gmail.com' with permissions 'viewVSP, addEditBridgesCameras, viewAuditLog', with access to all cameras:
+
+```bash
+een user add --first-name 'addcli' --last-name 'test' --email 'addcli@gmail.com' --permissions 'viewVSP, addEditBridgesCameras, viewAuditLog' --grant-all-cameras
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully added user: (id: ca03cfda)
+```
+
+**Error Output Example:**
+
+```text
+error: unable to add user: the resource already exists (status: 409)
+```
+
+---
+
+### delete
+
+Delete a user from the account.
+
+#### Usage:
+
+```
+een user delete [options] [general options]
+```
+
+#### Options:
+
+- `--email [email]`
+  Specify email of the user to delete.
+- `--id [id]`
+  Specify id of the user to delete.
+
+#### EXAMPLES
+
+- To delete a user with id '1234':
+
+```bash
+een user delete --id ca03cfda
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully deleted the user: ca03cfda
+```
+
+**Error Output Example:**
+
+```text
+error: unable to delete user from the account: the resource was not found (status: 404)
+```
+
+#### Notes
+
+- Either --email or --id option must be provided.
+
+---
+
 ### set
 
 Update user settings.
@@ -528,7 +635,7 @@ een user set permission <permissions> [options] [selectors] [general options]
   `viewVSP`, `editMap`, `talkDown`, `editUsers`, `controlPTZ`, `editSharing`, `exportUsers`, `viewArchive`, `editArchive`, `viewVSPRule`, `editVSPRule`, `editAccounts`, `viewAuditLog`,
   `editSpeakers`, `viewLiveVideo`, `administrator`, `createLayouts`, `downloadVideo`, `upgradeEdition`, `addEditSpeakers`, `viewVehicleList`, `editVehicleList`, `viewAutomations`,
   `editAutomations`, `editPTZStations`, `editMotionAreas`, `viewPreviewVideo`, `turnCamerasOnOff`, `viewHistoricVideo`, `layoutAdministrator`, `editAllCameraSettings`,
-  `addEditBridgesCameras`, `editNoBillingDeviceSettings`.
+  `addEditBridgesCameras`, `editNoBillingDeviceSettings`, `viewInvoice`, `addRemovePayment`, `placeOrders`, `viewShipments`.
 
 #### Options:
 
@@ -1706,6 +1813,122 @@ een bridge list --include 'esn' --header --csv
 
 ---
 
+### get
+
+Get bridge settings.
+
+#### DESCRIPTION
+
+The `bridge get` command allows you to get a specific setting for one or more bridges.
+You can specify the setting to retrieve as `<parameter>`.
+You can use selectors (like `--bridge-esn`, `--tag`, `--site`, etc.) to target specific bridges.
+
+#### Usage:
+
+```
+een bridge get [parameters] [options] [selectors] [general options]
+```
+
+#### Parameters:
+
+- `bandwidth-mode`
+  Get bandwidth-mode.
+- `bandwidth-limit`
+  Get bandwidth-limit.
+- `bridge-name`
+  Get bridge-name.
+- `local-display-browser`
+  Get local-display-browser (Is local display browser enabled or not).
+- `local-display-monitor`
+  Get local-display-monitor (Is local display monitor enabled or not).
+- `media-shortcut`
+  Get media-shortcut (Is media shortcut enabled or not).
+- `rtsp-auth`
+  Get rtsp-auth (Is RTSP auth enabled or not).
+- `rtsp-stream`
+  Get rtsp-stream (Is RTSP stream enabled or not).
+- `site-name`
+  Get site-name.
+- `upnp`
+  Get universal plug and play (UPnP) (Is UPnP enabled or not).
+- `video-standard`
+  Get video-standard.
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs.
+- `--site [site name1, site name2]`
+  Filter by sites.
+- `--site-id [site id1, site id2]`
+  Filter by site IDs.
+- `--status [status]`
+  Filter by status.
+- `--tag [tag1, tag2]`
+  Filter by tags.
+
+#### EXAMPLES
+
+```bash
+# Get bandwidth mode for a specific bridge
+een bridge get bandwidth-mode --bridge-esn BRIDGE123
+
+# Get bandwidth limit for multiple bridges and export as CSV
+een bridge get bandwidth-limit --bridge bridge1,bridge2 --csv -f bandwidth.csv
+
+# Get bridge name for all bridges at a site
+een bridge get bridge-name --site "Main Office"
+
+# Check if local display browser is enabled
+een bridge get local-display-browser --bridge-esn BRIDGE123
+
+# Check if local display monitor is enabled
+een bridge get local-display-monitor --bridge-esn BRIDGE123
+
+# Check if media shortcut is enabled for all bridges
+een bridge get media-shortcut
+
+# Check if RTSP authentication is enabled
+een bridge get rtsp-auth --bridge-esn BRIDGE123
+
+# Check if RTSP streaming is enabled
+een bridge get rtsp-stream --bridge-esn BRIDGE123
+
+# Check if UPnP is enabled for all bridges with a specific tag
+een bridge get upnp --tag warehouse
+
+# Get video standard for bridges at a site and export to Google Sheets with headers
+een bridge get video-standard --site-id SITE123 -g --header
+
+# Get site-name for every bridge
+een bridge get site-name
+```
+
+#### Output
+
+When running a `bridge get bandwidth-mode` command with `--csv` and `--header`, the output will be in CSV format and is suitable for scripting and automation.
+
+```
+"bridge id","bridge name","bandwidth mode"
+"1007fda2","406+ LPR Test Bengaluru Server room","percent"
+"100b7c74","420 LPR test","percent"
+```
+
+---
+
 ### availability
 
 Get bridge availability details.
@@ -1805,6 +2028,301 @@ een bridge list --status 'online'  --html
 
 ```bash
 een bridge availability --esn [esn1, esn2] --start-time [start time] --end-time [end time]
+```
+
+---
+
+### set
+
+Edit bridge settings.
+
+#### DESCRIPTION
+
+The `bridge set` command allows you to update a specific setting for one or more bridges.
+You can specify the setting to change as `<parameter>`, and the new value as `<value>`.
+You can use selectors (like `--bridge-esn`, `--tag`, `--site`, etc.) to target specific bridges.
+
+#### Usage:
+
+```
+een bridge set [parameter] [value] [options] [selectors] [general options]
+```
+
+#### Note:
+
+- When setting bandwidth-limit, the value is automatically interpreted and converted based on the selected bandwidth-mode (fixed, percent, or minimum).
+- Users only need to provide the numeric value — the system handles the necessary conversion internally.
+- When bandwidth-mode is set to minimum, the bandwidth limit is automatically set to the minimum allowed value and any provided limit is ignored.
+
+#### Parameters:
+
+- `bandwidth-limit <bandwidth-limit>`
+  Set bandwidth limit.
+- `bandwidth-mode <bandwidth-mode>`
+  Set bandwidth mode (values: fixed, percent, minimum).
+- `bridge-name <bridge-name>`
+  Set the bridge name.
+- `local-display-browser`
+  Enable or disable local display via browser (use --enable or --disable).
+- `local-display-monitor`
+  Enable or disable local display via monitor (use --enable or --disable).
+- `media-shortcut`
+  Enable or disable media shortcut (use --enable or --disable).
+- `rtsp-auth`
+  Enable or disable RTSP auth (use --enable or --disable).
+- `rtsp-stream`
+  Enable or disable bridge RTSP stream (use --enable or --disable).
+- `site-name <site-name>`
+  Set the site name.
+- `upnp`
+  Enable or disable universal plug and play (UPnP) (use --enable or --disable).
+- `video-standard <video-standard>`
+  Set video standard (values: ntsc, pal).
+
+#### Common Options:
+
+- `--csv`
+  Display details in csv format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in csv format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs (use '\*' to apply to all bridges).
+- `--site [site name1, site name2]`
+  Filter by sites.
+- `--site-id [site id1, site id2]`
+  Filter by site ids.
+- `--status [status]`
+  Filter by status.
+- `--tag [tag1, tag2]`
+  Filter by tags.
+
+#### EXAMPLES
+
+```bash
+# Enable RTSP stream for specific bridges
+een bridge set rtsp-stream --enable --bridge 'first_bridge, second_bridge'
+
+# Set bridge-name and save as CSV
+een bridge set bridge-name 'new bridge name' --bridge-esn 12345 --csv -f update-bridge-name.csv
+
+# Disable local display via monitor for bridges on the site given
+een bridge set local-display-monitor --disable --site 'site name'
+
+# Enable media-shortcut for all bridges and export results to Google Sheets
+een bridge set media-shortcut --enable --bridge-esn '*' -g --header
+
+# Set bandwidth mode as percent for specific bridge ESNs
+een bridge set bandwidth-mode percent --bridge-esn '1007fda2,10035b4a'
+
+# Set bandwidth limit as 50 for specified bridge
+een bridge set bandwidth-limit 50 --bridge-esn '1007fda2'
+
+# Set video-standard as ntsc for the bridges in site 'Eagle Eye Bangalore'
+een bridge set video-standard ntsc --site 'Eagle Eye Bangalore'
+
+# Enable upnp for the specified bridge
+een bridge set upnp --bridge-esn '1007fda2' --enable
+
+# Disable rtsp auth for the specified bridge
+een bridge set rtsp-auth --bridge-esn '1007fda2' --disable
+
+# Set site-name for a specific bridge
+een bridge set site-name 'Hari Test' --bridge-esn '1007fda2'
+```
+
+#### Output
+
+When running a `bridge set` command with `--csv` and `--header`, the output will be in CSV format and is suitable for scripting and automation.
+
+**Successful Output Example:**
+
+```csv
+Updated bridge for 1/1 bridge
+
+"bridge id","bridge name","bridge status","is successful"
+"1007fda2","406+ LPR Test Bengaluru Server room","online","yes"
+```
+
+**Error Output Example:**
+
+```csv
+Updated bridge for 0/1 bridge
+
+"bridge id","bridge name","bridge status","is successful","error reason"
+"100b7c74","420 LPR test","deviceOffline","no","Internal Server Error (response status: Unable to communicate with a device. Please try again later.)"
+```
+
+#### NOTES:
+
+- The `video-standard` parameter is only applicable to bridges with analog inputs.
+  Attempting to set it on unsupported bridges may result in an error.
+- When updating `bandwidth-mode`, the existing bandwidth limit is preserved automatically.
+  You do not need to specify `bandwidth-limit` again.
+- If `bandwidth-mode` is set to `minimum`, the bandwidth limit will be set to `0`.
+- Some cameras require `upnp` for discovery. Enable it only if needed.
+  All upnp devices will appear under available cameras.
+- `bridgeRtspEnabled` allows cameras on the bridge to be streamed in full resolution over the local network.
+- `bridgeRtspAuth` secures RTSP streams with a username and password; disabling it makes the stream publicly accessible via the RTSP URL.
+
+**Scripting/AI Usage Notes:**
+
+- The first line indicates how many bridges were updated successfully.
+- The CSV output can be parsed to check the `"is successful"` column for `"yes"` or `"no"`.
+- If an error occurs, the `"error reason"` column will contain the error message.
+- This format is ideal for automation: scripts can check for `"yes"`/`"no"` and handle errors accordingly.
+
+---
+
+### addtag
+
+The `bridge addtag` command allows you to add tags to bridge.
+It can accept multiple tags, you can use selectors (like `--bridge-esn`, `--tag`, `--site`, etc.) to target specific bridges.
+
+#### Usage:
+
+```
+een bridge addtag <tags> [options] [selectors] [general options]
+```
+
+#### Argument:
+
+- `<tags>`
+  Tags to be added to the bridges.
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs (use '\*' to apply to all bridges).
+- `--site [site name1, site name2]`
+  Filter by site names.
+- `--site-id [site id1, site id2]`
+  Filter by site IDs.
+- `--status [status]`
+  Filter by status.
+- `--tag [tag1, tag2]`
+  Filter by tags.
+
+#### EXAMPLES
+
+```bash
+# add tags 'newtag, testtag' to bridge with esn 1234
+een bridge addtag 'new tag, test' --bridge-esn '1234'
+
+# add tags 'clitag' to bridge in site 'Eagle Eye India 1' and status online
+een bridge addtag 'clitag' --site 'Eagle Eye India 1' --status 'online'
+```
+
+#### Output
+
+When running a `bridge addtag` command with `--csv` and `--header`, the output will be in CSV format and is suitable for scripting and automation.
+
+**Successful Output Example:**
+
+```csv
+"bridge id","bridge name","bridge tags","is successful","error reason"
+"1007fda2","406+ LPR Test Bengaluru Server room","Test, amsterdam, test1, bengaluru test 2, newtag, testtag","yes",""
+```
+
+**Error Output Example:**
+
+```csv
+"bridge id","bridge name","bridge tags","is successful","error reason"
+"1007fda2","406+ LPR Test Bengaluru Server room","Test, amsterdam, test1, bengaluru test 2","no","Not Found (response status: unknown)"
+```
+
+---
+
+### deletetag
+
+The `bridge deletetag` command allows you to delete tags from selected bridges.
+It can accept multiple tags, you can use selectors (like `--bridge-esn`, `--tag`, `--site`, etc.) to target specific bridges.
+
+#### Usage:
+
+```
+een bridge deletetag <tags> [options] [selectors] [general options]
+```
+
+#### Argument:
+
+- `<tags>`
+  Tags to be deleted from the bridges.
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in google sheet.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [bridge esn1, bridge esn2]`
+  Filter by bridge ESNs (use '\*' to apply to all bridges).
+- `--site [site name1, site name2]`
+  Filter by site names.
+- `--site-id [site id1, site id2]`
+  Filter by site IDs.
+- `--status [status]`
+  Filter by status.
+- `--tag [tag1, tag2]`
+  Filter by tags.
+
+#### EXAMPLES
+
+```bash
+# delete tags 'new tag, new tag' from bridge with esn '1234' give output in csv format with header:
+een bridge deletetag 'new tag, test' --bridge-esn '1234' --csv --header
+
+# delete tag 'clitag' from bridges in site 'Eagle Eye India 1' with status online:
+een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online'
+
+```
+
+#### Output
+
+When running a `bridge deletetag` command with `--csv` and `--header`, the output will be in CSV format and is suitable for scripting and automation.
+
+**Successful Output Example:**
+
+```csv
+"bridge id","bridge name","bridge tags","is successful","error reason"
+"1007fda2","406+ LPR Test Bengaluru Server room","Test, amsterdam, test1, bengaluru test 2","yes","-"
+```
+
+**Error Output Example:**
+
+```csv
+"bridge id","bridge name","bridge tags","is successful","error reason"
+"1007fda2","406+ LPR Test Bengaluru Server room","Test, amsterdam, test1, bengaluru test 2","no","Not Found (response status: unknown)"
 ```
 
 ---
@@ -5705,38 +6223,6 @@ The `perftest` command allows you to execute performance tests on various aspect
 
 ## COMMAND
 
-### livelatency
-
-#### Usage:
-
-```
-een perftest livelatency [options] [selectors] [general options]
-```
-
-## Example
-
-To get camera perftest livelatency for all cameras in CSV format (with headers):
-
-```bash
-een perftest livelatency --header --csv
-```
-
-#### Output:
-
-```
-account: Account_name(00244829)
-
-running livelatency performance test for 10 samples on 1 cameras
-
-tested camera test-camera-1 (1003d9df)... min: 5312.00ms, max: 9149.00ms, avg: 8464.40ms
-
-perftest livelatency run on 1/1 cameras 10 samples each
-
-"bridge","camera","minimum time (ms)","maximum time (ms)","average time (ms)"
-"test-camera-1(100236d0)","DB14-GUN(1003d9df)","5312.00","9149.00","8464.40"
-
-```
-
 ### preview
 
 Get performance test results for preview images.
@@ -5797,6 +6283,10 @@ een perftest preview [options] [selectors] [general options]
 
 - If no start time or end time is specified, the test interval will be last 30 days.
 - If the specified time range exceeds the retention period of the camera, the test will be performed over the actual retention period of the camera.
+- The following custom errors may appear in the `error reason` during preview testing:
+  - Out of retention period - The requested timestamp is older than the camera’s configured retention period, so the video cannot be retrieved.
+  - Time range too short - The provided time range is too small to generate valid timestamps for fetching video assets.
+  - Failed to generate unique retry timestamp - The retry flow could not create a new timestamp that was different from the timestamps already used.
 
 ## EXAMPLES
 
@@ -5881,6 +6371,10 @@ een perftest assetlist [options] [selectors] [general options]
 #### Notes:
 
 - If no start time or end time is specified, the test interval will be last 30 days.
+- The following custom errors may appear in the `error reason` during assetlist testing:
+  - Out of retention period - The requested timestamp is older than the camera’s configured retention period, so the video cannot be retrieved.
+  - Time range too short - The provided time range is too small to generate valid timestamps for fetching video assets.
+  - Failed to generate unique retry timestamp - The retry flow could not create a new timestamp that was different from the timestamps already used.
 
 ## EXAMPLES
 
@@ -5964,6 +6458,10 @@ een perftest pngspan [options] [selectors] [general options]
 
 - If no start time or end time is specified, the test interval will be last 30 days.
 - If the specified time range exceeds the retention period of the camera, the test will be performed over the actual retention period of the camera.
+- The following custom errors may appear in the `error reason` during pngspan testing:
+  - Out of retention period - The requested timestamp is older than the camera’s configured retention period, so the video cannot be retrieved.
+  - Time range too short - The provided time range is too small to generate valid timestamps for fetching video assets.
+  - Failed to generate unique retry timestamp - The retry flow could not create a new timestamp that was different from the timestamps already used.
 
 ## EXAMPLES
 
@@ -6035,6 +6533,12 @@ een perftest live [options] [selectors] [general options]
 - `-t, --tag [tag1, tag2]`
   Filter by tags.
 
+#### Notes:
+
+- The following custom errors may appear in the `error reason` during live video testing:
+  - Video URL is not available - The system could not retrieve a valid live video URL for the specified camera.
+  - Live video failed to load within the estimated time to load the video (in seconds) - The live video stream did not start within the calculated timeout period.
+
 ## EXAMPLES
 
 - To test live video performance of all the cameras in an account:
@@ -6102,6 +6606,11 @@ een perftest livelatency [options] [selectors] [general options]
   Filter by camera status.
 - `-t, --tag [tag1, tag2]`
   Filter by tags.
+
+#### Notes:
+
+- The following custom errors may appear in the `error reason` during livelatency testing:
+  - Video URL is not available - The system could not retrieve a valid live video URL for the specified camera.
 
 ## EXAMPLES
 
@@ -6177,6 +6686,12 @@ een perftest historic [options] [selectors] [general options]
 
 - If no start time or end time is specified, the test interval will be last 30 days.
 - If the specified time range exceeds the retention period of the camera, the test will be performed over the actual retention period of the camera.
+- The following custom errors may appear in the `error reason` during historic testing:
+  - Out of retention period - The requested timestamp is older than the camera’s configured retention period, so the video cannot be retrieved.
+  - Time range too short - The provided time range is too small to generate valid timestamps for fetching video assets.
+  - Video URL not available for device ID - The system could not retrieve a valid video stream URL for the specified device/camera ID.
+  - No video available for the specified duration - No recorded video exists for the requested time range.
+  - Video failed to load within the estimated time (in seconds) - The video stream did not load within the configured timeout period.
 
 ## EXAMPLES
 
@@ -6196,6 +6711,30 @@ een perftest historic --layout "layout1"
 
 ```bash
 een perftest historic --site "site1"
+```
+
+## Example
+
+- To get camera perftest livelatency for a camera in CSV format (with headers):
+
+```bash
+een perftest livelatency --esn '10101462' --header --csv
+```
+
+#### Output:
+
+```
+account: Account_name(00244829)
+
+running livelatency performance test for 10 samples on 1 cameras
+
+tested camera test-camera-1 (1003d9df)... min: 5312.00ms, max: 9149.00ms, avg: 8464.40ms
+
+perftest livelatency run on 1/1 cameras 10 samples each
+
+"bridge","camera","status","minimum time (ms)","maximum time (ms)","average time (ms)","error reasons"
+"420 AI - Parking Lot 1(1003bdcc)","Camera 01 - AVYCON AVC-NKV81M(10052bcb)","online","507.00","934.00","752.30","-"
+
 ```
 
 ---
