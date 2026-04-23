@@ -2238,6 +2238,64 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 &quot;1007fda2&quot;,&quot;406+ LPR Test Bengaluru Server room&quot;,&quot;Test, amsterdam, test1, bengaluru test 2&quot;,&quot;no&quot;,&quot;Not Found (response status: unknown)&quot;
 </code></pre>
 <hr />
+<h3>add</h3>
+<p>Add a bridge.</p>
+<h4>Usage:</h4>
+<pre><code>een bridge add [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li>
+    <code>--connect-id [connect id]</code><br />
+    Specify connect id of the bridge.
+  </li>
+  <li><code>--name [name]</code> Specify name of the bridge.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>-S, --site [site]</code> Specify site name of the bridge.</li>
+  <li><code>--site-id [site id]</code> Specify the site id of the bridge.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Specify bridge tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add a bridge with name 'cli bridge test' and connect id 'dfadf-fdaf-gggh'
+    with site name 'Hari site' :
+  </li>
+</ul>
+<pre><code class="language-bash">een bridge add --name 'cli bridge test' --connect-id dfadf-fdaf-gggh --site 'Hari site'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully added the bridge: (id: 100eb9fc)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to add bridge: not found (status: 404)
+</code></pre>
+<h3>delete</h3>
+<p>Delete a bridge.</p>
+<h4>Usage:</h4>
+<pre><code>een bridge delete &lt;esn&gt; [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li><code>&lt;esn&gt;</code> Esn of the bridge to delete.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To delete a bridge with esn '100eb9fc':</li>
+</ul>
+<pre><code class="language-bash">een bridge delete 100eb9fc
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully deleted the bridge: 100eb9fc
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to delete the bridge: not found (status: 404)
+</code></pre>
+<hr />
 <h1>switch - Manage Switches</h1>
 <h2>NAME</h2>
 <p><code>switch</code> - manage and interact with switches.</p>
@@ -2306,6 +2364,91 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 &quot;Switch&quot;,&quot;ac246e13-82b3-5ff7-99de-de6e4b75e64e&quot;,&quot;-&quot;,&quot;-&quot;,&quot;DB 15 LPR Test Bridge&quot;,&quot;off&quot;,&quot;-&quot;,&quot;00052029&quot;
 </code></pre>
 <hr />
+<h3>set</h3>
+<p>Update switch settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>switch set</code> command allows you to update a specific setting
+  for one or more switches. You can specify the setting to change as
+  <code>&lt;parameter&gt;</code>, and the new value as
+  <code>&lt;value&gt;</code>. You can use selectors (like <code>--id</code>,
+  <code>--name</code>) to target specific switches.
+</p>
+<h4>Usage:</h4>
+<pre><code>een switch set [parameter] [value] [options] [selectors] [general options]
+</code></pre>
+<h4>Parameters:</h4>
+<ul>
+  <li><code>switch-name &lt;switch-name&gt;</code> Set the switch name.</li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--id [id1, id2]</code> Filter by switch ids.</li>
+  <li><code>--name [name]</code> Filter by switch name.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Set switch name by id
+een switch set switch-name 'New-name' --id '8870a430-8598-5499-90ae-96b51d2606dc'
+
+# Set switch name by current name and save as CSV
+een switch set switch-name 'New-name' --name 'Old-name' --csv -f update-switch-name.csv
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>switch set switch-name</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">successfully updated switch details for 1/1 switch
+
+&quot;switch id&quot;,&quot;switch name&quot;,&quot;is successful&quot;
+&quot;8870a430-8598-5499-90ae-96b51d2606dc&quot;,&quot;New-name&quot;,&quot;yes&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">successfully updated switch details for 0/1 switch
+
+&quot;switch id&quot;,&quot;switch name&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;8870a430-8598-5499-90ae-96b51d2606dc&quot;,&quot;Old-name&quot;,&quot;no&quot;,&quot;unable to update switch details: not found (response status: 404)&quot;
+</code></pre>
+<h4>NOTES:</h4>
+<ul>
+  <li>
+    At least one selector (<code>--id</code> or <code>--name</code>) must be
+    provided.
+  </li>
+</ul>
+<p><strong>Scripting/AI Usage Notes:</strong></p>
+<ul>
+  <li>The first line indicates how many switches were updated successfully.</li>
+  <li>
+    The CSV output can be parsed to check the
+    <code>&quot;is successful&quot;</code> column for
+    <code>&quot;yes&quot;</code> or <code>&quot;no&quot;</code>.
+  </li>
+  <li>
+    If an error occurs, the <code>&quot;error reason&quot;</code> column will
+    contain the error message.
+  </li>
+  <li>
+    This format is ideal for automation: scripts can check for
+    <code>&quot;yes&quot;</code>/<code>&quot;no&quot;</code> and handle errors
+    accordingly.
+  </li>
+</ul>
 <h1>sensor - Manage Sensors</h1>
 <h2>NAME</h2>
 <p><code>sensor</code> - manage and interact with sensors.</p>
@@ -2337,20 +2480,27 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
     <code>--include [value1, value2]</code> Display associated items (supported
-    values: battery-level, bluetooth-signal, id, name, parent-id, status, site,
-    site-id).
+    values: battery-level, bluetooth-signal, gateway-id, gateway-name, id, name,
+    site, site-id, status).
   </li>
   <li>
-    <code>-l, --long</code> Display details of sensor including parent id,
-    battery level, bluetooth signal, site id, site name, status, primary camera
-    id, created timestamp, time zone, notes.
+    <code>-l, --long</code> Display details of sensor including gateway name,
+    gateway id, battery level, bluetooth signal, site name, site id, status,
+    primary camera id, created timestamp, time zone, notes
   </li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
+  <li><code>--camera [camera1, camera2]</code> Filter by camera names.</li>
   <li><code>--camera-esn [esn1, esn2]</code> Filter by camera esns.</li>
+  <li><code>--gateway-id [id1, id2]</code> Filter by sensor gateway ids.</li>
+  <li>
+    <code>--gateway-name [id1, id2]</code> Filter by sensor gateway names.
+  </li>
   <li><code>--id [id1, id2]</code> Filter by sensor ids.</li>
-  <li><code>--parent-id [id1, id2]</code> Filter by parent ids.</li>
+  <li><code>--name [name1, name2]</code> Filter by sensor names.</li>
+  <li><code>--property-type [type1, type2]</code> Filter by property type.</li>
+  <li><code>--site [site1, site2]</code> Filter by site names.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
 </ul>
 <h2>EXAMPLES</h2>
@@ -2367,16 +2517,36 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 </code></pre>
 <ul>
   <li>
-    To list all sensors with ids 1234. 4567 with header in long list and CSV
+    To list all sensors with ids 834978, 199109 with header in long list and CSV
     format:
   </li>
 </ul>
-<pre><code class="language-bash">een sensor list --id '834978,199109 ' --header --csv --long
+<pre><code class="language-bash">een sensor list --id '834978,199109' --header --csv --long
 </code></pre>
 <h4>Output</h4>
-<pre><code class="language-csv">&quot;id&quot;,&quot;sensor name&quot;,&quot;parent id&quot;,&quot;battery level&quot;,&quot;bluetooth signal&quot;,&quot;site id&quot;,&quot;site name&quot;,&quot;status&quot;,&quot;primary camera id&quot;,&quot;created timestamp&quot;,&quot;time zone&quot;,&quot;notes&quot;
-&quot;834978&quot;,&quot;BOX3&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-59&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;Eagle Eye Office&quot;,&quot;online&quot;,&quot;-&quot;,&quot;2025-05-21T14:10:44+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DQA)  &quot;
-&quot;199109&quot;,&quot;PARKING LOT 1&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-63&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;Eagle Eye Office&quot;,&quot;online&quot;,&quot;-&quot;,&quot;2025-05-21T12:41:49+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DL0)&quot;
+<pre><code class="language-csv">&quot;id&quot;,&quot;sensor name&quot;,&quot;gateway name&quot;,&quot;gateway id&quot;,&quot;battery level&quot;,&quot;bluetooth signal&quot;,&quot;site name&quot;,&quot;site id&quot;,&quot;status&quot;,&quot;primary camera id&quot;,&quot;created timestamp&quot;,&quot;time zone&quot;,&quot;notes&quot;
+&quot;834978&quot;,&quot;BOX3&quot;,&quot;Gateway A&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-59&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;-&quot;,&quot;2025-05-21T14:10:44+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DQA)&quot;
+&quot;199109&quot;,&quot;PARKING LOT 1&quot;,&quot;Gateway A&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-63&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;-&quot;,&quot;2025-05-21T12:41:49+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DL0)&quot;
+</code></pre>
+<ul>
+  <li>To list all sensors under a specific gateway by name:</li>
+</ul>
+<pre><code class="language-bash">een sensor list --gateway-name 'Gateway 1' --header --csv
+</code></pre>
+<ul>
+  <li>To list all sensors at a site by name:</li>
+</ul>
+<pre><code class="language-bash">een sensor list --site 'Eagle Eye Office' --header
+</code></pre>
+<ul>
+  <li>To list sensors associated with a specific camera:</li>
+</ul>
+<pre><code class="language-bash">een sensor list --camera 'Parking Lot Camera' --header
+</code></pre>
+<ul>
+  <li>To list sensors of a specific property type:</li>
+</ul>
+<pre><code class="language-bash">een sensor list --property-type 'temperature' --header
 </code></pre>
 <hr />
 <h1>speaker - Manage Speakers</h1>
@@ -2386,10 +2556,7 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 <pre><code>een speaker [COMMAND] [OPTIONS]
 </code></pre>
 <h2>DESCRIPTION</h2>
-<p>
-  The <code>speaker</code> command allows you to manage speakers and list all
-  available speakers.
-</p>
+<p>The <code>speaker</code> command allows you to manage speakers.</p>
 <h2>COMMANDS</h2>
 <h3>list</h3>
 <h4>Usage:</h4>
@@ -2420,15 +2587,263 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 </ul>
 <h4>Selectors:</h4>
 <ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridge names.</li>
   <li>
     <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esns.
   </li>
   <li><code>--id [id1, id2]</code> Filter by speaker ids.</li>
   <li><code>--name [name1, name2]</code> Filter by speaker names.</li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li><code>--status [status1, status2]</code> Filter by status.</li>
+  <li><code>--status [status1, status2]</code> Filter by speaker status.</li>
   <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
 </ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To list all speakers with headers in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een speaker list --csv --header
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;,&quot;bridge id&quot;,&quot;bridge name&quot;
+&quot;1006cefc&quot;,&quot;Speaker AXIS C1310-E&quot;,&quot;10017196&quot;,&quot;401 AI - Parking Lot 1&quot;
+&quot;10017fd3&quot;,&quot;Speaker EN-SDUH-001a&quot;,&quot;10017196&quot;,&quot;401 AI - Parking Lot 1&quot;
+</code></pre>
+<ul>
+  <li>
+    To list all speakers with bridge esn '10017196', speaker id
+    '1006cefc,10017fd3,100bddf1' with headers in CSV and long list format:
+  </li>
+</ul>
+<pre><code class="language-bash">een speaker list --bridge-esn '10017196' --id '1006cefc,10017fd3,100bddf1' -l --csv --header
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;,&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;tags&quot;,&quot;site name&quot;,&quot;site id&quot;,&quot;status&quot;,&quot;guid&quot;,&quot;account id&quot;,&quot;is shared&quot;,&quot;speaker make&quot;,&quot;visible by bridges&quot;
+&quot;1006cefc&quot;,&quot;Speaker AXIS C1310-E&quot;,&quot;10017196&quot;,&quot;401 AI - Parking Lot 1&quot;,&quot;&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c&quot;,&quot;00159662&quot;,&quot;no&quot;,&quot;axis&quot;,&quot;401 AI - Parking Lot 1 (10017196)&quot;
+&quot;10017fd3&quot;,&quot;Speaker EN-SDUH-001a&quot;,&quot;10017196&quot;,&quot;401 AI - Parking Lot 1&quot;,&quot;parking lot 1,EN-SDUH-001a&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;50436373-38ae-6f1c-0001-a2c0a4202fc4&quot;,&quot;00159662&quot;,&quot;no&quot;,&quot;eagle eye networks&quot;,&quot;401 AI - Parking Lot 1 (10017196)&quot;
+</code></pre>
+<h3>set</h3>
+<p>Edit speaker settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>speaker set</code> command allows you to update a specific setting
+  for one or more speakers. You can specify the setting to change as
+  <code>&lt;parameter&gt;</code>, and the new value as
+  <code>&lt;value&gt;</code>. You can use selectors (like <code>--id</code>,
+  <code>--name</code>, <code>--site</code>, etc.) to target specific speakers.
+</p>
+<h4>Usage:</h4>
+<pre><code>een speaker set [parameter] [value] [options] [selectors] [general options]
+</code></pre>
+<h4>Parameters:</h4>
+<ul>
+  <li>
+    <code>audio-mode &lt;audio-mode&gt;</code> Mode of audio communication
+    (supported values: disabled, talkDown, twoWayAudio).
+  </li>
+  <li>
+    <code>protocol &lt;protocol&gt;</code> Audio communication protocol
+    (supported values: sip).
+  </li>
+  <li>
+    <code>sip-password &lt;sip-password&gt;</code> Password to authenticate sip
+    sessions.
+  </li>
+  <li>
+    <code>sip-username &lt;sip-username&gt;</code> Username to authenticate sip
+    sessions.
+  </li>
+  <li><code>site-name &lt;site-name&gt;</code> Set the site name.</li>
+  <li><code>speaker-name &lt;speaker-name&gt;</code> Set the speaker name.</li>
+  <li>
+    <code>speaker-password &lt;speaker-password&gt;</code> Password to
+    communicate with the devices.
+  </li>
+  <li>
+    <code>speaker-username &lt;speaker-username&gt;</code> Username to
+    communicate with the devices.
+  </li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in csv format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in csv format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridge names.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs.
+  </li>
+  <li>
+    <code>--id [id1, id2]</code> Filter by speaker IDs (use '*' to apply to all
+    speakers).
+  </li>
+  <li><code>--name [name1, name2]</code> Filter by speaker names.</li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li><code>--status [status1, status2]</code> Filter by speaker status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Set speaker name for a specific speaker
+een speaker set speaker-name 'new speaker name' --id '100b69e9'
+
+# Set site name for a speaker
+een speaker set site-name 'Eagle Eye Office' --id '100b69e9'
+
+# Set protocol for all speakers
+een speaker set protocol 'sip' --id '*'
+
+# Set audio mode for speakers on a specific site
+een speaker set audio-mode twoWayAudio --site 'Eagle Eye Office'
+
+# Set SIP username for a speaker
+een speaker set sip-username 'sipuser' --id '100b69e9'
+
+# Set SIP password for a speaker
+een speaker set sip-password 'sippass123' --id '100b69e9'
+
+# Set speaker username for all speakers and export to CSV
+een speaker set speaker-username 'admin' --id '*' --csv --header
+
+# Set speaker password for speakers with a specific tag
+een speaker set speaker-password 'pass123' --tag 'floor-1'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>speaker set</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">Updated speaker for 1/1 speaker
+
+&quot;Speaker Id&quot;,&quot;Speaker Name&quot;,&quot;Is Successful&quot;
+&quot;100b69e9&quot;,&quot;EN-SDUH-001a&quot;,&quot;yes&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">Updated speaker for 0/1 speaker
+
+&quot;Speaker Id&quot;,&quot;Speaker Name&quot;,&quot;Is Successful&quot;,&quot;Error Reason&quot;
+&quot;100b69e9&quot;,&quot;EN-SDUH-001a&quot;,&quot;no&quot;,&quot;internal server error (response status: 500)&quot;
+</code></pre>
+<h4>NOTES:</h4>
+<ul>
+  <li>
+    Use <code>--id '*'</code> to apply a setting to all speakers. This cannot be
+    combined with other selectors.
+  </li>
+  <li>
+    <code>audio-mode</code> must be one of: <code>disabled</code>,
+    <code>talkDown</code>, <code>twoWayAudio</code>.
+  </li>
+  <li>
+    <code>sip-username</code> and <code>sip-password</code> update the
+    <code>sipCredentials</code> object on the speaker settings API.
+  </li>
+  <li>
+    <code>main-username</code> and <code>main-password</code> update the
+    <code>mainCredentials</code> object on the speaker settings API.
+  </li>
+  <li>
+    <code>speaker-username</code> and <code>speaker-password</code> update the
+    <code>mainCredentials</code> object on the speaker settings API.
+  </li>
+</ul>
+<h3>get</h3>
+<p>Get speaker settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>speaker get</code> command allows you to get a specific setting for
+  one or more speakers. You can specify the setting to retrieve as
+  <code>&lt;parameter&gt;</code>. You can use selectors (like <code>--id</code>,
+  <code>--name</code>, <code>--site</code>, etc.) to target specific speakers.
+</p>
+<h4>Usage:</h4>
+<pre><code>een speaker get [parameter] [options] [selectors] [general options]
+</code></pre>
+<h4>Parameters:</h4>
+<ul>
+  <li><code>audio-mode</code> Mode of audio communication.</li>
+  <li><code>protocol</code> Audio communication protocol.</li>
+  <li><code>sip-password</code> Password to authenticate SIP sessions.</li>
+  <li><code>sip-username</code> Username to authenticate SIP sessions.</li>
+  <li><code>site-name</code> Site name.</li>
+  <li><code>speaker-name</code> Speaker name.</li>
+  <li>
+    <code>speaker-password</code> Password to communicate with the devices.
+  </li>
+  <li>
+    <code>speaker-username</code> Username to communicate with the devices.
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridge names.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs.
+  </li>
+  <li><code>--id [id1, id2]</code> Filter by speaker IDs.</li>
+  <li><code>--name [name1, name2]</code> Filter by speaker names.</li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status1, status2]</code> Filter by speaker status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Get speaker name for a specific speaker
+een speaker get speaker-name --id '100b69e9'
+
+# Get site name for all speakers at a site
+een speaker get site-name --site 'Eagle Eye Office'
+
+# Get protocol for all speakers
+een speaker get protocol --csv --header
+
+# Get audio mode for speakers with a specific tag
+een speaker get audio-mode --tag 'floor-1'
+
+# Get SIP username for a specific speaker
+een speaker get sip-username --id '100b69e9'
+
+# Get SIP password for a specific speaker
+een speaker get sip-password --id '100b69e9'
+
+# Get speaker username for all speakers and export to CSV
+een speaker get speaker-username --csv --header
+
+# Get speaker password for speakers on a specific bridge
+een speaker get speaker-password --bridge-esn '10017196'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>speaker get</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format.
+</p>
+<pre><code class="language-csv">&quot;speaker id&quot;,&quot;speaker name&quot;,&quot;protocol&quot;
+&quot;100b69e9&quot;,&quot;EN-SDUH-001a&quot;,&quot;sip&quot;
+</code></pre>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all speakers with headers in CSV format:</li>
@@ -2452,6 +2867,163 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 <pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;,&quot;bridge id&quot;,&quot;bridge name&quot;,&quot;tags&quot;,&quot;site name&quot;,&quot;site id&quot;,&quot;status&quot;,&quot;guid&quot;,&quot;account id&quot;,&quot;is shared&quot;,&quot;speaker make&quot;,&quot;visible by bridges&quot;
 &quot;1006cefc&quot;,&quot;Speaker AXIS C1310-E&quot;,&quot;10017196&quot;,&quot;401 AI - Parking Lot 1&quot;,&quot;&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c&quot;,&quot;00159662&quot;,&quot;no&quot;,&quot;axis&quot;,&quot;401 AI - Parking Lot 1 (10017196)&quot;
 &quot;10017fd3&quot;,&quot;Speaker EN-SDUH-001a&quot;,&quot;10017196&quot;,&quot;401 AI - Parking Lot 1&quot;,&quot;parking lot 1,EN-SDUH-001a&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;50436373-38ae-6f1c-0001-a2c0a4202fc4&quot;,&quot;00159662&quot;,&quot;no&quot;,&quot;eagle eye networks&quot;,&quot;401 AI - Parking Lot 1 (10017196)&quot;
+</code></pre>
+<h3>delete</h3>
+<p>Delete a speaker from the bridge.</p>
+<h4>Usage:</h4>
+<pre><code>een speaker delete &lt;id&gt; [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li><code>&lt;id&gt;</code> Id of the speaker to delete.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To delete a speaker with id '1006cefc':</li>
+</ul>
+<pre><code class="language-bash">een speaker delete 1006cefc
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully deleted the speaker: 1006cefc
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to delete the speaker: not found (status: 404)
+</code></pre>
+<hr />
+<h3>addtag</h3>
+<p>
+  The <code>speaker addtag</code> command allows you to add tags to speakers. It
+  can accept multiple tags, you can use selectors (like <code>--id</code>,
+  <code>--tag</code>, <code>--site</code>, etc.) to target specific speakers.
+</p>
+<h4>Usage:</h4>
+<pre><code>een speaker addtag &lt;tags&gt; [options] [selectors] [general options]
+</code></pre>
+<h4>Argument:</h4>
+<ul>
+  <li><code>&lt;tags&gt;</code> Tags to be added to the speakers.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>--file-name [file name]</code> Specify the name of the file where the
+    output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridge names.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs.
+  </li>
+  <li>
+    <code>--id [id1, id2]</code> Filter by speaker IDs (use '*' to apply to all
+    speakers).
+  </li>
+  <li><code>--name [name1, name2]</code> Filter by speaker names.</li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status1, status2]</code> Filter by speaker status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># add tags 'newtag, testtag' to speaker with id '100b69e9'
+een speaker addtag 'newtag, testtag' --id '100b69e9'
+
+# add tag 'clitag' to all speakers
+een speaker addtag 'clitag' --id '*'
+
+# add tag 'floortag' to speakers in site 'Eagle Eye Office' with status online
+een speaker addtag 'floortag' --site 'Eagle Eye Office' --status 'online'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>speaker addtag</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format and is suitable for
+  scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">&quot;Speaker Id&quot;,&quot;Speaker Name&quot;,&quot;Speaker Tags&quot;,&quot;Is Successful&quot;,&quot;Error Reason&quot;
+&quot;100b69e9&quot;,&quot;EN-SDUH-001a&quot;,&quot;newtag, testtag&quot;,&quot;yes&quot;,&quot;&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">&quot;Speaker Id&quot;,&quot;Speaker Name&quot;,&quot;Speaker Tags&quot;,&quot;Is Successful&quot;,&quot;Error Reason&quot;
+&quot;100b69e9&quot;,&quot;EN-SDUH-001a&quot;,&quot;newtag, testtag&quot;,&quot;no&quot;,&quot;internal server error (response status: 500)&quot;
+</code></pre>
+<hr />
+<h3>deletetag</h3>
+<p>
+  The <code>speaker deletetag</code> command allows you to delete tags from
+  selected speakers. It can accept multiple tags, you can use selectors (like
+  <code>--id</code>, <code>--tag</code>, <code>--site</code>, etc.) to target
+  specific speakers.
+</p>
+<h4>Usage:</h4>
+<pre><code>een speaker deletetag &lt;tags&gt; [options] [selectors] [general options]
+</code></pre>
+<h4>Argument:</h4>
+<ul>
+  <li><code>&lt;tags&gt;</code> Tags to be deleted from the speakers.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>--file-name [file name]</code> Specify the name of the file where the
+    output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridge names.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge ESNs.
+  </li>
+  <li>
+    <code>--id [id1, id2]</code> Filter by speaker IDs (use '*' to apply to all
+    speakers).
+  </li>
+  <li><code>--name [name1, name2]</code> Filter by speaker names.</li>
+  <li><code>--site [site name1, site name2]</code> Filter by site names.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site IDs.</li>
+  <li><code>--status [status1, status2]</code> Filter by speaker status.</li>
+  <li><code>-t, --tag [tag1, tag2]</code> Filter by tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># delete tags 'newtag, testtag' from speaker with id '100b69e9'
+een speaker deletetag 'newtag, testtag' --id '100b69e9'
+
+# delete tag 'clitag' from all speakers
+een speaker deletetag 'clitag' --id '*'
+
+# delete tag 'floortag' from speakers in site 'Eagle Eye Office' with status online
+een speaker deletetag 'floortag' --site 'Eagle Eye Office' --status 'online'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>speaker deletetag</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">&quot;Speaker Id&quot;,&quot;Speaker Name&quot;,&quot;Speaker Tags&quot;,&quot;Is Successful&quot;,&quot;Error Reason&quot;
+&quot;100b69e9&quot;,&quot;EN-SDUH-001a&quot;,&quot;remaining-tag&quot;,&quot;yes&quot;,&quot;&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">&quot;Speaker Id&quot;,&quot;Speaker Name&quot;,&quot;Speaker Tags&quot;,&quot;Is Successful&quot;,&quot;Error Reason&quot;
+&quot;100b69e9&quot;,&quot;EN-SDUH-001a&quot;,&quot;newtag, testtag&quot;,&quot;no&quot;,&quot;internal server error (response status: 500)&quot;
 </code></pre>
 <hr />
 <h1>alert - Manage Alerts</h1>
@@ -2698,15 +3270,17 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 &quot;2025-10-20T11:25:44.961+00:00&quot;,&quot;sent&quot;,&quot;video&quot;,&quot;CAMLAN Camera 1&quot;,&quot;email&quot;,&quot;-&quot;,&quot;84eacf10-ada7-11f0-8f64-dee519634509&quot;,&quot;een.personDetectionAlert.v1&quot;,&quot;84eacf10-ada7-11f0-a7ed-6aa9649f93ad&quot;,&quot;ca0edebd&quot;,&quot;10017523&quot;,&quot;&quot;,&quot;00052029&quot;,&quot;1007a214&quot;
 </code></pre>
 <hr />
-<h1>multicamera - Manage Multicameras</h1>
+<h1>multicamera - Manage Multi Headed Cameras</h1>
 <h2>NAME</h2>
-<p><code>multicamera</code> - Manage multicamera settings and operations</p>
+<p>
+  <code>multicamera</code> - Manage multi headed camera settings and operations
+</p>
 <h2>SYNOPSIS</h2>
 <pre><code>een multicamera [command] [options]
 </code></pre>
 <h2>COMMANDS</h2>
 <h3>list</h3>
-<p>List all multi cameras.</p>
+<p>List all multi headed cameras.</p>
 <h4>Usage:</h4>
 <pre><code>een multicamera list [options] [selectors] [general options]
 </code></pre>
@@ -2727,9 +3301,9 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
     values: esn, camera, bridge-esn, bridge, site, siteid, status, tag).
   </li>
   <li>
-    <code>-l, --long</code> Display details of multicamera, including name, id,
-    bridge id, bridge name, status, site name, site id, timezone, guid, tags, ip
-    address, mac address.
+    <code>-l, --long</code> Display details of multi headed cameras, including
+    name, id, bridge id, bridge name, status, site name, site id, timezone,
+    guid, tags, ip address, mac address.
   </li>
 </ul>
 <h4>Selectors:</h4>
@@ -2738,13 +3312,18 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
   <li>
     <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esns.
   </li>
+  <li><code>--esn [esn1, esn2]</code> Filter by multi headed camera esns.</li>
+  <li>
+    <code>--name [name1, name2]</code> Filter by multi headed camera names.
+  </li>
   <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
-  <li><code>--status [status]</code> Filter by camera status.</li>
+  <li><code>--status [status]</code> Filter by multi headed camera status.</li>
 </ul>
 <h4>Example</h4>
 <p>
-  To list all multicameras with specific fields in CSV format (with headers):
+  To list all multi headed cameras with specific fields in CSV format (with
+  headers):
 </p>
 <pre><code class="language-bash">een multicamera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
 </code></pre>
@@ -2753,6 +3332,280 @@ een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online
 &quot;1007b4fb&quot;,&quot;Camera 47 - i-PRO WV-S8574L&quot;,&quot;10055c51&quot;,&quot;620 Enterprise Edition - Box 1&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;Eagle Eye Office&quot;,&quot;bridgeOffline&quot;,&quot;&quot;
 &quot;100c792a&quot;,&quot;Encoder EN-ECMF-001&quot;,&quot;100b7102&quot;,&quot;301 - EN-ECMF-001 - ENCODER&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;Eagle Eye Office&quot;,&quot;online&quot;,&quot;&quot;
 </code></pre>
+<h3>delete</h3>
+<p>Delete a multi headed camera.</p>
+<h4>Usage:</h4>
+<pre><code>een multicamera delete &lt;esn&gt; [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li><code>&lt;esn&gt;</code> ESN of the multi headed camera to delete.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To delete a multi headed camera with esn '1007b4fb':</li>
+</ul>
+<pre><code class="language-bash">een multicamera delete 1007b4fb
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-text">successfully deleted the multicamera: 1007b4fb
+</code></pre>
+<hr />
+<h3>addtag</h3>
+<p>
+  The <code>multicamera addtag</code> command allows you to add tags to multi
+  headed cameras. It can accept multiple tags, you can use selectors (like
+  <code>--bridge-esn</code>, <code>--site</code>, etc.) to target specific multi
+  headed cameras.
+</p>
+<h4>Usage:</h4>
+<pre><code>een multicamera addtag &lt;tags&gt; [options] [selectors] [general options]
+</code></pre>
+<h4>Argument:</h4>
+<ul>
+  <li>
+    <code>&lt;tags&gt;</code> Tags to be added to the multi headed cameras.
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>--file-name [file name]</code> Specify the name of the file where the
+    output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esns.
+  </li>
+  <li>
+    <code>--esn [esn1, esn2]</code> Filter by multi headed camera esns (use
+    <code>*</code> to apply to all multi headed cameras).
+  </li>
+  <li>
+    <code>--name [name1, name2]</code> Filter by multi headed camera names.
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li><code>--status [status]</code> Filter by multi headed camera status.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># add tags 'newtag, testtag' to multi headed cameras with bridge esn '1234'
+een multicamera addtag 'new tag, test' --bridge-esn '1234'
+
+# add tag 'clitag' to multi headed cameras with esn '1007a8fd, 100de89f'
+een multicamera addtag 'clitag' --esn '1007a8fd, 100de89f'
+
+# add tag 'clitag' to all multi headed cameras
+een multicamera addtag 'clitag' --esn '*'
+
+# add tag 'clitag' to multi headed cameras in site 'Eagle Eye India 1' with status online
+een multicamera addtag 'clitag' --site 'Eagle Eye India 1' --status 'online'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>multicamera addtag</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">&quot;multicamera id&quot;,&quot;multicamera name&quot;,&quot;multicamera tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007b4fb&quot;,&quot;Camera 47 - i-PRO WV-S8574L&quot;,&quot;newtag, testtag&quot;,&quot;yes&quot;,&quot;-&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">&quot;multicamera id&quot;,&quot;multicamera name&quot;,&quot;multicamera tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007b4fb&quot;,&quot;Camera 47 - i-PRO WV-S8574L&quot;,&quot;&quot;,&quot;no&quot;,&quot;Not Found (response status: unknown)&quot;
+</code></pre>
+<hr />
+<h3>deletetag</h3>
+<p>
+  The <code>multicamera deletetag</code> command allows you to delete tags from
+  selected multi headed cameras. It can accept multiple tags, you can use
+  selectors (like <code>--bridge-esn</code>, <code>--site</code>, etc.) to
+  target specific multi headed cameras.
+</p>
+<h4>Usage:</h4>
+<pre><code>een multicamera deletetag &lt;tags&gt; [options] [selectors] [general options]
+</code></pre>
+<h4>Argument:</h4>
+<ul>
+  <li>
+    <code>&lt;tags&gt;</code> Tags to be deleted from the multi headed cameras.
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>--file-name [file name]</code> Specify the name of the file where the
+    output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esns.
+  </li>
+  <li>
+    <code>--esn [esn1, esn2]</code> Filter by multi headed camera esns (use
+    <code>*</code> to apply to all multi headed cameras).
+  </li>
+  <li>
+    <code>--name [name1, name2]</code> Filter by multi headed camera names.
+  </li>
+  <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li><code>--status [status]</code> Filter by multi headed camera status.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># delete tags 'new tag, test' from multi headed cameras with bridge esn '1234' and output in csv format with header
+een multicamera deletetag 'new tag, test' --bridge-esn '1234' --csv --header
+
+# delete tag 'clitag' from multi headed cameras with esn '1007a8fd, 100de89f'
+een multicamera deletetag 'clitag' --esn '1007a8fd, 100de89f'
+
+# delete tag 'clitag' from all multi headed cameras
+een multicamera deletetag 'clitag' --esn '*'
+
+# delete tag 'clitag' from multi headed cameras in site 'Eagle Eye India 1' with status online
+een multicamera deletetag 'clitag' --site 'Eagle Eye India 1' --status 'online'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>multicamera deletetag</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">&quot;multicamera id&quot;,&quot;multicamera name&quot;,&quot;multicamera tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007b4fb&quot;,&quot;Camera 47 - i-PRO WV-S8574L&quot;,&quot;&quot;,&quot;yes&quot;,&quot;-&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">&quot;multicamera id&quot;,&quot;multicamera name&quot;,&quot;multicamera tags&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007b4fb&quot;,&quot;Camera 47 - i-PRO WV-S8574L&quot;,&quot;newtag, testtag&quot;,&quot;no&quot;,&quot;Not Found (response status: unknown)&quot;
+</code></pre>
+<hr />
+<h3>set</h3>
+<p>Edit multi headed camera settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>multicamera set</code> command allows you to update a specific
+  setting for one or more multi headed cameras. You can specify the setting to
+  change as <code>&lt;parameter&gt;</code>, and the new value as
+  <code>&lt;value&gt;</code>. You can use selectors (like <code>--esn</code>,
+  <code>--name</code>, <code>--site</code>, etc.) to target specific multi
+  headed cameras.
+</p>
+<h4>Usage:</h4>
+<pre><code>een multicamera set [parameter] [value] [options] [selectors] [general options]
+</code></pre>
+<h4>Parameters:</h4>
+<ul>
+  <li>
+    <code>multicamera-name &lt;multicamera-name&gt;</code> Set the multi headed
+    camera name.
+  </li>
+  <li>
+    <code>site-name &lt;site-name&gt;</code> Set the multi headed camera site
+    name.
+  </li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in csv format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in csv format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>-b, --bridge [bridge1, bridge2]</code> Filter by bridges.</li>
+  <li>
+    <code>--bridge-esn [bridge esn1, bridge esn2]</code> Filter by bridge esns.
+  </li>
+  <li>
+    <code>--esn [esn1, esn2]</code> Filter by multicamera esns (use
+    <code>*</code> to apply to all multicameras).
+  </li>
+  <li><code>--name [name1, name2]</code> Filter by multicamera names.</li>
+  <li><code>--site [site name1, site name2]</code> Filter by sites.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li><code>--status [status]</code> Filter by multi camera status.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Set multicamera name for a specific multicamera
+een multicamera set multicamera-name 'New Camera Name' --esn '1007b4fb'
+
+# Set multicamera name for all multicameras in a site
+een multicamera set multicamera-name 'New Camera Name' --site 'Eagle Eye Office'
+
+# Set site for a specific multicamera and save as CSV
+een multicamera set site-name 'Eagle Eye India 1' --esn '1007b4fb' --csv -f update-multicamera-site.csv
+
+# Set site for all multicameras
+een multicamera set site-name 'Eagle Eye Office' --esn '*'
+
+# Set site for multicameras filtered by bridge esn
+een multicamera set site-name 'Eagle Eye Office' --bridge-esn '10055c51'
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>multicamera set</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV format
+  and is suitable for scripting and automation.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">Updated multicamera for 1/1 multicamera
+
+&quot;multicamera id&quot;,&quot;multicamera name&quot;,&quot;multicamera status&quot;,&quot;is successful&quot;
+&quot;1007b4fb&quot;,&quot;New Camera Name&quot;,&quot;online&quot;,&quot;yes&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">Updated multicamera for 0/1 multicamera
+
+&quot;multicamera id&quot;,&quot;multicamera name&quot;,&quot;multicamera status&quot;,&quot;is successful&quot;,&quot;error reason&quot;
+&quot;1007b4fb&quot;,&quot;Camera 47 - i-PRO WV-S8574L&quot;,&quot;bridgeOffline&quot;,&quot;no&quot;,&quot;Internal Server Error (response status: Unable to communicate with a device. Please try again later.)&quot;
+</code></pre>
+<p><strong>Scripting/AI Usage Notes:</strong></p>
+<ul>
+  <li>
+    The first line indicates how many multicameras were updated successfully.
+  </li>
+  <li>
+    The CSV output can be parsed to check the
+    <code>&quot;is successful&quot;</code> column for
+    <code>&quot;yes&quot;</code> or <code>&quot;no&quot;</code>.
+  </li>
+  <li>
+    If an error occurs, the <code>&quot;error reason&quot;</code> column will
+    contain the error message.
+  </li>
+  <li>
+    This format is ideal for automation: scripts can check for
+    <code>&quot;yes&quot;</code>/<code>&quot;no&quot;</code> and handle errors
+    accordingly.
+  </li>
+</ul>
 <hr />
 <h1>event - Manage Events</h1>
 <h2>NAME</h2>
@@ -4854,7 +5707,10 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 </code></pre>
 <h4>Required Options:</h4>
 <ul>
-  <li><code>--esn [esn1, esn2]</code> Specify esns of the camera.</li>
+  <li>
+    <code>--esn [esn1, esn2]</code> Specify esns of the camera (use '*' to apply
+    to all cameras).
+  </li>
   <li><code>-s, --start-time [start time]</code> Specify video start time.</li>
 </ul>
 <h4>Optional Options:</h4>
