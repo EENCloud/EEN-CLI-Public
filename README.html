@@ -985,6 +985,43 @@ een camera list --help
 <pre><code class="language-bash">een availabledevices list --devicetype 'camera, speaker' -d
 </code></pre>
 <hr />
+<h1>availablesensor - Manage Available Sensor Devices</h1>
+<h2>NAME</h2>
+<p><code>availablesensor</code> - manage available sensor devices.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een availablesensor [COMMAND] [OPTIONS]
+</code></pre>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List all available sensor devices that can be added.</p>
+<h4>Usage:</h4>
+<pre><code>een availablesensor list [options] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in google
+    sheet.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all available sensor devices with headers in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een availablesensor list --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;guid&quot;,&quot;make&quot;,&quot;model&quot;,&quot;device type&quot;,&quot;state&quot;
+&quot;A00M7A&quot;,&quot;Swift Sensors&quot;,&quot;SS3-103&quot;,&quot;sensorDevice&quot;,&quot;addable&quot;
+&quot;A005BF&quot;,&quot;Swift Sensors&quot;,&quot;SS3-110&quot;,&quot;sensorDevice&quot;,&quot;addable&quot;
+</code></pre>
+<hr />
 <h1>camera - Manage Cameras</h1>
 <h2>NAME</h2>
 <p><code>camera</code> - Manage camera settings and operations</p>
@@ -2457,10 +2494,83 @@ een switch set switch-name 'New-name' --name 'Old-name' --csv -f update-switch-n
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>
-  The <code>sensor</code> command allows you to manage sensors and list all
-  available sensors.
+  The <code>sensor</code> command allows you to manage sensors, list all
+  available sensors, and delete sensors.
 </p>
 <h2>COMMANDS</h2>
+<h3>delete</h3>
+<p>Delete a sensor.</p>
+<h4>Usage:</h4>
+<pre><code>een sensor delete &lt;id&gt; [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li><code>&lt;id&gt;</code> Id of the sensor to delete.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To delete a sensor with id '834978':</li>
+</ul>
+<pre><code class="language-bash">een sensor delete 834978
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully deleted the sensor: 834978
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to delete the sensor: not found (status: 404)
+</code></pre>
+<hr />
+<h3>add</h3>
+<p>Add a sensor.</p>
+<h4>Usage:</h4>
+<pre><code>een sensor add [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--guid [guid]</code> Specify guid of the sensor.</li>
+  <li><code>-n, --name [name]</code> Specify name of the sensor.</li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>-c, --camera [camera]</code> Specify camera name of the sensor.</li>
+  <li>
+    <code>--camera-esn [camera esn]</code> Specify camera esn of the sensor.
+  </li>
+  <li><code>--notes [notes]</code> Specify notes for the sensor.</li>
+  <li><code>-S, --site [site]</code> Specify site name of the sensor.</li>
+  <li><code>--site-id [site id]</code> Specify site id of the sensor.</li>
+</ul>
+<blockquote>
+  <p>
+    <strong>Note:</strong> <code>--site</code> and <code>--site-id</code> cannot
+    be used together. Similarly, <code>--camera</code> and
+    <code>--camera-esn</code> cannot be used together.
+  </p>
+</blockquote>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To add a sensor with name 'BOX1 test' and guid 'abc123':</li>
+</ul>
+<pre><code class="language-bash">een sensor add --name 'BOX1 test' --guid abc123
+</code></pre>
+<ul>
+  <li>To add a sensor and associate it with a site by name:</li>
+</ul>
+<pre><code class="language-bash">een sensor add --name 'BOX1 test' --guid abc123 --site 'Eagle Eye Office'
+</code></pre>
+<ul>
+  <li>To add a sensor and associate it with a camera by ESN:</li>
+</ul>
+<pre><code class="language-bash">een sensor add --name 'BOX1 test' --guid abc123 --camera-esn 100abc12
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully added the sensor: (id: 465772)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to add sensor: not found (status: 404)
+</code></pre>
 <h3>list</h3>
 <p>List all sensors.</p>
 <h4>Usage:</h4>
@@ -2486,7 +2596,7 @@ een switch set switch-name 'New-name' --name 'Old-name' --csv -f update-switch-n
   <li>
     <code>-l, --long</code> Display details of sensor including gateway name,
     gateway id, battery level, bluetooth signal, site name, site id, status,
-    primary camera id, created timestamp, time zone, notes
+    primary camera name, primary camera id, created timestamp, time zone, notes
   </li>
 </ul>
 <h4>Selectors:</h4>
@@ -2499,9 +2609,22 @@ een switch set switch-name 'New-name' --name 'Old-name' --csv -f update-switch-n
   </li>
   <li><code>--id [id1, id2]</code> Filter by sensor ids.</li>
   <li><code>--name [name1, name2]</code> Filter by sensor names.</li>
-  <li><code>--property-type [type1, type2]</code> Filter by property type.</li>
+  <li>
+    <code>--property-type [type1, type2]</code> Filter by property type
+    (supported values: temperature, humidity, vibration, speed, door,
+    electricCurrent, electricPotentialDC, electricResistance, angle,
+    waterPresence, contact, activity, voltagePresence, button, pressure,
+    volumeFlow, distance, concentration, motor, quantity, force, illuminance,
+    siren, rotation, soundPressureLevel, mass, value, volume,
+    electricPotentialAC, power, soilMoisture, airQuality, count, density,
+    health, comfort, vape).
+  </li>
   <li><code>--site [site1, site2]</code> Filter by site names.</li>
   <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+  <li>
+    <code>--threshold-level [level1, level2]</code> Filter by threshold level
+    (supported values: none, normal, warning, critical, unknown).
+  </li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -2524,9 +2647,9 @@ een switch set switch-name 'New-name' --name 'Old-name' --csv -f update-switch-n
 <pre><code class="language-bash">een sensor list --id '834978,199109' --header --csv --long
 </code></pre>
 <h4>Output</h4>
-<pre><code class="language-csv">&quot;id&quot;,&quot;sensor name&quot;,&quot;gateway name&quot;,&quot;gateway id&quot;,&quot;battery level&quot;,&quot;bluetooth signal&quot;,&quot;site name&quot;,&quot;site id&quot;,&quot;status&quot;,&quot;primary camera id&quot;,&quot;created timestamp&quot;,&quot;time zone&quot;,&quot;notes&quot;
-&quot;834978&quot;,&quot;BOX3&quot;,&quot;Gateway A&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-59&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;-&quot;,&quot;2025-05-21T14:10:44+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DQA)&quot;
-&quot;199109&quot;,&quot;PARKING LOT 1&quot;,&quot;Gateway A&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-63&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;-&quot;,&quot;2025-05-21T12:41:49+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DL0)&quot;
+<pre><code class="language-csv">&quot;id&quot;,&quot;sensor name&quot;,&quot;gateway name&quot;,&quot;gateway id&quot;,&quot;battery level&quot;,&quot;bluetooth signal&quot;,&quot;site name&quot;,&quot;site id&quot;,&quot;status&quot;, &quot;primary camera name&quot;, &quot;primary camera id&quot;,&quot;created timestamp&quot;,&quot;time zone&quot;,&quot;notes&quot;
+&quot;834978&quot;,&quot;BOX3&quot;,&quot;Gateway A&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-59&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;-&quot;,&quot;-&quot;, &quot;2025-05-21T14:10:44+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DQA)&quot;
+&quot;199109&quot;,&quot;PARKING LOT 1&quot;,&quot;Gateway A&quot;,&quot;347624&quot;,&quot;100&quot;,&quot;-63&quot;,&quot;Eagle Eye Office&quot;,&quot;0f8aedc1-af82-4950-97e5-8c154668c961&quot;,&quot;online&quot;,&quot;-&quot;,&quot;-&quot;,&quot;2025-05-21T12:41:49+00:00&quot;,&quot;US/Central&quot;,&quot;SS3-101 (A00DL0)&quot;
 </code></pre>
 <ul>
   <li>To list all sensors under a specific gateway by name:</li>
@@ -2547,6 +2670,516 @@ een switch set switch-name 'New-name' --name 'Old-name' --csv -f update-switch-n
   <li>To list sensors of a specific property type:</li>
 </ul>
 <pre><code class="language-bash">een sensor list --property-type 'temperature' --header
+</code></pre>
+<ul>
+  <li>To list sensors filtered by threshold level:</li>
+</ul>
+<pre><code class="language-bash">een sensor list --threshold-level 'warning' --header
+</code></pre>
+<ul>
+  <li>To list sensors filtered by property type and threshold level:</li>
+</ul>
+<pre><code class="language-bash">een sensor list --property-type 'temperature' --threshold-level 'critical' --header
+</code></pre>
+<h3>set</h3>
+<p>Update sensor settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>sensor set</code> command allows you to update a specific setting
+  for one or more sensors. You can specify the setting to change as
+  <code>&lt;parameter&gt;</code>, and the new value as
+  <code>&lt;value&gt;</code>. You can use selectors (like <code>--id</code>,
+  <code>--name</code>, <code>--site</code>, etc.) to target specific sensors.
+</p>
+<h4>Usage:</h4>
+<pre><code>een sensor set [parameter] [value] [options] [selectors] [general options]
+</code></pre>
+<h4>Parameters:</h4>
+<ul>
+  <li><code>camera</code> Set the primary camera.</li>
+  <li><code>sensor-name &lt;sensor-name&gt;</code> Set the sensor name.</li>
+  <li><code>site</code> Set the site.</li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in Google
+    Sheets.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4><code>sensor set camera</code> Options:</h4>
+<ul>
+  <li>
+    <code>--new-esn [camera-esn]</code> Specify the new primary camera by ESN.
+  </li>
+  <li>
+    <code>--new-camera [camera-name]</code> Specify the new primary camera by
+    name.
+  </li>
+</ul>
+<h4><code>sensor set site</code> Options:</h4>
+<ul>
+  <li><code>--new-site [site-name]</code> Specify the new site by name.</li>
+  <li><code>--new-id [site-id]</code> Specify the new site by id.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--camera [camera1, camera2]</code> Filter by camera names.</li>
+  <li><code>--camera-esn [esn1, esn2]</code> Filter by camera ESNs.</li>
+  <li><code>--gateway-id [id1, id2]</code> Filter by sensor gateway ids.</li>
+  <li>
+    <code>--gateway-name [name1, name2]</code> Filter by sensor gateway names.
+  </li>
+  <li>
+    <code>--id [id1, id2]</code> Filter by sensor IDs (use '*' to apply to all
+    sensors).
+  </li>
+  <li><code>--name [name1, name2]</code> Filter by sensor names.</li>
+  <li><code>--property-type [type1, type2]</code> Filter by property type.</li>
+  <li><code>--site [site1, site2]</code> Filter by site names.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Rename a specific sensor
+een sensor set sensor-name 'New Sensor Name' --id '834978'
+
+# Rename all sensors on a site
+een sensor set sensor-name 'Lobby Sensor' --site 'Eagle Eye Office'
+
+# Move a specific sensor to a different site by site name
+een sensor set site --new-site 'Branch Office' --id '834978'
+
+# Move all sensors under a gateway to a new site by site id
+een sensor set site --new-id 'abc123' --gateway-name 'Gateway A'
+
+# Move all sensors to a new site
+een sensor set site --new-site 'Branch Office' --id '*'
+
+# Set the primary camera for a specific sensor by camera name
+een sensor set camera --new-camera 'Parking Lot Camera' --id '834978'
+
+# Set the primary camera for a specific sensor by camera ESN
+een sensor set camera --new-esn 'abc12345' --id '834978'
+
+# Set the primary camera for all sensors
+een sensor set camera --new-camera 'Front Door Camera' --id '*'
+
+# Rename a sensor and export the result to CSV
+een sensor set sensor-name 'Updated Name' --id '834978' --csv --header
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>sensor set</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">Updated sensor for 1/1 sensor device
+
+&quot;Sensor Id&quot;,&quot;Sensor Name&quot;,&quot;Is Successful&quot;
+&quot;834978&quot;,&quot;Updated Name&quot;,&quot;yes&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">Updated sensor for 0/1 sensor device
+
+&quot;Sensor Id&quot;,&quot;Sensor Name&quot;,&quot;Is Successful&quot;,&quot;Error Reason&quot;
+&quot;834978&quot;,&quot;BOX3&quot;,&quot;no&quot;,&quot;internal server error (response status: 500)&quot;
+</code></pre>
+<h4>NOTES:</h4>
+<ul>
+  <li>
+    Use <code>--id '*'</code> to apply a setting to all sensors. This cannot be
+    combined with other selectors.
+  </li>
+  <li>
+    <code>sensor set camera</code>: <code>--new-camera</code> resolves the
+    camera name to an ESN automatically; <code>--new-esn</code> uses the ESN
+    directly. These two options are mutually exclusive.
+  </li>
+  <li>
+    <code>sensor set site</code>: <code>--new-site</code> resolves the site name
+    to a site ID automatically; <code>--new-id</code> uses the site ID directly.
+    These two options are mutually exclusive.
+  </li>
+</ul>
+<hr />
+<h1>measurement - Manage Measurements</h1>
+<h2>NAME</h2>
+<p><code>measurement</code> - manage and interact with measurements.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een measurement [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>measurement</code> command allows you to list all available
+  measurements and update their settings.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List all measurements.</p>
+<h4>Usage:</h4>
+<pre><code>een measurement list [options] [selectors] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in Google
+    Sheets.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items (supported
+    values: id, name, property-type, sensor-id, sensor-name, last-reading,
+    threshold-level).
+  </li>
+  <li>
+    <code>-l, --long</code> Display details of measurement including sensor id,
+    camera id, site id, display unit, available display units, category, offset,
+    precision, min warning, min critical, max warning, max critical, preferred
+    and created timestamp.
+  </li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--camera [camera1, camera2]</code> Filter by camera names.</li>
+  <li><code>--camera-esn [esn1, esn2]</code> Filter by camera esns.</li>
+  <li><code>--id [id1, id2]</code> Filter by measurement ids.</li>
+  <li><code>--name [name1, name2]</code> Filter by measurement names.</li>
+  <li>
+    <code>--non-preferred</code> Filter to show only non-preferred measurements.
+  </li>
+  <li><code>--preferred</code> Filter to show only preferred measurements.</li>
+  <li>
+    <code>--property-type [type]</code> Filter by property type (supported
+    values: activity, airQuality, angle, button, comfort, concentration,
+    contact, count, density, distance, door, electricCurrent,
+    electricPotentialAC, electricPotentialDC, electricResistance, force, health,
+    humidity, illuminance, mass, motor, power, pressure, quantity, rotation,
+    siren, soilMoisture, soundPressureLevel, speed, temperature, vape, value,
+    vibration, voltagePresence, volume, volumeFlow, waterPresence).
+  </li>
+  <li><code>--sensor-id [id1, id2]</code> Filter by sensor ids.</li>
+  <li><code>--sensor-name [name1, name2]</code> Filter by sensor names.</li>
+  <li><code>--site [site1, site2]</code> Filter by site names.</li>
+  <li><code>--site-id [id1, id2]</code> Filter by site ids.</li>
+  <li>
+    <code>--threshold-level [level1, level2]</code> Filter by threshold levels
+    (supported values: critical, none, normal, unknown, warning).
+  </li>
+</ul>
+<h4>General Options:</h4>
+<ul>
+  <li><code>--call-time</code> Display API response time.</li>
+  <li><code>-d, --debug</code> Display detailed debug output.</li>
+  <li><code>--time</code> Display time taken to execute the command.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all measurements with header in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;measurement name&quot;,&quot;property type&quot;,&quot;last reading&quot;,&quot;threshold level&quot;,&quot;sensor&quot;,&quot;site&quot;
+&quot;meas-001&quot;,&quot;Temperature Sensor Reading&quot;,&quot;temperature&quot;,&quot;72.3 F&quot;,&quot;normal&quot;,&quot;BOX1 test&quot;,&quot;Eagle Eye Office&quot;
+&quot;meas-002&quot;,&quot;Humidity Reading&quot;,&quot;humidity&quot;,&quot;45.1 %&quot;,&quot;normal&quot;,&quot;BOX2&quot;,&quot;Eagle Eye Office&quot;
+</code></pre>
+<ul>
+  <li>To list preferred measurements only:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --preferred --header
+</code></pre>
+<ul>
+  <li>To list non-preferred measurements only:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --non-preferred --header
+</code></pre>
+<ul>
+  <li>To list measurements by sensor name:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --sensor-name 'BOX1 test' --header
+</code></pre>
+<ul>
+  <li>To list measurements at a site:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --site 'Eagle Eye Office' --header
+</code></pre>
+<ul>
+  <li>To list measurements by property type:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --property-type 'temperature' --header
+</code></pre>
+<ul>
+  <li>To list measurements filtered by threshold level:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --threshold-level 'critical,warning' --header
+</code></pre>
+<ul>
+  <li>To list measurements associated with a specific camera:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --camera 'Parking Lot Camera' --header
+</code></pre>
+<ul>
+  <li>To list measurements with long output including threshold details:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --header --long
+</code></pre>
+<ul>
+  <li>To list measurements with only specific fields:</li>
+</ul>
+<pre><code class="language-bash">een measurement list --include 'name,last-reading,threshold-level' --header
+</code></pre>
+<h3>set</h3>
+<p>Edit measurement settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>measurement set</code> command allows you to update a specific
+  setting for one or more measurements. You can specify the setting to change as
+  <code>&lt;parameter&gt;</code>, and the new value as
+  <code>&lt;value&gt;</code>. You can use selectors (like <code>--id</code>,
+  <code>--sensor-name</code>, <code>--site</code>, etc.) to target specific
+  measurements.
+</p>
+<h4>Usage:</h4>
+<pre><code>een measurement set [parameter] [value] [options] [selectors] [general options]
+</code></pre>
+<h4>Parameters:</h4>
+<ul>
+  <li><code>camera</code> Set the primary camera.</li>
+  <li>
+    <code>display-unit &lt;display-unit&gt;</code> Set the display unit for
+    measurement values (must be one of the measurement's available display unit
+    types).
+  </li>
+  <li><code>offset &lt;offset&gt;</code> Set the measurement offset value.</li>
+  <li>
+    <code>precision &lt;precision&gt;</code> Set the number of decimal places or
+    smallest increment for the measurement.
+  </li>
+  <li><code>preference</code> Enable or disable measurement preference.</li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in Google
+    Sheets.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4><code>measurement set camera</code> Options:</h4>
+<ul>
+  <li>
+    <code>--new-esn [camera-esn]</code> Specify the new primary camera by ESN.
+  </li>
+  <li>
+    <code>--new-camera [camera-name]</code> Specify the new primary camera by
+    name.
+  </li>
+</ul>
+<h4><code>measurement set preference</code> Options:</h4>
+<ul>
+  <li><code>--enable</code> Enable measurement preference.</li>
+  <li><code>--disable</code> Disable measurement preference.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--camera [camera1, camera2]</code> Filter by camera names.</li>
+  <li><code>--camera-esn [esn1, esn2]</code> Filter by camera ESNs.</li>
+  <li>
+    <code>--id [id1, id2]</code> Filter by measurement IDs (use '*' to apply to
+    all measurements).
+  </li>
+  <li><code>--name [name1, name2]</code> Filter by measurement names.</li>
+  <li>
+    <code>--non-preferred</code> Filter to show only non-preferred measurements.
+  </li>
+  <li><code>--preferred</code> Filter to show only preferred measurements.</li>
+  <li><code>--property-type [type]</code> Filter by property type.</li>
+  <li><code>--sensor-id [id1, id2]</code> Filter by sensor ids.</li>
+  <li><code>--sensor-name [name1, name2]</code> Filter by sensor names.</li>
+  <li><code>--site [site1, site2]</code> Filter by site names.</li>
+  <li><code>--site-id [id1, id2]</code> Filter by site ids.</li>
+  <li>
+    <code>--threshold-level [level1, level2]</code> Filter by threshold levels.
+  </li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Enable preference for a specific measurement
+een measurement set preference --enable --id 'meas-001'
+
+# Disable preference for all measurements on a sensor
+een measurement set preference --disable --sensor-name 'BOX1 test'
+
+# Set the primary camera for a measurement by camera name
+een measurement set camera --new-camera 'Parking Lot Camera' --id 'meas-001'
+
+# Set the primary camera for a measurement by camera ESN
+een measurement set camera --new-esn 'abc12345' --id 'meas-001'
+
+# Set the primary camera for all measurements
+een measurement set camera --new-camera 'Front Door Camera' --id '*'
+
+# Set the display unit for a measurement
+een measurement set display-unit 'celsius' --id 'meas-001'
+
+# Set the offset for measurements at a site
+een measurement set offset '0.5' --site 'Eagle Eye Office'
+
+# Set the precision for a specific measurement
+een measurement set precision '2' --id 'meas-001'
+
+# Update a measurement and export the result to CSV
+een measurement set precision '2' --id 'meas-001' --csv --header
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>measurement set</code> command with
+  <code>--csv</code> and <code>--header</code>, the output will be in CSV
+  format.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">Updated measurement for 1/1 measurement
+
+&quot;Measurement Id&quot;,&quot;Measurement Name&quot;,&quot;Is Successful&quot;
+&quot;meas-001&quot;,&quot;Temperature Sensor Reading&quot;,&quot;yes&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">Updated measurement for 0/1 measurement
+
+&quot;Measurement Id&quot;,&quot;Measurement Name&quot;,&quot;Is Successful&quot;,&quot;Error Reason&quot;
+&quot;meas-001&quot;,&quot;Temperature Sensor Reading&quot;,&quot;no&quot;,&quot;invalid display unit type. supported values: celsius, fahrenheit (response status: unknown)&quot;
+</code></pre>
+<h4>NOTES:</h4>
+<ul>
+  <li>
+    Use <code>--id '*'</code> to apply a setting to all measurements. This
+    cannot be combined with other selectors.
+  </li>
+  <li>
+    <code>measurement set camera</code>: <code>--new-camera</code> resolves the
+    camera name to an ESN automatically; <code>--new-esn</code> uses the ESN
+    directly. These two options are mutually exclusive.
+  </li>
+  <li>
+    <code>measurement set preference</code>: <code>--enable</code> and
+    <code>--disable</code> are mutually exclusive; exactly one must be provided.
+  </li>
+  <li>
+    <code>measurement set display-unit</code>: the value must be one of the
+    measurement's available display unit types; otherwise the update is reported
+    as a failure for that measurement.
+  </li>
+  <li>
+    <code>measurement set offset</code> expects a numeric value;
+    <code>measurement set precision</code> expects a non-negative integer.
+  </li>
+  <li>
+    Measurements with a property type of <code>vape</code>, <code>health</code>,
+    or <code>comfort</code>, or that have <code>editable</code> set to
+    <code>false</code>, only allow updates to the <code>preference</code> and
+    primary camera fields. Other parameters (<code>display-unit</code>,
+    <code>offset</code>, <code>precision</code>) will be rejected by the backend
+    for these measurements and reported as failures in the output.
+  </li>
+</ul>
+<hr />
+<h1>sensorgateway - Manage Sensor Gateways</h1>
+<h2>NAME</h2>
+<p><code>sensorgateway</code> - manage and interact with sensor gateways.</p>
+<h2>SYNOPSIS</h2>
+<pre><code>een sensorgateway [COMMAND] [OPTIONS]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>
+  The <code>sensorgateway</code> command allows you to manage sensor gateways
+  and list all available sensor gateways.
+</p>
+<h2>COMMANDS</h2>
+<h3>list</h3>
+<p>List all sensor gateways.</p>
+<h4>Usage:</h4>
+<pre><code>een sensorgateway list [options] [selectors] [general options]
+</code></pre>
+<h4>Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in Google
+    Sheets.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+  <li>
+    <code>--include [value1, value2]</code> Display associated items (supported
+    values: gateway-id, id, name, notes, serial-number, site, site-id, status,
+    time-zone).
+  </li>
+  <li>
+    <code>-l, --long</code> Display details of sensor gateway including status,
+    site name, site id, serial number, gateway id, time zone, notes, global IP,
+    IP used by bridge, adapters.
+  </li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--id [id1, id2]</code> Filter by sensor gateway ids.</li>
+  <li><code>--name [name1, name2]</code> Filter by sensor gateway names.</li>
+  <li><code>--site [site1, site2]</code> Filter by site names.</li>
+  <li><code>--site-id [site id1, site id2]</code> Filter by site ids.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To list all sensor gateways with header in CSV format:</li>
+</ul>
+<pre><code class="language-bash">een sensorgateway list --header --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;
+&quot;abc123&quot;,&quot;Gateway A&quot;
+&quot;def456&quot;,&quot;Gateway B&quot;
+</code></pre>
+<ul>
+  <li>To list all sensor gateways with full details:</li>
+</ul>
+<pre><code class="language-bash">een sensorgateway list --header --long --csv
+</code></pre>
+<h4>Output</h4>
+<pre><code class="language-csv">&quot;id&quot;,&quot;name&quot;,&quot;status&quot;,&quot;site name&quot;,&quot;site id&quot;,&quot;serial number&quot;,&quot;gateway id&quot;,&quot;time zone&quot;,&quot;notes&quot;,&quot;global ip&quot;,&quot;ip used by bridge&quot;,&quot;adapters&quot;
+&quot;50052875&quot;,&quot;CF16 Gateway 1&quot;,&quot;online&quot;,&quot;Capital Factory (Austin)&quot;,&quot;c23563aa-50f3-4d9d-9f8d-533bdb521a92&quot;,&quot;1000000086b12f92&quot;,&quot;BJA84M6B&quot;,&quot;America/Kentucky/Louisville&quot;,&quot;-&quot;,&quot;10.0.97.58&quot;,&quot;-&quot;,&quot;88:a2:9e:02:ca:0c (10.0.97.58)&quot;
+&quot;50064626&quot;,&quot;CF1 Voltron Gateway&quot;,&quot;online&quot;,&quot;Capital Factory (Austin)&quot;,&quot;c23563aa-50f3-4d9d-9f8d-533bdb521a92&quot;,&quot;10000000199a28fd&quot;,&quot;BJA83GXB&quot;,&quot;US/Central&quot;,&quot;test&quot;,&quot;10.0.100.88&quot;,&quot;-&quot;,&quot;88:a2:9e:02:d9:ff (10.0.100.88)&quot;
+</code></pre>
+<ul>
+  <li>To list sensor gateways at a specific site:</li>
+</ul>
+<pre><code class="language-bash">een sensorgateway list --site 'Eagle Eye Office' --header
+</code></pre>
+<ul>
+  <li>To list sensor gateways filtered by id:</li>
+</ul>
+<pre><code class="language-bash">een sensorgateway list --id 'abc123,def456' --header
+</code></pre>
+<ul>
+  <li>To list sensor gateways with selected fields only:</li>
+</ul>
+<pre><code class="language-bash">een sensorgateway list --include 'id,name,status,site' --header
 </code></pre>
 <hr />
 <h1>speaker - Manage Speakers</h1>
@@ -2844,6 +3477,83 @@ een speaker get speaker-password --bridge-esn '10017196'
 <pre><code class="language-csv">&quot;speaker id&quot;,&quot;speaker name&quot;,&quot;protocol&quot;
 &quot;100b69e9&quot;,&quot;EN-SDUH-001a&quot;,&quot;sip&quot;
 </code></pre>
+<h3>add</h3>
+<p>Add a speaker to a bridge.</p>
+<h4>Usage:</h4>
+<pre><code>een speaker add &lt;esn&gt; [options] [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li>
+    <code>&lt;esn&gt;</code> ESN of the bridge to which the speaker will be
+    added.
+  </li>
+</ul>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>--guid [guid]</code> Specify GUID of the speaker.</li>
+  <li><code>-n, --name [name]</code> Specify name of the speaker.</li>
+  <li>
+    <code>-r, --registration-strategy [strategy]</code> Set how the speaker is
+    added to the system (supported values: discoveredSip).
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li><code>--admin-username [username]</code> Set username for admin.</li>
+  <li><code>--admin-password [password]</code> Set password for admin.</li>
+  <li>
+    <code>--sip-password [password]</code> Set password to authenticate SIP
+    sessions.
+  </li>
+  <li>
+    <code>--sip-port [port]</code> Set the port to which SIP requests should be
+    sent from the bridge (applicable for SIP speakers) (default: 5060).
+  </li>
+  <li>
+    <code>--sip-username [username]</code> Set username to authenticate SIP
+    sessions.
+  </li>
+  <li><code>--site [site name]</code> Set site name of the speaker.</li>
+  <li><code>--site-id [site id]</code> Set site ID of the speaker.</li>
+  <li>
+    <code>--speaker-password [password]</code> Set password to communicate with
+    the device.
+  </li>
+  <li>
+    <code>--speaker-username [username]</code> Set username to communicate with
+    the device.
+  </li>
+  <li><code>-t, --tag [tag1, tag2]</code> Set speaker tags.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Add a speaker to a bridge using discoveredSip strategy
+een speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Speaker EN-SDUH-001a' --registration-strategy discoveredSip
+
+# Add a speaker with SIP credentials and a specific site
+een speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Speaker AXIS C1310-E' --registration-strategy discoveredSip --sip-username 'sipuser' --sip-password 'sippass123' --sip-port 5060 --site 'Eagle Eye Office'
+
+# Add a speaker with tags and admin credentials
+een speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Lobby Speaker' --registration-strategy discoveredSip --admin-username 'admin' --admin-password 'adminpass' --tag 'lobby'
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code>Successfully added the speaker: (id: 1006cefc)
+</code></pre>
+<h4>NOTES:</h4>
+<ul>
+  <li>
+    <code>--guid</code>, <code>--name</code>, and
+    <code>--registration-strategy</code> are required options.
+  </li>
+  <li>
+    Only one of <code>--site</code> or <code>--site-id</code> should be used at
+    a time.
+  </li>
+  <li>
+    <code>--sip-port</code> is only applicable for SIP speakers (default: 5060).
+  </li>
+</ul>
 <h2>EXAMPLES</h2>
 <ul>
   <li>To list all speakers with headers in CSV format:</li>
@@ -5266,7 +5976,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <h2>DESCRIPTION</h2>
 <p>
   The <code>role</code> command allows you to manage roles in current user's
-  account, including listing all available roles.
+  account, including listing, adding, updating and deleting roles.
 </p>
 <h2>COMMANDS</h2>
 <h3>list</h3>
@@ -5288,7 +5998,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
   <li><code>--header</code> Display column headers in the result.</li>
   <li>
     <code>--include [value1, value2]</code> Display associated items (supported
-    values: role-id, role-name, users, default-role).
+    values: role-id, role-name, users, auto-assigned).
   </li>
   <li>
     <code>-l, --long</code> Display details of role including role id, is
@@ -5307,7 +6017,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <pre><code class="language-bash">een role list --header --csv
 </code></pre>
 <h4>Output</h4>
-<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;default role&quot;
+<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;auto assigned&quot;
 &quot;Administrator&quot;,&quot;Default administrator role&quot;,&quot;3&quot;,&quot;false&quot;
 &quot;Test role 724&quot;,&quot;Test role 724&quot;,&quot;1&quot;,&quot;false&quot;
 </code></pre>
@@ -5317,7 +6027,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <pre><code class="language-bash">een role list --role 'Viewers' --header --csv
 </code></pre>
 <h4>Output</h4>
-<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;default role&quot;
+<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;auto assigned&quot;
 &quot;Administrator&quot;,&quot;Default administrator role&quot;,&quot;3&quot;,&quot;false&quot;
 </code></pre>
 <ul>
@@ -5328,9 +6038,193 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 <pre><code class="language-bash">een role list --role-id '8b284309-062a-4d50-af1c-fff4de07f122, 7e7b9e69-5112-4bb2-ba4e-08c061f8dbd5' --header --csv --long
 </code></pre>
 <h4>Output</h4>
-<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;default role&quot;,&quot;role id&quot;,&quot;is assignable&quot;,&quot;permissions&quot;
+<pre><code class="language-csv">&quot;role name&quot;,&quot;description&quot;,&quot;users&quot;,&quot;auto assigned&quot;,&quot;role id&quot;,&quot;is assignable&quot;,&quot;permissions&quot;
 &quot;Viewers&quot;,&quot;Default viewer role&quot;,&quot;3&quot;,&quot;false&quot;,&quot;8b284309-062a-4d50-af1c-fff4de07f122&quot;,&quot;true&quot;,&quot;viewLiveVideo,viewHistoricVideo,downloadVideo,viewPreviewVideo&quot;
 &quot;Administrator&quot;,&quot;Default administrator role&quot;,&quot;3&quot;,&quot;false&quot;,&quot;8b284309-062a-4d50-af1c-fff4de07f122&quot;,&quot;true&quot;,&quot;viewLiveVideo,viewHistoricVideo,downloadVideo,viewPreviewVideo&quot;
+</code></pre>
+<h3>set</h3>
+<p>Edit role settings.</p>
+<h4>DESCRIPTION</h4>
+<p>
+  The <code>role set</code> command allows you to update a specific setting for
+  one or more roles. You can specify the setting to change as
+  <code>&lt;parameter&gt;</code>, and the new value as
+  <code>&lt;value&gt;</code>. Use selectors (<code>--role-id</code> or
+  <code>--role</code>) to target specific roles.
+</p>
+<h4>Usage:</h4>
+<pre><code>een role set [parameter] [value] [options] [selectors] [general options]
+</code></pre>
+<h4>Parameters:</h4>
+<ul>
+  <li>
+    <code>auto-assign</code> Enable or disable automatic assignment for roles.
+  </li>
+  <li>
+    <code>description &lt;description&gt;</code> Set the role description.
+  </li>
+  <li><code>name &lt;role-name&gt;</code> Set the role name.</li>
+  <li>
+    <code>permission &lt;permissions&gt;</code>
+    Enable or disable the given comma-separated permissions. (values:
+    <code>viewVSP</code>, <code>editMap</code>, <code>talkDown</code>,
+    <code>editUsers</code>, <code>controlPTZ</code>, <code>editSharing</code>,
+    <code>exportUsers</code>, <code>viewArchive</code>,
+    <code>editArchive</code>, <code>viewVSPRule</code>,
+    <code>editVSPRule</code>, <code>editAccounts</code>,
+    <code>viewAuditLog</code>, <code>editSpeakers</code>,
+    <code>viewLiveVideo</code>, <code>administrator</code>,
+    <code>createLayouts</code>, <code>downloadVideo</code>,
+    <code>upgradeEdition</code>, <code>addEditSpeakers</code>,
+    <code>viewVehicleList</code>, <code>editVehicleList</code>,
+    <code>viewAutomations</code>, <code>editAutomations</code>,
+    <code>editPTZStations</code>, <code>editMotionAreas</code>,
+    <code>viewPreviewVideo</code>, <code>turnCamerasOnOff</code>,
+    <code>viewHistoricVideo</code>, <code>layoutAdministrator</code>,
+    <code>editAllCameraSettings</code>, <code>addEditBridgesCameras</code>,
+    <code>editNoBillingDeviceSettings</code>, <code>viewInvoice</code>,
+    <code>addRemovePayment</code>, <code>placeOrders</code>,
+    <code>viewShipments</code>).
+  </li>
+</ul>
+<h4>Common Options:</h4>
+<ul>
+  <li><code>--csv</code> Display details in CSV format.</li>
+  <li>
+    <code>-f, --file-name [file name]</code> Specify the name of the file where
+    the output will be saved.
+  </li>
+  <li>
+    <code>-g, --google-sheet</code> Display details in CSV format in Google
+    Sheets.
+  </li>
+  <li><code>--header</code> Display column headers in the result.</li>
+</ul>
+<h4><code>role set auto-assign</code> Options:</h4>
+<ul>
+  <li><code>--enable</code> Enable automatic assignment for roles.</li>
+  <li><code>--disable</code> Disable automatic assignment for roles.</li>
+</ul>
+<h4><code>role set permission</code> Options:</h4>
+<ul>
+  <li><code>--enable</code> Enable the given permissions.</li>
+  <li><code>--disable</code> Disable the given permissions.</li>
+</ul>
+<h4>Selectors:</h4>
+<ul>
+  <li><code>--role [role name]</code> Filter by role name.</li>
+  <li><code>--role-id [id1, id2]</code> Filter by role IDs.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<pre><code class="language-bash"># Rename a role
+een role set name 'Site Viewers' --role 'Viewers'
+
+# Update a role's description
+een role set description 'Default viewer role for new users' --role-id '8b284309-062a-4d50-af1c-fff4de07f122'
+
+# Enable automatic assignment for a role
+een role set auto-assign --enable --role 'Viewers'
+
+# Disable automatic assignment for a role
+een role set auto-assign --disable --role 'Viewers'
+
+# Enable permissions for a role
+een role set permission 'viewLiveVideo,downloadVideo' --enable --role 'Viewers'
+
+# Disable permissions for a role
+een role set permission 'editMap,editUsers' --disable --role-id '8b284309-062a-4d50-af1c-fff4de07f122'
+
+# Update a role and export the result to CSV
+een role set permission 'viewLiveVideo' --enable --role 'Viewers' --csv --header
+</code></pre>
+<h4>Output</h4>
+<p>
+  When running a <code>role set</code> command with <code>--csv</code> and
+  <code>--header</code>, the output will be in CSV format.
+</p>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-csv">Updated role for 1/1 role
+
+&quot;Role Id&quot;,&quot;Role Name&quot;,&quot;Is Successful&quot;
+&quot;8b284309-062a-4d50-af1c-fff4de07f122&quot;,&quot;Viewers&quot;,&quot;yes&quot;
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-csv">Updated role for 0/1 role
+
+&quot;Role Id&quot;,&quot;Role Name&quot;,&quot;Is Successful&quot;,&quot;Error Reason&quot;
+&quot;8b284309-062a-4d50-af1c-fff4de07f122&quot;,&quot;Viewers&quot;,&quot;no&quot;,&quot;invalid request (response status: 400)&quot;
+</code></pre>
+<h3>delete</h3>
+<p>Delete a role.</p>
+<h4>Usage:</h4>
+<pre><code>een role delete &lt;id&gt; [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li><code>&lt;id&gt;</code> Id of the role to delete.</li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>To delete a role with id '8b284309-062a-4d50-af1c-fff4de07f122':</li>
+</ul>
+<pre><code class="language-bash">een role delete 8b284309-062a-4d50-af1c-fff4de07f122
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully deleted the role: 8b284309-062a-4d50-af1c-fff4de07f122
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to delete the role: not found (status: 404)
+</code></pre>
+<h3>add</h3>
+<p>Add a role.</p>
+<h4>Usage:</h4>
+<pre><code>een role add [options] [general options]
+</code></pre>
+<h4>Required Options:</h4>
+<ul>
+  <li><code>-n, --name [name]</code> Specify name of the role.</li>
+  <li>
+    <code>--permissions [permissions]</code> Specify permissions for the role as
+    comma separated values (supported permissions: viewVSP, editMap, talkDown,
+    editUsers, controlPTZ, editSharing, exportUsers, viewArchive, editArchive,
+    viewVSPRule, editVSPRule, editAccounts, viewAuditLog, editSpeakers,
+    viewLiveVideo, administrator, createLayouts, downloadVideo, upgradeEdition,
+    addEditSpeakers, viewVehicleList, editVehicleList, viewAutomations,
+    editAutomations, editPTZStations, editMotionAreas, viewPreviewVideo,
+    turnCamerasOnOff, viewHistoricVideo, layoutAdministrator,
+    editAllCameraSettings, addEditBridgesCameras, editNoBillingDeviceSettings,
+    viewInvoice, addRemovePayment, placeOrders, viewShipments).
+  </li>
+</ul>
+<h4>Options:</h4>
+<ul>
+  <li>
+    <code>--auto-assign</code> Automatically assign this role to new users.
+  </li>
+  <li>
+    <code>--description [description]</code> Specify description for the role.
+  </li>
+</ul>
+<h4>EXAMPLES</h4>
+<ul>
+  <li>
+    To add a role named 'Viewers' with live and historic video permissions:
+  </li>
+</ul>
+<pre><code class="language-bash">een role add --name 'Viewers' --permissions 'viewLiveVideo,viewHistoricVideo' --auto-assign
+</code></pre>
+<ul>
+  <li>To add a role with description:</li>
+</ul>
+<pre><code class="language-bash">een role add --name 'Auditors' --permissions 'viewAuditLog' --description 'Read-only audit access' --auto-assign
+</code></pre>
+<h4>Output</h4>
+<p><strong>Successful Output Example:</strong></p>
+<pre><code class="language-text">successfully added the role: (id: 8b284309-062a-4d50-af1c-fff4de07f122)
+</code></pre>
+<p><strong>Error Output Example:</strong></p>
+<pre><code class="language-text">error: unable to add role: conflict (status: 409)
 </code></pre>
 <hr />
 <h1>site - Manage Sites</h1>
@@ -5683,6 +6577,24 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
   <li>To list a specific job by ID:</li>
 </ul>
 <pre><code class="language-bash">een job list --jobid &quot;123456&quot;
+</code></pre>
+<h3>delete</h3>
+<p>Delete a job by ID.</p>
+<h4>Usage:</h4>
+<pre><code>een job delete &lt;id&gt; [general options]
+</code></pre>
+<h4>Arguments:</h4>
+<ul>
+  <li><code>&lt;id&gt;</code> ID of the job to delete.</li>
+</ul>
+<h2>EXAMPLES</h2>
+<ul>
+  <li>To delete a job by ID:</li>
+</ul>
+<pre><code class="language-bash">een job delete &quot;dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac&quot;
+</code></pre>
+<h4>Output</h4>
+<pre><code>successfully deleted the job: dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac
 </code></pre>
 <hr />
 <h1>video - Manage Recorded Videos</h1>
