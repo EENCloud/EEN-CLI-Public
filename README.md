@@ -788,8 +788,6 @@ een account list [options] [general options]
 
 - `--csv`
   Display details in CSV format.
-- `--json`
-  List details in JSON format.
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
@@ -2400,7 +2398,11 @@ een bridge list [options] [selectors] [general options]
 
 #### Selectors:
 
-- `-s, --status [status]`
+- `-b, --bridge [bridge1, bridge2]`
+  Filter by bridges.
+- `--bridge-esn [esn1, esn2]`
+  Filter by bridge esns.
+- `--status [status]`
   Filter by status.
 - `--site [site name1, site name2]`
   Filter by site names.
@@ -3462,7 +3464,7 @@ een sensor list [options] [selectors] [general options]
   Filter by camera esns.
 - `--gateway-id [id1, id2]`
   Filter by sensor gateway ids.
-- `--gateway-name [id1, id2]`
+- `--gateway-name [name1, name2]`
   Filter by sensor gateway names.
 - `--id [id1, id2]`
   Filter by sensor ids.
@@ -4520,6 +4522,7 @@ Updated sensor gateway for 0/1 sensor gateway
 #### NOTES:
 
 - Use `--id '*'` to apply a setting to all sensor gateways. This cannot be combined with other selectors.
+- `sensorgateway set site`: `--new-site` and `--new-id` are mutually exclusive, and exactly one of them is required.
 
 ---
 
@@ -4739,7 +4742,6 @@ Updated speaker for 0/1 speaker
 - Use `--id '*'` to apply a setting to all speakers. This cannot be combined with other selectors.
 - `audio-mode` must be one of: `disabled`, `talkDown`, `twoWayAudio`.
 - `sip-username` and `sip-password` update the `sipCredentials` object on the speaker settings API.
-- `main-username` and `main-password` update the `mainCredentials` object on the speaker settings API.
 - `speaker-username` and `speaker-password` update the `mainCredentials` object on the speaker settings API.
 
 ### get
@@ -5211,7 +5213,7 @@ een alert list [options] [selectors] [general options]
 - `--alert-name [name]`
   Filter by alert name.
 - `--alert-type [type1, type2] `
-  Filter by alert types. (Supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
+  Filter by alert types. (Supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
 - `-b, --bridge [bridge1, bridge2]`
   Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
@@ -5337,7 +5339,7 @@ een notification list [options] [selectors] [general options]
 - `--alert-id [alert id]`
   Filter by alert id.
 - `--alert-type [type1, type2] `
-  Filter by alert types.(supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
+  Filter by alert types.(supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
 - `-b, --bridge [bridge1, bridge2]`
   Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
@@ -5843,7 +5845,7 @@ een event list [options] [selectors] [general options]
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
-  Display associated items. Supported values: eventId,eventType.
+  Display associated items. Supported values: id,event-type.
 - `-l, --long`
   Display event details including device type, id, event type, device id, event id, end time, start time, meta, creator id.
 - `-m, --machine-readable`
@@ -7151,7 +7153,7 @@ These let you supply the fields a destination type requires in the same command 
 - `--name [name]`
   Filter by rule name.
 - `--rule-type [rule type]`
-  Filter by rule type (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection). On the `rule-type` parameter, this filters by the rule's _current_ type, separate from the new type value being set.
+  Filter by rule type (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
 - `--site [site1, site2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
@@ -7198,9 +7200,6 @@ een rule set rule-type watchVehicle --origin-camera 'Lot Entrance' --destination
 
 # Convert a rule to countOfLicensePlate, supplying every required field in one command
 een rule set rule-type countOfLicensePlate --count 3 --rule-value greaterThanThr --duration 5 --camera 'Front Gate'
-
-# Change type only for rules that are currently motionDetection (--rule-type here filters by current type)
-een rule set rule-type intrusionDetection --rule-type motionDetection --camera 'Front Gate'
 ```
 
 #### Output
@@ -7227,7 +7226,7 @@ updated rule for 1/2 rules
 #### NOTES:
 
 - There is no standalone `target-type` parameter — it's inferred from whichever value you set: `plate` → plate, `vehiclelist-id`/`vehiclelist-name` → vehicleList, and (watchVehicle only) `exemption-vehiclelist-id`/`exemption-vehiclelist-name` → anyPlateExcept.
-- `rule-type` accepts the options listed under "`rule set rule-type` Options" so a full type conversion (new type plus any fields it requires) can be done in one command. Its `--rule-type` selector filters by the rule's _current_ type, separate from the new type value you're setting.
+- `rule-type` accepts the options listed under "`rule set rule-type` Options" so a full type conversion (new type plus any fields it requires) can be done in one command.
 
 ---
 
@@ -8342,14 +8341,14 @@ een site list [options] [selectors] [general options]
   Filter by city.
 - `--country [country1, country2]`
   Filter by country.
+- `--id [id1, id2]`
+  Filter by site ids.
 - `--postal-code [postal code1, postal code2]`
   Filter by postal code.
 - `--region [region1, region2]`
   Filter by region.
 - `--site [site name1, site name2]`
   Filter by sites.
-- `--site-id [site id1, site id2]`
-  Filter by site ids.
 
 ## EXAMPLES
 
@@ -8383,7 +8382,7 @@ een site list --site 'Eagle Eye Bangalore' --city 'Bangalore' --header -l --csv
 - To get sites list with site id '1234', region 'Karnataka' in CSV and long list format with header:
 
 ```bash
-een site list --site-id '5acd0dd1-05a0-4d75-a14b-30e0f4083c70' --region 'Karnataka' -l --header --csv
+een site list --id '5acd0dd1-05a0-4d75-a14b-30e0f4083c70' --region 'Karnataka' -l --header --csv
 ```
 
 #### Output
@@ -10805,11 +10804,10 @@ een camera list --v1
 
 **Commands Supporting `--v1`:**
 
+- `auth login`
 - `user list`
 - `camera list`
-- `camera settings`
 - `bridge list`
-- `lpr events`
 - `perftest preview`
 
 ---

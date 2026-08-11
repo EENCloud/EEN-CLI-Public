@@ -624,8 +624,6 @@ Specify video resolution (supported values: high, std, 1080P, 3MP, 4MP, 5MP, 10M
 <ul>
 <li><code>--csv</code>
 Display details in CSV format.</li>
-<li><code>--json</code>
-List details in JSON format.</li>
 <li><code>--header</code>
 Display column headers in the result.</li>
 <li><code>--include [value1, value2]</code>
@@ -1921,7 +1919,11 @@ Use v1 APIs (deprecated).</li>
 </ul>
 <h4>Selectors:</h4>
 <ul>
-<li><code>-s, --status [status]</code>
+<li><code>-b, --bridge [bridge1, bridge2]</code>
+Filter by bridges.</li>
+<li><code>--bridge-esn [esn1, esn2]</code>
+Filter by bridge esns.</li>
+<li><code>--status [status]</code>
 Filter by status.</li>
 <li><code>--site [site name1, site name2]</code>
 Filter by site names.</li>
@@ -2750,7 +2752,7 @@ Filter by camera names.</li>
 Filter by camera esns.</li>
 <li><code>--gateway-id [id1, id2]</code>
 Filter by sensor gateway ids.</li>
-<li><code>--gateway-name [id1, id2]</code>
+<li><code>--gateway-name [name1, name2]</code>
 Filter by sensor gateway names.</li>
 <li><code>--id [id1, id2]</code>
 Filter by sensor ids.</li>
@@ -3612,6 +3614,7 @@ een sensorgateway set timezone 'America/New_York' --id '*' --csv --header
 <h4>NOTES:</h4>
 <ul>
 <li>Use <code>--id '*'</code> to apply a setting to all sensor gateways. This cannot be combined with other selectors.</li>
+<li><code>sensorgateway set site</code>: <code>--new-site</code> and <code>--new-id</code> are mutually exclusive, and exactly one of them is required.</li>
 </ul>
 <hr>
 <h1>speaker - Manage Speakers</h1>
@@ -3789,7 +3792,6 @@ een speaker set speaker-password 'pass123' --tag 'floor-1'
 <li>Use <code>--id '*'</code> to apply a setting to all speakers. This cannot be combined with other selectors.</li>
 <li><code>audio-mode</code> must be one of: <code>disabled</code>, <code>talkDown</code>, <code>twoWayAudio</code>.</li>
 <li><code>sip-username</code> and <code>sip-password</code> update the <code>sipCredentials</code> object on the speaker settings API.</li>
-<li><code>main-username</code> and <code>main-password</code> update the <code>mainCredentials</code> object on the speaker settings API.</li>
 <li><code>speaker-username</code> and <code>speaker-password</code> update the <code>mainCredentials</code> object on the speaker settings API.</li>
 </ul>
 <h3>get</h3>
@@ -4162,7 +4164,7 @@ Display details in machine-readable form.</li>
 <li><code>--alert-name [name]</code>
 Filter by alert name.</li>
 <li><code>--alert-type [type1, type2] </code>
-Filter by alert types. (Supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).</li>
+Filter by alert types. (Supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).</li>
 <li><code>-b, --bridge [bridge1, bridge2]</code>
 Filter by bridges.</li>
 <li><code>--bridge-esn [bridge esn1, bridge esn2]</code>
@@ -4260,7 +4262,7 @@ Display details in machine-readable form.</li>
 <li><code>--alert-id [alert id]</code>
 Filter by alert id.</li>
 <li><code>--alert-type [type1, type2] </code>
-Filter by alert types.(supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).</li>
+Filter by alert types.(supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).</li>
 <li><code>-b, --bridge [bridge1, bridge2]</code>
 Filter by bridges.</li>
 <li><code>--bridge-esn [bridge esn1, bridge esn2]</code>
@@ -4661,7 +4663,7 @@ Display column headers in the result.</p>
 </li>
 <li>
 <p><code>--include [value1, value2]</code>
-Display associated items. Supported values: eventId,eventType.</p>
+Display associated items. Supported values: id,event-type.</p>
 </li>
 <li>
 <p><code>-l, --long</code>
@@ -5791,7 +5793,7 @@ Filter by minimum priority (supported values: 0-10).</li>
 <li><code>--name [name]</code>
 Filter by rule name.</li>
 <li><code>--rule-type [rule type]</code>
-Filter by rule type (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection). On the <code>rule-type</code> parameter, this filters by the rule's <em>current</em> type, separate from the new type value being set.</li>
+Filter by rule type (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).</li>
 <li><code>--site [site1, site2]</code>
 Filter by sites.</li>
 <li><code>--site-id [site id1, site id2]</code>
@@ -5835,9 +5837,6 @@ een rule set rule-type watchVehicle --origin-camera 'Lot Entrance' --destination
 
 # Convert a rule to countOfLicensePlate, supplying every required field in one command
 een rule set rule-type countOfLicensePlate --count 3 --rule-value greaterThanThr --duration 5 --camera 'Front Gate'
-
-# Change type only for rules that are currently motionDetection (--rule-type here filters by current type)
-een rule set rule-type intrusionDetection --rule-type motionDetection --camera 'Front Gate'
 </code></pre>
 <h4>Output</h4>
 <p><strong>Successful Output Example:</strong></p>
@@ -5856,7 +5855,7 @@ een rule set rule-type intrusionDetection --rule-type motionDetection --camera '
 <h4>NOTES:</h4>
 <ul>
 <li>There is no standalone <code>target-type</code> parameter — it's inferred from whichever value you set: <code>plate</code> → plate, <code>vehiclelist-id</code>/<code>vehiclelist-name</code> → vehicleList, and (watchVehicle only) <code>exemption-vehiclelist-id</code>/<code>exemption-vehiclelist-name</code> → anyPlateExcept.</li>
-<li><code>rule-type</code> accepts the options listed under &quot;<code>rule set rule-type</code> Options&quot; so a full type conversion (new type plus any fields it requires) can be done in one command. Its <code>--rule-type</code> selector filters by the rule's <em>current</em> type, separate from the new type value you're setting.</li>
+<li><code>rule-type</code> accepts the options listed under &quot;<code>rule set rule-type</code> Options&quot; so a full type conversion (new type plus any fields it requires) can be done in one command.</li>
 </ul>
 <hr>
 <h1>action - Manage Action</h1>
@@ -6686,14 +6685,14 @@ Filter by address.</li>
 Filter by city.</li>
 <li><code>--country [country1, country2]</code>
 Filter by country.</li>
+<li><code>--id [id1, id2]</code>
+Filter by site ids.</li>
 <li><code>--postal-code [postal code1, postal code2]</code>
 Filter by postal code.</li>
 <li><code>--region [region1, region2]</code>
 Filter by region.</li>
 <li><code>--site [site name1, site name2]</code>
 Filter by sites.</li>
-<li><code>--site-id [site id1, site id2]</code>
-Filter by site ids.</li>
 </ul>
 <h2>EXAMPLES</h2>
 <ul>
@@ -6718,7 +6717,7 @@ Filter by site ids.</li>
 <ul>
 <li>To get sites list with site id '1234', region 'Karnataka' in CSV and long list format with header:</li>
 </ul>
-<pre><code class="language-bash">een site list --site-id '5acd0dd1-05a0-4d75-a14b-30e0f4083c70' --region 'Karnataka' -l --header --csv
+<pre><code class="language-bash">een site list --id '5acd0dd1-05a0-4d75-a14b-30e0f4083c70' --region 'Karnataka' -l --header --csv
 </code></pre>
 <h4>Output</h4>
 <pre><code class="language-csv">&quot;site name&quot;,&quot;site id&quot;,&quot;address&quot;,&quot;city&quot;,&quot;region&quot;,&quot;postal code&quot;,&quot;country&quot;,&quot;camera count&quot;,&quot;bridge count&quot;,&quot;user count&quot;,&quot;speaker count&quot;,&quot;multi camera count&quot;
@@ -8663,11 +8662,10 @@ een camera list --v1
 </code></pre>
 <p><strong>Commands Supporting <code>--v1</code>:</strong></p>
 <ul>
+<li><code>auth login</code></li>
 <li><code>user list</code></li>
 <li><code>camera list</code></li>
-<li><code>camera settings</code></li>
 <li><code>bridge list</code></li>
-<li><code>lpr events</code></li>
 <li><code>perftest preview</code></li>
 </ul>
 <hr>
