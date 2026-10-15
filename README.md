@@ -29,9 +29,9 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
 
   - Third method:
     1. Open the terminal in the directory where the compressed file is stored.
-    2. Type in the terminal command `unzip een.zip` to extract the file in the current directory.
+    2. Type in the terminal command `unzip brivo.zip` to extract the file in the current directory.
     ```
-    unzip een.zip
+    unzip brivo.zip
     ```
 
   #### **In Windows:**
@@ -51,13 +51,13 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
 - Open all the CSV file outputs in Google Sheets or Libre Office as Excel has formatting issues.
 - `verbose mode` : Use `--verbose` along with the commands to access the verbose mode.
 - All time inputs should be of the format `YYYYMMDDhhmmss.sss (20230125062511.000)`
-- Execute this extracted file by mapping up the directory path of the een on the terminal
+- Execute this extracted file by mapping up the directory path of the brivo on the terminal
 - Each command should start with `./`.
 
   Examples:
 
   ```
-  een --version
+  brivo --version
   ```
 
 - To check if the executable works fine
@@ -65,7 +65,7 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
   - Run the command:
 
   ```
-   een
+   brivo video
   ```
 
   - Output:
@@ -73,9 +73,9 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
   ```
   v<version number>
 
-    usage: een [-v | --version] [-h | --help] <object> <command> [<args>]
+    usage: brivo video [-v | --version] [-h | --help] <object> <command> [<args>]
 
-    These are common een commands used in various situations:
+    These are common brivo video commands used in various situations:
 
     auth login              login to the account
     auth logout             logout of the account
@@ -86,54 +86,54 @@ The latest CLI release version: ![Latest Release](https://img.shields.io/github/
     bridge list             list all bridges
     bridge availability     get bridge availability
 
-    'een help' lists all the commands and options
-    'een <command> help' lists the usage with options and descriptions
+    'brivo video help' lists all the commands and options
+    'brivo video <command> help' lists the usage with options and descriptions
   ```
 
-# EEN Command Line Interface Manual
+# Brivo Video CLI Manual
 
 ## NAME
 
-`een` - A command-line tool for managing and retrieving information related to cameras, bridges, users, and more in a cloud-based environment.
+`brivo video` - A command-line tool for managing and retrieving information related to cameras, bridges, users, and more in a cloud-based environment.
 
 ## SYNOPSIS
 
 ```
-een [OPTIONS] <object> <command> [ARGS]
+brivo video [OPTIONS] <object> <command> [ARGS]
 ```
 
 ## DESCRIPTION
 
-The **een** CLI provides various commands to interact with cameras, bridges, users, sites, and other resources. It offers multiple options for fetching information in different formats (CSV, tree structure, etc.) and supports both standard and v1 APIs.
+The **brivo video** CLI provides various commands to interact with cameras, bridges, users, sites, and other resources. It offers multiple options for fetching information in different formats (CSV, tree structure, etc.) and supports both standard and v1 APIs.
 
 #### Options:
 
 - **--help, -h**
-  Displays the help information for the een command or a specific object.
+  Displays the help information for the brivo video command or a specific object.
 
 - **--version**
-  Displays the current version of the een CLI.
+  Displays the current version of the brivo video CLI.
 
 ## COMMANDS
 
 ### Version
 
 ```
-een --version
+brivo --version
 ```
 
-Displays the version of the een tool.
+Displays the version of the brivo video CLI.
 
 ### Help
 
 ```
-een help
+brivo help
 ```
 
 Shows detailed help instructions. For shorter help on a specific object, use:
 
 ```
-een <object> --help
+brivo video <object> --help
 ```
 
 ## General Options:
@@ -156,11 +156,11 @@ Note: `--prompt` may be unavailable for some commands.
 ## EXAMPLES
 
 ```
-een help
-een --help
-een -h
-een auth --help
-een camera list --help
+brivo help
+brivo --help
+brivo -h
+brivo auth --help
+brivo video camera list --help
 
 ```
 
@@ -169,7 +169,7 @@ een camera list --help
 Shows the execution time of the command, use:
 
 ```
-een <object> [COMMAND] [options] --time
+brivo video <object> [COMMAND] [options] --time
 ```
 
 ### Call Time
@@ -177,79 +177,236 @@ een <object> [COMMAND] [options] --time
 Shows the time taken to get response from api, use:
 
 ```
-een <object> [COMMAND] [options] --call-time
+brivo video <object> [COMMAND] [options] --call-time
 ```
 
-# auth - Manage EEN auth
+# auth
 
 ## NAME
 
-`auth` – EEN authentication commands
+`auth` - authentication commands for Eagle Eye video and Brivo access control
 
 ## SYNOPSIS
 
 ```
-een auth [COMMAND] [options]
+brivo auth [COMMAND] [options]
 ```
 
 ## DESCRIPTION
 
-The **een auth** command provides utilities for logging in and out of Eagle Eye Networks. When using `auth login`, the user is redirected to a login URL and completes the authentication in the web browser. However, when the `--v1` option is used, the user is authenticated directly through the CLI. Note: The `--v1` option is deprecated.
+The **brivo auth** command provides utilities for logging in and out of Eagle Eye video and Brivo access control. By default, `auth login` and `auth logout` operate on both services. Use `-v/--video` or `-a/--access` to target a single service.
+
+When logging in, the user is redirected to a login URL and completes authentication in the web browser. The `--v1` option authenticates directly through the CLI using username and password (Eagle Eye video only). Note: The `--v1` option is deprecated.
 
 ## COMMANDS
 
 ### login
 
-Log in to EEN using the provided credentials.
+Log in to Eagle Eye video, Brivo access control, or both.
 
 #### Usage:
 
 ```
-een auth login [options] [general options]
+brivo auth login [options] [general options]
 ```
 
 #### Options:
 
+- `-v, --video`
+  Login only to Eagle Eye video.
+- `-a, --access`
+  Login only to access control.
 - `-p, --password <password>`
-  Password for login. Use quotes around the password if it contains special characters (e.g., `--password "MyP@ssw0rd!"`).
+  Password for login (Eagle Eye video only). Use quotes around the password if it contains special characters (e.g., `--password "MyP@ssw0rd!"`).
 - `-u, --username <username>`
-  Username for login (e.g., `--username admin@example.com`).
+  Username for login (Eagle Eye video only, e.g., `--username admin@example.com`).
 - `--v1`
-  Use the v1 API for authentication (deprecated).
+  Use v1 api (Eagle Eye video only). Requires `--username` and `--password` (deprecated).
 
 #### Notes:
 
-- If the shell misinterprets special characters, ensure the password is wrapped in quotes.
+- `--password`, `--username` and `--v1` are Eagle Eye video-only options and cannot be combined with `--access`.
+- Without any flag, login is attempted for both Eagle Eye video and access control.
+
+#### EXAMPLES
+
+- Login to both Eagle Eye video and access control (browser-based):
+
+```bash
+brivo auth login
+```
+
+- Login to Eagle Eye video only (browser-based):
+
+```bash
+brivo auth login --video
+```
+
+- Login to Eagle Eye video using v1 API:
+
+```bash
+brivo auth login --video --v1 --username johndoe --password secret
+```
+
+- Login to access control only (browser-based):
+
+```bash
+brivo auth login --access
+```
 
 ---
 
 ### logout
 
-Log out of your EEN account.
+Log out of Eagle Eye video, Brivo access control, or both.
 
 #### Usage:
 
 ```
-een auth logout [general options]
+brivo auth logout [options] [general options]
 ```
 
-## EXAMPLES
+#### Options:
 
-- To login
+- `-v, --video`
+  Logout only from Eagle Eye video.
+- `-a, --access`
+  Logout only from access control.
+
+#### Notes:
+
+- Without any flag, logout is attempted for all logged-in services. No error is shown if one service is not logged in - only if both are not logged in.
+- `--video` and `--access` cannot be combined.
+
+#### EXAMPLES
+
+- Logout from both services:
 
 ```bash
-een auth login --username johndoe --password secret --debug
+brivo auth logout
 ```
+
+- Logout from Eagle Eye video only:
 
 ```bash
-een auth login
+brivo auth logout --video
 ```
 
-- To logout
+- Logout from access control only:
 
 ```bash
-een auth logout --debug
+brivo auth logout --access
 ```
+
+---
+
+### list
+
+List all logged-in users across Eagle Eye video and Brivo access control. At least one service must be logged in.
+
+#### Usage:
+
+```
+brivo auth list [options] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`
+  Display associated items (supported values: account-id, user-id, account-name, user-name, account-type, platform).
+- `-l, --long`
+  Display full details including account ID, user ID, account name, user name, account type, and platform.
+
+#### EXAMPLES
+
+- List all logged-in users:
+
+```bash
+brivo auth list
+```
+
+- List with column headers:
+
+```bash
+brivo auth list --header
+```
+
+- List with full details:
+
+```bash
+brivo auth list --long
+```
+
+#### Output
+
+Short format:
+
+```text
+Account
+Jibi Joseph(ca08135f) [video]
+Jibi Joseph(10145329) [access]
+```
+
+Long format (`-l`):
+
+```text
+Account Id    User Id    Account Name          User Name     Account Type    Platform
+ca08135f      ...        My EEN Account        Jibi Joseph   reseller        video
+10145329      ...        Brivo CLI Testing     Jibi Joseph   -               access
+```
+
+---
+
+### switch
+
+Switch to a different logged-in user. Use `-v/--video` for Eagle Eye video accounts or `-a/--access` for Brivo access control (one of them is required). To switch into a sub-account, use `brivo video account switch`.
+
+#### Usage:
+
+```
+brivo auth switch [options] [general options]
+```
+
+#### Options:
+
+- `-v, --video`
+  Switch Eagle Eye video user.
+- `-a, --access`
+  Switch Brivo access control user.
+- `--user-id [user id]`
+  Specify the user ID to switch to.
+- `--username [username]`
+  Specify the username to switch to.
+
+#### EXAMPLES
+
+- Switch Eagle Eye video user by user ID:
+
+```bash
+brivo auth switch --video --user-id <user ID>
+```
+
+- Switch Eagle Eye video user by username:
+
+```bash
+brivo auth switch --video --username johndoe@example.com
+```
+
+- Switch Brivo access control user:
+
+```bash
+brivo auth switch --access --user-id <user ID>
+```
+
+#### Notes:
+
+- Exactly one of `--video` or `--access` must be provided. They cannot be used together.
+- Either `--user-id` or `--username` must be provided.
+- To switch into a reseller sub-account, use `brivo video account switch` instead.
 
 ---
 
@@ -262,7 +419,7 @@ een auth logout --debug
 ## SYNOPSIS
 
 ```
-een user [COMMAND] [OPTIONS]
+brivo video user [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -278,7 +435,7 @@ List users.
 #### Usage:
 
 ```
-een user list [options] [selectors] [general options]
+brivo video user list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -298,9 +455,7 @@ een user list [options] [selectors] [general options]
 - `--include [value1, value2]`
   Display associated items (supported values: email, firstname, id, lastname, permission, status).
 - `-l, --long`
-  Display details of user including accessible cameras, language, last login, login status, permissions.
-- `--v1`
-  Use v1 APIs (deprecated).
+  Display details of user including language, last login, login status, permissions, and either accessible cameras (end user accounts) or accessible accounts (reseller accounts).
 
 #### Selectors:
 
@@ -318,18 +473,16 @@ een user list [options] [selectors] [general options]
 #### Actions:
 
 - If `--html` is specified, generate a user permissions report.
-- If `--csv` and `--v1` are both specified, export users in CSV format using v1 APIs. (deprecated)
 - If `--csv` is specified, export users in CSV format.
 - If `--json` is specified, export users in JSON format.
 - If `--google-sheet` is specified, export and upload user data to Google Sheets.
-- If `--v1` is specified, list users using v1 APIs. (deprecated)
 
 ## EXAMPLES
 
 - To list all users:
 
 ```bash
-een user list --header --csv
+brivo video user list --header --csv
 ```
 
 #### Output
@@ -343,14 +496,29 @@ een user list --header --csv
 - To list users in CSV format:
 
 ```bash
-een user list --csv -f users.csv
+brivo video user list --csv -f users.csv
 ```
 
 - To generate an HTML report of user permissions:
 
 ```bash
-een user list --html
+brivo video user list --html
 ```
+
+- To list all users with full details (reseller account):
+
+```bash
+brivo video user list --long --header
+```
+
+#### Output (reseller)
+
+```csv
+"id","account id","first name","last name","e-mail","accounts","language","last login","login status","permissions"
+"ca046095","00052029","John","Doe","john@example.com","Acme Corp [00195229], Widget Co [00195230]","en","2024-01-15T10:00:00Z","active","administrator"
+```
+
+> **Note:** For reseller accounts, the `--long` flag shows an **Accounts** column listing all sub-accounts each user can access in `account_name [account_id]` format. For end user accounts, it shows an **Accessible Cameras** column instead.
 
 ---
 
@@ -361,7 +529,7 @@ Add a new user to the account.
 #### Usage:
 
 ```
-een user add [options] [general options]
+brivo video user add [options] [general options]
 ```
 
 #### Required Options:
@@ -388,7 +556,7 @@ een user add [options] [general options]
 - `--grant-all-speakers`
   Grant access to all speakers.
 - `--permissions [permission1, permission2]`
-  Specify permissions (supported values: viewVSP, editMap, talkDown, editUsers, controlPTZ, editSharing, exportUsers, viewArchive, editArchive, viewVSPRule, editVSPRule, editAccounts, viewAuditLog, editSpeakers, viewLiveVideo, administrator, createLayouts, downloadVideo, upgradeEdition, addEditSpeakers, viewVehicleList, editVehicleList, viewAutomations, editAutomations, editPTZStations, editMotionAreas, viewPreviewVideo, turnCamerasOnOff, viewHistoricVideo, layoutAdministrator, editAllCameraSettings, addEditBridgesCameras, editNoBillingDeviceSettings, viewInvoice, addRemovePayment, placeOrders, viewShipments).
+  Specify permissions (supported values: viewVSP, editMap, talkDown, editUsers, controlPTZ, editSharing, exportUsers, viewArchive, editArchive, viewVSPRule, editVSPRule, editAccounts, viewAuditLog, editSpeakers, viewLiveVideo, administrator, createLayouts, downloadVideo, upgradeEdition, addEditSpeakers, viewVehicleList, editVehicleList, viewAutomations, editAutomations, editPTZStations, editMotionAreas, viewPreviewVideo, turnCamerasOnOff, viewHistoricVideo, layoutAdministrator, editAllCameraSettings, addEditBridgesCameras, editNoBillingDeviceSettings, viewInvoice, addRemovePayment, placeOrders, viewShipments, editResellerUsers, editAdminUsers, viewPricingInformation, viewResellerProgramInformation).
 - `--role-id [id1, id2]`
   Specify role ids.
 
@@ -397,7 +565,7 @@ een user add [options] [general options]
 - To add a user with first name 'addcli', last name 'test', email 'addcli@gmail.com' with permissions 'viewVSP, addEditBridgesCameras, viewAuditLog', with access to all cameras:
 
 ```bash
-een user add --first-name 'addcli' --last-name 'test' --email 'addcli@gmail.com' --permissions 'viewVSP, addEditBridgesCameras, viewAuditLog' --grant-all-cameras
+brivo video user add --first-name 'addcli' --last-name 'test' --email 'addcli@gmail.com' --permissions 'viewVSP, addEditBridgesCameras, viewAuditLog' --grant-all-cameras
 ```
 
 #### Output
@@ -423,7 +591,7 @@ Delete a user from the account.
 #### Usage:
 
 ```
-een user delete [options] [general options]
+brivo video user delete [options] [general options]
 ```
 
 #### Options:
@@ -438,7 +606,7 @@ een user delete [options] [general options]
 - To delete a user with id '1234':
 
 ```bash
-een user delete --id ca03cfda
+brivo video user delete --id ca03cfda
 ```
 
 #### Output
@@ -468,11 +636,13 @@ Update user settings.
 #### Usage:
 
 ```
-een user set [parameter] [value] [options] [selectors] [general options]
+brivo video user set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
 
+- `account`
+  Grant or revoke user access to sub-accounts (reseller accounts only).
 - `firstname <first-name>`
   Update first name.
 - `lastname <last-name>`
@@ -491,7 +661,7 @@ Update the first name of users.
 #### Usage:
 
 ```
-een user set firstname <first-name> [options] [selectors] [general options]
+brivo video user set firstname <first-name> [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -512,12 +682,34 @@ een user set firstname <first-name> [options] [selectors] [general options]
 - `--email [email-id1, email-id2]`
   Filter by email ID.
 - `--id [id1, id2]`
-  Filter by user ID.
+  Filter by user ID. Use `*` to target all users.
 
 #### Example:
 
 ```bash
-een user set firstname "John" --email "user@example.com"
+brivo video user set firstname "John" --email "user@example.com"
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```
+updated settings for 2/2 users
+
+"user id","user email","user name","is successful"
+"ca020825","alice@example.com","Alice Johnson","yes"
+"ca04fb15","bob@example.com","Bob Doe","yes"
+```
+
+**Error Output Example:**
+
+```
+updated settings for 1/2 users
+
+"user id","user email","user name","is successful","error reason"
+"ca020825","alice@example.com","Alice Johnson","yes",""
+"ca04fb15","bob@example.com","Bob Doe","no","the resource was not found (response status: 404)"
 ```
 
 ---
@@ -529,7 +721,7 @@ Update the last name of users.
 #### Usage:
 
 ```
-een user set lastname <last-name> [options] [selectors] [general options]
+brivo video user set lastname <last-name> [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -550,12 +742,34 @@ een user set lastname <last-name> [options] [selectors] [general options]
 - `--email [email-id1, email-id2]`
   Filter by email ID.
 - `--id [id1, id2]`
-  Filter by user ID.
+  Filter by user ID. Use `*` to target all users.
 
 #### Example:
 
 ```bash
-een user set lastname "J" --email "user@example.com"
+brivo video user set lastname "J" --email "user@example.com"
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```
+updated settings for 2/2 users
+
+"user id","user email","user name","is successful"
+"ca020825","alice@example.com","Alice Johnson","yes"
+"ca04fb15","bob@example.com","Bob Doe","yes"
+```
+
+**Error Output Example:**
+
+```
+updated settings for 1/2 users
+
+"user id","user email","user name","is successful","error reason"
+"ca020825","alice@example.com","Alice Johnson","yes",""
+"ca04fb15","bob@example.com","Bob Doe","no","the resource was not found (response status: 404)"
 ```
 
 ---
@@ -567,7 +781,7 @@ Activate or block users.
 #### Usage:
 
 ```
-een user set status [options] [selectors] [general options]
+brivo video user set status [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -592,38 +806,42 @@ een user set status [options] [selectors] [general options]
 - `--email [email-id1, email-id2]`
   Filter by email ID.
 - `--id [id1, id2]`
-  Filter by user ID.
+  Filter by user ID. Use `*` to target all users.
 
 #### Examples:
 
 - To enable users by ID:
 
   ```bash
-  ./een user set status --enable --id 'ca020825, ca04fb15' --header
+  brivo video user set status --enable --id 'ca020825, ca04fb15' --header
+  ```
+
+- To disable all users:
+
+  ```bash
+  brivo video user set status --disable --id '*' --header
   ```
 
 #### Output
 
-When running `een user set status --enable --id 'ca020825, ca04fb15'` command with `--csv` and `--header`, the output will be in CSV format suitable for scripting and automation.
-
 **Successful Output Example:**
 
-```csv
+```
 updated settings for 2/2 users
 
-"user id","email","first name","last name","is successful"
-"12345","alice@example.com","Alice","Johnson","yes"
-"12346","bob@example.com","Bob","Doe","yes"
+"user id","user email","user name","is successful"
+"ca020825","alice@example.com","Alice Johnson","yes"
+"ca04fb15","bob@example.com","Bob Doe","yes"
 ```
 
 **Error Output Example:**
 
-```text
+```
 updated settings for 1/2 users
 
-"user id","email","first name","last name","is successful","error reason"
-"12345","alice@example.com","Alice","Johnson","yes",""
-"12346","bob@example.com","Bob","Doe","no","user is already active"
+"user id","user email","user name","is successful","error reason"
+"ca020825","alice@example.com","Alice Johnson","yes",""
+"ca04fb15","bob@example.com","Bob Doe","no","the resource was not found (response status: 404)"
 ```
 
 ---
@@ -635,7 +853,7 @@ Update user permissions.
 #### Usage:
 
 ```
-een user set permission <permissions> [options] [selectors] [general options]
+brivo video user set permission <permissions> [options] [selectors] [general options]
 ```
 
 #### Arguments:
@@ -644,7 +862,10 @@ een user set permission <permissions> [options] [selectors] [general options]
   `viewVSP`, `editMap`, `talkDown`, `editUsers`, `controlPTZ`, `editSharing`, `exportUsers`, `viewArchive`, `editArchive`, `viewVSPRule`, `editVSPRule`, `editAccounts`, `viewAuditLog`,
   `editSpeakers`, `viewLiveVideo`, `administrator`, `createLayouts`, `downloadVideo`, `upgradeEdition`, `addEditSpeakers`, `viewVehicleList`, `editVehicleList`, `viewAutomations`,
   `editAutomations`, `editPTZStations`, `editMotionAreas`, `viewPreviewVideo`, `turnCamerasOnOff`, `viewHistoricVideo`, `layoutAdministrator`, `editAllCameraSettings`,
-  `addEditBridgesCameras`, `editNoBillingDeviceSettings`, `viewInvoice`, `addRemovePayment`, `placeOrders`, `viewShipments`.
+  `addEditBridgesCameras`, `editNoBillingDeviceSettings`, `viewInvoice`, `addRemovePayment`, `placeOrders`, `viewShipments`, `editResellerUsers`, `editAdminUsers`,
+  `viewPricingInformation`, `viewResellerProgramInformation`.
+
+> **Note:** The following permissions are only available for reseller accounts: `viewShipments`, `editResellerUsers`, `editAdminUsers`, `viewPricingInformation`, `viewResellerProgramInformation`. Setting these on an end user account will result in an error.
 
 #### Options:
 
@@ -668,15 +889,142 @@ een user set permission <permissions> [options] [selectors] [general options]
 - `--email [email-id1, email-id2]`
   Filter by email ID.
 - `--id [id1, id2]`
-  Filter by user ID.
+  Filter by user ID. Use `*` to target all users.
 
 #### Examples:
 
 - To enable permissions for users by ID:
 
   ```bash
-  ./een user set permission 'editMap,viewVSP' --enable --id 'ca020825, ca04fb15' --header
+  brivo video user set permission 'editMap,viewVSP' --enable --id 'ca020825, ca04fb15' --header
   ```
+
+- To disable a permission for all users:
+
+  ```bash
+  brivo video user set permission 'viewVSP' --disable --id '*' --header
+  ```
+
+#### Output
+
+**Successful Output Example:**
+
+```
+updated settings for 2/2 users
+
+"user id","user email","user name","is successful"
+"ca020825","alice@example.com","Alice Johnson","yes"
+"ca04fb15","bob@example.com","Bob Doe","yes"
+```
+
+**Error Output Example:**
+
+```
+updated settings for 1/2 users
+
+"user id","user email","user name","is successful","error reason"
+"ca020825","alice@example.com","Alice Johnson","yes",""
+"ca04fb15","bob@example.com","Bob Doe","no","the resource was not found (response status: 404)"
+```
+
+---
+
+### set account
+
+Grant or revoke user access to accounts (reseller accounts only).
+
+#### Usage:
+
+```
+brivo video user set account [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--account-id [id1, id2]`
+  Specify account IDs to grant or revoke access to.
+- `--account-name [name1, name2]`
+  Specify account names to grant or revoke access to (exact match, case-insensitive).
+- `--csv`
+  Display details in CSV format.
+- `--grant`
+  Grant user access to specified accounts.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `--revoke`
+  Revoke user access from specified accounts.
+
+#### Selectors:
+
+- `--email [email-id1, email-id2]`
+  Filter by email ID.
+- `--id [id1, id2]`
+  Filter by user ID. Use `*` to target all users.
+
+#### Notes:
+
+- Either `--grant` or `--revoke` must be specified, but not both.
+- Either `--account-id` or `--account-name` must be specified, but not both.
+- Either `--id` or `--email` must be specified. Use `--id '*'` to target all users.
+- When using `--account-name`, an error is returned if multiple accounts share the same name — use `--account-id` instead.
+
+#### Examples:
+
+- To grant a user access to an account by account ID:
+
+  ```bash
+  brivo video user set account --grant --account-id 00195229 --id ca01b011
+  ```
+
+- To revoke access from all users for a specific account:
+
+  ```bash
+  brivo video user set account --revoke --account-id 00195229 --id '*'
+  ```
+
+- To grant access by account name:
+
+  ```bash
+  brivo video user set account --grant --account-name "Acme Corp" --email user@example.com
+  ```
+
+#### Output
+
+**Grant — Successful Output Example:**
+
+```
+granted account access for 2/2 users
+
+"user id","user email","account id","account name","is successful"
+"ca01b011","alice@example.com","00195229","Acme Corp","yes"
+"ca0faae7","bob@example.com","00195229","Acme Corp","yes"
+```
+
+**Grant — Error Output Example:**
+
+```
+granted account access for 1/2 users
+
+"user id","user email","account id","account name","is successful","error reason"
+"ca01b011","alice@example.com","00195229","Acme Corp","yes",""
+"ca0faae7","bob@example.com","00195229","Acme Corp","no","409"
+```
+
+**Revoke — Successful Output Example:**
+
+```
+revoked account access for 2/2 users
+
+"user id","user email","account id","account name","is successful"
+"ca01b011","alice@example.com","00195229","Acme Corp","yes"
+"ca0faae7","bob@example.com","00195229","Acme Corp","yes"
+```
 
 ---
 
@@ -689,7 +1037,7 @@ een user set permission <permissions> [options] [selectors] [general options]
 ## SYNOPSIS
 
 ```
-een account [COMMAND] [OPTIONS]
+brivo video account [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -705,7 +1053,7 @@ Add a new account (only applicable for reseller accounts).
 #### Usage:
 
 ```
-een account add [options] [general options]
+brivo video account add [options] [general options]
 ```
 
 #### Required Options:
@@ -755,7 +1103,7 @@ een account add [options] [general options]
 - To add a new account:
 
 ```bash
-een account add --name 'My Account' --first-name 'John' --last-name 'Doe' --email 'john.doe@example.com'
+brivo video account add --name 'My Account' --first-name 'John' --last-name 'Doe' --email 'john.doe@example.com'
 ```
 
 #### Output
@@ -776,12 +1124,12 @@ error: unable to add account: the resource already exists (status: 409)
 
 ### list
 
-List all logged-in accounts.
+List all sub-accounts (reseller accounts only).
 
 #### Usage:
 
 ```
-een account list [options] [general options]
+brivo video account list [options] [general options]
 ```
 
 #### Options:
@@ -791,74 +1139,87 @@ een account list [options] [general options]
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
-  Display associated items (supported values: id, name).
-- `-l, --long`
-  Display details of account, including account ID, account name, and account type.
-- `-s, --sub-account`
-  Display sub-accounts (only applicable for reseller accounts).
+  Display associated items (supported values: account-id, account-name).
 
 #### EXAMPLES
 
-- To list all accounts of the reseller:
+- To list all sub-accounts:
 
 ```bash
-een account list --header
+brivo video account list --header
+```
+
+- To list sub-accounts showing only IDs:
+
+```bash
+brivo video account list --include account-id
 ```
 
 #### Output
 
 ```text
-"account"
-"John Doe(12396029)"
-"Deepa M K(096564711)"
+"account id","account name"
+"12396029","John Doe"
+"096564711","Deepa M K"
 ```
 
 ---
 
 ### switch
 
-Switch to an account.
+Switch to a sub-account or switch back to the reseller account (reseller accounts only).
 
 #### Usage:
 
 ```
-een account switch [options] [general options]
+brivo video account switch [options] [general options]
 ```
 
 #### Options:
 
-- `-a, --account-id [account ID]`
-  Specify account id to switch to.
-- `-s, --sub-account-id [sub-account ID]`
-  Specify sub account id to switch to.
-- `--username [username]`
-  Specify username to switch to.
+- `--id [id]`
+  Specify the sub-account ID to switch to.
+- `--name [name]`
+  Specify the sub-account name to switch to.
 
 #### EXAMPLES
 
-- Switch to a sub-account (from reseller account):
+- Switch to a sub-account by ID:
 
 ```bash
-een account switch --sub-account-id <sub-account ID>
+brivo video account switch --id <sub-account ID>
 ```
 
-- Switch back to reseller account (from sub-account):
+- Switch to a sub-account by name:
 
 ```bash
-een account switch
+brivo video account switch --name "Capital Factory"
 ```
 
-- Switch between different logged-in accounts:
+- Switch back to the reseller account:
 
 ```bash
-een account switch --account-id <account ID>
+brivo video account switch
 ```
 
-## Notes:
+#### Output
 
-- When you're logged in as a reseller and want to access a sub-account, you must use the `-s` flag with the sub-account ID.
-- To switch back to the reseller account from a sub-account, run `een account switch` without any options.
-- The `-a` and `--username` options are for switching between different accounts you're logged into, not for sub-account switching.
+**Switch to sub-account:**
+
+```
+successfully switched to the account: Capital Factory (12396029)
+```
+
+**Switch back to reseller:**
+
+```
+successfully switched back to the reseller account: My Reseller Account (00064711)
+```
+
+#### Notes:
+
+- Run without options to switch back to the reseller account from a sub-account.
+- This command is only available to reseller accounts.
 
 ---
 
@@ -869,7 +1230,7 @@ Delete an account (only applicable for reseller accounts).
 #### Usage:
 
 ```
-een account delete [options] [general options]
+brivo video account delete [options] [general options]
 ```
 
 #### Options:
@@ -884,13 +1245,13 @@ een account delete [options] [general options]
 - Delete an account by id:
 
 ```bash
-een account delete --id <account ID>
+brivo video account delete --id <account ID>
 ```
 
 - Delete an account by name:
 
 ```bash
-een account delete --name <account name>
+brivo video account delete --name <account name>
 ```
 
 #### Output
@@ -922,7 +1283,7 @@ You can use selectors (like `--id`, `--name`, `--customer-id`) to target specifi
 #### Usage:
 
 ```
-een account set [parameter] [value] [options] [selectors] [general options]
+brivo video account set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -1035,19 +1396,19 @@ een account set [parameter] [value] [options] [selectors] [general options]
 - To rename an account by id:
 
 ```bash
-een account set name 'New Account Name' --id <account ID>
+brivo video account set name 'New Account Name' --id <account ID>
 ```
 
 - To disable forced two factor authentication for an account by name:
 
 ```bash
-een account set two-factor-authentication --disable --name <account name>
+brivo video account set two-factor-authentication --disable --name <account name>
 ```
 
 - To enable permission to edit billable settings and save the result to CSV:
 
 ```bash
-een account set billing-settings --enable --id <account ID> --csv --header
+brivo video account set billing-settings --enable --id <account ID> --csv --header
 ```
 
 #### Output
@@ -1070,7 +1431,7 @@ Updated account for 1/1 account
 ## SYNOPSIS
 
 ```
-een archive [COMMAND] [OPTIONS]
+brivo video archive [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -1086,7 +1447,7 @@ Get the list of available archives.
 #### Usage:
 
 ```
-een archive list [options] [general options]
+brivo video archive list [options] [general options]
 ```
 
 #### Options:
@@ -1111,7 +1472,7 @@ Download a specific archive.
 #### Usage:
 
 ```
-een archive download <archive> [options] [general options]
+brivo video archive download <archive> [options] [general options]
 ```
 
 #### Arguments:
@@ -1134,13 +1495,13 @@ een archive download <archive> [options] [general options]
 - To list available archives:
 
 ```bash
-een archive list --detailed --csv --target-directory /path/to/output
+brivo video archive list --detailed --target-directory /path/to/output/
 ```
 
 - To download a specific archive:
 
 ```bash
-een archive download <archive> --target-directory /path/to/save --overwrite --debug
+brivo video archive download <archive> --target-directory /path/to/save --overwrite --debug
 ```
 
 ---
@@ -1154,7 +1515,7 @@ een archive download <archive> --target-directory /path/to/save --overwrite --de
 ## SYNOPSIS
 
 ```
-een auditlog [COMMAND] [OPTIONS]
+brivo video auditlog [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -1170,7 +1531,7 @@ List audit logs.
 #### Usage:
 
 ```
-een auditlog list [options] [selectors] [general options]
+brivo video auditlog list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -1210,7 +1571,7 @@ een auditlog list [options] [selectors] [general options]
 - To list all audit logs with headers in CSV format:
 
 ```bash
-een auditlog list --header --csv
+brivo video auditlog list --header --csv
 ```
 
 #### Output
@@ -1224,7 +1585,7 @@ een auditlog list --header --csv
 - To list all audit logs for a specific time with target type file with headers in CSV and long list format:
 
 ```bash
-een auditlog list -s 20250328010101.000 -e 20250328010204.201 --target-type 'file' --csv --header -l
+brivo video auditlog list -s 20250328010101.000 -e 20250328010204.201 --target-type 'file' --csv --header -l
 ```
 
 #### Output
@@ -1246,7 +1607,7 @@ een auditlog list -s 20250328010101.000 -e 20250328010204.201 --target-type 'fil
 ## SYNOPSIS
 
 ```
-een availabledevices [COMMAND] [OPTIONS]
+brivo video availabledevices [COMMAND] [OPTIONS]
 ```
 
 ## COMMANDS
@@ -1258,7 +1619,7 @@ List of all devices found by the bridges in the account that have not yet been a
 #### Usage:
 
 ```
-een availabledevices list [options] [general options]
+brivo video availabledevices list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -1290,13 +1651,13 @@ een availabledevices list [options] [general options]
 - To list all available devices:
 
 ```bash
-een availabledevices list
+brivo video availabledevices list
 ```
 
 - To list all available devices for a specific device type with debug option:
 
 ```bash
-een availabledevices list --devicetype 'camera, speaker' -d
+brivo video availabledevices list --devicetype 'camera, speaker' -d
 ```
 
 ---
@@ -1310,7 +1671,7 @@ een availabledevices list --devicetype 'camera, speaker' -d
 ## SYNOPSIS
 
 ```
-een availablesensor [COMMAND] [OPTIONS]
+brivo video availablesensor [COMMAND] [OPTIONS]
 ```
 
 ## COMMANDS
@@ -1322,7 +1683,7 @@ List all available sensor devices that can be added.
 #### Usage:
 
 ```
-een availablesensor list [options] [general options]
+brivo video availablesensor list [options] [general options]
 ```
 
 #### Options:
@@ -1343,7 +1704,7 @@ een availablesensor list [options] [general options]
 - To list all available sensor devices with headers in CSV format:
 
 ```bash
-een availablesensor list --header --csv
+brivo video availablesensor list --header --csv
 ```
 
 #### Output
@@ -1365,7 +1726,7 @@ een availablesensor list --header --csv
 ## SYNOPSIS
 
 ```
-een camera [COMMAND] [OPTIONS]
+brivo video camera [COMMAND] [OPTIONS]
 ```
 
 ## COMMANDS
@@ -1377,7 +1738,7 @@ List cameras.
 #### Usage:
 
 ```
-een camera list [options] [selectors] [general options]
+brivo video camera list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -1406,8 +1767,6 @@ een camera list [options] [selectors] [general options]
   Display cameras that are shared.
 - `-T, --tree`
   Display cameras and associated bridges in tree format.
-- `--v1`
-  Use v1 APIs (deprecated).
 
 #### Selectors:
 
@@ -1433,7 +1792,7 @@ een camera list [options] [selectors] [general options]
 To list all cameras with specific fields in CSV format (with headers):
 
 ```bash
-een camera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
+brivo video camera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
 ```
 
 #### Output
@@ -1454,7 +1813,7 @@ Manage camera io devices.
 #### Usage:
 
 ```
-een camera io [COMMAND] [OPTIONS]
+brivo video camera io [COMMAND] [OPTIONS]
 ```
 
 #### Commands:
@@ -1473,7 +1832,7 @@ List io ports for all io-capable cameras.
 ##### Usage:
 
 ```
-een camera io list [options] [selectors] [general options]
+brivo video camera io list [options] [selectors] [general options]
 ```
 
 ##### Options:
@@ -1521,19 +1880,19 @@ een camera io list [options] [selectors] [general options]
 To list all io ports across all io-capable cameras:
 
 ```bash
-een camera io list
+brivo video camera io list
 ```
 
 To list io ports for cameras in a specific site, in long format:
 
 ```bash
-een camera io list --site 'Site Name' --long
+brivo video camera io list --site 'Site Name' --long
 ```
 
 To filter by specific port names:
 
 ```bash
-een camera io list --port-name 'Input 1, Output 1'
+brivo video camera io list --port-name 'Input 1, Output 1'
 ```
 
 ##### Output
@@ -1553,10 +1912,10 @@ Set io port settings for io-capable cameras.
 ##### Usage:
 
 ```
-een camera io set [subcommand] [options] [selectors] [general options]
+brivo video camera io set [parameter] [value] [options] [selectors] [general options]
 ```
 
-##### Subcommands:
+##### Parameters:
 
 - `enable`
   Enable the io port.
@@ -1585,6 +1944,10 @@ een camera io set [subcommand] [options] [selectors] [general options]
   Display details in CSV format in google sheet.
 - `--header`
   Display column headers in the result.
+- `--enable`
+  Enable the setting (required for: record-on-active, show-icon; cannot be used with `--disable`).
+- `--disable`
+  Disable the setting (required for: record-on-active, show-icon; cannot be used with `--enable`).
 
 ##### Selectors:
 
@@ -1595,7 +1958,7 @@ een camera io set [subcommand] [options] [selectors] [general options]
 - `-C, --camera [camera1, camera2]`
   Filter by cameras.
 - `--esn [esn1, esn2]`
-  Filter by camera esns (use `'*'` to apply to all cameras).
+  Filter by camera esns.
 - `--port-id [id1, id2]`
   Filter by port id.
 - `--port-name [name1, name2]`
@@ -1615,25 +1978,25 @@ een camera io set [subcommand] [options] [selectors] [general options]
 
 ```bash
 # Enable io port for a specific camera
-een camera io set enable --esn 12345
+brivo video camera io set enable --esn 12345
 
 # Disable io port on a specific port
-een camera io set disable --esn 12345 --port-name 'Output 1'
+brivo video camera io set disable --esn 12345 --port-name 'Output 1'
 
 # Enable record on active for cameras in a site
-een camera io set record-on-active --enable --site 'Site Name'
+brivo video camera io set record-on-active --enable --site 'Site Name'
 
 # Show icon for a specific output port
-een camera io set show-icon --enable --esn 12345 --port-name 'Output 1'
+brivo video camera io set show-icon --enable --esn 12345 --port-name 'Output 1'
 
 # Rename a port
-een camera io set name 'Door Sensor' --esn 12345 --port-id 1
+brivo video camera io set name 'Door Sensor' --esn 12345 --port-id 1
 
 # Set default status to open for input ports
-een camera io set default-status open --esn 12345 --port-type input
+brivo video camera io set default-status open --esn 12345 --port-type input
 
 # Set icon for an output port
-een camera io set icon siren --esn 12345 --port-name 'Output 1'
+brivo video camera io set icon siren --esn 12345 --port-name 'Output 1'
 ```
 
 ##### Output
@@ -1661,7 +2024,7 @@ You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific
 #### Usage:
 
 ```
-een camera get [parameters] [options] [selectors] [general options]
+brivo video camera get [parameters] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -1707,7 +2070,7 @@ een camera get [parameters] [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheets.
@@ -1737,13 +2100,13 @@ een camera get [parameters] [options] [selectors] [general options]
 
 ```bash
 # Get audio settings
-een camera get audio --esn 12345
+brivo video camera get audio --esn 12345
 
 # Get preview update rate and save as CSV
-een camera get preview-update-rate --bridge-esn 12345 --csv -f update-rate.csv
+brivo video camera get preview-update-rate --bridge-esn 12345 --csv -f update-rate.csv
 
 # Get scene analytics for all cameras and export to Google Sheets with headers
-een camera get scene-analytics -g --header
+brivo video camera get scene-analytics -g --header
 ```
 
 #### Output
@@ -1770,7 +2133,7 @@ You can use selectors (like `--esn`, `--tag`, `--site`, etc.) to target specific
 #### Usage:
 
 ```
-een camera set [parameter] [value] [options] [selectors] [general options]
+brivo video camera set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -1783,27 +2146,27 @@ een camera set [parameter] [value] [options] [selectors] [general options]
   Set the camera password.
 - `username <username>`
   Set the camera username.
-- `preview-update-rate <milliseconds>`
+- `preview-update-rate <preview-update-rate>`
   Set the preview video update rate (in ms).
-- `preview-quality <quality>`
+- `preview-quality <preview-quality>`
   Set the preview video quality.
-- `preview-resolution <resolution>`
+- `preview-resolution <preview-resolution>`
   Set the preview video resolution.
-- `preview-transmit-mode <mode>`
+- `preview-transmit-mode <preview-transmit-mode>`
   Set the preview video transmit mode.
-- `video-capture-mode <mode>`
+- `video-capture-mode <video-capture-mode>`
   Set the video capture mode.
-- `video-quality <quality>`
+- `video-quality <video-quality>`
   Set the video quality.
-- `video-resolution <resolution>`
+- `video-resolution <video-resolution>`
   Set the video resolution.
-- `video-transmit-mode <mode>`
+- `video-transmit-mode <video-transmit-mode>`
   Set the video transmit mode.
-- `cloud-retention <days>`
+- `cloud-retention <cloud-retention-days>`
   Set the cloud retention days.
-- `minimum-premise-retention <days>`
+- `minimum-premise-retention <minimum-premise-retention-days>`
   Set the minimum premise retention days.
-- `maximum-premise-retention <days>`
+- `maximum-premise-retention <maximum-premise-retention-days>`
   Set the maximum premise retention days.
 - `scene-analytics`
   Enable or disable scene analytics (use --enable or --disable).
@@ -1818,12 +2181,16 @@ een camera set [parameter] [value] [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
 - `--header`
   Display column headers in the result.
+- `--enable`
+  Enable the setting (required for: audio, cloud-preview-only, scene-analytics; cannot be used with `--disable`).
+- `--disable`
+  Disable the setting (required for: audio, cloud-preview-only, scene-analytics; cannot be used with `--enable`).
 
 #### `camera set site` Options:
 
@@ -1855,25 +2222,25 @@ een camera set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Enable audio for specific cameras
-een camera set audio --enable --esn 12345
+brivo video camera set audio --enable --esn 12345
 
 # Set preview update rate and save as CSV
-een camera set preview-update-rate 5000 --bridge-esn 12345 --csv -f update-rate.csv
+brivo video camera set preview-update-rate 5000 --bridge-esn 12345 --csv -f update-rate.csv
 
 # Set video quality
-een camera set video-quality high --esn 12345
+brivo video camera set video-quality high --esn 12345
 
 # Enable scene analytics for all cameras and export to Google Sheets
-een camera set scene-analytics --enable --esn '*' -g --header
+brivo video camera set scene-analytics --enable --esn '*' -g --header
 
 # Move a specific camera to a different site by site name
-een camera set site --new-site 'Branch Office' --esn '1007b4fb'
+brivo video camera set site --new-site 'Branch Office' --esn '1007b4fb'
 
 # Move a specific camera to a different site by site id
-een camera set site --new-id 'abc123' --esn '1007b4fb'
+brivo video camera set site --new-id 'abc123' --esn '1007b4fb'
 
 # Move all cameras to a new site
-een camera set site --new-site 'Branch Office' --esn '*'
+brivo video camera set site --new-site 'Branch Office' --esn '*'
 ```
 
 #### Output
@@ -1918,7 +2285,7 @@ Delete a camera from the bridge.
 #### Usage:
 
 ```
-een camera delete [options] [general options]
+brivo video camera delete [options] [general options]
 ```
 
 #### Options:
@@ -1933,13 +2300,13 @@ een camera delete [options] [general options]
 - To delete a camera by ESN:
 
 ```bash
-een camera delete --esn '1007b4fb'
+brivo video camera delete --esn '1007b4fb'
 ```
 
 - To delete a camera by name:
 
 ```bash
-een camera delete --name 'My Camera'
+brivo video camera delete --name 'My Camera'
 ```
 
 #### Output
@@ -1965,7 +2332,7 @@ Add camera to bridge.
 #### Usage:
 
 ```
-een camera add <esn> [options] [general options]
+brivo video camera add <esn> [options] [general options]
 ```
 
 #### Argument:
@@ -2004,7 +2371,7 @@ Get camera stream status.
 #### Usage:
 
 ```
-een camera streamstatus [options] [general options]
+brivo video camera streamstatus [options] [general options]
 ```
 
 #### Required Options:
@@ -2038,7 +2405,7 @@ Get camera purging and duty cycle.
 #### Usage:
 
 ```
-een camera purgelist [options] [selectors] [general options]
+brivo video camera purgelist [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -2092,7 +2459,7 @@ Get camera installer summary.
 #### Usage:
 
 ```
-een camera i-summary [options] [selectors] [general options]
+brivo video camera i-summary [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -2120,7 +2487,7 @@ een camera i-summary [options] [selectors] [general options]
   Filter by cameras.
 - `--esn [esn1, esn2]`
   Filter by camera esns.
-- `--site [site1, site2]`
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
@@ -2138,7 +2505,7 @@ Get camera availability.
 #### Usage:
 
 ```
-een camera availability [options] [selectors] [general options]
+brivo video camera availability [options] [selectors] [general options]
 ```
 
 #### Required Options:
@@ -2198,7 +2565,7 @@ It can accept multiple tags, you can use selectors (like `--esn`, `--tag`, `--si
 #### Usage:
 
 ```
-een camera addtag <tags> [options] [selectors] [general options]
+brivo video camera addtag <tags> [options] [selectors] [general options]
 ```
 
 #### Argument:
@@ -2212,7 +2579,7 @@ een camera addtag <tags> [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -2235,17 +2602,17 @@ een camera addtag <tags> [options] [selectors] [general options]
   Filter by site IDs.
 - `--status [status]`
   Filter by status.
-- `--tag [tag1, tag2]`
+- `-t, --tag [tag1, tag2]`
   Filter by tags.
 
 #### EXAMPLES
 
 ```bash
 # add tags newtag, test to camera with esn 1234
-een camera addtag 'new tag, test' --esn '1234'
+brivo video camera addtag 'new tag, test' --esn '1234'
 
 # add tags test to camera with bridge esn 0987 and camera status online
-een camera addtag 'test' --bridge-esn '0987' --status 'online'
+brivo video camera addtag 'test' --bridge-esn '0987' --status 'online'
 ```
 
 #### Output
@@ -2276,7 +2643,7 @@ It can accept multiple tags, you can use selectors (like `--esn`, `--tag`, `--si
 #### Usage:
 
 ```
-een camera deletetag <tags> [options] [selectors] [general options]
+brivo video camera deletetag <tags> [options] [selectors] [general options]
 ```
 
 #### Argument:
@@ -2290,7 +2657,7 @@ een camera deletetag <tags> [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -2313,17 +2680,17 @@ een camera deletetag <tags> [options] [selectors] [general options]
   Filter by site IDs.
 - `--status [status]`
   Filter by status.
-- `--tag [tag1, tag2]`
+- `-t, --tag [tag1, tag2]`
   Filter by tags.
 
 #### EXAMPLES
 
 ```bash
 # delete tags newtag from camera with esns 1234,5678 give output in csv format with header:
-een camera deletetag 'new tag' --esn '1234, 5678' --csv --header
+brivo video camera deletetag 'new tag' --esn '1234, 5678' --csv --header
 
 # delete tags test, new tag in cameras with bridge esn 0987 and camera status online:
-een camera deletetag 'test, new tag' --bridge-esn '0987' --status 'online'
+brivo video camera deletetag 'test, new tag' --bridge-esn '0987' --status 'online'
 
 ```
 
@@ -2356,7 +2723,7 @@ When running a `camera deletetag` command with `--csv` and `--header`, the outpu
 ## SYNOPSIS
 
 ```
-een bridge [COMMAND] [OPTIONS]
+brivo video bridge [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -2372,7 +2739,7 @@ List all bridges.
 #### Usage:
 
 ```
-een bridge list [options] [selectors] [general options]
+brivo video bridge list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -2393,8 +2760,6 @@ een bridge list [options] [selectors] [general options]
   Display associated items (supported values: esn).
 - `-l, --long`
   Display details of bridges, including bridge id, bridge name, serial number, tags, connection status, timezone, site id, site name, mac address, guid, IP address, created timestamp, number of cameras online, cloud bandwidth measured - last 7 days (mega bits per seconds), realtime bandwidth - last 7 days (mega bits per seconds), background bandwidth (background + on-demand) - last 7 days (mega bits per seconds).
-- `--v1`
-  Use v1 APIs (deprecated).
 
 #### Selectors:
 
@@ -2413,8 +2778,7 @@ een bridge list [options] [selectors] [general options]
 
 #### Actions:
 
-- If `--html` is specified and `--v1`, generate a bridge list report using v1.
-- If `--csv` is specified and `--v1`, list bridges in CSV format using v1.
+- If `--html` is specified, generate a bridge list report.
 - If `--json` is specified, list bridges in JSON format.
 - Handle other combinations of options to perform various listing and reporting tasks.
 
@@ -2423,7 +2787,7 @@ een bridge list [options] [selectors] [general options]
 To list all bridge ESNs in CSV format (with headers):
 
 ```bash
-een bridge list --include 'esn' --header --csv
+brivo video bridge list --include 'esn' --header --csv
 ```
 
 #### Output
@@ -2449,7 +2813,7 @@ You can use selectors (like `--bridge-esn`, `--tag`, `--site`, etc.) to target s
 #### Usage:
 
 ```
-een bridge get [parameters] [options] [selectors] [general options]
+brivo video bridge get [parameters] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -2509,37 +2873,37 @@ een bridge get [parameters] [options] [selectors] [general options]
 
 ```bash
 # Get bandwidth mode for a specific bridge
-een bridge get bandwidth-mode --bridge-esn BRIDGE123
+brivo video bridge get bandwidth-mode --bridge-esn BRIDGE123
 
 # Get bandwidth limit for multiple bridges and export as CSV
-een bridge get bandwidth-limit --bridge bridge1,bridge2 --csv -f bandwidth.csv
+brivo video bridge get bandwidth-limit --bridge bridge1,bridge2 --csv -f bandwidth.csv
 
 # Get bridge name for all bridges at a site
-een bridge get bridge-name --site "Main Office"
+brivo video bridge get bridge-name --site "Main Office"
 
 # Check if local display browser is enabled
-een bridge get local-display-browser --bridge-esn BRIDGE123
+brivo video bridge get local-display-browser --bridge-esn BRIDGE123
 
 # Check if local display monitor is enabled
-een bridge get local-display-monitor --bridge-esn BRIDGE123
+brivo video bridge get local-display-monitor --bridge-esn BRIDGE123
 
 # Check if media shortcut is enabled for all bridges
-een bridge get media-shortcut
+brivo video bridge get media-shortcut
 
 # Check if RTSP authentication is enabled
-een bridge get rtsp-auth --bridge-esn BRIDGE123
+brivo video bridge get rtsp-auth --bridge-esn BRIDGE123
 
 # Check if RTSP streaming is enabled
-een bridge get rtsp-stream --bridge-esn BRIDGE123
+brivo video bridge get rtsp-stream --bridge-esn BRIDGE123
 
 # Check if UPnP is enabled for all bridges with a specific tag
-een bridge get upnp --tag warehouse
+brivo video bridge get upnp --tag warehouse
 
 # Get video standard for bridges at a site and export to Google Sheets with headers
-een bridge get video-standard --site-id SITE123 -g --header
+brivo video bridge get video-standard --site-id SITE123 -g --header
 
 # Get site-name for every bridge
-een bridge get site-name
+brivo video bridge get site-name
 ```
 
 #### Output
@@ -2561,7 +2925,7 @@ Get bridge availability details.
 #### Usage:
 
 ```
-een bridge availability [options] [selectors] [general options]
+brivo video bridge availability [options] [selectors] [general options]
 ```
 
 #### Required Options:
@@ -2606,7 +2970,7 @@ Pull logs from the archiver/bridge.
 #### Usage:
 
 ```
-een bridge qlstreammetrics [options] [general options]
+brivo video bridge qlstreammetrics [options] [general options]
 ```
 
 #### Required Options:
@@ -2622,8 +2986,6 @@ een bridge qlstreammetrics [options] [general options]
   Specify the end time.
 - `-E, --events`
   Display events of the bridge.
-- `-l, --local-rtsp-metrics [enable/disable]`
-  Specify whether enable or disable the RTSP metrics set. (deprecated, use `bridge set rtsp-stream` instead)
 - `-p, --performance`
   Display performance metrics of the bridge.
 - `-s, --start-time [start time]`
@@ -2633,7 +2995,7 @@ een bridge qlstreammetrics [options] [general options]
 
 ## Note:
 
-- Along with `--esn`, one of `--events`, `--performance`, or `--local-rtsp-metrics` must be specified.
+- Along with `--esn`, one of `--events` or `--performance` must be specified.
 
 ---
 
@@ -2642,19 +3004,19 @@ een bridge qlstreammetrics [options] [general options]
 - To list all bridges:
 
 ```bash
-een bridge list
+brivo video bridge list
 ```
 
 - To check the bridges with status online:
 
 ```bash
-een bridge list --status 'online'  --html
+brivo video bridge list --status 'online'  --html
 ```
 
 - To get availability information for a bridge:
 
 ```bash
-een bridge availability --esn [esn1, esn2] --start-time [start time] --end-time [end time]
+brivo video bridge availability --esn [esn1, esn2] --start-time [start time] --end-time [end time]
 ```
 
 ---
@@ -2672,7 +3034,7 @@ You can use selectors (like `--bridge-esn`, `--tag`, `--site`, etc.) to target s
 #### Usage:
 
 ```
-een bridge set [parameter] [value] [options] [selectors] [general options]
+brivo video bridge set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Note:
@@ -2718,6 +3080,10 @@ een bridge set [parameter] [value] [options] [selectors] [general options]
   Display details in csv format in google sheet.
 - `--header`
   Display column headers in the result.
+- `--enable`
+  Enable the setting (required for: local-display-browser, local-display-monitor, media-shortcut, rtsp-auth, rtsp-stream, upnp; cannot be used with `--disable`).
+- `--disable`
+  Disable the setting (required for: local-display-browser, local-display-monitor, media-shortcut, rtsp-auth, rtsp-stream, upnp; cannot be used with `--enable`).
 
 #### Selectors:
 
@@ -2738,34 +3104,34 @@ een bridge set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Enable RTSP stream for specific bridges
-een bridge set rtsp-stream --enable --bridge 'first_bridge, second_bridge'
+brivo video bridge set rtsp-stream --enable --bridge 'first_bridge, second_bridge'
 
 # Set bridge-name and save as CSV
-een bridge set bridge-name 'new bridge name' --bridge-esn 12345 --csv -f update-bridge-name.csv
+brivo video bridge set bridge-name 'new bridge name' --bridge-esn 12345 --csv -f update-bridge-name.csv
 
 # Disable local display via monitor for bridges on the site given
-een bridge set local-display-monitor --disable --site 'site name'
+brivo video bridge set local-display-monitor --disable --site 'site name'
 
 # Enable media-shortcut for all bridges and export results to Google Sheets
-een bridge set media-shortcut --enable --bridge-esn '*' -g --header
+brivo video bridge set media-shortcut --enable --bridge-esn '*' -g --header
 
 # Set bandwidth mode as percent for specific bridge ESNs
-een bridge set bandwidth-mode percent --bridge-esn '1007fda2,10035b4a'
+brivo video bridge set bandwidth-mode percent --bridge-esn '1007fda2,10035b4a'
 
 # Set bandwidth limit as 50 for specified bridge
-een bridge set bandwidth-limit 50 --bridge-esn '1007fda2'
+brivo video bridge set bandwidth-limit 50 --bridge-esn '1007fda2'
 
 # Set video-standard as ntsc for the bridges in site 'Eagle Eye Bangalore'
-een bridge set video-standard ntsc --site 'Eagle Eye Bangalore'
+brivo video bridge set video-standard ntsc --site 'Eagle Eye Bangalore'
 
 # Enable upnp for the specified bridge
-een bridge set upnp --bridge-esn '1007fda2' --enable
+brivo video bridge set upnp --bridge-esn '1007fda2' --enable
 
 # Disable rtsp auth for the specified bridge
-een bridge set rtsp-auth --bridge-esn '1007fda2' --disable
+brivo video bridge set rtsp-auth --bridge-esn '1007fda2' --disable
 
 # Set site-name for a specific bridge
-een bridge set site-name 'Hari Test' --bridge-esn '1007fda2'
+brivo video bridge set site-name 'Hari Test' --bridge-esn '1007fda2'
 ```
 
 #### Output
@@ -2819,7 +3185,7 @@ It can accept multiple tags, you can use selectors (like `--bridge-esn`, `--tag`
 #### Usage:
 
 ```
-een bridge addtag <tags> [options] [selectors] [general options]
+brivo video bridge addtag <tags> [options] [selectors] [general options]
 ```
 
 #### Argument:
@@ -2833,7 +3199,7 @@ een bridge addtag <tags> [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -2844,7 +3210,7 @@ een bridge addtag <tags> [options] [selectors] [general options]
 
 - `-b, --bridge [bridge1, bridge2]`
   Filter by bridges.
-- `--bridge-esn [bridge esn1, bridge esn2]`
+- `--bridge-esn [esn1, esn2]`
   Filter by bridge ESNs (use '\*' to apply to all bridges).
 - `--site [site name1, site name2]`
   Filter by site names.
@@ -2852,17 +3218,17 @@ een bridge addtag <tags> [options] [selectors] [general options]
   Filter by site IDs.
 - `--status [status]`
   Filter by status.
-- `--tag [tag1, tag2]`
+- `-t, --tag [tag1, tag2]`
   Filter by tags.
 
 #### EXAMPLES
 
 ```bash
 # add tags 'newtag, testtag' to bridge with esn 1234
-een bridge addtag 'new tag, test' --bridge-esn '1234'
+brivo video bridge addtag 'new tag, test' --bridge-esn '1234'
 
 # add tags 'clitag' to bridge in site 'Eagle Eye India 1' and status online
-een bridge addtag 'clitag' --site 'Eagle Eye India 1' --status 'online'
+brivo video bridge addtag 'clitag' --site 'Eagle Eye India 1' --status 'online'
 ```
 
 #### Output
@@ -2893,7 +3259,7 @@ It can accept multiple tags, you can use selectors (like `--bridge-esn`, `--tag`
 #### Usage:
 
 ```
-een bridge deletetag <tags> [options] [selectors] [general options]
+brivo video bridge deletetag <tags> [options] [selectors] [general options]
 ```
 
 #### Argument:
@@ -2907,7 +3273,7 @@ een bridge deletetag <tags> [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -2918,7 +3284,7 @@ een bridge deletetag <tags> [options] [selectors] [general options]
 
 - `-b, --bridge [bridge1, bridge2]`
   Filter by bridges.
-- `--bridge-esn [bridge esn1, bridge esn2]`
+- `--bridge-esn [esn1, esn2]`
   Filter by bridge ESNs (use '\*' to apply to all bridges).
 - `--site [site name1, site name2]`
   Filter by site names.
@@ -2926,17 +3292,17 @@ een bridge deletetag <tags> [options] [selectors] [general options]
   Filter by site IDs.
 - `--status [status]`
   Filter by status.
-- `--tag [tag1, tag2]`
+- `-t, --tag [tag1, tag2]`
   Filter by tags.
 
 #### EXAMPLES
 
 ```bash
 # delete tags 'new tag, new tag' from bridge with esn '1234' give output in csv format with header:
-een bridge deletetag 'new tag, test' --bridge-esn '1234' --csv --header
+brivo video bridge deletetag 'new tag, test' --bridge-esn '1234' --csv --header
 
 # delete tag 'clitag' from bridges in site 'Eagle Eye India 1' with status online:
-een bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online'
+brivo video bridge deletetag 'test, new tag' --site 'Eagle Eye India 1' --status 'online'
 
 ```
 
@@ -2967,7 +3333,7 @@ Add a bridge.
 #### Usage:
 
 ```
-een bridge add [options] [general options]
+brivo video bridge add [options] [general options]
 ```
 
 #### Required Options:
@@ -2991,7 +3357,7 @@ een bridge add [options] [general options]
 - To add a bridge with name 'cli bridge test' and connect id 'dfadf-fdaf-gggh' with site name 'Hari site' :
 
 ```bash
-een bridge add --name 'cli bridge test' --connect-id dfadf-fdaf-gggh --site 'Hari site'
+brivo video bridge add --name 'cli bridge test' --connect-id dfadf-fdaf-gggh --site 'Hari site'
 ```
 
 #### Output
@@ -3015,7 +3381,7 @@ Delete a bridge.
 #### Usage:
 
 ```
-een bridge delete [options] [general options]
+brivo video bridge delete [options] [general options]
 ```
 
 #### Options:
@@ -3030,13 +3396,13 @@ een bridge delete [options] [general options]
 - To delete a bridge by ESN:
 
 ```bash
-een bridge delete --esn '100eb9fc'
+brivo video bridge delete --esn '100eb9fc'
 ```
 
 - To delete a bridge by name:
 
 ```bash
-een bridge delete --name 'My Bridge'
+brivo video bridge delete --name 'My Bridge'
 ```
 
 #### Output
@@ -3064,7 +3430,7 @@ successfully deleted the bridge: My Bridge (100eb9fc)
 ## SYNOPSIS
 
 ```
-een switch [COMMAND] [OPTIONS]
+brivo video switch [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -3080,7 +3446,7 @@ List switches.
 #### Usage:
 
 ```
-een switch list [options] [selectors] [general options]
+brivo video switch list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -3112,7 +3478,7 @@ een switch list [options] [selectors] [general options]
 - To list all switches:
 
 ```bash
-een switch list --header --csv
+brivo video switch list --header --csv
 ```
 
 #### Output
@@ -3126,7 +3492,7 @@ een switch list --header --csv
 - To list all switches with the specified ids with headers in CSV and long list format:
 
 ```bash
-een switch list --id '1234, 6788' -l --header --csv
+brivo video switch list --id '1234, 6788' -l --header --csv
 ```
 
 #### Output
@@ -3152,7 +3518,7 @@ You can use selectors (like `--id`, `--name`) to target specific switches.
 #### Usage:
 
 ```
-een switch set [parameter] [value] [options] [selectors] [general options]
+brivo video switch set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -3184,10 +3550,10 @@ een switch set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Set switch name by id
-een switch set switch-name 'New-name' --id '8870a430-8598-5499-90ae-96b51d2606dc'
+brivo video switch set switch-name 'New-name' --id '8870a430-8598-5499-90ae-96b51d2606dc'
 
 # Set switch name by current name and save as CSV
-een switch set switch-name 'New-name' --name 'Old-name' --csv -f update-switch-name.csv
+brivo video switch set switch-name 'New-name' --name 'Old-name' --csv -f update-switch-name.csv
 ```
 
 #### Output
@@ -3232,7 +3598,7 @@ successfully updated switch details for 0/1 switch
 ## SYNOPSIS
 
 ```
-een tag [COMMAND] [OPTIONS]
+brivo video tag [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -3248,13 +3614,15 @@ List tags.
 #### Usage:
 
 ```
-een tag list [options] [selectors] [general options]
+brivo video tag list [options] [selectors] [general options]
 ```
 
 #### Options:
 
 - `--csv`
   Display details in CSV format.
+- `--json`
+  List details in JSON format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
@@ -3272,7 +3640,7 @@ een tag list [options] [selectors] [general options]
 - To list all tags:
 
 ```bash
-een tag list --header --csv
+brivo video tag list --header --csv
 ```
 
 #### Output
@@ -3286,7 +3654,7 @@ een tag list --header --csv
 - To list tags matching a name filter, with headers in CSV:
 
 ```bash
-een tag list --name lpr --header --csv
+brivo video tag list --name lpr --header --csv
 ```
 
 #### Output
@@ -3307,7 +3675,7 @@ een tag list --name lpr --header --csv
 ## SYNOPSIS
 
 ```
-een sensor [COMMAND] [OPTIONS]
+brivo video sensor [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -3323,7 +3691,7 @@ Delete a sensor.
 #### Usage:
 
 ```
-een sensor delete [options] [general options]
+brivo video sensor delete [options] [general options]
 ```
 
 #### Options:
@@ -3338,13 +3706,13 @@ een sensor delete [options] [general options]
 - To delete a sensor by id:
 
 ```bash
-een sensor delete --id '834978'
+brivo video sensor delete --id '834978'
 ```
 
 - To delete a sensor by name:
 
 ```bash
-een sensor delete --name 'My Sensor'
+brivo video sensor delete --name 'My Sensor'
 ```
 
 #### Output
@@ -3370,7 +3738,7 @@ Add a sensor.
 #### Usage:
 
 ```
-een sensor add [options] [general options]
+brivo video sensor add [options] [general options]
 ```
 
 #### Required Options:
@@ -3400,19 +3768,19 @@ een sensor add [options] [general options]
 - To add a sensor with name 'BOX1 test' and guid 'abc123':
 
 ```bash
-een sensor add --name 'BOX1 test' --guid abc123
+brivo video sensor add --name 'BOX1 test' --guid abc123
 ```
 
 - To add a sensor and associate it with a site by name:
 
 ```bash
-een sensor add --name 'BOX1 test' --guid abc123 --site 'Eagle Eye Office'
+brivo video sensor add --name 'BOX1 test' --guid abc123 --site 'Eagle Eye Office'
 ```
 
 - To add a sensor and associate it with a camera by ESN:
 
 ```bash
-een sensor add --name 'BOX1 test' --guid abc123 --camera-esn 100abc12
+brivo video sensor add --name 'BOX1 test' --guid abc123 --camera-esn 100abc12
 ```
 
 #### Output
@@ -3436,7 +3804,7 @@ List all sensors.
 #### Usage:
 
 ```
-een sensor list [options] [selectors] [general options]
+brivo video sensor list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -3484,7 +3852,7 @@ een sensor list [options] [selectors] [general options]
 - To list all sensors with header in CSV format:
 
 ```bash
-een sensor list --header --csv
+brivo video sensor list --header --csv
 ```
 
 #### Output
@@ -3499,7 +3867,7 @@ een sensor list --header --csv
 - To list all sensors with ids 834978, 199109 with header in long list and CSV format:
 
 ```bash
-een sensor list --id '834978,199109' --header --csv --long
+brivo video sensor list --id '834978,199109' --header --csv --long
 ```
 
 #### Output
@@ -3513,37 +3881,37 @@ een sensor list --id '834978,199109' --header --csv --long
 - To list all sensors under a specific gateway by name:
 
 ```bash
-een sensor list --gateway-name 'Gateway 1' --header --csv
+brivo video sensor list --gateway-name 'Gateway 1' --header --csv
 ```
 
 - To list all sensors at a site by name:
 
 ```bash
-een sensor list --site 'Eagle Eye Office' --header
+brivo video sensor list --site 'Eagle Eye Office' --header
 ```
 
 - To list sensors associated with a specific camera:
 
 ```bash
-een sensor list --camera 'Parking Lot Camera' --header
+brivo video sensor list --camera 'Parking Lot Camera' --header
 ```
 
 - To list sensors of a specific property type:
 
 ```bash
-een sensor list --property-type 'temperature' --header
+brivo video sensor list --property-type 'temperature' --header
 ```
 
 - To list sensors filtered by threshold level:
 
 ```bash
-een sensor list --threshold-level 'warning' --header
+brivo video sensor list --threshold-level 'warning' --header
 ```
 
 - To list sensors filtered by property type and threshold level:
 
 ```bash
-een sensor list --property-type 'temperature' --threshold-level 'critical' --header
+brivo video sensor list --property-type 'temperature' --threshold-level 'critical' --header
 ```
 
 ### set
@@ -3559,7 +3927,7 @@ You can use selectors (like `--id`, `--name`, `--site`, etc.) to target specific
 #### Usage:
 
 ```
-een sensor set [parameter] [value] [options] [selectors] [general options]
+brivo video sensor set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -3618,36 +3986,38 @@ een sensor set [parameter] [value] [options] [selectors] [general options]
   Filter by site names.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
+- `--threshold-level [level1, level2]`
+  Filter by threshold level (supported values: none, normal, warning, critical, unknown).
 
 #### EXAMPLES
 
 ```bash
 # Rename a specific sensor
-een sensor set sensor-name 'New Sensor Name' --id '834978'
+brivo video sensor set sensor-name 'New Sensor Name' --id '834978'
 
 # Rename all sensors on a site
-een sensor set sensor-name 'Lobby Sensor' --site 'Eagle Eye Office'
+brivo video sensor set sensor-name 'Lobby Sensor' --site 'Eagle Eye Office'
 
 # Move a specific sensor to a different site by site name
-een sensor set site --new-site 'Branch Office' --id '834978'
+brivo video sensor set site --new-site 'Branch Office' --id '834978'
 
 # Move all sensors under a gateway to a new site by site id
-een sensor set site --new-id 'abc123' --gateway-name 'Gateway A'
+brivo video sensor set site --new-id 'abc123' --gateway-name 'Gateway A'
 
 # Move all sensors to a new site
-een sensor set site --new-site 'Branch Office' --id '*'
+brivo video sensor set site --new-site 'Branch Office' --id '*'
 
 # Set the primary camera for a specific sensor by camera name
-een sensor set camera --new-camera 'Parking Lot Camera' --id '834978'
+brivo video sensor set camera --new-camera 'Parking Lot Camera' --id '834978'
 
 # Set the primary camera for a specific sensor by camera ESN
-een sensor set camera --new-esn 'abc12345' --id '834978'
+brivo video sensor set camera --new-esn 'abc12345' --id '834978'
 
 # Set the primary camera for all sensors
-een sensor set camera --new-camera 'Front Door Camera' --id '*'
+brivo video sensor set camera --new-camera 'Front Door Camera' --id '*'
 
 # Rename a sensor and export the result to CSV
-een sensor set sensor-name 'Updated Name' --id '834978' --csv --header
+brivo video sensor set sensor-name 'Updated Name' --id '834978' --csv --header
 ```
 
 #### Output
@@ -3689,7 +4059,7 @@ Updated sensor for 0/1 sensor device
 ## SYNOPSIS
 
 ```
-een measurement [COMMAND] [OPTIONS]
+brivo video measurement [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -3705,7 +4075,7 @@ List all measurements.
 #### Usage:
 
 ```
-een measurement list [options] [selectors] [general options]
+brivo video measurement list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -3766,7 +4136,7 @@ een measurement list [options] [selectors] [general options]
 - To list all measurements with header in CSV format:
 
 ```bash
-een measurement list --header --csv
+brivo video measurement list --header --csv
 ```
 
 #### Output
@@ -3780,55 +4150,55 @@ een measurement list --header --csv
 - To list preferred measurements only:
 
 ```bash
-een measurement list --preferred --header
+brivo video measurement list --preferred --header
 ```
 
 - To list non-preferred measurements only:
 
 ```bash
-een measurement list --non-preferred --header
+brivo video measurement list --non-preferred --header
 ```
 
 - To list measurements by sensor name:
 
 ```bash
-een measurement list --sensor-name 'BOX1 test' --header
+brivo video measurement list --sensor-name 'BOX1 test' --header
 ```
 
 - To list measurements at a site:
 
 ```bash
-een measurement list --site 'Eagle Eye Office' --header
+brivo video measurement list --site 'Eagle Eye Office' --header
 ```
 
 - To list measurements by property type:
 
 ```bash
-een measurement list --property-type 'temperature' --header
+brivo video measurement list --property-type 'temperature' --header
 ```
 
 - To list measurements filtered by threshold level:
 
 ```bash
-een measurement list --threshold-level 'critical,warning' --header
+brivo video measurement list --threshold-level 'critical,warning' --header
 ```
 
 - To list measurements associated with a specific camera:
 
 ```bash
-een measurement list --camera 'Parking Lot Camera' --header
+brivo video measurement list --camera 'Parking Lot Camera' --header
 ```
 
 - To list measurements with long output including threshold details:
 
 ```bash
-een measurement list --header --long
+brivo video measurement list --header --long
 ```
 
 - To list measurements with only specific fields:
 
 ```bash
-een measurement list --include 'name,last-reading,threshold-level' --header
+brivo video measurement list --include 'name,last-reading,threshold-level' --header
 ```
 
 ### set
@@ -3844,7 +4214,7 @@ You can use selectors (like `--id`, `--sensor-name`, `--site`, etc.) to target s
 #### Usage:
 
 ```
-een measurement set [parameter] [value] [options] [selectors] [general options]
+brivo video measurement set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -3918,31 +4288,31 @@ een measurement set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Enable preference for a specific measurement
-een measurement set preference --enable --id 'meas-001'
+brivo video measurement set preference --enable --id 'meas-001'
 
 # Disable preference for all measurements on a sensor
-een measurement set preference --disable --sensor-name 'BOX1 test'
+brivo video measurement set preference --disable --sensor-name 'BOX1 test'
 
 # Set the primary camera for a measurement by camera name
-een measurement set camera --new-camera 'Parking Lot Camera' --id 'meas-001'
+brivo video measurement set camera --new-camera 'Parking Lot Camera' --id 'meas-001'
 
 # Set the primary camera for a measurement by camera ESN
-een measurement set camera --new-esn 'abc12345' --id 'meas-001'
+brivo video measurement set camera --new-esn 'abc12345' --id 'meas-001'
 
 # Set the primary camera for all measurements
-een measurement set camera --new-camera 'Front Door Camera' --id '*'
+brivo video measurement set camera --new-camera 'Front Door Camera' --id '*'
 
 # Set the display unit for a measurement
-een measurement set display-unit 'celsius' --id 'meas-001'
+brivo video measurement set display-unit 'celsius' --id 'meas-001'
 
 # Set the offset for measurements at a site
-een measurement set offset '0.5' --site 'Eagle Eye Office'
+brivo video measurement set offset '0.5' --site 'Eagle Eye Office'
 
 # Set the precision for a specific measurement
-een measurement set precision '2' --id 'meas-001'
+brivo video measurement set precision '2' --id 'meas-001'
 
 # Update a measurement and export the result to CSV
-een measurement set precision '2' --id 'meas-001' --csv --header
+brivo video measurement set precision '2' --id 'meas-001' --csv --header
 ```
 
 #### Output
@@ -3987,7 +4357,7 @@ Updated measurement for 0/1 measurement
 ## SYNOPSIS
 
 ```
-een measurementthreshold [COMMAND] [OPTIONS]
+brivo video measurementthreshold [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -4003,7 +4373,7 @@ Add a measurement threshold.
 #### Usage:
 
 ```
-een measurementthreshold add [options] [general options]
+brivo video measurementthreshold add [options] [general options]
 ```
 
 #### Required Options:
@@ -4037,7 +4407,7 @@ een measurementthreshold add [options] [general options]
 - To add a measurement threshold:
 
 ```bash
-een measurementthreshold add --property-type temperature --display-unit fahrenheit --max-critical 10 --min-critical 7 --max-warning 9 --min-warning 8
+brivo video measurementthreshold add --property-type temperature --display-unit fahrenheit --max-critical 10 --min-critical 7 --max-warning 9 --min-warning 8
 ```
 
 #### Output
@@ -4053,7 +4423,7 @@ Delete a measurement threshold by id or name.
 #### Usage:
 
 ```
-een measurementthreshold delete [options] [general options]
+brivo video measurementthreshold delete [options] [general options]
 ```
 
 #### Options:
@@ -4077,7 +4447,7 @@ een measurementthreshold delete [options] [general options]
 - To delete a measurement threshold by name:
 
 ```bash
-een measurementthreshold delete --name 'Degrees Threshold'
+brivo video measurementthreshold delete --name 'Degrees Threshold'
 ```
 
 #### Output
@@ -4101,7 +4471,7 @@ List all measurement thresholds.
 #### Usage:
 
 ```
-een measurementthreshold list [options] [selectors] [general options]
+brivo video measurementthreshold list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -4146,7 +4516,7 @@ een measurementthreshold list [options] [selectors] [general options]
 - To list all measurement thresholds with header in CSV format:
 
 ```bash
-een measurementthreshold list --header --csv
+brivo video measurementthreshold list --header --csv
 ```
 
 #### Output
@@ -4159,31 +4529,31 @@ een measurementthreshold list --header --csv
 - To list measurement thresholds filtered by id:
 
 ```bash
-een measurementthreshold list --id '2428fda3-389f-48ce-b062-85875dd6b2e2' --header
+brivo video measurementthreshold list --id '2428fda3-389f-48ce-b062-85875dd6b2e2' --header
 ```
 
 - To list measurement thresholds filtered by name:
 
 ```bash
-een measurementthreshold list --name 'Degrees Threshold' --header
+brivo video measurementthreshold list --name 'Degrees Threshold' --header
 ```
 
 - To list measurement thresholds associated with specific measurements by id:
 
 ```bash
-een measurementthreshold list --measurement-id '00001106,00001107' --header
+brivo video measurementthreshold list --measurement-id '00001106,00001107' --header
 ```
 
 - To list measurement thresholds associated with specific measurements by name:
 
 ```bash
-een measurementthreshold list --measurement-name 'Sensor A,Sensor B' --header
+brivo video measurementthreshold list --measurement-name 'Sensor A,Sensor B' --header
 ```
 
 - To list measurement thresholds with long output:
 
 ```bash
-een measurementthreshold list --header --long
+brivo video measurementthreshold list --header --long
 ```
 
 #### Output
@@ -4196,7 +4566,7 @@ een measurementthreshold list --header --long
 - To list measurement thresholds with only specific fields:
 
 ```bash
-een measurementthreshold list --include 'name,property-type,measurement-names' --header
+brivo video measurementthreshold list --include 'name,property-type,measurement-names' --header
 ```
 
 ### set
@@ -4212,7 +4582,7 @@ Use selectors (like `--id`, `--name`, etc.) to target specific thresholds.
 #### Usage:
 
 ```
-een measurementthreshold set [parameter] [value] [options] [selectors] [general options]
+brivo video measurementthreshold set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -4258,22 +4628,22 @@ een measurementthreshold set [parameter] [value] [options] [selectors] [general 
 
 ```bash
 # Rename a specific measurement threshold
-een measurementthreshold set name 'Degrees Threshold' --id '2428fda3-389f-48ce-b062-85875dd6b2e2'
+brivo video measurementthreshold set name 'Degrees Threshold' --id '2428fda3-389f-48ce-b062-85875dd6b2e2'
 
 # Set display unit type for all thresholds associated with a measurement
-een measurementthreshold set display-unit 'celsius' --measurement-name 'Sensor A'
+brivo video measurementthreshold set display-unit 'celsius' --measurement-name 'Sensor A'
 
 # Update the max critical value for a specific threshold
-een measurementthreshold set max-critical 15 --id '2428fda3-389f-48ce-b062-85875dd6b2e2'
+brivo video measurementthreshold set max-critical 15 --id '2428fda3-389f-48ce-b062-85875dd6b2e2'
 
 # Update the min critical value for all thresholds
-een measurementthreshold set min-critical 5 --id '*'
+brivo video measurementthreshold set min-critical 5 --id '*'
 
 # Update the max warning value filtered by threshold name
-een measurementthreshold set max-warning 12 --name 'Degrees Threshold'
+brivo video measurementthreshold set max-warning 12 --name 'Degrees Threshold'
 
 # Update the min warning value and export results
-een measurementthreshold set min-warning 6 --id '2428fda3-389f-48ce-b062-85875dd6b2e2' --csv --header
+brivo video measurementthreshold set min-warning 6 --id '2428fda3-389f-48ce-b062-85875dd6b2e2' --csv --header
 ```
 
 #### Output
@@ -4313,7 +4683,7 @@ Updated measurement threshold for 0/1 measurement threshold
 ## SYNOPSIS
 
 ```
-een sensorgateway [COMMAND] [OPTIONS]
+brivo video sensorgateway [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -4329,7 +4699,7 @@ List all sensor gateways.
 #### Usage:
 
 ```
-een sensorgateway list [options] [selectors] [general options]
+brivo video sensorgateway list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -4365,7 +4735,7 @@ een sensorgateway list [options] [selectors] [general options]
 - To list all sensor gateways with header in CSV format:
 
 ```bash
-een sensorgateway list --header --csv
+brivo video sensorgateway list --header --csv
 ```
 
 #### Output
@@ -4379,7 +4749,7 @@ een sensorgateway list --header --csv
 - To list all sensor gateways with full details:
 
 ```bash
-een sensorgateway list --header --long --csv
+brivo video sensorgateway list --header --long --csv
 ```
 
 #### Output
@@ -4393,19 +4763,19 @@ een sensorgateway list --header --long --csv
 - To list sensor gateways at a specific site:
 
 ```bash
-een sensorgateway list --site 'Eagle Eye Office' --header
+brivo video sensorgateway list --site 'Eagle Eye Office' --header
 ```
 
 - To list sensor gateways filtered by id:
 
 ```bash
-een sensorgateway list --id 'abc123,def456' --header
+brivo video sensorgateway list --id 'abc123,def456' --header
 ```
 
 - To list sensor gateways with selected fields only:
 
 ```bash
-een sensorgateway list --include 'id,name,status,site' --header
+brivo video sensorgateway list --include 'id,name,status,site' --header
 ```
 
 ### set
@@ -4421,7 +4791,7 @@ Use selectors (like `--id`, `--name`, `--site`, etc.) to target specific gateway
 #### Usage:
 
 ```
-een sensorgateway set [parameter] [value] [options] [selectors] [general options]
+brivo video sensorgateway set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -4470,31 +4840,31 @@ een sensorgateway set [parameter] [value] [options] [selectors] [general options
 
 ```bash
 # Rename a specific sensor gateway
-een sensorgateway set name 'New Gateway Name' --id 'gw-001'
+brivo video sensorgateway set name 'New Gateway Name' --id 'gw-001'
 
 # Rename all sensor gateways at a site
-een sensorgateway set name 'Lobby Gateway' --site 'Eagle Eye Office'
+brivo video sensorgateway set name 'Lobby Gateway' --site 'Eagle Eye Office'
 
 # Rename all sensor gateways
-een sensorgateway set name 'Updated Gateway' --id '*'
+brivo video sensorgateway set name 'Updated Gateway' --id '*'
 
 # Move a specific gateway to a different site by site name
-een sensorgateway set site --new-site 'Branch Office' --id 'gw-001'
+brivo video sensorgateway set site --new-site 'Branch Office' --id 'gw-001'
 
 # Move a specific gateway to a different site by site id
-een sensorgateway set site --new-id 'abc123' --id 'gw-001'
+brivo video sensorgateway set site --new-id 'abc123' --id 'gw-001'
 
 # Move all gateways to a new site
-een sensorgateway set site --new-site 'Branch Office' --id '*'
+brivo video sensorgateway set site --new-site 'Branch Office' --id '*'
 
 # Update notes for a specific gateway
-een sensorgateway set notes 'Replaced unit' --id 'gw-001'
+brivo video sensorgateway set notes 'Replaced unit' --id 'gw-001'
 
 # Set the time zone for a specific gateway
-een sensorgateway set timezone 'America/Chicago' --id 'gw-001'
+brivo video sensorgateway set timezone 'America/Chicago' --id 'gw-001'
 
 # Set the time zone for all gateways and export results
-een sensorgateway set timezone 'America/New_York' --id '*' --csv --header
+brivo video sensorgateway set timezone 'America/New_York' --id '*' --csv --header
 ```
 
 #### Output
@@ -4522,7 +4892,6 @@ Updated sensor gateway for 0/1 sensor gateway
 #### NOTES:
 
 - Use `--id '*'` to apply a setting to all sensor gateways. This cannot be combined with other selectors.
-- `sensorgateway set site`: `--new-site` and `--new-id` are mutually exclusive, and exactly one of them is required.
 
 ---
 
@@ -4535,7 +4904,7 @@ Updated sensor gateway for 0/1 sensor gateway
 ## SYNOPSIS
 
 ```
-een speaker [COMMAND] [OPTIONS]
+brivo video speaker [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -4549,7 +4918,7 @@ The `speaker` command allows you to manage speakers.
 #### Usage:
 
 ```
-een speaker list [options] [selectors] [general options]
+brivo video speaker list [options] [selectors] [general options]
 ```
 
 List speakers.
@@ -4595,7 +4964,7 @@ List speakers.
 - To list all speakers with headers in CSV format:
 
 ```bash
-een speaker list --csv --header
+brivo video speaker list --csv --header
 ```
 
 #### Output
@@ -4609,7 +4978,7 @@ een speaker list --csv --header
 - To list all speakers with bridge esn '10017196', speaker id '1006cefc,10017fd3,100bddf1' with headers in CSV and long list format:
 
 ```bash
-een speaker list --bridge-esn '10017196' --id '1006cefc,10017fd3,100bddf1' -l --csv --header
+brivo video speaker list --bridge-esn '10017196' --id '1006cefc,10017fd3,100bddf1' -l --csv --header
 ```
 
 #### Output
@@ -4633,7 +5002,7 @@ You can use selectors (like `--id`, `--name`, `--site`, etc.) to target specific
 #### Usage:
 
 ```
-een speaker set [parameter] [value] [options] [selectors] [general options]
+brivo video speaker set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -4691,28 +5060,28 @@ een speaker set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Set speaker name for a specific speaker
-een speaker set speaker-name 'new speaker name' --id '100b69e9'
+brivo video speaker set speaker-name 'new speaker name' --id '100b69e9'
 
 # Set site name for a speaker
-een speaker set site-name 'Eagle Eye Office' --id '100b69e9'
+brivo video speaker set site-name 'Eagle Eye Office' --id '100b69e9'
 
 # Set protocol for all speakers
-een speaker set protocol 'sip' --id '*'
+brivo video speaker set protocol 'sip' --id '*'
 
 # Set audio mode for speakers on a specific site
-een speaker set audio-mode twoWayAudio --site 'Eagle Eye Office'
+brivo video speaker set audio-mode twoWayAudio --site 'Eagle Eye Office'
 
 # Set SIP username for a speaker
-een speaker set sip-username 'sipuser' --id '100b69e9'
+brivo video speaker set sip-username 'sipuser' --id '100b69e9'
 
 # Set SIP password for a speaker
-een speaker set sip-password 'sippass123' --id '100b69e9'
+brivo video speaker set sip-password 'sippass123' --id '100b69e9'
 
 # Set speaker username for all speakers and export to CSV
-een speaker set speaker-username 'admin' --id '*' --csv --header
+brivo video speaker set speaker-username 'admin' --id '*' --csv --header
 
 # Set speaker password for speakers with a specific tag
-een speaker set speaker-password 'pass123' --tag 'floor-1'
+brivo video speaker set speaker-password 'pass123' --tag 'floor-1'
 ```
 
 #### Output
@@ -4742,6 +5111,7 @@ Updated speaker for 0/1 speaker
 - Use `--id '*'` to apply a setting to all speakers. This cannot be combined with other selectors.
 - `audio-mode` must be one of: `disabled`, `talkDown`, `twoWayAudio`.
 - `sip-username` and `sip-password` update the `sipCredentials` object on the speaker settings API.
+- `main-username` and `main-password` update the `mainCredentials` object on the speaker settings API.
 - `speaker-username` and `speaker-password` update the `mainCredentials` object on the speaker settings API.
 
 ### get
@@ -4757,7 +5127,7 @@ You can use selectors (like `--id`, `--name`, `--site`, etc.) to target specific
 #### Usage:
 
 ```
-een speaker get [parameter] [options] [selectors] [general options]
+brivo video speaker get [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -4815,28 +5185,28 @@ een speaker get [parameter] [options] [selectors] [general options]
 
 ```bash
 # Get speaker name for a specific speaker
-een speaker get speaker-name --id '100b69e9'
+brivo video speaker get speaker-name --id '100b69e9'
 
 # Get site name for all speakers at a site
-een speaker get site-name --site 'Eagle Eye Office'
+brivo video speaker get site-name --site 'Eagle Eye Office'
 
 # Get protocol for all speakers
-een speaker get protocol --csv --header
+brivo video speaker get protocol --csv --header
 
 # Get audio mode for speakers with a specific tag
-een speaker get audio-mode --tag 'floor-1'
+brivo video speaker get audio-mode --tag 'floor-1'
 
 # Get SIP username for a specific speaker
-een speaker get sip-username --id '100b69e9'
+brivo video speaker get sip-username --id '100b69e9'
 
 # Get SIP password for a specific speaker
-een speaker get sip-password --id '100b69e9'
+brivo video speaker get sip-password --id '100b69e9'
 
 # Get speaker username for all speakers and export to CSV
-een speaker get speaker-username --csv --header
+brivo video speaker get speaker-username --csv --header
 
 # Get speaker password for speakers on a specific bridge
-een speaker get speaker-password --bridge-esn '10017196'
+brivo video speaker get speaker-password --bridge-esn '10017196'
 ```
 
 #### Output
@@ -4855,7 +5225,7 @@ Add a speaker to a bridge.
 #### Usage:
 
 ```
-een speaker add <esn> [options] [general options]
+brivo video speaker add <esn> [options] [general options]
 ```
 
 #### Arguments:
@@ -4899,13 +5269,13 @@ een speaker add <esn> [options] [general options]
 
 ```bash
 # Add a speaker to a bridge using discoveredSip strategy
-een speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Speaker EN-SDUH-001a' --registration-strategy discoveredSip
+brivo video speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Speaker EN-SDUH-001a' --registration-strategy discoveredSip
 
 # Add a speaker with SIP credentials and a specific site
-een speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Speaker AXIS C1310-E' --registration-strategy discoveredSip --sip-username 'sipuser' --sip-password 'sippass123' --sip-port 5060 --site 'Eagle Eye Office'
+brivo video speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Speaker AXIS C1310-E' --registration-strategy discoveredSip --sip-username 'sipuser' --sip-password 'sippass123' --sip-port 5060 --site 'Eagle Eye Office'
 
 # Add a speaker with tags and admin credentials
-een speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Lobby Speaker' --registration-strategy discoveredSip --admin-username 'admin' --admin-password 'adminpass' --tag 'lobby'
+brivo video speaker add '10017196' --guid 'f4a89085-35ee-40f0-ac44-7b2fcc5ffe2c' --name 'Lobby Speaker' --registration-strategy discoveredSip --admin-username 'admin' --admin-password 'adminpass' --tag 'lobby'
 ```
 
 #### Output
@@ -4927,7 +5297,7 @@ Successfully added the speaker: (id: 1006cefc)
 - To list all speakers with headers in CSV format:
 
 ```bash
-een speaker list --csv --header
+brivo video speaker list --csv --header
 ```
 
 #### Output
@@ -4941,7 +5311,7 @@ een speaker list --csv --header
 - To list all speakers with bridge esn '1234', speaker id '54321,3455,2445' with headers in CSV and long list format:
 
 ```bash
-een speaker list --bridge-esn '10017196' --id '1006cefc,10017fd3,100bddf1' -l --csv --header
+brivo video speaker list --bridge-esn '10017196' --id '1006cefc,10017fd3,100bddf1' -l --csv --header
 ```
 
 #### Output
@@ -4959,7 +5329,7 @@ Delete a speaker from the bridge.
 #### Usage:
 
 ```
-een speaker delete [options] [general options]
+brivo video speaker delete [options] [general options]
 ```
 
 #### Options:
@@ -4974,13 +5344,13 @@ een speaker delete [options] [general options]
 - To delete a speaker by id:
 
 ```bash
-een speaker delete --id '1006cefc'
+brivo video speaker delete --id '1006cefc'
 ```
 
 - To delete a speaker by name:
 
 ```bash
-een speaker delete --name 'My Speaker'
+brivo video speaker delete --name 'My Speaker'
 ```
 
 #### Output
@@ -5007,7 +5377,7 @@ It can accept multiple tags, you can use selectors (like `--id`, `--tag`, `--sit
 #### Usage:
 
 ```
-een speaker addtag <tags> [options] [selectors] [general options]
+brivo video speaker addtag <tags> [options] [selectors] [general options]
 ```
 
 #### Argument:
@@ -5021,7 +5391,7 @@ een speaker addtag <tags> [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -5051,13 +5421,13 @@ een speaker addtag <tags> [options] [selectors] [general options]
 
 ```bash
 # add tags 'newtag, testtag' to speaker with id '100b69e9'
-een speaker addtag 'newtag, testtag' --id '100b69e9'
+brivo video speaker addtag 'newtag, testtag' --id '100b69e9'
 
 # add tag 'clitag' to all speakers
-een speaker addtag 'clitag' --id '*'
+brivo video speaker addtag 'clitag' --id '*'
 
 # add tag 'floortag' to speakers in site 'Eagle Eye Office' with status online
-een speaker addtag 'floortag' --site 'Eagle Eye Office' --status 'online'
+brivo video speaker addtag 'floortag' --site 'Eagle Eye Office' --status 'online'
 ```
 
 #### Output
@@ -5088,7 +5458,7 @@ It can accept multiple tags, you can use selectors (like `--id`, `--tag`, `--sit
 #### Usage:
 
 ```
-een speaker deletetag <tags> [options] [selectors] [general options]
+brivo video speaker deletetag <tags> [options] [selectors] [general options]
 ```
 
 #### Argument:
@@ -5102,7 +5472,7 @@ een speaker deletetag <tags> [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -5132,13 +5502,13 @@ een speaker deletetag <tags> [options] [selectors] [general options]
 
 ```bash
 # delete tags 'newtag, testtag' from speaker with id '100b69e9'
-een speaker deletetag 'newtag, testtag' --id '100b69e9'
+brivo video speaker deletetag 'newtag, testtag' --id '100b69e9'
 
 # delete tag 'clitag' from all speakers
-een speaker deletetag 'clitag' --id '*'
+brivo video speaker deletetag 'clitag' --id '*'
 
 # delete tag 'floortag' from speakers in site 'Eagle Eye Office' with status online
-een speaker deletetag 'floortag' --site 'Eagle Eye Office' --status 'online'
+brivo video speaker deletetag 'floortag' --site 'Eagle Eye Office' --status 'online'
 ```
 
 #### Output
@@ -5170,7 +5540,7 @@ When running a `speaker deletetag` command with `--csv` and `--header`, the outp
 ## SYNOPSIS
 
 ```
-een alert [COMMAND] [OPTIONS]
+brivo video alert [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -5186,7 +5556,7 @@ List alerts.
 #### Usage:
 
 ```
-een alert list [options] [selectors] [general options]
+brivo video alert list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -5212,8 +5582,8 @@ een alert list [options] [selectors] [general options]
 
 - `--alert-name [name]`
   Filter by alert name.
-- `--alert-type [type1, type2] `
-  Filter by alert types. (Supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
+- `--alert-type [type1, type2]`
+  Filter by alert types. (Supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, overstay).
 - `-b, --bridge [bridge1, bridge2]`
   Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
@@ -5232,7 +5602,7 @@ een alert list [options] [selectors] [general options]
   Filter by origin (supported values: vsp).
 - `-s, --start-time [start-time]`
   Filter by start time (default: 1 hr before now).
-- `--site [site1, site2]`
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site IDs.
@@ -5246,7 +5616,7 @@ een alert list [options] [selectors] [general options]
 - To list all alerts in CSV format with headers:
 
 ```bash
-een alert list --csv --header
+brivo video alert list --csv --header
 ```
 
 #### Output
@@ -5260,7 +5630,7 @@ een alert list --csv --header
 - To list all alerts for a specific alert type with headers in machine-readable form and in CSV format:
 
 ```bash
-een alert list --alert--type 'personDetection' --header --csv -m
+brivo video alert list --alert-type 'personDetection' --header --csv -m
 ```
 
 #### Output
@@ -5274,7 +5644,7 @@ een alert list --alert--type 'personDetection' --header --csv -m
 - To list all alerts for camera esn '1234' with headers in long list and in CSV format:
 
 ```bash
-een alert list --esn '1234' --header -l --csv
+brivo video alert list --esn '1234' --header -l --csv
 ```
 
 #### Output
@@ -5296,7 +5666,7 @@ een alert list --esn '1234' --header -l --csv
 ## SYNOPSIS
 
 ```
-een notification [COMMAND] [OPTIONS]
+brivo video notification [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -5312,7 +5682,7 @@ List notifications.
 #### Usage:
 
 ```
-een notification list [options] [selectors] [general options]
+brivo video notification list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -5338,8 +5708,8 @@ een notification list [options] [selectors] [general options]
 
 - `--alert-id [alert id]`
   Filter by alert id.
-- `--alert-type [type1, type2] `
-  Filter by alert types.(supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
+- `--alert-type [alert type]`
+  Filter by alert type (supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, overstay).
 - `-b, --bridge [bridge1, bridge2]`
   Filter by bridges.
 - `--bridge-esn [bridge esn1, bridge esn2]`
@@ -5358,7 +5728,7 @@ een notification list [options] [selectors] [general options]
   Filter by notification status (supported values: pending, bounced, dropped, deferred, delivered, sent, outsideUsersSchedule, notificationsDisabled, noNotificationActions, sendingFailed, throttled, unableToGetSettings).
 - `-s, --start-time [start-time]`
   Filter by start time.
-- `--site [site1, site2]`
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
@@ -5376,7 +5746,7 @@ een notification list [options] [selectors] [general options]
 - To list all notifications details in CSV format:
 
 ```bash
-een notification list --csv
+brivo video notification list --csv
 ```
 
 #### Output
@@ -5389,7 +5759,7 @@ een notification list --csv
 - To list all notifications for a specific alert type with headers in machine-readable form and in CSV format:
 
 ```bash
-een notification list --alert-type 'personDetection' --header --csv -m
+brivo video notification list --alert-type 'personDetection' --header --csv -m
 ```
 
 #### Output
@@ -5403,7 +5773,7 @@ een notification list --alert-type 'personDetection' --header --csv -m
 - To list all notifications for category video with headers in long list and in CSV format:
 
 ```bash
-een notification list --category 'video' -l --header --csv
+brivo video notification list --category 'video' -l --header --csv
 ```
 
 #### Output
@@ -5425,7 +5795,7 @@ een notification list --category 'video' -l --header --csv
 ## SYNOPSIS
 
 ```
-een multicamera [command] [options]
+brivo video multicamera [command] [options]
 ```
 
 ## COMMANDS
@@ -5437,7 +5807,7 @@ List all multi headed cameras.
 #### Usage:
 
 ```
-een multicamera list [options] [selectors] [general options]
+brivo video multicamera list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -5479,7 +5849,7 @@ een multicamera list [options] [selectors] [general options]
 To list all multi headed cameras with specific fields in CSV format (with headers):
 
 ```bash
-een multicamera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
+brivo video multicamera list --include 'esn,camera,bridge-esn,bridge,site,siteid,status,tag' --header --csv
 ```
 
 #### Output
@@ -5497,7 +5867,7 @@ Delete a multi headed camera.
 #### Usage:
 
 ```
-een multicamera delete [options] [general options]
+brivo video multicamera delete [options] [general options]
 ```
 
 #### Options:
@@ -5512,13 +5882,13 @@ een multicamera delete [options] [general options]
 - To delete a multi headed camera by ESN:
 
 ```bash
-een multicamera delete --esn '1007b4fb'
+brivo video multicamera delete --esn '1007b4fb'
 ```
 
 - To delete a multi headed camera by name:
 
 ```bash
-een multicamera delete --name 'My Multi Camera'
+brivo video multicamera delete --name 'My Multi Camera'
 ```
 
 #### Output
@@ -5545,7 +5915,7 @@ It can accept multiple tags, you can use selectors (like `--bridge-esn`, `--site
 #### Usage:
 
 ```
-een multicamera addtag <tags> [options] [selectors] [general options]
+brivo video multicamera addtag <tags> [options] [selectors] [general options]
 ```
 
 #### Argument:
@@ -5559,7 +5929,7 @@ een multicamera addtag <tags> [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -5587,16 +5957,16 @@ een multicamera addtag <tags> [options] [selectors] [general options]
 
 ```bash
 # add tags 'newtag, testtag' to multi headed cameras with bridge esn '1234'
-een multicamera addtag 'new tag, test' --bridge-esn '1234'
+brivo video multicamera addtag 'new tag, test' --bridge-esn '1234'
 
 # add tag 'clitag' to multi headed cameras with esn '1007a8fd, 100de89f'
-een multicamera addtag 'clitag' --esn '1007a8fd, 100de89f'
+brivo video multicamera addtag 'clitag' --esn '1007a8fd, 100de89f'
 
 # add tag 'clitag' to all multi headed cameras
-een multicamera addtag 'clitag' --esn '*'
+brivo video multicamera addtag 'clitag' --esn '*'
 
 # add tag 'clitag' to multi headed cameras in site 'Eagle Eye India 1' with status online
-een multicamera addtag 'clitag' --site 'Eagle Eye India 1' --status 'online'
+brivo video multicamera addtag 'clitag' --site 'Eagle Eye India 1' --status 'online'
 ```
 
 #### Output
@@ -5627,7 +5997,7 @@ It can accept multiple tags, you can use selectors (like `--bridge-esn`, `--site
 #### Usage:
 
 ```
-een multicamera deletetag <tags> [options] [selectors] [general options]
+brivo video multicamera deletetag <tags> [options] [selectors] [general options]
 ```
 
 #### Argument:
@@ -5641,7 +6011,7 @@ een multicamera deletetag <tags> [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -5669,16 +6039,16 @@ een multicamera deletetag <tags> [options] [selectors] [general options]
 
 ```bash
 # delete tags 'new tag, test' from multi headed cameras with bridge esn '1234' and output in csv format with header
-een multicamera deletetag 'new tag, test' --bridge-esn '1234' --csv --header
+brivo video multicamera deletetag 'new tag, test' --bridge-esn '1234' --csv --header
 
 # delete tag 'clitag' from multi headed cameras with esn '1007a8fd, 100de89f'
-een multicamera deletetag 'clitag' --esn '1007a8fd, 100de89f'
+brivo video multicamera deletetag 'clitag' --esn '1007a8fd, 100de89f'
 
 # delete tag 'clitag' from all multi headed cameras
-een multicamera deletetag 'clitag' --esn '*'
+brivo video multicamera deletetag 'clitag' --esn '*'
 
 # delete tag 'clitag' from multi headed cameras in site 'Eagle Eye India 1' with status online
-een multicamera deletetag 'clitag' --site 'Eagle Eye India 1' --status 'online'
+brivo video multicamera deletetag 'clitag' --site 'Eagle Eye India 1' --status 'online'
 ```
 
 #### Output
@@ -5714,7 +6084,7 @@ You can use selectors (like `--esn`, `--name`, `--site`, etc.) to target specifi
 #### Usage:
 
 ```
-een multicamera set [parameter] [value] [options] [selectors] [general options]
+brivo video multicamera set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -5758,19 +6128,19 @@ een multicamera set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Set multicamera name for a specific multicamera
-een multicamera set multicamera-name 'New Camera Name' --esn '1007b4fb'
+brivo video multicamera set multicamera-name 'New Camera Name' --esn '1007b4fb'
 
 # Set multicamera name for all multicameras in a site
-een multicamera set multicamera-name 'New Camera Name' --site 'Eagle Eye Office'
+brivo video multicamera set multicamera-name 'New Camera Name' --site 'Eagle Eye Office'
 
 # Set site for a specific multicamera and save as CSV
-een multicamera set site-name 'Eagle Eye India 1' --esn '1007b4fb' --csv -f update-multicamera-site.csv
+brivo video multicamera set site-name 'Eagle Eye India 1' --esn '1007b4fb' --csv -f update-multicamera-site.csv
 
 # Set site for all multicameras
-een multicamera set site-name 'Eagle Eye Office' --esn '*'
+brivo video multicamera set site-name 'Eagle Eye Office' --esn '*'
 
 # Set site for multicameras filtered by bridge esn
-een multicamera set site-name 'Eagle Eye Office' --bridge-esn '10055c51'
+brivo video multicamera set site-name 'Eagle Eye Office' --bridge-esn '10055c51'
 ```
 
 #### Output
@@ -5813,7 +6183,7 @@ Updated multicamera for 0/1 multicamera
 ## SYNOPSIS
 
 ```
-een event [COMMAND] [OPTIONS]
+brivo video event [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -5829,7 +6199,7 @@ List all events.
 #### Usage:
 
 ```
-een event list [options] [selectors] [general options]
+brivo video event list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -5845,13 +6215,13 @@ een event list [options] [selectors] [general options]
 - `--header`
   Display column headers in the result.
 - `--include [value1, value2]`
-  Display associated items. Supported values: id,event-type.
+  Display associated items. Supported values: id, event-type.
 - `-l, --long`
   Display event details including device type, id, event type, device id, event id, end time, start time, meta, creator id.
 - `-m, --machine-readable`
   Display details in machine-readable form.
 
-  ###### Selectors:
+#### Selectors:
 
 - `-b, --bridge [bridge1, bridge2]`
   Filter by bridges.
@@ -5859,15 +6229,15 @@ een event list [options] [selectors] [general options]
   Filter by bridge esns.
 - `-C, --camera [camera1, camera2]`
   Filter by cameras.
-- `-e, --end-time [end time]`
+- `-e, --end-time [end-time]`
   Filter by end time (default: current time).
 - `--esn [esn1, esn2]`
   Filter by camera esns.
-- `--event-type [type1,type2]`
-  Filter by event types. (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, deviceCreation, posTransaction, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
+- `--event-type [type1, type2]`
+  Filter by event types (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, deviceCreation, posTransaction, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, overstay).
 - `-s, --start-time [start-time]`
-  Filter by start time (default: 1 hrs before now).
-- `--site [site1, site2]`
+  Filter by start time (default: 1 hr before now).
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
@@ -5881,7 +6251,7 @@ een event list [options] [selectors] [general options]
 - To list all events with headers in CSV format:
 
 ```bash
-een event list --csv --header
+brivo video event list --csv --header
 ```
 
 ```csv
@@ -5893,7 +6263,7 @@ een event list --csv --header
 - To list all events for a specific event type with headers in CSV format:
 
 ```bash
-een event list --event-type 'vehicleDetection' --header --csv
+brivo video event list --event-type 'vehicleDetection' --header --csv
 ```
 
 #### Output
@@ -5907,7 +6277,7 @@ een event list --event-type 'vehicleDetection' --header --csv
 - To list all events with long list in CSV format:
 
 ```bash
-een event list --header --long --csv
+brivo video event list --header --long --csv
 ```
 
 #### Output
@@ -5929,7 +6299,7 @@ camera       2025-10-27T05:27:51.010+00:00  2025-10-27T05:27:51.010+00:00  BodyT
 ## SYNOPSIS
 
 ```
-een rule [COMMAND] [OPTIONS]
+brivo video rule [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -5945,7 +6315,7 @@ List all rules.
 #### Usage:
 
 ```
-een rule list [options] [selectors] [general options]
+brivo video rule list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -5961,7 +6331,7 @@ een rule list [options] [selectors] [general options]
 - `--header`
   Display column headers in the result. By default headers will be hidden.
 - `--include [value1, value2]`
-  Display associated items. Supported values: name, id, rule-type.
+  Display associated items. Supported values: name, id, rule-type, insights, actions.
 - `-l, --long`
   Display details of rules, including actions, insights, id, device id, created timestamp, creator id, account id.
 
@@ -5983,13 +6353,15 @@ een rule list [options] [selectors] [general options]
   Filter by rule ids.
 - `--maximum-priority [number]`
   Filter by maximum priority (supported values: 0-10).
+- `--max-count [max-count]`
+  Filter by maximum number of rules to display.
 - `--minimum-priority [number]`
   Filter by minimum priority (supported values: 0-10).
 - `--name [name]`
   Filter by rule name.
 - `--rule-type [rule type]`
-  Filter by rule type (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
-- `--site [site1, site2]`
+  Filter by rule type (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, deviceCreation, posTransaction, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, overstay).
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site IDs.
@@ -6003,7 +6375,7 @@ een rule list [options] [selectors] [general options]
 - To list all rules in CSV format with headers:
 
 ```bash
-een rule list --csv --header
+brivo video rule list --csv --header
 ```
 
 #### Output
@@ -6017,7 +6389,7 @@ een rule list --csv --header
 - To list all rule for a specific rule type and enabled true with headers in CSV format:
 
 ```bash
-een rule list --rule-type 'motionDetection' --enabled --header --csv
+brivo video rule list --rule-type 'motionDetection' --enabled --header --csv
 ```
 
 #### Output
@@ -6028,10 +6400,24 @@ een rule list --rule-type 'motionDetection' --enabled --header --csv
 "wiktoria rule test 1.10.2025 no 2","motionDetection","9","3","enable"
 ```
 
+- To list the first 10 rules in CSV format with headers:
+
+```bash
+brivo video rule list --max-count 10 --csv --header
+```
+
+#### Output
+
+```csv
+"name","rule type","priority","devices","status"
+"DrewTestMotion sdd","motionDetection","9","1","disable"
+"Swathi_VehicleDetection_Rule001","vehicleDetection","9","6","disable"
+```
+
 - To list all rule for camera bridge esn '1234' with headers in long list and in CSV format:
 
 ```bash
-een rule list --esn '1234' --header -l --csv
+brivo video rule list --esn '1234' --header -l --csv
 ```
 
 #### Output
@@ -6049,7 +6435,7 @@ Delete a rule from the rule list.
 #### Usage:
 
 ```
-een rule delete [options] [general options]
+brivo video rule delete [options] [general options]
 ```
 
 #### Options:
@@ -6064,13 +6450,13 @@ een rule delete [options] [general options]
 - To delete a rule by id:
 
 ```bash
-een rule delete --id '42d4b2f6-1aeb-4e21-84d8-1a7c46818fc4'
+brivo video rule delete --id '42d4b2f6-1aeb-4e21-84d8-1a7c46818fc4'
 ```
 
 - To delete a rule by name:
 
 ```bash
-een rule delete --name 'My Rule'
+brivo video rule delete --name 'My Rule'
 ```
 
 #### Output
@@ -6101,7 +6487,7 @@ You can specify the rule type and give the options needed.
 #### Usage:
 
 ```
-een rule add [rule type] [options] [general options]
+brivo video rule add [rule type] [options] [general options]
 ```
 
 ## Rule Type
@@ -6113,7 +6499,7 @@ Add allowed vehicle rule.
 #### Usage:
 
 ```
-een rule add allowedvehicle [options] [general options]
+brivo video rule add allowedvehicle [options] [general options]
 ```
 
 #### Required Options:
@@ -6155,7 +6541,7 @@ Add count of license plate rule.
 #### Usage:
 
 ```
-een rule add countoflicenseplate [options] [general options]
+brivo video rule add countoflicenseplate [options] [general options]
 ```
 
 #### Required Options:
@@ -6195,7 +6581,7 @@ Add crowd formation rule.
 #### Usage:
 
 ```
-een rule add crowdformation [options] [general options]
+brivo video rule add crowdformation [options] [general options]
 ```
 
 #### Required Options:
@@ -6229,7 +6615,7 @@ Add denied vehicle rule.
 #### Usage:
 
 ```
-een rule add deniedvehicle [options] [general options]
+brivo video rule add deniedvehicle [options] [general options]
 ```
 
 #### Required Options:
@@ -6271,7 +6657,7 @@ Add device status rule.
 #### Usage:
 
 ```
-een rule add devicestatus [options] [general options]
+brivo video rule add devicestatus [options] [general options]
 ```
 
 #### Required Options:
@@ -6307,7 +6693,7 @@ Add eeva event rule.
 #### Usage:
 
 ```
-een rule add eevaevent [options] [general options]
+brivo video rule add eevaevent [options] [general options]
 ```
 
 #### Required Options:
@@ -6341,7 +6727,7 @@ Add fire and smoke detection rule.
 #### Usage:
 
 ```
-een rule add fireandsmokedetection [options] [general options]
+brivo video rule add fireandsmokedetection [options] [general options]
 ```
 
 #### Required Options:
@@ -6375,7 +6761,7 @@ Add gun detection rule.
 #### Usage:
 
 ```
-een rule add gundetection [options] [general options]
+brivo video rule add gundetection [options] [general options]
 ```
 
 #### Required Options:
@@ -6409,7 +6795,7 @@ Add hotlist vehicle rule.
 #### Usage:
 
 ```
-een rule add hotlistvehicle [options] [general options]
+brivo video rule add hotlistvehicle [options] [general options]
 ```
 
 #### Required Options:
@@ -6441,7 +6827,7 @@ een rule add hotlistvehicle [options] [general options]
   Specify schedule (supported values: workHours, nonWorkHours, fullHours) (defaults to 24 hours).
 - `--vehiclelist-id [vehiclelist id]`
   Specify vehiclelist id.
-- `--vehiclelist-name [vehiclelist name]`
+- `--vehiclelist-name [vehiclelist]`
   Specify vehiclelist name.
 
 ### inputtriggered
@@ -6451,7 +6837,7 @@ Add input triggered rule.
 #### Usage:
 
 ```
-een rule add inputtriggered [options] [general options]
+brivo video rule add inputtriggered [options] [general options]
 ```
 
 #### Required Options:
@@ -6460,7 +6846,7 @@ een rule add inputtriggered [options] [general options]
   Specify rule name.
 - `--device-type [type]`
   Specify device type (supported values: camera, speaker).
-- `--input-port [port]`
+- `--input-port [port1, port2]`
   Specify input port.
 - `--priority [priority]`
   Specify priority.
@@ -6489,7 +6875,7 @@ Add intrusion detection rule.
 #### Usage:
 
 ```
-een rule add intrusiondetection [options] [general options]
+brivo video rule add intrusiondetection [options] [general options]
 ```
 
 #### Required Options:
@@ -6523,7 +6909,7 @@ Add loitering rule.
 #### Usage:
 
 ```
-een rule add loitering [options] [general options]
+brivo video rule add loitering [options] [general options]
 ```
 
 #### Required Options:
@@ -6557,7 +6943,7 @@ Add measurement threshold status rule.
 #### Usage:
 
 ```
-een rule add measurementthresholdstatus [options] [general options]
+brivo video rule add measurementthresholdstatus [options] [general options]
 ```
 
 #### Required Options:
@@ -6589,7 +6975,7 @@ Add motion detection rule.
 #### Usage:
 
 ```
-een rule add motiondetection [options] [general options]
+brivo video rule add motiondetection [options] [general options]
 ```
 
 #### Required Options:
@@ -6623,7 +7009,7 @@ Add motion region detection rule.
 #### Usage:
 
 ```
-een rule add motionregiondetection [options] [general options]
+brivo video rule add motionregiondetection [options] [general options]
 ```
 
 #### Required Options:
@@ -6657,7 +7043,7 @@ Add object line cross rule.
 #### Usage:
 
 ```
-een rule add objectlinecross [options] [general options]
+brivo video rule add objectlinecross [options] [general options]
 ```
 
 #### Required Options:
@@ -6684,6 +7070,54 @@ een rule add objectlinecross [options] [general options]
 - `--schedule [schedule]`
   Specify schedule (supported values: workHours, nonWorkHours, fullHours) (defaults to 24 hours).
 
+### overstay
+
+Add overstay rule.
+
+#### Usage:
+
+```
+brivo video rule add overstay [options] [general options]
+```
+
+#### Required Options:
+
+- `--alert-time [HH:MM]`
+  Specify alert time (supported format: HH:MM, 24-hour).
+- `--name [name]`
+  Specify rule name.
+- `--priority [priority]`
+  Specify priority.
+- `--target-type [target type]`
+  Specify target type (supported values: vehicleList, plate, anyPlateExcept, allPlates).
+
+#### Options:
+
+- `--action-id [id1, id2]`
+  Specify action ids.
+- `--action-name [name1, name2]`
+  Specify action names.
+- `--camera [camera1, camera2]`
+  Specify camera names.
+- `--disable`
+  Set the rule status to disabled (enabled by default).
+- `--esn [esn1, esn2]`
+  Specify camera esns.
+- `--exemption-vehiclelist-id [exemption vehiclelist id]`
+  Specify exemption vehiclelist id.
+- `--exemption-vehiclelist-name [exemption vehiclelist name]`
+  Specify exemption vehiclelist name.
+- `--notes [notes]`
+  Specify notes.
+- `--plate [plate]`
+  Specify license plate number.
+- `--schedule [schedule]`
+  Specify schedule (supported values: workHours, nonWorkHours, fullHours) (defaults to 24 hours).
+- `--vehiclelist-id [vehiclelist id]`
+  Specify vehiclelist id.
+- `--vehiclelist-name [vehiclelist name]`
+  Specify vehiclelist name.
+
 ### persondetection
 
 Add person detection rule.
@@ -6691,7 +7125,7 @@ Add person detection rule.
 #### Usage:
 
 ```
-een rule add persondetection [options] [general options]
+brivo video rule add persondetection [options] [general options]
 ```
 
 #### Required Options:
@@ -6725,7 +7159,7 @@ Add ppe violation rule.
 #### Usage:
 
 ```
-een rule add ppeviolation [options] [general options]
+brivo video rule add ppeviolation [options] [general options]
 ```
 
 #### Required Options:
@@ -6759,7 +7193,7 @@ Add slip and fall rule.
 #### Usage:
 
 ```
-een rule add slipandfall [options] [general options]
+brivo video rule add slipandfall [options] [general options]
 ```
 
 #### Required Options:
@@ -6793,7 +7227,7 @@ Add thermal threshold crossed rule.
 #### Usage:
 
 ```
-een rule add thermalthresholdcrossed [options] [general options]
+brivo video rule add thermalthresholdcrossed [options] [general options]
 ```
 
 #### Required Options:
@@ -6827,7 +7261,7 @@ Add unregistered vehicle rule.
 #### Usage:
 
 ```
-een rule add unregisteredvehicle [options] [general options]
+brivo video rule add unregisteredvehicle [options] [general options]
 ```
 
 #### Required Options:
@@ -6865,7 +7299,7 @@ Add vehicle detection rule.
 #### Usage:
 
 ```
-een rule add vehicledetection [options] [general options]
+brivo video rule add vehicledetection [options] [general options]
 ```
 
 #### Required Options:
@@ -6899,7 +7333,7 @@ Add watch vehicle rule.
 #### Usage:
 
 ```
-een rule add watchvehicle [options] [general options]
+brivo video rule add watchvehicle [options] [general options]
 ```
 
 #### Required Options:
@@ -6915,7 +7349,7 @@ een rule add watchvehicle [options] [general options]
 
 - `--action-id [id1, id2]`
   Specify action ids.
-- `--action-name [name1, name2]`
+- `--action-name [action1, action2]`
   Specify action names.
 - `--destination-camera [camera1, camera2]`
   Specify destination camera names.
@@ -6949,7 +7383,7 @@ Add wrong way rule.
 #### Usage:
 
 ```
-een rule add wrongway [options] [general options]
+brivo video rule add wrongway [options] [general options]
 ```
 
 #### Required Options:
@@ -6981,7 +7415,7 @@ een rule add wrongway [options] [general options]
 - To add rule for eevaevent with name 'name', priority 5, schedule work hours, for specified cameras with specified actions:
 
 ```bash
-een rule add eevaevent --name 'evaa rule' --priority '5' --schedule 'workHours' --camera 'FFserver-Test testing  ' --esn '10037500' --action-name 'R2' --action-id 'e9a6a541-6cdf-4f3c-a0e4-410478f51595'
+brivo video rule add eevaevent --name 'evaa rule' --priority '5' --schedule 'workHours' --camera 'FFserver-Test testing  ' --esn '10037500' --action-name 'R2' --action-id 'e9a6a541-6cdf-4f3c-a0e4-410478f51595'
 ```
 
 #### Output
@@ -7019,7 +7453,7 @@ reason, while every other matched rule is still updated.
 #### Usage:
 
 ```
-een rule set [parameter] [value] [options] [selectors] [general options]
+brivo video rule set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -7028,8 +7462,10 @@ een rule set [parameter] [value] [options] [selectors] [general options]
   Set action ids (supported by: all types).
 - `action-name <name1, name2>`
   Set action names (supported by: all types).
+- `alert-time <HH:MM>`
+  Set the alert time (24-hour) (supported by: overstay).
 - `camera <camera1, camera2>`
-  Set camera names (supported by: same types as `esn`).
+  Set camera names (supported by: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, thermalThresholdCrossed, vehicleDetection, personDetection, eevaQuery, gunDetection, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, allowedVehicle, deniedVehicle, countOfLicensePlate, unregisteredVehicle, hotlistVehicle, wrongWay, overstay).
 - `count <count>`
   Set the count (supported by: countOfLicensePlate).
 - `destination-camera <camera1, camera2>`
@@ -7045,11 +7481,11 @@ een rule set [parameter] [value] [options] [selectors] [general options]
 - `duration <duration>`
   Set the duration in minutes (supported by: watchVehicle, countOfLicensePlate).
 - `esn <esn1, esn2>`
-  Set camera esns (supported by: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, thermalThresholdCrossed, vehicleDetection, personDetection, eevaQuery, gunDetection, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, allowedVehicle, deniedVehicle, countOfLicensePlate, unregisteredVehicle, hotlistVehicle, wrongWay).
+  Set camera esns (supported by: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, thermalThresholdCrossed, vehicleDetection, personDetection, eevaQuery, gunDetection, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, allowedVehicle, deniedVehicle, countOfLicensePlate, unregisteredVehicle, hotlistVehicle, wrongWay, overstay).
 - `exemption-vehiclelist-id <exemption vehiclelist id>`
-  Set the exemption vehiclelist id and switch the target type to anyPlateExcept (supported by: watchVehicle).
+  Set the exemption vehiclelist id and switch the target type to anyPlateExcept (supported by: watchVehicle, overstay).
 - `exemption-vehiclelist-name <exemption vehiclelist name>`
-  Set the exemption vehiclelist name and switch the target type to anyPlateExcept (supported by: watchVehicle).
+  Set the exemption vehiclelist name and switch the target type to anyPlateExcept (supported by: watchVehicle, overstay).
 - `input-port <port1, port2>`
   Set input ports (supported by: inputTriggered).
 - `measurement-id <id1, id2>`
@@ -7063,21 +7499,21 @@ een rule set [parameter] [value] [options] [selectors] [general options]
 - `origin-esn <esn1, esn2>`
   Set origin camera esns (supported by: watchVehicle).
 - `plate <plate>`
-  Set the license plate number and switch the target type to plate (supported by: allowedVehicle, deniedVehicle, hotlistVehicle, watchVehicle).
+  Set the license plate number and switch the target type to plate. Use `*` to switch the target type to allPlates (overstay only) (supported by: allowedVehicle, deniedVehicle, hotlistVehicle, watchVehicle, overstay).
 - `priority <priority>`
   Set the rule priority (supported by: all types).
 - `rule-type <rule-type>`
-  Change the rule type (supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection) (supported by: all types).
+  Change the rule type (supported values: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, gunDetection, vehicleDetection, deviceStatus, eevaQuery, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, deviceIO, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, overstay) (supported by: all types).
 - `rule-value <value>`
   Set the rule value (supported values: greaterThan, lessThan) (supported by: countOfLicensePlate).
 - `schedule <schedule>`
-  Set the schedule (supported values: workHours, nonWorkHours, fullHours) (supported by: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, thermalThresholdCrossed, vehicleDetection, personDetection, eevaQuery, gunDetection, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, allowedVehicle, deniedVehicle, countOfLicensePlate, unregisteredVehicle, hotlistVehicle, wrongWay, measurementThresholdStatus, inputTriggered, deviceStatus, deviceIO).
+  Set the schedule (supported values: workHours, nonWorkHours, fullHours) (supported by: intrusionDetection, loitering, motionDetection, motionRegionDetection, objectLineCross, thermalThresholdCrossed, vehicleDetection, personDetection, eevaQuery, gunDetection, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, allowedVehicle, deniedVehicle, countOfLicensePlate, unregisteredVehicle, hotlistVehicle, wrongWay, overstay, measurementThresholdStatus, inputTriggered, deviceStatus, deviceIO).
 - `status`
   Set the rule status to enabled or disabled (supported by: all types). Takes no value — use `--enable`/`--disable`.
 - `vehiclelist-id <vehiclelist id>`
-  Set the vehiclelist id and switch the target type to vehicleList (supported by: same types as `vehiclelist-name`).
+  Set the vehiclelist id and switch the target type to vehicleList (supported by: allowedVehicle, deniedVehicle, hotlistVehicle, watchVehicle, unregisteredVehicle, overstay).
 - `vehiclelist-name <vehiclelist name>`
-  Set the vehiclelist name and switch the target type to vehicleList (supported by: allowedVehicle, deniedVehicle, hotlistVehicle, watchVehicle, unregisteredVehicle).
+  Set the vehiclelist name and switch the target type to vehicleList (supported by: allowedVehicle, deniedVehicle, hotlistVehicle, watchVehicle, unregisteredVehicle, overstay).
 
 #### `rule set status` Options:
 
@@ -7091,7 +7527,7 @@ een rule set [parameter] [value] [options] [selectors] [general options]
 These let you supply the fields a destination type requires in the same command as the type change.
 
 - `--plate [plate]`
-  Specify license plate number.
+  Specify license plate number (use '\*' to apply to all plates, overstay only).
 - `--vehiclelist-id [vehiclelist id]`
   Specify vehiclelist id.
 - `--vehiclelist-name [vehiclelist name]`
@@ -7116,6 +7552,8 @@ These let you supply the fields a destination type requires in the same command 
   Specify rule value (supported values: greaterThan, lessThan).
 - `--input-port [port1, port2]`
   Specify input ports.
+- `--alert-time [HH:MM]`
+  Specify alert time (supported format: HH:MM, 24-hour) (required for overstay).
 - `--schedule [schedule]`
   Specify schedule (supported values: workHours, nonWorkHours, fullHours) (defaults to 24 hours).
 
@@ -7123,6 +7561,8 @@ These let you supply the fields a destination type requires in the same command 
 
 - `--csv`
   Display details in CSV format.
+- `--json`
+  List details in JSON format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
@@ -7153,7 +7593,7 @@ These let you supply the fields a destination type requires in the same command 
 - `--name [name]`
   Filter by rule name.
 - `--rule-type [rule type]`
-  Filter by rule type (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection).
+  Filter by rule type (supported values: intrusionDetection, loitering, motionDetection, objectLineCross, personDetection, measurementThresholdStatus, tampering, vehicleDetection, deviceStatus, gunDetection, eevaQuery, lprPlateRead, deviceCreation, posTransaction, motionRegionDetection, deviceIO, hotlistVehicle, watchVehicle, allowedVehicle, countOfLicensePlate, deniedVehicle, unregisteredVehicle, thermalThresholdCrossed, inputTriggered, wrongWay, slipAndFall, crowdFormation, ppeViolation, fireAndSmokeDetection, overstay). On the `rule-type` parameter, this filters by the rule's _current_ type, separate from the new type value being set.
 - `--site [site1, site2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
@@ -7169,37 +7609,49 @@ At least one selector must be provided.
 
 ```bash
 # Rename a rule
-een rule set name 'new unregistered test' --rule-type unregisteredVehicle
+brivo video rule set name 'new unregistered test' --rule-type unregisteredVehicle
 
 # Update priority for every rule of a given type
-een rule set priority 5 --rule-type motionDetection
+brivo video rule set priority 5 --rule-type motionDetection
 
 # Enable every disabled rule on a camera
-een rule set status --enable --camera 'Front Door'
+brivo video rule set status --enable --camera 'Front Door'
 
 # Disable every rule matching a tag and export the result to CSV
-een rule set status --disable --tag 'construction-site' --csv --header
+brivo video rule set status --disable --tag 'construction-site' --csv --header
 
 # Update priority for every rule in the account
-een rule set priority 5 --id '*'
+brivo video rule set priority 5 --id '*'
 
 # Set the vehiclelist for allowed vehicle rules on a camera (this also switches the target type to vehicleList)
-een rule set vehiclelist-name 'Allowed Contractors' --rule-type allowedVehicle --camera 'Front Gate'
+brivo video rule set vehiclelist-name 'Allowed Contractors' --rule-type allowedVehicle --camera 'Front Gate'
 
 # Switch a rule's target type to plate (setting --plate implies target type plate)
-een rule set plate 'ABC-123' --camera 'Front Gate'
+brivo video rule set plate 'ABC-123' --camera 'Front Gate'
 
 # Switch a watchVehicle rule's target type to anyPlateExcept via its exemption list
-een rule set exemption-vehiclelist-id 'excl-list-01' --rule-type watchVehicle --camera 'Front Gate'
+brivo video rule set exemption-vehiclelist-id 'excl-list-01' --rule-type watchVehicle --camera 'Front Gate'
 
 # Change the device type for device status rules (no --rule-type selector available for this parameter)
-een rule set device-type speaker --camera 'Front Door'
+brivo video rule set device-type speaker --camera 'Front Door'
 
 # Convert a rule to watchVehicle, supplying every required field in one command
-een rule set rule-type watchVehicle --origin-camera 'Lot Entrance' --destination-camera 'Lot Exit' --vehiclelist-id 'staff-vehicles' --duration 10 --camera 'Front Gate'
+brivo video rule set rule-type watchVehicle --origin-camera 'Lot Entrance' --destination-camera 'Lot Exit' --vehiclelist-id 'staff-vehicles' --duration 10 --camera 'Front Gate'
 
 # Convert a rule to countOfLicensePlate, supplying every required field in one command
-een rule set rule-type countOfLicensePlate --count 3 --rule-value greaterThanThr --duration 5 --camera 'Front Gate'
+brivo video rule set rule-type countOfLicensePlate --count 3 --rule-value greaterThan --duration 5 --camera 'Front Gate'
+
+# Convert a rule to overstay, supplying every required field in one command
+brivo video rule set rule-type overstay --plate '*' --alert-time '22:00' --camera 'Front Gate'
+
+# Update the alert time on an existing overstay rule
+brivo video rule set alert-time '23:30' --rule-type overstay --camera 'Front Gate'
+
+# Widen an existing overstay rule's target type back to all plates
+brivo video rule set plate '*' --rule-type overstay --camera 'Front Gate'
+
+# Change type only for rules that are currently motionDetection (--rule-type here filters by current type)
+brivo video rule set rule-type intrusionDetection --rule-type motionDetection --camera 'Front Gate'
 ```
 
 #### Output
@@ -7225,8 +7677,8 @@ updated rule for 1/2 rules
 
 #### NOTES:
 
-- There is no standalone `target-type` parameter — it's inferred from whichever value you set: `plate` → plate, `vehiclelist-id`/`vehiclelist-name` → vehicleList, and (watchVehicle only) `exemption-vehiclelist-id`/`exemption-vehiclelist-name` → anyPlateExcept.
-- `rule-type` accepts the options listed under "`rule set rule-type` Options" so a full type conversion (new type plus any fields it requires) can be done in one command.
+- There is no standalone `target-type` parameter — it's inferred from whichever value you set: `plate` → plate (or, overstay only, `plate` set to `\*` → allPlates), `vehiclelist-id`/`vehiclelist-name` → vehicleList, and (watchVehicle/overstay only) `exemption-vehiclelist-id`/`exemption-vehiclelist-name` → anyPlateExcept. A matched rule's existing target type (and its plate/vehiclelist/exemption scoping) is left untouched unless one of these is set.
+- `rule-type` accepts the options listed under "`rule set rule-type` Options" so a full type conversion (new type plus any fields it requires) can be done in one command. Its `--rule-type` selector filters by the rule's _current_ type, separate from the new type value you're setting.
 
 ---
 
@@ -7239,7 +7691,7 @@ updated rule for 1/2 rules
 ## SYNOPSIS
 
 ```
-een action [COMMAND] [OPTIONS]
+brivo video action [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -7255,7 +7707,7 @@ List all actions.
 #### Usage:
 
 ```
-een action list [options] [selectors] [general options]
+brivo video action list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -7282,14 +7734,14 @@ een action list [options] [selectors] [general options]
 - `--name [name1, name2]`
   Filter by action names.
 - `--action-type [type]`
-  Filter by action types (supported values: immix, sentinel, notification, webhook, zapier, outputPort, smsMmsNotification, ebus).
+  Filter by action types (supported values: immix, sentinel, notification, webhook, zapier, outputPort, smsMmsNotification, ebus, playSpeakerAudioClip).
 
 ## EXAMPLES
 
 - To list all action in CSV format with headers:
 
 ```bash
-een action list --csv --header
+brivo video action list --csv --header
 ```
 
 #### Output
@@ -7304,7 +7756,7 @@ een action list --csv --header
 - To list all action for a specific action type with headers in long list format:
 
 ```bash
-een action list --action-type 'zapier' --header --csv
+brivo video action list --action-type 'zapier' --header --csv
 ```
 
 #### Output
@@ -7329,7 +7781,7 @@ You can specify the action type to add as `<parameter>`, and give the options.
 #### Usage:
 
 ```
-een action add [action type] [options] [general options]
+brivo video action add [action type] [options] [general options]
 ```
 
 ## Action Type
@@ -7341,7 +7793,7 @@ Add ebus action.
 #### Usage:
 
 ```
-een action add ebus [options] [general options]
+brivo video action add ebus [options] [general options]
 ```
 
 #### Required Options:
@@ -7371,7 +7823,7 @@ een action add ebus [options] [general options]
 - To add action for ebus with name 'ebus test', email 'test@gmail.com', port 45 and url '112.111.2.1':
 
 ```bash
-een action add ebus --name 'ebus cli' --email 'test@gmail.com' --port '45' --url '112.111.2.1'
+brivo video action add ebus --name 'ebus cli' --email 'test@gmail.com' --port '45' --url '112.111.2.1'
 ```
 
 #### Output
@@ -7395,7 +7847,7 @@ Add immix action.
 #### Usage:
 
 ```
-een action add immix [options] [general options]
+brivo video action add immix [options] [general options]
 ```
 
 #### Required Options:
@@ -7421,7 +7873,7 @@ een action add immix [options] [general options]
   Specify password.
 - `--tls`
   Specify whether to enable tls.
-- `--username [username]`
+- `--user-name [name]`
   Specify user name.
 
 #### EXAMPLES
@@ -7429,7 +7881,7 @@ een action add immix [options] [general options]
 - To add action for immix with name 'immix test', email 'test@gmail.com', port 45, url 'https://.../' and username 'testuser' :
 
 ```bash
-een action add immix --name 'immix cli' --email 'test@gmail.com' --port '45' --url 'https://.***com/' --username 'testuser'
+brivo video action add immix --name 'immix cli' --email 'test@gmail.com' --port '45' --url 'https://.***com/' --user-name 'testuser'
 ```
 
 #### Output
@@ -7453,7 +7905,7 @@ Add notification action.
 #### Usage:
 
 ```
-een action add notification [options] [general options]
+brivo video action add notification [options] [general options]
 ```
 
 #### Required Options:
@@ -7483,7 +7935,7 @@ een action add notification [options] [general options]
 - To add action for notification with name 'notification test', notification type 'email,push', user id '1234':
 
 ```bash
-een action add notification --name 'notification cli' --notification-type 'email,push' --user-id 'ca08f'
+brivo video action add notification --name 'notification cli' --notification-type 'email,push' --user-id 'ca08f'
 ```
 
 #### Output
@@ -7507,7 +7959,7 @@ Add outputport action.
 #### Usage:
 
 ```
-een action add outputport [options] [general options]
+brivo video action add outputport [options] [general options]
 ```
 
 #### Required Options:
@@ -7533,7 +7985,7 @@ een action add outputport [options] [general options]
 - To add action for outputport with name 'outputport test', device id '1234', port 'relay_1', duration 20:
 
 ```bash
-een action add outputport --device-id '1009f415' --port 'relay_1' --duration '20' --name 'outputport cli'
+brivo video action add outputport --device-id '1009f415' --port 'relay_1' --duration '20' --name 'outputport cli'
 ```
 
 #### Output
@@ -7550,6 +8002,72 @@ outputPort action added successfully (id: 233e8083-b6a8-44b9-bd37-1ac2425d227c)
 failed to add action — Invalid argument: portId (status: 400)
 ```
 
+### playaudioclip
+
+Add play speaker audio clip action.
+
+#### Usage:
+
+```
+brivo video action add playaudioclip [options] [general options]
+```
+
+#### Required Options:
+
+- `--name [name] `
+  Specify action name.
+
+#### Options:
+
+- `--audio-id [audio id]`
+  Specify audio clip id.
+- `--audio-name [name]`
+  Specify audio clip name.
+- `--camera-esn [esn1, esn2]`
+  Specify camera esns to play the audio.
+- `--camera-name [name1, name2]`
+  Specify camera names to play the audio.
+- `--disable`
+  Set the action status to disabled (enabled by default).
+- `--include-device-from-event`
+  Play the audio on the device that triggered the alert.
+- `--include-devices-from-rule`
+  Play the audio on the devices targeted by the triggering rule.
+- `--notes [notes]`
+  Specify notes.
+- `--speaker-id [id1, id2]`
+  Specify speaker ids to play the audio.
+- `--speaker-name [name1, name2]`
+  Specify speaker names to play the audio.
+
+#### EXAMPLES
+
+- To add action for playaudioclip with name 'play clip test', audio id '3f2504e0-4f89-41d3-9a0c-0305e82c3301':
+
+```bash
+brivo video action add playaudioclip --name 'play clip test' --audio-id '3f2504e0-4f89-41d3-9a0c-0305e82c3301'
+```
+
+- To play the audio on specific cameras and speakers, and on the devices targeted by the triggering rule:
+
+```bash
+brivo video action add playaudioclip --name 'play clip test' --audio-name 'door chime' --camera-esn '1001abcd' --speaker-name 'lobby speaker' --include-devices-from-rule
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+playAudioClip action added successfully (id: 233e8083-b6a8-44b9-bd37-1ac2425d227c)
+```
+
+**Error Output Example:**
+
+```text
+failed to add action — Invalid argument: speakerAudioClipId (status: 400)
+```
+
 ### sentinel
 
 Add monitor computer system-sentinel action.
@@ -7557,7 +8075,7 @@ Add monitor computer system-sentinel action.
 #### Usage:
 
 ```
-een action add sentinel [options] [general options]
+brivo video action add sentinel [options] [general options]
 ```
 
 #### Required Options:
@@ -7579,7 +8097,7 @@ een action add sentinel [options] [general options]
 - To add action for sentinel with name 'sentinel test', url 'https://\*\*\*.com/':
 
 ```bash
-een action add sentinel --url 'https://***.com/' --name 'sentinel test'
+brivo video action add sentinel --url 'https://***.com/' --name 'sentinel test'
 ```
 
 #### Output
@@ -7603,7 +8121,7 @@ Add SMS/MMS notification action.
 #### Usage:
 
 ```
-een action add smsmms [options] [general options]
+brivo video action add smsmms [options] [general options]
 ```
 
 #### Required Options:
@@ -7627,7 +8145,7 @@ een action add smsmms [options] [general options]
 - To add action for smsmms with name 'smsmms test', user id '1234':
 
 ```bash
-een action add smsmms --name 'smsmmstest' --user-id 'ca08135f'
+brivo video action add smsmms --name 'smsmmstest' --user-id 'ca08135f'
 ```
 
 #### Output
@@ -7651,7 +8169,7 @@ Add webhook action.
 #### Usage:
 
 ```
-een action add webhook [options] [general options]
+brivo video action add webhook [options] [general options]
 ```
 
 #### Required Options:
@@ -7673,7 +8191,7 @@ een action add webhook [options] [general options]
 - To add action for webhook with name 'webhook test', url 'https://\*\*\*.com/':
 
 ```bash
-een action add webhook --url 'https://***.com/' --name 'webhook test'
+brivo video action add webhook --url 'https://***.com/' --name 'webhook test'
 ```
 
 #### Output
@@ -7697,7 +8215,7 @@ Add zapier action.
 #### Usage:
 
 ```
-een action add zapier [options] [general options]
+brivo video action add zapier [options] [general options]
 ```
 
 #### Required Options:
@@ -7719,7 +8237,7 @@ een action add zapier [options] [general options]
 - To add action for zapier with name 'name' and url 'https://.../':
 
 ```bash
-een action add zapier --name 'zapier cli' --url 'https://mail.******.com/'
+brivo video action add zapier --name 'zapier cli' --url 'https://mail.******.com/'
 ```
 
 #### Output
@@ -7745,7 +8263,7 @@ Delete an action from the action list.
 #### Usage:
 
 ```
-een action delete [options] [general options]
+brivo video action delete [options] [general options]
 ```
 
 #### Options:
@@ -7760,13 +8278,13 @@ een action delete [options] [general options]
 - To delete an action by id:
 
 ```bash
-een action delete --id 'ed4e7090-23ee-41dc-bf5a-58df32cdd960'
+brivo video action delete --id 'ed4e7090-23ee-41dc-bf5a-58df32cdd960'
 ```
 
 - To delete an action by name:
 
 ```bash
-een action delete --name 'My Action'
+brivo video action delete --name 'My Action'
 ```
 
 #### Output
@@ -7798,7 +8316,7 @@ You can use selectors (like `--id`, `--name`, `--action-type`) to target specifi
 #### Usage:
 
 ```
-een action set [parameter] [value] [options] [selectors] [general options]
+brivo video action set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -7831,15 +8349,17 @@ een action set [parameter] [value] [options] [selectors] [general options]
   Enable or disable tls (supported by: immix).
 - `url <url>`
   Set the url (supported by: immix, sentinel, webhook, zapier, ebus).
-- `user-id <user-id1, user-id2>`
+- `user-id <user-id>`
   Set user ids (supported by: notification, sms).
-- `user-name <user-name1, user-name2>`
+- `user-name <user-name>`
   Set user names (supported by: immix, notification, sms, ebus).
 
 #### Common Options:
 
 - `--csv`
   Display details in csv format.
+- `--json`
+  List details in JSON format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
@@ -7875,28 +8395,28 @@ een action set [parameter] [value] [options] [selectors] [general options]
 - `--name [name1, name2]`
   Filter by action names.
 - `--action-type [type]`
-  Filter by action types (supported values: immix, sentinel, notification, webhook, zapier, outputPort, smsMmsNotification, ebus).
+  Filter by action types (supported values: immix, sentinel, notification, webhook, zapier, outputPort, smsMmsNotification, ebus, playSpeakerAudioClip).
 
 #### EXAMPLES
 
 ```bash
 # Rename an action by id
-een action set name 'zapier update' --id '76e44752-cc39-4e9f-b65c-9313b961a896'
+brivo video action set name 'zapier update' --id '76e44752-cc39-4e9f-b65c-9313b961a896'
 
 # Update notes for an action by name
-een action set notes 'zapier action' --name 'My Zapier Action'
+brivo video action set notes 'zapier action' --name 'My Zapier Action'
 
 # Disable an action by id
-een action set status --disable --id '76e44752-cc39-4e9f-b65c-9313b961a896'
+brivo video action set status --disable --id '76e44752-cc39-4e9f-b65c-9313b961a896'
 
 # Set url for all immix actions
-een action set url 'https://new-url.com' --action-type 'immix'
+brivo video action set url 'https://new-url.com' --action-type 'immix'
 
 # Set user ids for a notification action, and export to CSV
-een action set user-id 'ca08f135,ca08f246' --name 'My Notification' --csv --header
+brivo video action set user-id 'ca08f135,ca08f246' --name 'My Notification' --csv --header
 
 # Disable all actions
-een action set status --disable --id '*'
+brivo video action set status --disable --id '*'
 ```
 
 #### Output
@@ -7928,6 +8448,293 @@ Updated action for 0/1 action
 
 ---
 
+# audioclip - Manage Audio Clips
+
+## NAME
+
+`audioclip` - manage and interact with speaker audio clips.
+
+## SYNOPSIS
+
+```
+brivo video audioclip [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `audioclip` command allows you to manage audio clips for the account. Audio clips are `.mp3` files that can be played through speakers via actions.
+
+## COMMANDS
+
+### list
+
+#### Usage:
+
+```
+brivo video audioclip list [options] [selectors] [general options]
+```
+
+List all audio clips.
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  Display details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `-l, --long`
+  Display size, created date, and editable status.
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by audio clip ids.
+- `--name [name]`
+  Filter by audio clip name.
+
+#### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Display detailed debug output.
+- `-h, --help`
+  Display help.
+- `--prompt`
+  Display user confirmation prompts.
+- `--time`
+  Display time taken to execute the command.
+
+#### Examples:
+
+- To list all audio clips:
+
+```bash
+brivo video audioclip list
+```
+
+- To list all audio clips in CSV format with headers:
+
+```bash
+brivo video audioclip list --csv --header
+```
+
+Output:
+
+```
+"Id","Name"
+"550e8400-e29b-41d4-a716-446655440001","Access Denied"
+"550e8400-e29b-41d4-a716-446655440006","Attention Chime"
+```
+
+- To list audio clips with extended details:
+
+```bash
+brivo video audioclip list --long --csv --header
+```
+
+Output:
+
+```
+"Id","Name","Size","Created At","Is Editable"
+"550e8400-e29b-41d4-a716-446655440001","Access Denied","31.32 KB","2026-03-09T05:10:48.493Z","no"
+"550e8400-e29b-41d4-a716-446655440006","Attention Chime","24.79 KB","2026-03-09T05:10:48.493Z","no"
+```
+
+- To search for audio clips by name:
+
+```bash
+brivo video audioclip list --name "Access"
+```
+
+### add
+
+#### Usage:
+
+```
+brivo video audioclip add [options] [general options]
+```
+
+Upload an audio clip file.
+
+#### Options:
+
+- `-f, --file [file-path]`
+  Path to the local audio file to upload. Supported formats: mp3, wav, ogg, m4a. (required)
+- `-n, --name [name]`
+  Display name for the audio clip. (required)
+
+#### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Display detailed debug output.
+- `-h, --help`
+  Display help.
+- `--time`
+  Display time taken to execute the command.
+
+#### Examples:
+
+- To upload an audio clip:
+
+```bash
+brivo video audioclip add --file /path/to/sample.mp3 --name "Sample"
+```
+
+- To upload an audio clip with debug output:
+
+```bash
+brivo video audioclip add --file /path/to/sample.mp3 --name "Sample" --debug
+```
+
+### set
+
+#### Usage:
+
+```
+brivo video audioclip set [parameter] [value] [options] [selectors] [general options]
+```
+
+Update audio clip details.
+
+#### Parameters:
+
+- `name <new-name>`
+  Set the name of the audio clip.
+
+#### Selectors:
+
+- `--id [id]`
+  Filter by audio clip id.
+- `--name [name]`
+  Filter clips by name.
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  Display details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+
+#### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Display detailed debug output.
+- `-h, --help`
+  Display help.
+- `--prompt`
+  Display user confirmation prompts.
+- `--time`
+  Display time taken to execute the command.
+
+#### Examples:
+
+- To rename an audio clip by id:
+
+```bash
+brivo video audioclip set name "New Name" --id 550e8400-e29b-41d4-a716-446655440001
+```
+
+- To rename an audio clip by its current name:
+
+```bash
+brivo video audioclip set name "New Name" --name "Access Denied"
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```
+Updated audio clip for 1/1 audio clip
+
+"Id","Name","Is Successful"
+"550e8400-e29b-41d4-a716-446655440001","New Name","yes"
+```
+
+**Error Output Example:**
+
+```
+Updated audio clip for 0/1 audio clip
+
+"Id","Name","Is Successful","Error Reason"
+"550e8400-e29b-41d4-a716-446655440001","Access Denied","no","an audio clip with this name already exists (response status: 400)"
+```
+
+### delete
+
+Delete an audio clip.
+
+#### Usage:
+
+```
+brivo video audioclip delete [options] [general options]
+```
+
+#### Options:
+
+- `--id [id]`
+  Specify id of the audio clip to delete.
+- `--name [name]`
+  Specify name of the audio clip to delete.
+
+#### General Options:
+
+- `--call-time`
+  Display API response time.
+- `-d, --debug`
+  Display detailed debug output.
+- `-h, --help`
+  Display help.
+- `--time`
+  Display time taken to execute the command.
+
+#### Examples:
+
+- To delete an audio clip by id:
+
+```
+brivo video audioclip delete --id 550e8400-e29b-41d4-a716-446655440001
+```
+
+- To delete an audio clip by name:
+
+```
+brivo video audioclip delete --name "Access Denied"
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully deleted the audio clip: Test (550e8400-e29b-41d4-a716-446655440001)
+```
+
+**Error Output Example:**
+
+```text
+error: unable to delete the audio clip: the resource was not found (status: 404)
+```
+
+---
+
 # role - Manage Roles
 
 ## NAME
@@ -7937,7 +8744,7 @@ Updated action for 0/1 action
 ## SYNOPSIS
 
 ```
-een role [COMMAND] [OPTIONS]
+brivo video role [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -7953,7 +8760,7 @@ List of all roles in current user's account.
 #### Usage
 
 ```
-een role list [options] [selectors] [general options]
+brivo video role list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -7985,7 +8792,7 @@ een role list [options] [selectors] [general options]
 - To list all roles with headers in CSV format:
 
 ```bash
-een role list --header --csv
+brivo video role list --header --csv
 ```
 
 #### Output
@@ -7999,7 +8806,7 @@ een role list --header --csv
 - To get role with role name 'Viewers' in CSV format with headers:
 
 ```bash
-een role list --role 'Viewers' --header --csv
+brivo video role list --role 'Viewers' --header --csv
 ```
 
 #### Output
@@ -8012,7 +8819,7 @@ een role list --role 'Viewers' --header --csv
 - To get roles with id '1234,4321' in long list and CSV format with headers:
 
 ```bash
-een role list --role-id '8b284309-062a-4d50-af1c-fff4de07f122, 7e7b9e69-5112-4bb2-ba4e-08c061f8dbd5' --header --csv --long
+brivo video role list --role-id '8b284309-062a-4d50-af1c-fff4de07f122, 7e7b9e69-5112-4bb2-ba4e-08c061f8dbd5' --header --csv --long
 ```
 
 #### Output
@@ -8036,7 +8843,7 @@ Use selectors (`--role-id` or `--role`) to target specific roles.
 #### Usage:
 
 ```
-een role set [parameter] [value] [options] [selectors] [general options]
+brivo video role set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -8052,7 +8859,7 @@ een role set [parameter] [value] [options] [selectors] [general options]
   `viewVSP`, `editMap`, `talkDown`, `editUsers`, `controlPTZ`, `editSharing`, `exportUsers`, `viewArchive`, `editArchive`, `viewVSPRule`, `editVSPRule`, `editAccounts`, `viewAuditLog`,
   `editSpeakers`, `viewLiveVideo`, `administrator`, `createLayouts`, `downloadVideo`, `upgradeEdition`, `addEditSpeakers`, `viewVehicleList`, `editVehicleList`, `viewAutomations`,
   `editAutomations`, `editPTZStations`, `editMotionAreas`, `viewPreviewVideo`, `turnCamerasOnOff`, `viewHistoricVideo`, `layoutAdministrator`, `editAllCameraSettings`,
-  `addEditBridgesCameras`, `editNoBillingDeviceSettings`, `viewInvoice`, `addRemovePayment`, `placeOrders`, `viewShipments`).
+  `addEditBridgesCameras`, `editNoBillingDeviceSettings`, `viewInvoice`, `addRemovePayment`, `placeOrders`, `viewShipments`, `editResellerUsers`, `editAdminUsers`, `viewPricingInformation`, `viewResellerProgramInformation`).
 
 #### Common Options:
 
@@ -8092,25 +8899,25 @@ een role set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Rename a role
-een role set name 'Site Viewers' --role 'Viewers'
+brivo video role set name 'Site Viewers' --role 'Viewers'
 
 # Update a role's description
-een role set description 'Default viewer role for new users' --role-id '8b284309-062a-4d50-af1c-fff4de07f122'
+brivo video role set description 'Default viewer role for new users' --role-id '8b284309-062a-4d50-af1c-fff4de07f122'
 
 # Enable automatic assignment for a role
-een role set auto-assign --enable --role 'Viewers'
+brivo video role set auto-assign --enable --role 'Viewers'
 
 # Disable automatic assignment for a role
-een role set auto-assign --disable --role 'Viewers'
+brivo video role set auto-assign --disable --role 'Viewers'
 
 # Enable permissions for a role
-een role set permission 'viewLiveVideo,downloadVideo' --enable --role 'Viewers'
+brivo video role set permission 'viewLiveVideo,downloadVideo' --enable --role 'Viewers'
 
 # Disable permissions for a role
-een role set permission 'editMap,editUsers' --disable --role-id '8b284309-062a-4d50-af1c-fff4de07f122'
+brivo video role set permission 'editMap,editUsers' --disable --role-id '8b284309-062a-4d50-af1c-fff4de07f122'
 
 # Update a role and export the result to CSV
-een role set permission 'viewLiveVideo' --enable --role 'Viewers' --csv --header
+brivo video role set permission 'viewLiveVideo' --enable --role 'Viewers' --csv --header
 ```
 
 #### Output
@@ -8142,7 +8949,7 @@ Delete a role.
 #### Usage:
 
 ```
-een role delete [options] [general options]
+brivo video role delete [options] [general options]
 ```
 
 #### Options:
@@ -8157,13 +8964,13 @@ een role delete [options] [general options]
 - To delete a role by id:
 
 ```bash
-een role delete --id '8b284309-062a-4d50-af1c-fff4de07f122'
+brivo video role delete --id '8b284309-062a-4d50-af1c-fff4de07f122'
 ```
 
 - To delete a role by name:
 
 ```bash
-een role delete --name 'Viewers'
+brivo video role delete --name 'Viewers'
 ```
 
 #### Output
@@ -8187,7 +8994,7 @@ Add a role.
 #### Usage:
 
 ```
-een role add [options] [general options]
+brivo video role add [options] [general options]
 ```
 
 #### Required Options:
@@ -8195,7 +9002,7 @@ een role add [options] [general options]
 - `-n, --name [name]`
   Specify name of the role.
 - `--permissions [permissions]`
-  Specify permissions for the role as comma separated values (supported permissions: viewVSP, editMap, talkDown, editUsers, controlPTZ, editSharing, exportUsers, viewArchive, editArchive, viewVSPRule, editVSPRule, editAccounts, viewAuditLog, editSpeakers, viewLiveVideo, administrator, createLayouts, downloadVideo, upgradeEdition, addEditSpeakers, viewVehicleList, editVehicleList, viewAutomations, editAutomations, editPTZStations, editMotionAreas, viewPreviewVideo, turnCamerasOnOff, viewHistoricVideo, layoutAdministrator, editAllCameraSettings, addEditBridgesCameras, editNoBillingDeviceSettings, viewInvoice, addRemovePayment, placeOrders, viewShipments).
+  Specify permissions for the role as comma separated values (supported permissions: viewVSP, editMap, talkDown, editUsers, controlPTZ, editSharing, exportUsers, viewArchive, editArchive, viewVSPRule, editVSPRule, editAccounts, viewAuditLog, editSpeakers, viewLiveVideo, administrator, createLayouts, downloadVideo, upgradeEdition, addEditSpeakers, viewVehicleList, editVehicleList, viewAutomations, editAutomations, editPTZStations, editMotionAreas, viewPreviewVideo, turnCamerasOnOff, viewHistoricVideo, layoutAdministrator, editAllCameraSettings, addEditBridgesCameras, editNoBillingDeviceSettings, viewInvoice, addRemovePayment, placeOrders, viewShipments, editResellerUsers, editAdminUsers, viewPricingInformation, viewResellerProgramInformation).
 
 #### Options:
 
@@ -8209,13 +9016,13 @@ een role add [options] [general options]
 - To add a role named 'Viewers' with live and historic video permissions:
 
 ```bash
-een role add --name 'Viewers' --permissions 'viewLiveVideo,viewHistoricVideo' --auto-assign
+brivo video role add --name 'Viewers' --permissions 'viewLiveVideo,viewHistoricVideo' --auto-assign
 ```
 
 - To add a role with description:
 
 ```bash
-een role add --name 'Auditors' --permissions 'viewAuditLog' --description 'Read-only audit access' --auto-assign
+brivo video role add --name 'Auditors' --permissions 'viewAuditLog' --description 'Read-only audit access' --auto-assign
 ```
 
 #### Output
@@ -8243,7 +9050,7 @@ error: unable to add role: conflict (status: 409)
 ## SYNOPSIS
 
 ```
-een site [COMMAND] [OPTIONS]
+brivo video site [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -8259,7 +9066,7 @@ Add a new site.
 #### Usage:
 
 ```
-een site add [options] [general options]
+brivo video site add [options] [general options]
 ```
 
 #### Required Options:
@@ -8287,7 +9094,7 @@ een site add [options] [general options]
 - To add a new site:
 
 ```bash
-een site add --name 'Eagle Eye Bangalore' --address 'Sri Krishna Temple Road, Indira Nagar' --city 'Bangalore' --region 'Karnataka' --postal-code '560038' --country 'India'
+brivo video site add --name 'Eagle Eye Bangalore' --address 'Sri Krishna Temple Road, Indira Nagar' --city 'Bangalore' --region 'Karnataka' --postal-code '560038' --country 'India'
 ```
 
 #### Output
@@ -8313,7 +9120,7 @@ List all sites.
 #### Usage
 
 ```
-een site list [options] [selectors] [general options]
+brivo video site list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -8341,21 +9148,21 @@ een site list [options] [selectors] [general options]
   Filter by city.
 - `--country [country1, country2]`
   Filter by country.
-- `--id [id1, id2]`
-  Filter by site ids.
-- `--postal-code [postal code1, postal code2]`
+- `--postal-code [code1, code2]`
   Filter by postal code.
 - `--region [region1, region2]`
   Filter by region.
-- `--site [site name1, site name2]`
+- `--site [name1, name2]`
   Filter by sites.
+- `--id [id1, id2]`
+  Filter by site ids.
 
 ## EXAMPLES
 
 - To list all sites in CSV format:
 
 ```bash
-een site list --csv --header
+brivo video site list --csv --header
 ```
 
 #### Output
@@ -8369,7 +9176,7 @@ een site list --csv --header
 - To get sites list with site name 'eagle eye', city 'bangalore' in CSV and long list format with header:
 
 ```bash
-een site list --site 'Eagle Eye Bangalore' --city 'Bangalore' --header -l --csv
+brivo video site list --site 'Eagle Eye Bangalore' --city 'Bangalore' --header -l --csv
 ```
 
 #### Output
@@ -8382,7 +9189,7 @@ een site list --site 'Eagle Eye Bangalore' --city 'Bangalore' --header -l --csv
 - To get sites list with site id '1234', region 'Karnataka' in CSV and long list format with header:
 
 ```bash
-een site list --id '5acd0dd1-05a0-4d75-a14b-30e0f4083c70' --region 'Karnataka' -l --header --csv
+brivo video site list --id '5acd0dd1-05a0-4d75-a14b-30e0f4083c70' --region 'Karnataka' -l --header --csv
 ```
 
 #### Output
@@ -8405,7 +9212,7 @@ Use selectors (like `--id`, `--site`, etc.) to target specific sites.
 #### Usage:
 
 ```
-een site set [parameter] [value] [options] [selectors] [general options]
+brivo video site set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -8466,28 +9273,28 @@ een site set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Rename a specific site
-een site set name 'Eagle Eye Bangalore' --id '83860e96-cd90-4b32-ba41-5866e3088927'
+brivo video site set name 'Eagle Eye Bangalore' --id '83860e96-cd90-4b32-ba41-5866e3088927'
 
 # Set the street address for a site
-een site set address '123 Main St' --site 'Eagle Eye Bangalore'
+brivo video site set address '123 Main St' --site 'Eagle Eye Bangalore'
 
 # Rename the city for all sites currently in a given city
-een site set city 'New City' --city 'Old City'
+brivo video site set city 'New City' --city 'Old City'
 
 # Set the region for a specific site
-een site set region 'Karnataka' --id '83860e96-cd90-4b32-ba41-5866e3088927'
+brivo video site set region 'Karnataka' --id '83860e96-cd90-4b32-ba41-5866e3088927'
 
 # Set the postal code for a specific site
-een site set postal-code '560038' --id '83860e96-cd90-4b32-ba41-5866e3088927'
+brivo video site set postal-code '560038' --id '83860e96-cd90-4b32-ba41-5866e3088927'
 
 # Set the country for all sites
-een site set country 'India' --id '*'
+brivo video site set country 'India' --id '*'
 
 # Enable default-site  for a specific site
-een site set default-site --enable --id '83860e96-cd90-4b32-ba41-5866e3088927'
+brivo video site set default-site --enable --id '83860e96-cd90-4b32-ba41-5866e3088927'
 
 # Disable default-site  and export the result to CSV
-een site set default-site --disable --site 'Eagle Eye Bangalore' --csv --header
+brivo video site set default-site --disable --site 'Eagle Eye Bangalore' --csv --header
 ```
 
 #### Output
@@ -8513,7 +9320,7 @@ Delete a site.
 #### Usage:
 
 ```
-een site delete [options] [general options]
+brivo video site delete [options] [general options]
 ```
 
 #### Options:
@@ -8528,13 +9335,13 @@ een site delete [options] [general options]
 - To delete a site by id:
 
 ```bash
-een site delete --id '83860e96-cd90-4b32-ba41-5866e3088927'
+brivo video site delete --id '83860e96-cd90-4b32-ba41-5866e3088927'
 ```
 
 - To delete a site by name:
 
 ```bash
-een site delete --name 'Eagle Eye Bangalore'
+brivo video site delete --name 'Eagle Eye Bangalore'
 ```
 
 #### Output
@@ -8562,7 +9369,7 @@ error: unable to delete the site: not found (status: 404)
 ## SYNOPSIS
 
 ```
-een download [COMMAND] [OPTIONS]
+brivo video download [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -8572,7 +9379,7 @@ The `download` command allows you to export, list, get and delete video download
 #### Usage:
 
 ```
-een download [command] [options]
+brivo video download [command] [options]
 ```
 
 ## COMMANDS
@@ -8584,7 +9391,7 @@ Manage video downloads.
 #### Usage:
 
 ```
-een download video [command] [options]
+brivo video download video [command] [options]
 ```
 
 #### Subcommands:
@@ -8596,7 +9403,7 @@ List all videos.
 #### Usage:
 
 ```
-een download video list [options] [selectors] [general options]
+brivo video download video list [options] [selectors] [general options]
 ```
 
 ###### Options:
@@ -8605,7 +9412,7 @@ een download video list [options] [selectors] [general options]
   Display details in CSV format.
 - `--json`
   List details in JSON format.
-- `--file-name [file name]`
+- `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
   Display details in CSV format in google sheet.
@@ -8632,7 +9439,7 @@ Export video.
 #### Usage:
 
 ```
-een download video export [options] [general options]
+brivo video download video export [options] [general options]
 ```
 
 #### Required Options:
@@ -8670,7 +9477,7 @@ Download video.
 #### Usage:
 
 ```
-een download video get [options] [general options]
+brivo video download video get [options] [general options]
 ```
 
 ###### Options:
@@ -8695,7 +9502,7 @@ Delete a video by ID.
 #### Usage:
 
 ```
-een download video delete <video-id> [general options]
+brivo video download video delete <video-id> [general options]
 ```
 
 ###### Arguments:
@@ -8712,7 +9519,7 @@ Download preview.
 #### Usage:
 
 ```
-een download preview [options] [selectors] [general options]
+brivo video download preview [options] [selectors] [general options]
 ```
 
 #### Required Options:
@@ -8757,43 +9564,43 @@ een download preview [options] [selectors] [general options]
 - To list all videos available for download:
 
 ```bash
-een download video list
+brivo video download video list
 ```
 
 - To list videos with specific details in CSV format:
 
 ```bash
-een download video list --include 'id,name,dfilename' --csv --header
+brivo video download video list --include 'id,name,dfilename' --csv --header
 ```
 
 - To export a video with timestamp:
 
 ```bash
-een download video export --esn 12345 --start-time "20241001000000.000" --end-time "20241001010000.000" --timestamp
+brivo video download video export --esn 12345 --start-time "20241001000000.000" --end-time "20241001010000.000" --timestamp
 ```
 
 - To download a specific video by ID:
 
 ```bash
-een download video get --id "12345" --directory "/path/to/save"
+brivo video download video get --id "12345" --directory "/path/to/save"
 ```
 
 - To download a preview from a camera:
 
 ```bash
-een download preview --esn 12345 --start-time "20241001000000.000" --end-time "20241001010004.000" --directory "/path/to/save"
+brivo video download preview --esn 12345 --start-time "20241001000000.000" --end-time "20241001010004.000" --directory "/path/to/save"
 ```
 
 - To download preview from cameras with specified bridge esn and camera status online:
 
 ```bash
-een download preview --bridge-esn 12345 --status 'online' --start-time "20241001000000.000" --length 3
+brivo video download preview --bridge-esn 12345 --status 'online' --start-time "20241001000000.000" --length 3
 ```
 
 - To delete a video by ID:
 
 ```bash
-een download video delete video123
+brivo video download video delete video123
 ```
 
 ---
@@ -8807,7 +9614,7 @@ een download video delete video123
 ## SYNOPSIS
 
 ```
-een job [COMMAND] [OPTIONS]
+brivo video job [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -8823,7 +9630,7 @@ List jobs.
 #### Usage:
 
 ```
-een job list [options] [selectors] [general options]
+brivo video job list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -8851,7 +9658,7 @@ een job list [options] [selectors] [general options]
 - To list all jobs:
 
 ```bash
-een job list --csv
+brivo video job list --csv
 ```
 
 #### Output
@@ -8864,7 +9671,7 @@ een job list --csv
 - To list jobs with headers in CSV format:
 
 ```bash
-een job list --csv --header
+brivo video job list --csv --header
 ```
 
 #### Output
@@ -8878,7 +9685,7 @@ een job list --csv --header
 - To list jobs with a specific state:
 
 ```bash
-een job list --jobstate success --header --csv
+brivo video job list --jobstate success --header --csv
 ```
 
 #### Output
@@ -8892,13 +9699,13 @@ een job list --jobstate success --header --csv
 - To list pending jobs and save to file:
 
 ```bash
-een job list --jobstate pending --csv --file-name pending_jobs.csv
+brivo video job list --jobstate pending --csv --file-name pending_jobs.csv
 ```
 
 - To list a specific job by ID:
 
 ```bash
-een job list --jobid "123456"
+brivo video job list --jobid "123456"
 ```
 
 ### delete
@@ -8908,7 +9715,7 @@ Delete a job by ID.
 #### Usage:
 
 ```
-een job delete <id> [general options]
+brivo video job delete <id> [general options]
 ```
 
 #### Arguments:
@@ -8921,7 +9728,7 @@ een job delete <id> [general options]
 - To delete a job by ID:
 
 ```bash
-een job delete "dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac"
+brivo video job delete "dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac"
 ```
 
 #### Output
@@ -8941,7 +9748,7 @@ successfully deleted the job: dfe14ab2-b33d-4a6e-ab73-c4a446c8f1ac
 ## SYNOPSIS
 
 ```
-een video [COMMAND] [OPTIONS]
+brivo video [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -8951,7 +9758,7 @@ The `video` command allows you to check the status of preview recordings.
 #### Usage:
 
 ```
-een video [command] [options]
+brivo video [command] [options]
 ```
 
 ## COMMANDS
@@ -8963,7 +9770,7 @@ Get the status of preview recording.
 #### Usage:
 
 ```
-een video previewrecordingstatus [options] [general options]
+brivo camera previewrecordingstatus [options] [general options]
 ```
 
 #### Required Options:
@@ -8997,7 +9804,7 @@ een video previewrecordingstatus [options] [general options]
 - To check the status of a preview recording:
 
 ```bash
-een video previewrecordingstatus --esn 1005f355 --start-time  2024-11-17T09:20:54.619+00:00 --end-time  2024-11-18T09:20:54.619+00:00 --debug
+brivo camera previewrecordingstatus --esn 1005f355 --start-time  2024-11-17T09:20:54.619+00:00 --end-time  2024-11-18T09:20:54.619+00:00 --debug
 ```
 
 ---
@@ -9011,7 +9818,7 @@ een video previewrecordingstatus --esn 1005f355 --start-time  2024-11-17T09:20:5
 ## SYNOPSIS
 
 ```
-een vsp [command] [options]
+brivo video vsp [command] [options]
 ```
 
 ## DESCRIPTION
@@ -9027,7 +9834,7 @@ List VSP events.
 #### Usage:
 
 ```
-een vsp event list [options] [selectors] [general options]
+brivo video vsp event list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -9051,19 +9858,19 @@ een vsp event list [options] [selectors] [general options]
 
 #### Selectors:
 
-- `-a, --access-type [access types]`
+- `-a, --access-type [access type1, access type2]`
   Filter by access types.
-- `-b, --body-type [types]`
+- `-b, --body-type [body type1, body type2]`
   Filter by vehicle body types.
-- `-c, --color [colors]`
+- `-c, --color [color1, color2]`
   Filter by vehicle colors.
-- `-D, --direction [directions]`
+- `-D, --direction [direction1, direction2]`
   Filter by direction of the vehicle.
 - `--esn [esn1, esn2]`
   Filter by camera ESNs.
 - `--lp [lp]`
   Filter by license plate number.
-- `-m, --make [makes]`
+- `-m, --make [make1, make2]`
   Filter by vehicle makes.
 - `--site [site name1, site name2]`
   Filter by site name. Provide a comma-separated list of site names.
@@ -9084,7 +9891,7 @@ een vsp event list [options] [selectors] [general options]
 - To get VSP events for a specific time frame:
 
 ```bash
-een vsp event list --start-time "20241001000000.000" --end-time "20241001235959.000"
+brivo video vsp event list --start-time "20241001000000.000" --end-time "20241001235959.000"
 ```
 
 ---
@@ -9096,7 +9903,7 @@ List VSP alerts.
 #### Usage:
 
 ```
-een vsp alert list [options] [selectors] [general options]
+brivo video vsp alert list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -9153,7 +9960,7 @@ een vsp alert list [options] [selectors] [general options]
 - To get VSP alerts for allowed vehicles:
 
 ```bash
-een vsp alert list --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00 --allowed-vehicle
+brivo video vsp alert list --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00 --allowed-vehicle
 ```
 
 ---
@@ -9165,7 +9972,7 @@ List VSP visits. A visit represents a vehicle's entry and exit at a monitored lo
 #### Usage:
 
 ```
-een vsp visit list [options] [selectors] [general options]
+brivo video vsp visit list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -9205,31 +10012,31 @@ een vsp visit list [options] [selectors] [general options]
 - To list the 10 most recent visits:
 
 ```bash
-een vsp visit list --max-count 10
+brivo video vsp visit list --max-count 10
 ```
 
 - To list visits for a specific license plate:
 
 ```bash
-een vsp visit list --plate ABC123
+brivo video vsp visit list --plate ABC123
 ```
 
 - To list visits at a specific site with extended details:
 
 ```bash
-een vsp visit list --site "Main Office" --long
+brivo video vsp visit list --site "Main Office" --long
 ```
 
 - To list visits showing only plate and site name:
 
 ```bash
-een vsp visit list --include plate,site-name
+brivo video vsp visit list --include plate,site-name
 ```
 
 - To save visits to a CSV file:
 
 ```bash
-een vsp visit list --max-count 100 --csv --file-name visits.csv
+brivo video vsp visit list --max-count 100 --csv --file-name visits.csv
 ```
 
 ---
@@ -9243,7 +10050,7 @@ een vsp visit list --max-count 100 --csv --file-name visits.csv
 ## SYNOPSIS
 
 ```
-een vehiclelist [COMMAND] [OPTIONS]
+brivo video vehiclelist [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -9259,7 +10066,7 @@ Add vehiclelist.
 #### Usage:
 
 ```
-een vehiclelist add [options] [general options]
+brivo video vehiclelist add [options] [general options]
 ```
 
 #### Required Options:
@@ -9283,7 +10090,7 @@ een vehiclelist add [options] [general options]
 - To add a vehiclelist with name 'name' and cameras '108 Test camera (RMA ROOM), 117 Test camera (Server ROOM)' :
 
 ```bash
-een vehiclelist add --name 'vehiclelist test' --camera '108 Test camera (RMA ROOM), 117 Test camera (Server ROOM)'
+brivo video vehiclelist add --name 'vehiclelist test' --camera '108 Test camera (RMA ROOM), 117 Test camera (Server ROOM)'
 ```
 
 #### Output
@@ -9307,7 +10114,7 @@ Delete a vehiclelist.
 #### Usage:
 
 ```
-een vehiclelist delete [options] [general options]
+brivo video vehiclelist delete [options] [general options]
 ```
 
 #### Options:
@@ -9322,7 +10129,7 @@ een vehiclelist delete [options] [general options]
 - To delete a vehiclelist with name 'test':
 
 ```bash
-een vehiclelist delete --name 'test'
+brivo video vehiclelist delete --name 'test'
 ```
 
 #### Output
@@ -9350,7 +10157,7 @@ List all vehiclelist
 #### Usage:
 
 ```
-een vehiclelist list [options] [selectors] [general options]
+brivo video vehiclelist list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -9400,7 +10207,7 @@ een vehiclelist list [options] [selectors] [general options]
 - To get vehiclelist list in CSV format with header:
 
 ```bash
-een vehiclelist list --csv --header
+brivo video vehiclelist list --csv --header
 ```
 
 #### Output
@@ -9415,7 +10222,7 @@ een vehiclelist list --csv --header
 - To get vehiclelist list for esn '1234' with vehiclelist name 'my name' in CSV format with headers as long list:
 
 ```bash
-een vehiclelist list --csv --header -l --esn '1006b36f' --name 'EEN India North'
+brivo video vehiclelist list --csv --header -l --esn '1006b36f' --name 'EEN India North'
 ```
 
 #### Output
@@ -9438,7 +10245,7 @@ Use selectors (like `--id`, `--name`, `--site`, etc.) to target one or more vehi
 #### Usage:
 
 ```
-een vehiclelist set [parameter] [value] [options] [selectors] [general options]
+brivo video vehiclelist set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -9508,19 +10315,19 @@ een vehiclelist set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Rename a vehiclelist
-een vehiclelist set name 'Name Check Vehiclelist' --name 'Name check list'
+brivo video vehiclelist set name 'Name Check Vehiclelist' --name 'Name check list'
 
 # Update notes
-een vehiclelist set notes 'updated notes' --id 'ca020825'
+brivo video vehiclelist set notes 'updated notes' --id 'ca020825'
 
 # Set the cameras for a specific vehiclelist by camera name
-een vehiclelist set camera --new-camera '108 Test camera (RMA ROOM)' --name 'Name Check Vehiclelist'
+brivo video vehiclelist set camera --new-camera '108 Test camera (RMA ROOM)' --name 'Name Check Vehiclelist'
 
 # Set the cameras for a specific vehiclelist by camera ESN
-een vehiclelist set camera --new-esn '1006b36f' --id 'ca020825'
+brivo video vehiclelist set camera --new-esn '1006b36f' --id 'ca020825'
 
 # Disable vehiclelists by ID
-een vehiclelist set status --disable --id 'ca020825, ca04fb15' --header
+brivo video vehiclelist set status --disable --id 'ca020825, ca04fb15' --header
 ```
 
 #### Output
@@ -9565,7 +10372,7 @@ Updated vehiclelist for 1/2 vehiclelists
 ## SYNOPSIS
 
 ```
-een vehicle [COMMAND] [OPTIONS]
+brivo video vehicle [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -9581,7 +10388,7 @@ Add vehicle to vehiclelist.
 #### Usage:
 
 ```
-een vehicle add [options] [general options]
+brivo video vehicle add [options] [general options]
 ```
 
 #### Required Options:
@@ -9617,7 +10424,7 @@ een vehicle add [options] [general options]
 - To add a vehicle to vehiclelist with id 1234 access type 'allow' plate number 'ABCDK7' make 'acura' color 'white':
 
 ```bash
-een vehicle add --access-type allow --plate 'ABCDK7' --vehiclelist-id 'd9e9742c-9522-49e8-bb86-ed7eeb4aa14e' --make acura --color white
+brivo video vehicle add --access-type allow --plate 'ABCDK7' --vehiclelist-id 'd9e9742c-9522-49e8-bb86-ed7eeb4aa14e' --make acura --color white
 ```
 
 #### Output
@@ -9641,7 +10448,7 @@ Delete a vehicle from vehiclelist.
 #### Usage:
 
 ```
-een vehicle delete [options] [general options]
+brivo video vehicle delete [options] [general options]
 ```
 
 #### Options:
@@ -9660,7 +10467,7 @@ een vehicle delete [options] [general options]
 - To delete a vehicle with plate number 'YUIOPT' from vehiclelist with name 'een north':
 
 ```bash
-een vehicle delete --plate 'YUIOPT' --vehiclelist-name 'een north'
+brivo video vehicle delete --plate 'YUIOPT' --vehiclelist-name 'een north'
 ```
 
 #### Output
@@ -9689,7 +10496,7 @@ List details of vehicle
 #### Usage:
 
 ```
-een vehicle list [options] [selectors] [general options]
+brivo video vehicle list [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -9727,7 +10534,7 @@ een vehicle list [options] [selectors] [general options]
 - To get VSP list vehicles with vehiclelist name 'Hotlist Vehicles' in CSV format with header:
 
 ```bash
-een vehicle list --name 'Hotlist Vehicles' --csv --header
+brivo video vehicle list --name 'Hotlist Vehicles' --csv --header
 ```
 
 #### Output
@@ -9742,7 +10549,7 @@ een vehicle list --name 'Hotlist Vehicles' --csv --header
 - To get VSP list vehicles with vehiclelist id '23j2j5' and user tags 'brivo' in CSV format with headers as long list:
 
 ```bash
-een vehicle list --id 'e705d1f9-4846-4c98-aa09-20b5e54b694f' -l --header  --tag 'brivo' --csv
+brivo video vehicle list --id 'e705d1f9-4846-4c98-aa09-20b5e54b694f' -l --header  --tag 'brivo' --csv
 ```
 
 #### Output
@@ -9756,7 +10563,7 @@ een vehicle list --id 'e705d1f9-4846-4c98-aa09-20b5e54b694f' -l --header  --tag 
 - To get VSP list vehicles with vehiclelist name 'hotlist' and license plate number 'NJIFUI7' in CSV format with headers as long list:
 
 ```bash
-een vehicle list --name 'Hotlist Vehicles'  -l --header  --plate 'PSM1356' --csv
+brivo video vehicle list --name 'Hotlist Vehicles'  -l --header  --plate 'PSM1356' --csv
 ```
 
 #### Output
@@ -9780,7 +10587,7 @@ Use selectors (like `--plate`, `--access-type`, `--tag`) to target specific vehi
 #### Usage:
 
 ```
-een vehicle set [parameter] [value] [options] [selectors] [general options]
+brivo video vehicle set [parameter] [value] [options] [selectors] [general options]
 ```
 
 #### Parameters:
@@ -9799,13 +10606,15 @@ een vehicle set [parameter] [value] [options] [selectors] [general options]
   Set the vehicle model.
 - `color <color>`
   Set the vehicle color.
-- `tags <tag1, tag2>`
+- `tag <tags>`
   Set the vehicle tags.
 
 #### Common Options:
 
 - `--csv`
   Display details in CSV format.
+- `--json`
+  List details in JSON format.
 - `-f, --file-name [file name]`
   Specify the name of the file where the output will be saved.
 - `-g, --google-sheet`
@@ -9830,19 +10639,19 @@ een vehicle set [parameter] [value] [options] [selectors] [general options]
 
 ```bash
 # Set access type to 'allow' for a specific vehicle
-een vehicle set access-type allow --vehiclelist-name 'New_Vehicle list_1901' --plate 'QWERTY'
+brivo video vehicle set access-type allow --vehiclelist-name 'New_Vehicle list_1901' --plate 'QWERTY'
 
 # Set access type to 'deny' for every vehicle tagged 'contractor' in a vehiclelist
-een vehicle set access-type deny --vehiclelist-name 'New_Vehicle list_1901' --tag 'contractor'
+brivo video vehicle set access-type deny --vehiclelist-name 'New_Vehicle list_1901' --tag 'contractor'
 
 # Set the valid-from date for a specific vehicle
-een vehicle set valid-from '20260401000000.000' --vehiclelist-id 'a1b2c3d4-5678-90ab-cdef-1234567890ab' --plate 'QWERTY'
+brivo video vehicle set valid-from '20260401000000.000' --vehiclelist-id 'a1b2c3d4-5678-90ab-cdef-1234567890ab' --plate 'QWERTY'
 
 # Set the schedule for all vehicles with access type 'allow' and export results
-een vehicle set schedule workHours --vehiclelist-name 'New_Vehicle list_1901' --access-type 'allow' --csv --header
+brivo video vehicle set schedule workHours --vehiclelist-name 'New_Vehicle list_1901' --access-type 'allow' --csv --header
 
 # Set access type to 'allow' for every vehicle in a vehiclelist
-een vehicle set access-type allow --vehiclelist-name 'New_Vehicle list_1901' --plate '*'
+brivo video vehicle set access-type allow --vehiclelist-name 'New_Vehicle list_1901' --plate '*'
 ```
 
 #### Output
@@ -9884,7 +10693,7 @@ Updated vehicle for 0/1 vehicle
 ## SYNOPSIS
 
 ```
-een pos [COMMAND] [OPTIONS]
+brivo video pos [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -9900,7 +10709,7 @@ Get point of sale (POS) events.
 #### Usage:
 
 ```
-een pos listevents [options] [selectors] [general options]
+brivo video pos listevents [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -9930,7 +10739,7 @@ een pos listevents [options] [selectors] [general options]
   Filter by maximum discount.
 - `--discount-min [discount min]`
   Filter by minimum discount.
-- `-E, --employee-id [employee ID]`
+- `-E, --employee-id [employee id]`
   Filter by employee ID.
 - `-F, --flagged`
   Filter by flagged transactions.
@@ -9959,13 +10768,13 @@ een pos listevents [options] [selectors] [general options]
 - To get POS events for a specific time frame:
 
 ```bash
-een pos listevents --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00
+brivo video pos listevents --start-time 2024-11-17T09:20:54.619+00:00 --end-time 2024-11-18T09:20:54.619+00:00
 ```
 
 - To get flagged POS transactions:
 
 ```bash
-een pos listevents --flagged
+brivo video pos listevents --flagged
 ```
 
 ---
@@ -9979,7 +10788,7 @@ een pos listevents --flagged
 ## SYNOPSIS
 
 ```
-een perftest [COMMAND] [OPTIONS]
+brivo video perftest [COMMAND] [OPTIONS]
 ```
 
 ## DESCRIPTION
@@ -9995,7 +10804,7 @@ Get performance test results for preview images.
 #### Usage:
 
 ```
-een perftest preview [options] [selectors] [general options]
+brivo video perftest preview [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -10033,11 +10842,11 @@ een perftest preview [options] [selectors] [general options]
   Filter by cameras.
 - `--esn [esn1, esn2]`
   Filter by camera esns.
-- `--layout [layout1, layout2]`
+- `--layout [layout name1, layout name2]`
   Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter by layouts ids.
-- `--site [site1, site2]`
+  Filter by layout ids.
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
@@ -10060,19 +10869,19 @@ een perftest preview [options] [selectors] [general options]
 - To test preview performance of all the cameras in an account for last 30 days:
 
 ```bash
-een perftest preview
+brivo video perftest preview
 ```
 
 - To test preview performance of all the cameras in a specific layout:
 
 ```bash
-een perftest preview --layout "layout1"
+brivo video perftest preview --layout "layout1"
 ```
 
 - To test preview performance of all the cameras in a specific site:
 
 ```bash
-een perftest preview --site "site1"
+brivo video perftest preview --site "site1"
 ```
 
 ### assetlist
@@ -10082,7 +10891,7 @@ Get performance test results for asset list endpoint.
 #### Usage:
 
 ```
-een perftest assetlist [options] [selectors] [general options]
+brivo video perftest assetlist [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -10124,11 +10933,11 @@ een perftest assetlist [options] [selectors] [general options]
   Filter by cameras.
 - `--esn [esn1, esn2]`
   Filter by camera esns.
-- `--layout [layout1, layout2]`
+- `--layout [layout name1, layout name2]`
   Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter by layouts ids.
-- `--site [site1, site2]`
+  Filter by layout ids.
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
@@ -10150,17 +10959,17 @@ een perftest assetlist [options] [selectors] [general options]
 - To test asset list performance of all the cameras in an account for last 30 days:
 
 ```bash
-een perftest assetlist
+brivo video perftest assetlist
 ```
 
 ```bash
-een perftest assetlist --layout "layout1"
+brivo video perftest assetlist --layout "layout1"
 ```
 
 - To test asset list performance of all the cameras in a specific site:
 
 ```bash
-een perftest assetlist --site "site1"
+brivo video perftest assetlist --site "site1"
 ```
 
 ### pngspan
@@ -10170,7 +10979,7 @@ Get performance test results for pngspan endpoint.
 #### Usage:
 
 ```
-een perftest pngspan [options] [selectors] [general options]
+brivo video perftest pngspan [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -10212,11 +11021,11 @@ een perftest pngspan [options] [selectors] [general options]
   Filter by cameras.
 - `--esn [esn1, esn2]`
   Filter by camera esns.
-- `--layout [layout1, layout2]`
+- `--layout [layout name1, layout name2]`
   Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter by layouts ids.
-- `--site [site1, site2]`
+  Filter by layout ids.
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
@@ -10239,19 +11048,19 @@ een perftest pngspan [options] [selectors] [general options]
 - To test pngspan performance of all the cameras in an account for last 30 days:
 
 ```bash
-een perftest pngspan
+brivo video perftest pngspan
 ```
 
 - To test pngspan performance of all the cameras in a specific layout:
 
 ```bash
-een perftest pngspan --layout "layout1"
+brivo video perftest pngspan --layout "layout1"
 ```
 
 - To test pngspan performance of all the cameras in a specific site:
 
 ```bash
-een perftest pngspan --site "site1"
+brivo video perftest pngspan --site "site1"
 ```
 
 ### live
@@ -10261,7 +11070,7 @@ Get performance test results for live video.
 #### Usage:
 
 ```
-een perftest live [options] [selectors] [general options]
+brivo video perftest live [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -10293,15 +11102,15 @@ een perftest live [options] [selectors] [general options]
   Filter by cameras.
 - `--esn [esn1, esn2]`
   Filter by camera esns.
-- `--layout [layout1, layout2]`
+- `--layout [layout name1, layout name2]`
   Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter by layouts ids.
-- `--site [site1, site2]`
+  Filter by layout ids.
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
-- `--status [status]`  
+- `--status [status]`
   Filter by camera status.
 - `-t, --tag [tag1, tag2]`
   Filter by tags.
@@ -10317,19 +11126,19 @@ een perftest live [options] [selectors] [general options]
 - To test live video performance of all the cameras in an account:
 
 ```bash
-een perftest live
+brivo video perftest live
 ```
 
 - To test live video performance of all the cameras in a specific layout:
 
 ```bash
-een perftest live --layout "layout1"
+brivo video perftest live --layout "layout1"
 ```
 
 - To test live video performance of all the cameras in a specific site:
 
 ```bash
-een perftest live --site "site1"
+brivo video perftest live --site "site1"
 ```
 
 ### livelatency
@@ -10339,7 +11148,7 @@ Get test results live video latency
 #### Usage:
 
 ```
-een perftest livelatency [options] [selectors] [general options]
+brivo video perftest livelatency [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -10369,11 +11178,11 @@ een perftest livelatency [options] [selectors] [general options]
   Filter by cameras.
 - `--esn [esn1, esn2]`
   Filter by camera esns.
-- `--layout [layout1, layout2]`
+- `--layout [layout name1, layout name2]`
   Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter by layouts ids.
-- `--site [site1, site2]`
+  Filter by layout ids.
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
@@ -10392,13 +11201,13 @@ een perftest livelatency [options] [selectors] [general options]
 - To test live video latency of all the cameras in an account:
 
 ```bash
-een perftest livelatency
+brivo video perftest livelatency
 ```
 
 - To test live video latency of all the cameras in a specific bridge:
 
 ```bash
-een perftest livelatency --bridge-esn "<bridge_id>"
+brivo video perftest livelatency --bridge-esn "<bridge_id>"
 ```
 
 ### historic
@@ -10408,7 +11217,7 @@ Get performance test results for history video.
 #### Usage:
 
 ```
-een perftest historic [options] [selectors] [general options]
+brivo video perftest historic [options] [selectors] [general options]
 ```
 
 #### Options:
@@ -10446,11 +11255,11 @@ een perftest historic [options] [selectors] [general options]
   Filter by cameras.
 - `--esn [esn1, esn2]`
   Filter by camera esns.
-- `--layout [layout1, layout2]`
+- `--layout [layout name1, layout name2]`
   Filter by layouts.
 - `--layout-id [layout id1, layout id2]`
-  Filter by layouts ids.
-- `--site [site1, site2]`
+  Filter by layout ids.
+- `--site [site name1, site name2]`
   Filter by sites.
 - `--site-id [site id1, site id2]`
   Filter by site ids.
@@ -10475,19 +11284,19 @@ een perftest historic [options] [selectors] [general options]
 - To test history video performance of all the cameras in an account for last 30 days:
 
 ```bash
-een perftest historic
+brivo video perftest historic
 ```
 
 - To test history video performance of all the cameras in a specific layout:
 
 ```bash
-een perftest historic --layout "layout1"
+brivo video perftest historic --layout "layout1"
 ```
 
 - To test history video performance of all the cameras in a specific site:
 
 ```bash
-een perftest historic --site "site1"
+brivo video perftest historic --site "site1"
 ```
 
 ## Example
@@ -10495,7 +11304,7 @@ een perftest historic --site "site1"
 - To get camera perftest livelatency for a camera in CSV format (with headers):
 
 ```bash
-een perftest livelatency --esn '10101462' --header --csv
+brivo video perftest livelatency --esn '10101462' --header --csv
 ```
 
 #### Output:
@@ -10516,6 +11325,1381 @@ perftest livelatency run on 1/1 cameras 10 samples each
 
 ---
 
+# access - Manage Brivo Access
+
+## NAME
+
+`access` - manage Brivo Access resources.
+
+## SYNOPSIS
+
+```
+brivo access|a [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `access` command allows you to manage Brivo Access resources such as users and sites.
+
+`a` is a short alias for `access` — both forms are equivalent:
+
+```bash
+brivo access user list
+brivo a user list
+```
+
+## COMMANDS
+
+- `group` - manage Brivo Access groups
+- `panel` - manage Brivo Access panels
+- `role` - manage Brivo Access roles
+- `site` - manage Brivo Access sites
+- `user` - manage Brivo Access users
+
+---
+
+## access group - Manage Brivo Access Groups
+
+## NAME
+
+`access group` - manage and interact with Brivo Access groups.
+
+## SYNOPSIS
+
+```
+brivo access|a group [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `access group` command allows you to manage Brivo Access groups.
+
+## COMMANDS
+
+### add
+
+Add a new Brivo Access group.
+
+#### Usage:
+
+```
+brivo access|a group add [options] [general options]
+```
+
+#### Required Options:
+
+- `--name [name]`
+  Specify the group name.
+
+#### Options:
+
+- `--antipassback-reset-time [time]`
+  Set the time of day at which antipassback resets. Format: `HH:MM AM/PM` (e.g. `02:00 AM`).
+- `--excluded-from-lockdown`
+  Exclude this group from lockdown. Default: `false`.
+- `--immune-to-antipassback`
+  Make this group immune to antipassback. Default: `false`.
+- `--keypad-unlock`
+  Enable keypad unlock for this group. Default: `false`.
+
+#### Actions:
+
+- Creates the group via a GraphQL mutation.
+- If any of `--keypad-unlock`, `--immune-to-antipassback`, or `--antipassback-reset-time` are provided, a second REST call updates those settings on the newly created group.
+- If the settings update fails, the group is automatically deleted and an error is shown.
+
+#### EXAMPLES
+
+- To add a group with a name only:
+
+```bash
+brivo a group add --name "Staff"
+```
+
+#### Output
+
+```
+successfully added the brivo access group: Staff (Id: 24063584)
+```
+
+- To add a group excluded from lockdown:
+
+```bash
+brivo a group add --name "Visitors" --excluded-from-lockdown
+```
+
+- To add a group with full security settings:
+
+```bash
+brivo a group add --name "Admin" --keypad-unlock --immune-to-antipassback --excluded-from-lockdown --antipassback-reset-time "02:00 AM"
+```
+
+---
+
+### list
+
+List all Brivo Access groups.
+
+#### Usage:
+
+```
+brivo access|a group list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`
+  Display only selected fields (replaces default output). Allowed values: `id`, `name`.
+- `-l, --long`
+  Display additional group details including mobile pass users count, keypad unlock, immune to antipassback, excluded from lockdown, and antipassback reset time. Ignored when `--include` is used.
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by group id (comma-separated).
+- `--name [name]`
+  Filter by group name (partial match).
+
+#### Actions:
+
+- If `--long` is specified, display additional columns: Mobile Pass Users Count, Keypad Unlock, Immune To Antipassback, Excluded From Lockdown, Antipassback Reset Time.
+- If `--include` is specified, display only the selected columns (overrides default output; `--long` is ignored).
+- If `--csv` is specified, export groups in CSV format.
+- If `--google-sheet` is specified, export and upload group data to Google Sheets.
+
+#### EXAMPLES
+
+- To list all groups:
+
+```bash
+brivo access group list --header --csv
+```
+
+#### Output
+
+```csv
+"Id","Name","Active Users","Total Users","Created"
+"20044292","Staff","2","2","2026-05-13T10:37:14.003Z"
+"20044293","Visitors","1","1","2026-05-13T10:37:14.003Z"
+```
+
+- To list groups with full security details:
+
+```bash
+brivo a group list --long --header --csv
+```
+
+#### Output
+
+```csv
+"Id","Name","Active Users","Total Users","Created","Mobile Pass Users Count","Keypad Unlock","Immune To Antipassback","Excluded From Lockdown","Antipassback Reset Time"
+"20044292","Staff","2","2","2026-05-13T10:37:14.003Z","0","no","no","no","02:00 AM"
+```
+
+- To filter groups by name:
+
+```bash
+brivo a group list --name "Staff"
+```
+
+- To filter groups by id:
+
+```bash
+brivo a group list --id 20044292,20044293
+```
+
+- To display only specific fields:
+
+```bash
+brivo a group list --include id,name
+```
+
+- To export groups to a file:
+
+```bash
+brivo a group list --csv --header -f access-groups.csv
+```
+
+---
+
+### set
+
+Update group settings.
+
+#### DESCRIPTION
+
+The `access group set` command allows you to update a specific field for a Brivo Access group.
+Use selectors (`--id`, `--name`) to target the group(s) to update.
+
+#### Usage:
+
+```
+brivo access|a group set [parameter] [value] [options] [selectors] [general options]
+```
+
+#### Parameters:
+
+- `name <group-name>`
+  Set the group name.
+- `antipassback-reset-time <time>`
+  Set the antipassback reset time. Format: `HH:MM AM/PM` (e.g. `02:00 AM`).
+- `keypad-unlock`
+  Enable or disable keypad unlock (`--enable` / `--disable`).
+- `immune-to-antipassback`
+  Enable or disable immune to antipassback (`--enable` / `--disable`).
+- `excluded-from-lockdown`
+  Enable or disable excluded from lockdown (`--enable` / `--disable`).
+
+#### Common Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheets.
+- `--header`
+  Display column headers in the result.
+- `--enable`
+  Enable the setting (required for: excluded-from-lockdown, immune-to-antipassback, keypad-unlock; cannot be used with `--disable`).
+- `--disable`
+  Disable the setting (required for: excluded-from-lockdown, immune-to-antipassback, keypad-unlock; cannot be used with `--enable`).
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by group id (comma-separated; use `'*'` to apply to all groups).
+- `--name [name]`
+  Filter by group name (partial match).
+
+#### EXAMPLES
+
+```bash
+# Rename a group by id
+brivo access group set name "Staff Team" --id 20044292
+
+# Rename all groups matching a name filter
+brivo a group set name "Staff Team" --name "Staff"
+
+# Rename all groups
+brivo a group set name "All Staff" --id '*'
+
+# Disable excluded from lockdown for multiple groups
+brivo a group set excluded-from-lockdown --disable --id 20044292,20044293
+
+# Set the antipassback reset time
+brivo a group set antipassback-reset-time "02:00 AM" --id 20044292
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```csv
+"Group Id","Group Name","Is Successful"
+"20044292","Staff Team","yes"
+```
+
+**Error Output Example:**
+
+```csv
+"Group Id","Group Name","Is Successful","Error Reason"
+"20044292","Staff Team","no","not found (response status: 404)"
+```
+
+---
+
+### delete
+
+Delete a Brivo Access group.
+
+#### Usage:
+
+```
+brivo access|a group delete [options] [general options]
+```
+
+#### Options:
+
+- `--id [id]`
+  Specify id(s) of the group(s) to delete (comma-separated).
+- `--name [name]`
+  Specify name of the group to delete (single group only).
+
+#### EXAMPLES
+
+- To delete a group by id:
+
+```bash
+brivo a group delete --id 20044292
+```
+
+- To delete a group by name:
+
+```bash
+brivo a group delete --name "Staff"
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```
+successfully deleted the brivo access group: Staff (20044292)
+```
+
+**Error Output Example:**
+
+```
+error: unable to delete the brivo access group: not found (status: 404)
+```
+
+---
+
+## access panel - Manage Brivo Access Panels
+
+## NAME
+
+`access panel` - manage and interact with Brivo Access control panels.
+
+## SYNOPSIS
+
+```
+brivo access|a panel [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `access panel` command allows you to list Brivo Access control panels.
+
+## COMMANDS
+
+### list
+
+List all Brivo Access panels.
+
+#### Usage:
+
+```
+brivo access|a panel list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`
+  Display only selected fields (replaces default output). Allowed values: `id`, `name`.
+- `-l, --long`
+  Display additional details including last contact, serial number and activated at.
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by panel id. Accepts comma-separated values.
+- `--name [name]`
+  Filter by panel name (partial match).
+
+#### General Options:
+
+- `-d, --debug`
+  Display detailed debug output.
+- `-p, --prompt`
+  Prompt for Google Sheets configuration.
+
+#### Actions:
+
+- If `--long` is specified, display additional columns: Last Contact, Serial Number, Activated At.
+- If `--include` is specified, display only the selected columns (overrides default output; `--long` is ignored).
+- If `--csv` is specified, export panels in CSV format.
+- If `--google-sheet` is specified, export and upload panel data to Google Sheets.
+
+## EXAMPLES
+
+- To list all panels:
+
+```bash
+brivo access panel list --header --csv
+```
+
+#### Output
+
+```csv
+"Id","Name","Status","Model"
+"68197402","CLI-test","connected","300 2-Door"
+```
+
+- To list panels with full details:
+
+```bash
+brivo a panel list --long --header --csv
+```
+
+#### Output
+
+```csv
+"Id","Name","Status","Model","Last Contact","Serial Number","Activated At"
+"68197402","CLI-test","connected","300 2-Door","2026-09-09T08:51:47.025Z","VPB-X5-YYYVB","2026-05-07T13:07:50.759Z"
+```
+
+- To filter panels by id:
+
+```bash
+brivo a panel list --id 68197402
+```
+
+- To filter panels by name:
+
+```bash
+brivo a panel list --name "CLI-test"
+```
+
+- To display only specific fields:
+
+```bash
+brivo a panel list --include id,name
+```
+
+- To export panels to a file:
+
+```bash
+brivo a panel list --csv --header -f access-panels.csv
+```
+
+---
+
+## access user - Manage Brivo Access Users
+
+## NAME
+
+`access user` - manage and interact with Brivo Access users.
+
+## SYNOPSIS
+
+```
+brivo access|a user [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `access user` command allows you to manage Brivo Access users and export user data in various formats.
+
+## COMMANDS
+
+### add
+
+Add a new Brivo Access user.
+
+#### Usage:
+
+```
+brivo access|a user add [options] [general options]
+```
+
+#### Required Options:
+
+- `--first-name [first name]`
+  Specify first name.
+- `--last-name [last name]`
+  Specify last name.
+
+#### Options:
+
+- `--group-id [id1, id2]`
+  Specify ids of the groups to assign the user to.
+- `--group-name [name1, name2]`
+  Specify names of the groups to assign the user to.
+- `--home-email [email1, email2]`
+  Specify home email addresses.
+- `--home-phone [number1, number2]`
+  Specify home phone numbers.
+- `--middle-name [middle name]`
+  Specify middle name.
+- `--mobile-email [email1, email2]`
+  Specify mobile email addresses.
+- `--mobile-phone [number1, number2]`
+  Specify mobile phone numbers.
+- `--other-email [email1, email2]`
+  Specify other email addresses.
+- `--other-phone [number1, number2]`
+  Specify other phone numbers.
+- `--work-email [email1, email2]`
+  Specify work email addresses.
+- `--work-phone [number1, number2]`
+  Specify work phone numbers.
+
+#### EXAMPLES
+
+- To add a new user:
+
+```bash
+brivo access user add --first-name 'cli' --last-name 'user'
+```
+
+- To add a new user with work and home emails:
+
+```bash
+brivo a user add --first-name 'cli' --last-name 'user' --work-email 'cli@gmail.com' --home-email 'cli.home@gmail.com'
+```
+
+- To add a new user and assign them to groups by name:
+
+```bash
+brivo a user add --first-name 'cli' --last-name 'user' --group-name 'Staff, Admin'
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully added the brivo access user: cli user (id: 23870391)
+successfully assigned the brivo access user to the group: Staff (333), Admin (444)
+```
+
+**Error Output Example:**
+
+```text
+error: unable to add the brivo access user: the resource already exists (status: 409)
+```
+
+---
+
+### list
+
+List all Brivo Access users.
+
+#### Usage:
+
+```
+brivo access|a user list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `-l, --long`
+  Display details of users, including id, suspended status, phone numbers and group ids.
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by id.
+- `--first-name [first name]`
+  Filter by first name.
+- `--last-name [last name]`
+  Filter by last name.
+
+## EXAMPLES
+
+- To list all users:
+
+```bash
+brivo access user list --header --csv
+```
+
+#### Output
+
+```csv
+"first name","middle name","last name","emails","groups"
+"John","-","Doe","work: user@example.com","Staff"
+"Kavya","-","KS","-","-"
+```
+
+- To list all users with full details:
+
+```bash
+brivo a user list --long --header --csv
+```
+
+#### Output
+
+```csv
+"first name","middle name","last name","emails","groups","id","is suspended","phone numbers","group id"
+"John","-","Doe","work: user@example.com","Staff","4831201","no","work: 5551234567","1001"
+"Kavya","-","KS","-","-","4831202","yes","-","-"
+```
+
+- To search users by first name:
+
+```bash
+brivo a user list --first-name "John"
+```
+
+- To filter users by id:
+
+```bash
+brivo a user list --id 4831201,4831202
+```
+
+- To export users to a file:
+
+```bash
+brivo a user list --csv -f access-users.csv
+```
+
+### set
+
+Update user details.
+
+#### DESCRIPTION
+
+The `access user set` command allows you to update a specific field for a Brivo Access user.
+You can specify the setting to change as `<parameter>`, and the new value as `<value>`.
+Use selectors (`--id`, `--first-name`, `--last-name`) to target the user to update.
+
+#### Usage:
+
+```
+brivo access|a user set [parameter] [value] [options] [selectors] [general options]
+```
+
+#### Parameters:
+
+- `first-name <first-name>`
+  Set the first name.
+- `last-name <last-name>`
+  Set the last name.
+- `middle-name <middle-name>`
+  Set the middle name.
+- `work-email <work-email>`
+  Set the work email addresses.
+- `home-email <home-email>`
+  Set the home email addresses.
+- `mobile-email <mobile-email>`
+  Set the mobile email addresses.
+- `other-email <other-email>`
+  Set the other email addresses.
+- `work-phone <work-phone>`
+  Set the work phone numbers.
+- `home-phone <home-phone>`
+  Set the home phone numbers.
+- `mobile-phone <mobile-phone>`
+  Set the mobile phone numbers.
+- `other-phone <other-phone>`
+  Set the other phone numbers.
+- `group-id <group-id>`
+  Assign to group by id.
+- `group-name <group-name>`
+  Assign to group by name.
+
+#### Common Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheets.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by id (use '\*' to apply to all users).
+- `--first-name [first name]`
+  Filter by first name.
+- `--last-name [last name]`
+  Filter by last name.
+
+#### EXAMPLES
+
+```bash
+# Rename a user's first name
+brivo access user set first-name 'Jane' --id 4831201
+
+# Set the last name for every user
+brivo a user set last-name 'Doe' --id '*'
+
+# Set a user's last name
+brivo a user set last-name 'Smith' --first-name 'Jane' --last-name 'Doe'
+
+# Replace a user's work email addresses
+brivo a user set work-email 'jane@example.com' --id 4831201
+
+# Replace a user's mobile phone numbers
+brivo a user set mobile-phone '5551234567' --id 4831201
+
+# Replace a user's groups with just "Admin"
+brivo a user set group-name 'Admin' --id 4831201
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```csv
+"user id","full name","is successful"
+"4831201","Jane Doe","yes"
+```
+
+**Error Output Example:**
+
+```csv
+"user id","full name","is successful","error reason"
+"4831201","Jane Doe","no","not found (response status: 404)"
+```
+
+### Note:
+
+- Email/phone parameters (`work-email`, `home-email`, `mobile-email`, `other-email`, `work-phone`,
+  `home-phone`, `mobile-phone`, `other-phone`) replace only the addresses/numbers of that specific type - other types (e.g. setting `home-email` doesn't affect `work-email`) are left untouched. Each parameter accepts a comma-separated list to set multiple addresses/numbers of that type at once.
+- `group-id`/`group-name` replace group membership: the user ends up in exactly the specified group(s), and any existing group memberships not specified are removed.
+- `--id '*'` cannot be combined with `--first-name` or `--last-name`.
+
+---
+
+### delete
+
+Delete a Brivo Access user.
+
+#### Usage:
+
+```
+brivo access|a user delete [options] [general options]
+```
+
+#### Options:
+
+- `--id [id]`
+  Specify id of the user to delete.
+- `--email [email]`
+  Specify email of the user to delete.
+
+#### Examples
+
+- To delete a user by id:
+
+```bash
+brivo a user delete --id 4831201
+```
+
+- To delete a user by email:
+
+```bash
+brivo a user delete --email user@example.com
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully deleted the brivo access user: John Doe (4831201)
+```
+
+**Error Output Example:**
+
+```text
+error: unable to delete the brivo access user: not found (status: 404)
+```
+
+---
+
+## access role - Manage Brivo Access Roles
+
+## NAME
+
+`access role` - manage Brivo Access roles.
+
+## SYNOPSIS
+
+```
+brivo access|a role [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `access role` command allows you to list, add, update, and delete Brivo Access roles. Roles control which features and permissions an administrator has within Brivo Access.
+
+Some roles are built-in default roles maintained by Brivo (`Is Default: yes`) - their permission sets are locked and cannot be modified or deleted. Only custom roles (`Is Default: no`) can be updated or deleted.
+
+## COMMANDS
+
+### add
+
+Add a new Brivo Access role.
+
+#### Usage:
+
+```
+brivo access|a role add [options] [general options]
+```
+
+#### Options:
+
+- `--name [name]`
+  Specify the name of the role. (required)
+- `--permissions [permissions]`
+  Specify permissions as comma-separated values. (required)
+  Supported permissions: `createSite`, `editSite`, `deleteSite`, `viewSite`, `eventTrackerTable`, `journal`, `snapshotLogView`, `viewDevices`, `unlockDoors`, `overrideDoors`, `setSchedule`, `setIntrusion`, `viewLiveVideoCustomLayout`, `viewLiveVideoAllSite`, `createLayout`, `editLayout`, `deleteLayout`, `viewRecordedVideo`, `classicReport`, `viewUsers`, `createUser`, `editUserProfiles`, `assignCredentials`, `editUserGroups`, `deleteUser`, `viewGroups`, `createGroup`, `editGroupDetails`, `editGroupPermissions`, `deleteGroup`, `viewBadgeTemplate`, `createBadgeTemplate`, `editBadgeTemplate`, `deleteBadgeTemplate`, `printBadge`, `viewCredentials`, `addCredentials`, `deleteCredentials`, `viewUnknownCards`, `viewNotifications`, `createNotification`, `updateNotification`, `deleteNotification`, `configSchedules`, `configNotifications`, `configCustomFields`, `manageApplications`, `viewAdmins`, `createAdmin`, `editAdminProfiles`, `editAdminRoles`, `editAdminAssignments`, `deleteAdmin`, `viewRoles`, `createRole`, `editRole`, `deleteRole`, `createLockdownScenario`, `editLockdownScenario`, `deleteLockdownScenario`, `initiateLockdown`, `clearLockdown`, `viewAccountSettings`, `updateAccountSettings`, `acceptInvitation`, `linkGroup`, `readSchedules`, `writeSchedules`, `viewHolidays`, `editHolidays`, `viewDashboard`, `createDashboard`, `editDashboard`, `deleteDashboard`, `viewReport`, `runReport`, `createReport`, `editReport`, `deleteReport`
+- `--description [description]`
+  Specify a description for the role.
+
+### delete
+
+Delete a Brivo Access role by id or name.
+
+> **Note:** Only custom roles can be deleted. Default roles (`Is Default: yes`) cannot be deleted.
+
+#### Usage:
+
+```
+brivo access|a role delete [options] [general options]
+```
+
+#### Options:
+
+- `--id [id]`
+  Specify the id of the role to delete.
+- `--name [name]`
+  Specify the name of the role to delete.
+
+#### Actions:
+
+- Exactly one of `--id` or `--name` must be provided.
+- If `--name` matches multiple roles, the command errors and prompts you to use `--id` instead.
+
+### list
+
+List all Brivo Access roles.
+
+#### Usage:
+
+```
+brivo access|a role list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheet.
+- `--header`
+  Display column headers in the result.
+- `--include [value1, value2]`
+  Display only selected fields. Allowed values: `id`, `name`, `description`.
+- `-l, --long`
+  Display additional role details including id and permissions.
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by role id.
+- `--name [name]`
+  Filter by role name (partial match).
+
+#### Actions:
+
+- If `--long` is specified, display additional columns: Id, Permissions.
+- If `--include` is specified, display only the selected columns.
+- If `--csv` is specified, export roles in CSV format.
+- If `--google-sheet` is specified, export and upload role data to Google Sheets.
+
+### set
+
+Update role settings.
+
+#### DESCRIPTION
+
+The `access role set` command allows you to update a specific field for a Brivo Access role.
+Use selectors (`--id`, `--name`) to target the role(s) to update.
+
+> **Note:** Only custom roles can be updated. Default roles (`Is Default: yes`) are silently skipped.
+
+#### Usage:
+
+```
+brivo access|a role set [parameter] [value] [options] [selectors] [general options]
+```
+
+#### Parameters:
+
+- `name <role-name>`
+  Set the role name.
+- `description <description>`
+  Set the role description.
+- `permissions <permissions>`
+  Replace the role's full permission set with the specified comma-separated values (same supported values as `add --permissions`).
+
+#### Common Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheets.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `--id [id1, id2]`
+  Filter by role id (comma-separated; use `'*'` to apply to all custom roles).
+- `--name [name]`
+  Filter by role name (partial match).
+
+#### EXAMPLES
+
+```bash
+# Rename a role by id
+brivo access role set name "Security Viewer" --id 103200
+
+# Update permissions for a role by name
+brivo a role set permissions "viewDevices,unlockDoors,viewUsers" --name "Security Viewer"
+
+# Apply the same permissions to all custom roles
+brivo a role set permissions "viewDevices,viewUsers" --id '*'
+
+# Update a role's description
+brivo a role set description "Read-only access to devices and users" --id 103200
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```csv
+"Role Id","Role Name","Is Successful"
+"103200","Security Viewer","yes"
+```
+
+**Error Output Example:**
+
+```csv
+"Role Id","Role Name","Is Successful","Error Reason"
+"103200","Security Viewer","no","Error Occurred: ConflictError: Role name already exists for the account"
+```
+
+## EXAMPLES
+
+- To add a new role:
+
+```bash
+brivo access role add --name "Security Viewer" --permissions "viewDevices,viewUsers,viewGroups"
+```
+
+- To add a role with a description:
+
+```bash
+brivo access role add --name "Badge Admin" --description "Manages badging templates" --permissions "viewBadgeTemplate,createBadgeTemplate,editBadgeTemplate,printBadge"
+```
+
+- To delete a role by id:
+
+```bash
+brivo access role delete --id 103200
+```
+
+- To delete a role by name:
+
+```bash
+brivo access role delete --name "Security Admin"
+```
+
+- To list all roles:
+
+```bash
+brivo access role list --header --csv
+```
+
+#### Output
+
+```csv
+"Name","Description","Is Default"
+"Super Administrator","Can edit other administrators","yes"
+"Administrator","Regular administrator","yes"
+"CLI test","Test Role","no"
+```
+
+- To list roles with full permission details:
+
+```bash
+brivo a role list --long --header --csv
+```
+
+#### Output
+
+```csv
+"Name","Description","Is Default","Id","Permissions"
+"Administrator","Regular administrator","yes","3","evtTrackerTable,journal,snapshotLogView,devicesViewDevices,..."
+"CLI test","Test Role","no","102127","viewSite,userViewUsers,..."
+```
+
+- To filter roles by name:
+
+```bash
+brivo a role list --name "Admin"
+```
+
+- To filter roles by id:
+
+```bash
+brivo a role list --id '102127,102128'
+```
+
+- To display only specific fields:
+
+```bash
+brivo a role list --include 'id,name'
+```
+
+- To export roles to a file:
+
+```bash
+brivo a role list --csv --header -f access-roles.csv
+```
+
+---
+
+## access site - Manage Brivo Access Sites
+
+## NAME
+
+`access site` - manage and interact with Brivo Access sites.
+
+## SYNOPSIS
+
+```
+brivo access|a site [COMMAND] [OPTIONS]
+```
+
+## DESCRIPTION
+
+The `access site` command allows you to manage Brivo Access sites and export site data in various formats.
+
+## COMMANDS
+
+### add
+
+Add a new Brivo Access site.
+
+#### Usage:
+
+```
+brivo access|a site add [options] [general options]
+```
+
+#### Required Options:
+
+- `--name [name]`
+  Specify site name.
+- `--address [address]`
+  Specify street address.
+- `--city [city]`
+  Specify city.
+- `--state [state]`
+  Specify state.
+- `--country [country]`
+  Specify country.
+- `--postal-code [postal-code]`
+  Specify postal code.
+- `--time-zone [time-zone]`
+  Specify time zone.
+
+#### Options:
+
+- `--apartment [apartment]`
+  Specify apartment or suite.
+
+#### EXAMPLES
+
+- To add a new site:
+
+```bash
+brivo access site add --name 'Eagle Eye Bangalore' --address '1600 Amphitheatre Parkway' --apartment 'Suite 100' --city 'Mountain View' --state 'CA' --postal-code '94043' --country 'United States' --time-zone 'US/Mountain'
+brivo a site add --name 'Eagle Eye Bangalore' --address '1600 Amphitheatre Parkway' --city 'Mountain View' --state 'CA' --postal-code '94043' --country 'United States' --time-zone 'US/Mountain'
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully added the brivo access site: Eagle Eye Bangalore (id: 23775497)
+```
+
+**Error Output Example:**
+
+```text
+error: unable to add the brivo access site: the resource already exists (status: 409)
+```
+
+---
+
+### list
+
+List all Brivo Access sites.
+
+#### Usage:
+
+```
+brivo access|a site list [options] [selectors] [general options]
+```
+
+#### Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in google sheet.
+- `--header`
+  Display column headers in the result.
+- `-l, --long`
+  Display details of sites including id, street address and timezone.
+
+#### Selectors:
+
+- `--id [id]`
+  Filter by site id.
+- `--name [name]`
+  Filter by site name (partial match).
+
+#### Actions:
+
+- If `--csv` is specified, export sites in CSV format.
+- If `--google-sheet` is specified, export and upload site data to Google Sheets.
+- If `--long` is specified, display additional columns: id, street address and timezone.
+
+## EXAMPLES
+
+- To list all sites in CSV format:
+
+```bash
+brivo access site list --csv --header
+brivo a site list --csv --header
+```
+
+#### Output
+
+```csv
+"name","city","state","country","postal code"
+"Main Office","Austin","TX","US","78701"
+```
+
+- To list sites with full details:
+
+```bash
+brivo a site list --long --header --csv
+```
+
+#### Output
+
+```csv
+"name","city","state","country","postal code","id","street address 1","street address 2","timezone"
+"Main Office","Austin","TX","US","78701","23754529","123 Main St","-","US/Central"
+```
+
+- To search sites by name:
+
+```bash
+brivo a site list --name "Main Office"
+```
+
+- To filter by site id:
+
+```bash
+brivo a site list --id 23754529
+```
+
+- To export sites to a file:
+
+```bash
+brivo a site list --csv -f access-sites.csv
+```
+
+### set
+
+Update site settings.
+
+#### DESCRIPTION
+
+The `access site set` command allows you to update a specific field for a Brivo Access site.
+You can specify the setting to change as `<parameter>`, and the new value as `<value>`.
+Use selectors (`--id`, `--name`) to target the site to update.
+
+#### Usage:
+
+```
+brivo access|a site set [parameter] [value] [options] [selectors] [general options]
+```
+
+#### Parameters:
+
+- `name <site-name>`
+  Set the site name.
+- `address <address>`
+  Set the street address.
+- `apartment <apartment>`
+  Set the apartment or unit number.
+- `city <city>`
+  Set the city.
+- `state <state>`
+  Set the state.
+- `country <country>`
+  Set the country.
+- `postal-code <postal-code>`
+  Set the postal code.
+- `time-zone <time-zone>`
+  Set the time zone.
+
+#### Common Options:
+
+- `--csv`
+  Display details in CSV format.
+- `--json`
+  List details in JSON format.
+- `-f, --file-name [file name]`
+  Specify the name of the file where the output will be saved.
+- `-g, --google-sheet`
+  Display details in CSV format in Google Sheets.
+- `--header`
+  Display column headers in the result.
+
+#### Selectors:
+
+- `--id [id]`
+  Filter by site id.
+- `--name [name]`
+  Filter by site name.
+
+#### EXAMPLES
+
+```bash
+# Rename a site
+brivo access site set name 'Main Office' --id 23754529
+
+# Set the street address for a site
+brivo a site set address '123 Main St' --name 'Main Office'
+
+# Set the apartment/unit number for a site
+brivo a site set apartment 'Suite 200' --id 23754529
+
+# Set the city for a site
+brivo a site set city 'Austin' --id 23754529
+
+# Set the state for a site
+brivo a site set state 'TX' --id 23754529
+
+# Set the country for a site
+brivo a site set country 'US' --id 23754529
+
+# Set the postal code for a site
+brivo a site set postal-code '78701' --id 23754529
+
+# Set the time zone for a site
+brivo a site set time-zone 'US/Central' --id 23754529
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```csv
+"site id","site name","is successful"
+"23754529","Main Office","yes"
+```
+
+**Error Output Example:**
+
+```csv
+"site id","site name","is successful","error reason"
+"23754529","Main Office","no","not found (response status: 404)"
+```
+
+---
+
+### delete
+
+Delete a Brivo Access site.
+
+#### Usage:
+
+```
+brivo access|a site delete [options] [general options]
+```
+
+#### Options:
+
+- `--id [id]`
+  Specify id of the site to delete.
+- `--name [name]`
+  Specify name of the site to delete.
+
+#### Examples
+
+- To delete a site by id:
+
+```bash
+brivo a site delete --id 23754529
+```
+
+- To delete a site by name:
+
+```bash
+brivo a site delete --name "Main Office"
+```
+
+#### Output
+
+**Successful Output Example:**
+
+```text
+successfully deleted the brivo access site: Main Office (23754529)
+```
+
+**Error Output Example:**
+
+```text
+error: unable to delete the brivo access site: not found (status: 404)
+```
+
+---
+
 # googleconfig - Update Google Configuration Options
 
 ## NAME
@@ -10525,7 +12709,7 @@ perftest livelatency run on 1/1 cameras 10 samples each
 ## SYNOPSIS
 
 ```
-een googleconfig update <option name> <value>
+brivo video googleconfig update <option name> <value>
 ```
 
 ## DESCRIPTION
@@ -10535,7 +12719,7 @@ The `googleconfig` command allows you to update specific configuration options r
 #### Usage:
 
 ```
-een googleconfig [options] [command]
+brivo video googleconfig [options] [command]
 ```
 
 ## COMMANDS
@@ -10547,7 +12731,7 @@ Update Google config option values.
 #### Usage:
 
 ```
-een googleconfig update [options] <option name> <value>
+brivo video googleconfig update [options] <option name> <value>
 ```
 
 #### Arguments:
@@ -10567,7 +12751,7 @@ The action processes the provided option name and value, parsing the value as JS
 To update a Google configuration option:
 
 ```bash
-een googleconfig update "api_key" "your_api_key_value"
+brivo video googleconfig update "api_key" "your_api_key_value"
 ```
 
 # For Google Sheets commands
@@ -10695,13 +12879,13 @@ Replace these values with your credentials, you will be able to get the Google S
 #### To update the Google config values, you can also use the command:
 
 ```
-een googleconfig update <name> -- <value>
+brivo video googleconfig update <name> -- <value>
 ```
 
 Example:
 
 ```
-een googleconfig update "driveFolderID" -- "1giou_ghlihbZyUpwCx"
+brivo video googleconfig update "driveFolderID" -- "1giou_ghlihbZyUpwCx"
 ```
 
 ---
@@ -10716,10 +12900,10 @@ Many commands support the `--include` option to display only specific fields in 
 
 ```bash
 # Get only camera ESNs in camera list
-een camera list --include 'esn'
+brivo video camera list --include 'esn'
 
 # Get only bridge ESNs in bridge list
-een bridge list --include 'esn'
+brivo video bridge list --include 'esn'
 ```
 
 When using the `--include` option, only the specified fields will be returned in the output.
@@ -10728,17 +12912,17 @@ When using the `--include` option, only the specified fields will be returned in
 
 #### Output Formats
 
-The EEN CLI tool supports three main output formats. By default, headers are hidden in all formats unless `--header` is specified.
+The Brivo CLI tool supports three main output formats. By default, headers are hidden in all formats unless `--header` is specified.
 
 1. **Table Format (Default)**
    Human-readable output in a table format.
 
    ```bash
    # Table output (headers hidden)
-   een camera list
+   brivo video camera list
 
    # Table output with headers
-   een camera list --header
+   brivo video camera list --header
    ```
 
 2. **CSV Format**
@@ -10746,10 +12930,10 @@ The EEN CLI tool supports three main output formats. By default, headers are hid
 
    ```bash
    # CSV output without headers
-   een camera list --csv
+   brivo video camera list --csv
 
    # CSV output with headers
-   een camera list --csv --header
+   brivo video camera list --csv --header
    ```
 
 3. **Google Sheets Format**
@@ -10757,10 +12941,10 @@ The EEN CLI tool supports three main output formats. By default, headers are hid
 
    ```bash
    # Google Sheets output without headers
-   een camera list --google-sheet
+   brivo video camera list --google-sheet
 
    # Google Sheets output with headers
-   een camera list --google-sheet --header
+   brivo video camera list --google-sheet --header
    ```
 
 ---
@@ -10773,7 +12957,7 @@ The `--prompt` option adds confirmation prompts during command execution for saf
 
 ```bash
 # File overwrite prompt
-een camera list --csv --file-name cameras.csv --prompt
+brivo video camera list --csv --file-name cameras.csv --prompt
 # Output: File 'cameras.csv' already exists. Overwrite? (y/N):
 ```
 
@@ -10787,32 +12971,19 @@ All error messages are printed to stderr, and successful data is printed to stdo
 
 #### API Versions
 
-The EEN CLI tool supports two API versions:
+The Brivo video CLI tool supports two API versions:
 
 - **v3 API (Default):** All commands use v3 APIs by default (recommended).
 - **v1 API (Legacy):** Some commands support the legacy v1 API using the `--v1` option (deprecated).
 
-**Usage v1 APIs:**
-
-```bash
-# Using default v3 API
-een camera list
-
-# Using v1 API
-een camera list --v1
-```
-
 **Commands Supporting `--v1`:**
 
 - `auth login`
-- `user list`
-- `camera list`
-- `bridge list`
 - `perftest preview`
 
 ---
 
-#### Available Status Values
+#### Available Status Values (Brivo video)
 
 **Camera status for v1:**
 
@@ -10853,16 +13024,16 @@ When passing multiple values separated by commas to any option, always use **sin
 **Correct:**:
 
 ```bash
-een camera list --esn 'cam1,cam2,cam3'
-een bridge list --site 'Site A,Site B,Site C'
-een user list --include 'email,firstname,lastname'
+brivo video camera list --esn 'cam1,cam2,cam3'
+brivo video bridge list --site 'Site A,Site B,Site C'
+brivo video user list --include 'email,firstname,lastname'
 ```
 
 **Avoid:**:
 
 ```bash
-een camera list --esn cam1,cam2,cam3          # May not work - shell splits on commas
-een camera list --esn "cam1,cam2,cam3"        # May work but can cause issues in some cases
+brivo video camera list --esn cam1,cam2,cam3          # May not work - shell splits on commas
+brivo video camera list --esn "cam1,cam2,cam3"        # May work but can cause issues in some cases
 ```
 
 ### Available timezones
